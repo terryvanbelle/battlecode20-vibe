@@ -109,6 +109,64 @@ against exactly those 20, to find which of them unlock at 20%.
 Own-side reading of the 45 allowed games: our HQ was never buried; median coverage 22% against
 their 8%; median r400 worth 3200 against their 600. Nothing degenerate stands out in wins.
 
+## Iteration 2 -- spend the bank before the flood, and drones (2026-09-23)
+
+**Target (own degeneracy, from the 45 allowed games of block 1).** By r900 our median miner count
+is 1 and our refinery/vaporators have drowned outside the wall; the fulfillment center was never
+built (it waited for a vaporator), so we fielded zero drones all game; the bank sat unspent
+(median 1338 soup at r900). Our HQ still outlasts the opponent's in long games because the wall
+keeps rising.
+
+**Mechanism.** The builder places the fulfillment center right after the design school at a bank
+of 350 [`@build t=5`], then vaporators; the center builds drones whenever the bank exceeds 400, up
+to 24 [`@build t=7`]; the school's surplus landscapers need a bank of 500 instead of 650. Building
+sites prefer the highest tile on the circle. Drones drop enemy units into water [`@pickup`,
+`@drown`] and never park on the ring.
+
+**Diagnostics (driver, `run-dev.sh bot g_iter1 Hourglass`):**
+
+| run | what the counters showed | fix |
+|---|---|---|
+| 2a | FC r276, 3 drones, 7 drownings -- but the wall race was LOST at r2521: 5 of 8 landscapers died off the ring at r677. Miners fleeing the flood had climbed onto the raised ring tiles (the highest ground) and taken the seats | miners and drones treat ring tiles as forbidden once a refinery exists or a landscaper is on the ring |
+| 2b | still 3 seats; HQ drowned at r682. Five landscapers all chose seat (18,21), a natural elevation-99 cliff on the ring, unreachable from 3; a miner already standing on a low ring tile stayed and let the flood in | seats must be within 3 of the HQ's elevation (a cliff is a wall already); a miner steps off the ring when the rule applies |
+| 2c | **all 4 reachable seats taken; wall held to r2525 (water 100); FC + 4 drones, 7 enemy units drowned; won the robot-count tiebreak 8-? against g_iter1 at r2525** | -- |
+
+Both seat defects are Iteration 1 defects exposed by a longer game; the g_iter1 snapshot carries
+them.
+
+**Gate.** `BOT=bot REF=g_iter1 N=240 tools/mirror.sh` (run `gate2`). Falsifier: below 53% at the
+cap. Second arm: none pre-registered (the mechanism is a defect repair plus bank spending, both
+visible to a twin). Expected cost: mirror games run to r2500 (both walled), ~10 VM-minutes each.
+
+## Block 2 -- g_iter1 against the 20 bots that beat it (run 20260923-144021-scrim-bot)
+
+60 scrimmages, three per bot: **12-48 (20%)**; 59 ended by an HQ drowning, 1 by tiebreak. Elo
+after 125 games: 1291, rank 66 of 66 (we played the strongest 20 three times each). Unlocked at
+>= 20%: `yaonam.Robot_1`, `VinayaBhat.team10pdx`, `Tim-gubski.AngryWaffleMaker`,
+`TeamSerpentine.noodleBot` (2/3 each), `mhahn2003.nonrush`, `cs454-w20-team3.playbot`,
+`cormackikkert.whyPermutator`, `benzyx.seeding` (1/3). Twelve bots stay locked at 0/3.
+The block took 7 minutes on the VM: about one CPU-minute a game, five times cheaper than 2021.
+
+**Census of the 24 unlocked games (12-12; noise floor 0.41).** Earliest and strongest at r200,
+within-opponent: `landscapers (us-them)` +0.62 (loss median gap 2.0 against 4.5 in wins: the
+opponent has more landscapers in the games we lose), `units (us-them)` +0.54, `spawned` +0.50.
+At r900 in losses we sit on 3201 soup (2544 in wins), 0 vaporators (drowned) against their 3, 0
+pickups against their 3.5, robots 16 against their 17.5. Our HQ is never buried, theirs never
+buried: every loss is a drowning.
+
+**The twelve losses split in two.** Six end at the map's flood round (r683-r939): the wall did not
+hold. Six are wall races lost at r1211-r3090. Traced `VinayaBhat.team10pdx` on MoreCowbell
+(lost r689): six landscapers seated and at elevation 210-232 by r600, but the two ring tiles in
+the map corner held **miners**, trapped between the rising wall and the map edge since r400 and
+never able to leave; those tiles stayed at 3 and drowned the HQ at r688. This is the seat defect
+Iteration 2 repairs (miners forbidden from the ring, and stepping off it before the wall rises).
+
+**Next candidates from this census (not yet pre-registered).** (a) The long-race losses: their
+landscaper count at r200 is the top correlate; a second ring of helpers depositing onto the seats
+would double the wall's growth (each seat gains 0.5/round from its own landscaper). (b) Vaporators
+that survive the flood (theirs: 3 at r900, ours: 0), i.e. sites inside a wider wall or on natural
+high ground. (c) Trapped units in general: anything caught between the wall and an edge.
+
 ## Ledger (closed directions)
 
 (empty)

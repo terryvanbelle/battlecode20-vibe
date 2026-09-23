@@ -30,6 +30,16 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 - **Bytecode**: sensing calls 100, blockchain read/write 100, exceptions 500. Iteration 0's miner
   peaks at 5.2k of 10k, HQ at 3.3k of 20k.
 
+- **A 2020 game costs about one CPU-minute**, even at 3,000 rounds: 65 scrimmages took 8 minutes on
+  the 8-core VM at 6 in parallel (2026-09-23), against ~6 CPU-minutes in 2021. The engine's cost is
+  per robot-turn and 2020 armies are 10-30 robots, not hundreds. A 240-game gate is under an hour.
+- **Raised wall tiles trap units against the map edge.** A miner between the rising ring and the edge
+  can never leave (elevation difference > 3) and holds a ring seat forever; the tile stays low and
+  drowns the HQ at the flood round (MoreCowbell, block 2).
+- **Some ring tiles are natural cliffs** (Hourglass has elevation-99 tiles adjacent to the HQ): they
+  are walls already and unreachable; a seat rule must skip them or every spare landscaper waits
+  under one.
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for
