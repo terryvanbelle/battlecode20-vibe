@@ -399,6 +399,12 @@ enemy's landscapers at the wall 10 -> 6 (r2600) -> 2 (r2800), their ring 70 lowe
 had no drones at all (no center, poor map), no effect and no cost. Gate `gate9` vs `REF=g_iter3`.
 Falsifier: below 53% at the cap.
 
+**Gate 9: INCONCLUSIVE 135-105 (56.2%) at the 240 cap** -- batches 10-6, 7-9, 6-10, 9-7, 10-6, 7-9,
+8-8, 12-4, ..., 10-6; LLR +1.73 against bounds of 2.94. Above the 53% keep line: **provisional**,
+snapshot `src/g_iter4` (from the VM's gated copy); submission block `block10` (`BOT=g_iter4 N=60`).
+The raid fires only in games where a center and drones exist before r700, which is why the mirror
+effect is a few points rather than the diagnostic's 70 of wall height.
+
 ## Iteration 10 -- home-defence drones (2026-09-23, prepared while gate 9 runs)
 
 Traces, the 24 reviewable g_iter3 losses of blocks 8-9: five games (battlecode20-team4 x4 and
@@ -468,5 +474,5 @@ measure). Gate `gate9` (Iteration 9, the late raid, vs g_iter3) launched at 20:4
 | flood defence (wall) | Iteration 8 (ACCEPT 39-9) | 0 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
-| drones / combat | -- | 0 |
+| drones / combat | Iteration 9 (provisional 135-105) | 0 |
 | communication | Iteration 8 (ACCEPT 39-9) | 0 |

@@ -1,4 +1,4 @@
-package bot;
+package g_iter4;
 
 import battlecode.common.*;
 
@@ -51,8 +51,6 @@ public strictfp class Miner extends Robot {
         work();
     }
 
-    private int siteFails = 0;   // consecutive turns on the circle with nothing buildable
-
     // ---------------------------------------------------------------- builder
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
@@ -65,7 +63,7 @@ public strictfp class Miner extends Robot {
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
-        int dist = (want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4) + siteFails / 25;   // Iteration 10: a circle with no buildable tile (cliffs, water) is widened after 25 failed turns (IsThisProcedural: no school for 600 rounds, 5,000 soup idle)
+        int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
         if (Nav.cheb(loc, home) != dist) {
             // walk to the nearest tile at that distance
             MapLocation best = null; int bd = 1 << 30;
@@ -86,8 +84,7 @@ public strictfp class Miner extends Robot {
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
-        if (bestD == null) { if (siteFails < 75) siteFails++; nav.setTarget(home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); nav.step(); return true; }
-        siteFails = 0;
+        if (bestD == null) { nav.setTarget(home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); nav.step(); return true; }
         rc.buildRobot(want, bestD);
         Debug.log("@build t=" + want.ordinal() + " at=" + loc.add(bestD) + " soup=" + rc.getTeamSoup());
         if (want == RobotType.REFINERY) { builtRefinery++; refinery = loc.add(bestD); }

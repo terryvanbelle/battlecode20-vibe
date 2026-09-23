@@ -11,11 +11,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - Iteration 6, the citadel (ring at Chebyshev 2, buildings sealed inside, drone ferry and raid), is closed after ten
   24-game sweeps at 4-9/24 against g_iter2 (TRAINING_LOG ledger); its code is `src/arch_citadel`, its tools
   `tools/citadel-diag.sh` and `replay-dump.sh --ringd`.
-- **Incumbent and submission: `src/g_iter3`** (Iteration 8, accepted 39-9 over g_iter2 on 2026-09-23: chain-shared
-  origin/enemy HQ, hypothesis pruning on sight, helper posts struck off when unreachable). Iteration 7 (the same with a
-  stall exit that sent helpers to attack) was rejected 21-43.
-- `src/bot` = Iteration 9 = g_iter3 + a late drone raid (from r2300 the drones scout the enemy HQ, gather at 7 and lift
-  seats off the enemy ring). Diagnostics `diag/iter9-*`; gate `gate9` vs `REF=g_iter3`.
+- **Incumbent and submission: `src/g_iter4`** (Iteration 9, provisional: 135-105 inconclusive above the 53% keep line
+  over g_iter3 on 2026-09-23; the late drone raid). `src/g_iter3` (Iteration 8, accepted 39-9 over g_iter2) is the
+  fallback if a submission block disappoints.
+- `src/bot` = Iteration 10 = g_iter4 + home-defence drones + the builder widens its site circle after 25 failed turns.
+  Diagnostics `diag/iter10-*`; gate `gate10` vs `REF=g_iter4`.
 - Ladder: g_iter2 is 37/156 (24%) on the strong field over blocks 1-6; Elo 1372, rank 66/66 (`progress/ELO.md`).
 - Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);
   the ladder field is `tools/ladder-bots.txt` (one bot per repo, chosen by name).
