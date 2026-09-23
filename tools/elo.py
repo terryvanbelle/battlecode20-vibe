@@ -14,12 +14,26 @@ ap = argparse.ArgumentParser(); ap.add_argument('--pool', type=int, default=0); 
 ap.add_argument('--established', type=int, default=0,
                 help='the N rated bots we have the most games against: a FIXED field, so consecutive '
                      'blocks are comparable and a provisional rating from six games cannot select itself in')
+ap.add_argument('--challenge', type=int, default=0,
+                help='the N bots that beat us at least half the time, fewest games against us first, then highest rating: '
+                     'the climb pool (block 3 showed "nearest above us" collapses to the easy end after a block against the strong end)')
 ap.add_argument('--quiet', action='store_true'); a = ap.parse_args()
 rows = elolib.load(); R, games, wins, hist = elolib.ratings(rows)
 bots = elolib.ladder_bots()
 rated = [b for b in bots if games[b] > 0]; unrated = [b for b in bots if games[b] == 0]
 table = sorted([(R[b], b) for b in rated] + [(R['us'], 'us')], key=lambda x: -x[0])
 rank = {b: i + 1 for i, (_, b) in enumerate(table)}
+if a.challenge:
+    # per-bot record against us
+    rec = {}
+    for r in rows:
+        opp = r['teamB'] if r['teamA'].startswith('us:') else r['teamA'] if r['teamB'].startswith('us:') else None
+        if opp is None: continue
+        we_won = (r['winner'] == 'A') == r['teamA'].startswith('us:')
+        w, g = rec.get(opp, (0, 0)); rec[opp] = (w + (1 if we_won else 0), g + 1)
+    hard = [b for b in bots if b in rec and rec[b][0] * 2 <= rec[b][1]]
+    hard.sort(key=lambda b: (rec[b][1], -R[b]))
+    print(' '.join(hard[:a.challenge])); raise SystemExit
 if a.established:
     rated = [b for b in elolib.ladder_bots() if games[b] > 0]
     print(' '.join(sorted(rated, key=lambda b: (-games[b], -R[b]))[:a.established])); raise SystemExit

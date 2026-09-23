@@ -14,7 +14,7 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `sprt.py <wins> <losses>` | sequential probability ratio test, H0 p=0.50 vs H1 p=0.58: ACCEPT / REJECT / CONTINUE |
 | `scrim.sh` (BOT, N, POOL, SEED) | the only way to play an external bot: random map and side, rotating opponents from the Elo pool |
 | `scrim-record.py <run> --label <build>` | appends a block to `progress/games.csv` |
-| `elo.py [--pool N --explore K] [--build B] [--established N]` | the Elo ladder from our scrimmages only: `progress/ELO.md`, `elo.png`, and the challenge pool |
+| `elo.py [--challenge N] [--pool N --explore K] [--build B] [--established N]` | the Elo ladder from our scrimmages only: `progress/ELO.md`, `elo.png`; `--challenge N` = the climb pool (bots that beat us at least half the time, fewest games first), which `scrim.sh` uses by default |
 | `snapshot.sh name [archetype]` | freeze `src/bot` as `src/<name>` |
 | `replay-dump.sh replay [flags]` | replay -> text: `--every`, `--from/--to`, `--robot`, `--map/--map-at`, `--logs REGEX --logs-team A`, `--metrics`, `--bytecode`, `--navstats`, `--threat A` |
 | `bench-compile.sh` | compile every benchmark repo without displaying source; writes `manifest.tsv` |

@@ -28,7 +28,12 @@ if [ -z "${POOL:-}" ]; then
     exit 4
   fi
   if [ "$(grep -c . "$REPO/progress/games.csv")" -ge 40 ]; then
-    if [ "${EXPLORE:-0}" = 0 ]; then
+    if [ "${CHALLENGE:-1}" = 1 ]; then
+      # 2026-09-23 (2020 project, block 3 lesson): the climb pool is the bots that beat us at least half the
+      # time, fewest games against us first. "Nearest above us" collapsed to the easy end of the field right
+      # after a block against the strong end had depressed our rating.
+      POOL="$(python3 "$REPO/tools/elo.py" --challenge "${POOLSIZE:-20}")"
+    elif [ "${EXPLORE:-0}" = 0 ]; then
       # A FIXED field of the most-played rated bots. "Nearest above us" cannot be used here: our rank
       # fell to 18th of 21 as exploration added bots, and the eight nearest above us are now seven bots
       # we have beaten 6-0 whose ratings rest on six games each. Playing those would raise our Elo
