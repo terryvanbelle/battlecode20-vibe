@@ -462,6 +462,23 @@ turns that ended without dig or deposit, by role and by reason (no dig source, n
 slack rule, waiting on borrow, walking, blocked). One diagnostic, then the top reason becomes the
 candidate.
 
+Census (Prison and CentralLake vs g_iter4, r1500 and r2500): seats have digs = deposits to within
+one and **no idle turns** (1,134 digs in 2,350 seated rounds is the dig-deposit ceiling); helpers
+likewise (one boxed in by water had 464 no-dig turns). The 0.35-0.43 figure averaged in attackers
+and walkers. So the intake of the ring is capped at 0.5 per landscaper adjacent to it: 8 seats +
+8 helpers = 8 dirt a round over 8 tiles. The only way up is more bodies next to the ring, and the
+soup for them sits idle (2,000-5,000 by r2500 in most games).
+
+Candidate = g_iter4 + a three-tier wall: `WALL_HELPERS` 16 (every distance-2 tile), 8 feeders at
+distance 3 (`FEEDERS`, after the helpers, bank 300) that keep their own tile above the water and
+pile dirt onto the lowest adjacent distance-2 tile, and seats that may dig under a helper while
+its tile stays `FEED_MARGIN` (4) above the helper's own water margin -- so the feeders' dirt is
+what the seats dig and the helpers never have to re-raise. Ceiling: (8 + 16) x 0.5 = 12 dirt a
+round, +50%. Diagnostic: Prison and CentralLake vs g_iter4; feeders posted, `fed` counts, ring at
+r2500 above the incumbent's by 20% or more. Gate `gate12` vs `REF=g_iter4`. Falsifier: below 53%.
+
+Sparring baseline (run `spar1`, 2026-09-23): g_iter4 beats `arch_drone` 17/24 on the quick set.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
