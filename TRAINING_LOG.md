@@ -389,6 +389,13 @@ wins against `IvanGeffner.finalbota`, `AngusRitossa.newbot`, `battlecode20-team4
 (1/3 each); 0/3 against awesomelemonade, EmaPajic, mvpatel2000, poortho, mhahn2003, benzyx.
 Cumulative for g_iter2 on the strong field: 37/156 (24%). Elo 1372, rank 66 of 66.
 
+## Block 7 -- g_iter2 against the challenge pool (run block7, 2026-09-23)
+
+48 games, challenge pool of 16: **10/48 (20.8%)**. `mhahn2003.nonrush` 3/3 (unlocked for review),
+`wpine215.stardustv2` 2/3; 1/3 against winkelmantanner, rzhan11, ronniesong0809, poortho, benzyx;
+0/3 against the other nine. Cumulative for g_iter2 on the strong field: 47/204 (23%). Elo 1390,
+rank 66 of 66 (377 rated games).
+
 ## Ledger (closed directions)
 
 - **The citadel (ring at Chebyshev 2 with the buildings sealed inside; Iteration 6, 2026-09-23)** --
