@@ -58,7 +58,7 @@ public strictfp class Landscaper extends Robot {
     private void chooseRole(MapLocation home) throws GameActionException {
         if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 16) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
         boolean inside = Nav.cheb(loc, home) < C.RING;
-        if (inside && sealedFromHere(home)) { role = INNER; seat = null; Debug.log("@inner sealed"); return; }
+        if (inside && (sealedFromHere(home) || droneNear())) { role = INNER; seat = null; Debug.log("@inner sealed"); return; }   // with a ferry about, never walk: the far seats lie behind the seats' moat
         seat = pickSeat(home);
         if (seat != null) { role = SEAT; return; }
         if (inside) { role = INNER; Debug.log("@inner ring full"); return; }
@@ -71,13 +71,15 @@ public strictfp class Landscaper extends Robot {
     private boolean sealedFromHere(MapLocation home) throws GameActionException {
         int myE = rc.senseElevation(loc);
         for (int i = 8; --i >= 0;) {
-            MapLocation n = loc.add(DIRS[i]); if (!onRing(n) || isGate(n) || !rc.canSenseLocation(n)) continue;   // the gate is the drone's hover tile, never a way out
+            MapLocation n = loc.add(DIRS[i]); if (!onRing(n) || !rc.canSenseLocation(n)) continue;   // the gate counts while nothing hovers on it: the walking way out before the wall rises
             if (Math.abs(rc.senseElevation(n) - myE) > GameConstants.MAX_DIRT_DIFFERENCE) continue;
             if (rc.isLocationOccupied(n)) continue;   // a seat (or anything else) in the way
             return false;
         }
         return true;
     }
+
+    private boolean droneNear() { for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE) return true; return false; }
 
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
         if (!rc.canSenseLocation(l)) return false;
@@ -186,7 +188,7 @@ public strictfp class Landscaper extends Robot {
         if (!loc.equals(seat)) { if (floodDanger() && climb()) return; nav.setTarget(seat); nav.step(); if (loc.equals(seat)) Debug.log("@seated at=" + seat); return; }
         if (!rc.isReady()) return;
         int cap = Integer.MAX_VALUE;
-        if (round < C.WALL_START && rc.canSenseLocation(home)) cap = rc.senseElevation(home) + GameConstants.MAX_DIRT_DIFFERENCE;   // level to HQ+3 at most: the pocket must still climb over us
+        if (!wallMayRise() && rc.canSenseLocation(home)) cap = rc.senseElevation(home) + GameConstants.MAX_DIRT_DIFFERENCE;   // level to HQ+3 at most until the ring is nearly full: the pocket must still climb over us
         if (digOutHQ(home) || buryAdjacentEnemy() || feedLowest(true, cap)) return;
         if (cap == Integer.MAX_VALUE) {
             if (rc.getDirtCarrying() > 0 && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }

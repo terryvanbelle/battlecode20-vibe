@@ -9,10 +9,14 @@ public strictfp class DesignSchool extends Robot {
     @Override protected void turn() throws GameActionException {
         sense();
         int soup = rc.getTeamSoup();
+        // the school acts before the center (built first) and would spend every 150 as it came: leave the center its
+        // drone while the ferry is being set up (Soup diagnostic: 25 landscapers, no drone all game)
+        boolean fcSeen = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.FULFILLMENT_CENTER) { fcSeen = true; break; }
+        if (fcSeen && rc.getRoundNum() < C.GATE_CLOSE) soup -= RobotType.DELIVERY_DRONE.cost;
         boolean want = built < C.WALL_LANDSCAPERS ? soup >= RobotType.LANDSCAPER.cost
                      : built < C.WALL_LANDSCAPERS + C.WALL_HELPERS ? soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost
                      : built < C.LANDSCAPERS_MAX && soup >= C.INNER_BANK + RobotType.LANDSCAPER.cost;   // inner workers: the school is sealed in with the vaporators
-        if (MapState.school == null && MapState.home != null) MapState.setSchool(loc, rc);   // a robot never senses itself
+        if (MapState.school == null && MapState.home != null) { MapState.setSchool(loc, rc); Debug.log("@layout S=" + loc + " F=" + MapState.gateF + " G=" + MapState.gateG + " fc=" + MapState.fcSlot + " park=" + MapState.park); }   // a robot never senses itself
         if (!want) return;
         if (rc.getRoundNum() >= C.GATE_CLOSE && MapState.gateF != null) return;   // the outside is flooding: no more ferry targets, and a landscaper on F would block the drones
         // Iteration 6: a ring tile first (an instant seat), then the spawn tile F (the ferry lifts it out once the wall is up);

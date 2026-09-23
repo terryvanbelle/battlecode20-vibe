@@ -176,6 +176,10 @@ public abstract strictfp class Robot {
         return Nav.cheb(loc, MapState.home) < C.RING;
     }
     protected static boolean isGate(MapLocation l) { return MapState.gateG != null && l.equals(MapState.gateG); }
+    /** Landscapers of ours standing on ring tiles, as seen from here (the ring is within sight of the pocket and the ring). */
+    protected int ringCount() { int n = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && onRing(friends[i].location)) n++; if (onRing(loc) && type == RobotType.LANDSCAPER) n++; return n; }
+    /** The wall may rise: the ring is nearly full (the gate stays free) or the fallback round has come. Before that units born inside must still climb out. */
+    protected boolean wallMayRise() { if (round >= C.WALL_START) return true; exposed(MapState.home); return MapState.ringExposedCount > 0 && ringCount() >= MapState.ringExposedCount - 2; }
     protected static boolean isSpawnTile(MapLocation l) { return MapState.gateF != null && l.equals(MapState.gateF); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
@@ -246,7 +250,7 @@ public abstract strictfp class Robot {
                 if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING) continue;
                 MapLocation t = new MapLocation(MapState.home.x + dx, MapState.home.y + dy); boolean ex = false;
                 for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, MapState.home) > C.RING && rc.onTheMap(n)) { ex = true; break; } }
-                MapState.ringExposed[(dx + C.RING) + (dy + C.RING) * w] = ex;
+                MapState.ringExposed[(dx + C.RING) + (dy + C.RING) * w] = ex; if (ex) MapState.ringExposedCount++;
             }
         }
         int dx = l.x - MapState.home.x, dy = l.y - MapState.home.y;

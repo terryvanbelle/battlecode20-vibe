@@ -57,6 +57,14 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 - **Vaporators yield 2 soup per turn** (`RobotType.VAPORATOR`, RULES.md), a 250-round payback on
   500; three of them fund a landscaper every 25 rounds. Not the 7 of a miner's dig.
 
+- **Seats dig a moat.** A seat digs the tiles just outside the ring; within 100 rounds they are
+  pits 10 deep and no walker can pass, so any ring tile not seated by then stays empty for the
+  game (Soup, Islands, TheHighGround in the citadel sweeps: a contiguous arc at the far side of
+  the ring never rose). Late seats must be flown in, or the ring must fill before the moat forms.
+- **A pocket tile boxed in by two buildings is a trap.** The citadel's spawn tile F touches only the
+  school and the center on the pocket side; a builder that parked there could never leave and
+  blocked every spawn (Soup diagnostic: no drones all game).
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for

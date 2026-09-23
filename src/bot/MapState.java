@@ -17,7 +17,8 @@ public final strictfp class MapState {
     public static MapLocation home;                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
-    public static boolean[] ringExposed;             // per ring direction, computed once (Robot.exposed)
+    public static boolean[] ringExposed;             // per ring tile, computed once (Robot.exposed)
+    public static int ringExposedCount = 0;          // exposed ring tiles (the gate included)
     public static int enemyDroneRound = -1000;       // last round an enemy drone was seen by anyone (via the chain)
     // Iteration 6 citadel: the design school S sits in the pocket; F (a pocket tile next to S) is the spawn tile every
     // building leaves free, G = HQ + 2(F - HQ) is the ring tile no seat takes so a drone can hover there and lift a

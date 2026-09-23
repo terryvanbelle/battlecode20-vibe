@@ -72,7 +72,9 @@ public strictfp class Drone extends Robot {
             if (loc.distanceSquaredTo(rally) > 8) { nav.setTarget(rally); nav.step(); }
             return;
         }
-        // patrol: between home and the enemy HQ guess
+        // before the raid a drone stays home (Soup diagnostic: both ferry drones left to hunt miners and never saw the waiter)
+        if (MapState.park != null) { if (loc.distanceSquaredTo(MapState.park) > 2 && !loc.equals(MapState.gateG)) { nav.setTarget(MapState.park); nav.step(); } return; }
+        // patrol: between home and the enemy HQ guess (no layout known yet)
         if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {
             MapLocation g = MapState.enemyHQGuess(), h = MapState.home;
             if (g != null && h != null) { int t = nextInt(5); patrol = new MapLocation(h.x + (g.x - h.x) * t / 5, h.y + (g.y - h.y) * t / 5); }
@@ -104,8 +106,10 @@ public strictfp class Drone extends Robot {
         for (int dx = -C.RING; dx <= C.RING; dx++) for (int dy = -C.RING; dy <= C.RING; dy++) {
             if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING) continue;
             MapLocation t = new MapLocation(home.x + dx, home.y + dy);
-            if (!rc.onTheMap(t) || isGate(t) || !exposed(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue;
-            long s = (long) rc.senseElevation(t) * 100 + loc.distanceSquaredTo(t);
+            if (!rc.onTheMap(t) || isGate(t) || !exposed(t)) continue;
+            long s;
+            if (rc.canSenseLocation(t)) { if (rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue; s = (long) rc.senseElevation(t) * 100 + loc.distanceSquaredTo(t); }
+            else s = 100000 + loc.distanceSquaredTo(t);   // out of sight from the gate (sense r2 24): fly there and look; the drop re-checks
             if (s < bs) { bs = s; best = t; }
         }
         if (best != null) { ferryTarget = best; return best; }

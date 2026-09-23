@@ -51,6 +51,9 @@ public strictfp class Miner extends Robot {
         work();
     }
 
+    /** The builder never stands on the spawn tile: boxed in by the school and the center, it could never leave it (Soup diagnostic). */
+    @Override protected boolean allowedTile(MapLocation l) { return super.allowedTile(l) && !(builder && isSpawnTile(l)); }
+
     // ---------------------------------------------------------------- builder
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
@@ -59,7 +62,7 @@ public strictfp class Miner extends Robot {
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
         else if (builtSchool > 0 && builtNet < C.NETGUNS_MAX && round - MapState.enemyDroneRound <= C.DRONE_ALERT && soup >= RobotType.NET_GUN.cost + C.NETGUN_ALERT_BANK) want = RobotType.NET_GUN;   // and more while drones are about
-        else if (builtSchool > 0 && builtFC == 0 && soup >= C.FC_EARLY_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 6: the center before the vaporators -- its drones are the ferry that lets the sealed school keep working
+        else if (builtSchool > 0 && builtFC == 0 && soup >= RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 6: the center right after the school -- its drones are the ferry that lets the sealed school keep working
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         // Iteration 6: once the school stands the builder stays in the pocket (the ring seals it in), parked at BUILD_DIST, waiting for the next bank.
