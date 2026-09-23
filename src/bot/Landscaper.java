@@ -79,6 +79,8 @@ public strictfp class Landscaper extends Robot {
         MapLocation best = null; long bs = Long.MAX_VALUE; int myE = rc.senseElevation(loc);
         for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
             if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
+            boolean corner = Math.abs(dx) == 2 && Math.abs(dy) == 2, mid = dx == 0 || dy == 0;
+            if (!corner && !mid) continue;   // off-centre posts stand on the only tiles an edge seat can dig from (north side starved at 0.39/round)
             MapLocation t = new MapLocation(home.x + dx, home.y + dy);
             if (!rc.onTheMap(t)) continue;
             int lowest = Integer.MAX_VALUE;
@@ -90,7 +92,7 @@ public strictfp class Landscaper extends Robot {
                 for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (onRing(n) && exposed(n) && rc.canSenseLocation(n)) lowest = Math.min(lowest, rc.senseElevation(n)); }
                 if (lowest == Integer.MAX_VALUE) continue;   // a post that touches no exposed ring tile feeds nothing
             }
-            long s = (long) (lowest == Integer.MAX_VALUE ? 0 : lowest) * 10000 + loc.distanceSquaredTo(t) + nextInt(2);
+            long s = (long) (lowest == Integer.MAX_VALUE ? 0 : lowest) * 10000 + (corner ? 0 : 3000) + loc.distanceSquaredTo(t) + nextInt(2);
             if (s < bs) { bs = s; best = t; }
         }
         return best;
@@ -146,8 +148,7 @@ public strictfp class Landscaper extends Robot {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
-            if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
-            int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles
+            int e = rc.senseElevation(n) + (r == null ? 0 : r.team == us ? 100000 : 1000);   // empty first, then enemy-occupied, then under our own units (a helper re-raising itself halves the pair's output, still better than idling)
             if (e < be) { be = e; bestD = d; }
         }
         // 5. a corner seat on the map edge has no outside tile: borrow from the tallest adjacent ring tile

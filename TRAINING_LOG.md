@@ -257,6 +257,37 @@ and landscaper-first pickups. Compare candidate vs arch_drone against g_iter2 vs
 quick set both sides (24 cells each); the candidate must win more, and its games must show net guns
 built before r400 and enemy drone deaths (`shot` in the study) in the tens.
 
+**Running the partner before trusting it (METHOD 6b-ii) took six games.** arch_drone v1 built 16
+drones that made 4 pickups and never came within net-gun range of the enemy HQ: our drone code
+flees anything that shoots, and the twin inherited it. v2 (no fear, hunt the ring): still none at
+the ring -- the enemy-HQ guess degenerated to the map centre. v3 (prune a hypothesis on arriving
+at an empty guess): 34,000 prunes, sym cycling 7->0->7, because the guess WAS the centre: late-born
+drones had no `home` (born beside a fulfillment center out of the HQ's sensor range) and the HQ
+posted HQ_LOC once, at round 2. v4/v5: home and MAP_ORIGIN re-posted every 100 rounds and read every
+round while unknown (a real defect of the bot, now fixed in the candidate too): 12 pickups and 12
+drownings, all 17 drones eventually shot by the incumbent's HQ, still no drone within r2 15 of the
+enemy HQ at any sampled round. The partner pressures miners, not the wall; the real swarms hover
+outside gun range and pounce. Accepted as a weaker-than-real arm and pre-registered as such: the
+A/B reads `drowned` and `shot`, not the win column alone.
+
+**Runs.** Mirror regression `gate4` (bot vs g_iter2, SPRT); A/B arms `ab-inc` (g_iter2 vs
+arch_drone) and `ab-cand` (bot vs arch_drone), quick set both sides.
+
+**Verdict: `gate4` SPRT_REJECT 24-40 (37.5%) after four batches.** The unconditional first net gun
+(250 soup at ~r190) costs almost two landscapers at the moment the wall is being manned, and the
+wall race is that sensitive: in a mirror without drones the gun is pure cost. The A/B arm did not
+rescue it either (candidate losing long games to arch_drone). REJECTED as a bundle. Kept for the
+next candidate at zero mirror cost: guns only while a drone has been reported in the last 150
+rounds (a defence the mirror cannot price; its value is read on the ladder), and the home/origin
+re-posting, which is a plain defect repair.
+
+**Found while diagnosing (iter4b -> iter4c).** The ring was uneven again -- three north tiles at
+334 against 520 at r1000 -- because helpers posted at distance 2 stood on the only tiles the
+edge seats could dig from, and seats were forbidden to dig under friends. Helpers now post on the
+four distance-2 corners first and the four edge midpoints second (never the off-centre tiles),
+and a seat digs under a friend before it borrows. Ring at r1000: **459-464 level** (min +125,
++37%); r2000: 981-985 against 720-1195 before.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):

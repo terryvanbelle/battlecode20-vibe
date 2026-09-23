@@ -58,7 +58,6 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtNet == 0 && soup >= C.NETGUN_FIRST_BANK) want = RobotType.NET_GUN;   // Iteration 4: one gun always, before the flood
         else if (builtSchool > 0 && builtNet < C.NETGUNS_MAX && round - MapState.enemyDroneRound <= C.DRONE_ALERT && soup >= RobotType.NET_GUN.cost + C.NETGUN_ALERT_BANK) want = RobotType.NET_GUN;   // and more while drones are about
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
