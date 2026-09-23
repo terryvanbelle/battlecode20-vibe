@@ -6,14 +6,12 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 ## State (2026-09-23)
 
 - Phase 0 in progress. Engine built and staged on the driver; not yet on the VM.
-- `src/bot` = Iteration 0 (snapshot `src/g_iter0`). No accepted iteration yet, no ladder games.
-- Benchmark repos cloned (96); `tools/bench-compile.sh` running or done -- check
-  `~/projects/vibe/bc20-benchmarks/manifest.tsv` and `build/bench-compile.log`.
-- Next: (1) finish the benchmark compile, `tools/bench-select.py --table`, write
-  `tools/ladder-bots.txt`; (2) `tools/vm-sync.sh` (pushes JDK, engine, benchmark classes, repo);
-  (3) a quick-set gauntlet of `bot` vs `examplefuncsplayer` on the VM to time games; (4) the
-  first scrimmage block of `g_iter0` to seed the Elo ladder; (5) Iteration 1: the foundation
-  (HQ wall, real economy, exploration) as a structural candidate.
+- `src/bot` = Iteration 1 = snapshot `src/g_iter1` (accepted 31-1 over `g_iter0`). Incumbent
+  for the next gate: `REF=g_iter1`.
+- Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);
+  the ladder field is `tools/ladder-bots.txt` (one bot per repo, chosen by name).
+- Next: the first scrimmage block of `g_iter1` (`BOT=bot N=48 POOL="$(cat tools/ladder-bots.txt)"
+  tools/scrim.sh` on the VM), record it, build the Elo ladder, study the block, pick Iteration 2.
 
 ## Gotchas already known (from 2021, still true here)
 

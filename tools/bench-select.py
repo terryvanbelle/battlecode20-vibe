@@ -13,7 +13,7 @@ import csv, re, sys
 from collections import defaultdict
 from pathlib import Path
 MANIFEST = Path.home() / "projects/vibe/bc20-benchmarks/manifest.tsv"
-JUNK = re.compile(r"(test|template|donothing|do_nothing|nothing|example|empty|idle|testbed|tester|profiler|placeholder|null|failure|scratch|old|bad|naive|aux|debug|donot)", re.I)
+JUNK = re.compile(r"(test|template|donothing|do_nothing|nothing|example|empty|idle|testbed|tester|profiler|placeholder|null|failure|scratch|old|bad|naive|aux|debug|donot|lecture|lecmod)", re.I)
 
 def score(pkg):
     n = pkg.lower(); s = 0

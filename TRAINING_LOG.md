@@ -49,6 +49,52 @@ Determinism: the same pairing twice gives byte-identical replays.
 the round its elevation is reached (elevation 1 -> r257; the real maps promise 2-5 -> r256 to
 r1210). Everything else is downstream of keeping the HQ dry, which only landscapers can do.
 
+## Iteration 1 -- the foundation (structural; 2026-09-23)
+
+**Target.** Iteration 0 cannot survive the flood: both HQs drown at the round their elevation is
+reached (smoke game; `tools/mapdata.csv`: 43 of 52 maps have HQ elevation 3-5, i.e. r677-r1210).
+Everything is downstream of keeping the HQ dry.
+
+**Mechanism (pre-registered counters in brackets).** HQ builds 4 miners at once, then more while
+rich and the ring is open, hard cap 16 [`@build t=1`]. The HQ's first miner (its first turn is
+round 2) is the BUILDER: refinery and design school at Chebyshev 2 from the HQ, then vaporators,
+net guns and a fulfillment center as the bank allows [`@build t=2/4/3/8/5`]. Workers mine the
+nearest remembered soup with a sticky target, carry it to the nearest refinery or the HQ, and
+explore unseen 8x8 sectors otherwise [`@deposit`, `@explore`, `@unreachable`]. The design school
+builds 8 landscapers, who each take the nearest free ring tile and raise it forever, digging the
+HQ out first if it is being buried [`@seated`, `@wallstat`, `@hqdig`]; landscapers beyond 8
+walk to the enemy HQ guess and bury the first enemy building they meet [`@attacker`, `@bury`].
+Drones (after a fulfillment center) drop enemy units into water and avoid guns [`@pickup`,
+`@drown`]. Every walker steps only onto unflooded tiles and climbs when its tile is about to
+flood [`@climb`].
+
+**Diagnostics (driver, `tools/run-dev.sh bot g_iter0 <map>`), six runs to make it fire:**
+
+| run | map | what the counters showed | fix |
+|---|---|---|---|
+| 1 | ALandDivided | 99 miners built; builder never chosen; 8030 explore picks; 190 caught exceptions with the overrun signature (a legal move rejected) | count built not sensed; builder = birth round 2; do not re-pick on a blocked step; sample the soup scan (it was O(tiles x memory) on 100+ tiles) |
+| 2 | WateredDown | builder fires, refinery+school up, 3 landscapers seated and at elevation 24-40 by r400; 0 exceptions; but 29 deposits in 466 rounds and three miners with 0 mines | -- |
+| 3 | WateredDown | byte-identical to run 2: the new stall rule never fired because the nearest-soup target changed every turn and reset it | sticky soup target |
+| 4 | WateredDown | stall fires 3 times, still 0 mines for three miners: the memory refills from the same unreachable plateau | blacklist a Chebyshev-2 region per stall |
+| 5 | Hourglass | **8 landscapers by r200, wall past elevation 40, our HQ survives r677, the enemy HQ drowns: win by HQ destroyed at r682**; 2 vaporators; coverage 13% vs 16.5% for a random walker; miner bytecode max 5.5k | -- |
+| 5 | WateredDown | coverage 22.8% vs 38%; miner overrun x15 (periodic tasks coinciding) | sector exploration (nearest unseen 8x8 sector, given up only on stall); bytecode guards on the periodic tasks |
+| 6 | WateredDown | coverage 37.5%, 4 ring seats by r400, deposits 40 (from 29), 1 overrun left | -- |
+
+WateredDown is a deliberately soup-poor map (its near soup sits on an elevation-8 plateau); the
+random walker still out-mines us there and wins the drowned-HQ tiebreak on unit count (21 miners
+to our 15). Noted as the first open question, not fixed here.
+
+**Gate.** `BOT=bot REF=g_iter0 N=64 tools/mirror.sh` on the VM (run `gate1`): **SPRT_ACCEPT 31-1**
+(batch 1 15-1, batch 2 16-0). The loss is WateredDown again (drowned-HQ tiebreak on unit count,
+the known open question). 12 of 16 first-batch wins were by the enemy HQ drowning while ours
+stood; game lengths 466-1210 rounds; 32 games at 6 in parallel took ~12 minutes, i.e. about 2.3
+VM-minutes per game against a weak opponent. **Snapshot `g_iter1`.**
+
+**Open after Iteration 1** (candidates, not yet pre-registered): (a) on maps where the wall cannot
+be finished before the HQ's flood round, or the map drowns anyway, the tiebreak is unit count, and
+cheap miners win it; (b) refineries are placed at the HQ, so far soup is a long walk; (c) soup on
+plateaus needs landscapers or drones to reach; (d) one miner bytecode overrun per game remains.
+
 ## Ledger (closed directions)
 
 (empty)
@@ -57,9 +103,9 @@ r1210). Everything else is downstream of keeping the HQ dry, which only landscap
 
 | area | last attempt | consecutive rejects |
 |---|---|---|
-| economy | -- | 0 |
-| flood defence | -- | 0 |
-| navigation | -- | 0 |
-| exploration / symmetry | -- | 0 |
+| economy | Iteration 1 | 0 |
+| flood defence | Iteration 1 | 0 |
+| navigation | Iteration 1 | 0 |
+| exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | -- | 0 |
 | communication | -- | 0 |
