@@ -436,6 +436,8 @@ incumbent's school, placed by the same rule with different tie-breaks, kept spaw
 scores a school or center site by the number of tiles it could spawn onto (dry, level within 3,
 not the ring or HQ, no building), 300 per tile, ahead of height and centrality. Diagnostic: the
 same two maps, `@build t=6` counts per 100 rounds on both sides comparable; the wall gap closes.
+Result: MtDoom flipped to a win (our school now spawns to r900, 17 landscapers to 16, ring 1860 vs
+1839); FourLakeLand unchanged (a different site, still boxed by lakes and cliffs by r400, 14 vs 17).
 Gate `gate11` vs the incumbent after gate 10. Falsifier: below 53%.
 
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
