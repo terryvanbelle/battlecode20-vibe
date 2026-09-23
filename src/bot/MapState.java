@@ -19,6 +19,24 @@ public final strictfp class MapState {
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
     public static boolean[] ringExposed;             // per ring direction, computed once (Robot.exposed)
     public static int enemyDroneRound = -1000;       // last round an enemy drone was seen by anyone (via the chain)
+    // Iteration 6 citadel: the design school S sits in the pocket; F (a pocket tile next to S) is the spawn tile every
+    // building leaves free, G = HQ + 2(F - HQ) is the ring tile no seat takes so a drone can hover there and lift a
+    // landscaper off F; fcSlot is the other pocket neighbour of F, kept for the fulfillment center.
+    public static MapLocation school, gateF, gateG, fcSlot;
+    public static void setSchool(MapLocation s, RobotController rc) {
+        if (school != null || home == null) return;
+        school = s;
+        int dx = s.x - home.x, dy = s.y - home.y;
+        MapLocation[] cand = (dx != 0 && dy != 0) ? new MapLocation[]{ new MapLocation(home.x + dx, home.y), new MapLocation(home.x, home.y + dy) }
+                                                   : new MapLocation[]{ new MapLocation(home.x + dx - dy, home.y + dy + dx), new MapLocation(home.x + dx + dy, home.y + dy - dx) };
+        for (MapLocation f : cand) {
+            MapLocation g = new MapLocation(home.x + 2 * (f.x - home.x), home.y + 2 * (f.y - home.y));
+            if (rc.onTheMap(f) && rc.onTheMap(g)) { gateF = f; gateG = g; break; }
+        }
+        if (gateF == null) { gateF = cand[0]; gateG = new MapLocation(home.x + 2 * (cand[0].x - home.x), home.y + 2 * (cand[0].y - home.y)); }
+        // the other pocket tile adjacent to F (not S): F's pocket neighbours are the two cheb-1 tiles at Chebyshev 1 from F
+        for (int i = 8; --i >= 0;) { MapLocation t = gateF.add(Robot.DIRS[i]); if (Nav.cheb(t, home) == 1 && !t.equals(school) && !t.equals(home)) { fcSlot = t; break; } }
+    }
 
     // remembered terrain, indexed by (x - minX) + (y - minY) * width once the origin is known
     public static int[] elev;                        // Integer.MIN_VALUE = unknown

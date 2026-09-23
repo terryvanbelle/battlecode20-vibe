@@ -28,7 +28,8 @@ import java.util.zip.GZIPInputStream;
  *   --bytecode       per-type bytecode summary (max used, rounds at/over the limit)
  *   --navstats       moves, A-B-A oscillations, coverage, first contact with the enemy HQ
  *   --threat A|B     CSV every 25 rounds: enemy landscapers/drones near that team's HQ, HQ buried dirt
- *   --ring N         every N rounds, each HQ's eight ring tiles: elevation (F if flooded), min, and the water level
+ *   --ring N         every N rounds, each HQ's ring tiles: elevation (F if flooded), min, and the water level
+ *   --ringd D        Chebyshev distance of the ring for --ring (default 1; 2 for the Iteration 6 citadel)
  *   --elev-at R      elevation grid (two chars per tile, clipped to -9..99, "~~" water) at round R
  *   --quiet          suppress aggregates
  *
@@ -38,7 +39,7 @@ import java.util.zip.GZIPInputStream;
 public class ReplayDump {
     static int every = 50, mapEvery = 0, fromRound = -1, toRound = -1, trackId = -1;
     static boolean metrics = false, quiet = false, bytecodeSummary = false, navStats = false;
-    static int threatTeam = 0, ringEvery = 0;
+    static int threatTeam = 0, ringEvery = 0, ringD = 1;
     static Pattern logPat = null; static int logsTeam = -1;
     static TreeSet<Integer> mapAt = new TreeSet<>(), elevAt = new TreeSet<>();
 
@@ -78,6 +79,7 @@ public class ReplayDump {
                 case "--map-at": mapAt.add(Integer.parseInt(args[++i])); break;
                 case "--elev-at": elevAt.add(Integer.parseInt(args[++i])); quiet = true; break;
                 case "--ring": ringEvery = Integer.parseInt(args[++i]); quiet = true; break;
+                case "--ringd": ringD = Integer.parseInt(args[++i]); break;
                 case "--from": fromRound = Integer.parseInt(args[++i]); break;
                 case "--to": toRound = Integer.parseInt(args[++i]); break;
                 case "--robot": trackId = Integer.parseInt(args[++i]); break;
@@ -265,8 +267,8 @@ public class ReplayDump {
             s.append(String.format("  %s:", t == 1 ? "A" : "B"));
             if (hq == null) { s.append(" dead"); continue; }
             int min = Integer.MAX_VALUE, n = 0; StringBuilder e = new StringBuilder();
-            for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) {
-                if (dx == 0 && dy == 0) continue;
+            for (int dx = -ringD; dx <= ringD; dx++) for (int dy = -ringD; dy <= ringD; dy++) {
+                if (Math.max(Math.abs(dx), Math.abs(dy)) != ringD) continue;
                 int k = idx(hq.x + dx, hq.y + dy); if (k < 0) continue;
                 n++; e.append(' ').append(dirt[k]).append(water[k] ? "F" : "");
                 if (dirt[k] < min) min = dirt[k];

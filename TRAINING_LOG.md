@@ -310,6 +310,31 @@ diagnostic hid it: ALandDivided's HQ has room for all eight posts. Lesson: a rol
 station list needs a stall exit (LEARNINGS). Iteration 5 reverted; the helper idea itself is
 unfalsified and lives on in Iteration 6 with a stall exit and any distance-3 tile allowed.
 
+## Iteration 6 -- the citadel (big swing, 2026-09-23)
+
+**Design.** The wall moves to Chebyshev 2 (16 tiles, `C.RING`); the eight tiles inside are a pocket
+that can never flood once the ring is sealed, so the design school, the fulfillment center, three
+vaporators and a net gun live there and survive the r700 flood that drowns every enemy building.
+The refinery stays outside (distance 3). One pocket tile F (next to the school) is left free as the
+spawn tile; the ring tile beyond it, G, gets no seat, so a drone can hover on G, lift a landscaper
+born on F and drop it on the lowest free exposed ring tile, or on a dry distance-3 post beside the
+lowest ring tile (the ferry). Before `WALL_START` (r400) seats only level the ring to HQ+3 so units
+born inside can still climb out; the HQ stops spawning miners at r400; the center comes before the
+vaporators and builds two ferry drones at once. Helpers stand on any distance-3 tile (corners and
+midpoints preferred) and leave for the attack when their post stalls (the Iteration 5 lesson).
+
+**Why it could win.** After r700 an ordinary wall has the landscapers it has; the citadel's school
+keeps spawning (2 soup/turn per vaporator plus whatever the outside refinery banked), the ferry puts
+each new landscaper where the wall is lowest, and the center's drones survive to pluck enemy seats
+once their net guns have drowned. **Why it could lose.** Sixteen tiles halve the per-tile rate of the
+same landscapers, so until the ferry adds bodies the wall is lower; the pocket layout is fragile (a
+waiting landscaper on the wrong tile blocks a building; a seat on G blocks the lift).
+
+**Pre-registered counters** (diagnostics vs g_iter2 on ALandDivided, TwoLakeLand, MoreCowbell):
+`@ferry`/`@lift` > 0 by r800; ring minimum (`--ring --ringd 2`) above water at r1000 and above
+g_iter2's minimum at r2500; `idle` per landscaper at r600 below 100 for seats; buildings alive at
+r1000 (metrics V, DS, FC > 0). Gate: SPRT mirror vs g_iter2. Falsifier: below 53% at the cap.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
@@ -317,6 +342,14 @@ unfalsified and lives on in Iteration 6 with a stall exit and any distance-3 til
 `poortho.stable_seeding_bot` 1/3 (first win, unlocked); 0/3 against AngusRitossa, EmaPajic,
 IvanGeffner, awesomelemonade, battlecode20-team4, benzyx, cormackikkert, mvpatel2000, rzhan11,
 uvafan, winkelmantanner. Cumulative for g_iter2 on the strong field: 25/108 (23%).
+
+## Block 6 -- g_iter2 against the challenge pool (run block6, 2026-09-23)
+
+48 games, challenge pool of 16: **12/48 (25%)**. `laurenschneider` 2/3, `cormackikkert` 2/3; first
+wins against `IvanGeffner.finalbota`, `AngusRitossa.newbot`, `battlecode20-team4.finalbota`,
+`rzhan11.quals_bot`, `uvafan.v14_final_bot`, `wpine215.stardustv2`, `ronniesong0809.finalbota`
+(1/3 each); 0/3 against awesomelemonade, EmaPajic, mvpatel2000, poortho, mhahn2003, benzyx.
+Cumulative for g_iter2 on the strong field: 37/156 (24%). Elo 1372, rank 66 of 66.
 
 ## Ledger (closed directions)
 

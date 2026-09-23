@@ -27,6 +27,7 @@ public strictfp class HQ extends Robot {
         boolean want = built < C.MINERS_EARLY
             || (built < C.MINERS_MAX && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS / 2)
             || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS / 2);
+        if (round >= C.WALL_START && built >= C.MINERS_EARLY) want = false;   // Iteration 6: after the wall starts the pocket is sealed and its one free tile is the ferry's
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
         if ((!postedLoc && round >= 2) || round % 100 == 50) postedLoc = post(Comms.make(Comms.HQ_LOC, round, us, loc.x, loc.y));

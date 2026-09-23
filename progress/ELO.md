@@ -1,28 +1,28 @@
 # Elo ladder
 
-281 scrimmages (ours only); K=32 from 1500; our team is **us**: rank 66 of 66 rated bots, Elo 1300, 281 games; 0 bots not yet met.
+329 scrimmages (ours only); K=32 from 1500; our team is **us**: rank 66 of 66 rated bots, Elo 1372, 329 games; 0 bots not yet met.
 
 | rank | bot | Elo | games | W-L (theirs) |
 |---|---|---|---|---|
-| 1 | AngusRitossa.newbot | 1642 | 10 | 10-0 |
-| 2 | awesomelemonade.citricsky | 1630 | 10 | 10-0 |
-| 3 | IvanGeffner.finalbota | 1623 | 10 | 10-0 |
-| 4 | EmaPajic.Qualifications | 1622 | 11 | 10-1 |
-| 5 | battlecode20-team4.finalbota | 1618 | 10 | 10-0 |
-| 6 | ronniesong0809.finalbota | 1596 | 9 | 9-0 |
-| 7 | rzhan11.quals_bot | 1595 | 10 | 10-0 |
-| 8 | uvafan.v14_final_bot | 1589 | 10 | 10-0 |
-| 9 | mvpatel2000.qual | 1588 | 10 | 9-1 |
-| 10 | cormackikkert.whyPermutator | 1582 | 10 | 9-1 |
-| 11 | poortho.stable_seeding_bot | 1579 | 10 | 9-1 |
-| 12 | wpine215.stardustv2 | 1569 | 8 | 8-0 |
-| 13 | winkelmantanner.tannerplayer | 1558 | 10 | 9-1 |
-| 14 | benzyx.seeding | 1557 | 10 | 8-2 |
-| 15 | ovimura.welovesoup | 1491 | 1 | 0-1 |
-| 16 | TeamSerpentine.eendagsvliegjes | 1491 | 1 | 0-1 |
-| 17 | orionquick.aldebaranplayer | 1491 | 1 | 0-1 |
-| 18 | max-titov.seeding | 1491 | 1 | 0-1 |
-| 19 | laurenschneider.pdx_team_one | 1491 | 10 | 6-4 |
+| 1 | awesomelemonade.citricsky | 1643 | 13 | 13-0 |
+| 2 | EmaPajic.Qualifications | 1636 | 14 | 13-1 |
+| 3 | AngusRitossa.newbot | 1622 | 13 | 12-1 |
+| 4 | IvanGeffner.finalbota | 1606 | 13 | 12-1 |
+| 5 | mvpatel2000.qual | 1606 | 13 | 12-1 |
+| 6 | battlecode20-team4.finalbota | 1599 | 13 | 12-1 |
+| 7 | poortho.stable_seeding_bot | 1596 | 13 | 12-1 |
+| 8 | rzhan11.quals_bot | 1582 | 13 | 12-1 |
+| 9 | ronniesong0809.finalbota | 1579 | 12 | 11-1 |
+| 10 | benzyx.seeding | 1576 | 13 | 11-2 |
+| 11 | uvafan.v14_final_bot | 1575 | 13 | 12-1 |
+| 12 | wpine215.stardustv2 | 1563 | 11 | 10-1 |
+| 13 | winkelmantanner.tannerplayer | 1552 | 13 | 11-2 |
+| 14 | cormackikkert.whyPermutator | 1540 | 13 | 10-3 |
+| 15 | mhahn2003.nonrush | 1509 | 13 | 8-5 |
+| 16 | ovimura.welovesoup | 1491 | 1 | 0-1 |
+| 17 | TeamSerpentine.eendagsvliegjes | 1491 | 1 | 0-1 |
+| 18 | orionquick.aldebaranplayer | 1491 | 1 | 0-1 |
+| 19 | max-titov.seeding | 1491 | 1 | 0-1 |
 | 20 | Sukanya-Kothapally.team4player | 1491 | 1 | 0-1 |
 | 21 | monmouth-college-cs.MyFirstPlayer | 1491 | 1 | 0-1 |
 | 22 | opheez.landscapers | 1490 | 1 | 0-1 |
@@ -56,10 +56,10 @@
 | 50 | djkeyes.addingComm | 1488 | 1 | 0-1 |
 | 51 | ARognes.FinalSubmission | 1487 | 5 | 2-3 |
 | 52 | cosimogonnelli.Team3player | 1480 | 5 | 1-4 |
-| 53 | mhahn2003.nonrush | 1477 | 10 | 5-5 |
-| 54 | yaonam.Robot_1 | 1474 | 8 | 3-5 |
-| 55 | VinayaBhat.team10pdx | 1472 | 7 | 2-5 |
-| 56 | Tim-gubski.AngryWaffleMaker | 1463 | 7 | 2-5 |
+| 53 | yaonam.Robot_1 | 1474 | 8 | 3-5 |
+| 54 | VinayaBhat.team10pdx | 1472 | 7 | 2-5 |
+| 55 | Tim-gubski.AngryWaffleMaker | 1463 | 7 | 2-5 |
+| 56 | laurenschneider.pdx_team_one | 1459 | 13 | 7-6 |
 | 57 | denver-blake.sprint | 1454 | 5 | 0-5 |
 | 58 | KyleHassold.sprintbot | 1448 | 5 | 0-5 |
 | 59 | J-J-Chen.player | 1441 | 5 | 0-5 |
@@ -69,4 +69,4 @@
 | 63 | A9ine.potato | 1424 | 5 | 0-5 |
 | 64 | 9mAhmad.lostincoordinates | 1412 | 5 | 0-5 |
 | 65 | 9mAhmad.MahinBot | 1398 | 5 | 0-5 |
-| 66 | **us** | 1300 | 281 | 122-159 |
+| 66 | **us** | 1372 | 329 | 134-195 |

@@ -84,10 +84,10 @@ public abstract strictfp class Robot {
     /** Sense everything once and bucket it. 100 + ~12 per robot bytecodes. */
     protected void sense() {
         nearby = rc.senseNearbyRobots();
-        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null; ringSeen = false; sawDrone = null;
+        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null; ringSeen = false; sawDrone = null; MapLocation schoolSeen = null;
         for (int i = nearby.length; --i >= 0;) {
             RobotInfo r = nearby[i];
-            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } else if (r.type == RobotType.LANDSCAPER && onRing(r.location)) ringSeen = true; }
+            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } else if (r.type == RobotType.LANDSCAPER && onRing(r.location)) ringSeen = true; else if (r.type == RobotType.DESIGN_SCHOOL) schoolSeen = r.location; }
             else if (r.team == them) {
                 if (nEnemy < 64) enemies[nEnemy++] = r;
                 int d = loc.distanceSquaredTo(r.location);
@@ -96,6 +96,7 @@ public abstract strictfp class Robot {
                 else if (r.type == RobotType.DELIVERY_DRONE) sawDrone = r.location;
             } else if (nCow < 8) cows[nCow++] = r;
         }
+        if (schoolSeen != null && MapState.school == null) MapState.setSchool(schoolSeen, rc);
     }
 
     /** Read last round's block and absorb what our team posted. 100 bytecodes + ~30 per message. */
@@ -162,11 +163,18 @@ public abstract strictfp class Robot {
 
     /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
-        if (avoidRing && onRing(l)) return false;
+        if (!allowedTile(l)) return false;
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
-    /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
-    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)); }
+    /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it).
+     *  A unit inside the pocket may cross the ring (it was born there), and a flyer may hover on the gate. */
+    protected boolean allowedTile(MapLocation l) {
+        if (!avoidRing || !onRing(l)) return true;
+        if (type.canFly() && isGate(l)) return true;
+        return Nav.cheb(loc, MapState.home) < C.RING;
+    }
+    protected static boolean isGate(MapLocation l) { return MapState.gateG != null && l.equals(MapState.gateG); }
+    protected static boolean isSpawnTile(MapLocation l) { return MapState.gateF != null && l.equals(MapState.gateF); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
     protected boolean floodDanger() throws GameActionException {

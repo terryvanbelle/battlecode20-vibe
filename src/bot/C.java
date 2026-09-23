@@ -33,6 +33,8 @@ public final class C {
 
     // --- wall (Iteration 6: the citadel -- the ring at Chebyshev 2, buildings sealed inside, an inner dirt pit)
     public static final int RING = 2;                 // Chebyshev distance of the wall from the HQ
+    public static final int FERRY_DRONES = 2;         // drones built as soon as the center stands: they lift landscapers out of the sealed pocket
+    public static final int WALL_START = 400;         // before this round seats only level the ring to HQ+3, so the school can still spawn over it
     public static final int WALL_LANDSCAPERS = 16;    // one per ring tile
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)

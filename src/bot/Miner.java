@@ -59,11 +59,16 @@ public strictfp class Miner extends Robot {
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
         else if (builtSchool > 0 && builtNet < C.NETGUNS_MAX && round - MapState.enemyDroneRound <= C.DRONE_ALERT && soup >= RobotType.NET_GUN.cost + C.NETGUN_ALERT_BANK) want = RobotType.NET_GUN;   // and more while drones are about
+        else if (builtSchool > 0 && builtFC == 0 && soup >= C.FC_EARLY_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 6: the center before the vaporators -- its drones are the ferry that lets the sealed school keep working
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
-        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         // Iteration 6: once the school stands the builder stays in the pocket (the ring seals it in), parked at BUILD_DIST, waiting for the next bank.
-        if (want == null) { if (builtSchool == 0) return false; if (Nav.cheb(loc, home) != C.BUILD_DIST) walkToCircle(home, C.BUILD_DIST); return true; }
+        if (want == null) {
+            if (builtSchool == 0) return false;
+            if (Nav.cheb(loc, home) != C.BUILD_DIST) walkToCircle(home, C.BUILD_DIST);
+            else if (isSpawnTile(loc) && rc.isReady()) for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (Nav.cheb(n, home) == C.BUILD_DIST && tryMove(DIRS[i])) break; }   // never park on the spawn tile
+            return true;
+        }
         int dist = want == RobotType.REFINERY ? C.REFINERY_DIST : C.BUILD_DIST;   // the refinery outside for the miners, everything else inside the pocket
         if (Nav.cheb(loc, home) != dist) { walkToCircle(home, dist); return true; }
         // on the circle: build on an adjacent tile that is also on the circle (never inward: the ring must stay free)
@@ -71,6 +76,11 @@ public strictfp class Miner extends Robot {
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (Nav.cheb(n, home) != dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
+            if (dist == C.BUILD_DIST && MapState.gateF != null) {   // the pocket layout: F stays free, the center takes F's other neighbour, nothing else does
+                if (n.equals(MapState.gateF)) continue;
+                boolean slot = n.equals(MapState.fcSlot);
+                if (want == RobotType.FULFILLMENT_CENTER ? !slot : slot) continue;
+            }
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
@@ -93,6 +103,7 @@ public strictfp class Miner extends Robot {
             MapLocation t = new MapLocation(home.x + dx, home.y + dy);
             if (!rc.onTheMap(t)) continue;
             if (rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.ID != id && r.type.isBuilding()) continue; }
+            if (dist == C.BUILD_DIST && isSpawnTile(t)) continue;
             int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
         }
         if (best == null) return;
