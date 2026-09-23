@@ -475,7 +475,11 @@ pile dirt onto the lowest adjacent distance-2 tile, and seats that may dig under
 its tile stays `FEED_MARGIN` (4) above the helper's own water margin -- so the feeders' dirt is
 what the seats dig and the helpers never have to re-raise. Ceiling: (8 + 16) x 0.5 = 12 dirt a
 round, +50%. Diagnostic: Prison and CentralLake vs g_iter4; feeders posted, `fed` counts, ring at
-r2500 above the incumbent's by 20% or more. Gate `gate12` vs `REF=g_iter4`. Falsifier: below 53%.
+r2500 above the incumbent's by 20% or more. Result: CentralLake won r3115 with the ring at 2041 vs
+1574 at r3000 (+30%); Prison won r3117 at 1634 vs 1578 (three tiles lagged at 1418; 354 struck-off
+posts, so the helper churn on that map is a cost). No feeder was ever posted -- the 16 helper posts
+absorb every surplus landscaper first -- so the measured effect is the wider helper ring plus
+digging under helpers. Gate `gate12` vs `REF=g_iter4`, launched 23:55. Falsifier: below 53%.
 
 Sparring baseline (run `spar1`, 2026-09-23): g_iter4 beats `arch_drone` 17/24 on the quick set.
 
