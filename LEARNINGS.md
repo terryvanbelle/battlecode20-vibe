@@ -78,6 +78,14 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 - **Robots born inside a sealed area know nothing**: no origin (no edge in sight), no enemy HQ,
   so no guess at all. Whoever learns a map fact must post it once; the HQ must re-post it.
 
+- **The HQ (and a net gun) shoots to r2 15, sees to 48, and acts before our units each round.** A
+  drone that ends its move inside 15 is dead before its pickup cooldown clears; a diagonal step from
+  r2 25 lands at 13. Approach onto tiles with r2 > 15 only, and lift from a perch tile outside 15
+  (a corner helper at Chebyshev 2 has one at 18). Seats cost a drone each (Iteration 9, six reruns).
+- **A "nearest tile" target must be filtered for reachability.** The builder's nearest circle tile on
+  IsThisProcedural was a 99-high cliff; it walked at it for 600 rounds with 5,000 soup idle and no
+  school. Any walker choosing a target by distance needs an elevation check and a stall exit.
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for
