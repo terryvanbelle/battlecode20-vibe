@@ -25,8 +25,8 @@ public strictfp class HQ extends Robot {
         // early burst by count built (miners roam out of sight, so the sensed count cannot cap anything);
         // then one more miner per MINER_REPLENISH rounds while rich, up to a hard total
         boolean want = built < C.MINERS_EARLY
-            || (built < C.MINERS_MAX && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS)
-            || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS);
+            || (built < C.MINERS_MAX && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS / 2)
+            || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS / 2);
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
         if ((!postedLoc && round >= 2) || round % 100 == 50) postedLoc = post(Comms.make(Comms.HQ_LOC, round, us, loc.x, loc.y));

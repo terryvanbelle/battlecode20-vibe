@@ -224,19 +224,23 @@ public abstract strictfp class Robot {
     }
 
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
-    protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
+    protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == C.RING; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
      *  dirt spent on it is wasted -- a quarter of ours was, on MoreCowbell. */
     protected boolean exposed(MapLocation l) {
+        int w = 2 * C.RING + 1;
         if (MapState.ringExposed == null) {
-            MapState.ringExposed = new boolean[8];
-            for (int k = 8; --k >= 0;) { MapLocation t = MapState.home.add(DIRS[k]); boolean ex = false;
-                for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (!n.equals(MapState.home) && !onRing(n) && rc.onTheMap(n)) { ex = true; break; } }
-                MapState.ringExposed[k] = ex; }
+            MapState.ringExposed = new boolean[w * w];
+            for (int dx = -C.RING; dx <= C.RING; dx++) for (int dy = -C.RING; dy <= C.RING; dy++) {
+                if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING) continue;
+                MapLocation t = new MapLocation(MapState.home.x + dx, MapState.home.y + dy); boolean ex = false;
+                for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, MapState.home) > C.RING && rc.onTheMap(n)) { ex = true; break; } }
+                MapState.ringExposed[(dx + C.RING) + (dy + C.RING) * w] = ex;
+            }
         }
         int dx = l.x - MapState.home.x, dy = l.y - MapState.home.y;
-        for (int k = 8; --k >= 0;) if (DIRS[k].dx == dx && DIRS[k].dy == dy) return MapState.ringExposed[k];
-        return false;
+        if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING) return false;
+        return MapState.ringExposed[(dx + C.RING) + (dy + C.RING) * w];
     }
 }

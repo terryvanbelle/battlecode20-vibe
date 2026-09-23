@@ -1,0 +1,1648 @@
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/home/terryvanbelle/projects/vibe/2020/engine/engine.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/home/terryvanbelle/projects/vibe/2020/engine/lib/slf4j-simple-1.7.21.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.slf4j.impl.SimpleLoggerFactory]
+[server] -------------------- Match Starting --------------------
+[server] bot vs. g_iter2 on ALandDivided
+[A:HQ#0@1] @origin x=0 y=0
+[A:HQ#0@1] @build t=1 at=[6, 26] soup=131
+[B:HQ#1@1] @origin x=0 y=0
+[B:HQ#1@1] @build t=1 at=[35, 27] soup=131
+[A:HQ#0@2] @build t=1 at=[4, 26] soup=61
+[B:HQ#1@2] @build t=1 at=[36, 25] soup=61
+[A:MINER#11132@2] @miner builder=true
+[A:MINER#11132@2] @explore to=[4, 20] unseen=23
+[B:MINER#10935@2] @miner builder=true
+[B:MINER#10935@2] @explore to=[38, 23] unseen=-1
+[A:MINER#11129@3] @miner builder=false
+[A:MINER#11129@3] @explore to=[-12, 44] unseen=-1
+[B:MINER#12241@3] @miner builder=false
+[B:MINER#12241@3] @explore to=[35, 29] unseen=-1
+[A:HQ#0@12] @build t=1 at=[6, 27] soup=0
+[B:HQ#1@12] @build t=1 at=[36, 26] soup=0
+[A:MINER#11129@13] @origin x=0 y=0
+[A:MINER#10545@13] @miner builder=false
+[A:MINER#10545@13] @explore to=[2, 22] unseen=-1
+[B:MINER#11995@13] @miner builder=false
+[B:MINER#11995@13] @explore to=[33, 37] unseen=-1
+[B:MINER#12241@15] @origin x=0 y=0
+[B:MINER#10935@23] @deposit n=70
+[A:MINER#10545@23] @deposit n=7
+[B:MINER#11995@23] @origin x=0 y=0
+[A:MINER#11132@24] @deposit n=70
+[B:MINER#10935@25] @deposit n=7
+[A:MINER#10545@25] @deposit n=7
+[A:MINER#11129@26] @deposit n=70
+[B:HQ#1@27] @build t=1 at=[34, 26] soup=5
+[B:MINER#10935@27] @deposit n=7
+[B:MINER#12241@27] @deposit n=70
+[A:MINER#10545@27] @deposit n=7
+[A:HQ#0@28] @build t=1 at=[4, 25] soup=12
+[B:MINER#12507@28] @miner builder=false
+[B:MINER#12507@28] @explore to=[35, 25] unseen=-1
+[B:MINER#12507@29] @explore to=[36, 29] unseen=-1
+[A:MINER#12544@29] @miner builder=false
+[A:MINER#12544@29] @explore to=[-14, 33] unseen=-1
+[B:MINER#10935@30] @deposit n=7
+[A:MINER#10545@30] @deposit n=7
+[B:MINER#12507@30] @explore to=[37, 29] unseen=-1
+[B:MINER#12507@31] @explore to=[39, 9] unseen=-1
+[B:MINER#10935@32] @deposit n=7
+[A:MINER#10545@32] @deposit n=7
+[B:MINER#12241@33] @explore to=[28, 28] unseen=23
+[B:MINER#10935@35] @deposit n=7
+[A:MINER#10545@35] @deposit n=7
+[B:MINER#10935@37] @deposit n=7
+[A:MINER#10545@37] @deposit n=7
+[B:MINER#11995@38] @deposit n=70
+[B:MINER#10935@39] @deposit n=7
+[A:MINER#10545@39] @deposit n=7
+[A:MINER#10545@41] @deposit n=7
+[A:MINER#12544@41] @origin x=0 y=0
+[B:HQ#1@42] @build t=1 at=[35, 25] soup=132
+[B:MINER#10935@42] @deposit n=7
+[B:MINER#10981@43] @miner builder=false
+[B:MINER#10981@43] @explore to=[28, 9] unseen=-1
+[A:MINER#11132@44] @deposit n=70
+[B:MINER#10935@44] @deposit n=7
+[A:MINER#10545@44] @deposit n=7
+[B:MINER#10935@46] @deposit n=7
+[A:MINER#10545@46] @deposit n=7
+[A:HQ#0@47] @build t=1 at=[5, 25] soup=137
+[A:MINER#11129@47] @deposit n=70
+[B:MINER#12241@47] @deposit n=70
+[A:MINER#10545@48] @deposit n=7
+[A:MINER#10713@48] @miner builder=false
+[A:MINER#10713@48] @explore to=[21, 45] unseen=-1
+[A:HQ#0@50] @build t=1 at=[6, 26] soup=130
+[B:HQ#1@50] @build t=1 at=[36, 26] soup=148
+[B:MINER#12241@51] @deposit n=7
+[A:MINER#10545@51] @deposit n=7
+[A:MINER#14005@51] @miner builder=false
+[A:MINER#14005@51] @explore to=[18, 21] unseen=-1
+[B:MINER#12512@51] @miner builder=false
+[B:MINER#12512@51] @explore to=[23, 38] unseen=-1
+[B:MINER#12507@52] @deposit n=70
+[B:MINER#10935@53] @build t=2 at=[32, 27] soup=8
+[B:MINER#12241@53] @offring
+[B:MINER#12507@53] @offring
+[B:MINER#10981@53] @offring
+[A:HQ#0@54] @build t=1 at=[4, 25] soup=131
+[B:MINER#10935@54] @deposit n=21
+[A:MINER#10545@54] @deposit n=7
+[B:MINER#12241@55] @deposit n=7
+[A:MINER#12544@55] @deposit n=70
+[A:MINER#11389@55] @miner builder=false
+[A:MINER#11389@55] @explore to=[8, 35] unseen=-1
+[A:MINER#10545@56] @deposit n=7
+[B:MINER#10935@57] @deposit n=7
+[A:MINER#11132@58] @build t=2 at=[7, 29] soup=2
+[A:MINER#11129@58] @offring
+[B:MINER#12241@58] @deposit n=7
+[A:MINER#10545@58] @deposit n=7
+[B:MINER#11995@58] @deposit n=70
+[A:MINER#12544@58] @offring
+[B:MINER#10935@59] @deposit n=7
+[A:MINER#11132@60] @deposit n=56
+[B:MINER#12241@60] @deposit n=7
+[B:MINER#11995@60] @deposit n=7
+[B:MINER#12507@60] @deposit n=7
+[B:MINER#12512@60] @offring
+[B:MINER#10935@61] @build t=4 at=[32, 29] soup=11
+[A:MINER#11129@61] @deposit n=42
+[A:MINER#10545@61] @deposit n=7
+[A:MINER#11132@62] @deposit n=7
+[A:MINER#14005@62] @origin x=0 y=0
+[B:MINER#10935@63] @deposit n=7
+[B:MINER#12241@63] @deposit n=7
+[B:MINER#11995@63] @deposit n=7
+[B:MINER#12507@63] @deposit n=7
+[B:MINER#10981@63] @deposit n=7
+[B:MINER#12512@63] @origin x=0 y=0
+[A:MINER#11129@64] @deposit n=7
+[A:MINER#10545@64] @deposit n=7
+[A:MINER#10713@64] @origin x=0 y=0
+[A:MINER#11132@65] @deposit n=7
+[B:MINER#10935@65] @deposit n=7
+[B:MINER#12241@65] @deposit n=7
+[B:MINER#11995@65] @deposit n=7
+[B:MINER#12507@66] @deposit n=7
+[B:MINER#10981@66] @deposit n=7
+[A:MINER#11389@66] @origin x=0 y=0
+[A:MINER#11129@67] @deposit n=7
+[A:MINER#10545@67] @deposit n=7
+[B:MINER#10935@68] @deposit n=7
+[B:MINER#12241@68] @deposit n=7
+[B:MINER#11995@68] @deposit n=7
+[B:MINER#12507@68] @deposit n=7
+[B:MINER#10981@68] @deposit n=7
+[A:MINER#11129@69] @deposit n=7
+[A:MINER#10545@69] @deposit n=7
+[B:MINER#10935@70] @deposit n=7
+[B:MINER#12241@70] @deposit n=7
+[B:MINER#11995@70] @deposit n=7
+[B:MINER#12507@70] @deposit n=7
+[B:MINER#10981@70] @deposit n=7
+[A:HQ#0@71] @build t=1 at=[5, 27] soup=130
+[B:DESIGN_SCHOOL#10172@71] @build t=6 at=[33, 29] soup=56
+[A:MINER#11129@72] @deposit n=7
+[A:MINER#10545@72] @deposit n=7
+[A:MINER#11336@72] @miner builder=false
+[A:MINER#11336@72] @explore to=[2, 41] unseen=-1
+[B:MINER#10935@73] @deposit n=7
+[B:MINER#12241@73] @deposit n=7
+[B:MINER#11995@73] @deposit n=7
+[B:MINER#12507@73] @deposit n=7
+[B:MINER#10981@73] @deposit n=7
+[A:MINER#11129@74] @deposit n=7
+[A:MINER#10545@74] @deposit n=7
+[B:MINER#10935@75] @deposit n=7
+[B:MINER#12241@75] @deposit n=7
+[B:MINER#11995@75] @deposit n=7
+[B:MINER#12507@75] @deposit n=7
+[B:MINER#10981@75] @deposit n=7
+[A:MINER#11129@77] @deposit n=7
+[A:MINER#10545@77] @deposit n=7
+[A:MINER#12544@77] @deposit n=70
+[B:MINER#10935@78] @deposit n=7
+[B:MINER#12241@78] @deposit n=7
+[B:MINER#11995@78] @deposit n=7
+[B:MINER#12507@78] @deposit n=7
+[B:MINER#10981@78] @deposit n=7
+[B:DESIGN_SCHOOL#10172@78] @build t=6 at=[33, 30] soup=3
+[B:MINER#10935@80] @deposit n=7
+[A:MINER#11129@80] @deposit n=7
+[B:MINER#12241@80] @deposit n=7
+[A:MINER#10545@80] @deposit n=7
+[B:MINER#11995@80] @deposit n=7
+[B:MINER#12507@80] @deposit n=7
+[A:MINER#12544@80] @deposit n=7
+[B:MINER#10981@80] @deposit n=7
+[A:MINER#11129@82] @deposit n=7
+[A:MINER#10545@82] @deposit n=7
+[B:LANDSCAPER#10277@82] @seated at=[34, 27]
+[B:MINER#10935@83] @deposit n=7
+[B:MINER#12241@83] @deposit n=7
+[B:MINER#11995@83] @deposit n=7
+[B:MINER#12507@83] @deposit n=7
+[A:MINER#12544@83] @deposit n=7
+[B:MINER#10981@83] @deposit n=7
+[B:MINER#10935@85] @deposit n=7
+[A:MINER#11129@85] @deposit n=7
+[B:MINER#12241@85] @deposit n=7
+[A:MINER#10545@85] @deposit n=7
+[B:MINER#11995@85] @deposit n=7
+[B:MINER#12507@85] @deposit n=7
+[B:MINER#10981@85] @deposit n=7
+[A:MINER#12544@86] @deposit n=7
+[B:MINER#10935@88] @deposit n=7
+[A:MINER#11129@88] @deposit n=7
+[B:MINER#12241@88] @deposit n=7
+[A:MINER#10545@88] @deposit n=7
+[B:MINER#11995@88] @deposit n=7
+[B:MINER#12507@88] @deposit n=7
+[B:MINER#10981@88] @deposit n=7
+[B:DESIGN_SCHOOL#10172@88] @build t=6 at=[33, 29] soup=3
+[A:MINER#12544@89] @deposit n=7
+[B:MINER#10935@90] @deposit n=7
+[A:MINER#11129@90] @deposit n=7
+[B:MINER#12241@90] @deposit n=7
+[A:MINER#10545@90] @deposit n=7
+[B:MINER#11995@90] @deposit n=7
+[B:MINER#12507@90] @deposit n=7
+[B:MINER#10981@90] @deposit n=7
+[B:LANDSCAPER#11405@90] @seated at=[35, 27]
+[A:MINER#12544@91] @deposit n=7
+[B:MINER#12512@91] @deposit n=70
+[B:MINER#10935@93] @deposit n=7
+[A:MINER#11129@93] @deposit n=7
+[B:MINER#12241@93] @deposit n=7
+[A:MINER#10545@93] @deposit n=7
+[B:MINER#11995@93] @deposit n=7
+[B:MINER#12507@93] @deposit n=7
+[B:MINER#10981@93] @deposit n=7
+[A:MINER#12544@94] @deposit n=7
+[B:MINER#10935@95] @deposit n=7
+[A:MINER#11129@95] @deposit n=7
+[B:MINER#12241@95] @deposit n=7
+[A:MINER#10545@95] @deposit n=7
+[B:MINER#11995@95] @deposit n=7
+[B:MINER#12507@95] @deposit n=7
+[B:MINER#10981@96] @deposit n=7
+[B:DESIGN_SCHOOL#10172@96] @build t=6 at=[33, 30] soup=16
+[A:MINER#12544@97] @deposit n=7
+[B:MINER#10935@98] @deposit n=7
+[A:MINER#11129@98] @deposit n=7
+[B:MINER#12241@98] @deposit n=7
+[A:MINER#10545@98] @deposit n=7
+[B:MINER#11995@98] @deposit n=7
+[B:MINER#12507@98] @deposit n=7
+[B:MINER#10981@98] @deposit n=7
+[A:MINER#11132@99] @build t=4 at=[5, 27] soup=281
+[A:HQ#0@100] @econ soup=282 built=8 minersSeen=8 ring=0 buried=0 sym=7
+[A:HQ#0@100] @bc t=0 used=924 max=4531 near=0 over=0
+[B:HQ#1@100] @econ soup=80 built=6 minersSeen=6 ring=2 buried=0 sym=7
+[B:HQ#1@100] @bc t=0 used=1293 max=4519 near=0 over=0
+[A:MINER#11132@100] @minerstat builder=true mined=30 deposits=5 explores=1 soupMem=4 unreachable=0
+[B:MINER#10935@100] @minerstat builder=true mined=41 deposits=29 explores=1 soupMem=4 unreachable=0
+[A:MINER#11129@100] @minerstat builder=false mined=41 deposits=17 explores=1 soupMem=4 unreachable=0
+[B:MINER#12241@100] @minerstat builder=false mined=40 deposits=21 explores=2 soupMem=4 unreachable=0
+[A:MINER#10545@100] @minerstat builder=false mined=32 deposits=31 explores=1 soupMem=4 unreachable=0
+[B:MINER#11995@100] @minerstat builder=false mined=37 deposits=18 explores=1 soupMem=4 unreachable=0
+[B:MINER#12507@100] @minerstat builder=false mined=27 deposits=17 explores=4 soupMem=4 unreachable=0
+[A:MINER#12544@100] @minerstat builder=false mined=28 deposits=9 explores=1 soupMem=4 unreachable=0
+[A:MINER#12544@100] @deposit n=7
+[B:MINER#10981@100] @minerstat builder=false mined=16 deposits=15 explores=1 soupMem=4 unreachable=0
+[A:MINER#10713@100] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=4 unreachable=0
+[A:MINER#14005@100] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=4 unreachable=0
+[B:MINER#12512@100] @minerstat builder=false mined=10 deposits=1 explores=1 soupMem=4 unreachable=0
+[A:MINER#11389@100] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=4 unreachable=0
+[A:MINER#11336@100] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=4 unreachable=0
+[B:LANDSCAPER#10277@100] @wallstat seat=[34, 27] attacker=false helper=false helperDeps=0 eq=2 borrow=0 digs=7 deps=6 hqDigs=0 bury=0 elev=7
+[B:LANDSCAPER#11405@100] @wallstat seat=[35, 27] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=4 deps=3 hqDigs=0 bury=0 elev=6
+[B:LANDSCAPER#10641@100] @wallstat seat=[34, 26] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#11373@100] @wallstat seat=null attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:MINER#11132@101] @bc t=1 used=1048 max=6549 near=0 over=0
+[B:MINER#10935@101] @deposit n=7
+[B:MINER#10935@101] @bc t=1 used=1599 max=4059 near=0 over=0
+[A:MINER#11129@101] @deposit n=7
+[B:MINER#12241@101] @deposit n=7
+[A:MINER#10545@101] @deposit n=7
+[B:MINER#11995@101] @deposit n=7
+[B:MINER#12507@101] @deposit n=7
+[B:MINER#10981@101] @deposit n=7
+[A:MINER#11129@102] @bc t=1 used=1094 max=5014 near=0 over=0
+[B:MINER#12241@102] @bc t=1 used=1474 max=5185 near=0 over=0
+[A:MINER#12544@102] @deposit n=7
+[B:MINER#10935@103] @deposit n=7
+[B:MINER#12241@103] @deposit n=7
+[B:MINER#11995@103] @deposit n=7
+[B:MINER#12507@103] @deposit n=7
+[B:MINER#10981@103] @deposit n=7
+[A:MINER#11129@104] @deposit n=7
+[A:MINER#10545@104] @deposit n=7
+[B:DESIGN_SCHOOL#10172@104] @build t=6 at=[33, 29] soup=14
+[B:LANDSCAPER#10641@104] @seated at=[34, 26]
+[A:MINER#12544@105] @deposit n=7
+[B:MINER#10935@106] @deposit n=7
+[A:MINER#11129@106] @deposit n=7
+[B:MINER#12241@106] @deposit n=7
+[A:MINER#10545@106] @deposit n=7
+[B:MINER#11995@106] @deposit n=7
+[B:MINER#12507@106] @deposit n=7
+[B:MINER#10981@106] @deposit n=7
+[A:MINER#12544@107] @deposit n=7
+[B:MINER#10935@108] @deposit n=7
+[B:MINER#12241@108] @deposit n=7
+[B:MINER#11995@108] @deposit n=7
+[B:MINER#12507@108] @deposit n=7
+[B:MINER#10981@108] @deposit n=7
+[B:LANDSCAPER#11373@108] @seated at=[36, 27]
+[A:MINER#11129@109] @deposit n=7
+[A:MINER#10545@109] @deposit n=7
+[A:DESIGN_SCHOOL#12691@109] @build t=6 at=[4, 27] soup=218
+[A:MINER#12544@110] @deposit n=7
+[A:DESIGN_SCHOOL#12691@110] @build t=6 at=[5, 28] soup=83
+[A:LANDSCAPER#13698@110] @bcprof start=3527 total=9536 role=0 atSeat=false atPost=false
+[B:MINER#10935@111] @deposit n=7
+[B:MINER#12241@111] @deposit n=7
+[B:MINER#11995@111] @deposit n=7
+[B:MINER#12507@111] @deposit n=7
+[B:MINER#10981@111] @deposit n=7
+[A:LANDSCAPER#12624@111] @bcprof start=3574 total=9583 role=0 atSeat=false atPost=false
+[A:MINER#11129@112] @deposit n=7
+[A:MINER#10545@112] @deposit n=7
+[A:MINER#10545@112] @bc t=1 used=1139 max=4899 near=0 over=0
+[B:MINER#11995@112] @bc t=1 used=1465 max=4740 near=0 over=0
+[B:MINER#10935@113] @deposit n=7
+[B:MINER#12241@113] @deposit n=7
+[B:MINER#11995@113] @deposit n=7
+[B:MINER#12507@113] @deposit n=7
+[A:MINER#12544@113] @deposit n=7
+[A:MINER#11129@114] @deposit n=7
+[A:MINER#10545@114] @deposit n=7
+[B:MINER#10981@114] @deposit n=7
+[B:DESIGN_SCHOOL#10172@114] @build t=6 at=[33, 30] soup=14
+[B:MINER#10935@116] @deposit n=7
+[B:MINER#12241@116] @deposit n=7
+[B:MINER#11995@116] @deposit n=7
+[B:MINER#12507@116] @deposit n=7
+[A:MINER#12544@116] @deposit n=7
+[B:MINER#10981@116] @deposit n=7
+[A:MINER#11129@117] @deposit n=7
+[A:MINER#10545@117] @deposit n=7
+[B:MINER#10935@118] @deposit n=7
+[B:MINER#12241@118] @deposit n=7
+[B:MINER#11995@118] @deposit n=7
+[A:MINER#12544@118] @deposit n=7
+[A:DESIGN_SCHOOL#12691@118] @build t=6 at=[4, 28] soup=4
+[B:MINER#12507@119] @deposit n=7
+[B:MINER#10981@119] @deposit n=7
+[A:LANDSCAPER#13698@119] @seated at=[3, 26]
+[A:LANDSCAPER#13065@119] @bcprof start=3582 total=9496 role=0 atSeat=true atPost=false
+[A:MINER#11129@120] @deposit n=7
+[A:MINER#10545@120] @deposit n=7
+[B:LANDSCAPER#13732@120] @origin x=0 y=0
+[B:MINER#10935@121] @deposit n=7
+[B:MINER#12241@121] @deposit n=7
+[B:MINER#11995@121] @deposit n=7
+[B:MINER#12507@121] @deposit n=7
+[A:MINER#12544@121] @deposit n=7
+[B:MINER#10981@121] @deposit n=7
+[A:MINER#11129@122] @deposit n=7
+[A:MINER#10545@122] @deposit n=7
+[B:MINER#10935@124] @deposit n=7
+[B:MINER#12241@124] @deposit n=7
+[B:MINER#11995@124] @deposit n=7
+[B:MINER#12507@124] @deposit n=7
+[A:MINER#12544@124] @deposit n=7
+[B:MINER#10981@124] @deposit n=7
+[A:MINER#11129@125] @deposit n=7
+[A:MINER#10545@125] @deposit n=7
+[B:DESIGN_SCHOOL#10172@125] @build t=6 at=[33, 29] soup=15
+[B:MINER#10935@126] @deposit n=7
+[B:MINER#12241@126] @deposit n=7
+[B:MINER#11995@126] @deposit n=7
+[B:MINER#12507@126] @deposit n=7
+[A:MINER#12544@126] @deposit n=7
+[B:MINER#10981@126] @deposit n=7
+[B:MINER#12507@127] @bc t=1 used=1872 max=4096 near=0 over=0
+[A:MINER#11129@128] @deposit n=7
+[A:MINER#10545@128] @deposit n=7
+[A:MINER#12544@128] @bc t=1 used=3210 max=4278 near=0 over=0
+[B:MINER#10935@129] @deposit n=7
+[B:MINER#12241@129] @deposit n=7
+[B:MINER#11995@129] @deposit n=7
+[B:MINER#12507@129] @deposit n=7
+[A:MINER#12544@129] @deposit n=7
+[B:MINER#10981@129] @deposit n=7
+[B:LANDSCAPER#10696@129] @origin x=0 y=0
+[A:MINER#11129@130] @deposit n=7
+[A:MINER#10545@130] @deposit n=7
+[B:MINER#10935@131] @deposit n=7
+[B:MINER#12241@131] @deposit n=7
+[B:MINER#11995@131] @deposit n=7
+[B:MINER#12507@131] @deposit n=7
+[B:MINER#10981@131] @deposit n=7
+[A:MINER#12544@132] @deposit n=7
+[A:MINER#11129@133] @deposit n=7
+[A:MINER#10545@133] @deposit n=7
+[B:MINER#10935@134] @deposit n=7
+[B:MINER#12241@134] @deposit n=7
+[B:MINER#11995@134] @deposit n=7
+[B:MINER#12507@134] @deposit n=7
+[A:MINER#12544@134] @deposit n=7
+[B:MINER#10981@134] @deposit n=7
+[B:DESIGN_SCHOOL#10172@135] @build t=6 at=[33, 30] soup=15
+[B:MINER#10935@136] @deposit n=7
+[A:MINER#11129@136] @deposit n=7
+[B:MINER#12241@136] @deposit n=7
+[A:MINER#10545@136] @deposit n=7
+[B:MINER#11995@136] @deposit n=7
+[B:MINER#12507@136] @deposit n=7
+[B:MINER#10981@136] @deposit n=7
+[A:DESIGN_SCHOOL#12691@136] @build t=6 at=[4, 27] soup=4
+[A:MINER#12544@137] @deposit n=7
+[A:LANDSCAPER#10959@137] @bcprof start=3526 total=9642 role=0 atSeat=false atPost=false
+[A:MINER#11129@138] @deposit n=7
+[A:MINER#10545@138] @deposit n=7
+[B:MINER#10935@139] @deposit n=7
+[B:MINER#12241@139] @deposit n=7
+[B:MINER#11995@139] @deposit n=7
+[B:MINER#12507@139] @deposit n=7
+[B:MINER#10981@139] @deposit n=7
+[A:MINER#12544@140] @deposit n=7
+[B:LANDSCAPER#13268@140] @origin x=0 y=0
+[B:MINER#10935@141] @deposit n=7
+[A:MINER#11129@141] @deposit n=7
+[B:MINER#12241@141] @deposit n=7
+[A:MINER#10545@141] @deposit n=7
+[B:MINER#11995@141] @deposit n=7
+[B:MINER#12507@142] @deposit n=7
+[B:MINER#10981@142] @deposit n=7
+[B:MINER#10981@142] @bc t=1 used=1416 max=4808 near=0 over=0
+[A:MINER#12544@143] @deposit n=7
+[B:MINER#10935@144] @deposit n=7
+[A:MINER#11129@144] @deposit n=7
+[B:MINER#12241@144] @deposit n=7
+[A:MINER#10545@144] @deposit n=7
+[B:MINER#11995@144] @deposit n=7
+[B:MINER#12507@144] @deposit n=7
+[B:MINER#10981@144] @deposit n=7
+[A:MINER#12544@145] @deposit n=7
+[A:LANDSCAPER#10959@146] @seated at=[3, 27]
+[B:MINER#10935@147] @deposit n=7
+[A:MINER#11129@147] @deposit n=7
+[B:MINER#12241@147] @deposit n=7
+[A:MINER#10545@147] @deposit n=7
+[B:MINER#11995@147] @deposit n=7
+[B:MINER#12507@147] @deposit n=7
+[B:MINER#10981@147] @deposit n=7
+[A:MINER#10713@147] @bc t=1 used=4674 max=5741 near=0 over=0
+[A:MINER#12544@148] @deposit n=7
+[B:HQ#1@149] @build t=1 at=[36, 25] soup=134
+[B:MINER#10935@149] @deposit n=7
+[B:MINER#12241@149] @deposit n=7
+[B:MINER#11995@149] @deposit n=7
+[B:MINER#12507@149] @deposit n=7
+[B:MINER#10981@149] @deposit n=7
+[B:LANDSCAPER#12686@149] @origin x=0 y=0
+[A:MINER#11129@150] @deposit n=7
+[A:MINER#10545@150] @deposit n=7
+[A:MINER#14005@150] @bc t=1 used=4318 max=6108 near=0 over=0
+[B:MINER#12512@150] @bc t=1 used=2018 max=4880 near=0 over=0
+[B:MINER#10806@150] @miner builder=false
+[B:MINER#10806@150] @explore to=[20, 34] unseen=-1
+[A:MINER#12544@151] @deposit n=7
+[B:MINER#10935@152] @deposit n=7
+[A:MINER#11129@152] @deposit n=7
+[B:MINER#12241@152] @deposit n=7
+[A:MINER#10545@152] @deposit n=7
+[B:MINER#11995@152] @deposit n=7
+[B:MINER#12507@152] @deposit n=7
+[B:MINER#10981@152] @deposit n=7
+[B:REFINERY#12826@153] @bc t=2 used=16 max=3282 near=0 over=0
+[A:DESIGN_SCHOOL#12691@153] @build t=6 at=[4, 27] soup=3
+[B:MINER#10935@154] @deposit n=7
+[B:MINER#12241@154] @deposit n=7
+[B:MINER#11995@154] @deposit n=7
+[A:MINER#12544@154] @deposit n=7
+[A:MINER#11389@154] @bc t=1 used=3944 max=5721 near=0 over=0
+[A:LANDSCAPER#12112@154] @inner sealed
+[A:MINER#11129@155] @deposit n=7
+[A:MINER#10545@155] @deposit n=7
+[B:MINER#12507@155] @deposit n=7
+[B:MINER#10981@155] @deposit n=7
+[A:MINER#12544@156] @deposit n=7
+[B:MINER#10935@157] @deposit n=7
+[B:MINER#12241@157] @deposit n=7
+[B:MINER#11995@157] @deposit n=7
+[B:MINER#12507@157] @deposit n=7
+[B:MINER#10981@157] @deposit n=7
+[A:MINER#11129@158] @deposit n=7
+[A:MINER#10545@158] @deposit n=7
+[B:MINER#12512@158] @deposit n=70
+[A:REFINERY#13144@158] @bc t=2 used=26 max=3525 near=0 over=0
+[A:MINER#12544@159] @deposit n=7
+[B:MINER#10806@159] @offring
+[B:HQ#1@160] @build t=1 at=[36, 25] soup=240
+[B:MINER#10935@160] @deposit n=7
+[B:MINER#12241@160] @deposit n=7
+[B:MINER#11995@160] @deposit n=7
+[B:MINER#12507@160] @deposit n=7
+[B:MINER#10981@160] @deposit n=7
+[A:MINER#11129@161] @deposit n=7
+[A:MINER#10545@161] @deposit n=7
+[B:DESIGN_SCHOOL#10172@161] @bc t=4 used=882 max=3756 near=0 over=0
+[B:MINER#10137@161] @miner builder=false
+[B:MINER#10137@161] @explore to=[46, 35] unseen=-1
+[B:MINER#10935@162] @deposit n=7
+[B:MINER#12241@162] @deposit n=7
+[B:MINER#11995@162] @deposit n=7
+[A:MINER#12544@162] @deposit n=7
+[A:MINER#11129@163] @deposit n=7
+[A:MINER#10545@163] @deposit n=7
+[B:MINER#12507@163] @deposit n=7
+[B:MINER#10981@163] @deposit n=7
+[B:MINER#10935@165] @deposit n=7
+[B:MINER#12241@165] @deposit n=7
+[B:MINER#11995@165] @deposit n=7
+[B:MINER#12507@165] @deposit n=7
+[A:MINER#12544@165] @deposit n=7
+[B:MINER#10981@165] @deposit n=7
+[A:MINER#11129@166] @deposit n=7
+[A:MINER#10545@166] @deposit n=7
+[A:MINER#12544@167] @deposit n=7
+[B:MINER#10935@168] @deposit n=7
+[B:MINER#12241@168] @deposit n=7
+[B:MINER#11995@168] @deposit n=7
+[B:MINER#12507@168] @deposit n=7
+[B:MINER#10981@168] @deposit n=7
+[A:MINER#11129@169] @deposit n=7
+[A:MINER#10545@169] @deposit n=7
+[B:LANDSCAPER#10696@169] @badseat [36, 26]
+[A:MINER#12544@170] @deposit n=7
+[B:MINER#10137@170] @offring
+[B:MINER#10935@171] @deposit n=7
+[B:MINER#12241@171] @deposit n=7
+[B:MINER#11995@171] @deposit n=7
+[B:MINER#12507@171] @deposit n=7
+[B:MINER#10981@171] @deposit n=7
+[B:DESIGN_SCHOOL#10172@171] @build t=6 at=[33, 29] soup=306
+[A:MINER#11336@171] @bc t=1 used=3880 max=5676 near=0 over=0
+[B:LANDSCAPER#10277@171] @bc t=6 used=2077 max=5812 near=0 over=0
+[A:MINER#11129@172] @deposit n=7
+[A:MINER#10545@172] @deposit n=7
+[B:MINER#10935@173] @deposit n=7
+[B:MINER#12241@173] @deposit n=7
+[B:MINER#11995@173] @deposit n=7
+[B:MINER#12507@173] @deposit n=7
+[A:MINER#12544@173] @deposit n=7
+[B:MINER#10981@173] @deposit n=7
+[A:MINER#11129@174] @deposit n=7
+[A:MINER#10545@174] @deposit n=7
+[B:MINER#10806@174] @origin x=0 y=0
+[B:LANDSCAPER#10696@175] @helper post=[36, 28]
+[B:LANDSCAPER#10696@175] @bc t=6 used=3003 max=6268 near=0 over=1
+[B:MINER#10935@176] @deposit n=7
+[B:MINER#12241@176] @deposit n=7
+[B:MINER#11995@176] @deposit n=7
+[B:MINER#12507@176] @deposit n=7
+[A:MINER#12544@176] @deposit n=7
+[B:MINER#10981@176] @deposit n=7
+[A:MINER#11129@177] @deposit n=7
+[A:MINER#10545@177] @deposit n=7
+[B:MINER#10935@178] @deposit n=7
+[B:MINER#12241@178] @deposit n=7
+[B:MINER#11995@178] @deposit n=7
+[B:LANDSCAPER#11405@178] @bc t=6 used=1283 max=4148 near=0 over=0
+[B:MINER#10137@178] @origin x=0 y=0
+[B:MINER#12507@179] @deposit n=7
+[A:MINER#12544@179] @deposit n=7
+[B:MINER#10981@179] @deposit n=7
+[A:MINER#11129@180] @deposit n=7
+[A:MINER#10545@180] @deposit n=7
+[B:MINER#10935@181] @deposit n=7
+[B:MINER#12241@181] @deposit n=7
+[B:MINER#11995@181] @deposit n=7
+[B:MINER#12507@181] @deposit n=7
+[A:MINER#12544@181] @deposit n=7
+[B:DESIGN_SCHOOL#10172@181] @build t=6 at=[33, 30] soup=306
+[B:LANDSCAPER#13732@181] @badseat [34, 25]
+[B:LANDSCAPER#13268@181] @badseat [36, 26]
+[B:MINER#10981@182] @deposit n=7
+[A:MINER#11129@183] @deposit n=7
+[A:MINER#10545@183] @deposit n=3
+[B:LANDSCAPER#13268@183] @helper post=[33, 26]
+[B:MINER#10935@184] @deposit n=7
+[B:MINER#12241@184] @deposit n=7
+[B:MINER#11995@184] @deposit n=7
+[B:MINER#12507@184] @deposit n=7
+[A:MINER#12544@184] @deposit n=7
+[B:MINER#10981@184] @deposit n=7
+[B:LANDSCAPER#13732@184] @helper post=[37, 26]
+[B:LANDSCAPER#13732@184] @bc t=6 used=4538 max=6109 near=0 over=1
+[B:LANDSCAPER#13268@184] @bc t=6 used=1278 max=6223 near=0 over=1
+[B:MINER#10935@186] @deposit n=7
+[A:MINER#11129@186] @deposit n=3
+[B:MINER#12241@186] @deposit n=7
+[B:MINER#11995@186] @deposit n=7
+[B:MINER#12507@187] @deposit n=7
+[A:MINER#12544@187] @deposit n=7
+[B:MINER#10981@187] @deposit n=7
+[B:LANDSCAPER#10641@188] @bc t=6 used=2403 max=5910 near=0 over=0
+[B:MINER#10935@189] @deposit n=7
+[B:MINER#12241@189] @deposit n=7
+[B:MINER#11995@189] @deposit n=7
+[B:MINER#12507@189] @deposit n=7
+[A:MINER#11129@190] @deposit n=7
+[A:MINER#12544@190] @deposit n=7
+[B:MINER#10981@190] @deposit n=7
+[B:LANDSCAPER#13978@190] @origin x=0 y=0
+[B:MINER#10935@192] @deposit n=7
+[A:MINER#11129@192] @deposit n=7
+[B:MINER#12241@192] @deposit n=7
+[B:MINER#11995@192] @deposit n=7
+[B:MINER#12507@192] @deposit n=7
+[A:MINER#12544@192] @deposit n=7
+[B:MINER#10981@192] @deposit n=7
+[B:DESIGN_SCHOOL#10172@192] @build t=6 at=[33, 29] soup=307
+[B:LANDSCAPER#12686@192] @badseat [36, 26]
+[B:MINER#10935@194] @deposit n=7
+[B:MINER#12241@194] @deposit n=7
+[B:MINER#11995@194] @deposit n=7
+[B:MINER#12507@194] @deposit n=7
+[A:MINER#11129@195] @deposit n=7
+[A:MINER#12544@195] @deposit n=7
+[B:MINER#10981@195] @deposit n=7
+[B:LANDSCAPER#11373@196] @bc t=6 used=2021 max=4207 near=0 over=0
+[B:MINER#10935@197] @deposit n=7
+[A:MINER#11129@197] @deposit n=7
+[B:MINER#12241@197] @deposit n=7
+[B:MINER#11995@197] @deposit n=7
+[B:MINER#12507@197] @deposit n=7
+[A:MINER#12544@197] @deposit n=7
+[B:MINER#12512@197] @deposit n=70
+[B:LANDSCAPER#13337@197] @origin x=0 y=0
+[B:MINER#10981@198] @deposit n=7
+[A:DESIGN_SCHOOL#12691@199] @bc t=4 used=1145 max=4005 near=0 over=0
+[A:HQ#0@200] @econ soup=350 built=8 minersSeen=8 ring=4 buried=0 sym=7
+[A:HQ#0@200] @bc t=0 used=1790 max=4531 near=0 over=0
+[B:HQ#1@200] @econ soup=425 built=8 minersSeen=7 ring=5 buried=0 sym=7
+[B:HQ#1@200] @bc t=0 used=2117 max=4519 near=0 over=0
+[A:MINER#11132@200] @minerstat builder=true mined=30 deposits=5 explores=1 soupMem=4 unreachable=0
+[B:MINER#10935@200] @minerstat builder=true mined=79 deposits=67 explores=1 soupMem=4 unreachable=0
+[B:MINER#10935@200] @deposit n=7
+[A:MINER#11129@200] @minerstat builder=false mined=77 deposits=53 explores=1 soupMem=2 unreachable=0
+[A:MINER#11129@200] @deposit n=7
+[B:MINER#12241@200] @minerstat builder=false mined=78 deposits=59 explores=2 soupMem=4 unreachable=0
+[B:MINER#12241@200] @deposit n=7
+[A:MINER#10545@200] @minerstat builder=false mined=62 deposits=62 explores=1 soupMem=2 unreachable=0
+[B:MINER#11995@200] @minerstat builder=false mined=75 deposits=56 explores=1 soupMem=4 unreachable=0
+[B:MINER#11995@200] @deposit n=7
+[B:MINER#12507@200] @minerstat builder=false mined=65 deposits=55 explores=4 soupMem=4 unreachable=0
+[B:MINER#12507@200] @deposit n=7
+[A:MINER#12544@200] @minerstat builder=false mined=65 deposits=46 explores=1 soupMem=2 unreachable=0
+[A:MINER#12544@200] @deposit n=7
+[B:MINER#10981@200] @minerstat builder=false mined=54 deposits=53 explores=1 soupMem=4 unreachable=0
+[A:MINER#10713@200] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[A:MINER#14005@200] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[B:MINER#12512@200] @minerstat builder=false mined=30 deposits=3 explores=1 soupMem=4 unreachable=0
+[A:MINER#11389@200] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[A:MINER#11336@200] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[B:LANDSCAPER#10277@200] @wallstat seat=[34, 27] attacker=false helper=false helperDeps=0 eq=20 borrow=0 digs=45 deps=45 hqDigs=0 bury=0 elev=28
+[B:LANDSCAPER#11405@200] @wallstat seat=[35, 27] attacker=false helper=false helperDeps=0 eq=16 borrow=0 digs=42 deps=41 hqDigs=0 bury=0 elev=28
+[B:LANDSCAPER#10641@200] @wallstat seat=[34, 26] attacker=false helper=false helperDeps=0 eq=36 borrow=0 digs=36 deps=36 hqDigs=0 bury=0 elev=26
+[B:LANDSCAPER#11373@200] @wallstat seat=[36, 27] attacker=false helper=false helperDeps=0 eq=11 borrow=0 digs=35 deps=34 hqDigs=0 bury=0 elev=28
+[B:LANDSCAPER#13732@200] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:LANDSCAPER#13698@200] @wallstat role=0 seat=[3, 26] post=null digs=30 deps=29 eq=17 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=20
+[A:LANDSCAPER#12624@200] @wallstat role=0 seat=[5, 28] post=null digs=30 deps=29 eq=15 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=20
+[B:LANDSCAPER#10696@200] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:LANDSCAPER#13065@200] @wallstat role=0 seat=[4, 28] post=null digs=27 deps=26 eq=8 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=22
+[B:LANDSCAPER#13268@200] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12686@200] @wallstat seat=[34, 26] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:LANDSCAPER#10959@200] @wallstat role=0 seat=[3, 27] post=null digs=20 deps=19 eq=3 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=22
+[B:MINER#10806@200] @minerstat builder=false mined=10 deposits=0 explores=1 soupMem=4 unreachable=0
+[A:LANDSCAPER#12112@200] @wallstat role=2 seat=null post=null digs=14 deps=14 eq=14 borrow=0 helperDeps=0 innerDeps=14 hqDigs=0 bury=0 idle=0 elev=3
+[B:MINER#10137@200] @minerstat builder=false mined=10 deposits=0 explores=1 soupMem=4 unreachable=0
+[B:LANDSCAPER#13978@200] @wallstat seat=[36, 26] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#13337@200] @wallstat seat=[36, 26] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#10090@200] @wallstat seat=[36, 26] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:MINER#11132@201] @bc t=1 used=1640 max=6549 near=0 over=0
+[B:MINER#10935@201] @bc t=1 used=2417 max=4059 near=0 over=0
+[B:MINER#10981@201] @deposit n=7
+[B:DESIGN_SCHOOL#10172@201] @build t=6 at=[33, 30] soup=316
+[B:MINER#10935@202] @deposit n=7
+[A:MINER#11129@202] @deposit n=7
+[A:MINER#11129@202] @bc t=1 used=1289 max=5014 near=0 over=0
+[B:MINER#12241@202] @deposit n=7
+[B:MINER#12241@202] @bc t=1 used=1774 max=5185 near=0 over=0
+[B:MINER#11995@202] @deposit n=7
+[A:MINER#12544@202] @deposit n=7
+[B:MINER#12507@203] @deposit n=7
+[B:MINER#10806@203] @deposit n=70
+[B:MINER#10981@204] @deposit n=7
+[B:MINER#10935@205] @deposit n=7
+[A:MINER#11129@205] @deposit n=7
+[B:MINER#12241@205] @deposit n=7
+[B:MINER#11995@205] @deposit n=7
+[A:MINER#12544@205] @deposit n=7
+[B:LANDSCAPER#13732@205] @bc t=6 used=1692 max=6109 near=0 over=1
+[B:MINER#12507@206] @deposit n=7
+[B:MINER#10981@206] @deposit n=7
+[A:MINER#11129@207] @deposit n=7
+[A:MINER#12544@207] @deposit n=7
+[B:LANDSCAPER#10090@207] @origin x=0 y=0
+[B:MINER#10935@208] @deposit n=7
+[B:MINER#12241@208] @deposit n=7
+[B:MINER#11995@208] @deposit n=7
+[B:MINER#12507@208] @deposit n=7
+[B:DESIGN_SCHOOL#10172@208] @build t=6 at=[33, 29] soup=313
+[B:MINER#10981@209] @deposit n=7
+[A:LANDSCAPER#13698@209] @bc t=6 used=2045 max=9583 near=1 over=0
+[A:MINER#11129@210] @deposit n=7
+[A:MINER#12544@210] @deposit n=7
+[A:LANDSCAPER#12624@210] @bc t=6 used=1587 max=9630 near=1 over=0
+[B:MINER#10935@211] @deposit n=7
+[B:MINER#12241@211] @deposit n=7
+[B:MINER#11995@211] @deposit n=7
+[B:MINER#12507@211] @deposit n=7
+[A:MINER#11129@212] @deposit n=7
+[A:MINER#10545@212] @bc t=1 used=3588 max=5363 near=0 over=0
+[B:MINER#11995@212] @bc t=1 used=2047 max=4740 near=0 over=0
+[A:MINER#12544@212] @deposit n=7
+[B:MINER#10981@212] @deposit n=7
+[B:MINER#10935@214] @deposit n=7
+[B:MINER#12241@214] @deposit n=7
+[B:MINER#11995@214] @deposit n=7
+[B:MINER#12507@214] @deposit n=6
+[A:MINER#11129@215] @deposit n=7
+[A:MINER#12544@215] @deposit n=7
+[B:MINER#10981@215] @deposit n=6
+[B:DESIGN_SCHOOL#10172@215] @build t=6 at=[32, 30] soup=310
+[B:LANDSCAPER#10696@215] @bc t=6 used=1640 max=6268 near=0 over=1
+[B:MINER#10935@217] @deposit n=7
+[A:MINER#11129@217] @deposit n=7
+[B:MINER#12241@217] @deposit n=7
+[B:MINER#11995@217] @deposit n=3
+[A:MINER#12544@217] @deposit n=7
+[A:LANDSCAPER#13065@218] @bc t=6 used=1682 max=9544 near=1 over=0
+[B:MINER#10935@220] @deposit n=3
+[A:MINER#11129@220] @deposit n=7
+[A:MINER#12544@220] @deposit n=7
+[B:HQ#1@221] @build t=1 at=[36, 25] soup=269
+[A:MINER#11129@222] @deposit n=7
+[B:MINER#12241@222] @explore to=[28, 20] unseen=22
+[A:MINER#12544@222] @deposit n=7
+[B:MINER#13762@222] @miner builder=false
+[B:MINER#13762@222] @explore to=[17, 18] unseen=-1
+[B:MINER#10137@223] @deposit n=70
+[A:MINER#11129@225] @deposit n=7
+[A:MINER#12544@225] @deposit n=7
+[B:LANDSCAPER#10232@225] @origin x=0 y=0
+[B:LANDSCAPER#13268@226] @bc t=6 used=1868 max=6223 near=0 over=1
+[B:MINER#10935@227] @explore to=[34, 7] unseen=-1
+[A:MINER#11129@227] @deposit n=7
+[B:MINER#12507@227] @bc t=1 used=1125 max=4096 near=0 over=0
+[A:MINER#12544@227] @deposit n=7
+[B:MINER#10806@227] @explore to=[12, 28] unseen=21
+[B:MINER#12241@228] @explore to=[36, 20] unseen=21
+[A:MINER#12544@228] @bc t=1 used=1663 max=4278 near=0 over=0
+[A:MINER#11129@230] @deposit n=7
+[A:MINER#12544@230] @deposit n=7
+[B:LANDSCAPER#13732@231] @posted at=[33, 24]
+[B:MINER#13762@231] @offring
+[A:MINER#11129@232] @deposit n=7
+[B:MINER#12507@232] @origin x=0 y=0
+[A:MINER#12544@232] @deposit n=7
+[B:LANDSCAPER#13978@232] @badseat [36, 26]
+[B:LANDSCAPER#13978@232] @helper post=[33, 28]
+[B:LANDSCAPER#13978@233] @bc t=6 used=716 max=6296 near=0 over=1
+[B:MINER#12241@234] @explore to=[36, 12] unseen=20
+[A:MINER#11129@235] @deposit n=7
+[A:MINER#12544@235] @deposit n=7
+[B:LANDSCAPER#12686@235] @bc t=6 used=2046 max=4260 near=0 over=0
+[B:MINER#11995@236] @explore to=[44, 20] unseen=21
+[B:MINER#12512@236] @explore to=[28, 20] unseen=21
+[A:LANDSCAPER#10959@236] @bc t=6 used=1620 max=9689 near=1 over=0
+[A:MINER#11129@237] @deposit n=7
+[A:MINER#12544@237] @deposit n=7
+[B:LANDSCAPER#13978@237] @posted at=[33, 28]
+[B:LANDSCAPER#13337@237] @badseat [36, 26]
+[B:MINER#10981@238] @explore to=[13, 29] unseen=-1
+[B:LANDSCAPER#13337@238] @helper post=[33, 24]
+[B:LANDSCAPER#13337@238] @bc t=6 used=1787 max=4386 near=0 over=1
+[B:MINER#12507@239] @explore to=[44, 12] unseen=22
+[A:MINER#11129@240] @deposit n=7
+[B:MINER#12241@240] @explore to=[44, 12] unseen=19
+[A:MINER#12544@240] @deposit n=7
+[B:MINER#10806@240] @explore to=[20, 20] unseen=21
+[B:LANDSCAPER#13337@240] @bcprof start=14 total=9752 seat=false helper=true attacker=false atSeat=false atPost=false
+[B:LANDSCAPER#13181@240] @origin x=0 y=0
+[A:MINER#11129@242] @deposit n=7
+[A:MINER#12544@242] @deposit n=7
+[B:MINER#10981@242] @bc t=1 used=2644 max=4808 near=0 over=0
+[B:LANDSCAPER#13337@242] @posted at=[35, 24]
+[A:MINER#11129@245] @deposit n=7
+[A:MINER#12544@245] @deposit n=7
+[B:MINER#12512@246] @explore to=[36, 20] unseen=20
+[B:LANDSCAPER#10090@246] @badseat [36, 26]
+[B:MINER#10935@247] @explore to=[29, 25] unseen=-1
+[A:MINER#11129@247] @deposit n=7
+[A:MINER#12544@247] @deposit n=7
+[A:MINER#10713@247] @bc t=1 used=4266 max=5980 near=0 over=0
+[B:MINER#10137@247] @explore to=[36, 20] unseen=20
+[B:MINER#10806@249] @explore to=[28, 20] unseen=20
+[B:MINER#10806@249] @bc t=1 used=2112 max=5361 near=0 over=0
+[B:MINER#10137@249] @explore to=[36, 12] unseen=19
+[A:MINER#11129@250] @deposit n=7
+[A:MINER#12544@250] @deposit n=7
+[A:MINER#14005@250] @bc t=1 used=4202 max=6196 near=0 over=0
+[B:MINER#12512@250] @bc t=1 used=3068 max=5320 near=0 over=0
+[B:MINER#12512@251] @explore to=[36, 12] unseen=19
+[A:MINER#11129@252] @deposit n=7
+[B:LANDSCAPER#10090@252] @helper post=[34, 28]
+[A:MINER#12544@253] @deposit n=7
+[B:REFINERY#12826@253] @bc t=2 used=16 max=3282 near=0 over=0
+[B:MINER#10806@253] @explore to=[28, 12] unseen=19
+[A:LANDSCAPER#12112@253] @bc t=6 used=1528 max=5172 near=0 over=0
+[B:LANDSCAPER#10090@253] @bc t=6 used=828 max=6640 near=0 over=1
+[A:MINER#11389@254] @bc t=1 used=3810 max=5856 near=0 over=0
+[A:MINER#11129@255] @deposit n=7
+[B:MINER#11995@255] @explore to=[36, 12] unseen=19
+[A:MINER#12544@255] @deposit n=7
+[B:MINER#11995@256] @explore to=[36, 20] unseen=18
+[B:MINER#12512@257] @explore to=[44, 12] unseen=18
+[B:LANDSCAPER#12686@257] @badseat [34, 25]
+[B:MINER#10137@257] @explore to=[28, 12] unseen=18
+[A:MINER#11129@258] @deposit n=7
+[A:MINER#12544@258] @deposit n=7
+[A:REFINERY#13144@258] @bc t=2 used=26 max=3525 near=0 over=0
+[B:MINER#10806@259] @explore to=[36, 12] unseen=18
+[A:MINER#11129@260] @deposit n=7
+[A:MINER#12544@260] @deposit n=7
+[B:MINER#10981@260] @explore to=[35, 16] unseen=-1
+[B:MINER#10137@260] @bc t=1 used=612 max=5913 near=0 over=0
+[B:DESIGN_SCHOOL#10172@261] @bc t=4 used=986 max=3756 near=0 over=0
+[B:MINER#13762@261] @explore to=[14, 15] unseen=-1
+[B:MINER#11995@262] @explore to=[28, 20] unseen=17
+[B:MINER#10137@262] @explore to=[28, 20] unseen=17
+[A:MINER#11129@263] @deposit n=7
+[A:MINER#12544@263] @deposit n=7
+[A:MINER#11129@265] @deposit n=7
+[A:MINER#12544@265] @deposit n=7
+[B:LANDSCAPER#13181@265] @badseat [34, 25]
+[B:LANDSCAPER#13181@265] @helper post=[33, 25]
+[B:LANDSCAPER#12686@266] @helper post=[37, 25]
+[B:LANDSCAPER#12686@266] @bcprof start=14 total=8561 seat=false helper=true attacker=false atSeat=false atPost=false
+[B:MINER#10137@266] @explore to=[20, 20] unseen=16
+[B:LANDSCAPER#13181@266] @bc t=6 used=693 max=6393 near=0 over=1
+[A:MINER#11129@268] @deposit n=7
+[B:MINER#12241@268] @explore to=[44, 20] unseen=18
+[B:MINER#11995@268] @explore to=[28, 12] unseen=16
+[A:MINER#12544@268] @deposit n=7
+[A:MINER#11129@270] @deposit n=7
+[A:MINER#12544@270] @deposit n=7
+[B:LANDSCAPER#10232@270] @badseat [36, 26]
+[B:LANDSCAPER#10232@270] @helper post=[37, 24]
+[A:MINER#11336@271] @bc t=1 used=3682 max=5676 near=0 over=0
+[B:LANDSCAPER#10277@271] @bc t=6 used=1396 max=5812 near=0 over=0
+[B:LANDSCAPER#12686@271] @posted at=[37, 25]
+[B:LANDSCAPER#10232@271] @bc t=6 used=1000 max=4306 near=0 over=1
+[B:MINER#10137@272] @explore to=[20, 12] unseen=15
+[B:LANDSCAPER#13978@272] @bc t=6 used=1895 max=6296 near=0 over=1
+[A:MINER#11129@273] @deposit n=7
+[A:MINER#12544@273] @deposit n=7
+[B:MINER#10981@273] @explore to=[31, 22] unseen=-1
+[B:MINER#11995@274] @explore to=[20, 12] unseen=15
+[B:MINER#10981@274] @explore to=[50, 30] unseen=-1
+[B:MINER#13762@274] @explore to=[12, -5] unseen=-1
+[A:MINER#11129@275] @deposit n=7
+[A:MINER#12544@275] @deposit n=7
+[B:MINER#13762@275] @origin x=0 y=0
+[B:MINER#10981@277] @origin x=0 y=0
+[A:MINER#11129@278] @deposit n=7
+[A:MINER#12544@278] @deposit n=7
+[B:LANDSCAPER#11405@278] @bc t=6 used=2121 max=4148 near=0 over=0
+[B:MINER#10137@278] @explore to=[12, 12] unseen=14
+[A:MINER#11129@280] @deposit n=7
+[B:MINER#11995@280] @explore to=[20, 4] unseen=14
+[A:MINER#12544@280] @deposit n=7
+[B:MINER#10935@281] @deposit n=70
+[B:LANDSCAPER#13337@282] @bc t=6 used=1969 max=9811 near=1 over=1
+[A:MINER#11129@283] @deposit n=7
+[A:MINER#12544@283] @deposit n=7
+[B:DESIGN_SCHOOL#10172@283] @build t=6 at=[33, 29] soup=311
+[B:LANDSCAPER#13181@284] @posted at=[33, 25]
+[A:MINER#11129@285] @deposit n=7
+[B:MINER#12241@285] @explore to=[28, 12] unseen=16
+[A:MINER#12544@285] @deposit n=7
+[B:MINER#11995@286] @explore to=[28, 4] unseen=13
+[B:MINER#12512@286] @explore to=[44, 4] unseen=17
+[B:MINER#13762@287] @explore to=[36, 4] unseen=22
+[A:MINER#11129@288] @deposit n=7
+[A:MINER#12544@288] @deposit n=7
+[B:LANDSCAPER#10641@288] @bc t=6 used=2130 max=5910 near=0 over=0
+[A:MINER#11129@290] @deposit n=7
+[B:MINER#11995@290] @explore to=[36, 4] unseen=12
+[A:MINER#12544@290] @deposit n=7
+[B:MINER#10137@291] @explore to=[12, 20] unseen=14
+[A:MINER#11129@293] @deposit n=7
+[A:MINER#12544@293] @deposit n=7
+[B:LANDSCAPER#10090@293] @bc t=6 used=1341 max=6640 near=0 over=1
+[B:MINER#10981@294] @explore to=[44, 20] unseen=21
+[B:MINER#13762@294] @explore to=[36, 12] unseen=21
+[A:MINER#12544@295] @deposit n=7
+[A:MINER#11129@296] @deposit n=7
+[B:LANDSCAPER#11373@296] @bc t=6 used=2036 max=4207 near=0 over=0
+[B:MINER#12507@297] @deposit n=70
+[A:MINER#11129@298] @deposit n=7
+[B:MINER#12241@298] @explore to=[20, 12] unseen=15
+[A:MINER#12544@298] @deposit n=7
+[B:LANDSCAPER#11830@298] @origin x=0 y=0
+[B:MINER#11995@299] @explore to=[44, 4] unseen=11
+[A:DESIGN_SCHOOL#12691@299] @bc t=4 used=1145 max=4005 near=0 over=0
+[A:HQ#0@300] @econ soup=1008 built=8 minersSeen=8 ring=4 buried=0 sym=7
+[A:HQ#0@300] @bc t=0 used=1790 max=4531 near=0 over=0
+[B:HQ#1@300] @econ soup=398 built=9 minersSeen=2 ring=4 buried=0 sym=7
+[B:HQ#1@300] @bc t=0 used=2702 max=4519 near=0 over=0
+[A:MINER#11132@300] @minerstat builder=true mined=30 deposits=5 explores=1 soupMem=4 unreachable=0
+[B:MINER#10935@300] @minerstat builder=true mined=96 deposits=76 explores=3 soupMem=4 unreachable=0
+[A:MINER#11129@300] @minerstat builder=false mined=116 deposits=93 explores=1 soupMem=2 unreachable=0
+[B:MINER#12241@300] @minerstat builder=false mined=84 deposits=66 explores=9 soupMem=0 unreachable=0
+[A:MINER#10545@300] @minerstat builder=false mined=62 deposits=62 explores=1 soupMem=2 unreachable=0
+[B:MINER#11995@300] @minerstat builder=false mined=81 deposits=63 explores=11 soupMem=4 unreachable=0
+[B:MINER#12507@300] @minerstat builder=false mined=80 deposits=62 explores=5 soupMem=4 unreachable=0
+[A:MINER#12544@300] @minerstat builder=false mined=105 deposits=86 explores=1 soupMem=2 unreachable=0
+[B:MINER#10981@300] @minerstat builder=false mined=59 deposits=59 explores=6 soupMem=0 unreachable=0
+[A:MINER#10713@300] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[A:MINER#14005@300] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[B:MINER#12512@300] @minerstat builder=false mined=34 deposits=3 explores=6 soupMem=4 unreachable=0
+[A:MINER#11389@300] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[A:MINER#11336@300] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[B:LANDSCAPER#10277@300] @wallstat seat=[34, 27] attacker=false helper=false helperDeps=0 eq=50 borrow=0 digs=85 deps=85 hqDigs=0 bury=0 elev=62
+[B:LANDSCAPER#11405@300] @wallstat seat=[35, 27] attacker=false helper=false helperDeps=0 eq=33 borrow=0 digs=82 deps=81 hqDigs=0 bury=0 elev=55
+[B:LANDSCAPER#10641@300] @wallstat seat=[34, 26] attacker=false helper=false helperDeps=0 eq=76 borrow=0 digs=76 deps=76 hqDigs=0 bury=0 elev=58
+[B:LANDSCAPER#11373@300] @wallstat seat=[36, 27] attacker=false helper=false helperDeps=0 eq=24 borrow=0 digs=75 deps=74 hqDigs=0 bury=0 elev=55
+[B:LANDSCAPER#13732@300] @wallstat seat=null attacker=false helper=true helperDeps=27 eq=0 borrow=0 digs=28 deps=1 hqDigs=0 bury=0 elev=4
+[A:LANDSCAPER#13698@300] @wallstat role=0 seat=[3, 26] post=null digs=69 deps=69 eq=46 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=48
+[A:LANDSCAPER#12624@300] @wallstat role=0 seat=[5, 28] post=null digs=69 deps=69 eq=43 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=48
+[B:LANDSCAPER#10696@300] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:LANDSCAPER#13065@300] @wallstat role=0 seat=[4, 28] post=null digs=66 deps=66 eq=19 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=51
+[B:LANDSCAPER#13268@300] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12686@300] @wallstat seat=null attacker=false helper=true helperDeps=10 eq=0 borrow=0 digs=12 deps=1 hqDigs=0 bury=0 elev=4
+[A:LANDSCAPER#10959@300] @wallstat role=0 seat=[3, 27] post=null digs=59 deps=58 eq=14 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=50
+[B:MINER#10806@300] @minerstat builder=false mined=20 deposits=1 explores=6 soupMem=4 unreachable=0
+[A:LANDSCAPER#12112@300] @wallstat role=2 seat=null post=null digs=54 deps=53 eq=53 borrow=0 helperDeps=0 innerDeps=53 hqDigs=0 bury=0 idle=0 elev=3
+[B:MINER#10137@300] @minerstat builder=false mined=10 deposits=1 explores=9 soupMem=0 unreachable=0
+[B:LANDSCAPER#13978@300] @wallstat seat=null attacker=false helper=true helperDeps=24 eq=0 borrow=0 digs=26 deps=1 hqDigs=0 bury=0 elev=4
+[B:LANDSCAPER#13337@300] @wallstat seat=null attacker=false helper=true helperDeps=22 eq=0 borrow=0 digs=24 deps=1 hqDigs=0 bury=0 elev=4
+[B:LANDSCAPER#10090@300] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#10232@300] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#13181@300] @wallstat seat=null attacker=false helper=true helperDeps=5 eq=0 borrow=0 digs=6 deps=1 hqDigs=0 bury=0 elev=4
+[B:LANDSCAPER#13009@300] @wallstat seat=null attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:MINER#13762@300] @minerstat builder=false mined=6 deposits=0 explores=5 soupMem=4 unreachable=0
+[B:LANDSCAPER#11830@300] @wallstat seat=[34, 25] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:MINER#11132@301] @bc t=1 used=3340 max=6549 near=0 over=0
+[B:MINER#10935@301] @bc t=1 used=3030 max=4126 near=0 over=0
+[A:MINER#11129@301] @deposit n=7
+[A:MINER#12544@301] @deposit n=7
+[A:MINER#11129@302] @bc t=1 used=1184 max=5014 near=0 over=0
+[B:MINER#12241@302] @bc t=1 used=2602 max=5465 near=0 over=0
+[B:LANDSCAPER#10232@302] @bc t=6 used=2849 max=4306 near=0 over=1
+[A:MINER#11129@303] @deposit n=7
+[A:MINER#12544@303] @deposit n=7
+[B:MINER#10137@304] @explore to=[12, 28] unseen=13
+[B:LANDSCAPER#13732@305] @bc t=6 used=2043 max=6109 near=0 over=1
+[B:MINER#10806@305] @deposit n=70
+[A:MINER#11129@306] @deposit n=7
+[A:MINER#12544@306] @deposit n=7
+[B:MINER#12241@307] @explore to=[20, 20] unseen=14
+[B:MINER#10981@307] @explore to=[36, 12] unseen=19
+[B:DESIGN_SCHOOL#10172@307] @build t=6 at=[33, 29] soup=305
+[A:MINER#11129@308] @deposit n=7
+[A:MINER#12544@308] @deposit n=7
+[B:MINER#10981@308] @explore to=[36, 4] unseen=18
+[A:LANDSCAPER#13698@309] @bc t=6 used=1502 max=9583 near=1 over=0
+[B:LANDSCAPER#13181@309] @bc t=6 used=1865 max=6393 near=0 over=1
+[A:LANDSCAPER#12624@310] @bc t=6 used=2135 max=9630 near=1 over=0
+[A:MINER#11129@311] @deposit n=7
+[A:MINER#12544@311] @deposit n=7
+[A:MINER#10545@312] @bc t=1 used=3704 max=5363 near=0 over=0
+[B:MINER#11995@312] @bc t=1 used=807 max=4740 near=0 over=0
+[B:MINER#12241@313] @explore to=[12, 20] unseen=13
+[A:MINER#12544@313] @deposit n=7
+[A:MINER#11129@314] @deposit n=7
+[B:LANDSCAPER#10696@315] @bc t=6 used=1103 max=6268 near=0 over=1
+[B:LANDSCAPER#13009@315] @bc t=6 used=667 max=4446 near=0 over=0
+[A:MINER#11129@316] @deposit n=7
+[A:MINER#12544@316] @deposit n=7
+[A:LANDSCAPER#13065@318] @bc t=6 used=1916 max=9544 near=1 over=0
+[B:MINER#10137@318] @explore to=[4, 28] unseen=13
+[A:MINER#11129@319] @deposit n=7
+[A:MINER#12544@319] @deposit n=7
+[A:MINER#12544@321] @deposit n=7
+[B:MINER#13762@321] @bc t=1 used=2784 max=5165 near=0 over=0
+[A:MINER#11129@322] @deposit n=7
+[B:MINER#10981@322] @explore to=[28, 4] unseen=17
+[B:MINER#10806@323] @explore to=[28, 4] unseen=15
+[A:MINER#11129@324] @deposit n=7
+[A:MINER#12544@324] @deposit n=7
+[B:MINER#12241@326] @explore to=[12, 12] unseen=13
+[B:LANDSCAPER#13268@326] @bc t=6 used=1218 max=6223 near=0 over=1
+[A:MINER#11129@327] @deposit n=7
+[B:MINER#12507@327] @bc t=1 used=1230 max=5169 near=0 over=0
+[A:MINER#12544@327] @deposit n=7
+[A:MINER#12544@328] @bc t=1 used=2994 max=4278 near=0 over=0
+[A:MINER#11129@329] @deposit n=7
+[A:MINER#12544@329] @deposit n=7
+[B:MINER#13762@331] @deposit n=70
+[A:MINER#11129@332] @deposit n=7
+[A:MINER#12544@332] @deposit n=7
+[B:MINER#12512@333] @deposit n=70
+[A:MINER#12544@334] @deposit n=7
+[A:MINER#11129@335] @deposit n=7
+[B:LANDSCAPER#12686@335] @bc t=6 used=1844 max=8620 near=0 over=0
+[B:LANDSCAPER#11838@335] @origin x=0 y=0
+[A:LANDSCAPER#10959@336] @bc t=6 used=1620 max=9689 near=1 over=0
+[A:MINER#11129@337] @deposit n=7
+[A:MINER#12544@337] @deposit n=7
+[B:MINER#10137@337] @explore to=[4, 20] unseen=13
+[B:MINER#12241@339] @explore to=[28, 4] unseen=12
+[B:MINER#11995@339] @deposit n=70
+[A:MINER#11129@340] @deposit n=7
+[A:MINER#12544@340] @deposit n=7
+[A:MINER#12544@342] @deposit n=7
+[B:MINER#10981@342] @bc t=1 used=2637 max=4808 near=0 over=0
+[A:MINER#11129@343] @deposit n=7
+[B:MINER#12241@343] @explore to=[36, 4] unseen=11
+[A:MINER#11129@345] @deposit n=7
+[A:MINER#12544@345] @deposit n=7
+[B:MINER#10935@346] @deposit n=70
+[A:MINER#10713@347] @bc t=1 used=4266 max=5980 near=0 over=0
+[B:MINER#13762@347] @explore to=[44, 12] unseen=15
+[B:MINER#10935@348] @explore to=[18, 9] unseen=-1
+[A:MINER#11129@348] @deposit n=7
+[A:MINER#12544@348] @deposit n=7
+[B:MINER#10806@349] @bc t=1 used=2622 max=5361 near=0 over=0
+[A:MINER#14005@350] @bc t=1 used=4202 max=6196 near=0 over=0
+[B:MINER#12512@350] @bc t=1 used=2995 max=5320 near=0 over=0
+[B:MINER#10137@350] @explore to=[28, 4] unseen=13
+[A:MINER#11129@351] @deposit n=7
+[A:MINER#12544@351] @deposit n=7
+[A:MINER#11129@353] @deposit n=7
+[A:MINER#12544@353] @deposit n=7
+[B:REFINERY#12826@353] @bc t=2 used=16 max=3282 near=0 over=0
+[A:LANDSCAPER#12112@353] @bc t=6 used=1409 max=5172 near=0 over=0
+[B:MINER#10935@354] @build t=3 at=[31, 22] soup=162
+[A:MINER#11389@354] @bc t=1 used=3926 max=5856 near=0 over=0
+[A:MINER#11129@356] @deposit n=7
+[A:MINER#12544@356] @deposit n=7
+[B:MINER#12241@357] @explore to=[44, 4] unseen=10
+[A:MINER#11129@358] @deposit n=7
+[A:REFINERY#13144@358] @bc t=2 used=26 max=3525 near=0 over=0
+[A:MINER#12544@359] @deposit n=7
+[B:MINER#10137@360] @bc t=1 used=3254 max=5913 near=0 over=0
+[A:MINER#11129@361] @deposit n=7
+[B:DESIGN_SCHOOL#10172@361] @bc t=4 used=1142 max=3756 near=0 over=0
+[B:LANDSCAPER#11830@361] @badseat [34, 25]
+[B:LANDSCAPER#11830@361] @helper post=[33, 28]
+[A:MINER#12544@362] @deposit n=7
+[B:LANDSCAPER#11830@362] @bcprof start=14 total=9965 seat=false helper=true attacker=false atSeat=false atPost=false
+[B:LANDSCAPER#11830@362] @bc t=6 used=24 max=6201 near=0 over=1
+[B:MINER#12507@363] @deposit n=70
+[A:MINER#11129@364] @deposit n=7
+[A:MINER#12544@364] @deposit n=7
+[B:MINER#10981@364] @deposit n=70
+[A:MINER#11129@366] @deposit n=7
+[A:MINER#12544@367] @deposit n=7
+[B:MINER#10806@368] @deposit n=70
+[A:MINER#11129@369] @deposit n=7
+[A:MINER#12544@370] @deposit n=7
+[A:MINER#11336@371] @bc t=1 used=3682 max=5676 near=0 over=0
+[B:LANDSCAPER#10277@371] @bc t=6 used=2094 max=5812 near=0 over=0
+[A:MINER#11129@372] @deposit n=7
+[B:LANDSCAPER#13978@372] @bc t=6 used=1676 max=6296 near=0 over=1
+[A:MINER#12544@373] @deposit n=7
+[A:MINER#11129@375] @deposit n=7
+[A:MINER#12544@376] @deposit n=7
+[A:MINER#11129@377] @deposit n=7
+[B:LANDSCAPER#11405@378] @bc t=6 used=2625 max=4148 near=0 over=0
+[A:MINER#12544@379] @deposit n=7
+[B:MINER#10137@379] @explore to=[36, 4] unseen=12
+[A:MINER#11129@380] @deposit n=7
+[A:MINER#12544@381] @deposit n=7
+[B:LANDSCAPER#13337@382] @bc t=6 used=2351 max=9811 near=1 over=1
+[A:MINER#11129@383] @deposit n=7
+[A:MINER#12544@384] @deposit n=7
+[B:LANDSCAPER#11830@384] @bc t=6 used=2281 max=8417 near=0 over=1
+[B:LANDSCAPER#11838@384] @badseat [34, 25]
+[A:MINER#11129@386] @deposit n=7
+[B:MINER#10137@386] @explore to=[44, 4] unseen=11
+[A:MINER#12544@387] @deposit n=7
+[A:MINER#11129@388] @deposit n=7
+[B:LANDSCAPER#10641@388] @bc t=6 used=2670 max=5910 near=0 over=0
+[B:LANDSCAPER#11838@388] @helper post=[37, 25]
+[A:MINER#12544@390] @deposit n=7
+[A:MINER#11129@391] @deposit n=7
+[B:MINER#12241@392] @deposit n=70
+[A:MINER#12544@393] @deposit n=7
+[B:LANDSCAPER#10090@393] @bc t=6 used=1174 max=6640 near=0 over=1
+[A:MINER#11129@394] @deposit n=7
+[A:MINER#12544@395] @deposit n=7
+[B:LANDSCAPER#11373@396] @bc t=6 used=1982 max=4207 near=0 over=0
+[A:MINER#11129@397] @deposit n=7
+[A:MINER#12544@398] @deposit n=7
+[A:MINER#11129@399] @deposit n=7
+[A:DESIGN_SCHOOL#12691@399] @bc t=4 used=1145 max=4005 near=0 over=0
+[A:HQ#0@400] @econ soup=1631 built=8 minersSeen=8 ring=4 buried=0 sym=7
+[A:HQ#0@400] @bc t=0 used=1790 max=4531 near=0 over=0
+[B:HQ#1@400] @econ soup=578 built=9 minersSeen=3 ring=4 buried=0 sym=7
+[B:HQ#1@400] @bc t=0 used=2928 max=4519 near=0 over=0
+[A:MINER#11132@400] @minerstat builder=true mined=30 deposits=5 explores=1 soupMem=4 unreachable=0
+[B:MINER#10935@400] @minerstat builder=true mined=116 deposits=77 explores=4 soupMem=4 unreachable=0
+[A:MINER#11129@400] @minerstat builder=false mined=154 deposits=131 explores=1 soupMem=2 unreachable=0
+[B:MINER#12241@400] @minerstat builder=false mined=94 deposits=67 explores=15 soupMem=4 unreachable=0
+[A:MINER#10545@400] @minerstat builder=false mined=62 deposits=62 explores=1 soupMem=2 unreachable=0
+[B:MINER#11995@400] @minerstat builder=false mined=101 deposits=64 explores=11 soupMem=4 unreachable=0
+[B:MINER#12507@400] @minerstat builder=false mined=91 deposits=63 explores=5 soupMem=4 unreachable=0
+[A:MINER#12544@400] @minerstat builder=false mined=142 deposits=123 explores=1 soupMem=2 unreachable=0
+[B:MINER#10981@400] @minerstat builder=false mined=73 deposits=60 explores=9 soupMem=4 unreachable=0
+[A:MINER#10713@400] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[A:MINER#14005@400] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[B:MINER#12512@400] @minerstat builder=false mined=50 deposits=4 explores=6 soupMem=4 unreachable=0
+[A:MINER#11389@400] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[A:MINER#11336@400] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=2 unreachable=0
+[B:LANDSCAPER#10277@400] @wallstat seat=[34, 27] attacker=false helper=false helperDeps=0 eq=89 borrow=0 digs=125 deps=124 hqDigs=0 bury=0 elev=101
+[B:LANDSCAPER#11405@400] @wallstat seat=[35, 27] attacker=false helper=false helperDeps=0 eq=64 borrow=0 digs=120 deps=120 hqDigs=0 bury=0 elev=98
+[B:LANDSCAPER#10641@400] @wallstat seat=[34, 26] attacker=false helper=false helperDeps=0 eq=115 borrow=0 digs=116 deps=115 hqDigs=0 bury=0 elev=99
+[B:LANDSCAPER#11373@400] @wallstat seat=[36, 27] attacker=false helper=false helperDeps=0 eq=25 borrow=0 digs=113 deps=113 hqDigs=0 bury=0 elev=96
+[B:LANDSCAPER#13732@400] @wallstat seat=null attacker=false helper=true helperDeps=66 eq=0 borrow=0 digs=68 deps=1 hqDigs=0 bury=0 elev=4
+[A:LANDSCAPER#13698@400] @wallstat role=0 seat=[3, 26] post=null digs=106 deps=106 eq=72 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=74
+[A:LANDSCAPER#12624@400] @wallstat role=0 seat=[5, 28] post=null digs=106 deps=106 eq=70 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=74
+[B:LANDSCAPER#10696@400] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:LANDSCAPER#13065@400] @wallstat role=0 seat=[4, 28] post=null digs=104 deps=103 eq=30 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=77
+[B:LANDSCAPER#13268@400] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12686@400] @wallstat seat=null attacker=false helper=true helperDeps=49 eq=0 borrow=0 digs=50 deps=1 hqDigs=0 bury=0 elev=4
+[A:LANDSCAPER#10959@400] @wallstat role=0 seat=[3, 27] post=null digs=96 deps=95 eq=24 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=77
+[B:MINER#10806@400] @minerstat builder=false mined=32 deposits=3 explores=7 soupMem=4 unreachable=0
+[A:LANDSCAPER#12112@400] @wallstat role=2 seat=null post=null digs=91 deps=90 eq=90 borrow=0 helperDeps=0 innerDeps=90 hqDigs=0 bury=0 idle=0 elev=3
+[B:MINER#10137@400] @minerstat builder=false mined=20 deposits=1 explores=15 soupMem=4 unreachable=0
+[B:LANDSCAPER#13978@400] @wallstat seat=null attacker=false helper=true helperDeps=63 eq=0 borrow=0 digs=64 deps=1 hqDigs=0 bury=0 elev=4
+[B:LANDSCAPER#13337@400] @wallstat seat=null attacker=false helper=true helperDeps=62 eq=0 borrow=0 digs=63 deps=1 hqDigs=0 bury=0 elev=4
+[B:LANDSCAPER#10090@400] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#10232@400] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#13181@400] @wallstat seat=null attacker=false helper=true helperDeps=44 eq=0 borrow=0 digs=46 deps=1 hqDigs=0 bury=0 elev=4
+[B:LANDSCAPER#13009@400] @wallstat seat=null attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:MINER#13762@400] @minerstat builder=false mined=20 deposits=1 explores=6 soupMem=4 unreachable=0
+[B:LANDSCAPER#11830@400] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#11838@400] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:MINER#11132@401] @bc t=1 used=3337 max=6549 near=0 over=0
+[B:MINER#10935@401] @bc t=1 used=2968 max=4640 near=0 over=0
+[A:MINER#12544@401] @deposit n=7
+[A:MINER#11129@402] @deposit n=7
+[A:MINER#11129@402] @bc t=1 used=1176 max=5014 near=0 over=0
+[B:MINER#12241@402] @bc t=1 used=3216 max=5465 near=0 over=0
+[B:LANDSCAPER#10232@402] @bc t=6 used=1848 max=4306 near=0 over=1
+[A:MINER#12544@404] @deposit n=7
+[B:MINER#13762@404] @deposit n=70
+[A:MINER#11129@405] @deposit n=7
+[B:LANDSCAPER#13732@405] @bc t=6 used=1248 max=6109 near=0 over=1
+[B:LANDSCAPER#11830@405] @posted at=[36, 24]
+[B:MINER#11995@406] @deposit n=70
+[A:MINER#12544@406] @deposit n=7
+[B:LANDSCAPER#11838@407] @bc t=6 used=931 max=7036 near=0 over=0
+[A:MINER#11129@408] @deposit n=7
+[A:MINER#12544@409] @deposit n=7
+[A:LANDSCAPER#13698@409] @bc t=6 used=1631 max=9583 near=1 over=0
+[B:LANDSCAPER#13181@409] @bc t=6 used=2153 max=6393 near=0 over=1
+[A:LANDSCAPER#12624@410] @bc t=6 used=959 max=9630 near=1 over=0
+[A:MINER#11129@411] @deposit n=7
+[A:MINER#10545@412] @bc t=1 used=3588 max=5363 near=0 over=0
+[B:MINER#11995@412] @bc t=1 used=3420 max=4954 near=0 over=0
+[A:MINER#12544@412] @deposit n=7
+[A:MINER#11129@413] @deposit n=7
+[B:MINER#12512@413] @deposit n=70
+[A:MINER#12544@415] @deposit n=7
+[B:LANDSCAPER#10696@415] @bc t=6 used=2881 max=6268 near=0 over=1
+[B:LANDSCAPER#13009@415] @bc t=6 used=610 max=4446 near=0 over=0
+[A:MINER#11129@416] @deposit n=7
+[B:MINER#10935@417] @build t=3 at=[31, 23] soup=339
+[A:MINER#12544@418] @deposit n=7
+[A:LANDSCAPER#13065@418] @bc t=6 used=2035 max=9544 near=1 over=0
+[A:MINER#11129@419] @deposit n=7
+[A:MINER#12544@420] @deposit n=7
+[B:MINER#13762@421] @bc t=1 used=840 max=5165 near=0 over=0
+[A:MINER#11129@422] @deposit n=7
+[B:MINER#10935@423] @deposit n=70
+[A:MINER#12544@423] @deposit n=7
+[A:MINER#11129@424] @deposit n=7
+[A:MINER#12544@426] @deposit n=7
+[B:LANDSCAPER#13268@426] @bc t=6 used=1687 max=6223 near=0 over=1
+[A:MINER#11129@427] @deposit n=7
+[B:MINER#12507@427] @bc t=1 used=4452 max=5169 near=0 over=0
+[A:MINER#12544@428] @bc t=1 used=1728 max=4278 near=0 over=0
+[A:MINER#12544@429] @deposit n=7
+[A:MINER#11129@430] @deposit n=7
+[A:MINER#12544@431] @deposit n=7
+[B:MINER#10806@432] @deposit n=70
+[A:MINER#11129@433] @deposit n=7
+[B:MINER#10981@433] @deposit n=70
+[A:MINER#12544@434] @deposit n=7
+[A:MINER#11129@435] @deposit n=7
+[B:LANDSCAPER#12686@435] @bc t=6 used=950 max=8620 near=0 over=0
+[A:LANDSCAPER#10959@436] @bc t=6 used=1739 max=9689 near=1 over=0
+[A:MINER#12544@437] @deposit n=7
+[A:MINER#11129@438] @deposit n=7
+[B:MINER#12507@439] @deposit n=70
+[A:MINER#12544@440] @deposit n=7
+[A:MINER#11129@441] @deposit n=7
+[A:MINER#12544@442] @deposit n=7
+[B:MINER#10981@442] @bc t=1 used=3315 max=5150 near=0 over=0
+[A:MINER#11129@444] @deposit n=7
+[A:MINER#12544@445] @deposit n=7
+[A:MINER#11129@446] @deposit n=7
+[A:MINER#10713@447] @bc t=1 used=4228 max=5980 near=0 over=0
+[A:MINER#12544@448] @deposit n=7
+[A:MINER#11129@449] @deposit n=7
+[B:MINER#10806@449] @bc t=1 used=2892 max=5361 near=0 over=0
+[A:MINER#12544@450] @deposit n=7
+[A:MINER#14005@450] @bc t=1 used=4271 max=6196 near=0 over=0
+[B:MINER#12512@450] @bc t=1 used=1166 max=5320 near=0 over=0
+[B:MINER#10935@451] @build t=3 at=[32, 22] soup=287
+[B:MINER#12241@451] @deposit n=70
+[A:MINER#11129@452] @deposit n=7
+[A:MINER#12544@453] @deposit n=7
+[B:REFINERY#12826@453] @bc t=2 used=16 max=3282 near=0 over=0
+[A:LANDSCAPER#12112@453] @bc t=6 used=870 max=5172 near=0 over=0
+[A:MINER#11389@454] @bc t=1 used=3810 max=5856 near=0 over=0
+[B:VAPORATOR#13591@454] @bc t=3 used=16 max=3330 near=0 over=0
+[A:MINER#11129@455] @deposit n=6
+[A:MINER#12544@456] @deposit n=7
+[B:MINER#10137@457] @deposit n=70
+[A:REFINERY#13144@458] @bc t=2 used=26 max=3525 near=0 over=0
+[A:MINER#11129@459] @deposit n=7
+[A:MINER#12544@459] @deposit n=6
+[B:MINER#10137@460] @bc t=1 used=3893 max=5913 near=0 over=0
+[B:DESIGN_SCHOOL#10172@461] @bc t=4 used=914 max=3756 near=0 over=0
+[B:MINER#13762@465] @deposit n=70
+[A:MINER#14005@466] @explore to=[4, 20] unseen=23
+[A:MINER#11389@466] @explore to=[4, 20] unseen=23
+[A:MINER#11336@466] @explore to=[12, 28] unseen=23
+[A:MINER#10545@467] @explore to=[12, 28] unseen=23
+[B:MINER#11995@467] @deposit n=70
+[A:MINER#11336@471] @bc t=1 used=3094 max=5676 near=0 over=0
+[B:LANDSCAPER#10277@471] @bc t=6 used=2279 max=5812 near=0 over=0
+[B:LANDSCAPER#13978@472] @bc t=6 used=2015 max=6296 near=0 over=1
+[B:MINER#12512@474] @deposit n=70
+[A:MINER#14005@476] @explore to=[12, 28] unseen=23
+[A:MINER#11389@476] @explore to=[12, 28] unseen=23
+[A:MINER#11336@476] @explore to=[4, 20] unseen=23
+[A:MINER#10545@477] @explore to=[12, 20] unseen=23
+[B:LANDSCAPER#11405@478] @bc t=6 used=2602 max=4148 near=0 over=0
+[A:MINER#11129@481] @explore to=[4, 12] unseen=21
+[B:DESIGN_SCHOOL#10172@482] @build t=6 at=[33, 29] soup=702
+[B:LANDSCAPER#13337@482] @bc t=6 used=2019 max=9811 near=1 over=1
+[A:MINER#12544@483] @explore to=[4, 20] unseen=22
+[B:LANDSCAPER#11830@484] @bc t=6 used=1988 max=8417 near=0 over=1
+[A:MINER#14005@486] @explore to=[12, 20] unseen=23
+[A:MINER#11389@486] @explore to=[12, 20] unseen=23
+[A:MINER#11336@486] @explore to=[12, 20] unseen=23
+[B:MINER#10935@487] @build t=3 at=[31, 24] soup=237
+[A:MINER#10545@487] @explore to=[20, 28] unseen=23
+[A:MINER#12544@488] @explore to=[12, 20] unseen=21
+[B:LANDSCAPER#10641@488] @bc t=6 used=2345 max=5910 near=0 over=0
+[A:MINER#11129@491] @explore to=[12, 12] unseen=20
+[B:LANDSCAPER#10090@493] @bc t=6 used=1426 max=6640 near=0 over=1
+[A:MINER#12544@495] @explore to=[12, 12] unseen=20
+[A:MINER#14005@496] @explore to=[4, 12] unseen=23
+[A:MINER#11389@496] @explore to=[4, 12] unseen=23
+[A:MINER#11336@496] @explore to=[4, 12] unseen=23
+[B:LANDSCAPER#11373@496] @bc t=6 used=2277 max=4207 near=0 over=0
+[B:MINER#10806@496] @deposit n=70
+[B:LANDSCAPER#12057@496] @origin x=0 y=0
+[A:MINER#11129@497] @explore to=[12, 4] unseen=19
+[A:MINER#10545@497] @explore to=[4, 12] unseen=23
+[A:DESIGN_SCHOOL#12691@499] @bc t=4 used=1071 max=4005 near=0 over=0
+[A:HQ#0@500] @econ soup=2028 built=8 minersSeen=6 ring=4 buried=0 sym=7
+[A:HQ#0@500] @bc t=0 used=1686 max=4531 near=0 over=0
+[B:HQ#1@500] @econ soup=412 built=9 minersSeen=2 ring=4 buried=0 sym=7
+[B:HQ#1@500] @bc t=0 used=3160 max=4519 near=0 over=0
+[A:MINER#11132@500] @minerstat builder=true mined=30 deposits=5 explores=1 soupMem=4 unreachable=0
+[B:MINER#10935@500] @minerstat builder=true mined=116 deposits=78 explores=4 soupMem=4 unreachable=0
+[A:MINER#11129@500] @minerstat builder=false mined=175 deposits=152 explores=4 soupMem=0 unreachable=0
+[B:MINER#12241@500] @minerstat builder=false mined=114 deposits=68 explores=15 soupMem=4 unreachable=0
+[A:MINER#10545@500] @minerstat builder=false mined=62 deposits=62 explores=5 soupMem=0 unreachable=0
+[B:MINER#11995@500] @minerstat builder=false mined=119 deposits=66 explores=11 soupMem=4 unreachable=0
+[B:MINER#12507@500] @minerstat builder=false mined=110 deposits=64 explores=5 soupMem=4 unreachable=0
+[A:MINER#12544@500] @minerstat builder=false mined=163 deposits=145 explores=4 soupMem=0 unreachable=0
+[B:MINER#10981@500] @minerstat builder=false mined=89 deposits=61 explores=9 soupMem=4 unreachable=0
+[A:MINER#10713@500] @minerstat builder=false mined=0 deposits=0 explores=1 soupMem=1 unreachable=0
+[A:MINER#14005@500] @minerstat builder=false mined=0 deposits=0 explores=5 soupMem=0 unreachable=0
+[B:MINER#12512@500] @minerstat builder=false mined=63 deposits=6 explores=6 soupMem=4 unreachable=0
+[A:MINER#11389@500] @minerstat builder=false mined=0 deposits=0 explores=5 soupMem=0 unreachable=0
+[A:MINER#11336@500] @minerstat builder=false mined=0 deposits=0 explores=5 soupMem=0 unreachable=0
+[B:LANDSCAPER#10277@500] @wallstat seat=[34, 27] attacker=false helper=false helperDeps=0 eq=121 borrow=0 digs=167 deps=166 hqDigs=0 bury=0 elev=150
+[B:LANDSCAPER#11405@500] @wallstat seat=[35, 27] attacker=false helper=false helperDeps=0 eq=86 borrow=0 digs=161 deps=160 hqDigs=0 bury=0 elev=148
+[B:LANDSCAPER#10641@500] @wallstat seat=[34, 26] attacker=false helper=false helperDeps=0 eq=139 borrow=0 digs=158 deps=157 hqDigs=0 bury=0 elev=150
+[B:LANDSCAPER#11373@500] @wallstat seat=[36, 27] attacker=false helper=false helperDeps=0 eq=25 borrow=0 digs=152 deps=151 hqDigs=0 bury=0 elev=144
+[B:LANDSCAPER#13732@500] @wallstat seat=null attacker=false helper=true helperDeps=107 eq=0 borrow=0 digs=110 deps=2 hqDigs=0 bury=0 elev=5
+[A:LANDSCAPER#13698@500] @wallstat role=0 seat=[3, 26] post=null digs=145 deps=145 eq=100 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=102
+[A:LANDSCAPER#12624@500] @wallstat role=0 seat=[5, 28] post=null digs=145 deps=145 eq=98 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=102
+[B:LANDSCAPER#10696@500] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:LANDSCAPER#13065@500] @wallstat role=0 seat=[4, 28] post=null digs=143 deps=142 eq=42 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=104
+[B:LANDSCAPER#13268@500] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12686@500] @wallstat seat=null attacker=false helper=true helperDeps=87 eq=0 borrow=0 digs=89 deps=2 hqDigs=0 bury=0 elev=5
+[A:LANDSCAPER#10959@500] @wallstat role=0 seat=[3, 27] post=null digs=135 deps=134 eq=35 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=105
+[B:MINER#10806@500] @minerstat builder=false mined=50 deposits=5 explores=7 soupMem=4 unreachable=0
+[A:LANDSCAPER#12112@500] @wallstat role=2 seat=null post=null digs=130 deps=129 eq=129 borrow=0 helperDeps=0 innerDeps=129 hqDigs=0 bury=0 idle=0 elev=3
+[B:MINER#10137@500] @minerstat builder=false mined=30 deposits=2 explores=15 soupMem=4 unreachable=0
+[B:LANDSCAPER#13978@500] @wallstat seat=null attacker=false helper=true helperDeps=102 eq=0 borrow=0 digs=104 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#13337@500] @wallstat seat=null attacker=false helper=true helperDeps=103 eq=0 borrow=0 digs=106 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#10090@500] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#10232@500] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#13181@500] @wallstat seat=null attacker=false helper=true helperDeps=85 eq=0 borrow=0 digs=88 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#13009@500] @wallstat seat=null attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:MINER#13762@500] @minerstat builder=false mined=37 deposits=3 explores=6 soupMem=4 unreachable=0
+[B:LANDSCAPER#11830@500] @wallstat seat=null attacker=false helper=true helperDeps=37 eq=0 borrow=0 digs=40 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#11838@500] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12057@500] @wallstat seat=[36, 25] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:MINER#11132@501] @bc t=1 used=3240 max=6549 near=0 over=0
+[B:MINER#10935@501] @bc t=1 used=3218 max=4980 near=0 over=0
+[A:MINER#12544@501] @explore to=[20, 12] unseen=19
+[A:MINER#11129@502] @bc t=1 used=2643 max=5619 near=0 over=0
+[B:MINER#12241@502] @bc t=1 used=3216 max=5465 near=0 over=0
+[B:MINER#10981@502] @deposit n=70
+[B:LANDSCAPER#10232@502] @bc t=6 used=2182 max=4306 near=0 over=1
+[A:MINER#11129@505] @explore to=[20, 4] unseen=18
+[B:LANDSCAPER#13732@505] @bc t=6 used=2156 max=6109 near=0 over=1
+[A:MINER#14005@506] @explore to=[20, 28] unseen=23
+[A:MINER#11389@506] @explore to=[12, 12] unseen=23
+[A:MINER#11336@506] @explore to=[20, 28] unseen=23
+[A:MINER#10545@507] @explore to=[20, 20] unseen=23
+[A:MINER#12544@507] @explore to=[20, 20] unseen=18
+[B:LANDSCAPER#11838@507] @bc t=6 used=1451 max=7382 near=0 over=0
+[B:MINER#12241@509] @deposit n=70
+[A:LANDSCAPER#13698@509] @bc t=6 used=2045 max=9583 near=1 over=0
+[B:LANDSCAPER#13181@509] @bc t=6 used=2449 max=6393 near=0 over=1
+[A:LANDSCAPER#12624@510] @bc t=6 used=1942 max=9630 near=1 over=0
+[B:MINER#12507@511] @deposit n=70
+[A:MINER#10545@512] @bc t=1 used=2906 max=5503 near=0 over=0
+[B:MINER#11995@512] @bc t=1 used=2638 max=4954 near=0 over=0
+[A:MINER#12544@512] @explore to=[28, 20] unseen=17
+[A:MINER#11129@513] @explore to=[20, 12] unseen=17
+[B:LANDSCAPER#10696@515] @bc t=6 used=771 max=6268 near=0 over=1
+[B:LANDSCAPER#13009@515] @bc t=6 used=491 max=4446 near=0 over=0
+[A:MINER#14005@516] @explore to=[12, 12] unseen=23
+[A:MINER#11389@516] @explore to=[20, 28] unseen=23
+[A:MINER#11336@516] @explore to=[12, 12] unseen=23
+[A:MINER#10545@517] @explore to=[12, 12] unseen=23
+[B:VAPORATOR#10655@517] @bc t=3 used=16 max=3375 near=0 over=0
+[A:LANDSCAPER#13065@518] @bc t=6 used=882 max=9544 near=1 over=0
+[A:MINER#11129@519] @explore to=[28, 12] unseen=16
+[B:MINER#13762@521] @bc t=1 used=3682 max=6210 near=0 over=0
+[B:MINER#11995@523] @deposit n=70
+[B:DESIGN_SCHOOL#10172@523] @build t=6 at=[33, 29] soup=709
+[B:MINER#13762@524] @deposit n=70
+[A:MINER#12544@525] @explore to=[28, 28] unseen=16
+[A:MINER#14005@526] @explore to=[20, 12] unseen=23
+[A:MINER#11389@526] @explore to=[20, 20] unseen=23
+[A:MINER#11336@526] @explore to=[20, 20] unseen=23
+[B:LANDSCAPER#13268@526] @bc t=6 used=1259 max=6223 near=0 over=1
+[A:MINER#10545@527] @explore to=[20, 12] unseen=23
+[B:MINER#12507@527] @bc t=1 used=2901 max=5169 near=0 over=0
+[A:MINER#12544@528] @bc t=1 used=3422 max=4924 near=0 over=0
+[B:DESIGN_SCHOOL#10172@528] @build t=6 at=[31, 28] soup=704
+[B:MINER#10935@529] @build t=3 at=[32, 21] soup=213
+[B:MINER#12512@529] @deposit n=70
+[A:MINER#10713@530] @explore to=[4, 20] unseen=23
+[A:MINER#11129@531] @explore to=[12, 20] unseen=15
+[B:LANDSCAPER#12057@533] @badseat [36, 25]
+[B:LANDSCAPER#12057@533] @helper post=[37, 28]
+[A:MINER#11129@534] @explore to=[20, 28] unseen=14
+[B:LANDSCAPER#12057@534] @bc t=6 used=172 max=6228 near=0 over=1
+[B:LANDSCAPER#12686@535] @bc t=6 used=2114 max=8620 near=0 over=0
+[A:MINER#14005@536] @explore to=[4, 4] unseen=23
+[A:MINER#11389@536] @explore to=[20, 12] unseen=23
+[A:MINER#11336@536] @explore to=[20, 12] unseen=23
+[A:LANDSCAPER#10959@536] @bc t=6 used=1620 max=9689 near=1 over=0
+[A:MINER#10545@537] @explore to=[28, 28] unseen=23
+[A:MINER#12544@537] @explore to=[4, 12] unseen=16
+[B:LANDSCAPER#13733@538] @origin x=0 y=0
+[A:MINER#11129@539] @explore to=[28, 28] unseen=13
+[A:MINER#10713@540] @explore to=[12, 28] unseen=23
+[B:MINER#10981@542] @bc t=1 used=1217 max=5491 near=0 over=0
+[A:MINER#14005@546] @explore to=[12, 4] unseen=23
+[A:MINER#11389@546] @explore to=[4, 4] unseen=23
+[A:MINER#11336@546] @explore to=[28, 28] unseen=23
+[B:MINER#10137@546] @deposit n=70
+[A:MINER#10545@547] @explore to=[4, 4] unseen=23
+[A:MINER#10713@547] @bc t=1 used=3403 max=5980 near=0 over=0
+[B:MINER#10806@549] @deposit n=70
+[B:MINER#10806@549] @bc t=1 used=2458 max=5361 near=0 over=0
+[A:MINER#10713@550] @explore to=[12, 20] unseen=23
+[A:MINER#14005@550] @bc t=1 used=3321 max=6196 near=0 over=0
+[B:MINER#12512@550] @bc t=1 used=3161 max=5591 near=0 over=0
+[A:MINER#11129@551] @explore to=[28, 20] unseen=13
+[B:VAPORATOR#13240@551] @bc t=3 used=16 max=3348 near=0 over=0
+[B:REFINERY#12826@553] @bc t=2 used=16 max=3282 near=0 over=0
+[A:LANDSCAPER#12112@553] @bc t=6 used=1896 max=5172 near=0 over=0
+[A:MINER#12544@554] @explore to=[4, 4] unseen=15
+[A:MINER#11389@554] @bc t=1 used=3044 max=5856 near=0 over=0
+[B:VAPORATOR#13591@554] @bc t=3 used=16 max=3330 near=0 over=0
+[B:LANDSCAPER#12352@554] @origin x=0 y=0
+[A:MINER#14005@556] @explore to=[28, 28] unseen=23
+[A:MINER#11389@556] @explore to=[12, 4] unseen=23
+[A:MINER#11336@556] @explore to=[4, 4] unseen=23
+[A:MINER#10545@557] @explore to=[28, 20] unseen=23
+[B:LANDSCAPER#12057@557] @posted at=[35, 28]
+[A:REFINERY#13144@558] @bc t=2 used=26 max=3525 near=0 over=0
+[A:MINER#10713@560] @explore to=[4, 12] unseen=23
+[B:MINER#10137@560] @bc t=1 used=2817 max=5913 near=0 over=0
+[B:DESIGN_SCHOOL#10172@561] @bc t=4 used=1276 max=3756 near=0 over=0
+[A:MINER#12544@563] @explore to=[12, 4] unseen=14
+[B:MINER#12241@566] @deposit n=76
+[A:MINER#14005@566] @explore to=[28, 20] unseen=23
+[A:MINER#11389@566] @explore to=[28, 28] unseen=23
+[B:DESIGN_SCHOOL#10172@566] @build t=6 at=[31, 28] soup=718
+[A:MINER#11336@566] @explore to=[12, 4] unseen=23
+[A:MINER#11129@567] @explore to=[36, 28] unseen=13
+[A:MINER#10545@567] @explore to=[12, 4] unseen=23
+[B:MINER#10981@568] @deposit n=70
+[B:MINER#10935@569] @build t=3 at=[33, 21] soup=291
+[A:MINER#10713@570] @explore to=[12, 12] unseen=23
+[A:MINER#11336@571] @bc t=1 used=2970 max=5676 near=0 over=0
+[B:LANDSCAPER#10277@571] @bc t=6 used=2760 max=5812 near=0 over=0
+[B:LANDSCAPER#13978@572] @bc t=6 used=1500 max=6296 near=0 over=1
+[B:MINER#12507@574] @deposit n=76
+[A:MINER#14005@576] @explore to=[20, 4] unseen=23
+[A:MINER#11389@576] @explore to=[28, 20] unseen=23
+[A:MINER#11336@576] @explore to=[28, 20] unseen=23
+[A:MINER#10545@577] @explore to=[28, 12] unseen=23
+[A:MINER#11129@578] @explore to=[36, 20] unseen=13
+[B:MINER#11995@578] @deposit n=70
+[B:LANDSCAPER#11405@578] @bc t=6 used=2365 max=4148 near=0 over=0
+[A:MINER#10713@580] @explore to=[20, 28] unseen=23
+[B:MINER#13762@581] @deposit n=70
+[B:LANDSCAPER#13337@582] @bc t=6 used=2670 max=9811 near=1 over=1
+[B:MINER#12512@583] @deposit n=70
+[B:LANDSCAPER#12057@583] @bc t=6 used=1689 max=6228 near=0 over=1
+[B:LANDSCAPER#11830@584] @bc t=6 used=1978 max=8417 near=0 over=1
+[B:LANDSCAPER#12352@585] @badseat [35, 25]
+[A:MINER#14005@586] @explore to=[28, 12] unseen=23
+[A:MINER#11389@586] @explore to=[20, 4] unseen=23
+[A:MINER#11336@586] @explore to=[20, 4] unseen=23
+[A:MINER#10545@587] @explore to=[20, 4] unseen=23
+[B:DESIGN_SCHOOL#10172@587] @build t=6 at=[33, 30] soup=725
+[B:VAPORATOR#12139@587] @bc t=3 used=16 max=3273 near=0 over=0
+[B:LANDSCAPER#10641@588] @bc t=6 used=3126 max=5910 near=0 over=0
+[B:MINER#10935@589] @build t=5 at=[30, 24] soup=621
+[B:LANDSCAPER#13733@589] @badseat [35, 25]
+[B:LANDSCAPER#13733@589] @helper post=[37, 26]
+[B:LANDSCAPER#13733@589] @bcprof start=14 total=8999 seat=false helper=true attacker=false atSeat=false atPost=true
+[A:MINER#10713@590] @explore to=[20, 20] unseen=23
+[B:LANDSCAPER#12313@591] @origin x=0 y=0
+[B:MINER#10935@592] @build t=8 at=[30, 25] soup=410
+[B:MINER#10935@593] @deposit n=70
+[A:MINER#11129@593] @explore to=[36, 12] unseen=13
+[B:LANDSCAPER#10090@593] @bc t=6 used=1667 max=6640 near=0 over=1
+[A:MINER#14005@596] @explore to=[36, 28] unseen=23
+[A:MINER#11389@596] @explore to=[28, 12] unseen=23
+[A:MINER#11336@596] @explore to=[28, 12] unseen=23
+[B:LANDSCAPER#11373@596] @bc t=6 used=2582 max=4207 near=0 over=0
+[A:MINER#10545@597] @explore to=[36, 28] unseen=23
+[A:MINER#12544@598] @deposit n=70
+[A:DESIGN_SCHOOL#12691@599] @bc t=4 used=1108 max=4005 near=0 over=0
+[B:FULFILLMENT_CENTER#12284@599] @build t=7 at=[30, 23] soup=433
+[A:HQ#0@600] @econ soup=2166 built=8 minersSeen=7 ring=4 buried=0 sym=7
+[A:HQ#0@600] @bc t=0 used=1738 max=4531 near=0 over=0
+[B:HQ#1@600] @econ soup=434 built=9 minersSeen=3 ring=4 buried=0 sym=7
+[B:HQ#1@600] @bc t=0 used=3960 max=4519 near=0 over=0
+[A:MINER#11132@600] @minerstat builder=true mined=30 deposits=5 explores=1 soupMem=4 unreachable=0
+[B:MINER#10935@600] @minerstat builder=true mined=126 deposits=79 explores=4 soupMem=2 unreachable=0
+[A:MINER#11129@600] @minerstat builder=false mined=175 deposits=152 explores=14 soupMem=0 unreachable=0
+[B:MINER#12241@600] @minerstat builder=false mined=135 deposits=70 explores=15 soupMem=2 unreachable=0
+[A:MINER#10545@600] @minerstat builder=false mined=62 deposits=62 explores=15 soupMem=0 unreachable=0
+[B:MINER#11995@600] @minerstat builder=false mined=131 deposits=68 explores=11 soupMem=2 unreachable=0
+[B:MINER#12507@600] @minerstat builder=false mined=124 deposits=66 explores=5 soupMem=2 unreachable=0
+[A:MINER#12544@600] @minerstat builder=false mined=173 deposits=146 explores=11 soupMem=4 unreachable=0
+[B:MINER#10981@600] @minerstat builder=false mined=107 deposits=63 explores=9 soupMem=2 unreachable=0
+[A:MINER#10713@600] @minerstat builder=false mined=0 deposits=0 explores=8 soupMem=0 unreachable=0
+[A:MINER#10713@600] @explore to=[20, 12] unseen=23
+[A:MINER#14005@600] @minerstat builder=false mined=0 deposits=0 explores=15 soupMem=0 unreachable=0
+[B:MINER#12512@600] @minerstat builder=false mined=80 deposits=8 explores=6 soupMem=2 unreachable=0
+[A:MINER#11389@600] @minerstat builder=false mined=0 deposits=0 explores=15 soupMem=0 unreachable=0
+[A:MINER#11336@600] @minerstat builder=false mined=0 deposits=0 explores=15 soupMem=0 unreachable=0
+[B:LANDSCAPER#10277@600] @wallstat seat=[34, 27] attacker=false helper=false helperDeps=0 eq=152 borrow=0 digs=213 deps=213 hqDigs=0 bury=0 elev=210
+[B:LANDSCAPER#11405@600] @wallstat seat=[35, 27] attacker=false helper=false helperDeps=0 eq=113 borrow=0 digs=206 deps=206 hqDigs=0 bury=0 elev=208
+[B:LANDSCAPER#10641@600] @wallstat seat=[34, 26] attacker=false helper=false helperDeps=0 eq=165 borrow=0 digs=205 deps=204 hqDigs=0 bury=0 elev=208
+[B:LANDSCAPER#11373@600] @wallstat seat=[36, 27] attacker=false helper=false helperDeps=0 eq=25 borrow=0 digs=195 deps=195 hqDigs=0 bury=0 elev=208
+[B:LANDSCAPER#13732@600] @wallstat seat=null attacker=false helper=true helperDeps=154 eq=0 borrow=0 digs=156 deps=2 hqDigs=0 bury=0 elev=5
+[A:LANDSCAPER#13698@600] @wallstat role=0 seat=[3, 26] post=null digs=192 deps=192 eq=134 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=136
+[A:LANDSCAPER#12624@600] @wallstat role=0 seat=[5, 28] post=null digs=192 deps=192 eq=131 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=136
+[B:LANDSCAPER#10696@600] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[A:LANDSCAPER#13065@600] @wallstat role=0 seat=[4, 28] post=null digs=190 deps=189 eq=55 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=138
+[B:LANDSCAPER#13268@600] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12686@600] @wallstat seat=null attacker=false helper=true helperDeps=130 eq=0 borrow=0 digs=133 deps=2 hqDigs=0 bury=0 elev=5
+[A:LANDSCAPER#10959@600] @wallstat role=0 seat=[3, 27] post=null digs=182 deps=181 eq=49 borrow=0 helperDeps=0 innerDeps=0 hqDigs=0 bury=0 idle=0 elev=138
+[B:MINER#10806@600] @minerstat builder=false mined=70 deposits=6 explores=7 soupMem=2 unreachable=0
+[A:LANDSCAPER#12112@600] @wallstat role=2 seat=null post=null digs=177 deps=176 eq=176 borrow=0 helperDeps=0 innerDeps=176 hqDigs=0 bury=0 idle=0 elev=3
+[B:MINER#10137@600] @minerstat builder=false mined=40 deposits=3 explores=15 soupMem=2 unreachable=0
+[B:LANDSCAPER#13978@600] @wallstat seat=null attacker=false helper=true helperDeps=146 eq=0 borrow=0 digs=149 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#13337@600] @wallstat seat=null attacker=false helper=true helperDeps=150 eq=0 borrow=0 digs=152 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#10090@600] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#10232@600] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#13181@600] @wallstat seat=null attacker=false helper=true helperDeps=132 eq=0 borrow=0 digs=135 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#13009@600] @wallstat seat=null attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:MINER#13762@600] @minerstat builder=false mined=50 deposits=5 explores=6 soupMem=2 unreachable=0
+[B:LANDSCAPER#11830@600] @wallstat seat=null attacker=false helper=true helperDeps=84 eq=0 borrow=0 digs=87 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#11838@600] @wallstat seat=null attacker=false helper=true helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12057@600] @wallstat seat=null attacker=false helper=true helperDeps=17 eq=0 borrow=0 digs=19 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#13733@600] @wallstat seat=null attacker=false helper=true helperDeps=3 eq=0 borrow=0 digs=5 deps=2 hqDigs=0 bury=0 elev=5
+[B:LANDSCAPER#12352@600] @wallstat seat=[34, 25] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#12313@600] @wallstat seat=[35, 25] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:LANDSCAPER#11090@600] @wallstat seat=[34, 25] attacker=false helper=false helperDeps=0 eq=0 borrow=0 digs=0 deps=0 hqDigs=0 bury=0 elev=3
+[B:FULFILLMENT_CENTER#12284@600] @build t=7 at=[31, 25] soup=296
+[B:DELIVERY_DRONE#12052@600] @dronestat pickups=0 drops=0 holding=false
+[A:MINER#11132@601] @bc t=1 used=3289 max=6549 near=0 over=0
+[B:MINER#10935@601] @bc t=1 used=3658 max=5636 near=0 over=0
+[B:MINER#10137@601] @deposit n=70
+[A:MINER#11129@602] @bc t=1 used=1453 max=5666 near=0 over=0
+[B:MINER#12241@602] @bc t=1 used=2780 max=5465 near=0 over=0
+[B:LANDSCAPER#10232@602] @bc t=6 used=2386 max=4306 near=0 over=1
+[B:MINER#10806@603] @deposit n=70
+[A:MINER#11129@604] @explore to=[44, 28] unseen=13
+[B:FULFILLMENT_CENTER#12284@604] @build t=7 at=[29, 25] soup=258
+[B:LANDSCAPER#13732@605] @bc t=6 used=2435 max=6109 near=0 over=1
+[B:LANDSCAPER#11090@605] @origin x=0 y=0
+[A:MINER#14005@606] @explore to=[28, 4] unseen=23
+[A:MINER#11389@606] @explore to=[36, 28] unseen=23
+[A:MINER#11336@606] @explore to=[36, 28] unseen=23
+[A:MINER#10545@607] @explore to=[36, 20] unseen=23
+[B:LANDSCAPER#11838@607] @bc t=6 used=1948 max=7382 near=0 over=0
+[A:LANDSCAPER#13698@609] @bc t=6 used=1512 max=9583 near=1 over=0
+[B:LANDSCAPER#13181@609] @bc t=6 used=1981 max=6393 near=0 over=1
+[B:FULFILLMENT_CENTER#12284@609] @build t=7 at=[29, 23] soup=253
+[A:MINER#10713@610] @explore to=[4, 4] unseen=23
+[A:LANDSCAPER#12624@610] @bc t=6 used=1642 max=9630 near=1 over=0
+[A:MINER#10545@612] @bc t=1 used=3022 max=5503 near=0 over=0
+[B:MINER#11995@612] @bc t=1 used=2348 max=5865 near=0 over=0
+[B:LANDSCAPER#10696@615] @bc t=6 used=2026 max=6268 near=0 over=1
+[B:LANDSCAPER#13009@615] @bc t=6 used=697 max=4446 near=0 over=0
+[A:MINER#14005@616] @explore to=[36, 20] unseen=23
+[A:MINER#11389@616] @explore to=[28, 4] unseen=23
+[A:MINER#11336@616] @explore to=[36, 20] unseen=23
+[A:MINER#10545@617] @explore to=[28, 4] unseen=23
+[B:VAPORATOR#10655@617] @bc t=3 used=16 max=3375 near=0 over=0
+[B:LANDSCAPER#12313@617] @badseat [35, 25]
+[A:MINER#11129@618] @explore to=[4, 4] unseen=13
+[A:LANDSCAPER#13065@618] @bc t=6 used=1608 max=9544 near=1 over=0
+[A:MINER#10713@620] @explore to=[12, 4] unseen=23
+[B:MINER#12241@621] @deposit n=70
+[B:MINER#13762@621] @bc t=1 used=2821 max=6210 near=0 over=0
+[B:FULFILLMENT_CENTER#12284@621] @build t=7 at=[31, 25] soup=279
+[B:LANDSCAPER#13733@623] @bc t=6 used=2183 max=9059 near=1 over=0
+[B:LANDSCAPER#12313@623] @helper post=[34, 28]
+[B:MINER#10981@624] @deposit n=70
+[B:FULFILLMENT_CENTER#12284@625] @build t=7 at=[30, 23] soup=261
+[A:MINER#14005@626] @explore to=[36, 12] unseen=23
+[A:MINER#11389@626] @explore to=[36, 20] unseen=23
+[A:MINER#11336@626] @explore to=[28, 4] unseen=23
+[B:LANDSCAPER#13268@626] @bc t=6 used=3248 max=6223 near=0 over=1
+[A:MINER#10545@627] @explore to=[36, 12] unseen=23
+[B:MINER#12507@627] @bc t=1 used=5786 max=5786 near=0 over=0
+[B:MINER#12507@628] @deposit n=70
+[A:MINER#12544@628] @bc t=1 used=1185 max=4924 near=0 over=0
+[B:LANDSCAPER#12352@628] @bc t=6 used=3608 max=4409 near=0 over=0
+[B:VAPORATOR#10209@629] @bc t=3 used=16 max=3374 near=0 over=0
+[A:MINER#10713@630] @explore to=[28, 28] unseen=23
+[B:FULFILLMENT_CENTER#12284@630] @build t=7 at=[29, 25] soup=276
+[B:MINER#11995@632] @deposit n=70
+[B:LANDSCAPER#12686@635] @bc t=6 used=1282 max=8620 near=0 over=0
+[B:FULFILLMENT_CENTER#12284@635] @build t=7 at=[31, 25] soup=271
+[A:MINER#14005@636] @explore to=[36, 4] unseen=23
+[A:MINER#11389@636] @explore to=[36, 12] unseen=23
+[A:MINER#11336@636] @explore to=[36, 12] unseen=23
+[A:LANDSCAPER#10959@636] @bc t=6 used=1620 max=9689 near=1 over=0
+[A:MINER#10545@637] @explore to=[36, 4] unseen=23
+[B:LANDSCAPER#12352@638] @badseat [34, 25]
+[B:MINER#12512@639] @deposit n=70
+[A:MINER#10713@640] @explore to=[28, 20] unseen=23
+[B:MINER#13762@640] @deposit n=70
+[B:LANDSCAPER#12352@640] @helper post=[33, 27]
+[B:MINER#10981@642] @bc t=1 used=2971 max=5876 near=0 over=0
+[A:MINER#14005@646] @explore to=[44, 28] unseen=23
+[A:MINER#11389@646] @explore to=[36, 4] unseen=23
+[A:MINER#11336@646] @explore to=[36, 4] unseen=23
+[A:MINER#10545@647] @explore to=[44, 28] unseen=23
+[A:MINER#10713@647] @bc t=1 used=3397 max=5980 near=0 over=0
+[B:MINER#10806@649] @bc t=1 used=2638 max=7055 near=0 over=0
+[B:MINER#10935@650] @deposit n=70
+[A:MINER#10713@650] @explore to=[20, 4] unseen=23
+[A:MINER#14005@650] @bc t=1 used=3376 max=6196 near=0 over=0
+[B:MINER#12512@650] @bc t=1 used=3696 max=5591 near=0 over=0
+[B:VAPORATOR#13240@651] @bc t=3 used=16 max=3348 near=0 over=0
+[A:MINER#12544@652] @deposit n=70
+[B:LANDSCAPER#11090@652] @badseat [34, 25]
+[B:LANDSCAPER#11090@652] @helper post=[37, 28]
+[B:LANDSCAPER#11090@652] @bcprof start=14 total=8806 seat=false helper=true attacker=false atSeat=false atPost=false
+[B:REFINERY#12826@653] @bc t=2 used=16 max=3282 near=0 over=0
+[A:LANDSCAPER#12112@653] @bc t=6 used=1409 max=5172 near=0 over=0
+[B:MINER#10935@654] @build t=8 at=[29, 25] soup=466
+[A:MINER#11389@654] @bc t=1 used=3215 max=5856 near=0 over=0
+[B:VAPORATOR#13591@654] @bc t=3 used=16 max=3330 near=0 over=0
+[A:MINER#14005@656] @explore to=[44, 28] unseen=23
+[A:MINER#11389@656] @explore to=[44, 28] unseen=23
+[A:MINER#11336@656] @explore to=[44, 28] unseen=23
+[A:MINER#10545@657] @explore to=[44, 28] unseen=23
+[A:REFINERY#13144@658] @bc t=2 used=26 max=3525 near=0 over=0
+[B:MINER#10137@658] @deposit n=70
+[A:MINER#10713@660] @explore to=[28, 12] unseen=23
+[B:MINER#10137@660] @bc t=1 used=4728 max=5913 near=0 over=0
+[B:DESIGN_SCHOOL#10172@661] @bc t=4 used=1212 max=3756 near=0 over=0
+[B:LANDSCAPER#11090@661] @posted at=[37, 28]
+[A:MINER#11389@666] @explore to=[44, 28] unseen=23
+[A:MINER#11336@666] @explore to=[44, 28] unseen=23
+[B:LANDSCAPER#12313@666] @bc t=6 used=1724 max=8470 near=0 over=0
+[B:MINER#10806@669] @deposit n=70
+[B:VAPORATOR#12612@669] @bc t=3 used=16 max=3392 near=0 over=0
+[A:MINER#10713@670] @explore to=[28, 4] unseen=23
+[A:MINER#11336@671] @bc t=1 used=3228 max=5676 near=0 over=0
+[B:LANDSCAPER#10277@671] @bc t=6 used=2627 max=5812 near=0 over=0
+[B:LANDSCAPER#13978@672] @bc t=6 used=2213 max=6296 near=0 over=1
+[A:MINER#11129@673] @deposit n=70
+[B:DESIGN_SCHOOL#10172@673] @build t=6 at=[31, 28] soup=703
+[B:MINER#12241@678] @deposit n=70
+[B:LANDSCAPER#11405@678] @bc t=6 used=2505 max=4148 near=0 over=0
+[A:MINER#10713@680] @explore to=[36, 28] unseen=23
+[B:DESIGN_SCHOOL#10172@680] @build t=6 at=[33, 29] soup=704
+[B:LANDSCAPER#13337@682] @bc t=6 used=2923 max=9811 near=1 over=1
+[B:MINER#10981@683] @climb to=[28, 24] e=3
+[B:LANDSCAPER#12057@683] @bc t=6 used=2422 max=6228 near=0 over=1
+[B:LANDSCAPER#12352@683] @posted at=[34, 24]
+[B:MINER#11995@684] @climb to=[29, 23] e=3
+[B:LANDSCAPER#11830@684] @bc t=6 used=2190 max=8417 near=0 over=1
+[B:MINER#12507@685] @deposit n=70
+[B:MINER#12507@686] @climb to=[32, 26] e=2
+[B:LANDSCAPER#10090@686] @climb to=[31, 29] e=3
+[B:LANDSCAPER#10623@686] @climb to=[32, 24] e=3
+[B:MINER#12512@687] @climb to=[33, 18] e=3
+[B:MINER#13762@687] @climb to=[32, 17] e=3
+[B:LANDSCAPER#11090@687] @bc t=6 used=1678 max=8865 near=0 over=0
+[B:LANDSCAPER#10623@687] @climb to=[32, 23] e=3
+[A:MINER#12544@688] @climb to=[6, 11] e=3
+[B:MINER#12512@688] @climb to=[33, 17] e=3
+[B:LANDSCAPER#10641@688] @bc t=6 used=2557 max=5910 near=0 over=0
+[B:LANDSCAPER#12313@688] @climb to=[34, 30] e=3
+[B:MINER#12241@689] @climb to=[34, 18] e=3
+[A:MINER#12544@689] @climb to=[5, 12] e=3
+[B:LANDSCAPER#10696@689] @climb to=[34, 21] e=3
+[B:LANDSCAPER#12313@689] @climb to=[35, 29] e=3
+[A:MINER#11129@690] @climb to=[4, 14] e=3
+[A:MINER#12544@690] @climb to=[4, 13] e=3
+[A:MINER#10713@690] @explore to=[36, 20] unseen=23
+[B:LANDSCAPER#12313@690] @climb to=[35, 30] e=3
+[server]                    g_iter2 (B) wins (round 690)
+[server] Reason: The winning team won by enemy HQ being destroyed.
+[server] -------------------- Match Finished --------------------

@@ -11,7 +11,7 @@ public strictfp class DesignSchool extends Robot {
         int soup = rc.getTeamSoup();
         boolean want = built < C.WALL_LANDSCAPERS ? soup >= RobotType.LANDSCAPER.cost
                      : built < C.WALL_LANDSCAPERS + C.WALL_HELPERS ? soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost
-                     : built < C.LANDSCAPERS_MAX && soup >= C.ATTACKER_BANK + RobotType.LANDSCAPER.cost;
+                     : built < C.LANDSCAPERS_MAX && soup >= C.INNER_BANK + RobotType.LANDSCAPER.cost;   // inner workers: the school is sealed in with the vaporators
         if (want && tryBuild(RobotType.LANDSCAPER, MapState.home)) built++;
     }
 }

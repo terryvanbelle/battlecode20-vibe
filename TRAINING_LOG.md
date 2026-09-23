@@ -288,6 +288,28 @@ four distance-2 corners first and the four edge midpoints second (never the off-
 and a seat digs under a friend before it borrows. Ring at r1000: **459-464 level** (min +125,
 +37%); r2000: 981-985 against 720-1195 before.
 
+**A/B arms:** `ab-inc` g_iter2 vs arch_drone 15/24, `ab-cand` (Iteration 4) vs arch_drone 13/24.
+The gun bought nothing even against the drone partner. Reject confirmed on both instruments.
+
+## Iteration 5 -- helper posts, alert-only guns, comms repairs (2026-09-23)
+
+Candidate = g_iter2 + helper posts on the distance-2 corners/midpoints + seats dig under friends
+before borrowing + net guns only within 150 rounds of a drone report + HQ_LOC/MAP_ORIGIN re-posted
+every 100 rounds and read while unknown. Diagnostic vs g_iter2 on ALandDivided: ring 558 / 1297 /
+1787 against 506 / 1242 / 1688 at r1000/2000/3000, won r3131. Gate `gate5` (mirror vs g_iter2,
+SPRT). Falsifier: below 53% at the cap.
+
+**Gate 5: REJECT, 8-24 (25%)** -- batch 1 7-9, batch 2 1-15. Every loss but one was the wall race
+(HQ drowned r2870-3110); at r2000 the candidate's ring minimum trailed g_iter2's by 300-400
+(TwoLakeLand 995 vs 1331, CentralLake 964 vs 1350) and its digs by a quarter (12.3k vs 16.4k).
+Logged re-run on TwoLakeLand (edge HQ, five exposed ring tiles): at r600 five seats and five posted
+helpers worked; **six of the sixteen landscapers had 0 digs**, all helpers walking to posts they
+never reached -- an edge HQ has three corner/midpoint posts, and a helper whose post was taken or
+unreachable re-picked forever (22 `@helper post` for 14 `@posted`, 7 `@badseat`). The A/B
+diagnostic hid it: ALandDivided's HQ has room for all eight posts. Lesson: a role with a fixed
+station list needs a stall exit (LEARNINGS). Iteration 5 reverted; the helper idea itself is
+unfalsified and lives on in Iteration 6 with a stall exit and any distance-3 tile allowed.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
@@ -305,7 +327,7 @@ uvafan, winkelmantanner. Cumulative for g_iter2 on the strong field: 25/108 (23%
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy | Iteration 1 | 0 |
-| flood defence | Iteration 1 | 0 |
+| flood defence (wall) | Iteration 5 (reject) | 3 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | -- | 0 |

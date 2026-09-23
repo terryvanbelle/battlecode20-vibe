@@ -19,9 +19,9 @@ public final class C {
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
     public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
-    public static final int VAPORATORS_MAX = 6;
+    public static final int VAPORATORS_MAX = 3;       // inside the pocket, where they survive the flood
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
-    public static final int NETGUNS_MAX = 4;          // Iteration 4: up to this many when enemy drones are about
+    public static final int NETGUNS_MAX = 1;          // inside the pocket: 8 tiles hold school, FC, 3 vaporators, 1 gun, the builder and the pit
     public static final int NETGUN_ALERT_BANK = 100;  // while enemy drones were seen in the last DRONE_ALERT rounds, net guns need only this much beyond their cost
     public static final int DRONE_ALERT = 150;
     public static final int DRONE_POST_EVERY = 40;
@@ -31,13 +31,16 @@ public final class C {
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
 
-    // --- wall
-    public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
+    // --- wall (Iteration 6: the citadel -- the ring at Chebyshev 2, buildings sealed inside, an inner dirt pit)
+    public static final int RING = 2;                 // Chebyshev distance of the wall from the HQ
+    public static final int WALL_LANDSCAPERS = 16;    // one per ring tile
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
-    public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
+    public static final int LANDSCAPERS_MAX = 60;     // inner workers keep coming while the pocket has soup
     public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
-    public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
+    public static final int INNER_BANK = 1000;        // inner workers only once the pocket buildings (vaporators at 650, the center at 500) had their turn
+    public static final int BUILD_DIST = 1;           // Chebyshev distance from the HQ at which buildings go (inside the ring)
+    public static final int REFINERY_DIST = 3;        // the refinery stays outside: miners must never cross the ring
     public static final int WALL_LEVEL_SLACK = 2;     // a seat raises a neighbouring ring tile when it is more than this below itself
     public static final int WALL_BORROW_MARGIN = 10;  // a seat with no outside dirt digs from a ring neighbour at least this much taller
 

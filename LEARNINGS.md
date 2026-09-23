@@ -49,6 +49,14 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   are walls already and unreachable; a seat rule must skip them or every spare landscaper waits
   under one.
 
+- **A role with a fixed list of stations needs a stall exit.** Iteration 5 gave helpers eight
+  posts (distance-2 corners and midpoints); an edge HQ has three, and every surplus helper walked
+  toward a taken or unreachable post for 3,000 rounds: six of sixteen landscapers with 0 digs, the
+  wall a quarter lower, gate 8-24. The single-map A/B diagnostic (a central HQ with room for all
+  eight) could not show it. Diagnose on an edge HQ too, and count idle units per role at r600.
+- **Vaporators yield 2 soup per turn** (`RobotType.VAPORATOR`, RULES.md), a 250-round payback on
+  500; three of them fund a landscaper every 25 rounds. Not the 7 of a miner's dig.
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for
