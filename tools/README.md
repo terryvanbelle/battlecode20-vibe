@@ -23,6 +23,14 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `vm.sh`, `vm-sync.sh`, `vm-run.sh <log> '<cmd>'`, `vm-tail.sh`, `vm-collect.sh <run>`, `vm-stop.sh` | the VM handles |
 | `unit-tests.sh` | compile and run `test/bot/*Test.java` and `tools/test_tools.py` |
 | `mapinfo/MapInfo.java` | the map corpus table `tools/mapdata.csv` |
+| `post-block.sh <run> <label>` | after a scrimmage block: collect, record, Elo, roster, study, correlate, onset (one command) |
+| `scrim-study.sh <run>` | the block study: `--metrics` and `--navstats` for every replay -> `study.tsv`, `nav.tsv`; `scrim-study.py` prints medians |
+| `correlate.py <run> [--round N]` | raw and within-opponent correlation of each metric with the result |
+| `onset.py <run> [--md --plot]` | per metric, the first round at which its lead correlates with the result |
+| `polarity.py`, `statlib.py`, `derived.py` | orientation, statistics and derived metrics shared by the two above; tested by `test_metrics.py` |
+| `compare.py base cand` | game-by-game diff of two gauntlet runs |
+| `log-scan.sh <run>` | every `@tag` log line of our side for every game of a block, one pass |
+| `bench-roster.py` | regenerate the roster table in `BENCHMARK.md` from `progress/games.csv` |
 
 Rules of the road: never read benchmark source; never review a game against a bot we beat under
 20%; never `pkill -f` a pattern that appears in your own command line; do not edit `gauntlet.sh`

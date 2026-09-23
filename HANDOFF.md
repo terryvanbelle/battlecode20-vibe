@@ -5,7 +5,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 
 ## State (2026-09-23)
 
-- Phase 0 in progress. Engine built and staged on the driver; not yet on the VM.
+- Phase 0 complete: engine on the driver and the VM, runner/gate/ladder tools ported and tested, replay dumper, unit tests.
 - `src/bot` = Iteration 1 = snapshot `src/g_iter1` (accepted 31-1 over `g_iter0`). Incumbent
   for the next gate: `REF=g_iter1`.
 - Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);
