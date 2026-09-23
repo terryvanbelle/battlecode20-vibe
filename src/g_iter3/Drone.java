@@ -1,4 +1,4 @@
-package bot;
+package g_iter3;
 
 import battlecode.common.*;
 
@@ -11,21 +11,19 @@ import battlecode.common.*;
 public strictfp class Drone extends Robot {
     private MapLocation water;                 // nearest flooded tile seen
     private MapLocation patrol;
-    private int pickups = 0, drops = 0, raidKills = 0;
-    private boolean raiding = false;
+    private int pickups = 0, drops = 0;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
 
     @Override protected void turn() throws GameActionException {
-        sense(); if (round % 3 == 2 || round >= C.RAID_ROUND - 100) readBlock(); probeEdges();   // every round near the raid: the HQ re-posts the enemy HQ once per 100
-        if (round % 100 == 0) Debug.log("@dronestat at=" + loc + " pickups=" + pickups + " drops=" + drops + " raidKills=" + raidKills + " raiding=" + raiding + " holding=" + rc.isCurrentlyHoldingUnit() + " guess=" + MapState.enemyHQGuess());
+        sense(); if (round % 3 == 2) readBlock(); probeEdges();
+        if (round % 100 == 0) Debug.log("@dronestat pickups=" + pickups + " drops=" + drops + " holding=" + rc.isCurrentlyHoldingUnit());
         // remember water
         if (water == null || round % 5 == 0) { MapLocation[] near = nearWater(); if (near != null) water = near[0]; }
         // danger: an enemy gun in sight
         MapLocation gun = null; int gd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canShoot()) { int d = loc.distanceSquaredTo(e.location); if (d < gd) { gd = d; gun = e.location; } } }
-        boolean raidTime = round >= C.RAID_ROUND && MapState.enemyHQGuess() != null;
-        if (gun != null && gd <= (raidTime ? 15 : 24) && !raiding && fleeFrom(gun)) return;   // at raid time only the true shooting range: scouting needs r2 16-24, and the rally lies past the HQ for some
+        if (gun != null && gd <= 24 && fleeFrom(gun)) return;
         if (rc.isCurrentlyHoldingUnit()) {
             // drop into adjacent water, else fly toward water (or drop anywhere after a long carry)
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (rc.canDropUnit(d) && rc.senseFlooding(n)) { rc.dropUnit(d); drops++; Debug.log("@drown at=" + n); return; } }
@@ -37,23 +35,8 @@ public strictfp class Drone extends Robot {
         RobotInfo tgt = null; int bd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
         if (tgt != null) {
-            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; if (raiding) raidKills++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " raid=" + raiding); return; }
-            if (raiding || gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
-        }
-        // Iteration 9: the late raid. Scout the enemy HQ guess from just outside gun range (sense r2 24 > shoot r2 15) so a
-        // wrong symmetry image is pruned; gather at RAID_RALLY; charge once RAID_SIZE are together or a friend already charged.
-        if (raidTime) {
-            MapLocation ehq = MapState.enemyHQGuess();
-            if (MapState.enemyHQ == null) { if (!rc.canSenseLocation(ehq)) { nav.setTarget(ehq); nav.step(); } return; }
-            int near = 0; boolean follow = false;
-            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; near++; if (Nav.cheb(f.location, ehq) < C.RAID_RALLY - 1) follow = true; }
-            raiding = near + 1 >= C.RAID_SIZE || follow;
-            if (raiding) { nav.setTarget(ehq); nav.step(); return; }   // the pickup loop above takes over once a seat is in sight
-            MapLocation h = MapState.home != null ? MapState.home : loc;
-            int dx = Integer.signum(h.x - ehq.x), dy = Integer.signum(h.y - ehq.y);
-            MapLocation rally = new MapLocation(ehq.x + dx * C.RAID_RALLY, ehq.y + dy * C.RAID_RALLY);
-            if (loc.distanceSquaredTo(rally) > 8) { nav.setTarget(rally); nav.step(); }
-            return;
+            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID); return; }
+            if (gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
         }
         // patrol: between home and the enemy HQ guess
         if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {

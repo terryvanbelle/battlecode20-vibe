@@ -1,4 +1,4 @@
-package bot;
+package g_iter3;
 
 /** Tunable constants, one place. Each one names the measurement that set it, once there is one. */
 public final class C {
@@ -27,11 +27,6 @@ public final class C {
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
-    // Iteration 9: the late raid. After the flood only the enemy HQ shoots (one drone a round, r2 15); its seats sit
-    // within reach of a drone hovering over the water beside the ring. Gather outside range, charge together.
-    public static final int RAID_ROUND = 2300;        // late enough that every enemy net gun has drowned, early enough to stall their wall before r2500
-    public static final int RAID_SIZE = 3;            // drones together before they charge (the incumbent has 5-8 all game)
-    public static final int RAID_RALLY = 7;           // Chebyshev distance from the enemy HQ where raiders gather
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile

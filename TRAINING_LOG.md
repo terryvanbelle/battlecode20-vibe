@@ -373,6 +373,24 @@ struck off (up to eight), another is picked, and only with none left does the he
 Diagnostic vs g_iter2 on CentralLake and TwoLakeLand: `@badpost` fires, helpers within r2 8 at
 r1000 equal the incumbent's. Gate `gate8`: SPRT mirror vs g_iter2. Falsifier: below 53% at the cap.
 
+**Gate 8: ACCEPT, 39-9 (81%)** -- batches 14-2, 11-5, 14-2. Snapshot `src/g_iter3` (taken from the
+VM's gated copy); submission block `block8` (`BOT=g_iter3 N=60 tools/scrim.sh`). The accepted
+change is Iteration 7's chain sharing and pruning plus the struck-off posts; the 81% against
+g_iter2 says the incumbent had been losing helpers to unreachable posts all along (the Iteration 5
+diagnosis, now fixed the right way).
+
+## Iteration 9 -- the late drone raid (2026-09-23, prepared while gate 8 runs)
+
+Trace: both mhahn2003 losses in block 6 (now reviewable, 3/3 in block 7) were wall races lost by
+190 (Soup, 1046 vs 1239 at r3000) and 60 (RealArt, 1190 vs 1251) while our 5 drones patrolled all
+game and 2,000+ soup sat unspent. After the flood only the enemy HQ shoots, one drone a round.
+Candidate = Iteration 8 + drones that from r2300 (`C.RAID_ROUND`) scout the enemy HQ guess from
+outside gun range (pruning a wrong image), gather 7 tiles from it and, three together, charge to
+lift seats off the ring and drop them in the water. Three seats fewer for the last 600 rounds is
+about 200 of wall height: the margin of both traced losses. Diagnostic vs g_iter2 on Soup and
+RealArt: `@pickup raid=true` > 0, enemy landscapers within r2 8 of their HQ fall after r2400. Gate
+`gate9` after gate 8 settles. Falsifier: below 53% at the cap.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
@@ -410,8 +428,8 @@ rank 66 of 66 (377 rated games).
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy | Iteration 1 | 0 |
-| flood defence (wall) | Iteration 7 (reject) | 5 |
+| flood defence (wall) | Iteration 8 (ACCEPT 39-9) | 0 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | -- | 0 |
-| communication | Iteration 7 (reject, not implicated) | 0 |
+| communication | Iteration 8 (ACCEPT 39-9) | 0 |
