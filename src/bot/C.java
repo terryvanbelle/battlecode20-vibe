@@ -34,12 +34,15 @@ public final class C {
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
-    public static final int WALL_HELPERS = 16;        // Iteration 12: every distance-2 tile; the seats dig under them from the margin the feeders pile up. (Iteration 3: 8, a second ring at distance 2 feeding dirt onto the seats
+    // Iteration 13: the second school. The builder parks on high dry ground from PARK_ROUND and, once the first school
+    // has drowned, spends the idle bank on a new school whose landscapers fill the remaining distance-2 posts.
+    public static final int PARK_ROUND = 600;         // the builder stops mining and climbs to the highest dry tile within PARK_RADIUS of the HQ
+    public static final int PARK_RADIUS = 4;
+    public static final int SECOND_SCHOOL_ROUND = 720;   // water 3.2: the first school (elevation 3-4) is gone or going
+    public static final int SCHOOL_LIFE = 150;        // a second school site must stay above the water this long
+    public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
-    public static final int FEEDERS = 8;              // Iteration 12: a third tier at distance 3 that piles dirt onto the helper tiles (the seats' dig sources)
-    public static final int FEEDER_BANK = 300;        // feeders are built above this bank (after the helpers)
-    public static final int FEED_MARGIN = 4;          // a seat digs under a helper only while that tile stays this far above the water the helper keeps (water(r+60)+2)
-    public static final int LANDSCAPERS_MAX = 40;     // the surplus attacks
+    public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
     public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
     public static final int WALL_LEVEL_SLACK = 2;     // a seat raises a neighbouring ring tile when it is more than this below itself

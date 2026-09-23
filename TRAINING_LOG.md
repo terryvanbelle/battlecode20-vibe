@@ -483,6 +483,23 @@ digging under helpers. Gate `gate12` vs `REF=g_iter4`, launched 23:55. Falsifier
 
 Sparring baseline (run `spar1`, 2026-09-23): g_iter4 beats `arch_drone` 17/24 on the quick set.
 
+**Gate 12: REJECT 42-54 (44%)** after six batches. In the losses both walls are within 1-3% (1367 vs
+1405, 1813 vs 1858) with the same landscaper count at the wall (8-17 both): the extra posts are
+never filled, because the soup that could fill them arrives after r700 when the school has drowned,
+and the wider ring only adds post churn (354 struck-off posts on Prison). Reverted.
+
+## Iteration 13 -- the second school (2026-09-24)
+
+The lever the census left: the bank at r700 is 700-3,000 soup with nothing to spend it on, while
+the wall's intake is 0.5 per body next to the ring. A school alive after the flood turns that bank
+into 5-20 helpers. Candidate = g_iter4 + (a) from r600 the builder miner parks on the highest dry
+tile within Chebyshev 2-4 of the HQ (it must survive the flood); (b) from `SECOND_SCHOOL_ROUND`
+(720), with no school of ours in sight and 150 soup, it builds a design school on an adjacent dry
+tile that will stay above the water for 150 rounds; the school's landscapers walk to free
+distance-2 posts (dry at elevation 4-5 until r930-1210) and keep them dry themselves. Diagnostic:
+Prison and CentralLake vs g_iter4 -- `@build t=4` after r700, landscapers at the wall at r1500
+above the incumbent's, ring at r2500 higher. Gate `gate13` vs `REF=g_iter4`. Falsifier: below 53%.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
@@ -562,7 +579,7 @@ school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy (builder, sites) | Iteration 11 (inconclusive 52%) | 1 |
-| flood defence (wall) | Iteration 8 (ACCEPT 39-9) | 0 |
+| flood defence (wall) | Iteration 12 (reject 42-54) | 1 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | Iteration 10 (reject 120-120) | 1 |

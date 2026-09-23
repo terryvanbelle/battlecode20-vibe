@@ -47,11 +47,46 @@ public strictfp class Miner extends Robot {
         }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
+        if (builder && round >= C.PARK_ROUND) { parkAndRebuild(); return; }   // Iteration 13
         if (builder && build()) return;
         work();
     }
 
     // ---------------------------------------------------------------- builder
+    /** Iteration 13: the builder survives the flood on the highest dry tile near the HQ and, once no school of ours is in
+     *  sight after SECOND_SCHOOL_ROUND, builds another on an adjacent tile that will stay dry for SCHOOL_LIFE rounds. */
+    private MapLocation perch;
+    private void parkAndRebuild() throws GameActionException {
+        MapLocation home = MapState.home;
+        if (round >= C.SECOND_SCHOOL_ROUND && rc.isReady() && rc.getTeamSoup() >= RobotType.DESIGN_SCHOOL.cost) {
+            boolean schoolSeen = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL) { schoolSeen = true; break; }
+            if (!schoolSeen) {
+                Direction bestD = null; int be = -1;
+                for (int i = 8; --i >= 0;) {
+                    Direction d = DIRS[i]; MapLocation n = loc.add(d);
+                    if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canBuildRobot(RobotType.DESIGN_SCHOOL, d) || rc.senseFlooding(n)) continue;
+                    int e = rc.senseElevation(n); if (e < waterLevel(round + C.SCHOOL_LIFE)) continue;
+                    if (e > be) { be = e; bestD = d; }
+                }
+                if (bestD != null) { rc.buildRobot(RobotType.DESIGN_SCHOOL, bestD); builtSchool++; Debug.log("@build t=4 at=" + loc.add(bestD) + " soup=" + rc.getTeamSoup() + " second=true"); return; }
+            }
+        }
+        // the perch: the highest dry tile within PARK_RADIUS of the HQ that is not the ring, re-chosen when ours floods or a better one is 3+ higher
+        if (perch == null || round % 50 == 0 || (rc.canSenseLocation(perch) && rc.senseFlooding(perch))) {
+            MapLocation best = perch; int be = perch != null && rc.canSenseLocation(perch) && !rc.senseFlooding(perch) ? rc.senseElevation(perch) + 2 : Integer.MIN_VALUE;
+            for (int dx = -C.PARK_RADIUS; dx <= C.PARK_RADIUS; dx++) for (int dy = -C.PARK_RADIUS; dy <= C.PARK_RADIUS; dy++) {
+                MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+                if (Nav.cheb(t, home) < 2 || !rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t)) continue;
+                RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.ID != id) continue;
+                int e = rc.senseElevation(t); if (Math.abs(e - rc.senseElevation(loc)) > 3 && !t.equals(loc)) continue;
+                if (e > be) { be = e; best = t; }
+            }
+            if (best != null) perch = best;
+        }
+        if (perch == null) { if (floodDanger()) climb(); return; }
+        if (!loc.equals(perch)) { if (floodDanger() && climb()) return; nav.setTarget(perch); nav.step(); if (loc.equals(perch)) Debug.log("@perched at=" + perch + " e=" + rc.senseElevation(perch)); }
+    }
+
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         int soup = rc.getTeamSoup();
