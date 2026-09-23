@@ -75,12 +75,15 @@ public strictfp class Landscaper extends Robot {
     }
 
     /** A free tile at Chebyshev 2 from the HQ, next to the LOWEST ring tile it can feed (then nearest). */
+    private final MapLocation[] badPost = new MapLocation[8]; private int nBadPost = 0;
     private MapLocation pickPost(MapLocation home) throws GameActionException {
         MapLocation best = null; long bs = Long.MAX_VALUE; int myE = rc.senseElevation(loc);
         for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
             if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
             MapLocation t = new MapLocation(home.x + dx, home.y + dy);
             if (!rc.onTheMap(t)) continue;
+            boolean bad = false; for (int k = nBadPost; --k >= 0;) if (badPost[k].equals(t)) { bad = true; break; }
+            if (bad) continue;
             int lowest = Integer.MAX_VALUE;
             if (rc.canSenseLocation(t)) {
                 if (rc.senseFlooding(t)) continue;
@@ -100,7 +103,11 @@ public strictfp class Landscaper extends Robot {
         if (!loc.equals(post)) {
             if (occupiedByOther(post)) { RobotInfo r = rc.canSenseLocation(post) ? rc.senseRobotAtLocation(post) : null; if (r != null && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) { post = pickPost(home); if (post == null) { helper = false; attacker = true; return; } } }
             if (floodDanger() && climb()) return;
-            if (nav.target() == post && nav.stalled()) { Debug.log("@badpost " + post); helper = false; attacker = true; return; }   // Iteration 7: a post never reached is not a job (Iteration 5 lost six of sixteen landscapers that way)
+            if (nav.target() == post && nav.stalled()) {   // Iteration 8: a post never reached is struck off and another picked; the attack only when none is left (Iteration 7 sent every stalled helper to attack: gate 21-43)
+                if (nBadPost < 8) badPost[nBadPost++] = post; Debug.log("@badpost " + post);
+                post = pickPost(home); if (post == null) { helper = false; attacker = true; }
+                return;
+            }
             nav.setTarget(post); nav.step(); if (loc.equals(post)) Debug.log("@posted at=" + post); return;
         }
         if (!rc.isReady()) return;

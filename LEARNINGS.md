@@ -87,7 +87,16 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 
 ## Strategy (this season) -- measured
 
-(nothing yet)
+- **The strong bots keep producing after the flood; we stop at r700.** Block 6, the three reviewable
+  losses (laurenschneider on WateredDown, winkelmantanner on Hourglass, cormackikkert on Squares):
+  their design schools, vaporators and net guns are alive at r1000-2000 (DS 1-3, V 1-9, NG 1-5) and
+  their landscaper count keeps rising (22-25 at r2000) while ours falls to 4 as the school drowns
+  (DS=0 from r700) and our soup sits unspent (600-1,600). Their buildings stand above the water,
+  so they were placed on raised or naturally high tiles late, by a miner standing at that height.
+  Squares was decided by a 32-drone swarm at r2100 that plucked nine seats and buried the HQ in 30
+  rounds; drones fly, so they are the flood-proof army and the flood-proof threat.
+- **A helper that stalls must not be thrown away.** Iteration 7 sent any helper whose walk paused
+  30 rounds to attack; 3-6 landscapers stayed at the wall against the incumbent's 8+8, gate 21-43.
 
 ## Method
 

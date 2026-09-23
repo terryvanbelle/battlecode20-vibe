@@ -360,6 +360,19 @@ real enemy HQ (fewer wasted units on the wrong image), no idle helpers. Diagnost
 TwoLakeLand (edge HQ) and ALandDivided: counters `@prune`, `@sight`, `@badpost`; helper `digs=0`
 count at r600 must be 0. Gate `gate7`: SPRT mirror vs g_iter2. Falsifier: below 53% at the cap.
 
+**Gate 7: REJECT, 21-43 (33%)** -- batches 6-10, 5-11, 6-10, 4-12. In the losses our wall grew at
+half the incumbent's rate (CentralLake r1000: 235 vs 557; AMaze 246 vs 422) with 3-6 landscapers
+within r2 8 of the HQ against the incumbent's 8 seats plus helpers: the stall exit sent every helper
+whose walk to its post paused for 30 rounds off to attack, and the wall lost its second ring. The
+chain sharing (fee 1 a post) is not implicated but is untested on its own.
+
+## Iteration 8 -- the stall exit done right (2026-09-23)
+
+Candidate = Iteration 7 with the helper's stall exit replaced: a post not reached in 30 rounds is
+struck off (up to eight), another is picked, and only with none left does the helper attack.
+Diagnostic vs g_iter2 on CentralLake and TwoLakeLand: `@badpost` fires, helpers within r2 8 at
+r1000 equal the incumbent's. Gate `gate8`: SPRT mirror vs g_iter2. Falsifier: below 53% at the cap.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
@@ -390,8 +403,8 @@ Cumulative for g_iter2 on the strong field: 37/156 (24%). Elo 1372, rank 66 of 6
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy | Iteration 1 | 0 |
-| flood defence (wall) | Iteration 6 (closed) | 4 |
+| flood defence (wall) | Iteration 7 (reject) | 5 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | -- | 0 |
-| communication | Iteration 7 | 0 |
+| communication | Iteration 7 (reject, not implicated) | 0 |
