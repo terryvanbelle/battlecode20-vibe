@@ -448,6 +448,20 @@ Result: MtDoom flipped to a win (our school now spawns to r900, 17 landscapers t
 Composition: g_iter4 + the builder's cliff/stall exits and circle widening + spawn-room scoring; the
 drones are g_iter4's. Gate `gate11` vs `REF=g_iter4`, launched 23:05. Falsifier: below 53%.
 
+**Gate 11: INCONCLUSIVE 125-115 (52.1%) at the cap** -- below the 53% keep line: not kept, `src/bot`
+back to g_iter4. The builder fixes fire only on maps with cliffs or lakes at the circle (a handful of
+the random draw), an effect a 240-game mirror cannot resolve; nothing suggests harm. They stay
+available to ride along with a later candidate.
+
+## Iteration 12 -- where the seats' turns go (2026-09-23, late)
+
+Mirror games end r3050-3180 with margins of 10-50 rounds, so the wall's growth rate is the lever
+the gate can see. Earlier blocks measured 0.35-0.43 deposits per landscaper-round against the 0.5
+ceiling (dig, deposit, dig, ...). Step one is an idle census: every landscaper counts its ready
+turns that ended without dig or deposit, by role and by reason (no dig source, no target under the
+slack rule, waiting on borrow, walking, blocked). One diagnostic, then the top reason becomes the
+candidate.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
@@ -526,7 +540,7 @@ school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on
 
 | area | last attempt | consecutive rejects |
 |---|---|---|
-| economy (builder, sites) | Iteration 11 | 0 |
+| economy (builder, sites) | Iteration 11 (inconclusive 52%) | 1 |
 | flood defence (wall) | Iteration 8 (ACCEPT 39-9) | 0 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
