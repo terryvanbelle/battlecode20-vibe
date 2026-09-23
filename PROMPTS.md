@@ -21,3 +21,15 @@ Make sure that your attempts are a good combination of incremental tweaks and bi
 Starting with this one, save all of my prompts in a document called PROMPTS.md.
 
 This year we will compete in Battlecode 2020.  Store all results in a new Github repository called battlecode20-vibe.  Download the rules and begin.
+
+## 2. 2026-09-23
+
+I'm curious to know how game speeds compare this year vs. 2021
+
+## 3. 2026-09-23
+
+Github tells me my fine-grained personal access token is about to expire.  Can you renew it?
+
+## 4. 2026-09-23
+
+The Github page seems to say that that token is only for terryvanbelle/battlecode22-vibe.  Can you verify that that's true?
