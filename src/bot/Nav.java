@@ -16,6 +16,8 @@ public final strictfp class Nav {
     private MapLocation target;
     private final MapLocation[] recent = new MapLocation[6]; private int recentI = 0;
     private int stuck = 0;
+    private int noProgress = 0;            // turns since bestDist last improved
+    public static final int STALL = 10;    // after this many, the target is treated as unreachable
     private int bestDist = 1 << 30;
     private boolean bugging = false; private final boolean rightHanded;
     public int steps = 0, blocked = 0, bugSteps = 0;   // counters for @nav logs
@@ -26,10 +28,12 @@ public final strictfp class Nav {
 
     public void setTarget(MapLocation t) {
         if (t == null) { target = null; return; }
-        if (target == null || !target.equals(t)) { target = t; bestDist = 1 << 30; stuck = 0; bugging = false; }
+        if (target == null || !target.equals(t)) { target = t; bestDist = 1 << 30; stuck = 0; noProgress = 0; bugging = false; }
     }
     public MapLocation target() { return target; }
     public boolean isBugging() { return bugging; }
+    /** True once STALL turns have passed without ever getting closer to the target than before. */
+    public boolean stalled() { return noProgress >= STALL; }
 
     private boolean isRecent(MapLocation l) { for (int i = 6; --i >= 0;) if (recent[i] != null && recent[i].equals(l)) return true; return false; }
     private void remember(MapLocation l) { recent[recentI] = l; recentI = (recentI + 1) % 6; }
@@ -55,11 +59,11 @@ public final strictfp class Nav {
             int score = cheb(n, target) * 1000 + n.distanceSquaredTo(target);   // Chebyshev first, Euclidean tie-break
             if (score < bestScore) { bestScore = score; best = d; }
         }
-        if (best == null) { blocked++; if (++stuck >= 2) bugging = true; return false; }
+        if (best == null) { blocked++; noProgress++; if (++stuck >= 2) bugging = true; return false; }
         MapLocation n = me.add(best);
         int d1 = cheb(n, target);
-        if (d1 < bestDist) { bestDist = d1; stuck = 0; } else if (++stuck >= 4) bugging = true;
-        remember(me); rc.move(best); steps++;
+        if (d1 < bestDist) { bestDist = d1; stuck = 0; noProgress = 0; } else { noProgress++; if (++stuck >= 4) bugging = true; }
+        remember(me); rc.move(best); bot.loc = rc.getLocation(); steps++;
         return true;
     }
 
@@ -69,16 +73,16 @@ public final strictfp class Nav {
         for (int i = 0; i < 8; i++) {
             MapLocation n = me.add(d);
             if (!isRecent(n) && legal(d, n)) {
-                remember(me); rc.move(d); steps++; bugSteps++;
+                remember(me); rc.move(d); bot.loc = rc.getLocation(); steps++; bugSteps++;
                 int d1 = cheb(n, target);
-                if (d1 < bestDist) { bestDist = d1; stuck = 0; bugging = false; }
+                if (d1 < bestDist) { bestDist = d1; stuck = 0; noProgress = 0; bugging = false; } else noProgress++;
                 return true;
             }
             d = rightHanded ? d.rotateRight() : d.rotateLeft();
         }
         d = me.directionTo(target);   // boxed in: allow a recent tile
-        for (int i = 0; i < 8; i++) { MapLocation n = me.add(d); if (legal(d, n)) { rc.move(d); steps++; bugSteps++; return true; } d = rightHanded ? d.rotateRight() : d.rotateLeft(); }
-        blocked++; stuck++;
+        for (int i = 0; i < 8; i++) { MapLocation n = me.add(d); if (legal(d, n)) { rc.move(d); bot.loc = rc.getLocation(); steps++; bugSteps++; return true; } d = rightHanded ? d.rotateRight() : d.rotateLeft(); }
+        blocked++; stuck++; noProgress++;
         return false;
     }
 }

@@ -28,6 +28,7 @@ import java.util.zip.GZIPInputStream;
  *   --bytecode       per-type bytecode summary (max used, rounds at/over the limit)
  *   --navstats       moves, A-B-A oscillations, coverage, first contact with the enemy HQ
  *   --threat A|B     CSV every 25 rounds: enemy landscapers/drones near that team's HQ, HQ buried dirt
+ *   --elev-at R      elevation grid (two chars per tile, clipped to -9..99, "~~" water) at round R
  *   --quiet          suppress aggregates
  *
  * Team ids in the file: 0 neutral (cows), 1 = A, 2 = B. Locations are absolute (the map origin is
@@ -38,7 +39,7 @@ public class ReplayDump {
     static boolean metrics = false, quiet = false, bytecodeSummary = false, navStats = false;
     static int threatTeam = 0;
     static Pattern logPat = null; static int logsTeam = -1;
-    static TreeSet<Integer> mapAt = new TreeSet<>();
+    static TreeSet<Integer> mapAt = new TreeSet<>(), elevAt = new TreeSet<>();
 
     static final class Robot {
         int id, team, x, y, spawnRound; byte type; boolean alive = true;
@@ -74,6 +75,7 @@ public class ReplayDump {
                 case "--every": every = Integer.parseInt(args[++i]); break;
                 case "--map": mapEvery = Integer.parseInt(args[++i]); break;
                 case "--map-at": mapAt.add(Integer.parseInt(args[++i])); break;
+                case "--elev-at": elevAt.add(Integer.parseInt(args[++i])); quiet = true; break;
                 case "--from": fromRound = Integer.parseInt(args[++i]); break;
                 case "--to": toRound = Integer.parseInt(args[++i]); break;
                 case "--robot": trackId = Integer.parseInt(args[++i]); break;
@@ -249,6 +251,20 @@ public class ReplayDump {
         if (metrics) { if (round % every == 0) printMetricsRow(round); return; }
         if (!quiet && every > 0 && round % every == 0) printAggregate(round);
         if ((mapEvery > 0 && round % mapEvery == 0) || mapAt.contains(round)) printBoard(round);
+        if (elevAt.contains(round)) printElev(round);
+    }
+
+    static void printElev(int round) {
+        System.out.printf("ELEV r%d %s (%dx%d) water=%.1f  two chars per tile: ~~ water, -9..99 elevation (clipped), capital letter = robot (A team upper, B lower)%n", round, mapName, width, height, waterLevel(round));
+        for (int y = height - 1; y >= 0; y--) {
+            StringBuilder s = new StringBuilder(String.format("%3d ", y));
+            for (int x = 0; x < width; x++) { int k = x + y * width; int e = Math.max(-9, Math.min(99, dirt[k]));
+                Robot occ = null; for (Robot r : bots.values()) if (r.x - minX == x && r.y - minY == y) { occ = r; break; }
+                if (occ != null) s.append(GLYPH[occ.team][Math.min(occ.type, 9)]).append(water[k] ? '~' : ' ');
+                else if (water[k]) s.append("~~"); else s.append(String.format("%2d", e)); }
+            System.out.println(s);
+        }
+        StringBuilder ax = new StringBuilder("    "); for (int x = 0; x < width; x++) ax.append(x % 5 == 0 ? String.format("%-2d", x % 100) : "  "); System.out.println(ax);
     }
 
     static void onMatchFooter(MatchFooter f) {

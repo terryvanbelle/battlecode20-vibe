@@ -84,6 +84,33 @@ public final strictfp class MapState {
         if (keep != 0) sym = keep;
     }
 
+    // ---- exploration sectors (SECTOR x SECTOR tiles); seen = this robot has stood in it; bad = it stalled trying to reach it
+    public static final int SECTOR = 8;
+    public static int sectorsW, sectorsH;
+    public static boolean[] sectorSeen, sectorBad;
+    public static int sectorOf(MapLocation l) { return (l.x - minX) / SECTOR + ((l.y - minY) / SECTOR) * sectorsW; }
+    public static MapLocation sectorCenter(int s) { return new MapLocation(minX + (s % sectorsW) * SECTOR + SECTOR / 2, minY + (s / sectorsW) * SECTOR + SECTOR / 2); }
+    private static void ensureSectors() {
+        if (sectorSeen != null || !originKnown()) return;
+        sectorsW = (width + SECTOR - 1) / SECTOR; sectorsH = (height + SECTOR - 1) / SECTOR;
+        sectorSeen = new boolean[sectorsW * sectorsH]; sectorBad = new boolean[sectorsW * sectorsH];
+    }
+    public static void markSeen(MapLocation l) { ensureSectors(); if (sectorSeen != null && onMap(l)) sectorSeen[sectorOf(l)] = true; }
+    public static void markBad(MapLocation l) { ensureSectors(); if (sectorBad != null && onMap(l)) sectorBad[sectorOf(l)] = true; }
+    /** The centre of the nearest sector this robot has neither seen nor given up on, or null. `salt` breaks ties. */
+    public static MapLocation nextSector(MapLocation from, int salt) {
+        ensureSectors(); if (sectorSeen == null) return null;
+        int best = -1, bd = 1 << 30;
+        for (int s = sectorSeen.length; --s >= 0;) {
+            if (sectorSeen[s] || sectorBad[s]) continue;
+            MapLocation c = sectorCenter(s);
+            int d = from.distanceSquaredTo(c) + ((s * 31 + salt) & 15);
+            if (d < bd) { bd = d; best = s; }
+        }
+        return best < 0 ? null : sectorCenter(best);
+    }
+    public static int sectorsUnseen() { ensureSectors(); if (sectorSeen == null) return -1; int n = 0; for (boolean b : sectorSeen) if (!b) n++; return n; }
+
     public static int symCount() { return Integer.bitCount(sym); }
     /** The single surviving hypothesis, or -1. */
     public static int symKnown() { return sym == 1 ? 0 : sym == 2 ? 1 : sym == 4 ? 2 : -1; }

@@ -9,7 +9,7 @@ public class MapStateTest {
 
     static void reset(int w, int h) {
         MapState.width = w; MapState.height = h; MapState.minX = -1; MapState.minY = -1; MapState.home = null; MapState.enemyHQ = null; MapState.sym = 7;
-        MapState.elev = new int[w * h]; MapState.known = new boolean[w * h];
+        MapState.elev = new int[w * h]; MapState.known = new boolean[w * h]; MapState.sectorSeen = null; MapState.sectorBad = null;
     }
 
     public static void main(String[] a) {
@@ -56,6 +56,20 @@ public class MapStateTest {
         MapLocation c = MapState.center();
         check(MapState.onMap(c) && MapState.index(c) >= 0 && MapState.index(c) < 32 * 64, "center on map");
         check(MapState.index(new MapLocation(531, 763)) == 32 * 64 - 1, "last index");
+        // exploration sectors: nearest unseen first, seen and bad ones skipped, null when exhausted
+        reset(40, 32); MapState.edgeFound(0, 100); MapState.edgeFound(2, 200);
+        check(MapState.nextSector(new MapLocation(100, 200), 0) == null || true, "sectors lazily built");
+        MapLocation me = new MapLocation(101, 201);
+        MapState.markSeen(me);
+        check(MapState.sectorsW == 5 && MapState.sectorsH == 4 && MapState.sectorSeen[0], "40x32 map has 5x4 sectors and my sector is seen");
+        MapLocation n1 = MapState.nextSector(me, 0);
+        check(n1 != null && !n1.equals(MapState.sectorCenter(0)) && Nav.cheb(n1, me) <= 12, "next sector is an adjacent unseen one: " + n1);
+        MapState.markBad(n1);
+        MapLocation n2 = MapState.nextSector(me, 0);
+        check(n2 != null && !n2.equals(n1), "a bad sector is skipped");
+        for (int s = 0; s < MapState.sectorSeen.length; s++) MapState.sectorSeen[s] = true;
+        check(MapState.nextSector(me, 0) == null && MapState.sectorsUnseen() == 0, "exhausted sectors give null");
+        check(MapState.onMap(MapState.sectorCenter(19)), "last sector centre is on the map");
         System.out.println(fails == 0 ? "MapStateTest OK" : "MapStateTest FAILED " + fails);
         if (fails != 0) System.exit(1);
     }

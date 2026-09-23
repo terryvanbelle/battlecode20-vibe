@@ -11,7 +11,7 @@ public class NavTest {
         check(Nav.cheb(new MapLocation(7, 7), new MapLocation(7, 7)) == 0, "zero at the target");
         check(Nav.cheb(new MapLocation(-2, 1), new MapLocation(1, 1)) == 3, "negative coordinates");
         check(C.SOUP_RETURN <= 100 && C.SOUP_RETURN > 0, "a miner returns before its 100-soup limit");
-        check(C.MAX_MINERS >= 1, "the HQ builds at least one miner");
+        check(C.MINERS_MAX >= C.MINERS_EARLY && C.MINERS_EARLY >= 1, "the HQ builds at least one miner");
         System.out.println(fails == 0 ? "NavTest OK" : "NavTest FAILED " + fails);
         if (fails != 0) System.exit(1);
     }

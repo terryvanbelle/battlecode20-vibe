@@ -7,7 +7,28 @@ public final class C {
     public static final int BC_REPORT_EVERY = 100;    // rounds between @bc monitor lines per robot
     public static final int ARCHETYPE = 0;            // sparring-partner switch, set by tools/snapshot.sh
 
-    // Iteration 0 economy
-    public static final int MAX_MINERS = 6;           // the HQ builds miners up to this count of live ones it can see + built
+    // --- economy (Iteration 1: unmeasured starting values)
+    public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
+    public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
+    public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
+    public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
+    public static final int MINER_SOUP_RESERVE = 200; // after MINERS_EARLY the HQ builds a miner only above this bank
     public static final int SOUP_RETURN = 70;         // a miner heads home to deposit at this much carried soup
+    public static final int SOUP_MEMORY = 12;         // remembered soup tiles per miner
+    public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)
+    public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
+    public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
+    public static final int VAPORATORS_MAX = 6;
+    public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
+    public static final int NETGUNS_MAX = 2;
+    public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
+    public static final int DRONES_MAX = 6;
+
+    // --- wall
+    public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
+    public static final int LANDSCAPERS_MAX = 12;     // the surplus attacks
+    public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
+
+    // --- flood safety
+    public static final int FLOOD_LOOKAHEAD = 10;     // a walker leaves a tile the water will reach within this many rounds
 }

@@ -22,6 +22,7 @@ public abstract strictfp class Robot {
     protected int nEnemy, nFriend, nCow;
     protected final RobotInfo[] enemies = new RobotInfo[64], friends = new RobotInfo[64], cows = new RobotInfo[8];
     protected RobotInfo nearestEnemy; protected int nearestEnemyD2;
+    protected RobotInfo hqInfo;             // our HQ if in sight (its dirtCarrying is how buried it is)
 
     // bytecode monitor
     private int bcMax = 0, bcOver = 0, bcNear = 0, turns = 0;
@@ -63,11 +64,11 @@ public abstract strictfp class Robot {
         }
     }
 
-    /** Once, before the first turn. */
+    /** Once, before the first turn: find home (the HQ is within 24 r2 of every building we make near it). */
     protected void init() throws GameActionException {
-        // the building that made us is adjacent; the HQ is what we most want to know
-        RobotInfo[] adj = rc.senseNearbyRobots(2, us);
+        RobotInfo[] adj = rc.senseNearbyRobots(-1, us);
         for (int i = adj.length; --i >= 0;) if (adj[i].type == RobotType.HQ) { MapState.setHome(adj[i].location); break; }
+        probeEdges();
     }
 
     /** One turn of this robot's logic. */
@@ -78,22 +79,93 @@ public abstract strictfp class Robot {
     /** Sense everything once and bucket it. 100 + ~12 per robot bytecodes. */
     protected void sense() {
         nearby = rc.senseNearbyRobots();
-        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30;
+        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null;
         for (int i = nearby.length; --i >= 0;) {
             RobotInfo r = nearby[i];
-            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) MapState.setHome(r.location); }
+            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } }
             else if (r.team == them) {
                 if (nEnemy < 64) enemies[nEnemy++] = r;
                 int d = loc.distanceSquaredTo(r.location);
                 if (d < nearestEnemyD2) { nearestEnemyD2 = d; nearestEnemy = r; }
-                if (r.type == RobotType.HQ) MapState.sightEnemyHQ(r.location);
+                if (r.type == RobotType.HQ) { if (MapState.enemyHQ == null) Debug.log("@sight enemyHQ=" + r.location); MapState.sightEnemyHQ(r.location); }
             } else if (nCow < 8) cows[nCow++] = r;
         }
     }
 
-    /** Is stepping onto l safe for a walker: on the map, not flooded (canMove does NOT check water). */
+    /** Read last round's block and absorb what our team posted. 100 bytecodes + ~30 per message. */
+    protected void readBlock() throws GameActionException {
+        if (round < 2) return;
+        Transaction[] block = rc.getBlock(round - 1);
+        for (int i = block.length; --i >= 0;) {
+            int[] m = block[i].getMessage();
+            if (!Comms.ours(m, round - 1, us)) continue;
+            switch (m[0]) {
+                case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
+                case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
+                case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
+                default: break;
+            }
+        }
+    }
+
+    /** Post a message for 1 soup if we can. */
+    protected boolean post(int[] m) throws GameActionException {
+        if (!rc.canSubmitTransaction(m, 1)) return false;
+        rc.submitTransaction(m, 1); return true;
+    }
+
+    /**
+     * Find the map origin by probing rc.onTheMap at the sensing radius (5 bytecodes a probe):
+     * when a probe falls off the map, walk inward to the exact edge. Needs at most one edge per
+     * axis because the size is known.
+     */
+    protected void probeEdges() {
+        if (MapState.originKnown()) return;
+        int r = (int) Math.sqrt(type.sensorRadiusSquared);
+        if (MapState.minX < 0) {
+            if (!rc.onTheMap(new MapLocation(loc.x - r, loc.y))) { int x = loc.x - r; while (!rc.onTheMap(new MapLocation(x, loc.y))) x++; MapState.edgeFound(0, x); }
+            else if (!rc.onTheMap(new MapLocation(loc.x + r, loc.y))) { int x = loc.x + r; while (!rc.onTheMap(new MapLocation(x, loc.y))) x--; MapState.edgeFound(1, x); }
+        }
+        if (MapState.minY < 0) {
+            if (!rc.onTheMap(new MapLocation(loc.x, loc.y - r))) { int y = loc.y - r; while (!rc.onTheMap(new MapLocation(loc.x, y))) y++; MapState.edgeFound(2, y); }
+            else if (!rc.onTheMap(new MapLocation(loc.x, loc.y + r))) { int y = loc.y + r; while (!rc.onTheMap(new MapLocation(loc.x, y))) y--; MapState.edgeFound(3, y); }
+        }
+        if (MapState.originKnown()) Debug.log("@origin x=" + MapState.minX + " y=" + MapState.minY);
+    }
+
+    /** Remember the terrain within Chebyshev 2 (25 tiles, ~25 bytecodes each) for symmetry pruning. */
+    protected void observeTerrain() throws GameActionException {
+        if (!MapState.originKnown()) return;
+        for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
+            MapLocation l = new MapLocation(loc.x + dx, loc.y + dy);
+            if (!rc.canSenseLocation(l)) continue;
+            MapState.observe(l, rc.senseElevation(l), rc.senseFlooding(l));
+        }
+    }
+
+    /** The engine's water level at round r. */
+    public static double waterLevel(int r) { return Math.exp(0.0028 * r - 1.38 * Math.sin(0.00157 * r - 1.73) + 1.38 * Math.sin(-1.73)) - 1; }
+
+    /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
+    }
+
+    /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
+    protected boolean floodDanger() throws GameActionException {
+        if (type.canFly()) return false;
+        if (rc.senseElevation(loc) > waterLevel(round + C.FLOOD_LOOKAHEAD)) return false;
+        for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (rc.canSenseLocation(n) && rc.senseFlooding(n)) return true; }
+        return false;
+    }
+
+    /** Step to the highest safe adjacent tile. */
+    protected boolean climb() throws GameActionException {
+        if (!rc.isReady()) return false;
+        Direction best = null; int be = Integer.MIN_VALUE;
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!rc.canMove(d)) continue; MapLocation n = loc.add(d); if (!safeTile(n)) continue; int e = rc.senseElevation(n); if (e > be) { be = e; best = d; } }
+        if (best == null) return false;
+        rc.move(best); loc = rc.getLocation(); Debug.log("@climb to=" + loc + " e=" + be); return true;
     }
 
     protected boolean tryMove(Direction d) throws GameActionException {
@@ -102,7 +174,7 @@ public abstract strictfp class Robot {
         rc.move(d); loc = rc.getLocation(); return true;
     }
 
-    /** Build type in the first free direction, preferring the one nearest `toward` (relative tie-break). */
+    /** Build type in the free direction nearest `toward` (relative tie-break; random when null). */
     protected boolean tryBuild(RobotType t, MapLocation toward) throws GameActionException {
         if (!rc.isReady() || rc.getTeamSoup() < t.cost) return false;
         Direction best = null; int bd = 1 << 30;
@@ -110,12 +182,13 @@ public abstract strictfp class Robot {
             Direction d = DIRS[i];
             if (!rc.canBuildRobot(t, d)) continue;
             MapLocation n = loc.add(d);
+            if (t != RobotType.DELIVERY_DRONE && rc.senseFlooding(n)) continue;
             int s = toward == null ? nextInt(64) : n.distanceSquaredTo(toward);
             if (s < bd) { bd = s; best = d; }
         }
         if (best == null) return false;
         rc.buildRobot(t, best);
-        Debug.log("@build t=" + t.ordinal() + " at=" + loc.add(best));
+        Debug.log("@build t=" + t.ordinal() + " at=" + loc.add(best) + " soup=" + rc.getTeamSoup());
         return true;
     }
 
@@ -132,4 +205,7 @@ public abstract strictfp class Robot {
         }
         return best != null && tryMove(best);
     }
+
+    /** Is l one of the 8 tiles around our HQ (the wall ring)? */
+    protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
 }
