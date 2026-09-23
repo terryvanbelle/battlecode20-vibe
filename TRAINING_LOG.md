@@ -217,6 +217,19 @@ depressed; use the bots we have the fewest games against among those that beat u
 
 60 games against the 20 bots that beat g_iter1 in block 1 (`elo.py --pool 20`). Veto rule: withdraw
 if the block's Wilson upper bound falls below g_iter1's 12/60 point estimate on the same field.
+**Result: 17/60 (28.3%, Wilson 18.5-40.8%)** against g_iter1's 12/60 (20.0%) on the same field:
+the submission stands. 59 of 60 games ended by an HQ drowning. Newly unlocked:
+`mvpatel2000.qual` 1/3, `winkelmantanner.tannerplayer` 1/3, `laurenschneider.pdx_team_one` 2/3;
+`VinayaBhat.team10pdx` and `Tim-gubski.AngryWaffleMaker` 3/3. Still 0/3: AngusRitossa,
+awesomelemonade, IvanGeffner, battlecode20-team4, EmaPajic, poortho, ronniesong0809, rzhan11,
+uvafan, wpine215, cormackikkert. Elo 1354 (rank 66) after 233 games: the rating tracks who we
+choose to play, so the per-field comparison above is the standing that matters.
+
+**Census (27 unlocked games, 17-10, noise floor 0.38).** Nothing at r200 clears the floor by much
+(`cov (us-them)` +0.41, `mines (us-them)` +0.38 within-opponent). The r900 medians say where the
+gap is: their worth 4327 against our 2338, their robots 23 against our 12, their vaporators 2 and
+net guns 1 against our 0, their pickups 5 against our 0, our miners 0.5 alive. Their economy
+survives the flood; ours does not, and our bank (778) sits unspent.
 
 ## Ledger (closed directions)
 

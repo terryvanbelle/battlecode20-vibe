@@ -37,3 +37,7 @@ The Github page seems to say that that token is only for terryvanbelle/battlecod
 ## 5. 2026-09-23
 
 OK, I guess it's harmless
+
+## 6. 2026-09-23
+
+/loop 30m task check.  If the VM is idle and nothing is in the workqueue, start a new idea.  Otherwise, carry on as before
