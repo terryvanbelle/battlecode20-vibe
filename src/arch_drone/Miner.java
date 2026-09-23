@@ -1,4 +1,4 @@
-package bot;
+package arch_drone;
 
 import battlecode.common.*;
 
@@ -30,7 +30,7 @@ public strictfp class Miner extends Robot {
     }
 
     @Override protected void turn() throws GameActionException {
-        sense(); reportDrone(); int b0 = Clock.getBytecodeNum(); if (round % 3 == 0 || builder) readBlock(); int b1 = Clock.getBytecodeNum(); probeEdges(); MapState.markSeen(loc);
+        sense(); int b0 = Clock.getBytecodeNum(); if (round % 3 == 0) readBlock(); int b1 = Clock.getBytecodeNum(); probeEdges(); MapState.markSeen(loc);
         if (round % 8 == id % 8 && Clock.getBytecodeNum() < 3000) observeTerrain();
         int b2 = Clock.getBytecodeNum();
         if (round % 100 == 0) Debug.log("@minerstat builder=" + builder + " mined=" + mined + " deposits=" + deposits + " explores=" + explores + " soupMem=" + nSoup + " unreachable=" + unreachable);
@@ -58,14 +58,12 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtNet == 0 && soup >= C.NETGUN_FIRST_BANK) want = RobotType.NET_GUN;   // Iteration 4: one gun always, before the flood
-        else if (builtSchool > 0 && builtNet < C.NETGUNS_MAX && round - MapState.enemyDroneRound <= C.DRONE_ALERT && soup >= RobotType.NET_GUN.cost + C.NETGUN_ALERT_BANK) want = RobotType.NET_GUN;   // and more while drones are about
-        else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
-        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
+        else if (builtSchool > 0 && builtFC == 0 && soup >= C.FC_EARLY_BANK) want = RobotType.FULFILLMENT_CENTER;   // archetype: drones first
+        else if (builtFC > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
-        int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL || want == RobotType.NET_GUN ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtFC) / 4;
+        int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
         if (Nav.cheb(loc, home) != dist) {
             // walk to the nearest tile at that distance
             MapLocation best = null; int bd = 1 << 30;

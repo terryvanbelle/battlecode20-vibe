@@ -1,11 +1,11 @@
-package bot;
+package arch_drone;
 
 /** Tunable constants, one place. Each one names the measurement that set it, once there is one. */
 public final class C {
     private C() {}
     public static final boolean DEBUG = true;         // @tag logging into the replay (silenced per team by the gauntlet)
     public static final int BC_REPORT_EVERY = 100;    // rounds between @bc monitor lines per robot
-    public static final int ARCHETYPE = 0;            // sparring-partner switch, set by tools/snapshot.sh
+    public static final int ARCHETYPE = 8;            // sparring-partner switch, set by tools/snapshot.sh
 
     // --- economy (Iteration 1: unmeasured starting values)
     public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
@@ -21,15 +21,11 @@ public final class C {
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
     public static final int VAPORATORS_MAX = 6;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
-    public static final int NETGUNS_MAX = 4;          // Iteration 4: up to this many when enemy drones are about
-    public static final int NETGUN_FIRST_BANK = 350;  // the first net gun comes right after the school at this bank
-    public static final int NETGUN_ALERT_BANK = 100;  // while enemy drones were seen in the last DRONE_ALERT rounds, net guns need only this much beyond their cost
-    public static final int DRONE_ALERT = 150;
-    public static final int DRONE_POST_EVERY = 40;
+    public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
-    public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
+    public static final int DRONES_MAX = 30;          // Iteration 2: drones fly over the flood and count at the tiebreak
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
-    public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
+    public static final int DRONE_ROUND = 0;          // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
 
     // --- wall

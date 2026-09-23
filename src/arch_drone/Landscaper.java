@@ -1,4 +1,4 @@
-package bot;
+package arch_drone;
 
 import battlecode.common.*;
 
@@ -26,7 +26,7 @@ public strictfp class Landscaper extends Robot {
         try { turn2(); } finally { int b1 = Clock.getBytecodeNum(); if (b1 > 8500) Debug.log("@bcprof start=" + b0 + " total=" + b1 + " seat=" + (seat != null) + " helper=" + helper + " attacker=" + attacker + " atSeat=" + (seat != null && seat.equals(loc)) + " atPost=" + (post != null && post.equals(loc))); }
     }
     private void turn2() throws GameActionException {
-        sense(); reportDrone(); if (round % 3 == 1) readBlock(); probeEdges();
+        sense(); if (round % 3 == 1) readBlock(); probeEdges();
         if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }

@@ -1,4 +1,4 @@
-package bot;
+package arch_drone;
 
 import battlecode.common.*;
 
@@ -25,8 +25,6 @@ public abstract strictfp class Robot {
     protected RobotInfo hqInfo;             // our HQ if in sight (its dirtCarrying is how buried it is)
     protected boolean avoidRing = false;    // miners/drones: never step onto the wall ring (Iteration 2: miners fleeing the flood took the landscapers' seats)
     protected boolean ringSeen = false;     // a friendly landscaper is on a ring tile
-    protected MapLocation sawDrone;         // an enemy drone seen this turn
-    private int lastDronePost = -1000;
 
     // bytecode monitor
     private int bcMax = 0, bcOver = 0, bcNear = 0, turns = 0;
@@ -84,7 +82,7 @@ public abstract strictfp class Robot {
     /** Sense everything once and bucket it. 100 + ~12 per robot bytecodes. */
     protected void sense() {
         nearby = rc.senseNearbyRobots();
-        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null; ringSeen = false; sawDrone = null;
+        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null; ringSeen = false;
         for (int i = nearby.length; --i >= 0;) {
             RobotInfo r = nearby[i];
             if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } else if (r.type == RobotType.LANDSCAPER && onRing(r.location)) ringSeen = true; }
@@ -93,7 +91,6 @@ public abstract strictfp class Robot {
                 int d = loc.distanceSquaredTo(r.location);
                 if (d < nearestEnemyD2) { nearestEnemyD2 = d; nearestEnemy = r; }
                 if (r.type == RobotType.HQ) { if (MapState.enemyHQ == null) Debug.log("@sight enemyHQ=" + r.location); MapState.sightEnemyHQ(r.location); }
-                else if (r.type == RobotType.DELIVERY_DRONE) sawDrone = r.location;
             } else if (nCow < 8) cows[nCow++] = r;
         }
     }
@@ -109,19 +106,11 @@ public abstract strictfp class Robot {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
-                case Comms.ENEMY_DRONE: MapState.enemyDroneRound = round - 1; break;
                 default: break;
             }
         }
     }
 
-    /** Tell the team about an enemy drone, at most once per DRONE_POST_EVERY rounds per robot. */
-    protected void reportDrone() throws GameActionException {
-        if (sawDrone == null) return;
-        MapState.enemyDroneRound = round;
-        if (round - lastDronePost < C.DRONE_POST_EVERY) return;
-        if (post(Comms.make(Comms.ENEMY_DRONE, round, us, sawDrone.x, sawDrone.y))) { lastDronePost = round; Debug.log("@dronepost at=" + sawDrone); }
-    }
     /** Post a message for 1 soup if we can. */
     protected boolean post(int[] m) throws GameActionException {
         if (!rc.canSubmitTransaction(m, 1)) return false;
@@ -229,14 +218,7 @@ public abstract strictfp class Robot {
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
      *  dirt spent on it is wasted -- a quarter of ours was, on MoreCowbell. */
     protected boolean exposed(MapLocation l) {
-        if (MapState.ringExposed == null) {
-            MapState.ringExposed = new boolean[8];
-            for (int k = 8; --k >= 0;) { MapLocation t = MapState.home.add(DIRS[k]); boolean ex = false;
-                for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (!n.equals(MapState.home) && !onRing(n) && rc.onTheMap(n)) { ex = true; break; } }
-                MapState.ringExposed[k] = ex; }
-        }
-        int dx = l.x - MapState.home.x, dy = l.y - MapState.home.y;
-        for (int k = 8; --k >= 0;) if (DIRS[k].dx == dx && DIRS[k].dy == dy) return MapState.ringExposed[k];
+        for (int i = 8; --i >= 0;) { MapLocation n = l.add(DIRS[i]); if (!n.equals(MapState.home) && !onRing(n) && rc.onTheMap(n)) return true; }
         return false;
     }
 }

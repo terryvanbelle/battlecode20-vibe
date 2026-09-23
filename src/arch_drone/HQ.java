@@ -1,4 +1,4 @@
-package bot;
+package arch_drone;
 
 import battlecode.common.*;
 
@@ -14,7 +14,7 @@ public strictfp class HQ extends Robot {
     HQ(RobotController rc) { super(rc); MapState.setHome(rc.getLocation()); }
 
     @Override protected void turn() throws GameActionException {
-        sense(); reportDrone(); readBlock(); probeEdges();
+        sense(); readBlock(); probeEdges();
         // shoot the nearest enemy drone in range
         RobotInfo target = null; int bd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type != RobotType.DELIVERY_DRONE) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd && rc.canShootUnit(e.ID)) { bd = d; target = e; } }

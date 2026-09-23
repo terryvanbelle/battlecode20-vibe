@@ -231,6 +231,40 @@ gap is: their worth 4327 against our 2338, their robots 23 against our 12, their
 net guns 1 against our 0, their pickups 5 against our 0, our miners 0.5 alive. Their economy
 survives the flood; ours does not, and our bank (778) sits unspent.
 
+## Iteration 4 -- net guns against the drone swarm (2026-09-23)
+
+**Target (traces of block 4's losses to unlocked bots, `--ring` and `--threat`).** Seven losses read:
+- mvpatel2000 on ALandDivided: our ring frozen at 513/383 from r1500 while theirs grew 950 -> 1308;
+  at r925 **17 enemy drones** within net-gun range of our HQ and 3 of our 8 seats still manned.
+  Drones pluck landscapers off the ring and the wall stops. WaterBot vs winkelmantanner: ring frozen
+  at 530 from r2500 with 14-32 drones about. TwoLakeLand vs mvpatel2000: three seats at 660 against
+  1120 for the rest, three drones present.
+- benzyx on MoreCowbell: lost at r1620 with water at 7.8 and a ring above 385 -- the HQ was buried:
+  an enemy landscaper dropped onto an emptied seat (1 adjacent enemy landscaper, 5 drones at r1600).
+- Soup and Showerhead: pure wall rate, 1893 against 1371 and 1067 against 654 at r3000/r2750.
+- Sheet4 vs laurenschneider: their ring reads -6271 .. -7278 and is dry at r3000: they wall at
+  distance 2 and dig the enclosed inner ring as an infinite dirt mine.
+
+**Mechanism.** Every robot that sees an enemy drone posts ENEMY_DRONE to the chain at most once per
+40 rounds [`@dronepost`]; the builder makes one net gun right after the school at a bank of 350,
+and up to four while a drone was reported in the last 150 rounds (bank 100 above cost), all on the
+distance-2 circle where r2 15 covers the whole ring [`@build t=8`]. The HQ and net guns already
+shoot the nearest drone [`shots` in the replay].
+
+**Instruments.** The mirror twin has no drones, so the mirror can only be a regression check.
+Second arm, pre-registered: `src/arch_drone` = g_iter2 with the early fulfillment center, 30 drones
+and landscaper-first pickups. Compare candidate vs arch_drone against g_iter2 vs arch_drone on the
+quick set both sides (24 cells each); the candidate must win more, and its games must show net guns
+built before r400 and enemy drone deaths (`shot` in the study) in the tens.
+
+## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
+
+48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
+**8/48 (16.7%)**. `cs454-w20-team3.playbot` 3/3, `laurenschneider` 2/3, `mhahn2003` 2/3,
+`poortho.stable_seeding_bot` 1/3 (first win, unlocked); 0/3 against AngusRitossa, EmaPajic,
+IvanGeffner, awesomelemonade, battlecode20-team4, benzyx, cormackikkert, mvpatel2000, rzhan11,
+uvafan, winkelmantanner. Cumulative for g_iter2 on the strong field: 25/108 (23%).
+
 ## Ledger (closed directions)
 
 (empty)
