@@ -36,6 +36,7 @@ public final class C {
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
     // Iteration 13: the second school. The builder parks on high dry ground from PARK_ROUND and, once the first school
     // has drowned, spends the idle bank on a new school whose landscapers fill the remaining distance-2 posts.
+    public static final int VAPORATOR_LAST_ROUND = 300;   // a vaporator (500) pays 2 a round and drowns at r700: nothing built after this ever pays back
     public static final int PARK_ROUND = 600;         // the builder stops mining and climbs to the highest dry tile within PARK_RADIUS of the HQ
     public static final int PARK_RADIUS = 4;
     public static final int SECOND_SCHOOL_ROUND = 720;   // water 3.2: the first school (elevation 3-4) is gone or going

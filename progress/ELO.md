@@ -1,22 +1,22 @@
 # Elo ladder
 
-593 scrimmages (ours only); K=32 from 1500; our team is **us**: rank 65 of 66 rated bots, Elo 1389, 593 games; 0 bots not yet met.
+641 scrimmages (ours only); K=32 from 1500; our team is **us**: rank 66 of 66 rated bots, Elo 1343, 641 games; 0 bots not yet met.
 
 | rank | bot | Elo | games | W-L (theirs) |
 |---|---|---|---|---|
-| 1 | awesomelemonade.citricsky | 1689 | 30 | 29-1 |
-| 2 | EmaPajic.Qualifications | 1682 | 29 | 27-2 |
-| 3 | AngusRitossa.newbot | 1680 | 30 | 28-2 |
-| 4 | uvafan.v14_final_bot | 1677 | 30 | 29-1 |
-| 5 | IvanGeffner.finalbota | 1647 | 31 | 28-3 |
-| 6 | ronniesong0809.finalbota | 1646 | 30 | 27-3 |
-| 7 | rzhan11.quals_bot | 1633 | 30 | 27-3 |
-| 8 | mvpatel2000.qual | 1629 | 30 | 26-4 |
-| 9 | battlecode20-team4.finalbota | 1560 | 31 | 25-6 |
-| 10 | cormackikkert.whyPermutator | 1553 | 30 | 23-7 |
-| 11 | laurenschneider.pdx_team_one | 1524 | 30 | 20-10 |
-| 12 | winkelmantanner.tannerplayer | 1523 | 29 | 22-7 |
-| 13 | poortho.stable_seeding_bot | 1514 | 30 | 22-8 |
+| 1 | awesomelemonade.citricsky | 1703 | 33 | 32-1 |
+| 2 | AngusRitossa.newbot | 1699 | 34 | 32-2 |
+| 3 | uvafan.v14_final_bot | 1693 | 34 | 33-1 |
+| 4 | EmaPajic.Qualifications | 1691 | 31 | 29-2 |
+| 5 | ronniesong0809.finalbota | 1668 | 34 | 31-3 |
+| 6 | rzhan11.quals_bot | 1655 | 34 | 31-3 |
+| 7 | IvanGeffner.finalbota | 1611 | 35 | 30-5 |
+| 8 | battlecode20-team4.finalbota | 1584 | 34 | 28-6 |
+| 9 | mvpatel2000.qual | 1583 | 33 | 27-6 |
+| 10 | winkelmantanner.tannerplayer | 1538 | 31 | 24-7 |
+| 11 | cormackikkert.whyPermutator | 1538 | 32 | 24-8 |
+| 12 | poortho.stable_seeding_bot | 1527 | 34 | 25-9 |
+| 13 | laurenschneider.pdx_team_one | 1524 | 34 | 23-11 |
 | 14 | ovimura.welovesoup | 1491 | 1 | 0-1 |
 | 15 | TeamSerpentine.eendagsvliegjes | 1491 | 1 | 0-1 |
 | 16 | orionquick.aldebaranplayer | 1491 | 1 | 0-1 |
@@ -57,16 +57,16 @@
 | 51 | yaonam.Robot_1 | 1474 | 8 | 3-5 |
 | 52 | VinayaBhat.team10pdx | 1472 | 7 | 2-5 |
 | 53 | Tim-gubski.AngryWaffleMaker | 1463 | 7 | 2-5 |
-| 54 | denver-blake.sprint | 1454 | 5 | 0-5 |
-| 55 | KyleHassold.sprintbot | 1448 | 5 | 0-5 |
-| 56 | benzyx.seeding | 1444 | 31 | 19-12 |
+| 54 | benzyx.seeding | 1456 | 32 | 20-12 |
+| 55 | denver-blake.sprint | 1454 | 5 | 0-5 |
+| 56 | KyleHassold.sprintbot | 1448 | 5 | 0-5 |
 | 57 | J-J-Chen.player | 1441 | 5 | 0-5 |
-| 58 | wpine215.stardustv2 | 1440 | 28 | 18-10 |
-| 59 | AllenWang314.bot1 | 1435 | 5 | 0-5 |
-| 60 | GabrielDWu.buildawall2 | 1432 | 5 | 0-5 |
-| 61 | cs454-w20-team3.playbot | 1431 | 10 | 4-6 |
-| 62 | A9ine.potato | 1424 | 5 | 0-5 |
+| 58 | AllenWang314.bot1 | 1435 | 5 | 0-5 |
+| 59 | GabrielDWu.buildawall2 | 1432 | 5 | 0-5 |
+| 60 | cs454-w20-team3.playbot | 1431 | 10 | 4-6 |
+| 61 | A9ine.potato | 1424 | 5 | 0-5 |
+| 62 | wpine215.stardustv2 | 1416 | 32 | 20-12 |
 | 63 | 9mAhmad.lostincoordinates | 1412 | 5 | 0-5 |
 | 64 | 9mAhmad.MahinBot | 1398 | 5 | 0-5 |
-| 65 | **us** | 1389 | 593 | 197-396 |
-| 66 | mhahn2003.nonrush | 1387 | 21 | 9-12 |
+| 65 | mhahn2003.nonrush | 1387 | 21 | 9-12 |
+| 66 | **us** | 1343 | 641 | 206-435 |

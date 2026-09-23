@@ -83,7 +83,7 @@ public strictfp class Miner extends Robot {
             }
             if (best != null) perch = best;
         }
-        if (perch == null) { if (floodDanger()) climb(); return; }
+        if (perch == null) { if (floodDanger() && climb()) return; if (Nav.cheb(loc, home) > C.PARK_RADIUS) { nav.setTarget(home); nav.step(); } return; }   // out of sight of the perches: come home first
         if (!loc.equals(perch)) { if (floodDanger() && climb()) return; nav.setTarget(perch); nav.step(); if (loc.equals(perch)) Debug.log("@perched at=" + perch + " e=" + rc.senseElevation(perch)); }
     }
 
@@ -93,7 +93,7 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
+        else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK && round < C.VAPORATOR_LAST_ROUND) want = RobotType.VAPORATOR;   // Iteration 13: no vaporator that cannot pay back before the flood
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;

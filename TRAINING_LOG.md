@@ -498,7 +498,22 @@ tile within Chebyshev 2-4 of the HQ (it must survive the flood); (b) from `SECON
 tile that will stay above the water for 150 rounds; the school's landscapers walk to free
 distance-2 posts (dry at elevation 4-5 until r930-1210) and keep them dry themselves. Diagnostic:
 Prison and CentralLake vs g_iter4 -- `@build t=4` after r700, landscapers at the wall at r1500
-above the incumbent's, ring at r2500 higher. Gate `gate13` vs `REF=g_iter4`. Falsifier: below 53%.
+above the incumbent's, ring at r2500 higher.
+
+Diagnostics: the first run never perched (the perch search only looked at tiles in sight, and the
+builder was mining far away; it drowned on CentralLake) and yet CentralLake was a rout, 2301 vs
+1442 -- the parked builder no longer sank the late soup into vaporators and a center that drown at
+r700, and the school turned it into landscapers instead. Two fixes: the builder walks home when no
+perch is in sight, and no vaporator is built after r300 (`VAPORATOR_LAST_ROUND`: 2 soup a round
+on 500 cannot pay back before the flood). Rerun: Prison flipped to a win (perched r619 at 5; second
+school r966 with 2,205 soup, 13 landscapers r900-1000; ring 1672 vs 1590), CentralLake 2380 vs
+1675. Gate `gate13` vs `REF=g_iter4`, launched 00:45. Falsifier: below 53%.
+
+## Block 12 -- g_iter4 against the challenge pool (run block12, 2026-09-24)
+
+48 games: **9/48 (19%)**. `mvpatel2000.qual` 2/3, `wpine215` 2/4, `IvanGeffner` 2/4; cumulative for
+g_iter4 34/156 (22%). The provisional raid has not paid on the ladder; if gate 13 accepts, its
+snapshot supersedes it anyway.
 
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
