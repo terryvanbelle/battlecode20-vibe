@@ -426,6 +426,18 @@ buildable. Rerun: school at r110, ring 807 at r2500, won r2933. The mirror game 
 so the defence itself fired nowhere (0 pickups); the gate carries both pieces. Gate `gate10` vs
 `REF=g_iter4`. Falsifier: below 53%.
 
+## Iteration 11 -- spawn room for the school (2026-09-23, prepared while gate 10 runs)
+
+Trace: in both Iteration 10 mirror diagnostics (FourLakeLand, MtDoom vs g_iter4) our school
+stopped spawning at r400 with 3,500-5,000 soup idle: its neighbours were 99-high cliffs, the
+refinery, ring seats and water, so no adjacent tile within 3 of its elevation was free. The
+incumbent's school, placed by the same rule with different tie-breaks, kept spawning to r700
+(17-20 landscapers to our 14) and won the wall race by 450. Candidate = Iteration 10 + the builder
+scores a school or center site by the number of tiles it could spawn onto (dry, level within 3,
+not the ring or HQ, no building), 300 per tile, ahead of height and centrality. Diagnostic: the
+same two maps, `@build t=6` counts per 100 rounds on both sides comparable; the wall gap closes.
+Gate `gate11` vs the incumbent after gate 10. Falsifier: below 53%.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):

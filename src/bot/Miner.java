@@ -52,6 +52,19 @@ public strictfp class Miner extends Robot {
     }
 
     private int siteFails = 0;   // consecutive turns on the circle with nothing buildable
+
+    /** Tiles around a site a building there could spawn onto: on the map, dry, within 3 of its elevation, not the ring, not the HQ, no building. */
+    private int spawnRoom(MapLocation site, MapLocation home) throws GameActionException {
+        int e = rc.senseElevation(site), n = 0;
+        for (int i = 8; --i >= 0;) {
+            MapLocation t = site.add(DIRS[i]);
+            if (!rc.onTheMap(t) || t.equals(home) || onRing(t) || !rc.canSenseLocation(t)) continue;
+            if (rc.senseFlooding(t) || Math.abs(rc.senseElevation(t) - e) > GameConstants.MAX_DIRT_DIFFERENCE) continue;
+            RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) continue;
+            n++;
+        }
+        return n;
+    }
     private final MapLocation[] badSite = new MapLocation[8]; private int nBadSite = 0;   // circle tiles the walk stalled on
 
     // ---------------------------------------------------------------- builder
@@ -90,6 +103,7 @@ public strictfp class Miner extends Robot {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
+            if (want == RobotType.DESIGN_SCHOOL || want == RobotType.FULFILLMENT_CENTER) s -= 300 * spawnRoom(n, home);   // Iteration 11: a school boxed in by cliffs, the refinery and water stopped spawning at r400 (FourLakeLand)
             if (s < bs) { bs = s; bestD = d; }
         }
         if (bestD == null) { if (siteFails < 75) siteFails++; nav.setTarget(home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); nav.step(); return true; }
