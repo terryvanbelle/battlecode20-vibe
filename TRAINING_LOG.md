@@ -465,6 +465,13 @@ poortho, mvpatel2000, cormackikkert (first win), battlecode20-team4, awesomelemo
 g_iter2's 23%. Elo 1358 (the pool's own games keep drifting our K=32 rating; the win rates are the
 measure). Gate `gate9` (Iteration 9, the late raid, vs g_iter3) launched at 20:45.
 
+## Block 10 -- g_iter4 submission block (run block10, 2026-09-23)
+
+60 games: **15/60 (25%)**. `wpine215.stardustv2` 3/4, `winkelmantanner` 2/4, `poortho` 2/4,
+`cormackikkert` 2/4, `benzyx` 2/4; 1/4 against ronniesong0809, laurenschneider, battlecode20-team4,
+AngusRitossa (first win); 0/4 against uvafan, rzhan11, mvpatel2000, awesomelemonade, IvanGeffner,
+EmaPajic. Elo 1432, **rank 60 of 66** (first move off the bottom). g_iter3 was 28/108 (26%).
+
 ## Ledger (closed directions)
 
 - **The citadel (ring at Chebyshev 2 with the buildings sealed inside; Iteration 6, 2026-09-23)** --
