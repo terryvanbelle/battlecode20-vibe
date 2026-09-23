@@ -27,12 +27,10 @@ public final class C {
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
-    // Iteration 9: the late raid. After the flood only the enemy HQ shoots (one drone a round, r2 15); its seats sit
-    // within reach of a drone hovering over the water beside the ring. Gather outside range, charge together.
+    // Iteration 9: the late raid. After the flood only the enemy HQ shoots (one drone a round, r2 15, and it acts first);
+    // helpers on the corners at Chebyshev 2 can be lifted from a tile at r2 18, seats only at the price of a drone.
     public static final int RAID_ROUND = 2300;        // late enough that every enemy net gun has drowned, early enough to stall their wall before r2500
-    public static final int RAID_SIZE = 2;            // drones together before they charge (two survived to r2400 on RealArt); after RAID_LATEST every drone charges alone
-    public static final int RAID_LATEST = 2600;       // the wall race is decided by r3000: whatever is left goes in
-    public static final int RAID_RALLY = 7;           // Chebyshev distance from the enemy HQ where raiders gather
+    public static final int RAID_LATEST = 2450;       // from here the drones also gamble on the seats in pairs (one is shot, one lifts)
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile

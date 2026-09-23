@@ -387,9 +387,17 @@ game and 2,000+ soup sat unspent. After the flood only the enemy HQ shoots, one 
 Candidate = Iteration 8 + drones that from r2300 (`C.RAID_ROUND`) scout the enemy HQ guess from
 outside gun range (pruning a wrong image), gather 7 tiles from it and, three together, charge to
 lift seats off the ring and drop them in the water. Three seats fewer for the last 600 rounds is
-about 200 of wall height: the margin of both traced losses. Diagnostic vs g_iter2 on Soup and
-RealArt: `@pickup raid=true` > 0, enemy landscapers within r2 8 of their HQ fall after r2400. Gate
-`gate9` after gate 8 settles. Falsifier: below 53% at the cap.
+about 200 of wall height: the margin of both traced losses.
+
+Diagnostics (RealArt vs g_iter2, six reruns): the first versions lost every drone -- fleeing at r2 24
+while the HQ shoots to 15 left them oscillating at the sense edge; a diagonal approach step from
+25 lands at 13; and a drone that arrives in range dies before its pickup cooldown clears, because
+the HQ acts first (seven shot at r2 9, no lift). Final form: scout the guess from outside range,
+lift landscapers that have a perch tile outside r2 15 (corner helpers at Chebyshev 2 from a tile at
+18), and from `RAID_LATEST` (2450) gamble on the seats in pairs. Result: 4 lifts by 7 drones, the
+enemy's landscapers at the wall 10 -> 6 (r2600) -> 2 (r2800), their ring 70 lower at r3000; Soup
+had no drones at all (no center, poor map), no effect and no cost. Gate `gate9` vs `REF=g_iter3`.
+Falsifier: below 53% at the cap.
 
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 

@@ -33,27 +33,37 @@ public strictfp class Drone extends Robot {
             MapLocation[] near = nearWater(); if (near != null) { water = near[0]; nav.setTarget(water); nav.step(); return; }
             nav.setTarget(MapState.center()); nav.step(); return;
         }
+        // Iteration 9: the late raid. The enemy HQ shoots one drone a round to r2 15 and acts before us, so a drone that
+        // arrives in range dies before its pickup cooldown clears. Lift what can be lifted from OUTSIDE range first: a
+        // landscaper at Chebyshev 2 (a helper) on a corner has an adjacent tile at r2 18. Seats need a pair (one is shot,
+        // one lifts) and are tried only after RAID_LATEST, when nothing else is left to lose.
+        if (raidTime) {
+            MapLocation ehq = MapState.enemyHQGuess();
+            if (MapState.enemyHQ == null) { if (!rc.canSenseLocation(ehq)) approachSafely(ehq); return; }   // look at the guess from outside gun range
+            raiding = true;
+            RobotInfo victim = null; MapLocation perch = null; int bs = 1 << 30; RobotInfo nearestL = null; int nd = 1 << 30;
+            for (int i = nEnemy; --i >= 0;) {
+                RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue;
+                if (rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; raidKills++; Debug.log("@pickup t=" + e.type.ordinal() + " id=" + e.ID + " raid=true"); return; }
+                int d = loc.distanceSquaredTo(e.location); if (d < nd) { nd = d; nearestL = e; }
+                for (int k = 8; --k >= 0;) {   // a perch: adjacent to the victim, outside the HQ's reach, free
+                    MapLocation n = e.location.add(DIRS[k]);
+                    if (n.distanceSquaredTo(ehq) <= 15 || !rc.onTheMap(n)) continue;
+                    if (rc.canSenseLocation(n) && rc.isLocationOccupied(n) && !n.equals(loc)) continue;
+                    int sc = loc.distanceSquaredTo(n); if (sc < bs) { bs = sc; victim = e; perch = n; }
+                }
+            }
+            if (perch != null) { if (!loc.equals(perch)) approachSafely(perch); return; }   // next turn the pickup fires from the perch
+            if (nearestL != null && round >= C.RAID_LATEST) { nav.setTarget(nearestL.location); nav.step(); return; }   // the pair gamble on the seats
+            approachSafely(ehq);   // come within sight of the ring and wait for something liftable
+            return;
+        }
         // pick up
         RobotInfo tgt = null; int bd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
         if (tgt != null) {
-            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; if (raiding) raidKills++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " raid=" + raiding); return; }
-            if (raiding || gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
-        }
-        // Iteration 9: the late raid. Scout the enemy HQ guess from just outside gun range (sense r2 24 > shoot r2 15) so a
-        // wrong symmetry image is pruned; gather at RAID_RALLY; charge once RAID_SIZE are together or a friend already charged.
-        if (raidTime) {
-            MapLocation ehq = MapState.enemyHQGuess();
-            if (MapState.enemyHQ == null) { if (!rc.canSenseLocation(ehq)) approachSafely(ehq); return; }   // look at the guess from outside gun range
-            int near = 0; boolean follow = false;
-            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; near++; if (Nav.cheb(f.location, ehq) < C.RAID_RALLY - 1) follow = true; }
-            raiding = near + 1 >= C.RAID_SIZE || follow || round >= C.RAID_LATEST;
-            if (raiding) { approachSafely(ehq); return; }   // close in outside gun range until a seat is in sight; the pickup loop above then dashes for it (7 drones flying at the HQ itself were shot one a round at d2 9)
-            MapLocation h = MapState.home != null ? MapState.home : loc;
-            int dx = Integer.signum(h.x - ehq.x), dy = Integer.signum(h.y - ehq.y);
-            MapLocation rally = new MapLocation(ehq.x + dx * C.RAID_RALLY, ehq.y + dy * C.RAID_RALLY);
-            if (loc.distanceSquaredTo(rally) > 8) { nav.setTarget(rally); nav.step(); }
-            return;
+            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " raid=false"); return; }
+            if (gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
         }
         // patrol: between home and the enemy HQ guess
         if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {
