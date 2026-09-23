@@ -465,12 +465,31 @@ poortho, mvpatel2000, cormackikkert (first win), battlecode20-team4, awesomelemo
 g_iter2's 23%. Elo 1358 (the pool's own games keep drifting our K=32 rating; the win rates are the
 measure). Gate `gate9` (Iteration 9, the late raid, vs g_iter3) launched at 20:45.
 
+**Gate 10, first attempt: aborted at 9-23 (28%)** after two batches -- a second launch of the same gate
+(a waiter and a manual start both fired) re-synced the tools under the running one and both died.
+The 32 games are informative anyway: every loss a wall race decided by a few tiles at r3050-3180,
+and in each our eight drones made **zero** pickups all game while the incumbent's made 1-5,
+killing miners and landscapers before the flood. Home defence forfeited that attrition. Fix: the
+drones split by id parity, half defend, half hunt as before. Relaunch as `gate10` after the
+diagnostic (FourLakeLand, MtDoom vs g_iter4: pickups on both sides comparable).
+
 ## Block 10 -- g_iter4 submission block (run block10, 2026-09-23)
 
 60 games: **15/60 (25%)**. `wpine215.stardustv2` 3/4, `winkelmantanner` 2/4, `poortho` 2/4,
 `cormackikkert` 2/4, `benzyx` 2/4; 1/4 against ronniesong0809, laurenschneider, battlecode20-team4,
 AngusRitossa (first win); 0/4 against uvafan, rzhan11, mvpatel2000, awesomelemonade, IvanGeffner,
 EmaPajic. Elo 1432, **rank 60 of 66** (first move off the bottom). g_iter3 was 28/108 (26%).
+
+## Block 11 -- g_iter4 against the challenge pool (run block11, 2026-09-23)
+
+48 games: **10/48 (21%)**. `wpine215` 2/3, `poortho` 2/3; 1/3-1/4 against benzyx, battlecode20-team4,
+IvanGeffner, winkelmantanner, rzhan11, cormackikkert; 0 against the rest. Cumulative for g_iter4:
+25/108 (23%), no better than g_iter3's 26% -- the provisional raid earns nothing measurable on the
+ladder so far (it needs a center before r700, which the strong maps rarely allow). Elo 1389, rank 65.
+
+Gate 10 relaunched at 22:25 with the parity split and the defenders on the 5-7 annulus (the mirror
+diagnostics on FourLakeLand and MtDoom were single games decided by building placement luck: our
+school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on both runs).
 
 ## Ledger (closed directions)
 
