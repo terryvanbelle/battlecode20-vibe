@@ -416,7 +416,15 @@ enemy and die. Candidate = Iteration 9 + drones that before the raid patrol a Ch
 around the HQ and lift any enemy landscaper or miner within 8 of it (landscapers first, those on
 the ring or beside the HQ first), dropping it in water. Diagnostics vs g_iter3 on IsThisProcedural
 and CentralLake: `@pickup home=true` > 0 when g_iter3's attackers arrive; drones alive at r2000
-higher than g_iter3's own. Gate `gate10` vs the incumbent after gate 9. Falsifier: below 53%.
+higher than g_iter3's own.
+
+Diagnostics found a second, larger defect on the way: on IsThisProcedural the A side never built a
+school (soup 5,134 idle at r700, no seats, drowned r717) because the builder's nearest circle tile
+was a 99-high cliff it walked at for 600 rounds. Added to the candidate: the builder skips circle
+tiles it cannot climb or that stalled it, and widens the circle after 25 turns with nothing
+buildable. Rerun: school at r110, ring 807 at r2500, won r2933. The mirror game had no intruders,
+so the defence itself fired nowhere (0 pickups); the gate carries both pieces. Gate `gate10` vs
+`REF=g_iter4`. Falsifier: below 53%.
 
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
