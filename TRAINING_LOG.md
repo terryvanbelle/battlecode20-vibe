@@ -430,6 +430,14 @@ IvanGeffner, EmaPajic; 0/4 against rzhan11, ronniesong0809, cormackikkert, aweso
 AngusRitossa. g_iter2's cumulative was 47/204 (23%). Elo 1376 (K=32 drifts with the pool's own
 games), rank 66 of 66.
 
+## Block 9 -- g_iter3 against the challenge pool (run block9, 2026-09-23)
+
+48 games: **12/48 (25%)**. `mhahn2003.nonrush` 3/3, `benzyx.seeding` 3/3; 1/3 against wpine215,
+poortho, mvpatel2000, cormackikkert (first win), battlecode20-team4, awesomelemonade (first win);
+0/3 against the other eight. Cumulative for g_iter3 on the strong field: 28/108 (26%) against
+g_iter2's 23%. Elo 1358 (the pool's own games keep drifting our K=32 rating; the win rates are the
+measure). Gate `gate9` (Iteration 9, the late raid, vs g_iter3) launched at 20:45.
+
 ## Ledger (closed directions)
 
 - **The citadel (ring at Chebyshev 2 with the buildings sealed inside; Iteration 6, 2026-09-23)** --
