@@ -135,10 +135,10 @@ public abstract strictfp class Robot {
         if (MapState.originKnown()) Debug.log("@origin x=" + MapState.minX + " y=" + MapState.minY);
     }
 
-    /** Remember the terrain within Chebyshev 2 (25 tiles, ~25 bytecodes each) for symmetry pruning. */
+    /** Remember the terrain within Chebyshev 1 (9 tiles) for symmetry pruning; ~60 bytecodes a tile. */
     protected void observeTerrain() throws GameActionException {
-        if (!MapState.originKnown()) return;
-        for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
+        if (!MapState.originKnown() || MapState.symKnown() >= 0) return;
+        for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) {
             MapLocation l = new MapLocation(loc.x + dx, loc.y + dy);
             if (!rc.canSenseLocation(l)) continue;
             MapState.observe(l, rc.senseElevation(l), rc.senseFlooding(l));
@@ -213,4 +213,11 @@ public abstract strictfp class Robot {
 
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
     protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
+    /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
+     *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
+     *  dirt spent on it is wasted -- a quarter of ours was, on MoreCowbell. */
+    protected boolean exposed(MapLocation l) {
+        for (int i = 8; --i >= 0;) { MapLocation n = l.add(DIRS[i]); if (!n.equals(MapState.home) && !onRing(n) && rc.onTheMap(n)) return true; }
+        return false;
+    }
 }

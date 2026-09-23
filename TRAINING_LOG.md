@@ -134,9 +134,12 @@ sites prefer the highest tile on the circle. Drones drop enemy units into water 
 Both seat defects are Iteration 1 defects exposed by a longer game; the g_iter1 snapshot carries
 them.
 
-**Gate.** `BOT=bot REF=g_iter1 N=240 tools/mirror.sh` (run `gate2`). Falsifier: below 53% at the
-cap. Second arm: none pre-registered (the mechanism is a defect repair plus bank spending, both
-visible to a twin). Expected cost: mirror games run to r2500 (both walled), ~10 VM-minutes each.
+**Gate.** `BOT=bot REF=g_iter1 N=240 tools/mirror.sh` (run `gate2`): **SPRT_INCONCLUSIVE 125-115
+(52.1%)** at the cap, below the 53% keep line -> the bundle is not kept. 240 games took ~2 h 10 min
+(mirror games run to r2500-r3100). Reading: the seat repairs are real (traced twice) but the early
+drones did nothing in the mirror (12 drones, 0 pickups on MoreCowbell in a later diagnostic) and
+cost the bank that Iteration 1's twin spends on attackers. Split for Iteration 3: keep the seat
+repairs, drop the early drones, and fix the wall race itself.
 
 ## Block 2 -- g_iter1 against the 20 bots that beat it (run 20260923-144021-scrim-bot)
 
@@ -166,6 +169,31 @@ landscaper count at r200 is the top correlate; a second ring of helpers depositi
 would double the wall's growth (each seat gains 0.5/round from its own landscaper). (b) Vaporators
 that survive the flood (theirs: 3 at r900, ours: 0), i.e. sites inside a wider wall or on natural
 high ground. (c) Trapped units in general: anything caught between the wall and an edge.
+
+## Iteration 3 -- the wall race (2026-09-23)
+
+**Target (census + trace).** Their landscaper count at r200 is the top correlate of our losses
+(+0.62 within-opponent); six of twelve unlocked losses are wall races lost at r1211-r3090. A new
+dumper mode `--ring N` prints both rings' eight elevations, minimum and the water level, and made the
+mechanism visible in one line: on MoreCowbell at r3000 our ring stood level at 1176 while the
+opponent's exposed tiles stood at 1392-1429 **with one tile still at elevation 3** -- enclosed by
+the other ring tiles, the HQ and the map edge, it can never flood, so it never needed dirt. We had
+spent a quarter of our dirt levelling two such pockets.
+
+**Mechanism.** (1) Seats are exposed ring tiles only (a tile touching some on-map tile outside the
+ring). (2) A seated landscaper raises the LOWEST exposed tile among itself and its ring neighbours
+(slack 2) instead of always its own [`eq=` in `@wallstat`]. (3) A seat with no outside dirt
+borrows from a ring neighbour at least 10 taller [`borrow=`]. (4) Helpers (landscapers 9-16, bank
+300) post at distance 2 next to the lowest exposed ring tile, keep themselves just above the coming
+water, and feed that tile [`@helper`, `@posted`, `helperDeps=`]. (5) A seat the navigator cannot
+reach is blacklisted [`@badseat`]. Plus Iteration 2's seat repairs and high building sites; the
+early fulfillment center is reverted to Iteration 1's order.
+
+**Diagnostics** (driver, vs `g_iter1`): 3a MoreCowbell won r689 but helpers 0 (drones ate the
+bank; miner bytecode over x116, terrain observation at 6.1k a turn); 3b drones after r400 or bank
+800, allocation-free 9-tile observation (miner max 7.5k, 0 over); 3c/3d lost the race at r3057-3089
+with rings 1176 level against 1392-1429 exposed; 3e state bug (a helper still holding a seat);
+3f: see below.
 
 ## Ledger (closed directions)
 

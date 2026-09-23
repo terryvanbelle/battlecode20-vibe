@@ -53,19 +53,20 @@ public final strictfp class MapState {
         }
     }
 
-    /** Remember a sensed tile and prune hypotheses whose image we already know and which disagrees. */
+    /** Remember a sensed tile and prune hypotheses whose image we already know and which disagrees.
+     *  Allocation-free: the three image indices are arithmetic on (x, y) (the object version cost
+     *  ~245 bytecodes a tile and put miners over their budget 120 times in one game). */
     public static void observe(MapLocation l, int elevation, boolean flooded) {
-        if (!originKnown() || !onMap(l)) return;
-        int i = index(l);
+        if (!originKnown()) return;
+        int x = l.x - minX, y = l.y - minY;
+        if (x < 0 || y < 0 || x >= width || y >= height) return;
+        int i = x + y * width;
         elev[i] = elevation; known[i] = true;
-        if (sym == 0 || Integer.bitCount(sym) == 1) return;
-        for (int h = 0; h < 3; h++) {
-            if ((sym & (1 << h)) == 0) continue;
-            MapLocation m = image(l, h);
-            int j = index(m);
-            if (j == i || !known[j]) continue;
-            if (elev[j] != elevation) sym &= ~(1 << h);
-        }
+        if (sym == 1 || sym == 2 || sym == 4) return;
+        int rx = width - 1 - x, ry = height - 1 - y;
+        if ((sym & 1) != 0) { int j = rx + ry * width; if (j != i && known[j] && elev[j] != elevation) sym &= ~1; }
+        if ((sym & 2) != 0) { int j = rx + y * width; if (j != i && known[j] && elev[j] != elevation) sym &= ~2; }
+        if ((sym & 4) != 0) { int j = x + ry * width; if (j != i && known[j] && elev[j] != elevation) sym &= ~4; }
         if (sym == 0) sym = 7;   // contradiction (should not happen on a legal map): start over rather than stay empty
     }
 

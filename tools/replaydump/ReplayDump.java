@@ -28,6 +28,7 @@ import java.util.zip.GZIPInputStream;
  *   --bytecode       per-type bytecode summary (max used, rounds at/over the limit)
  *   --navstats       moves, A-B-A oscillations, coverage, first contact with the enemy HQ
  *   --threat A|B     CSV every 25 rounds: enemy landscapers/drones near that team's HQ, HQ buried dirt
+ *   --ring N         every N rounds, each HQ's eight ring tiles: elevation (F if flooded), min, and the water level
  *   --elev-at R      elevation grid (two chars per tile, clipped to -9..99, "~~" water) at round R
  *   --quiet          suppress aggregates
  *
@@ -37,7 +38,7 @@ import java.util.zip.GZIPInputStream;
 public class ReplayDump {
     static int every = 50, mapEvery = 0, fromRound = -1, toRound = -1, trackId = -1;
     static boolean metrics = false, quiet = false, bytecodeSummary = false, navStats = false;
-    static int threatTeam = 0;
+    static int threatTeam = 0, ringEvery = 0;
     static Pattern logPat = null; static int logsTeam = -1;
     static TreeSet<Integer> mapAt = new TreeSet<>(), elevAt = new TreeSet<>();
 
@@ -76,6 +77,7 @@ public class ReplayDump {
                 case "--map": mapEvery = Integer.parseInt(args[++i]); break;
                 case "--map-at": mapAt.add(Integer.parseInt(args[++i])); break;
                 case "--elev-at": elevAt.add(Integer.parseInt(args[++i])); quiet = true; break;
+                case "--ring": ringEvery = Integer.parseInt(args[++i]); quiet = true; break;
                 case "--from": fromRound = Integer.parseInt(args[++i]); break;
                 case "--to": toRound = Integer.parseInt(args[++i]); break;
                 case "--robot": trackId = Integer.parseInt(args[++i]); break;
@@ -221,7 +223,7 @@ public class ReplayDump {
         // blockchain
         msgsSubmitted += rd.newMessagesLength(); for (int i = 0; i < rd.newMessagesCostsLength(); i++) feesPaid += rd.newMessagesCosts(i);
         msgsMinted += rd.broadcastedMessagesLength();
-        if (inWindow(round)) for (int i = 0; i < rd.broadcastedMessagesLength(); i++) System.out.printf("  r%d BLOCK cost=%d %s%n", round, rd.broadcastedMessagesCosts(i), rd.broadcastedMessages(i));
+        if (inWindow(round)) for (int i = 0; i < rd.broadcastedMessagesLength(); i++) { String msg; try { msg = rd.broadcastedMessages(i); } catch (RuntimeException e) { msg = "?"; } System.out.printf("  r%d BLOCK cost=%d %s%n", round, i < rd.broadcastedMessagesCostsLength() ? rd.broadcastedMessagesCosts(i) : -1, msg); }
         // bytecodes
         for (int i = 0; i < rd.bytecodeIDsLength(); i++) {
             Robot r = bots.get(rd.bytecodeIDs(i)); if (r == null) continue;
@@ -252,6 +254,26 @@ public class ReplayDump {
         if (!quiet && every > 0 && round % every == 0) printAggregate(round);
         if ((mapEvery > 0 && round % mapEvery == 0) || mapAt.contains(round)) printBoard(round);
         if (elevAt.contains(round)) printElev(round);
+        if (ringEvery > 0 && round % ringEvery == 0) printRing(round);
+    }
+
+    /** --ring: the wall race in one line per round: both HQs' ring tiles, their minimum and the water. */
+    static void printRing(int round) {
+        StringBuilder s = new StringBuilder(String.format("RING r%-5d water=%7.1f", round, waterLevel(round)));
+        for (int t = 1; t <= 2; t++) {
+            Robot hq = null; for (Robot r : bots.values()) if (r.type == 0 && r.team == t) hq = r;
+            s.append(String.format("  %s:", t == 1 ? "A" : "B"));
+            if (hq == null) { s.append(" dead"); continue; }
+            int min = Integer.MAX_VALUE, n = 0; StringBuilder e = new StringBuilder();
+            for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) {
+                if (dx == 0 && dy == 0) continue;
+                int k = idx(hq.x + dx, hq.y + dy); if (k < 0) continue;
+                n++; e.append(' ').append(dirt[k]).append(water[k] ? "F" : "");
+                if (dirt[k] < min) min = dirt[k];
+            }
+            s.append(e).append(String.format(" | min=%d (%d tiles) hqElev=%d", min, n, dirt[idx(hq.x, hq.y)]));
+        }
+        System.out.println(s);
     }
 
     static void printElev(int round) {

@@ -18,6 +18,7 @@ public final strictfp class Nav {
     private int stuck = 0;
     private int noProgress = 0;            // turns since bestDist last improved
     public static final int STALL = 10;    // after this many, the target is treated as unreachable
+    public int stallLimit = STALL;         // per robot: landscapers waiting for a seat use a longer one
     private int bestDist = 1 << 30;
     private boolean bugging = false; private final boolean rightHanded;
     public int steps = 0, blocked = 0, bugSteps = 0;   // counters for @nav logs
@@ -33,7 +34,7 @@ public final strictfp class Nav {
     public MapLocation target() { return target; }
     public boolean isBugging() { return bugging; }
     /** True once STALL turns have passed without ever getting closer to the target than before. */
-    public boolean stalled() { return noProgress >= STALL; }
+    public boolean stalled() { return noProgress >= stallLimit; }
 
     private boolean isRecent(MapLocation l) { for (int i = 6; --i >= 0;) if (recent[i] != null && recent[i].equals(l)) return true; return false; }
     private void remember(MapLocation l) { recent[recentI] = l; recentI = (recentI + 1) % 6; }

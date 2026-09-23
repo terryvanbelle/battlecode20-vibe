@@ -7,6 +7,8 @@ public strictfp class FulfillmentCenter extends Robot {
     private int built = 0;
     FulfillmentCenter(RobotController rc) { super(rc); }
     @Override protected void turn() throws GameActionException {
-        if (built < C.DRONES_MAX && rc.getTeamSoup() >= RobotType.DELIVERY_DRONE.cost + C.DRONE_RESERVE && tryBuild(RobotType.DELIVERY_DRONE, null)) built++;
+        int soup = rc.getTeamSoup();
+        boolean want = built < C.DRONES_MAX && soup >= RobotType.DELIVERY_DRONE.cost + (rc.getRoundNum() < C.DRONE_ROUND ? C.DRONE_EARLY_BANK : C.DRONE_RESERVE);
+        if (want && tryBuild(RobotType.DELIVERY_DRONE, null)) built++;
     }
 }

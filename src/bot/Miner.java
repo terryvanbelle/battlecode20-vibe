@@ -30,13 +30,21 @@ public strictfp class Miner extends Robot {
     }
 
     @Override protected void turn() throws GameActionException {
-        sense(); if (round % 3 == 0) readBlock(); probeEdges(); MapState.markSeen(loc);
+        sense(); int b0 = Clock.getBytecodeNum(); if (round % 3 == 0) readBlock(); int b1 = Clock.getBytecodeNum(); probeEdges(); MapState.markSeen(loc);
         if (round % 8 == id % 8 && Clock.getBytecodeNum() < 3000) observeTerrain();
+        int b2 = Clock.getBytecodeNum();
         if (round % 100 == 0) Debug.log("@minerstat builder=" + builder + " mined=" + mined + " deposits=" + deposits + " explores=" + explores + " soupMem=" + nSoup + " unreachable=" + unreachable);
-        rememberSoup();
+        rememberSoup(); int b3 = Clock.getBytecodeNum();
+        try { turn2(); } finally { int b4 = Clock.getBytecodeNum(); if (b4 > 8000) Debug.log("@bcprof sense=" + b0 + " block=" + (b1 - b0) + " terrain=" + (b2 - b1) + " soup=" + (b3 - b2) + " act=" + (b4 - b3) + " bug=" + nav.isBugging()); }
+    }
+    private void turn2() throws GameActionException {
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
         avoidRing = refinery != null || ringSeen;   // deposit at the HQ only while the wall has not started
-        if (avoidRing && onRing(loc) && rc.isReady()) { for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } } }
+        if (avoidRing && onRing(loc) && rc.isReady()) {
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
+            // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }
+        }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (builder && build()) return;
@@ -50,8 +58,8 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtFC == 0 && soup >= C.FC_EARLY_BANK) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2: before the flood takes the builder
-        else if (builtFC > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
+        else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
+        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
