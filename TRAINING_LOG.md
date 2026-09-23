@@ -335,6 +335,31 @@ waiting landscaper on the wrong tile blocks a building; a seat on G blocks the l
 g_iter2's minimum at r2500; `idle` per landscaper at r600 below 100 for seats; buildings alive at
 r1000 (metrics V, DS, FC > 0). Gate: SPRT mirror vs g_iter2. Falsifier: below 53% at the cap.
 
+**Outcome: closed (ledger).** Ten 24-game quick-set sweeps against g_iter2 (`cit1`..`cit10`, both
+sides of the 12 maps) scored 9, 5, 6, 7, 8, 6, 4, 5, 4, 6 of 24 as the mechanisms were made to
+work one by one: the ferry (24 lifts on ALandDivided once the spawn tile F, the gate G and a
+parking tile existed), the seal (coverage-based seats and no pre-dig moat took the early deaths
+from r257-935 to r2700+ on most maps), the raid (drones reach the enemy ring only after the
+symmetry image is scouted from outside gun range). What did not move: the wall race. Sixteen
+tiles halve the per-tile rate of the same landscapers (ALandDivided r3000: 1199 against
+g_iter2's 1400-1600), and the post-flood economy the design relies on is three vaporators, 6 soup
+a round -- one drone per 25 rounds, which never adds up to the wave of 16 that the enemy HQ's
+one shot a round requires (10 alive at r2500, 25 built). The one win by raid (ALandDivided r2820,
+12 pickups) came from an early drone cluster that later versions could not repeat. The code is
+kept in `src/arch_citadel`; the transferable pieces (chain-shared origin and enemy HQ, hypothesis
+pruning on sight, a stall exit for helper posts, the seats' moat, the spawn-tile trap) went into
+LEARNINGS and Iteration 7.
+
+## Iteration 7 -- incumbent plus the citadel's transferable pieces (2026-09-23)
+
+Candidate = g_iter2 + (a) the prober posts the map origin once and the sighter the enemy HQ
+once; the HQ re-posts HQ_LOC, MAP_ORIGIN and ENEMY_HQ every 100 rounds; a robot that can see the
+current enemy-HQ guess and finds no HQ prunes that hypothesis; (b) a helper whose post stalls
+becomes an attacker instead of walking forever. Expected effect: attackers and drones reach the
+real enemy HQ (fewer wasted units on the wrong image), no idle helpers. Diagnostics vs g_iter2 on
+TwoLakeLand (edge HQ) and ALandDivided: counters `@prune`, `@sight`, `@badpost`; helper `digs=0`
+count at r600 must be 0. Gate `gate7`: SPRT mirror vs g_iter2. Falsifier: below 53% at the cap.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
@@ -353,15 +378,20 @@ Cumulative for g_iter2 on the strong field: 37/156 (24%). Elo 1372, rank 66 of 6
 
 ## Ledger (closed directions)
 
-(empty)
+- **The citadel (ring at Chebyshev 2 with the buildings sealed inside; Iteration 6, 2026-09-23)** --
+  refuted at the sweep stage: 4-9 of 24 against g_iter2 over ten sweeps after every mechanism was
+  shown to work in diagnostics. Kind: priced below the gate. Reason: 16 tiles halve the wall rate
+  and the sealed economy (6 soup a round) cannot fund a drone wave. Reopen only with a post-flood
+  income an order of magnitude larger (more vaporators than a pocket holds) or a wall that needs
+  fewer than 16 tiles.
 
 ## Functional-area map
 
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy | Iteration 1 | 0 |
-| flood defence (wall) | Iteration 5 (reject) | 3 |
+| flood defence (wall) | Iteration 6 (closed) | 4 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | -- | 0 |
-| communication | -- | 0 |
+| communication | Iteration 7 | 0 |

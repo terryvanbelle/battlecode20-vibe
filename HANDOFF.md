@@ -8,11 +8,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - Phase 0 complete: engine on the driver and the VM, runner/gate/ladder tools ported and tested, replay dumper, unit tests.
 - Incumbent and submission: `src/g_iter2` (accepted 29-3 over `g_iter1`). Iterations 3, 4 and 5 were rejected at the
   gate (TRAINING_LOG.md); the last lesson is that a role with a fixed station list needs a stall exit.
-- `src/bot` = Iteration 6, the citadel (DESIGN.md "The citadel"): ring at Chebyshev 2, buildings sealed in the pocket,
-  a drone ferry from the spawn tile F over the gate tile G, and after r750 a drone raid on the enemy ring. Diagnostics
-  (`tools/citadel-diag.sh <map>` on `diag/citadel-<map>.*`) and 24-game quick-set sweeps against g_iter2 on the VM
-  (`cit1` 9/24: early losses where too few landscapers reached the ring; `cit2` after the ring-full rule) drive the
-  fixes; the gate is the usual SPRT mirror vs g_iter2 (`tools/mirror.sh`).
+- Iteration 6, the citadel (ring at Chebyshev 2, buildings sealed inside, drone ferry and raid), is closed after ten
+  24-game sweeps at 4-9/24 against g_iter2 (TRAINING_LOG ledger); its code is `src/arch_citadel`, its tools
+  `tools/citadel-diag.sh` and `replay-dump.sh --ringd`.
+- `src/bot` = Iteration 7 = g_iter2 + chain-shared origin/enemy HQ with hypothesis pruning on sight + a stall exit for
+  helper posts. Diagnostics `diag/iter7-*.{log,bc20}` (gitignored), then gate `gate7` (SPRT mirror vs g_iter2).
 - Ladder: g_iter2 is 37/156 (24%) on the strong field over blocks 1-6; Elo 1372, rank 66/66 (`progress/ELO.md`).
 - Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);
   the ladder field is `tools/ladder-bots.txt` (one bot per repo, chosen by name).

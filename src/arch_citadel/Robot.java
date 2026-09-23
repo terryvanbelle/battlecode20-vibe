@@ -1,4 +1,4 @@
-package bot;
+package arch_citadel;
 
 import battlecode.common.*;
 
@@ -25,6 +25,8 @@ public abstract strictfp class Robot {
     protected RobotInfo hqInfo;             // our HQ if in sight (its dirtCarrying is how buried it is)
     protected boolean avoidRing = false;    // miners/drones: never step onto the wall ring (Iteration 2: miners fleeing the flood took the landscapers' seats)
     protected boolean ringSeen = false;     // a friendly landscaper is on a ring tile
+    protected MapLocation sawDrone;         // an enemy drone seen this turn
+    private int lastDronePost = -1000;
 
     // bytecode monitor
     private int bcMax = 0, bcOver = 0, bcNear = 0, turns = 0;
@@ -53,6 +55,7 @@ public abstract strictfp class Robot {
             int r0 = rc.getRoundNum();
             round = r0; loc = rc.getLocation();
             try {
+                if ((MapState.home == null || !MapState.originKnown()) && type != RobotType.HQ) readBlock();   // learn home and the origin from the chain (the HQ re-posts both every 100 rounds)
                 turn();
             } catch (Exception e) { Debug.exception(e); }
             int used = Clock.getBytecodeNum();
@@ -81,19 +84,21 @@ public abstract strictfp class Robot {
     /** Sense everything once and bucket it. 100 + ~12 per robot bytecodes. */
     protected void sense() {
         nearby = rc.senseNearbyRobots();
-        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null; ringSeen = false;
+        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null; ringSeen = false; sawDrone = null; MapLocation schoolSeen = null;
         for (int i = nearby.length; --i >= 0;) {
             RobotInfo r = nearby[i];
-            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } else if (r.type == RobotType.LANDSCAPER && onRing(r.location)) ringSeen = true; }
+            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } else if (r.type == RobotType.LANDSCAPER && onRing(r.location)) ringSeen = true; else if (r.type == RobotType.DESIGN_SCHOOL) schoolSeen = r.location; }
             else if (r.team == them) {
                 if (nEnemy < 64) enemies[nEnemy++] = r;
                 int d = loc.distanceSquaredTo(r.location);
                 if (d < nearestEnemyD2) { nearestEnemyD2 = d; nearestEnemy = r; }
                 if (r.type == RobotType.HQ) { if (MapState.enemyHQ == null) Debug.log("@sight enemyHQ=" + r.location); MapState.sightEnemyHQ(r.location); }
+                else if (r.type == RobotType.DELIVERY_DRONE) sawDrone = r.location;
             } else if (nCow < 8) cows[nCow++] = r;
         }
+        if (schoolSeen != null && MapState.school == null) MapState.setSchool(schoolSeen, rc);
         try { shareSightings(); } catch (GameActionException e) { }
-        // Iteration 7: a symmetry hypothesis whose image is in sight and holds no enemy HQ is dead (the citadel's raid flew to a wrong image)
+        // the enemy HQ guess: a hypothesis whose image we can see and which holds no enemy HQ is dead (Iteration 6: the raid flew to a wrong image)
         if (MapState.enemyHQ == null && MapState.symCount() > 1) { MapLocation g = MapState.enemyHQGuess(); if (g != null && rc.canSenseLocation(g)) { MapState.pruneEmpty(g); Debug.log("@prune empty=" + g + " sym=" + MapState.sym); } }
     }
 
@@ -108,11 +113,19 @@ public abstract strictfp class Robot {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
+                case Comms.ENEMY_DRONE: MapState.enemyDroneRound = round - 1; break;
                 default: break;
             }
         }
     }
 
+    /** Tell the team about an enemy drone, at most once per DRONE_POST_EVERY rounds per robot. */
+    protected void reportDrone() throws GameActionException {
+        if (sawDrone == null) return;
+        MapState.enemyDroneRound = round;
+        if (round - lastDronePost < C.DRONE_POST_EVERY) return;
+        if (post(Comms.make(Comms.ENEMY_DRONE, round, us, sawDrone.x, sawDrone.y))) { lastDronePost = round; Debug.log("@dronepost at=" + sawDrone); }
+    }
     /** Post a message for 1 soup if we can. */
     protected boolean post(int[] m) throws GameActionException {
         if (!rc.canSubmitTransaction(m, 1)) return false;
@@ -138,9 +151,9 @@ public abstract strictfp class Robot {
         if (MapState.originKnown()) { Debug.log("@origin x=" + MapState.minX + " y=" + MapState.minY); postOrigin = true; }
     }
     protected boolean postOrigin = false, postedEnemyHQ = false;
-    /** Iteration 7: the prober posts the origin once, the sighter the enemy HQ once; the HQ re-posts both every 100 rounds. */
+    /** Share what the pocket cannot learn by itself: the origin (once, by the prober) and the enemy HQ (once, by the sighter). */
     protected void shareSightings() throws GameActionException {
-        if (postOrigin && MapState.originKnown() && type != RobotType.HQ) postOrigin = !post(Comms.make(Comms.MAP_ORIGIN, round, us, MapState.minX, MapState.minY));
+        if (postOrigin && MapState.originKnown() && type != RobotType.HQ) { postOrigin = !post(Comms.make(Comms.MAP_ORIGIN, round, us, MapState.minX, MapState.minY)); }
         if (!postedEnemyHQ && MapState.enemyHQ != null && type != RobotType.HQ) postedEnemyHQ = post(Comms.make(Comms.ENEMY_HQ, round, us, MapState.enemyHQ.x, MapState.enemyHQ.y));
     }
 
@@ -159,11 +172,22 @@ public abstract strictfp class Robot {
 
     /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
-        if (avoidRing && onRing(l)) return false;
+        if (!allowedTile(l)) return false;
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
-    /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
-    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)); }
+    /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it).
+     *  A unit inside the pocket may cross the ring (it was born there), and a flyer may hover on the gate. */
+    protected boolean allowedTile(MapLocation l) {
+        if (!avoidRing || !onRing(l)) return true;
+        if (type.canFly() && isGate(l)) return true;
+        return Nav.cheb(loc, MapState.home) < C.RING;
+    }
+    protected static boolean isGate(MapLocation l) { return MapState.gateG != null && l.equals(MapState.gateG); }
+    /** Landscapers of ours standing on ring tiles, as seen from here (the ring is within sight of the pocket and the ring). */
+    protected int ringCount() { int n = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && onRing(friends[i].location)) n++; if (onRing(loc) && type == RobotType.LANDSCAPER) n++; return n; }
+    /** The wall may rise: the ring is nearly full (the gate stays free) or the fallback round has come. Before that units born inside must still climb out. */
+    protected boolean wallMayRise() { if (round >= C.WALL_START) return true; exposed(MapState.home); return MapState.ringExposedCount > 0 && ringCount() >= MapState.ringExposedCount - 2; }
+    protected static boolean isSpawnTile(MapLocation l) { return MapState.gateF != null && l.equals(MapState.gateF); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
     protected boolean floodDanger() throws GameActionException {
@@ -221,12 +245,23 @@ public abstract strictfp class Robot {
     }
 
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
-    protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
+    protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == C.RING; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
      *  dirt spent on it is wasted -- a quarter of ours was, on MoreCowbell. */
     protected boolean exposed(MapLocation l) {
-        for (int i = 8; --i >= 0;) { MapLocation n = l.add(DIRS[i]); if (!n.equals(MapState.home) && !onRing(n) && rc.onTheMap(n)) return true; }
-        return false;
+        int w = 2 * C.RING + 1;
+        if (MapState.ringExposed == null) {
+            MapState.ringExposed = new boolean[w * w];
+            for (int dx = -C.RING; dx <= C.RING; dx++) for (int dy = -C.RING; dy <= C.RING; dy++) {
+                if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING) continue;
+                MapLocation t = new MapLocation(MapState.home.x + dx, MapState.home.y + dy); boolean ex = false;
+                for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, MapState.home) > C.RING && rc.onTheMap(n)) { ex = true; break; } }
+                MapState.ringExposed[(dx + C.RING) + (dy + C.RING) * w] = ex; if (ex) MapState.ringExposedCount++;
+            }
+        }
+        int dx = l.x - MapState.home.x, dy = l.y - MapState.home.y;
+        if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING) return false;
+        return MapState.ringExposed[(dx + C.RING) + (dy + C.RING) * w];
     }
 }

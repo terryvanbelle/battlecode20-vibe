@@ -65,6 +65,19 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   school and the center on the pocket side; a builder that parked there could never leave and
   blocked every spawn (Soup diagnostic: no drones all game).
 
+- **A wall of 16 tiles grows at half the rate of a wall of 8** with the same landscapers, and no
+  economy that fits in the pocket behind it (three vaporators, 6 soup a round) buys that back: the
+  citadel's ring reached 1199 at r3000 against 1400-1600 for the incumbent's ring of 8 (ten
+  24-game sweeps, 4-9 wins). The wall race is per-tile rate; extra tiles are pure cost.
+- **A drone raid needs a wave, not a trickle.** The enemy HQ shoots one drone a round and its
+  range covers the last five rounds of the approach; drones arriving one at a time die one at a
+  time (25 built, 3 pickups). A wave of 16 would work and costs 2,400 soup at once.
+- **A symmetry guess must be looked at before anything gathers around it.** Raiders rallied for
+  1,500 rounds beside the rotation image of our HQ; the real one was 20 tiles away. Fly to within
+  sense range (r2 24) of the guess, outside shooting range (r2 15), and let `pruneEmpty` work.
+- **Robots born inside a sealed area know nothing**: no origin (no edge in sight), no enemy HQ,
+  so no guess at all. Whoever learns a map fact must post it once; the HQ must re-post it.
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for

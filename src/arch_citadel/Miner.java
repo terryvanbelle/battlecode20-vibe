@@ -1,4 +1,4 @@
-package bot;
+package arch_citadel;
 
 import battlecode.common.*;
 
@@ -30,7 +30,7 @@ public strictfp class Miner extends Robot {
     }
 
     @Override protected void turn() throws GameActionException {
-        sense(); int b0 = Clock.getBytecodeNum(); if (round % 3 == 0) readBlock(); int b1 = Clock.getBytecodeNum(); probeEdges(); MapState.markSeen(loc);
+        sense(); reportDrone(); int b0 = Clock.getBytecodeNum(); if (round % 3 == 0 || builder) readBlock(); int b1 = Clock.getBytecodeNum(); probeEdges(); MapState.markSeen(loc);
         if (round % 8 == id % 8 && Clock.getBytecodeNum() < 3000) observeTerrain();
         int b2 = Clock.getBytecodeNum();
         if (round % 100 == 0) Debug.log("@minerstat builder=" + builder + " mined=" + mined + " deposits=" + deposits + " explores=" + explores + " soupMem=" + nSoup + " unreachable=" + unreachable);
@@ -39,7 +39,7 @@ public strictfp class Miner extends Robot {
     }
     private void turn2() throws GameActionException {
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
-        avoidRing = refinery != null || ringSeen;   // deposit at the HQ only while the wall has not started
+        avoidRing = !builder && (refinery != null || ringSeen);   // the refinery is outside the ring; the HQ is only a deposit before the wall starts. The builder lives inside the pocket.
         if (avoidRing && onRing(loc) && rc.isReady()) {
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
@@ -51,6 +51,9 @@ public strictfp class Miner extends Robot {
         work();
     }
 
+    /** The builder never stands on the spawn tile: boxed in by the school and the center, it could never leave it (Soup diagnostic). */
+    @Override protected boolean allowedTile(MapLocation l) { return super.allowedTile(l) && !(builder && isSpawnTile(l)); }
+
     // ---------------------------------------------------------------- builder
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
@@ -58,29 +61,29 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
+        else if (builtSchool > 0 && builtNet < C.NETGUNS_MAX && round - MapState.enemyDroneRound <= C.DRONE_ALERT && soup >= RobotType.NET_GUN.cost + C.NETGUN_ALERT_BANK) want = RobotType.NET_GUN;   // and more while drones are about
+        else if (builtSchool > 0 && builtFC == 0 && soup >= RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 6: the center right after the school -- its drones are the ferry that lets the sealed school keep working
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
-        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
-        if (want == null) return false;
-        // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
-        int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
-        if (Nav.cheb(loc, home) != dist) {
-            // walk to the nearest tile at that distance
-            MapLocation best = null; int bd = 1 << 30;
-            for (int dx = -dist; dx <= dist; dx++) for (int dy = -dist; dy <= dist; dy++) {
-                if (Math.max(Math.abs(dx), Math.abs(dy)) != dist) continue;
-                MapLocation t = new MapLocation(home.x + dx, home.y + dy);
-                if (!rc.onTheMap(t)) continue;
-                int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
-            }
-            if (best == null) return false;
-            nav.setTarget(best); nav.step(); return true;
+        // Iteration 6: once the school stands the builder stays in the pocket (the ring seals it in), parked at BUILD_DIST, waiting for the next bank.
+        if (want == null) {
+            if (builtSchool == 0) return false;
+            if (Nav.cheb(loc, home) != C.BUILD_DIST) walkToCircle(home, C.BUILD_DIST);
+            else if (isSpawnTile(loc) && rc.isReady()) for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (Nav.cheb(n, home) == C.BUILD_DIST && tryMove(DIRS[i])) break; }   // never park on the spawn tile
+            return true;
         }
+        int dist = want == RobotType.REFINERY ? C.REFINERY_DIST : C.BUILD_DIST;   // the refinery outside for the miners, everything else inside the pocket
+        if (Nav.cheb(loc, home) != dist) { walkToCircle(home, dist); return true; }
         // on the circle: build on an adjacent tile that is also on the circle (never inward: the ring must stay free)
         Direction bestD = null; int bs = 1 << 30;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
+            if (Nav.cheb(n, home) != dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
+            if (dist == C.BUILD_DIST && MapState.gateF != null) {   // the pocket layout: F stays free, the center takes F's other neighbour, nothing else does
+                if (n.equals(MapState.gateF)) continue;
+                boolean slot = n.equals(MapState.fcSlot);
+                if (want == RobotType.FULFILLMENT_CENTER ? !slot : slot) continue;
+            }
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
@@ -93,6 +96,21 @@ public strictfp class Miner extends Robot {
         else if (want == RobotType.NET_GUN) builtNet++;
         else builtFC++;
         return true;
+    }
+
+    /** Walk to the nearest free tile at Chebyshev `dist` from home. */
+    private void walkToCircle(MapLocation home, int dist) throws GameActionException {
+        MapLocation best = null; int bd = 1 << 30;
+        for (int dx = -dist; dx <= dist; dx++) for (int dy = -dist; dy <= dist; dy++) {
+            if (Math.max(Math.abs(dx), Math.abs(dy)) != dist) continue;
+            MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+            if (!rc.onTheMap(t)) continue;
+            if (rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.ID != id && r.type.isBuilding()) continue; }
+            if (dist == C.BUILD_DIST && isSpawnTile(t)) continue;
+            int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
+        }
+        if (best == null) return;
+        nav.setTarget(best); nav.step();
     }
 
     // ---------------------------------------------------------------- worker

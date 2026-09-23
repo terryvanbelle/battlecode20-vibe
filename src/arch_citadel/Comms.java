@@ -1,4 +1,4 @@
-package bot;
+package arch_citadel;
 
 import battlecode.common.*;
 
@@ -16,6 +16,7 @@ public final strictfp class Comms {
     public static final int SOUP = 3;          // payload: x, y, amount (a soup deposit worth walking to)
     public static final int MAP_ORIGIN = 4;    // payload: minX, minY
     public static final int SYMMETRY = 5;      // payload: surviving hypothesis bits
+    public static final int ENEMY_DRONE = 6;   // payload: x, y of an enemy drone sighting (Iteration 4: net guns on demand)
 
     static final int SALT = 0x5eed2020;
 

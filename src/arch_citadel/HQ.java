@@ -1,4 +1,4 @@
-package bot;
+package arch_citadel;
 
 import battlecode.common.*;
 
@@ -14,7 +14,7 @@ public strictfp class HQ extends Robot {
     HQ(RobotController rc) { super(rc); MapState.setHome(rc.getLocation()); }
 
     @Override protected void turn() throws GameActionException {
-        sense(); readBlock(); probeEdges();
+        sense(); reportDrone(); readBlock(); probeEdges();
         // shoot the nearest enemy drone in range
         RobotInfo target = null; int bd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type != RobotType.DELIVERY_DRONE) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd && rc.canShootUnit(e.ID)) { bd = d; target = e; } }
@@ -25,14 +25,14 @@ public strictfp class HQ extends Robot {
         // early burst by count built (miners roam out of sight, so the sensed count cannot cap anything);
         // then one more miner per MINER_REPLENISH rounds while rich, up to a hard total
         boolean want = built < C.MINERS_EARLY
-            || (built < C.MINERS_MAX && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS)
-            || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS);
+            || (built < C.MINERS_MAX && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS / 2)
+            || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS / 2);
+        if (built >= C.MINERS_EARLY && wallMayRise()) want = false;   // Iteration 6: once the wall rises the pocket is sealed and its one free tile is the ferry's
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
-        // Iteration 7: re-post every 100 rounds so robots born late (and the drones) learn home, the origin and the enemy HQ
-        if ((!postedLoc || round % 100 == 50) && round >= 2) postedLoc = post(Comms.make(Comms.HQ_LOC, round, us, loc.x, loc.y));
+        if ((!postedLoc && round >= 2) || round % 100 == 50) postedLoc = post(Comms.make(Comms.HQ_LOC, round, us, loc.x, loc.y));
+        else if (round % 100 == 75 && MapState.enemyHQ != null) post(Comms.make(Comms.ENEMY_HQ, round, us, MapState.enemyHQ.x, MapState.enemyHQ.y));   // Iteration 6: the pocket-born drones need it for the raid
         else if ((!postedOrigin || round % 100 == 25) && MapState.originKnown()) postedOrigin = post(Comms.make(Comms.MAP_ORIGIN, round, us, MapState.minX, MapState.minY));
-        else if (round % 100 == 75 && MapState.enemyHQ != null) post(Comms.make(Comms.ENEMY_HQ, round, us, MapState.enemyHQ.x, MapState.enemyHQ.y));
         if (round % 100 == 0) Debug.log("@econ soup=" + rc.getTeamSoup() + " built=" + built + " minersSeen=" + miners + " ring=" + landscapersAdj + " buried=" + rc.getDirtCarrying() + " sym=" + MapState.sym);
     }
 }
