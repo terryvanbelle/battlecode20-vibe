@@ -97,6 +97,8 @@ public abstract strictfp class Robot {
             } else if (nCow < 8) cows[nCow++] = r;
         }
         if (schoolSeen != null && MapState.school == null) MapState.setSchool(schoolSeen, rc);
+        // the enemy HQ guess: a hypothesis whose image we can see and which holds no enemy HQ is dead (Iteration 6: the raid flew to a wrong image)
+        if (MapState.enemyHQ == null && MapState.symCount() > 1) { MapLocation g = MapState.enemyHQGuess(); if (g != null && rc.canSenseLocation(g)) { MapState.pruneEmpty(g); Debug.log("@prune empty=" + g + " sym=" + MapState.sym); } }
     }
 
     /** Read last round's block and absorb what our team posted. 100 bytecodes + ~30 per message. */

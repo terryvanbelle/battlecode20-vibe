@@ -22,7 +22,7 @@ public final strictfp class MapState {
     // Iteration 6 citadel: the design school S sits in the pocket; F (a pocket tile next to S) is the spawn tile every
     // building leaves free, G = HQ + 2(F - HQ) is the ring tile no seat takes so a drone can hover there and lift a
     // landscaper off F; fcSlot is the other pocket neighbour of F, kept for the fulfillment center.
-    public static MapLocation school, gateF, gateG, fcSlot;
+    public static MapLocation school, gateF, gateG, fcSlot, park;   // park: the tile beyond the gate where idle ferry drones wait
     public static void setSchool(MapLocation s, RobotController rc) {
         if (school != null || home == null) return;
         school = s;
@@ -34,6 +34,7 @@ public final strictfp class MapState {
             if (rc.onTheMap(f) && rc.onTheMap(g)) { gateF = f; gateG = g; break; }
         }
         if (gateF == null) { gateF = cand[0]; gateG = new MapLocation(home.x + 2 * (cand[0].x - home.x), home.y + 2 * (cand[0].y - home.y)); }
+        park = new MapLocation(home.x + 3 * (gateF.x - home.x), home.y + 3 * (gateF.y - home.y));
         // the other pocket tile adjacent to F (not S): F's pocket neighbours are the two cheb-1 tiles at Chebyshev 1 from F
         for (int i = 8; --i >= 0;) { MapLocation t = gateF.add(Robot.DIRS[i]); if (Nav.cheb(t, home) == 1 && !t.equals(school) && !t.equals(home)) { fcSlot = t; break; } }
     }

@@ -36,6 +36,31 @@ standing description of how the code is organised and why; findings go to `TRAIN
 | `Debug.java` | `@tag k=v` log lines for the replay dumper |
 | `C.java` | tunable constants, one place, each with the measurement that set it |
 
+## The citadel (Iteration 6)
+
+The wall is the ring at Chebyshev `C.RING` (2) around the HQ. The eight tiles inside are the
+pocket: once the ring is sealed nothing inside can flood (`GameWorld.floodfill` spreads only from
+a flooded neighbour), so the pocket holds the design school, the fulfillment center, three
+vaporators and a net gun, and the refinery stays outside at `C.REFINERY_DIST`. The layout is
+derived from the school's tile by every robot that sees it (`MapState.setSchool`):
+
+```
+   . . G . .        G  gate: the ring tile no seat takes; a drone hovers there
+   . . F . .        F  spawn tile (pocket): the school and the center spawn onto it, nothing is built on it
+   . C S H .        S  school, C  center (F's other pocket neighbour, `fcSlot`), H  HQ
+   . . . . .        the other pocket tiles: vaporators, the net gun, the parked builder
+```
+
+Roles: seats (`Landscaper.SEAT`) on exposed ring tiles raise the lowest of their ring
+neighbourhood; helpers (`HELPER`) on distance-3 tiles feed the ring from outside and leave for the
+attack when their post stalls; a landscaper born on F after the ring rose (`INNER`) waits for the
+ferry. Before `C.WALL_START` seats only level the ring to HQ+3 so units born inside can still walk
+out; the HQ stops spawning miners then. The ferry (`Drone`): a drone on G lifts the landscaper on F
+and drops it on the lowest free exposed ring tile, else a dry distance-3 tile; from `C.GATE_CLOSE`
+the gate itself is the last target (a 16th seat), which also tells the school to stop. After
+`C.RAID_ROUND` the center builds drones without cap; they gather at `C.RAID_RALLY` from the enemy
+HQ guess and charge when `C.RAID_SIZE` are together, lifting enemy seats into the water.
+
 ## The turn loop (`Robot.loop`)
 
 ```

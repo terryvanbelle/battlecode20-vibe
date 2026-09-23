@@ -37,7 +37,12 @@ public strictfp class Landscaper extends Robot {
         if (round % 100 == 0) Debug.log("@wallstat role=" + role + " seat=" + seat + " post=" + post + " digs=" + digs + " deps=" + deposits + " eq=" + equalised + " borrow=" + borrowed + " helperDeps=" + helperDeps + " innerDeps=" + innerDeps + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " idle=" + idle + " elev=" + rc.senseElevation(loc));
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
-        if (role == INNER && Nav.cheb(loc, home) >= C.RING) { role = NONE; Debug.log("@ferried to=" + loc); }   // a drone lifted us out
+        if (role == INNER && Nav.cheb(loc, home) >= C.RING) {   // a drone lifted us out: the tile it chose is ours
+            Debug.log("@ferried to=" + loc);
+            if (onRing(loc)) { role = SEAT; seat = loc; }
+            else if (Nav.cheb(loc, home) == C.RING + 1) { role = HELPER; post = loc; }
+            else role = NONE;
+        }
         if (role == NONE || role == SEAT && seat != null && !seat.equals(loc) && occupiedByOther(seat)) chooseRole(home);
         boolean ready = rc.isReady();
         switch (role) {
@@ -66,9 +71,9 @@ public strictfp class Landscaper extends Robot {
     private boolean sealedFromHere(MapLocation home) throws GameActionException {
         int myE = rc.senseElevation(loc);
         for (int i = 8; --i >= 0;) {
-            MapLocation n = loc.add(DIRS[i]); if (!onRing(n) || !rc.canSenseLocation(n)) continue;
+            MapLocation n = loc.add(DIRS[i]); if (!onRing(n) || isGate(n) || !rc.canSenseLocation(n)) continue;   // the gate is the drone's hover tile, never a way out
             if (Math.abs(rc.senseElevation(n) - myE) > GameConstants.MAX_DIRT_DIFFERENCE) continue;
-            RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.team == us && (r.type == RobotType.LANDSCAPER || r.type.isBuilding())) continue;   // a seat: not a way out
+            if (rc.isLocationOccupied(n)) continue;   // a seat (or anything else) in the way
             return false;
         }
         return true;
