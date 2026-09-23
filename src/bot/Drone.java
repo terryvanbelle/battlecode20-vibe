@@ -58,17 +58,22 @@ public strictfp class Drone extends Robot {
             approachSafely(ehq);   // come within sight of the ring and wait for something liftable
             return;
         }
-        // pick up
-        RobotInfo tgt = null; int bd = 1 << 30;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
+        // pick up: an intruder near home (Iteration 10: landscapers before miners, the ones on our ring or beside the HQ first)
+        MapLocation home = MapState.home;
+        RobotInfo tgt = null; long bd = Long.MAX_VALUE;
+        for (int i = nEnemy; --i >= 0;) {
+            RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue;
+            if (home != null && Nav.cheb(e.location, home) > C.CHASE_RADIUS) continue;
+            long d = loc.distanceSquaredTo(e.location) + (e.type == RobotType.LANDSCAPER ? 0 : 1000) - (home != null && Nav.cheb(e.location, home) <= 1 ? 500 : 0);
+            if (d < bd) { bd = d; tgt = e; }
+        }
         if (tgt != null) {
-            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " raid=false"); return; }
+            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " raid=false home=" + (home != null && Nav.cheb(tgt.location, home) <= 2)); return; }
             if (gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
         }
-        // patrol: between home and the enemy HQ guess
-        if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {
-            MapLocation g = MapState.enemyHQGuess(), h = MapState.home;
-            if (g != null && h != null) { int t = nextInt(5); patrol = new MapLocation(h.x + (g.x - h.x) * t / 5, h.y + (g.y - h.y) * t / 5); }
+        // patrol: a box of DEFEND_RADIUS around the HQ (the old patrol toward the enemy lost most drones before the raid)
+        if (patrol == null || loc.distanceSquaredTo(patrol) <= 2) {
+            if (home != null) patrol = new MapLocation(home.x + nextInt(2 * C.DEFEND_RADIUS + 1) - C.DEFEND_RADIUS, home.y + nextInt(2 * C.DEFEND_RADIUS + 1) - C.DEFEND_RADIUS);
             else patrol = new MapLocation(loc.x + nextInt(21) - 10, loc.y + nextInt(21) - 10);
         }
         nav.setTarget(patrol); if (!nav.step()) patrol = null;

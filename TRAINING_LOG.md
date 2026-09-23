@@ -399,6 +399,19 @@ enemy's landscapers at the wall 10 -> 6 (r2600) -> 2 (r2800), their ring 70 lowe
 had no drones at all (no center, poor map), no effect and no cost. Gate `gate9` vs `REF=g_iter3`.
 Falsifier: below 53% at the cap.
 
+## Iteration 10 -- home-defence drones (2026-09-23, prepared while gate 9 runs)
+
+Traces, the 24 reviewable g_iter3 losses of blocks 8-9: five games (battlecode20-team4 x4 and
+others) end at r1550-1580 when 11-22 enemy drones lift our seats and drop 7-11 landscapers on the
+freed ring tiles, burying the HQ in 25 rounds; in another two enemy landscapers squat on our ring
+tiles all game and the wall's minimum stays at 560; in a third (Swirl, corner HQ) one landscaper is
+left of 17 because attackers wander into the flood. Meanwhile our 5-19 drones patrol toward the
+enemy and die. Candidate = Iteration 9 + drones that before the raid patrol a Chebyshev-4 box
+around the HQ and lift any enemy landscaper or miner within 8 of it (landscapers first, those on
+the ring or beside the HQ first), dropping it in water. Diagnostics vs g_iter3 on IsThisProcedural
+and CentralLake: `@pickup home=true` > 0 when g_iter3's attackers arrive; drones alive at r2000
+higher than g_iter3's own. Gate `gate10` vs the incumbent after gate 9. Falsifier: below 53%.
+
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
 48 games, `elo.py --challenge 20` (bots that beat us at least half the time, fewest games first):
