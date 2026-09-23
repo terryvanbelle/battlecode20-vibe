@@ -1,4 +1,4 @@
-package bot;
+package g_iter2;
 
 import battlecode.common.*;
 
@@ -217,14 +217,7 @@ public abstract strictfp class Robot {
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
      *  dirt spent on it is wasted -- a quarter of ours was, on MoreCowbell. */
     protected boolean exposed(MapLocation l) {
-        if (MapState.ringExposed == null) {
-            MapState.ringExposed = new boolean[8];
-            for (int k = 8; --k >= 0;) { MapLocation t = MapState.home.add(DIRS[k]); boolean ex = false;
-                for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (!n.equals(MapState.home) && !onRing(n) && rc.onTheMap(n)) { ex = true; break; } }
-                MapState.ringExposed[k] = ex; }
-        }
-        int dx = l.x - MapState.home.x, dy = l.y - MapState.home.y;
-        for (int k = 8; --k >= 0;) if (DIRS[k].dx == dx && DIRS[k].dy == dy) return MapState.ringExposed[k];
+        for (int i = 8; --i >= 0;) { MapLocation n = l.add(DIRS[i]); if (!n.equals(MapState.home) && !onRing(n) && rc.onTheMap(n)) return true; }
         return false;
     }
 }

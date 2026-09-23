@@ -36,6 +36,15 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 - **Raised wall tiles trap units against the map edge.** A miner between the rising ring and the edge
   can never leave (elevation difference > 3) and holds a ring seat forever; the tile stays low and
   drowns the HQ at the flood round (MoreCowbell, block 2).
+- **A ring tile that touches no tile outside the ring never floods.** The flood spreads only from a
+  flooded neighbour (`GameWorld.floodfill`), so a ring tile enclosed by the other ring tiles, the HQ
+  and the map edge (a corner HQ) stays dry at elevation 3 under 1,000 of water. Dirt spent on it is
+  wasted, and a wall is worth the minimum of its *exposed* tiles (MoreCowbell, `--ring` instrument).
+- **A wall grows at 0.5 elevation per landscaper per round** (one dig, one deposit), spread over the
+  exposed tiles; the water rises faster than that from about w = 100 (r2520) and faster than 1/round
+  from w = 360 (r2700), so every wall fails between r2500 and r3100 and the race is decided by the
+  higher exposed minimum at that moment. Six seats plus six helpers reached 1805 at r3000 against
+  1367 for eight lone seats (ALandDivided diagnostic).
 - **Some ring tiles are natural cliffs** (Hourglass has elevation-99 tiles adjacent to the HQ): they
   are walls already and unreachable; a seat rule must skip them or every spare landscaper waits
   under one.

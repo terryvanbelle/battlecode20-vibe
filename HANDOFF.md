@@ -6,8 +6,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 ## State (2026-09-23)
 
 - Phase 0 complete: engine on the driver and the VM, runner/gate/ladder tools ported and tested, replay dumper, unit tests.
-- `src/bot` = Iteration 1 = snapshot `src/g_iter1` (accepted 31-1 over `g_iter0`). Incumbent
-  for the next gate: `REF=g_iter1`.
+- `src/bot` = Iteration 3 = snapshot `src/g_iter2` (accepted 29-3 over `g_iter1`) plus a neutral exposure cache. Incumbent
+  for the next gate: `REF=g_iter2`. Iteration 2 (early drones) gated 52.1% and was dropped.
 - Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);
   the ladder field is `tools/ladder-bots.txt` (one bot per repo, chosen by name).
 - Next: the first scrimmage block of `g_iter1` (`BOT=bot N=48 POOL="$(cat tools/ladder-bots.txt)"

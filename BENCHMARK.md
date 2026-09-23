@@ -44,15 +44,15 @@ every recorded block; the tier is the most recent build's record against that op
 
 | opponent | repo (commit) | last win % | games | tier | history |
 |---|---|---|---|---|---|
-| `9mAhmad.MahinBot` | 9mAhmad_MahinBot (d453c11) | 100 | 1 | peer(>90 once) | 100 |
-| `9mAhmad.lostincoordinates` | 9mAhmad_lostincoordinates (1696925) | 100 | 1 | peer(>90 once) | 100 |
-| `A9ine.potato` | A9ine_Battlecode-Hashbrowns (759bee2) | 100 | 1 | peer(>90 once) | 100 |
-| `ARognes.FinalSubmission` | ARognes_Battlecode (2ebba1e) | 100 | 1 | peer(>90 once) | 100 |
+| `9mAhmad.MahinBot` | 9mAhmad_MahinBot (d453c11) | 100 | 5 | peer(>90 once) | 100 |
+| `9mAhmad.lostincoordinates` | 9mAhmad_lostincoordinates (1696925) | 100 | 5 | peer(>90 once) | 100 |
+| `A9ine.potato` | A9ine_Battlecode-Hashbrowns (759bee2) | 100 | 5 | peer(>90 once) | 100 |
+| `ARognes.FinalSubmission` | ARognes_Battlecode (2ebba1e) | 60 | 5 | peer | 60 |
 | `ARognes.MinerPathfinding` | ARognes_Battlecode (2ebba1e) | - | - | untested |  |
 | `ARognes.TurtleBot` | ARognes_Battlecode (2ebba1e) | - | - | untested |  |
 | `ARognes.communication` | ARognes_Battlecode (2ebba1e) | - | - | untested |  |
 | `ARognes.flyingturtlebot` | ARognes_Battlecode (2ebba1e) | - | - | untested |  |
-| `AllenWang314.bot1` | AllenWang314_Battlecode (3b90f73) | 100 | 1 | peer(>90 once) | 100 |
+| `AllenWang314.bot1` | AllenWang314_Battlecode (3b90f73) | 100 | 5 | peer(>90 once) | 100 |
 | `AllenWang314.lecMod2` | AllenWang314_Battlecode (3b90f73) | - | - | untested |  |
 | `AngusRitossa.newbot` | AngusRitossa_battlecode20 (c9ad5c7) | 0 | 4 | locked | 0 |
 | `AngusRitossa.okbot` | AngusRitossa_battlecode20 (c9ad5c7) | - | - | untested |  |
@@ -61,12 +61,12 @@ every recorded block; the tier is the most recent build's record against that op
 | `EmaPajic.Mark3` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `EmaPajic.Mark4` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `EmaPajic.Mark5` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
-| `EmaPajic.Qualifications` | EmaPajic_Battlecode-2020 (c060a22) | 100 | 1 | peer(>90 once) | 100 |
+| `EmaPajic.Qualifications` | EmaPajic_Battlecode-2020 (c060a22) | 20 | 5 | target | 20 |
 | `EmaPajic.SeedingBot` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `GabrielDWu.basicbot` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
 | `GabrielDWu.blezerbot` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
 | `GabrielDWu.buildawall` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
-| `GabrielDWu.buildawall2` | GabrielDWu_blezers-battlecode2020 (c0283f8) | 100 | 1 | peer(>90 once) | 100 |
+| `GabrielDWu.buildawall2` | GabrielDWu_blezers-battlecode2020 (c0283f8) | 100 | 5 | peer(>90 once) | 100 |
 | `GabrielDWu.messaroundplayer` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
 | `GabrielDWu.rushblezer` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
 | `GabrielDWu.testbot` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
@@ -91,12 +91,12 @@ every recorded block; the tier is the most recent build's record against that op
 | `IvanGeffner.rushplus` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
 | `IvanGeffner.trumpplayer` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
 | `IvanGeffner.turtle` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
-| `J-J-Chen.player` | J-J-Chen_fairy-battle (d21b372) | 100 | 1 | peer(>90 once) | 100 |
+| `J-J-Chen.player` | J-J-Chen_fairy-battle (d21b372) | 100 | 5 | peer(>90 once) | 100 |
 | `KyleHassold.Phases` | KyleHassold_BattleCode2020 (62a9517) | - | - | untested |  |
 | `KyleHassold.classesBaseCode` | KyleHassold_BattleCode2020 (62a9517) | - | - | untested |  |
 | `KyleHassold.droneRush` | KyleHassold_BattleCode2020 (62a9517) | - | - | untested |  |
 | `KyleHassold.phases2Cleaned` | KyleHassold_BattleCode2020 (62a9517) | - | - | untested |  |
-| `KyleHassold.sprintbot` | KyleHassold_BattleCode2020 (62a9517) | 100 | 1 | peer(>90 once) | 100 |
+| `KyleHassold.sprintbot` | KyleHassold_BattleCode2020 (62a9517) | 100 | 5 | peer(>90 once) | 100 |
 | `KyleHassold.start1BeginClean` | KyleHassold_BattleCode2020 (62a9517) | - | - | untested |  |
 | `KyleHassold.strat1Begin` | KyleHassold_BattleCode2020 (62a9517) | - | - | untested |  |
 | `LucianCov.ourRobot` | LucianCov_BattleCode (8d4cb13) | 100 | 1 | peer(>90 once) | 100 |
@@ -176,11 +176,11 @@ every recorded block; the tier is the most recent build's record against that op
 | `charboltron.team11newbot` | charboltron_pdx_battlecode_2020_team_11 (f78f1e3) | 100 | 1 | peer(>90 once) | 100 |
 | `cormackikkert.whyPermutator` | cormackikkert_battlecode2020 (4d230c4) | 25 | 4 | target | 25 |
 | `cormackikkert.whyPermutatorOld` | cormackikkert_battlecode2020 (4d230c4) | - | - | untested |  |
-| `cosimogonnelli.Team3player` | cosimogonnelli_CS454-554-SE (d7dc657) | 100 | 1 | peer(>90 once) | 100 |
+| `cosimogonnelli.Team3player` | cosimogonnelli_CS454-554-SE (d7dc657) | 80 | 5 | peer | 80 |
 | `cs454-w20-team3.oldbot` | cs454-w20-team3_team3-bot (502c334) | - | - | untested |  |
 | `cs454-w20-team3.playbot` | cs454-w20-team3_team3-bot (502c334) | 25 | 4 | target | 25 |
 | `cs454-w20-team3.team3player` | cs454-w20-team3_team3-bot (502c334) | - | - | untested |  |
-| `denver-blake.sprint` | denver-blake_Battlecode2020 (1b4a631) | 100 | 1 | peer(>90 once) | 100 |
+| `denver-blake.sprint` | denver-blake_Battlecode2020 (1b4a631) | 100 | 5 | peer(>90 once) | 100 |
 | `djkeyes.addingComm` | djkeyes_battlecode20-scaffold (189c057) | 100 | 1 | peer(>90 once) | 100 |
 | `djkeyes.bytecodes` | djkeyes_battlecode20-scaffold (189c057) | - | - | untested |  |
 | `djkeyes.landscaperwaller` | djkeyes_battlecode20-scaffold (189c057) | - | - | untested |  |
@@ -328,6 +328,6 @@ every recorded block; the tier is the most recent build's record against that op
 | `winkelmantanner.tannerplayer` | winkelmantanner_battlecode2020_the-levee-builders (7f49f11) | 0 | 4 | locked | 0 |
 | `wpine215.stardustv1` | wpine215_battlecode (d570d57) | - | - | untested |  |
 | `wpine215.stardustv2` | wpine215_battlecode (d570d57) | 0 | 4 | locked | 0 |
-| `yaonam.Robot_1` | yaonam_battlecode2020 (bb363f5) | 50 | 4 | peer | 50 |
+| `yaonam.Robot_1` | yaonam_battlecode2020 (bb363f5) | 62 | 8 | peer | 62 |
 
 285 bot packages from 68 repositories.

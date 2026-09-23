@@ -1,4 +1,4 @@
-package bot;
+package g_iter2;
 
 import battlecode.common.*;
 
@@ -17,7 +17,6 @@ public final strictfp class MapState {
     public static MapLocation home;                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
-    public static boolean[] ringExposed;             // per ring direction, computed once (Robot.exposed)
 
     // remembered terrain, indexed by (x - minX) + (y - minY) * width once the origin is known
     public static int[] elev;                        // Integer.MIN_VALUE = unknown

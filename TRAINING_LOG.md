@@ -193,7 +193,30 @@ early fulfillment center is reverted to Iteration 1's order.
 bank; miner bytecode over x116, terrain observation at 6.1k a turn); 3b drones after r400 or bank
 800, allocation-free 9-tile observation (miner max 7.5k, 0 over); 3c/3d lost the race at r3057-3089
 with rings 1176 level against 1392-1429 exposed; 3e state bug (a helper still holding a seat);
-3f: see below.
+3f MoreCowbell won r689 (their trapped-miner hole), but ALandDivided (a normal map) still lost the
+race 1139 against 1367: ten `@badseat` blacklists (a seat blocked for ten turns by a passing unit)
+sent landscapers off as attackers, and seats dug from under the helpers' feet, which then re-raised
+their own tiles -- a zero-sum loop. 3g (seat stall limit 30; never dig under a friendly unit):
+**6 seats + 6 helpers (330-390 deposits each), ring level at 576/1315/1805 at r1000/2000/3000
+against 367/867/1367; won at r3090 by drowning their HQ.** Landscaper bytecode max 10003, 4
+overruns in 3090 rounds (to watch).
+
+**Gate.** `BOT=bot REF=g_iter1 N=240 tools/mirror.sh` (run `gate3`): **SPRT_ACCEPT 29-3 (90.6%)**
+in two batches (13-3, 16-0). **Snapshot `g_iter2`**, taken from the VM's synced copy (the gated
+bytes); the local tree additionally carries a behaviour-neutral cache of ring exposure.
+
+## Block 3 -- g_iter1 against the 12 rated just above us (run 20260923-152327-scrim-g_iter1)
+
+40-8 (83%). The "nearest above us" pool, taken while we sat at rank 66 after block 2, was twelve
+bots we had beaten in block 1 (rated 1484-1516), so the block re-measured the easy end of the field
+and lifted the rating to 1675 (rank 1 of 66) without saying anything new. Lesson for the pool rule:
+after a block against the strong end, the next pool must not be drawn from a rating that block just
+depressed; use the bots we have the fewest games against among those that beat us.
+
+## Block 4 -- g_iter2 submission (run block4)
+
+60 games against the 20 bots that beat g_iter1 in block 1 (`elo.py --pool 20`). Veto rule: withdraw
+if the block's Wilson upper bound falls below g_iter1's 12/60 point estimate on the same field.
 
 ## Ledger (closed directions)
 
