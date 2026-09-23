@@ -58,31 +58,17 @@ public strictfp class Drone extends Robot {
             approachSafely(ehq);   // come within sight of the ring and wait for something liftable
             return;
         }
-        // pick up (Iteration 10: half the drones, by id, defend home -- landscapers before miners, the ones on our ring or beside
-        // the HQ first, nothing farther than CHASE_RADIUS; the other half hunt along the old patrol, whose kills of enemy miners
-        // and landscapers before the flood were worth a few points of wall in the mirror: gate 10's first 32 games went 9-23
-        // with every drone at home)
-        MapLocation home = MapState.home; boolean defender = (id & 1) == 0;
-        RobotInfo tgt = null; long bd = Long.MAX_VALUE;
-        for (int i = nEnemy; --i >= 0;) {
-            RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue;
-            if (defender && home != null && Nav.cheb(e.location, home) > C.CHASE_RADIUS) continue;
-            long d = loc.distanceSquaredTo(e.location) + (e.type == RobotType.LANDSCAPER ? 0 : 1000) - (home != null && Nav.cheb(e.location, home) <= 1 ? 500 : 0);
-            if (d < bd) { bd = d; tgt = e; }
-        }
+        // pick up
+        RobotInfo tgt = null; int bd = 1 << 30;
+        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
         if (tgt != null) {
-            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " raid=false home=" + (home != null && Nav.cheb(tgt.location, home) <= 2)); return; }
+            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " raid=false"); return; }
             if (gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
         }
-        // patrol: defenders a box of DEFEND_RADIUS around the HQ; hunters the line from home to the enemy HQ guess
-        if (patrol == null || loc.distanceSquaredTo(patrol) <= (defender ? 2 : 4)) {
-            MapLocation g = MapState.enemyHQGuess();
-            if (defender && home != null) {   // a tile on the annulus DEFEND_INNER..DEFEND_OUTER, never the spawn and post tiles inside
-                int r = C.DEFEND_INNER + nextInt(C.DEFEND_OUTER - C.DEFEND_INNER + 1), k = nextInt(8 * r);
-                int dx, dy; if (k < 2 * r) { dx = -r + k; dy = -r; } else if (k < 4 * r) { dx = r; dy = -r + (k - 2 * r); } else if (k < 6 * r) { dx = r - (k - 4 * r); dy = r; } else { dx = -r; dy = r - (k - 6 * r); }
-                patrol = new MapLocation(home.x + dx, home.y + dy);
-            }
-            else if (g != null && home != null) { int t = nextInt(5); patrol = new MapLocation(home.x + (g.x - home.x) * t / 5, home.y + (g.y - home.y) * t / 5); }
+        // patrol: between home and the enemy HQ guess
+        if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {
+            MapLocation g = MapState.enemyHQGuess(), h = MapState.home;
+            if (g != null && h != null) { int t = nextInt(5); patrol = new MapLocation(h.x + (g.x - h.x) * t / 5, h.y + (g.y - h.y) * t / 5); }
             else patrol = new MapLocation(loc.x + nextInt(21) - 10, loc.y + nextInt(21) - 10);
         }
         nav.setTarget(patrol); if (!nav.step()) patrol = null;

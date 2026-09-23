@@ -14,8 +14,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Incumbent and submission: `src/g_iter4`** (Iteration 9, provisional: 135-105 inconclusive above the 53% keep line
   over g_iter3 on 2026-09-23; the late drone raid). `src/g_iter3` (Iteration 8, accepted 39-9 over g_iter2) is the
   fallback if a submission block disappoints.
-- `src/bot` = Iteration 10 = g_iter4 + home-defence drones + the builder widens its site circle after 25 failed turns.
-  Diagnostics `diag/iter10-*`; gate `gate10` vs `REF=g_iter4`.
+- `src/bot` = Iteration 11 = g_iter4 + builder site fixes (skip cliffs and stalled circle tiles, widen the circle after 25
+  failed turns) + school/center sites scored by spawn room. Iteration 10 (home-defence drones + the builder fixes) was
+  rejected 120-120. Gate `gate11` vs `REF=g_iter4`.
 - Ladder: g_iter2 is 37/156 (24%) on the strong field over blocks 1-6; Elo 1372, rank 66/66 (`progress/ELO.md`).
 - Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);
   the ladder field is `tools/ladder-bots.txt` (one bot per repo, chosen by name).

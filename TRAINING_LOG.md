@@ -426,6 +426,13 @@ buildable. Rerun: school at r110, ring 807 at r2500, won r2933. The mirror game 
 so the defence itself fired nowhere (0 pickups); the gate carries both pieces. Gate `gate10` vs
 `REF=g_iter4`. Falsifier: below 53%.
 
+**Gate 10 (relaunch): REJECT at 120-120 (50.0%)** -- the LLR crossed the lower bound on the last batch
+(batches 6-10, 3-13 in the aborted run; then 10-6, ..., 7-9, 5-11). Home defence plus the builder
+fixes is neutral in the mirror: the mirror has no drone swarms to defend against, and half the
+drones hunting restored what the first attempt lost. The defence piece is dropped; the builder
+pieces (cliff and stall exits, circle widening) are carried into Iteration 11, where they were
+diagnosed (IsThisProcedural r717 -> r2933).
+
 ## Iteration 11 -- spawn room for the school (2026-09-23, prepared while gate 10 runs)
 
 Trace: in both Iteration 10 mirror diagnostics (FourLakeLand, MtDoom vs g_iter4) our school
@@ -438,7 +445,8 @@ not the ring or HQ, no building), 300 per tile, ahead of height and centrality. 
 same two maps, `@build t=6` counts per 100 rounds on both sides comparable; the wall gap closes.
 Result: MtDoom flipped to a win (our school now spawns to r900, 17 landscapers to 16, ring 1860 vs
 1839); FourLakeLand unchanged (a different site, still boxed by lakes and cliffs by r400, 14 vs 17).
-Gate `gate11` vs the incumbent after gate 10. Falsifier: below 53%.
+Composition: g_iter4 + the builder's cliff/stall exits and circle widening + spawn-room scoring; the
+drones are g_iter4's. Gate `gate11` vs `REF=g_iter4`, launched 23:05. Falsifier: below 53%.
 
 ## Block 5 -- g_iter2 against the challenge pool (run block5, 2026-09-23)
 
@@ -518,9 +526,9 @@ school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on
 
 | area | last attempt | consecutive rejects |
 |---|---|---|
-| economy | Iteration 1 | 0 |
+| economy (builder, sites) | Iteration 11 | 0 |
 | flood defence (wall) | Iteration 8 (ACCEPT 39-9) | 0 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
-| drones / combat | Iteration 9 (provisional 135-105) | 0 |
+| drones / combat | Iteration 10 (reject 120-120) | 1 |
 | communication | Iteration 8 (ACCEPT 39-9) | 0 |

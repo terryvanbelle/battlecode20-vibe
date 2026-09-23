@@ -29,12 +29,6 @@ public final class C {
     public static final int DRONE_EARLY_BANK = 800;
     // Iteration 9: the late raid. After the flood only the enemy HQ shoots (one drone a round, r2 15, and it acts first);
     // helpers on the corners at Chebyshev 2 can be lifted from a tile at r2 18, seats only at the price of a drone.
-    // Iteration 10: home defence. Before the raid a drone patrols within DEFEND_RADIUS of the HQ and lifts any enemy
-    // landscaper or miner within CHASE_RADIUS of it (blocks 8-9: enemy landscapers dropped on our ring buried the HQ in
-    // 25 rounds at r1550 in five games, and two squatting on ring tiles kept the wall's minimum at 560 in another).
-    public static final int DEFEND_INNER = 5;         // defenders hover at Chebyshev 5-7 from the HQ: inside that a drone sits on the school's spawn tiles and the helper posts (gate 10 first try 9-23)
-    public static final int DEFEND_OUTER = 7;
-    public static final int CHASE_RADIUS = 8;         // an intruder farther than this from the HQ is not ours to chase
     public static final int RAID_ROUND = 2300;        // late enough that every enemy net gun has drowned, early enough to stall their wall before r2500
     public static final int RAID_LATEST = 2450;       // from here the drones also gamble on the seats in pairs (one is shot, one lifts)
 
