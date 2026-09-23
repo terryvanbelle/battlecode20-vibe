@@ -22,7 +22,9 @@ public strictfp class DesignSchool extends Robot {
         // Iteration 6: a ring tile first (an instant seat), then the spawn tile F (the ferry lifts it out once the wall is up);
         // a landscaper born on any other pocket tile is boxed in by the buildings, so those only before the wall starts.
         for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (onRing(n) && !isGate(n) && rc.canBuildRobot(RobotType.LANDSCAPER, DIRS[i])) { rc.buildRobot(RobotType.LANDSCAPER, DIRS[i]); built++; Debug.log("@build t=6 at=" + n + " soup=" + rc.getTeamSoup()); return; } }
-        if (MapState.gateF != null) { Direction d = loc.directionTo(MapState.gateF); if (rc.canBuildRobot(RobotType.LANDSCAPER, d)) { rc.buildRobot(RobotType.LANDSCAPER, d); built++; Debug.log("@build t=6 at=" + MapState.gateF + " soup=" + rc.getTeamSoup()); return; } }
+        boolean droneSeen = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE) { droneSeen = true; break; }
+        // F only when a ferry exists: a landscaper waiting there with no drone blocks the center for good
+        if (MapState.gateF != null && droneSeen) { Direction d = loc.directionTo(MapState.gateF); if (rc.canBuildRobot(RobotType.LANDSCAPER, d)) { rc.buildRobot(RobotType.LANDSCAPER, d); built++; Debug.log("@build t=6 at=" + MapState.gateF + " soup=" + rc.getTeamSoup()); return; } }
         if (MapState.gateF == null && tryBuild(RobotType.LANDSCAPER, MapState.home)) built++;   // only before the layout is known: any other pocket tile is a box
     }
 }

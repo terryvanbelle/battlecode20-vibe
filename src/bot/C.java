@@ -35,8 +35,8 @@ public final class C {
     public static final int RING = 2;                 // Chebyshev distance of the wall from the HQ
     public static final int GATE_CLOSE = 650;         // from here the gate tile itself is the last ferry target (the outside is flooding): a 16th seat
     public static final int RAID_ROUND = 750;         // after the flood the center's drones raid the enemy ring, whose net guns have drowned
-    public static final int RAID_SIZE = 4;            // drones that must be together before they charge into the enemy HQ's gun range
-    public static final int RAID_RALLY = 6;           // Chebyshev distance from the enemy HQ guess where raiders gather (the HQ shoots to r2 15)
+    public static final int RAID_SIZE = 16;           // drones gathered before they charge: the HQ shoots one a round for the ~5 rounds of the approach, the rest each lift a seat
+    public static final int RAID_RALLY = 8;           // Chebyshev distance from the enemy HQ guess where raiders gather (HQ and net guns shoot to r2 15)
     public static final int FERRY_DRONES = 2;         // drones built as soon as the center stands: they lift landscapers out of the sealed pocket
     public static final int WALL_START = 400;         // before this round seats only level the ring to HQ+3, so the school can still spawn over it
     public static final int WALL_LANDSCAPERS = 16;    // one per ring tile

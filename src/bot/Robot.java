@@ -97,6 +97,7 @@ public abstract strictfp class Robot {
             } else if (nCow < 8) cows[nCow++] = r;
         }
         if (schoolSeen != null && MapState.school == null) MapState.setSchool(schoolSeen, rc);
+        try { shareSightings(); } catch (GameActionException e) { }
         // the enemy HQ guess: a hypothesis whose image we can see and which holds no enemy HQ is dead (Iteration 6: the raid flew to a wrong image)
         if (MapState.enemyHQ == null && MapState.symCount() > 1) { MapLocation g = MapState.enemyHQGuess(); if (g != null && rc.canSenseLocation(g)) { MapState.pruneEmpty(g); Debug.log("@prune empty=" + g + " sym=" + MapState.sym); } }
     }
@@ -147,7 +148,13 @@ public abstract strictfp class Robot {
             if (!rc.onTheMap(new MapLocation(loc.x, loc.y - r))) { int y = loc.y - r; while (!rc.onTheMap(new MapLocation(loc.x, y))) y++; MapState.edgeFound(2, y); }
             else if (!rc.onTheMap(new MapLocation(loc.x, loc.y + r))) { int y = loc.y + r; while (!rc.onTheMap(new MapLocation(loc.x, y))) y--; MapState.edgeFound(3, y); }
         }
-        if (MapState.originKnown()) Debug.log("@origin x=" + MapState.minX + " y=" + MapState.minY);
+        if (MapState.originKnown()) { Debug.log("@origin x=" + MapState.minX + " y=" + MapState.minY); postOrigin = true; }
+    }
+    protected boolean postOrigin = false, postedEnemyHQ = false;
+    /** Share what the pocket cannot learn by itself: the origin (once, by the prober) and the enemy HQ (once, by the sighter). */
+    protected void shareSightings() throws GameActionException {
+        if (postOrigin && MapState.originKnown() && type != RobotType.HQ) { postOrigin = !post(Comms.make(Comms.MAP_ORIGIN, round, us, MapState.minX, MapState.minY)); }
+        if (!postedEnemyHQ && MapState.enemyHQ != null && type != RobotType.HQ) postedEnemyHQ = post(Comms.make(Comms.ENEMY_HQ, round, us, MapState.enemyHQ.x, MapState.enemyHQ.y));
     }
 
     /** Remember the terrain within Chebyshev 1 (9 tiles) for symmetry pruning; ~60 bytecodes a tile. */

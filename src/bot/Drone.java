@@ -39,6 +39,12 @@ public strictfp class Drone extends Robot {
             nav.setTarget(MapState.center()); nav.step(); return;
         }
         holdingFriend = false;
+        // a drone born on F can only leave over G: the drone hovering on G yields to it (Soup diagnostic: two drones locked on F and G)
+        if (MapState.gateG != null && loc.equals(MapState.gateG) && MapState.gateF != null && rc.canSenseLocation(MapState.gateF)) {
+            RobotInfo onF = rc.senseRobotAtLocation(MapState.gateF);
+            if (onF != null && onF.team == us && onF.type == RobotType.DELIVERY_DRONE) { nav.setTarget(MapState.park); nav.step(); return; }
+        }
+        if (isSpawnTile(loc) && MapState.gateG != null) { if (rc.canMove(loc.directionTo(MapState.gateG))) { rc.move(loc.directionTo(MapState.gateG)); loc = rc.getLocation(); } return; }   // out first, think next turn
         // ferry: a landscaper waiting inside the pocket, and somewhere to put it
         RobotInfo waiting = null, liftable = null;
         if (MapState.home != null && MapState.gateG != null)
@@ -72,8 +78,9 @@ public strictfp class Drone extends Robot {
             if (loc.distanceSquaredTo(rally) > 8) { nav.setTarget(rally); nav.step(); }
             return;
         }
-        // before the raid a drone stays home (Soup diagnostic: both ferry drones left to hunt miners and never saw the waiter)
-        if (MapState.park != null) { if (loc.distanceSquaredTo(MapState.park) > 2 && !loc.equals(MapState.gateG)) { nav.setTarget(MapState.park); nav.step(); } return; }
+        // before the raid a drone stays home (Soup diagnostic: both ferry drones left to hunt miners and never saw the waiter);
+        // at raid time with no enemy HQ guess (the pocket never learns the origin: Islands) it explores instead, probing edges as it goes
+        if (MapState.park != null && !(round >= C.RAID_ROUND && MapState.enemyHQGuess() == null)) { if (loc.distanceSquaredTo(MapState.park) > 2 && !loc.equals(MapState.gateG)) { nav.setTarget(MapState.park); nav.step(); } return; }
         // patrol: between home and the enemy HQ guess (no layout known yet)
         if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {
             MapLocation g = MapState.enemyHQGuess(), h = MapState.home;

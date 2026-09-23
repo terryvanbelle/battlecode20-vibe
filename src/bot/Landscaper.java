@@ -79,6 +79,19 @@ public strictfp class Landscaper extends Robot {
         return true;
     }
 
+    /** The lowest exposed ring tile among our own and the adjacent ones (what a deposit would go to). */
+    private int lowestAround() throws GameActionException {
+        int be = exposed(loc) ? rc.senseElevation(loc) : Integer.MAX_VALUE;
+        for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (onRing(n) && exposed(n) && rc.canSenseLocation(n)) be = Math.min(be, rc.senseElevation(n)); }
+        return be;
+    }
+
+    /** Is a landscaper of ours on this ring tile or on an adjacent ring tile (so it gets fed)? */
+    private boolean coveredBySeat(MapLocation t) {
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && onRing(f.location) && (f.location.equals(t) || f.location.isAdjacentTo(t))) return true; }
+        return onRing(loc) && (loc.equals(t) || loc.isAdjacentTo(t)) && role == SEAT;
+    }
+
     private boolean droneNear() { for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE) return true; return false; }
 
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
@@ -90,6 +103,7 @@ public strictfp class Landscaper extends Robot {
     /** The nearest exposed ring tile that is free (or holds a unit that will move), not flooded, reachable (within 3 of our own elevation). */
     private MapLocation pickSeat(MapLocation home) throws GameActionException {
         MapLocation best = null; int bd = 1 << 30; int myE = rc.senseElevation(loc);
+        boolean farFirst = Nav.cheb(loc, home) <= C.RING && !wallMayRise();
         for (int dx = -C.RING; dx <= C.RING; dx++) for (int dy = -C.RING; dy <= C.RING; dy++) {
             if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING) continue;
             MapLocation t = new MapLocation(home.x + dx, home.y + dy);
@@ -103,6 +117,12 @@ public strictfp class Landscaper extends Robot {
                 if (Math.abs(rc.senseElevation(t) - myE) > GameConstants.MAX_DIRT_DIFFERENCE && !t.equals(loc)) continue;   // an empty cliff is unreachable
             }
             int d = loc.distanceSquaredTo(t) + nextInt(2);
+            // coverage first (a seat feeds itself and its ring neighbours): the tile whose neighbourhood holds the most
+            // exposed ring tiles no seat feeds yet; the ring seals with six seats spread out, not nine bunched at the school
+            int uncovered = coveredBySeat(t) ? 0 : 1;
+            for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (onRing(n) && exposed(n) && !coveredBySeat(n)) uncovered++; }
+            d -= uncovered * 200;
+            if (farFirst) d -= (loc.distanceSquaredTo(t) / 4) * 2;   // then the far tiles while the ring is still flat and walkable
             if (d < bd) { bd = d; best = t; }
         }
         return best;
@@ -193,7 +213,7 @@ public strictfp class Landscaper extends Robot {
         if (cap == Integer.MAX_VALUE) {
             if (rc.getDirtCarrying() > 0 && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
             if (digSource(home) || borrow()) return;
-        } else if (rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) digSource(home);   // pre-dig, then wait
+        } else if (rc.getDirtCarrying() == 0 && lowestAround() < cap) digSource(home);   // level only: one dig per deposit, so the tiles outside stay walkable for the seats still to come
     }
 
     private void helperTurn(MapLocation home) throws GameActionException {
