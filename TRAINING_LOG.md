@@ -414,6 +414,14 @@ Cumulative for g_iter2 on the strong field: 37/156 (24%). Elo 1372, rank 66 of 6
 0/3 against the other nine. Cumulative for g_iter2 on the strong field: 47/204 (23%). Elo 1390,
 rank 66 of 66 (377 rated games).
 
+## Block 8 -- g_iter3 submission block (run block8, 2026-09-23)
+
+60 games, challenge pool of 16: **16/60 (26.7%)**. `laurenschneider` 3/4, `benzyx.seeding` 3/4 (first
+wins, unlocked), `mvpatel2000.qual` 2/4, `battlecode20-team4` 2/4; 1/4 against wpine215, poortho,
+IvanGeffner, EmaPajic; 0/4 against rzhan11, ronniesong0809, cormackikkert, awesomelemonade,
+AngusRitossa. g_iter2's cumulative was 47/204 (23%). Elo 1376 (K=32 drifts with the pool's own
+games), rank 66 of 66.
+
 ## Ledger (closed directions)
 
 - **The citadel (ring at Chebyshev 2 with the buildings sealed inside; Iteration 6, 2026-09-23)** --

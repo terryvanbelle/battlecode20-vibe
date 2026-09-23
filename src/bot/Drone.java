@@ -44,11 +44,11 @@ public strictfp class Drone extends Robot {
         // wrong symmetry image is pruned; gather at RAID_RALLY; charge once RAID_SIZE are together or a friend already charged.
         if (raidTime) {
             MapLocation ehq = MapState.enemyHQGuess();
-            if (MapState.enemyHQ == null) { if (!rc.canSenseLocation(ehq)) { nav.setTarget(ehq); nav.step(); } return; }
+            if (MapState.enemyHQ == null) { if (!rc.canSenseLocation(ehq)) approachSafely(ehq); return; }   // look at the guess from outside gun range
             int near = 0; boolean follow = false;
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; near++; if (Nav.cheb(f.location, ehq) < C.RAID_RALLY - 1) follow = true; }
-            raiding = near + 1 >= C.RAID_SIZE || follow;
-            if (raiding) { nav.setTarget(ehq); nav.step(); return; }   // the pickup loop above takes over once a seat is in sight
+            raiding = near + 1 >= C.RAID_SIZE || follow || round >= C.RAID_LATEST;
+            if (raiding) { approachSafely(ehq); return; }   // close in outside gun range until a seat is in sight; the pickup loop above then dashes for it (7 drones flying at the HQ itself were shot one a round at d2 9)
             MapLocation h = MapState.home != null ? MapState.home : loc;
             int dx = Integer.signum(h.x - ehq.x), dy = Integer.signum(h.y - ehq.y);
             MapLocation rally = new MapLocation(ehq.x + dx * C.RAID_RALLY, ehq.y + dy * C.RAID_RALLY);
@@ -62,6 +62,14 @@ public strictfp class Drone extends Robot {
             else patrol = new MapLocation(loc.x + nextInt(21) - 10, loc.y + nextInt(21) - 10);
         }
         nav.setTarget(patrol); if (!nav.step()) patrol = null;
+    }
+
+    /** One step toward t onto a tile outside r2 15 of it (the HQ's and a net gun's reach); a diagonal step from 25 can land at 13. */
+    private void approachSafely(MapLocation t) throws GameActionException {
+        if (!rc.isReady()) return;
+        Direction bestD = null; int bdd = loc.distanceSquaredTo(t);
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!rc.canMove(d) || !allowedTile(n)) continue; int dd = n.distanceSquaredTo(t); if (dd > 15 && dd < bdd) { bdd = dd; bestD = d; } }
+        if (bestD != null) { rc.move(bestD); loc = rc.getLocation(); }
     }
 
     /** The nearest flooded tile in sight, or null. */
