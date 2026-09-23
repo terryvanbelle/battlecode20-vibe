@@ -1,0 +1,72 @@
+# Elo ladder
+
+65 scrimmages (ours only); K=32 from 1500; our team is **us**: rank 1 of 66 rated bots, Elo 1573, 65 games; 0 bots not yet met.
+
+| rank | bot | Elo | games | W-L (theirs) |
+|---|---|---|---|---|
+| 1 | **us** | 1573 | 65 | 45-20 |
+| 2 | poortho.stable_seeding_bot | 1523 | 1 | 1-0 |
+| 3 | TeamSerpentine.noodleBot | 1523 | 1 | 1-0 |
+| 4 | mhahn2003.nonrush | 1523 | 1 | 1-0 |
+| 5 | mvpatel2000.qual | 1523 | 1 | 1-0 |
+| 6 | ronniesong0809.finalbota | 1523 | 1 | 1-0 |
+| 7 | uvafan.v14_final_bot | 1522 | 1 | 1-0 |
+| 8 | Tim-gubski.AngryWaffleMaker | 1522 | 1 | 1-0 |
+| 9 | laurenschneider.pdx_team_one | 1522 | 1 | 1-0 |
+| 10 | awesomelemonade.citricsky | 1522 | 1 | 1-0 |
+| 11 | rzhan11.quals_bot | 1522 | 1 | 1-0 |
+| 12 | winkelmantanner.tannerplayer | 1522 | 1 | 1-0 |
+| 13 | VinayaBhat.team10pdx | 1522 | 1 | 1-0 |
+| 14 | battlecode20-team4.finalbota | 1521 | 1 | 1-0 |
+| 15 | wpine215.stardustv2 | 1521 | 1 | 1-0 |
+| 16 | benzyx.seeding | 1521 | 1 | 1-0 |
+| 17 | cormackikkert.whyPermutator | 1520 | 1 | 1-0 |
+| 18 | yaonam.Robot_1 | 1520 | 1 | 1-0 |
+| 19 | cs454-w20-team3.playbot | 1520 | 1 | 1-0 |
+| 20 | IvanGeffner.finalbota | 1520 | 1 | 1-0 |
+| 21 | AngusRitossa.newbot | 1519 | 1 | 1-0 |
+| 22 | ovimura.welovesoup | 1491 | 1 | 0-1 |
+| 23 | TeamSerpentine.eendagsvliegjes | 1491 | 1 | 0-1 |
+| 24 | orionquick.aldebaranplayer | 1491 | 1 | 0-1 |
+| 25 | max-titov.seeding | 1491 | 1 | 0-1 |
+| 26 | Sukanya-Kothapally.team4player | 1491 | 1 | 0-1 |
+| 27 | monmouth-college-cs.MyFirstPlayer | 1491 | 1 | 0-1 |
+| 28 | opheez.landscapers | 1490 | 1 | 0-1 |
+| 29 | mama4294.maloneplayer | 1490 | 1 | 0-1 |
+| 30 | Strequals.rw8 | 1490 | 1 | 0-1 |
+| 31 | michaeltliu.beginnerplayer | 1490 | 1 | 0-1 |
+| 32 | thissop.alpha | 1490 | 1 | 0-1 |
+| 33 | ngkuru.qualifyingtournament | 1490 | 1 | 0-1 |
+| 34 | kylittle.qualsbot2 | 1490 | 1 | 0-1 |
+| 35 | atliSig.buttletplayer | 1490 | 1 | 0-1 |
+| 36 | luisgonzalex.CodeMonkeys | 1490 | 1 | 0-1 |
+| 37 | StoneT2000.FinalChowBotStable | 1490 | 1 | 0-1 |
+| 38 | rsandzimier.SandSibs_seeding | 1490 | 1 | 0-1 |
+| 39 | stevetimberman.playerbbbbb | 1490 | 1 | 0-1 |
+| 40 | willBoyd8.bb8 | 1490 | 1 | 0-1 |
+| 41 | jmerle.camel_case_sprint | 1490 | 1 | 0-1 |
+| 42 | Tolsi.mybot | 1490 | 1 | 0-1 |
+| 43 | anthonybench.FunkBot | 1489 | 1 | 0-1 |
+| 44 | lfchain.bigBudsBot | 1489 | 1 | 0-1 |
+| 45 | Pleket.Bot | 1489 | 1 | 0-1 |
+| 46 | snpushpi.whatamidoing | 1489 | 1 | 0-1 |
+| 47 | jenlz.bustedJulianbot | 1489 | 1 | 0-1 |
+| 48 | WilliamYue37.Player1 | 1489 | 1 | 0-1 |
+| 49 | Phrancium.Frankplayer1 | 1489 | 1 | 0-1 |
+| 50 | fewella.FirstPlayer | 1489 | 1 | 0-1 |
+| 51 | MrHoseongLee.Neptune_v3 | 1488 | 1 | 0-1 |
+| 52 | eggag32.BrutalPigeonBot | 1488 | 1 | 0-1 |
+| 53 | LucianCov.ourRobot | 1488 | 1 | 0-1 |
+| 54 | charboltron.team11newbot | 1488 | 1 | 0-1 |
+| 55 | djkeyes.addingComm | 1488 | 1 | 0-1 |
+| 56 | KyleHassold.sprintbot | 1487 | 1 | 0-1 |
+| 57 | cosimogonnelli.Team3player | 1487 | 1 | 0-1 |
+| 58 | GabrielDWu.buildawall2 | 1487 | 1 | 0-1 |
+| 59 | denver-blake.sprint | 1487 | 1 | 0-1 |
+| 60 | J-J-Chen.player | 1487 | 1 | 0-1 |
+| 61 | AllenWang314.bot1 | 1487 | 1 | 0-1 |
+| 62 | EmaPajic.Qualifications | 1486 | 1 | 0-1 |
+| 63 | ARognes.FinalSubmission | 1486 | 1 | 0-1 |
+| 64 | A9ine.potato | 1485 | 1 | 0-1 |
+| 65 | 9mAhmad.lostincoordinates | 1485 | 1 | 0-1 |
+| 66 | 9mAhmad.MahinBot | 1484 | 1 | 0-1 |
