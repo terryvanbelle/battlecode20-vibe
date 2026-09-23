@@ -13,7 +13,7 @@ public strictfp class Drone extends Robot {
     private MapLocation patrol;
     private int pickups = 0, drops = 0;
 
-    Drone(RobotController rc) { super(rc); }
+    Drone(RobotController rc) { super(rc); avoidRing = true; }
 
     @Override protected void turn() throws GameActionException {
         sense(); if (round % 3 == 2) readBlock(); probeEdges();

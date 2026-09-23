@@ -95,6 +95,20 @@ be finished before the HQ's flood round, or the map drowns anyway, the tiebreak 
 cheap miners win it; (b) refineries are placed at the HQ, so far soup is a long walk; (c) soup on
 plateaus needs landscapers or drones to reach; (d) one miner bytecode overrun per game remains.
 
+## Block 1 -- g_iter1 against the whole field (2026-09-23, run 20260923-142354-scrim-bot)
+
+65 scrimmages, one per ladder bot, random map and side: **45-20 (69.2%)**. 57 games ended by an
+HQ drowning or being buried, 8 by the robot-count tiebreak. Game lengths: 36 under r1000, 15 at
+r2750-r3100 (both sides walled). The block took ~50 VM-minutes at 6 games in parallel.
+
+Elo after the block is uninformative (one game per bot: every bot we lost to sits at 1516, every
+bot we beat at 1484, us at 1573); the informative fact is the split. The 20 bots that beat us are
+all `locked` (0/1), so the study saw wins only, by rule. Block 2 (60 games, three per bot) is
+against exactly those 20, to find which of them unlock at 20%.
+
+Own-side reading of the 45 allowed games: our HQ was never buried; median coverage 22% against
+their 8%; median r400 worth 3200 against their 600. Nothing degenerate stands out in wins.
+
 ## Ledger (closed directions)
 
 (empty)

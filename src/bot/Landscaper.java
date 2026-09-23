@@ -35,14 +35,22 @@ public strictfp class Landscaper extends Robot {
         return r != null && r.ID != id;
     }
 
-    /** The nearest ring tile that is free (or holds only a unit that will move on) and not flooded. */
+    /** The nearest ring tile that is free (or holds only a unit that will move on), not flooded, and
+     *  reachable: within 3 of the HQ's elevation. A natural cliff on the ring (Hourglass has 99s) is
+     *  already a wall and cannot be climbed; five landscapers once waited under one for 500 rounds. */
     private MapLocation pickSeat(MapLocation home) throws GameActionException {
         MapLocation best = null; int bd = 1 << 30;
+        int hqElev = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
         for (int i = 8; --i >= 0;) {
             MapLocation t = home.add(DIRS[i]);
             if (!rc.onTheMap(t)) continue;
             if (rc.canSenseLocation(t)) {
                 if (rc.senseFlooding(t)) continue;
+                int e = rc.senseElevation(t);
+                if (e - hqElev > GameConstants.MAX_DIRT_DIFFERENCE || hqElev - e > GameConstants.MAX_DIRT_DIFFERENCE) {
+                    RobotInfo r0 = rc.senseRobotAtLocation(t);
+                    if (r0 == null || r0.type != RobotType.LANDSCAPER || r0.team != us) continue;   // a raised seat with our landscaper on it is taken; an empty cliff is unreachable
+                }
                 RobotInfo r = rc.senseRobotAtLocation(t);
                 if (r != null && r.ID != id && (r.type == RobotType.LANDSCAPER && r.team == us || r.type.isBuilding())) continue;
             }

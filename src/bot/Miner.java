@@ -35,6 +35,8 @@ public strictfp class Miner extends Robot {
         if (round % 100 == 0) Debug.log("@minerstat builder=" + builder + " mined=" + mined + " deposits=" + deposits + " explores=" + explores + " soupMem=" + nSoup + " unreachable=" + unreachable);
         rememberSoup();
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
+        avoidRing = refinery != null || ringSeen;   // deposit at the HQ only while the wall has not started
+        if (avoidRing && onRing(loc) && rc.isReady()) { for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } } }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (builder && build()) return;
@@ -48,9 +50,9 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
+        else if (builtSchool > 0 && builtFC == 0 && soup >= C.FC_EARLY_BANK) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2: before the flood takes the builder
+        else if (builtFC > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
-        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
         int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
@@ -71,7 +73,7 @@ public strictfp class Miner extends Robot {
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
-            int s = n.distanceSquaredTo(MapState.center()) + nextInt(3);   // relative tie-break: toward the map centre
+            int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
         if (bestD == null) { nav.setTarget(home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); nav.step(); return true; }

@@ -23,6 +23,8 @@ public abstract strictfp class Robot {
     protected final RobotInfo[] enemies = new RobotInfo[64], friends = new RobotInfo[64], cows = new RobotInfo[8];
     protected RobotInfo nearestEnemy; protected int nearestEnemyD2;
     protected RobotInfo hqInfo;             // our HQ if in sight (its dirtCarrying is how buried it is)
+    protected boolean avoidRing = false;    // miners/drones: never step onto the wall ring (Iteration 2: miners fleeing the flood took the landscapers' seats)
+    protected boolean ringSeen = false;     // a friendly landscaper is on a ring tile
 
     // bytecode monitor
     private int bcMax = 0, bcOver = 0, bcNear = 0, turns = 0;
@@ -79,10 +81,10 @@ public abstract strictfp class Robot {
     /** Sense everything once and bucket it. 100 + ~12 per robot bytecodes. */
     protected void sense() {
         nearby = rc.senseNearbyRobots();
-        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null;
+        nEnemy = nFriend = nCow = 0; nearestEnemy = null; nearestEnemyD2 = 1 << 30; hqInfo = null; ringSeen = false;
         for (int i = nearby.length; --i >= 0;) {
             RobotInfo r = nearby[i];
-            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } }
+            if (r.team == us) { if (nFriend < 64) friends[nFriend++] = r; if (r.type == RobotType.HQ) { MapState.setHome(r.location); hqInfo = r; } else if (r.type == RobotType.LANDSCAPER && onRing(r.location)) ringSeen = true; }
             else if (r.team == them) {
                 if (nEnemy < 64) enemies[nEnemy++] = r;
                 int d = loc.distanceSquaredTo(r.location);
@@ -148,8 +150,11 @@ public abstract strictfp class Robot {
 
     /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
+        if (avoidRing && onRing(l)) return false;
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
+    /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
+    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
     protected boolean floodDanger() throws GameActionException {
@@ -170,7 +175,7 @@ public abstract strictfp class Robot {
 
     protected boolean tryMove(Direction d) throws GameActionException {
         if (d == null || d == Direction.CENTER || !rc.canMove(d)) return false;
-        if (!type.canFly() && !safeTile(loc.add(d))) return false;
+        if (!allowedTile(loc.add(d)) || (!type.canFly() && !safeTile(loc.add(d)))) return false;
         rc.move(d); loc = rc.getLocation(); return true;
     }
 
@@ -199,7 +204,7 @@ public abstract strictfp class Robot {
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; if (!rc.canMove(d)) continue;
             MapLocation n = loc.add(d);
-            if (!type.canFly() && !safeTile(n)) continue;
+            if (!allowedTile(n) || (!type.canFly() && !safeTile(n))) continue;
             int s = n.distanceSquaredTo(threat);
             if (s > bs) { bs = s; best = d; }
         }

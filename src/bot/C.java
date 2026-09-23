@@ -18,15 +18,18 @@ public final class C {
     public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
     public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
+    public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
     public static final int VAPORATORS_MAX = 6;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
-    public static final int DRONES_MAX = 6;
+    public static final int DRONES_MAX = 24;          // Iteration 2: drones fly over the flood and count at the tiebreak
+    public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
-    public static final int LANDSCAPERS_MAX = 12;     // the surplus attacks
+    public static final int LANDSCAPERS_MAX = 16;     // the surplus attacks
+    public static final int ATTACKER_BANK = 500;      // surplus landscapers only above this bank
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
 
     // --- flood safety

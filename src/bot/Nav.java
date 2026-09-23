@@ -39,7 +39,7 @@ public final strictfp class Nav {
     private void remember(MapLocation l) { recent[recentI] = l; recentI = (recentI + 1) % 6; }
 
     private boolean legal(Direction d, MapLocation n) throws GameActionException {
-        if (!rc.canMove(d)) return false;
+        if (!rc.canMove(d) || !bot.allowedTile(n)) return false;
         if (bot.type.canFly()) return true;
         return rc.canSenseLocation(n) && !rc.senseFlooding(n);
     }
