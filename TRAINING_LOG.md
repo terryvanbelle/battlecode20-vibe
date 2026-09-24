@@ -1186,6 +1186,23 @@ at that rate is about 2%) and its distinct-game win rate is within noise of g_it
 both arms is a reject. Diagnostic before either: a gun standing on a raised tile by r700, dry at
 r1600, on a map where g_iter6 lost to the raid (`diag/gun-Omg.bc20`, vs arch_swarm).
 
+**Diagnostics** (nine runs, OmgThisIsProcedural and RandomSoup1 vs arch_swarm; the fixes each one forced):
+(1) helpers learned the sites too late to take the gunner role -- newborns now scan the last 25 blocks and helpers
+re-check every 15 rounds; (2) the builder read the post after placing the refinery on a stand -- the HQ posts at r5
+and every 10 rounds; (3) the stand was chosen as the highest neighbour, a 10-high tile nobody could climb -- within 3
+of the HQ's height; (4) the gunner re-entered the role block every turn and got seated on the ring -- guarded; (5) the
+gunner refused a site out of its sight -- it walks there and looks; (6) the builder was boxed in by seat-dug pits on a
+bypass tile for 300 rounds -- any miner may build, the nearest in sight first; (7) miners queued on the gun tile to
+reach the refinery -- gun tiles are off limits to stand on; (8) an arriving miner's own-tile nav step walked it off the
+stand before it was ready -- it waits; (9) a stand at Chebyshev 3 was unreachable from the far side because the seats'
+pits cut the base into compartments -- the stand is the Chebyshev-4 tile beyond the gun, on open ground, and only
+the gunner may stand on it. Final state: RandomSoup1 -- sites raised r281 and r309, the east gun built r306 (the west
+site raised but its gun missed: the nearest miner looped on the pits north of the base); OmgThisIsProcedural -- gun
+built r680 (r601 in an earlier run), dry to r1700, the HQ ring 805 at r1600. One gun per game is reliable, two is not
+yet; the mirror prices what stands. arch_swarm never approached a gun (it flees them by design), so the shooting is
+read from the ladder arm's benzyx replays. Snapshot `src/cand31`; **`gate31`** (mirror vs g_iter6, seeded, cap 240) and
+**`arm31a`/`arm31b`** (two 48-game band blocks as `us:cand31`) running together on the VM.
+
 ## The fixed seed (2026-09-24, PROMPTS 24-25)
 
 Four benzyx MoreCowbell losses in blocks 50-56 were the same game to the round. The engine seeds its
