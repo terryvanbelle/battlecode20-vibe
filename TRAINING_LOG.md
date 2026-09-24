@@ -788,6 +788,10 @@ excepted). Re-diagnosed: Constriction now a **win at r1547** (the incumbent's ow
 there: 3 landscapers), BeachFrontProperty a close loss with an even ring (1609 vs 1680, 13 v 13).
 Gate `gate19` vs `REF=g_iter3`, launched 10:35. Falsifier: below 53%.
 
+**Gate 19: REJECT 25-39 (39%)** after four batches. The plateau roles alone lose the mirror; the
+code is kept as `src/arch_plateau` (the plan's stage 1) and `src/bot` is g_iter3 again. Loss
+traces below.
+
 ## Block 17 -- g_iter3 against the challenge pool (run block17, 2026-09-24)
 
 48 games: **11/48 (23%)**; cumulative for g_iter3 55/252 (21.8%).
