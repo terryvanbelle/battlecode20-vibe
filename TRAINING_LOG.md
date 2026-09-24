@@ -784,6 +784,10 @@ Falsifier: below 53%.
 
 48 games: **11/48 (23%)**; cumulative for g_iter3 55/252 (21.8%).
 
+## Block 18 -- g_iter3 against the challenge pool (run block18, 2026-09-24)
+
+48 games: **13/48**; cumulative for g_iter3 68/300.
+
 ## Ledger (closed directions)
 
 - **The economy regime (Iteration 17, 2026-09-24)** -- 8-24 miners, early vaporators, 20 drones on
