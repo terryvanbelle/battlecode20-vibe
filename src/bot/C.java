@@ -30,9 +30,13 @@ public final class C {
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
+    // The plateau (2026-09-24): landscapers hold tiles at Chebyshev 1..TIER_MAX and feed inward; no attackers while a tile is free
+    public static final int TIER_MAX = 3;             // 8 + 16 + 24 = 48 tiles to hold
+    public static final int FEED_MARGIN = 4;          // dig under a friend only while its tile stays this far above water(r+60)+2
+    public static final int SHALLOW = 3;              // a flooded tile at most this far under the water can be resurfaced from next door
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
-    public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
+    public static final int LANDSCAPERS_MAX = 48;   /* plateau: one per tile at Chebyshev 1..3 */     // the surplus attacks
     public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
     public static final int WALL_LEVEL_SLACK = 2;     // a seat raises a neighbouring ring tile when it is more than this below itself

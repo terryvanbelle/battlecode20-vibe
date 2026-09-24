@@ -34,6 +34,19 @@ public strictfp class Landscaper extends Robot {
         hold(home);
     }
 
+    /** Do we stand on a dry tile adjacent to l? (A flooded tile is resurfaced only from next door.) */
+    private boolean holdsDryNeighbour(MapLocation l) throws GameActionException { return loc.isAdjacentTo(l) && !rc.senseFlooding(loc) && post != null && post.equals(loc); }
+    /** A friendly landscaper nearer to l than we are, and not standing on a tile of its own (so it is heading somewhere): leave l to it. */
+    private boolean contested(MapLocation l) {
+        int d = loc.distanceSquaredTo(l);
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER) continue; int fd = f.location.distanceSquaredTo(l); if (fd < d && Nav.cheb(f.location, MapState.home) > C.TIER_MAX) return true; }
+        return false;
+    }
+    private int exposedRing = -1;
+    private int exposedRingTiles(MapLocation home) { if (exposedRing < 0) { exposedRing = 0; for (int k = 8; --k >= 0;) { MapLocation t = home.add(DIRS[k]); if (rc.onTheMap(t) && exposed(t)) exposedRing++; } } return exposedRing; }
+    /** Ring tiles held by landscapers of ours, as seen from here. */
+    private int ringCount() { int n = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && onRing(friends[i].location)) n++; if (onRing(loc)) n++; return n; }
+
     private boolean nextToOurBuilding(MapLocation l) {
         for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type.isBuilding() && f.type != RobotType.HQ && f.location.isAdjacentTo(l)) return true; }
         return false;
@@ -55,11 +68,13 @@ public strictfp class Landscaper extends Robot {
             if (t == 1 && !exposed(l)) continue;
             boolean isBad = false; for (int k = nBad; --k >= 0;) if (bad[k].equals(l)) { isBad = true; break; }
             if (isBad) continue;
+            if (t == 3 && ringCount() < exposedRingTiles(home) - 1) continue;   // tier 3 opens once the ring is seated
             long s = (long) t * 1000000L;
             if (rc.canSenseLocation(l)) {
                 int e = rc.senseElevation(l);
-                if (rc.senseFlooding(l)) { if (t == 1 || e < water - C.SHALLOW) continue; s += 300000; }   // shallow: resurface from next door
+                if (rc.senseFlooding(l)) { if (t == 1 || e < water - C.SHALLOW || !holdsDryNeighbour(l)) continue; s += 300000; }   // shallow, and only from a dry tile we already hold next to it
                 else if (Math.abs(e - myE) > GameConstants.MAX_DIRT_DIFFERENCE && !l.equals(loc)) continue;   // a cliff or a raised seat: not for us
+                if (contested(l)) continue;   // another landscaper of ours is closer to it and not yet holding anything: the claim is theirs
                 RobotInfo r = rc.senseRobotAtLocation(l);
                 if (r != null && r.ID != id && (r.type.isBuilding() || (r.type == RobotType.LANDSCAPER && r.team == us))) continue;
                 if (t > 1 && nextToOurBuilding(l)) continue;   // leave the school, the center and the rest their spawn room (gate 18: Constriction had two landscapers all game)

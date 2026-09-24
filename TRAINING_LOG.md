@@ -801,6 +801,17 @@ tier 3 opens only after the ring is seated, and a flooded tile is never a target
 already holds a dry neighbour. Diagnostics pre-registered: deaths by r1000 no higher than the
 incumbent's, `@hold` re-picks under two per landscaper.
 
+Fixes applied (stable claims: a tile another landscaper is nearer to and heading for is left to it;
+tier 3 only once the ring is seated; a flooded tile only from a dry tile we already hold next to
+it). Diagnostics vs g_iter3: **BeachFrontProperty won 1607 vs 1459**, deaths 15 vs 18, 1.5 re-picks
+per landscaper (both criteria met); **CentralSoup lost 1776 vs 1881**, deaths 29 vs 19, 5.7 re-picks
+(neither met -- the claim race persists among units already inside the tiers). Gate `gate20` vs
+`REF=g_iter3`, launched 11:35. Falsifier: below 53%.
+
+## Block 19 -- g_iter3 against the challenge pool (run block19, 2026-09-24)
+
+48 games: **12/48 (25%)**; cumulative for g_iter3 80/348 (23%).
+
 ## Block 17 -- g_iter3 against the challenge pool (run block17, 2026-09-24)
 
 48 games: **11/48 (23%)**; cumulative for g_iter3 55/252 (21.8%).
