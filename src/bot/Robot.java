@@ -191,7 +191,7 @@ public abstract strictfp class Robot {
     protected boolean climb() throws GameActionException {
         if (!rc.isReady()) return false;
         Direction best = null; int be = Integer.MIN_VALUE;
-        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!rc.canMove(d)) continue; MapLocation n = loc.add(d); if (!safeTile(n)) continue; int e = rc.senseElevation(n); if (e > be) { be = e; best = d; } }
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!rc.canMove(d)) continue; MapLocation n = loc.add(d); if (!safeTile(n) || MapState.isPerch(n)) continue; /* Iteration 24: the perch is not a refuge (a miner parked on V blocked the vaporator) */ int e = rc.senseElevation(n); if (e > be) { be = e; best = d; } }
         if (best == null) return false;
         rc.move(best); loc = rc.getLocation(); Debug.log("@climb to=" + loc + " e=" + be); return true;
     }

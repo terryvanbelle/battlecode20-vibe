@@ -974,6 +974,35 @@ survives: the guard role itself (shown on Prison) and the finding that our drone
 on the ladder. The drones must come from soup the mirror does not value -- the post-flood soup
 (1,300 idle at r1200), which needs a center that outlives the flood: Iteration 24.
 
+## Iteration 24 -- the perch (2026-09-24)
+
+Gate 23 said pre-flood drones are helpers not built; the ladder says our drones are never built at
+all. The soup that nobody values is the post-flood soup (base income, 1,300 idle by r1200), and it
+needs a center that outlives the flood. Buildings cannot be raised (dirt on a building buries it),
+so the ground goes up first. Candidate = g_iter3 + the guard role of Iteration 23 + **the perch**:
+the HQ picks a cardinal direction at r80 (once the school stands) such that P = home+2d, B =
+home+3d and F, V = B +- perp are on the map, dry, B within 3 of the HQ's ground, F and V within 6 of
+B, none beside a building, B as far from the map centre as possible; posts P on the chain at fee 3
+every 10 rounds until r600 (a unit only ever reads the previous round's block, so newborns also
+scan 12 blocks back). The helper nearest P takes it (the **mason**) and, before feeding the ring,
+raises F and V (never more than 3 above B) and B once the builder stands on it, to the water level
+of r2200 plus 2 (32). Seats never dig P; the mason refills it from next door if it was dug into a
+pit before they knew. The builder walks onto B at r420, rides up, and builds the center on F when
+both are within 2 of the target (r567 on TwoLakeLand), then the vaporator on V at 500 soup. After
+r700 the center buys a drone for every 150 soup (16 at most, saving 350 for the vaporator until
+r1000); drones born after the flood are guards from birth and hold fixed slots on the square at
+Chebyshev 6 (wandering guards crossed the helpers' dig tiles: Prison ring 1303 vs 1601). Miners
+never climb the perch as a flood refuge (one parked on V and blocked the vaporator).
+
+Diagnostics (TwoLakeLand, Prison vs g_iter3): the perch at 30-32 by r600 on both; the center
+spawns guards from r700 to r2200 (11 on TwoLakeLand from base income; 16 by r1000 on Prison with
+the vaporator up at r588); ring 1801 vs 1780 and 1585 vs 1601 with fixed guard slots. Seven
+mechanisms had to be fixed on the way (chain schedule, post crowding, the pit, the mason's dirt
+source, guard wandering, the vaporator's reserve, the refugee miner) -- each visible only in the
+replay. Side finding: on Prison the incumbent's own post-r400 building spree (six vaporators and
+two net guns at distance 3, on the helpers' dig tiles) costs it 13% of ring; a parked builder
+scored 1823 vs 1595.
+
 ## Block 33 -- g_iter3 against the challenge pool (run block33, 2026-09-24)
 
 48 games: **10/48 (20%)**; cumulative for g_iter3 220/1020 (21.5%). Elo 1310, rank 65 of 66.
