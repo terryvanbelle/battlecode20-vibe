@@ -13,11 +13,13 @@ import battlecode.common.*;
  */
 public strictfp class Landscaper extends Robot {
     private MapLocation seat;                 // our ring tile, once chosen
-    private boolean attacker = false, helper = false;
+    private boolean attacker = false, helper = false, feeder = false;
     private MapLocation post;                 // helper station at distance 2
     private final MapLocation[] badSeat = new MapLocation[8]; private int nBad = 0;
     private int helperDeps = 0;
-    private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0;
+    private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0, fedDeps = 0;
+    // Iteration 12 idle census: ready turns that ended with no dig and no deposit, by the branch that gave up
+    private final int[] idle = new int[8]; private int phase = 0; private static final String[] PHASE = {"walk", "sNoTarget", "sNoDig", "sBorrowFail", "hWalk", "hNoTarget", "hNoDig", "other"};
 
     Landscaper(RobotController rc) { super(rc); nav.stallLimit = 30; }
 
@@ -27,18 +29,23 @@ public strictfp class Landscaper extends Robot {
     }
     private void turn2() throws GameActionException {
         sense(); if (round % 3 == 1) readBlock(); probeEdges();
-        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
+        if (round % 100 == 0) { if (feeder) Debug.log("@feedstat post=" + post + " digs=" + digs + " fed=" + fedDeps + " self=" + deposits + " elev=" + rc.senseElevation(loc)); StringBuilder sb = new StringBuilder(); for (int i = 0; i < 8; i++) if (idle[i] > 0) sb.append(' ').append(PHASE[i]).append('=').append(idle[i]); Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc) + " idle:" + sb); }
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
-        if (!attacker && !helper) {
+        if (!attacker && !helper && !feeder) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
-            if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
+            if (seat == null) {
+                post = pickPost(home);
+                if (post != null) { helper = true; Debug.log("@helper post=" + post); }
+                else { post = pickFeederPost(home); if (post != null) { feeder = true; Debug.log("@feeder post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
+            }
         }
         if (attacker) { attack(); return; }
-        if (helper) { help(home); return; }
+        if (helper) { boolean ready = rc.isReady(); int a0 = digs + deposits + helperDeps; phase = 7; help(home); if (ready && rc.isReady() && digs + deposits + helperDeps == a0) idle[phase]++; return; }
+        if (feeder) { feed(home); return; }
         if (!loc.equals(seat)) { if (floodDanger() && climb()) return; nav.setTarget(seat); nav.step(); if (loc.equals(seat)) Debug.log("@seated at=" + seat); return; }
-        wall(home);
+        { boolean ready = rc.isReady(); int a0 = digs + deposits; phase = 7; wall(home); if (ready && rc.isReady() && digs + deposits == a0) idle[phase]++; }
     }
 
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
@@ -76,6 +83,58 @@ public strictfp class Landscaper extends Robot {
 
     /** A free tile at Chebyshev 2 from the HQ, next to the LOWEST ring tile it can feed (then nearest). */
     private final MapLocation[] badPost = new MapLocation[8]; private int nBadPost = 0;
+    /** A free tile at Chebyshev 3 next to a distance-2 tile (a helper post), preferring the lowest such tile: dirt goes where the seats will dig. */
+    private MapLocation pickFeederPost(MapLocation home) throws GameActionException {
+        MapLocation best = null; long bs = Long.MAX_VALUE; int myE = rc.senseElevation(loc);
+        for (int dx = -3; dx <= 3; dx++) for (int dy = -3; dy <= 3; dy++) {
+            if (Math.max(Math.abs(dx), Math.abs(dy)) != 3) continue;
+            MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+            if (!rc.onTheMap(t)) continue;
+            boolean bad = false; for (int k = nBadPost; --k >= 0;) if (badPost[k].equals(t)) { bad = true; break; }
+            if (bad) continue;
+            int lowest = Integer.MAX_VALUE;
+            if (rc.canSenseLocation(t)) {
+                if (rc.senseFlooding(t)) continue;
+                int e = rc.senseElevation(t); if (Math.abs(e - myE) > 6) continue;
+                RobotInfo r = rc.senseRobotAtLocation(t);
+                if (r != null && r.ID != id && (r.type.isBuilding() || (r.type == RobotType.LANDSCAPER && r.team == us))) continue;
+                for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) == 2 && rc.canSenseLocation(n)) lowest = Math.min(lowest, rc.senseElevation(n)); }
+                if (lowest == Integer.MAX_VALUE) continue;
+            }
+            long s = (long) (lowest == Integer.MAX_VALUE ? 0 : lowest) * 10000 + loc.distanceSquaredTo(t) + nextInt(2);
+            if (s < bs) { bs = s; best = t; }
+        }
+        return best;
+    }
+
+    /** Feeder: keep the own tile above the water, pile dirt onto the lowest adjacent distance-2 tile, dig from distance 4 and beyond. */
+    private void feed(MapLocation home) throws GameActionException {
+        if (!loc.equals(post)) {
+            if (occupiedByOther(post)) { RobotInfo r = rc.canSenseLocation(post) ? rc.senseRobotAtLocation(post) : null; if (r != null && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) { post = pickFeederPost(home); if (post == null) { feeder = false; attacker = true; return; } } }
+            if (floodDanger() && climb()) return;
+            if (nav.target() == post && nav.stalled()) { if (nBadPost < 8) badPost[nBadPost++] = post; Debug.log("@badpost " + post); post = pickFeederPost(home); if (post == null) { feeder = false; attacker = true; } return; }
+            nav.setTarget(post); nav.step(); if (loc.equals(post)) Debug.log("@posted at=" + post); return;
+        }
+        if (!rc.isReady()) return;
+        boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
+        if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
+        if (rc.getDirtCarrying() > 0) {
+            Direction bestD = null; int be = Integer.MAX_VALUE;
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) != 2 || !rc.canDepositDirt(d)) continue;
+                RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && r.type.isBuilding()) continue;
+                int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
+            if (bestD != null) { rc.depositDirt(bestD); fedDeps++; return; }
+        }
+        Direction bestD = null; int be = Integer.MAX_VALUE;
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
+            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 3 || !rc.canDigDirt(d)) continue;
+            RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
+            int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
+        if (bestD == null) for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!rc.onTheMap(n) || Nav.cheb(n, home) != 3 || !rc.canDigDirt(d)) continue; RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null) continue; bestD = d; break; }   // a free distance-3 tile
+        if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;
+        if (bestD != null) { rc.digDirt(bestD); digs++; }
+    }
+
     private MapLocation pickPost(MapLocation home) throws GameActionException {
         MapLocation best = null; long bs = Long.MAX_VALUE; int myE = rc.senseElevation(loc);
         for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
@@ -100,7 +159,7 @@ public strictfp class Landscaper extends Robot {
     }
 
     private void help(MapLocation home) throws GameActionException {
-        if (!loc.equals(post)) {
+        if (!loc.equals(post)) { phase = 4;
             if (occupiedByOther(post)) { RobotInfo r = rc.canSenseLocation(post) ? rc.senseRobotAtLocation(post) : null; if (r != null && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) { post = pickPost(home); if (post == null) { helper = false; attacker = true; return; } } }
             if (floodDanger() && climb()) return;
             if (nav.target() == post && nav.stalled()) {   // Iteration 8: a post never reached is struck off and another picked; the attack only when none is left (Iteration 7 sent every stalled helper to attack: gate 21-43)
@@ -115,7 +174,7 @@ public strictfp class Landscaper extends Robot {
         boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
         // 2. feed the lowest adjacent ring tile (never a building)
-        if (rc.getDirtCarrying() > 0) {
+        if (rc.getDirtCarrying() > 0) { phase = 5;
             Direction bestD = null; int be = Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !exposed(n) || !rc.canDepositDirt(d)) continue;
                 RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && r.type.isBuilding()) continue;
@@ -128,6 +187,7 @@ public strictfp class Landscaper extends Robot {
             if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
             int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
+        if (rc.getDirtCarrying() == 0) phase = 6;
         if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;   // nothing outside: eat our own margin
         if (bestD != null) { rc.digDirt(bestD); digs++; }
     }
@@ -141,7 +201,7 @@ public strictfp class Landscaper extends Robot {
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.isBuilding() && loc.isAdjacentTo(e.location) && rc.getDirtCarrying() > 0 && rc.canDepositDirt(loc.directionTo(e.location))) { rc.depositDirt(loc.directionTo(e.location)); buryDeposits++; return; } }
         // 3. raise the LOWEST of {our tile, adjacent ring tiles}: the flood gets in through the lowest ring
         //    tile, so a wall is worth its minimum (Iteration 3; seats sat at 415 beside 163 before this)
-        if (rc.getDirtCarrying() > 0) {
+        if (rc.getDirtCarrying() > 0) { phase = 1;
             int myE = rc.senseElevation(loc); Direction bestD = Direction.CENTER; int be = exposed(loc) ? myE : Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !rc.canSenseLocation(n) || !exposed(n)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
@@ -149,17 +209,23 @@ public strictfp class Landscaper extends Robot {
             if (be != Integer.MAX_VALUE && rc.canDepositDirt(bestD)) { rc.depositDirt(bestD); deposits++; if (bestD != Direction.CENTER) equalised++; return; }
         }
         // 4. dig from outside the ring: the lowest adjacent tile that is not the HQ, not a ring tile, not one of our buildings
+        if (rc.getDirtCarrying() == 0) phase = 2;
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
-            if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
+            if (r != null && r.team == us) {   // under our own helper only from the margin the feeders piled up (Iteration 12); below it the helper would re-raise, a zero-sum loop
+                if (r.type != RobotType.LANDSCAPER || Nav.cheb(n, home) != 2 || rc.senseElevation(n) < waterLevel(round + 60) + 2 + C.FEED_MARGIN) continue;
+                int e = -rc.senseElevation(n) + 500;   // the tallest margin first, after any empty tile
+                if (e < be) { be = e; bestD = d; }
+                continue;
+            }
             int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles
             if (e < be) { be = e; bestD = d; }
         }
         // 5. a corner seat on the map edge has no outside tile: borrow from the tallest adjacent ring tile
-        if (bestD == null) { int myE = rc.senseElevation(loc); int bh = myE + C.WALL_BORROW_MARGIN;
+        if (bestD == null) { if (rc.getDirtCarrying() == 0) phase = 3; int myE = rc.senseElevation(loc); int bh = myE + C.WALL_BORROW_MARGIN;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !rc.canDigDirt(d)) continue; int e = rc.senseElevation(n); if (e > bh) { bh = e; bestD = d; } }
             if (bestD != null) borrowed++; }
         if (bestD != null) { rc.digDirt(bestD); digs++; }

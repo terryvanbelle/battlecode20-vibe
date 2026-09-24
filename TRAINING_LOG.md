@@ -738,6 +738,19 @@ Prison still lost the same way with 4,866 soup idle. **Not gated.** The economy 
 some maps, but the only sink that decides the mirror is the wall, and the wall takes 24 bodies;
 everything past that piles up. Ledger: the sink comes first (the plateau), then the economy.
 
+## Block 16 -- g_iter3 against the challenge pool (run block16, 2026-09-24)
+
+48 games: **10/48 (21%)**; cumulative for g_iter3 44/204 (21.6%).
+
+## Plateau stages 2+3, first measurement (2026-09-24)
+
+Iteration 12's tiers (16 helpers, 8 feeders) with Iteration 17's economy (16 miners, early
+vaporators), vs g_iter3. Soup: the economy did not scale on a soup-poor map (8 miners, no
+vaporator, 13 landscapers, no feeder posted; ring 1357 vs the incumbent's on the same footing) --
+the miner cap is not the constraint there, soup on the ground is. Prison pending; a 24-game
+quick-set sweep (`plat2`) shows the map spread. The plateau plan stands, but stage 3 (the economy)
+needs miners that find and mine the 70% of soup we leave, not more miners.
+
 ## Ledger (closed directions)
 
 - **The economy regime (Iteration 17, 2026-09-24)** -- 8-24 miners, early vaporators, 20 drones on
