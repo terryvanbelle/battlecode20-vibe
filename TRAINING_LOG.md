@@ -859,6 +859,10 @@ slot-claim revision at 8-10/24; the pre-gate rule (deaths and churn no worse tha
 on the quick set) is not met, so nothing goes to the gate. The plateau's stage 1 stays in the
 ledger; the next attempt starts from the role design, not the claim rule.
 
+## Block 26 -- g_iter3 against the challenge pool (run block26, 2026-09-24)
+
+48 games: **12/48 (25%)**; cumulative for g_iter3 150/684 (21.9%).
+
 ## Block 25 -- g_iter3 against the challenge pool (run block25, 2026-09-24)
 
 48 games: **4/48 (8%)**; cumulative for g_iter3 138/636 (21.7%). The challenge pool keeps
