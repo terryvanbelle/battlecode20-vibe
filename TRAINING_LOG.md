@@ -1079,6 +1079,11 @@ vs g_iter3: Squares **8 seats, ring 2387 vs 2251 (+6%)** where g_iter5 alone sco
 TwoLakeLand 8 seats, ring 1959 vs 1869 (+5%). Both maps above the incumbent line. Gate `gate26`
 (`cand25b` vs g_iter5, mirror, cap 240) launched beside blocks 36 and 37.
 
+**Gate 26: REJECT at 50-62 (44.6%)** after seven batches. Eight miners before the school delays the
+seats and the wall on random maps by more than the extra soup buys; the two chosen diagnostic maps
+had said +5% and +6% against g_iter3, not against g_iter5. Kind: refuted. The code was g_iter5
+with MINERS_EARLY 8 and is not kept.
+
 ## Block 37 -- g_iter5 against the challenge pool (run block37, 2026-09-24)
 
 48 games: **7/48 (14.6%)**; the first block of the new incumbent (g_iter3's single blocks ranged
@@ -1166,6 +1171,9 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **Miners first (Iteration 26, 2026-09-24)** -- g_iter5 with MINERS_EARLY 8. Gate 50-62 vs g_iter5.
+  Kind: refuted. The closed ring stops miner spawns, but building the miners first costs more wall
+  than they earn; the HQ's replenishment through open seats was cheap because it was late.
 - **The perch (Iteration 24, 2026-09-24)** -- three tiles raised to 32 before the flood by one helper, a
   miner on one builds a center and a vaporator on the others (alive to r2200), post-flood soup buys
   up to 16 guards on fixed slots. Gate 51-61 vs g_iter3; ladder 11/48 vs 21.9%. Kind: priced below
