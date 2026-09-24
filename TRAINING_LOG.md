@@ -1137,7 +1137,7 @@ Blocks 55-56 (`20260924-193834`, `-193842`): **31/48** and **28/48**; g_iter6 17
 games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`20260924-194653`, `-194718`):
 **28/48** and **24/48**; on distinct games g_iter6 is 1740 +- 43, g_iter5 1743 +- 33 (see "The fixed seed").
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
-running total. Blocks 61-63 (`20260924-210822`, `-210856`, `-212012`) recorded; blocks 64-65 running.
+running total. Blocks 61-64 (`20260924-210822`, `-210856`, `-212012`, `-212050`) recorded; blocks 65-66 running.
 
 ## Iteration 31 -- gun perches (2026-09-24, PROMPTS 24-25)
 
