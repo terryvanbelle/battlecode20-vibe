@@ -17,7 +17,8 @@ themselves retired. `RULES.md` is the game, `TRAINING_LOG.md` is the record, `ME
 4. External bots are played only as **scrimmages**: random map from the released corpus, random
    side, rotating opponents, challenges aimed at the bots rated just above us. Our own snapshots
    and archetypes may be played any way we like.
-5. The Elo ladder is built from our games only; external bots never play each other.
+5. The ladder is built from our games only; external bots never play each other. Ratings are a
+   batch Bradley-Terry fit on the Elo scale with each of our builds rated separately (`tools/elolib.py`).
 6. Every user prompt is recorded verbatim in `PROMPTS.md`; every commit is pushed.
 7. Unit tests for the bot and for every tool, run after every change to either.
 
@@ -61,7 +62,7 @@ Nothing strategic is written until each of these has a passing check, in this or
 7. **Unit tests** for the bot's pure logic (encodings, geometry, map knowledge, the tuning
    constants' invariants) and for every analysis script (synthetic inputs, integrity checks on
    live data). One command runs all of them.
-8. **Charts** in `progress/`: the Elo ladder over our scrimmages, and the onset ladder (which
+8. **Charts** in `progress/`: the ladder (every rating with its 95% interval), and the onset ladder (which
    metric predicts the result earliest). Regenerated on every accept; nothing stale stays.
 
 **The basics, each with its own diagnostic before it is called done:**
@@ -128,10 +129,11 @@ Every candidate passes through these in order, and most die early. That is the d
    the mirror plus a win in that arm is a finding, a null in both is a reject. Never reinterpret a
    null after seeing it.
 5. **Submit.** Snapshot `src/g_iterN`; regression against the archetypes; a 48-game scrimmage
-   block under contest rules; record it, rebuild the Elo ladder and the roster tiers; mine the
+   block under contest rules; record it, rebuild the ladder and the roster tiers; mine the
    block (census, correlation, onset) for the next candidate; update the ledger and the state
-   section of `HANDOFF.md`; commit and push. Withdraw the build if its block's Wilson upper bound
-   falls below the previous submission's point estimate.
+   section of `HANDOFF.md`; commit and push. Withdraw the build if the upper end of its rating's
+   95% interval falls below the previous submission's rating (raw win rates are not compared: they
+   depend on the pool each build met).
 
 ### Budget rules
 

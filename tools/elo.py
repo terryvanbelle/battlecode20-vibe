@@ -1,55 +1,55 @@
 #!/usr/bin/env python3
-"""The Elo ladder (progress/games.csv): every benchmark bot plus our team 'us', K=32 from 1500, from OUR
-scrimmages only (external bots never play each other: user rule, PROMPTS 27). A bot we have never met is
-unrated (listed after the rated ones); its rating starts moving with its first game against us.
+"""The ladder (progress/games.csv): every benchmark bot plus each of our builds, rated by a batch
+Bradley-Terry fit on the Elo scale (tools/elolib.py) from OUR scrimmages only (external bots never play
+each other: user rule, PROMPTS 27). A bot we have never met is unrated.
    tools/elo.py                        # ranking table; also writes progress/ELO.md and progress/elo.png
-   tools/elo.py --pool 6 --explore 2   # challenge pool: the 6 rated bots just above us + 2 bots with the fewest games
-   tools/elo.py --build g_iter4        # per-build record of our scrimmages (Wilson 95%)"""
+   tools/elo.py --band 8 --as g_iter5  # graded pool: the 8 rated bots nearest to g_iter5's rating, either side
+   tools/elo.py --pool 6 --explore 2   # old pool: the 6 rated bots just above us + 2 bots with the fewest games
+   tools/elo.py --build g_iter4        # one build: record (Wilson 95%), rating, expected score vs the field
+--as names the build whose rating centres the pool; unset, or a build with no games yet (a candidate,
+'bot'), it is the build of our most recent game."""
 import argparse, math, os, sys, collections
 # the chart needs matplotlib, which lives in tools/.venv: re-exec there when it exists
 _venv = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.venv', 'bin', 'python')
 if os.path.exists(_venv) and '.venv' not in sys.prefix: os.execv(_venv, [_venv] + sys.argv)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import elolib
 ap = argparse.ArgumentParser(); ap.add_argument('--pool', type=int, default=0); ap.add_argument('--explore', type=int, default=0); ap.add_argument('--build', default='')
+ap.add_argument('--as', dest='as_build', default='', help='the build whose rating centres --pool/--band')
 ap.add_argument('--established', type=int, default=0,
-                help='the N rated bots we have the most games against: a FIXED field, so consecutive '
-                     'blocks are comparable and a provisional rating from six games cannot select itself in')
+                help='the N rated bots we have the most games against: a FIXED field, so consecutive blocks are comparable')
 ap.add_argument('--challenge', type=int, default=0,
-                help='the N bots that beat us at least half the time, fewest games against us first, then highest rating: '
-                     'the climb pool (block 3 showed "nearest above us" collapses to the easy end after a block against the strong end)')
+                help='the N bots that beat us at least half the time, fewest games against us first, then highest rating')
 ap.add_argument('--band', type=int, default=0,
-                help='the N rated bots nearest to us in rating on EITHER side: the graded pool (owner, 2026-09-24, PROMPTS 8-9: '
-                     'a pool drawn only from above us had drifted to bots that beat us 70-99% of the time)')
+                help='the N rated bots nearest to us in rating on EITHER side: the graded pool (owner, 2026-09-24, PROMPTS 8-9)')
 ap.add_argument('--quiet', action='store_true'); a = ap.parse_args()
-rows = elolib.load(); R, games, wins, hist = elolib.ratings(rows)
+rows = elolib.load(); R, SE, games, wins = elolib.fit(rows)
 bots = elolib.ladder_bots()
 rated = [b for b in bots if games[b] > 0]; unrated = [b for b in bots if games[b] == 0]
-table = sorted([(R[b], b) for b in rated] + [(R['us'], 'us')], key=lambda x: -x[0])
-rank = {b: i + 1 for i, (_, b) in enumerate(table)}
+ours = sorted({t for r in rows for t in (r['teamA'], r['teamB']) if elolib.is_ours(t)}, key=lambda p: -R[p])
+me = 'us:' + a.as_build if a.as_build and games['us:' + a.as_build] > 0 else 'us:' + (elolib.current_build(rows) or '')
+table = sorted([(R[p], p) for p in rated + ours], key=lambda x: -x[0])
+rank = {p: i + 1 for i, (_, p) in enumerate(table)}
+opp_games = collections.Counter(); opp_wins = collections.Counter()   # per bot, against all our builds
+for r in rows:
+    opp = r['teamB'] if elolib.is_ours(r['teamA']) else r['teamA'] if elolib.is_ours(r['teamB']) else None
+    if opp is None: continue
+    opp_games[opp] += 1; opp_wins[opp] += (r['winner'] == 'A') == (opp == r['teamA'])
 if a.challenge:
-    # per-bot record against us
-    rec = {}
-    for r in rows:
-        opp = r['teamB'] if r['teamA'].startswith('us:') else r['teamA'] if r['teamB'].startswith('us:') else None
-        if opp is None: continue
-        we_won = (r['winner'] == 'A') == r['teamA'].startswith('us:')
-        w, g = rec.get(opp, (0, 0)); rec[opp] = (w + (1 if we_won else 0), g + 1)
-    hard = [b for b in bots if b in rec and rec[b][0] * 2 <= rec[b][1]]
-    hard.sort(key=lambda b: (rec[b][1], -R[b]))
+    hard = [b for b in bots if opp_games[b] and opp_wins[b] * 2 >= opp_games[b]]
+    hard.sort(key=lambda b: (opp_games[b], -R[b]))
     print(' '.join(hard[:a.challenge])); raise SystemExit
 if a.established:
-    rated = [b for b in elolib.ladder_bots() if games[b] > 0]
-    print(' '.join(sorted(rated, key=lambda b: (-games[b], -R[b]))[:a.established])); raise SystemExit
+    print(' '.join(sorted(rated, key=lambda b: (-opp_games[b], -R[b]))[:a.established])); raise SystemExit
 if a.pool or a.explore or a.band:
     import random
-    above = [b for _, b in table if b != 'us' and R[b] >= R['us']]
-    pool = above[-a.pool:] if a.pool else []      # the closest rated ones above us
-    if a.band: pool = sorted((b for b in rated), key=lambda b: abs(R[b] - R['us']))[:a.band]   # nearest on either side
-    if len(pool) < a.pool:                        # not enough above: fill with the closest below
-        below = [b for _, b in table if b != 'us' and R[b] < R['us']]
-        pool += below[:a.pool - len(pool)]
-    if a.explore:                                 # bots we know least: fewest games, random among ties
-        cand = sorted((b for b in bots if b not in pool), key=lambda b: (games[b], random.random()))
+    pool = []
+    if a.band: pool = sorted(rated, key=lambda b: abs(R[b] - R[me]))[:a.band]   # nearest on either side
+    elif a.pool:
+        above = sorted((b for b in rated if R[b] >= R[me]), key=lambda b: R[b])
+        below = sorted((b for b in rated if R[b] < R[me]), key=lambda b: -R[b])
+        pool = (above + below)[:a.pool]   # the closest above us, then the closest below if there are too few
+    if a.explore:                         # bots we know least: fewest games, random among ties
+        cand = sorted((b for b in bots if b not in pool), key=lambda b: (opp_games[b], random.random()))
         pool += cand[:a.explore]
     print(' '.join(pool)); raise SystemExit
 def wilson(w, n, z=1.96):
@@ -57,26 +57,36 @@ def wilson(w, n, z=1.96):
     p = w / n; d = 1 + z * z / n; c = p + z * z / (2 * n); m = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n))
     return (p, (c - m) / d, (c + m) / d)
 if a.build:
-    v = [(r['winner'] == ('A' if r['teamA'] == 'us:' + a.build else 'B')) for r in rows if 'us:' + a.build in (r['teamA'], r['teamB'])]
-    p, lo, hi = wilson(sum(v), len(v)); print(f"{a.build}: {sum(v)}/{len(v)} = {p:.1%} [{lo:.1%}, {hi:.1%}]"); raise SystemExit
-lines = [f"# Elo ladder", "", f"{len(rows)} scrimmages (ours only); K=32 from 1500; our team is **us**: rank {rank['us']} of {len(table)} rated bots, Elo {R['us']:.0f}, {games['us']} games; {len(unrated)} bots not yet met.", "",
-         "| rank | bot | Elo | games | W-L (theirs) |", "|---|---|---|---|---|"]
-for i, (r, b) in enumerate(table):
-    name = f"**us**" if b == 'us' else b
-    lines.append(f"| {i + 1} | {name} | {r:.0f} | {games[b]} | {wins[b]:.0f}-{games[b] - wins[b]:.0f} |")
-if unrated: lines += ["", "Not yet met (1500 until their first game against us): " + ", ".join(unrated)]
+    p_ = 'us:' + a.build; p, lo, hi = wilson(wins[p_], games[p_])
+    print(f"{a.build}: {wins[p_]}/{games[p_]} = {p:.1%} [{lo:.1%}, {hi:.1%}]; rating {R[p_]:.0f} +- {1.96 * SE[p_]:.0f}, "
+          f"rank {rank.get(p_, '-')} of {len(table)}; expected score vs the {len(bots)}-bot field {elolib.field_score(R, p_, bots):.1%}")
+    raise SystemExit
+lines = ["# Ladder", "",
+         f"{len(rows)} scrimmages (ours only), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); "
+         f"each of our builds is its own player. {len(rated)} of {len(bots)} ladder bots met.", "",
+         "Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each):", "",
+         "| build | rating | rank | games | record | field score |", "|---|---|---|---|---|---|"]
+for p in ours:
+    lines.append(f"| {elolib.build_of(p)} | {R[p]:.0f} +- {1.96 * SE[p]:.0f} | {rank[p]} of {len(table)} | {games[p]} | "
+                 f"{wins[p]}-{games[p] - wins[p]} | {elolib.field_score(R, p, bots):.1%} |")
+lines += ["", "| rank | player | rating | +- 95% | games | W-L |", "|---|---|---|---|---|---|"]
+for i, (r, p) in enumerate(table):
+    name = f"**{p}**" if elolib.is_ours(p) else p
+    lines.append(f"| {i + 1} | {name} | {r:.0f} | {1.96 * SE[p]:.0f} | {games[p]} | {wins[p]}-{games[p] - wins[p]} |")
+if unrated: lines += ["", "Not yet met: " + ", ".join(unrated)]
 open(os.path.join(elolib.REPO, 'progress', 'ELO.md'), 'w').write('\n'.join(lines) + '\n')
-if not a.quiet: print('\n'.join(lines[2:3] + lines[4:min(len(lines), 4 + 70)]))
+if not a.quiet: print('\n'.join(lines[2:3] + lines[6:6 + len(ours) + 2]))
 try:
     import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
-    fig, ax = plt.subplots(figsize=(8, 3.6))
-    if hist:
-        ax.plot(range(1, len(hist) + 1), [h[1] for h in hist], lw=1.4, color='#1f77b4', label='us')
-        # build boundaries
-        prev = None; ours = [r for r in rows if 'us' in (elolib.pid(r['teamA']), elolib.pid(r['teamB']))]
-        for j, r in enumerate(ours):
-            b = r['teamA'] if r['teamA'].startswith('us:') else r['teamB']
-            if b != prev: ax.axvline(j + 1, color='#999', lw=0.6, ls=':'); ax.text(j + 1, ax.get_ylim()[0], b[3:], fontsize=7, rotation=90, va='bottom', ha='right'); prev = b
-    ax.set_xlabel('our scrimmages'); ax.set_ylabel('Elo'); ax.set_title(f"us: Elo {R['us']:.0f}, rank {rank['us']} of {len(table)}"); ax.grid(alpha=.3)
+    fig, ax = plt.subplots(figsize=(8, max(4, 0.16 * len(table))))
+    ys = list(range(len(table)))[::-1]
+    for y, (r, p) in zip(ys, table):
+        c = '#d62728' if elolib.is_ours(p) else '#1f77b4'
+        ax.errorbar(r, y, xerr=1.96 * SE[p], fmt='o', ms=3, color=c, ecolor=c, elinewidth=0.8, capsize=0)
+    ax.set_yticks(ys); ax.set_yticklabels([p for _, p in table], fontsize=5.5)
+    for t, (_, p) in zip(ax.get_yticklabels(), table):
+        if elolib.is_ours(p): t.set_color('#d62728'); t.set_fontweight('bold')
+    ax.set_xlabel('rating (Bradley-Terry, Elo scale), 95% interval'); ax.grid(axis='x', alpha=.3)
+    ax.set_title(f"Ladder: {len(rows)} scrimmages; our builds in red"); ax.set_ylim(-1, len(table))
     fig.tight_layout(); fig.savefig(os.path.join(elolib.REPO, 'progress', 'elo.png'), dpi=120)
 except Exception as e: print('plot skipped:', e)

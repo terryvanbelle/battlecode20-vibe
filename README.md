@@ -20,6 +20,6 @@ rising flood) bot, developed under an evidence-driven training loop by one human
 | `HANDOFF.md` | the state of the loop for a fresh session |
 | `SETUP.md` | the two machines and how games run |
 | `PROMPTS.md` | every instruction from the human, verbatim |
-| `progress/` | the Elo ladder and the onset chart |
+| `progress/` | the ladder (Bradley-Terry ratings) and the onset chart |
 | `tools/` | runner, gate, ladder, replay dumper, tests (`tools/README.md`) |
 | `src/bot` | the bot; `src/g_iterN` accepted snapshots; `src/arch_*` sparring partners |

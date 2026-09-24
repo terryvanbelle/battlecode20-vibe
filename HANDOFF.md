@@ -3,25 +3,21 @@
 Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the tail of
 `TRAINING_LOG.md`.
 
-## State at the 2026-09-24 restart (session switched to a new model; read this block first)
+## State (2026-09-24, after the restart; read this block first)
 
 - **Incumbent and submission: `src/g_iter5`** (Iteration 25 "seats first", accepted 45-19). `src/bot` = g_iter5.
-- **Jobs left on the VM**, to be post-blocked by the next session with `tools/post-block.sh <run> g_iter5` unless
-  `progress/games.csv` already holds the run id: block 39 = `20260924-132840-scrim-g_iter5` (48 games, old challenge
-  pool) and `calib1` = `20260924-133731-scrim-g_iter5` (96 games against 48 never-played bots, the first calibration
-  block, running at the restart). Then continue the calibration -- `BOT=g_iter5 POOLSIZE=0 EXPLORE=48 N=96
-  tools/scrim.sh` -- until the never-played bots (220 at the start) are placed, then ladder blocks on the band pool
-  (`tools/scrim.sh` default). The session loop was `/loop 30m task check. If the VM is idle and nothing is in the
-  workqueue, start a new idea. Otherwise, carry on as before` -- re-create it.
-- **Owner decisions today (PROMPTS 7-11):** graded ladder approved (pool = Elo band around us, `tools/elo.py --band`,
-  `scrim.sh` default), calibration by playing the never-played bots two games each rather than bigger blocks, and
-  the ladder grade is to be revisited once the field is placed.
-- **Open lines, in order:** (1) map-dead games (Climb, Hills, 0 of 31 on the ladder): five miners idle with twelve
-  remembered soup tiles while the soup lies up 3-high steps -- trace one non-builder miner r100-300 on
-  `diag/iter27-Climb.bc20` (`tools/replay-dump.sh --robot ID`); Iteration 27's 350 bank changed nothing.
-  (2) poortho's rush (18 reviewable early losses): school before refinery so the first landscapers dig the HQ out
-  by r80-90. (3) g_iter5's standing: 16/96 on the old pool against g_iter3's 21.9% -- the calibration restates both.
-- Iterations 23 (home guard), 24 (the perch, `src/arch_perch`), 26 (miners first) and 27 closed today; TRAINING_LOG.md.
+- **Ladder fixed (PROMPTS 14-16):** calibration done (calib1, 88/96; all 65 ladder bots met -- the list has 65, not
+  220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
+  sequential Elo had put us at rank 4 after the easy calibration games. True grade: g_iter5 1684 +- 60, rank 16 of
+  71 players (15th of 65 bots plus our builds), level with g_iter3 (1693 +- 27). Withdrawal now compares ratings.
+- **Running on the VM:** block 40 (`tools/scrim.sh`, BOT=g_iter5, N=48, the corrected band: 8 bots rated 1567-1787).
+  Post it with `tools/post-block.sh <run> g_iter5`, then keep running band blocks; the session loop is `/loop 30m task
+  check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise, carry on as before`.
+- **Open lines, in order:** (1) map-dead games (Climb, Hills): five miners idle with twelve remembered soup tiles while
+  the soup lies up 3-high steps -- trace one non-builder miner r100-300 on `diag/iter27-Climb.bc20`
+  (`tools/replay-dump.sh --robot ID`). (2) poortho's rush: school before refinery so the first landscapers dig the HQ
+  out by r80-90. (3) Candidates are judged on the band by rating, not raw win rate.
+- Iterations 23 (home guard), 24 (the perch, `src/arch_perch`), 26 (miners first) and 27 closed 2026-09-24; TRAINING_LOG.md.
 
 ## State (2026-09-23, evening; superseded above where they differ)
 
@@ -76,7 +72,6 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   the enemy ring) is the second arm for defence candidates; `spar2` baseline g_iter3 12/24 before its ferry, `spar3`
   after it. `src/arch_drone` never reaches our ring and is no swarm arm.
 - Sparring: `tools/gauntlet.sh` with `OPPONENTS=arch_drone MAPSET=quick` measures swarm vulnerability (run `spar1`).
-- Ladder: g_iter2 is 37/156 (24%) on the strong field over blocks 1-6; Elo 1372, rank 66/66 (`progress/ELO.md`).
 - Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);
   the ladder field is `tools/ladder-bots.txt` (one bot per repo, chosen by name).
 - Standing loop (owner, session cron every 30 min): keep the VM busy; if idle with nothing queued, start a new idea.

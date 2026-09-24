@@ -27,14 +27,24 @@ spec = importlib.util.spec_from_file_location('elolib', os.path.join(HERE, 'elol
 rows = [dict(run='r1', seq=0, teamA='us:g0', teamB='x.bot', map='M', winner='A', rounds='100', reason=''),
         dict(run='r1', seq=1, teamA='y.bot', teamB='us:g0', map='M', winner='B', rounds='100', reason=''),
         dict(run='r1', seq=2, teamA='us:g0', teamB='x.bot', map='M', winner='B', rounds='100', reason='')]
-R, games, wins, hist = elolib.ratings(rows)
-check(games['us'] == 3 and games['x.bot'] == 2 and games['y.bot'] == 1, 'elo: games counted per player')
-check(wins['us'] == 2 and wins['x.bot'] == 1, 'elo: wins counted')
-check(R['y.bot'] < 1500 < R['us'], 'elo: a loser drops and the winner rises')
-check(R['never.met'] == 1500, 'elo: unmet bot is 1500')
+R, SE, games, wins = elolib.fit(rows)
+check(games['us:g0'] == 3 and games['x.bot'] == 2 and games['y.bot'] == 1, 'elo: games counted per player')
+check(wins['us:g0'] == 2 and wins['x.bot'] == 1, 'elo: wins counted')
+check(R['y.bot'] < 1500 < R['us:g0'], 'elo: a loser drops and the winner rises')
+check(R['never.met'] == 1500 and SE['never.met'] == float('inf'), 'elo: unmet bot is 1500, unrated')
 check(abs(elolib.expected(1500, 1500) - 0.5) < 1e-9 and elolib.expected(1900, 1500) > 0.9, 'elo: expected score')
-check(len(hist) == 3, 'elo: one history point per game of ours')
-check(elolib.pid('us:anything') == 'us' and elolib.pid('a.b') == 'a.b', 'elo: our builds share one rating')
+check(R['x.bot'] > R['y.bot'], 'elo: a bot that took a game off us rates above one that did not')
+check(elolib.fit(rows[::-1])[0]['us:g0'] - R['us:g0'] < 1e-6, 'elo: the fit does not depend on play order')
+# builds are separate players: a build's easy games do not lift another build
+two = rows + [dict(run='r2', seq=i, teamA='us:g1', teamB='z.bot', map='M', winner='A', rounds='100', reason='') for i in range(20)]
+check(abs(elolib.fit(two)[0]['us:g0'] - R['us:g0']) < 1e-6, 'elo: builds are rated separately')
+check(elolib.current_build(two) == 'g1', 'elo: current build is the one of the last game')
+# the 2026-09-24 failure: many wins over weak bots must not lift us above a bot that beats us 9 of 10
+hist = [dict(run='r', seq=i, teamA='us:g0', teamB='s.bot', map='M', winner='B' if i % 10 else 'A', rounds='1', reason='') for i in range(40)]
+hist += [dict(run='r', seq=100 + i, teamA='us:g0', teamB=f'w{i}.bot', map='M', winner='A', rounds='1', reason='') for i in range(96)]
+Rh = elolib.fit(hist)[0]
+check(Rh['s.bot'] > Rh['us:g0'], 'elo: easy wins do not lift us above a bot that beats us')
+check(0.3 < elolib.field_score(Rh, 'us:g0', ['s.bot', 'w0.bot']) < 0.7, 'elo: field score averages expected scores')
 
 # --- scrim-record.py: reads a gauntlet results.csv into games.csv rows, idempotent per run
 with tempfile.TemporaryDirectory() as d:

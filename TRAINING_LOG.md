@@ -1117,6 +1117,34 @@ binding constraint is income: five miners sit idle with twelve soup tiles in mem
 map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
 of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
 
+## Calibration and the ladder fix (calib1 + tools, 2026-09-24, PROMPTS 14-16)
+
+**calib1** (`20260924-133731-scrim-g_iter5`): g_iter5 against the 48 ladder bots never played, two
+games each: **88/96**. The ladder list has 65 bots (one per repo), not 220, so this one block
+covered the field: all 65 are now met. The old sequential Elo (K=32, one `us` rating inherited by
+every build) then put us at rank 4 of 66, Elo 1776, above bots with 104-9 records against us: the
+96 easy games came last in play order and each moved `us` up against bots still at 1500.
+
+**Fix (owner approved, PROMPTS 15-16):** `tools/elolib.py` now rates by a batch Bradley-Terry fit
+over every game, on the Elo scale, with each of our builds its own player and a weak prior (one
+virtual win and loss against a 1500 anchor). Order does not matter, and a build's rating comes only
+from its own games. `tools/elo.py` reports each build's rating with a 95% interval, its rank, and
+its field score (expected score against all 65 bots, one game each); `--band`/`--pool` centre on
+the build named by `--as` (scrim.sh passes `$BOT`). The withdrawal rule in TRAINING_ALGORITHM.md
+now compares ratings, not raw win rates, which depended on the pool each build met.
+
+| build | rating | rank of 71 | games | record | field score |
+|---|---|---|---|---|---|
+| g_iter3 | 1693 +- 27 | 15 | 1116 | 244-872 | 69.4% |
+| g_iter5 | 1684 +- 60 | 16 | 240 | 108-132 | 68.7% |
+| iter24 | 1682 +- 124 | 17 | 48 | 11-37 | 68.6% |
+| g_iter4 | 1669 +- 60 | 20 | 228 | 46-182 | 67.6% |
+| g_iter2 | 1635 +- 63 | 21 | 204 | 47-157 | 64.8% |
+
+The true grade: about rank 15 of 65 bots, with 14 bots above us. g_iter5 and g_iter3 are level on
+the ladder (g_iter5's mirror-gate win over g_iter3 stands). Block 40 is the first on the corrected
+band (bots rated 1567-1787).
+
 ## The graded ladder (owner decision, 2026-09-24, PROMPTS 7-9)
 
 Asked for our progress against a fixed roster, the answer was that the pool "just above us" had

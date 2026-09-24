@@ -10,7 +10,7 @@ before running anything, and `HANDOFF.md` for the state of the loop.
 3. **External bots are never read** (`BENCHMARK.md` rule 1) and **their games are never
    reviewed below a 20% win rate** (rule 2; `tools/tier-check.sh` fails closed).
 4. **External bots are played only as scrimmages** (`tools/scrim.sh`: random map, random side,
-   rotating opponents drawn from the Elo band around us -- the graded pool approved 2026-09-24,
+   rotating opponents drawn from the rating band around us -- the graded pool approved 2026-09-24,
    PROMPTS 8-9; `POOLMODE=above` is the old just-above-us pool -- seeded from never-played bots
    with `EXPLORE=n`; the ladder grade is calibrated by playing the never-played bots, two games
    each, until the field is covered -- games run fast enough now, PROMPTS 9-10). Never choose a map or a side

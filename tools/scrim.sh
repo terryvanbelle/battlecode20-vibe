@@ -37,9 +37,9 @@ if [ -z "${POOL:-}" ]; then
     elif [ "${POOLMODE:-band}" = established ]; then
       POOL="$(python3 "$REPO/tools/elo.py" --established "${POOLSIZE:-8}")"
     elif [ "${POOLMODE:-band}" = above ]; then
-      POOL="$(python3 "$REPO/tools/elo.py" --pool "${POOLSIZE:-8}" --explore "${EXPLORE:-0}")"
+      POOL="$(python3 "$REPO/tools/elo.py" --pool "${POOLSIZE:-8}" --explore "${EXPLORE:-0}" --as "$BOT")"
     else
-      POOL="$(python3 "$REPO/tools/elo.py" --band "${POOLSIZE:-8}" --explore "${EXPLORE:-0}")"
+      POOL="$(python3 "$REPO/tools/elo.py" --band "${POOLSIZE:-8}" --explore "${EXPLORE:-0}" --as "$BOT")"
     fi
   else
     echo "ladder history has under 40 games: using tools/roster.txt" >&2
