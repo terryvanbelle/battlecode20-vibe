@@ -1,4 +1,4 @@
-package bot;
+package cand31b;
 
 /** Tunable constants, one place. Each one names the measurement that set it, once there is one. */
 public final class C {

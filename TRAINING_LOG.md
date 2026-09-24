@@ -1218,6 +1218,15 @@ landscapers at r350 (+0.58) and digs at r550 (+0.59); pickups (us-them) rise at 
 vaporators, miners and soup never pass +0.30. The early economy -- how much has been mined by r200 -- is the
 earliest signal in the whole record; the raid signal follows it by 400 rounds.
 
+**Arm 2 (`arm31a`/`arm31b`, 96 seeded band games as `us:cand31`): 52/96 (54%), rating 1701 +- 76; mid-game
+losses 6 of 96 -- a null by the letter (the threshold was 5)**, but two of the six are flood-round deaths on
+map-dead maps (DidAMonkeyMakeThis r1210, Toothpaste r1226), not raids, and the other four are benzyx on
+Infinity three times (r1217-1220) and laurenschneider on Climb r1547. Against g_iter6's 12.5% mid-game loss
+rate the expected count was 12. On Infinity (HQ at elevation 0, everything drowns by r600) the gun stood from
+r600 and was gone before the raid. Both arms null: **cand31 is refuted as built**; the bounded form
+**31b** (`src/cand31b`: no reserve, builder duty or gunner after r700) is in `gate31b` on the strength of the
+arm's direction; if that gate is not a clear reject it gets the arm again with the flood-round deaths excluded.
+
 ## The fixed seed (2026-09-24, PROMPTS 24-25)
 
 Four benzyx MoreCowbell losses in blocks 50-56 were the same game to the round. The engine seeds its
