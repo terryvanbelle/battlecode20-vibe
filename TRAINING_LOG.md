@@ -1003,6 +1003,10 @@ replay. Side finding: on Prison the incumbent's own post-r400 building spree (si
 two net guns at distance 3, on the helpers' dig tiles) costs it 13% of ring; a parked builder
 scored 1823 vs 1595.
 
+## Block 34 -- g_iter3 against the challenge pool (run block34, 2026-09-24)
+
+48 games: **12/48 (25%)**; cumulative for g_iter3 232/1068 (21.7%). Elo 1354, rank 65 of 66.
+
 ## Block 33 -- g_iter3 against the challenge pool (run block33, 2026-09-24)
 
 48 games: **10/48 (20%)**; cumulative for g_iter3 220/1020 (21.5%). Elo 1310, rank 65 of 66.

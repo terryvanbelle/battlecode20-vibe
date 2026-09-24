@@ -147,6 +147,7 @@ public strictfp class Landscaper extends Robot {
                 MapLocation t = tiles[i]; if (!rc.canSenseLocation(t)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(t);
                 if (r != null && r.type.isBuilding()) continue;                                  // never bury a building
+                if (i < 2 && r != null) continue;                                                  // F and V only when empty (a miner standing on V rode up and blocked the vaporator)
                 if (i == 2 && (r == null || r.type != RobotType.MINER || r.team != us)) continue;   // B only under the builder
                 int e = rc.senseElevation(t); if (e >= target || e >= be || (i < 2 && e >= capFV)) continue;
                 Direction d = loc.directionTo(t); if (!rc.canDepositDirt(d)) continue;

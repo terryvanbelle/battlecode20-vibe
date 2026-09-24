@@ -46,6 +46,9 @@ public strictfp class Miner extends Robot {
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }
         }
+        if (!builder && MapState.perch != null && MapState.isPerch(loc) && rc.isReady()) {   // Iteration 24: the perch is reserved (a miner idling on V kept it at 9)
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!MapState.isPerch(n) && !onRing(n) && !n.equals(MapState.home) && tryMove(d)) { Debug.log("@offperch"); return; } }
+        }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (builder && MapState.perch != null && round >= C.PERCH_ROUND && !perchFailed && perchDuty()) return;   // Iteration 24
