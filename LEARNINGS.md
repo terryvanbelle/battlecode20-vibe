@@ -92,6 +92,15 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   had two landscapers all game (gate 18, 2-14 in its first batch), the incumbent itself has three
   there. Every station picker must skip tiles adjacent to our own buildings.
 
+- **Two chosen diagnostics are not a forecast.** The plateau roles won Prison by 15% and Soup by 10%
+  and then lost the random-map mirror 42-54, 25-39 and 15-33. A diagnostic proves a mechanism fires;
+  only the gate prices it. Before a gate, run the candidate on ten random maps and count deaths and
+  role churn against the incumbent -- the two numbers that predicted every plateau loss.
+- **Claim races are the default failure of any "nearest free tile" rule.** With sixteen units and
+  forty-eight tiles, several units head for the same tile, all but one re-pick, and each re-pick is
+  rounds of digging lost; the incumbent's fixed eight seats never race. A claim must be settled
+  once (first to reach keeps it) or assigned deterministically.
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for
