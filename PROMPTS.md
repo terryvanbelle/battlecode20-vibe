@@ -57,3 +57,7 @@ You're approved
 ## 10. 2026-09-24
 
 This year the games run a lot faster, so it makes sense to run more games to get a good baseline
+
+## 11. 2026-09-24
+
+I didn't mean that the blocks should be bigger, but that you should play more games to determine what the true ladder grade is

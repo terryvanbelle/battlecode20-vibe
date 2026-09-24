@@ -1109,11 +1109,12 @@ tiles it could not climb.
 Asked for our progress against a fixed roster, the answer was that the pool "just above us" had
 drifted to bots that beat us 70-99% of the time (we are rank 65 of 66 rated, 11 of the 15 pool
 regulars over 70%), so a 48-game block moves 4-14 wins on noise and most of its games are locked
-from review. The owner approved a graded ladder and asked for bigger blocks now that games run
-faster. `tools/elo.py --band N` draws the N rated bots nearest to us on either side; `scrim.sh`
-uses it by default (`POOLMODE=above` restores the old pool) and seeds it with `EXPLORE=n`
-never-played bots. Plan: two 96-game seeding blocks with EXPLORE=8, then a 144-game baseline for
-g_iter5 and g_iter3 on the settled band, and every later block at 96.
+from review. The owner approved a graded ladder and, games being fast now, asked for enough
+games to find the true ladder grade. `tools/elo.py --band N` draws the N rated bots nearest to us
+on either side; `scrim.sh` uses it by default (`POOLMODE=above` restores the old pool) and seeds
+it with `EXPLORE=n` never-played bots. Plan: calibration blocks of g_iter5 against 48
+never-played bots at a time, two games each (`POOLSIZE=0 EXPLORE=48 N=96`), until the 220
+untested bots are placed; then blocks on the band as before.
 
 ## Block 38 -- g_iter5 against the challenge pool (run block38, 2026-09-24)
 
