@@ -1104,6 +1104,10 @@ the HQ, never sees 150. Ring tiles at 2, 4 and 7 beside seats at 44; the tile at
 r500 and the HQ at 4 drowns at r931. The other side spawned 8 and still lost 3 seats to cliff
 tiles it could not climb.
 
+## Block 38 -- g_iter5 against the challenge pool (run block38, 2026-09-24)
+
+48 games: **9/48 (19%)**; cumulative for g_iter5 16/96 (16.7%, Wilson upper bound about 25%, above g_iter3's 21.9%: not withdrawn). Elo 1304, rank 65 of 66.
+
 ## Block 37 -- g_iter5 against the challenge pool (run block37, 2026-09-24)
 
 48 games: **7/48 (14.6%)**; the first block of the new incumbent (g_iter3's single blocks ranged

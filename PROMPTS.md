@@ -45,3 +45,7 @@ OK, I guess it's harmless
 ## 7. 2026-09-24
 
 What's our progress against a fixed roster of opponents?
+
+## 8. 2026-09-24
+
+Is it possible you're working on beating a roster that's too strong at the moment?
