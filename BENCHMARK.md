@@ -119,7 +119,7 @@ every recorded block; the tier is the most recent build's record against that op
 | `StoneT2000.Chow7` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.Chow8` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.Chow9` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
-| `StoneT2000.FinalChowBotStable` | StoneT2000_Battlecode2020 (4d6003c) | 0 | 8 | locked | 100 0 |
+| `StoneT2000.FinalChowBotStable` | StoneT2000_Battlecode2020 (4d6003c) | 8 | 12 | locked | 100 0 8 |
 | `StoneT2000.attackbot` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.farmbot1` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.jan9` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
@@ -170,11 +170,11 @@ every recorded block; the tier is the most recent build's record against that op
 | `benzyx.espada` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
 | `benzyx.firstplayer` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
 | `benzyx.kurobot` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
-| `benzyx.seeding` | benzyx_bc20-waterloo (05df2e7) | 39 | 54 | target | 25 17 50 40 25 45 39 |
+| `benzyx.seeding` | benzyx_bc20-waterloo (05df2e7) | 36 | 66 | target | 25 17 50 40 25 45 36 |
 | `benzyx.tortuga` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
 | `charboltron.master_player` | charboltron_pdx_battlecode_2020_team_11 (f78f1e3) | - | - | untested |  |
 | `charboltron.team11newbot` | charboltron_pdx_battlecode_2020_team_11 (f78f1e3) | 100 | 2 | solved | 100 100 |
-| `cormackikkert.whyPermutator` | cormackikkert_battlecode2020 (4d230c4) | 48 | 54 | target | 25 17 38 40 25 42 48 |
+| `cormackikkert.whyPermutator` | cormackikkert_battlecode2020 (4d230c4) | 50 | 66 | peer | 25 17 38 40 25 42 50 |
 | `cormackikkert.whyPermutatorOld` | cormackikkert_battlecode2020 (4d230c4) | - | - | untested |  |
 | `cosimogonnelli.Team3player` | cosimogonnelli_CS454-554-SE (d7dc657) | 100 | 2 | peer(>90 once) | 80 100 |
 | `cs454-w20-team3.oldbot` | cs454-w20-team3_team3-bot (502c334) | - | - | untested |  |
@@ -202,7 +202,7 @@ every recorded block; the tier is the most recent build's record against that op
 | `kylittle.deliriumv1` | kylittle_DeliriumBattlecode (17a94dd) | - | - | untested |  |
 | `kylittle.qualsbot` | kylittle_DeliriumBattlecode (17a94dd) | - | - | untested |  |
 | `kylittle.qualsbot2` | kylittle_DeliriumBattlecode (17a94dd) | 100 | 2 | solved | 100 100 |
-| `laurenschneider.pdx_team_one` | laurenschneider_battlecode20-PDXTeamOne (2965376) | 46 | 54 | target | 0 50 39 14 0 47 46 |
+| `laurenschneider.pdx_team_one` | laurenschneider_battlecode20-PDXTeamOne (2965376) | 42 | 66 | target | 0 50 39 14 0 47 42 |
 | `lfchain.bigBudsBot` | lfchain_Battlecode2020 (b026153) | 100 | 2 | solved | 100 100 |
 | `lfchain.fBot` | lfchain_Battlecode2020 (b026153) | - | - | untested |  |
 | `lfchain.jBot` | lfchain_Battlecode2020 (b026153) | - | - | untested |  |
@@ -222,7 +222,7 @@ every recorded block; the tier is the most recent build's record against that op
 | `max-titov.turtlebot` | max-titov_2020.battlecode-KFA (496103d) | - | - | untested |  |
 | `mhahn2003.bot01` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
 | `mhahn2003.lectureplayer` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
-| `mhahn2003.nonrush` | mhahn2003_bc20 (7475d5e) | 69 | 48 | peer | 25 58 80 92 69 |
+| `mhahn2003.nonrush` | mhahn2003_bc20 (7475d5e) | 67 | 60 | peer | 25 58 80 92 67 |
 | `mhahn2003.pure_teraform` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
 | `mhahn2003.rngform` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
 | `mhahn2003.rush` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
@@ -279,7 +279,7 @@ every recorded block; the tier is the most recent build's record against that op
 | `poortho.rush` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
 | `poortho.rush_bot` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
 | `poortho.stable_miner1` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
-| `poortho.stable_seeding_bot` | poortho_battlecode-2020 (ebbd61e) | 33 | 42 | target | 0 17 27 31 0 30 33 |
+| `poortho.stable_seeding_bot` | poortho_battlecode-2020 (ebbd61e) | 35 | 54 | target | 0 17 27 31 0 30 35 |
 | `ps789.dennisTestPlayer` | ps789_AZBattlecode (f1d54ab) | - | - | untested |  |
 | `ps789.phillipTestPlayer` | ps789_AZBattlecode (f1d54ab) | - | - | untested |  |
 | `ronniesong0809.finalbota` | ronniesong0809_battlecode20-RADS (1cee065) | 0 | 11 | locked | 0 18 15 7 0 0 |
@@ -325,9 +325,9 @@ every recorded block; the tier is the most recent build's record against that op
 | `willBoyd8.droideka` | willBoyd8_BattleDroid (4b1d4ad) | - | - | untested |  |
 | `willBoyd8.empire` | willBoyd8_BattleDroid (4b1d4ad) | - | - | untested |  |
 | `willBoyd8.mouse` | willBoyd8_BattleDroid (4b1d4ad) | - | - | untested |  |
-| `winkelmantanner.tannerplayer` | winkelmantanner_battlecode2020_the-levee-builders (7f49f11) | 8 | 12 | locked | 0 25 15 23 0 36 8 |
+| `winkelmantanner.tannerplayer` | winkelmantanner_battlecode2020_the-levee-builders (7f49f11) | 8 | 24 | locked | 0 25 15 23 0 36 8 |
 | `wpine215.stardustv1` | wpine215_battlecode (d570d57) | - | - | untested |  |
-| `wpine215.stardustv2` | wpine215_battlecode (d570d57) | 72 | 54 | peer | 0 30 50 65 100 70 72 |
+| `wpine215.stardustv2` | wpine215_battlecode (d570d57) | 74 | 66 | peer | 0 30 50 65 100 70 74 |
 | `yaonam.Robot_1` | yaonam_battlecode2020 (bb363f5) | 100 | 2 | peer(>90 once) | 62 100 |
 
 285 bot packages from 68 repositories.

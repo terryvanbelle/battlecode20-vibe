@@ -11,9 +11,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **VM state:** idle at the last check; blocks 50-58 are recorded and pushed. Do not start a block until the VM's
-  `engine/engine.jar` is the seed-patched build (see the gotcha below); with the old jar `-Dbc.game.seed` is ignored and
-  repeated pairings would be recorded as distinct games.
+- **Running on the VM:** blocks 61 and 62 (`BOT=g_iter6`, seeded). Blocks 50-60 are recorded and pushed. Post each
+  finished block with `tools/post-block.sh <run> g_iter6` and push the regenerated `progress/` files in the same commit.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.

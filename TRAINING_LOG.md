@@ -1136,6 +1136,55 @@ field score 73.2% (g_iter5 1739 +- 30). Blocks 53-54 (`20260924-190807`, `-19081
 Blocks 55-56 (`20260924-193834`, `-193842`): **31/48** and **28/48**; g_iter6 1736 +- 40 after 336
 games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`20260924-194653`, `-194718`):
 **28/48** and **24/48**; on distinct games g_iter6 is 1740 +- 43, g_iter5 1743 +- 33 (see "The fixed seed").
+Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
+running total. Blocks 61-62 running.
+
+## Iteration 31 -- gun perches (2026-09-24, PROMPTS 24-25)
+
+**Where the losses are** (blocks 50-56, 336 games, 159 losses; scores and map data only, so every
+opponent counts): by end round 12 before r500, 21 by r1000, **42 between r1000 and r2000 (8 wins
+there)**, 36 by r3000, 48 after (106 wins after r3000: the long wall race is ours). 27 losses end
+within 3 rounds of the map's `hqFloodRound` (GSF, Hills, Spiral x3, Toothpaste x4: the map-dead
+line). The other mid-game losses end at rounds fixed by the opponent, not the map: benzyx r1217-1228
+and r1615-1624, team4 r1565-1582, mvpatel r1896-1932 -- timed raids, as Iterations 10 and 23 found
+for g_iter3 (then 274 of 616 losses; now 42 of 159, 26%).
+
+**The raid, traced** (benzyx, reviewable; MoreCowbell r1596-1623 and OmgThisIsProcedural
+r1201-1217): our ring is sealed at 500-740 on every tile; 20-40 drones arrive together, lift all
+eight seats in 5-8 rounds (each dropped in water), drop their own landscapers on the freed ring
+tiles, and bury the HQ (50 dirt) in 10-15 rounds. The HQ shoots one drone a round throughout (17-43
+kills per game) and it is not enough. In the 16 distinct reviewable mid-game losses, 11 are this
+raid against a sealed ring; 5 are flooded or unseated ring tiles (Toothpaste, Hourglass, Climb).
+
+**Onset evidence** (owner, PROMPTS 25; `onset.py` over the merged study tables of blocks 50-56, 213
+games, noise floor 0.14 instead of one block's 0.30): earliest risers are landscapers (us-them) from
+r350 (peak +0.53), robots r350, digs and vaporators r500 (+0.52, +0.32), dirt deposits r550;
+**pickups (us-them) from r750 (+0.32)** -- being lifted predicts losing from r750 on; drones
+(us-them) never rise above +0.20 and net guns +0.18 (we rarely have either past r700). Read: the
+body count at the wall is the earliest signal (the economy line, still open); the raid signal is
+real and later; drone counts by themselves do not predict, which is consistent with Iterations 10,
+23 and 24 (drones as guards: closed).
+
+**Candidate** = g_iter6 + two net guns that outlive the flood, in a form not yet tried: the HQ
+picks at r3 two Chebyshev-3 tiles on opposite sides (E/W, N/S, then the diagonals; dry, within 6
+of its height, each with a dry Chebyshev-3 neighbour as a stand) and posts them (`Comms.GUN_SITES`,
+r5 and every 20 rounds to r800); the first landscaper born after the eight seats claims a site
+(the **gunner**): stands on the stand, raises the gun tile to hqElev+6 (never more than 3 above
+its own tile) and the stand under itself to hqElev+3, digging from Chebyshev 4, then becomes a
+helper; the builder, once a site reads hqElev+6, walks onto the stand and builds the gun (250,
+before vaporators); nobody digs a gun tile or its stand and no other building takes one. A gun
+tile at hqElev+6 (9 on most maps) floods at about r1720, after benzyx's r1220 and r1620 raids
+and team4's r1567. 80 of the 102 HQs on the corpus have such an opposite pair (elevation census,
+2026-09-24). Cost: about 9 loads of dirt and one landscaper for ~30 rounds, plus 500 soup.
+
+**Pre-registration.** Arm 1: the mirror vs g_iter6 (`gate31`, seeded games); the mirror never raids,
+so it prices only the cost -- a reject there is expected and not decisive. Arm 2 (the only raiding
+opponents are on the ladder; `arch_swarm` beat g_iter6 only in r3000+ wall races): two 48-game band
+blocks of the candidate as `us:cand31`, seeded. **A finding if the candidate loses at most 5 of the
+96 games between r1000 and r2000** (g_iter6: 42 of 336, 12.5%; the binomial chance of <= 5 of 96
+at that rate is about 2%) and its distinct-game win rate is within noise of g_iter6's; a null in
+both arms is a reject. Diagnostic before either: a gun standing on a raised tile by r700, dry at
+r1600, on a map where g_iter6 lost to the raid (`diag/gun-Omg.bc20`, vs arch_swarm).
 
 ## The fixed seed (2026-09-24, PROMPTS 24-25)
 
