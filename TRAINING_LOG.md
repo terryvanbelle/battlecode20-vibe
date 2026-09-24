@@ -875,6 +875,14 @@ of one seat under each implementation, which is the next session's first plateau
 is reopened. Four sweeps of the slot revision at 5-10/24; **the plateau stays in the ledger** and
 `src/arch_plateau` holds the code and this table.
 
+Turn-by-turn comparison on the plat11 Squares loss: every one of our landscapers digs and deposits
+at the ceiling (about 900 of each by r2000, the same as the incumbent's), and the deficit is not
+efficiency at all -- **three of the eight ring tiles were never held**. Slots are static: the first
+holders of those tiles were lost (a stall, a churn bound) and every later newborn had a tier-2 or
+tier-3 slot, so nobody came back for the ring; the empty tiles were fed only by their neighbours'
+equalising and set the ring's minimum (897 vs 1747). Fix: a newborn takes the nearest free ring
+tile it can still climb before consulting its slot. Sweep `plat12` after block 27.
+
 ## Block 26 -- g_iter3 against the challenge pool (run block26, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 150/684 (21.9%).

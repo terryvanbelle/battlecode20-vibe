@@ -30,7 +30,12 @@ public strictfp class Landscaper extends Robot {
         if (home == null) { nav.setTarget(null); return; }
         if (attacker) { attack(); return; }
         if (round <= birth + 1 && MapState.mySlot < 0) readSlot();   // the slot the school posted the round we were built (the sandbox may construct us a round late: look two blocks back)
-        if (post == null && MapState.mySlot >= 0 && !slotTried) { slotTried = true; post = slotTile(home, MapState.mySlot); if (post != null) { tier = Nav.cheb(post, home); Debug.log("@slot k=" + MapState.mySlot + " at=" + post); } }
+        if (post == null && !slotTried) {   // a free exposed ring tile we can still climb comes before any slot (plat11: three ring tiles stood empty all game after their first holders were lost)
+            slotTried = true;
+            MapLocation ringFree = freeRingTile(home);
+            if (ringFree != null) { post = ringFree; tier = 1; Debug.log("@ringfirst at=" + post); }
+            else if (MapState.mySlot >= 0) { post = slotTile(home, MapState.mySlot); if (post != null) { tier = Nav.cheb(post, home); Debug.log("@slot k=" + MapState.mySlot + " at=" + post); } }
+        }
         if (post == null || (!post.equals(loc) && loc.isAdjacentTo(post) && occupiedByFriend(post))) { rePicks++; post = rePicks > 3 ? null : pickTile(home); if (post == null) { attacker = true; Debug.log("@attacker no tile"); attack(); return; } tier = Nav.cheb(post, home); Debug.log("@hold t=" + tier + " at=" + post); }
         if (!loc.equals(post)) { approach(home); return; }
         hold(home);
@@ -49,6 +54,18 @@ public strictfp class Landscaper extends Robot {
     /** Ring tiles held by landscapers of ours, as seen from here. */
     private int ringCount() { int n = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && onRing(friends[i].location)) n++; if (onRing(loc)) n++; return n; }
 
+    /** The nearest exposed ring tile with no landscaper of ours on it that we can still climb (within 3 of our elevation). */
+    private MapLocation freeRingTile(MapLocation home) throws GameActionException {
+        MapLocation best = null; int bd = 1 << 30; int myE = rc.senseElevation(loc);
+        for (int i = 8; --i >= 0;) {
+            MapLocation t = home.add(DIRS[i]);
+            if (!rc.onTheMap(t) || !exposed(t) || !rc.canSenseLocation(t)) continue;
+            if (Math.abs(rc.senseElevation(t) - myE) > GameConstants.MAX_DIRT_DIFFERENCE || rc.senseFlooding(t)) continue;
+            RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.ID != id && (r.type.isBuilding() || (r.type == RobotType.LANDSCAPER && r.team == us))) continue;
+            int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
+        }
+        return best;
+    }
     /** The SLOT message naming our tile, in the last two blocks. */
     private void readSlot() throws GameActionException {
         for (int back = 1; back <= 2 && MapState.mySlot < 0; back++) {
