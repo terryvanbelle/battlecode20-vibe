@@ -899,6 +899,27 @@ question for the next session is a step-by-step comparison of the first eight ne
 choices under `arch_plateau/Landscaper.pickTile`/`freeRingTile` and `g_iter3/Landscaper.pickSeat`
 on Squares, where three claimants fail.
 
+**Answered by the trace (2026-09-24, `diag/seats-Squares.*`, both bots with seat events on system-out).**
+The premise was wrong: on Squares g_iter3 also seats only five ring tiles (seated at r100, 131,
+137, 150, 150; the sixth and later newborns become helpers, two of them after a `@badseat`). The
+difference is what happens to the unseated tiles. g_iter3's helpers stand outside the ring and pour
+every load into it, so all eight tiles rise together (28 26 23 28 26 30 28 30 at r200) and the
+ring reaches 1510 at r2000. The plateau rewrite's claimants chase the same tiles (two newborns
+pick [11,32] at r79 and r85; three pick [11,30] at r110, r123 and r137, none reaches it, all
+three strike it off around r160-180 and re-pick tiles that are already held), and its holders'
+inward feeding raises the unheld tiles above the ground (5, 8, 10 at r110; 10-15 at r140) before
+anyone arrives, so they are unclimbable from r140 while one tile with no held neighbour stays at
+4 until r220. The dirt that does arrive is spread over tiers 2 and 3 as well: the plateau ring
+stands at 864 at r2000 (57% of g_iter3's), the same halving the citadel showed with 16 tiles. So
+the plateau does not lose on seat count; it loses on where the dirt goes. Reopening it means
+keeping every load on the eight ring tiles until the ring is safe (no tier-2 or tier-3 self-raise
+before ~r1500) and letting claimants hold a tile in place without ever re-picking; anything else
+is the citadel again.
+
+## Block 28 -- g_iter3 against the challenge pool (run block28, 2026-09-24)
+
+48 games: **12/48 (25%)**; cumulative for g_iter3 168/780 (21.5%). Elo 1361, rank 65 of 66.
+
 ## Block 27 -- g_iter3 against the challenge pool (run block27, 2026-09-24)
 
 48 games: **6/48 (12.5%)**; cumulative for g_iter3 156/732 (21.3%).
