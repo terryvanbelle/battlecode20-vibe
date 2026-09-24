@@ -16,7 +16,7 @@ public strictfp class Landscaper extends Robot {
     private boolean attacker = false, helper = false;
     private MapLocation post;                 // helper station at distance 2
     private final MapLocation[] badSeat = new MapLocation[8]; private int nBad = 0;
-    private int helperDeps = 0, masonDeps = 0;
+    private int helperDeps = 0, masonDeps = 0; private boolean triedPerch = false;
     private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0;
 
     Landscaper(RobotController rc) { super(rc); nav.stallLimit = 30; }
@@ -27,6 +27,7 @@ public strictfp class Landscaper extends Robot {
     }
     private void turn2() throws GameActionException {
         sense(); if (round % 3 == 1) readBlock(); probeEdges();
+        if (round == birth && MapState.perch == null) readBack(12);   // Iteration 24: the perch is posted every 10 rounds
         if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " masonDeps=" + masonDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
@@ -94,16 +95,38 @@ public strictfp class Landscaper extends Robot {
                 if (lowest == Integer.MAX_VALUE) continue;   // a post that touches no exposed ring tile feeds nothing
             }
             long s = (long) (lowest == Integer.MAX_VALUE ? 0 : lowest) * 10000 + loc.distanceSquaredTo(t) + nextInt(2);
-            if (t.equals(MapState.perch)) s = -1;   // Iteration 24: the perch post goes to the first helper that can take it (the mason)
+            if (t.equals(MapState.perch)) {   // Iteration 24: the perch post goes to the helper nearest to it (every newborn preferring it crowded and stalled)
+                boolean nearer = false; int myD = loc.distanceSquaredTo(t);
+                for (int k = nFriend; --k >= 0;) { RobotInfo f = friends[k]; if (f.type == RobotType.LANDSCAPER && f.location.distanceSquaredTo(t) < myD) { nearer = true; break; } }
+                if (!nearer) s = -1;
+            }
             if (s < bs) { bs = s; best = t; }
         }
         return best;
     }
 
     private void help(MapLocation home) throws GameActionException {
+        // Iteration 24: a helper near the perch post that learns of it late takes it if nobody stands there
+        if (MapState.perch != null && !triedPerch && round < 600 && !post.equals(MapState.perch) && Nav.cheb(loc, MapState.perch) <= 3 && rc.canSenseLocation(MapState.perch) && !occupiedByOther(MapState.perch)) {
+            boolean bad = false; for (int k = nBadPost; --k >= 0;) if (badPost[k].equals(MapState.perch)) { bad = true; break; }
+            if (!bad) { post = MapState.perch; triedPerch = true; Debug.log("@helper post=" + post + " mason=true"); }   // once: a stall strikes it off like any post
+        }
         if (!loc.equals(post)) {
             if (occupiedByOther(post)) { RobotInfo r = rc.canSenseLocation(post) ? rc.senseRobotAtLocation(post) : null; if (r != null && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) { post = pickPost(home); if (post == null) { helper = false; attacker = true; return; } } }
             if (floodDanger() && climb()) return;
+            // Iteration 24: the perch post, dug into a pit before the seats learned of it, is refilled from next door
+            if (post.equals(MapState.perch) && Nav.cheb(loc, post) == 1 && rc.canSenseLocation(post) && rc.senseElevation(post) < rc.senseElevation(loc) - 3) {
+                if (!rc.isReady()) return;
+                Direction toPost = loc.directionTo(post);
+                if (rc.getDirtCarrying() > 0) { if (rc.canDepositDirt(toPost)) { rc.depositDirt(toPost); masonDeps++; } return; }
+                Direction bestD = null; int be = Integer.MAX_VALUE;
+                for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || n.equals(post) || MapState.isPerch(n) || !rc.canDigDirt(d)) continue;
+                    RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
+                    int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
+                if (bestD == null && rc.canDigDirt(Direction.CENTER)) bestD = Direction.CENTER;
+                if (bestD != null) { rc.digDirt(bestD); digs++; }
+                return;
+            }
             if (nav.target() == post && nav.stalled()) {   // Iteration 8: a post never reached is struck off and another picked; the attack only when none is left (Iteration 7 sent every stalled helper to attack: gate 21-43)
                 if (nBadPost < 8) badPost[nBadPost++] = post; Debug.log("@badpost " + post);
                 post = pickPost(home); if (post == null) { helper = false; attacker = true; }
@@ -118,13 +141,14 @@ public strictfp class Landscaper extends Robot {
         // 1b. Iteration 24: the mason. From P, raise F and V to the perch target, and B once the builder stands on it.
         if (rc.getDirtCarrying() > 0 && round < 700 && loc.equals(MapState.perch)) {
             int target = MapState.perchTarget(); MapLocation[] tiles = {MapState.perchF(), MapState.perchV(), MapState.perchB()};
+            int capFV = rc.canSenseLocation(tiles[2]) ? rc.senseElevation(tiles[2]) + 3 : target;   // F and V never more than 3 above B: the builder must be able to reach B and climb between them
             Direction bestD = null; int be = Integer.MAX_VALUE;
             for (int i = 0; i < 3; i++) {
                 MapLocation t = tiles[i]; if (!rc.canSenseLocation(t)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(t);
                 if (r != null && r.type.isBuilding()) continue;                                  // never bury a building
                 if (i == 2 && (r == null || r.type != RobotType.MINER || r.team != us)) continue;   // B only under the builder
-                int e = rc.senseElevation(t); if (e >= target || e >= be) continue;
+                int e = rc.senseElevation(t); if (e >= target || e >= be || (i < 2 && e >= capFV)) continue;
                 Direction d = loc.directionTo(t); if (!rc.canDepositDirt(d)) continue;
                 be = e; bestD = d;
             }
@@ -168,7 +192,7 @@ public strictfp class Landscaper extends Robot {
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d)) continue;
+            if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d) || n.equals(MapState.perch)) continue;   // Iteration 24: the perch post stays walkable
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
             if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
             int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles

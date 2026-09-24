@@ -974,6 +974,10 @@ survives: the guard role itself (shown on Prison) and the finding that our drone
 on the ladder. The drones must come from soup the mirror does not value -- the post-flood soup
 (1,300 idle at r1200), which needs a center that outlives the flood: Iteration 24.
 
+## Block 32 -- g_iter3 against the challenge pool (run block32, 2026-09-24)
+
+48 games: **9/48 (19%)**; cumulative for g_iter3 210/972 (21.6%).
+
 ## Block 31 -- g_iter3 against the challenge pool (run block31, 2026-09-24)
 
 48 games: **9/48 (19%)**; cumulative for g_iter3 201/924 (21.8%). Elo 1297, rank 65 of 66.

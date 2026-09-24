@@ -33,6 +33,7 @@ public strictfp class Miner extends Robot {
         sense(); int b0 = Clock.getBytecodeNum(); if (round % 3 == 0) readBlock(); int b1 = Clock.getBytecodeNum(); probeEdges(); MapState.markSeen(loc);
         if (round % 8 == id % 8 && Clock.getBytecodeNum() < 3000) observeTerrain();
         int b2 = Clock.getBytecodeNum();
+        if (round == birth && builder && MapState.perch == null) readBack(12);   // Iteration 24
         if (round % 100 == 0) Debug.log("@minerstat builder=" + builder + " mined=" + mined + " deposits=" + deposits + " explores=" + explores + " soupMem=" + nSoup + " unreachable=" + unreachable);
         rememberSoup(); int b3 = Clock.getBytecodeNum();
         try { turn2(); } finally { int b4 = Clock.getBytecodeNum(); if (b4 > 8000) Debug.log("@bcprof sense=" + b0 + " block=" + (b1 - b0) + " terrain=" + (b2 - b1) + " soup=" + (b3 - b2) + " act=" + (b4 - b3) + " bug=" + nav.isBugging()); }
@@ -67,6 +68,7 @@ public strictfp class Miner extends Robot {
         }
         if (!rc.isReady()) return true;
         int target = MapState.perchTarget(), eB = rc.senseElevation(loc), soup = rc.getTeamSoup();
+        if (round >= C.PERCH_GIVEUP_ROUND && eB < target - 12 && rc.senseElevation(f) < target - 12) { perchFailed = true; Debug.log("@perchfail unraised elev=" + eB); return false; }   // no mason came
         RobotInfo rf = rc.canSenseLocation(f) ? rc.senseRobotAtLocation(f) : null, rv = rc.canSenseLocation(v) ? rc.senseRobotAtLocation(v) : null;
         boolean fBuilt = rf != null && rf.type.isBuilding(), vBuilt = rv != null && rv.type.isBuilding();
         if (eB >= target - 2) {

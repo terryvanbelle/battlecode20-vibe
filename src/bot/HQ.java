@@ -58,10 +58,10 @@ public strictfp class HQ extends Robot {
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
         // Iteration 7: re-post every 100 rounds so robots born late (and the drones) learn home, the origin and the enemy HQ
-        if ((!postedLoc || round % 100 == 50) && round >= 2) postedLoc = post(Comms.make(Comms.HQ_LOC, round, us, loc.x, loc.y));
+        if (MapState.perch != null && round < 600 && (!postedPerch || round % 10 == 0)) postedPerch = post(Comms.make(Comms.PERCH, round, us, MapState.perch.x, MapState.perch.y), 3);   // Iteration 24: every 10 rounds; newborns scan 12 blocks back
+        else if ((!postedLoc || round % 100 == 50) && round >= 2) postedLoc = post(Comms.make(Comms.HQ_LOC, round, us, loc.x, loc.y));
         else if ((!postedOrigin || round % 100 == 25) && MapState.originKnown()) postedOrigin = post(Comms.make(Comms.MAP_ORIGIN, round, us, MapState.minX, MapState.minY));
         else if (round % 100 == 75 && MapState.enemyHQ != null) post(Comms.make(Comms.ENEMY_HQ, round, us, MapState.enemyHQ.x, MapState.enemyHQ.y));
-        else if (MapState.perch != null && (!postedPerch || round % 100 == 10)) postedPerch = post(Comms.make(Comms.PERCH, round, us, MapState.perch.x, MapState.perch.y), 5);
         if (!perchPicked && round >= C.PERCH_PICK_ROUND && (MapState.originKnown() || round >= C.PERCH_PICK_ROUND + 40)) { perchPicked = true; pickPerch(); }
         if (round % 100 == 0) Debug.log("@econ soup=" + rc.getTeamSoup() + " built=" + built + " minersSeen=" + miners + " ring=" + landscapersAdj + " buried=" + rc.getDirtCarrying() + " sym=" + MapState.sym);
     }

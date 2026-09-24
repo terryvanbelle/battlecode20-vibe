@@ -114,6 +114,14 @@ public abstract strictfp class Robot {
         }
     }
 
+    /** Iteration 24: scan the last k blocks (two rounds back and earlier) for the perch post. ~100 bytecodes a block. */
+    protected void readBack(int k) throws GameActionException {
+        for (int r = round - 2; r >= 1 && r >= round - k; r--) {
+            Transaction[] block = rc.getBlock(r);
+            for (int i = block.length; --i >= 0;) { int[] m = block[i].getMessage(); if (m.length > 2 && m[0] == Comms.PERCH && Comms.ours(m, r, us)) { MapState.perch = new MapLocation(m[1], m[2]); return; } }
+        }
+    }
+
     /** Post a message for 1 soup if we can. */
     protected boolean post(int[] m) throws GameActionException {
         if (!rc.canSubmitTransaction(m, 1)) return false;
