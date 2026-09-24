@@ -1053,6 +1053,15 @@ tiles that hold one of our landscapers -- an unseated tile stays at ground level
 at r700 in the diagnostics, or a gate below 50% (the change is aimed at the mirror as much as at
 the ladder: a seat is a digger for 2,500 rounds). Diagnostics: TwoLakeLand, Squares vs g_iter3.
 
+Diagnostics. TwoLakeLand: **8 seats from r200** (g_iter3: 5, three `@badseat`), no seat struck off,
+ring 575 vs 501 at r1000 and **1919 vs 1587 at r3000 (+21%)**. Gate `gate25` launched on that.
+Squares: 8 seats (g_iter3: 5) but ring 563 vs 719 at r1000 and 2099 vs 2310 at r3000 (-9%): with
+the ring closed at r200 the HQ can spawn no more miners (6 against 8 with replenishment), soup 145
+against 316 at r200, 11 landscapers against 16 by r500 -- g_iter3's economy has been living off
+its own open seats. Seats-first removes the urgency of seating, so the economy can come first:
+variant `cand25b` = the same with MINERS_EARLY 8 (all eight miners before the ring closes), in
+diagnostics on Squares and TwoLakeLand while the gate runs.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
