@@ -1068,6 +1068,16 @@ submission. First accepted change since Iteration 8; the flood-defence area's st
 rejects ends on a change that took no new mechanism, only the withholding of one: nobody raises
 a ring tile that has no seat on it yet.
 
+## Iteration 26 -- miners first (2026-09-24, `cand25b`)
+
+Squares showed the cost of a full ring at r200: the HQ can spawn no more miners (every neighbour
+seated), and g_iter3's economy had been living off its own empty seats (6-8 miners against
+g_iter5's 6 falling to 3). Seats-first removed the urgency of seating, so the economy can be built
+before the ring closes. Candidate = g_iter5 with MINERS_EARLY 8 (the HQ's first eight builds are
+miners; the school seats them afterwards, and seats-first keeps the tiles climbable). Diagnostics
+vs g_iter3: Squares **8 seats, ring 2387 vs 2251 (+6%)** where g_iter5 alone scored -9%; TwoLakeLand
+pending. Gate vs g_iter5 if TwoLakeLand holds.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
