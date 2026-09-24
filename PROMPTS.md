@@ -117,3 +117,7 @@ OK, you're now back on Fable 5.1
 ## 25. 2026-09-24
 
 While you're diagnosing game losses, I'd also like you to take into account the data used for ONSET.md, though it's at your discretion to decide how much or how little to weight that evidence
+
+## 26. 2026-09-24
+
+How many blocks are you planning to run?  It seems like we've got the g_iter6 rating nailed down pretty well
