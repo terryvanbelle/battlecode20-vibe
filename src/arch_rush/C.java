@@ -1,4 +1,4 @@
-package bot;
+package arch_rush;
 
 /** Tunable constants, one place. Each one names the measurement that set it, once there is one. */
 public final class C {
@@ -8,7 +8,8 @@ public final class C {
     public static final int ARCHETYPE = 0;            // sparring-partner switch, set by tools/snapshot.sh
 
     // --- economy (Iteration 1: unmeasured starting values)
-    public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
+    public static final int MINERS_EARLY = 3;          // arch_rush: builder, rusher, one miner
+    public static final int RUSH_HOLD = 150;          // arch_rush: no building by the builder before this round
     public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
     public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
@@ -34,8 +35,6 @@ public final class C {
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
     public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
     public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
-    public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
-    public static final int RUSH_D2 = 64;
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
     // Iteration 25: seats first. Reviewable ladder losses show 2-6 of 8 seats at r700 (median 4): a newborn's ring tile
     // was raised by its seated neighbours' equalising and by the helpers' feeding before it arrived, and a tile 4 above

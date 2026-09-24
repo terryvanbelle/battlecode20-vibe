@@ -1,4 +1,4 @@
-package bot;
+package arch_rush;
 
 import battlecode.common.*;
 
@@ -9,7 +9,7 @@ import battlecode.common.*;
  * nearest refinery or the HQ, explore when nothing is known).
  */
 public strictfp class Miner extends Robot {
-    private boolean builder;
+    private boolean builder, rusher, planted; private int probeRounds = 0, probeSign = -1, chainRead = 0;
     private final MapLocation[] soupMem = new MapLocation[C.SOUP_MEMORY]; private int nSoup = 0;
     private MapLocation explore;
     private MapLocation soupTarget;                 // sticky: kept until reached, emptied or found unreachable
@@ -26,6 +26,7 @@ public strictfp class Miner extends Robot {
         // (The HQ acts before its children every round, so by the time miner #1 looks around miner #2 exists;
         // "nothing else in sight" was wrong and no builder was ever chosen in the first diagnostic.)
         builder = birth == 2 && MapState.home != null;
+        rusher = birth == 3 && MapState.home != null;   // arch_rush: the HQ's second miner walks to the enemy HQ and plants a school
         Debug.log("@miner builder=" + builder);
     }
 
@@ -47,18 +48,41 @@ public strictfp class Miner extends Robot {
         }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
+        if (rusher && !planted) { rush(); return; }
         if (builder && build()) return;
         work();
+    }
+
+    /** arch_rush (a sparring partner for Iteration 29): the field's early rush. Walk to the enemy HQ; within
+     *  distance^2 18 of it, build a design school there as soon as 150 soup is banked. */
+    private void rush() throws GameActionException {
+        // arch_rush: the g_iter family posts its HQ in round 2 under a team salt this codec knows; read the enemy's
+        // post (a sparring shortcut standing in for the field's own scouting: poortho plants at ~r55)
+        for (; MapState.enemyHQ == null && chainRead < round - 1 && chainRead < 12; chainRead++) {
+            Transaction[] b = rc.getBlock(chainRead + 1);
+            for (Transaction tx : b) { int[] m = tx.getMessage(); if (Comms.ours(m, chainRead + 1, us.opponent()) && m[0] == Comms.HQ_LOC) { MapState.enemyHQ = new MapLocation(m[1], m[2]); Debug.log("@rush target " + MapState.enemyHQ); } }
+        }
+        MapLocation t = MapState.enemyHQGuess();
+        if (t == null) {   // probe for the edges: walk along an axis whose origin is unknown, reverse after 10 rounds
+            boolean xAxis = MapState.minX < 0; probeRounds++;
+            if (probeRounds > 20) { probeRounds = 0; probeSign = -probeSign; }
+            MapLocation p = xAxis ? new MapLocation(loc.x + 8 * probeSign, loc.y) : new MapLocation(loc.x, loc.y + 8 * probeSign);
+            nav.setTarget(p); nav.step(); return;
+        }
+        if (loc.distanceSquaredTo(t) <= 18 && MapState.enemyHQ != null) {
+            if (rc.getTeamSoup() >= RobotType.DESIGN_SCHOOL.cost && tryBuild(RobotType.DESIGN_SCHOOL, t)) { planted = true; Debug.log("@rush planted"); }
+            return;
+        }
+        nav.setTarget(t); nav.step();
     }
 
     // ---------------------------------------------------------------- builder
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
+        if (round < C.RUSH_HOLD) return false;   // arch_rush: the bank is the rusher's until its school stands
         int soup = rc.getTeamSoup();
         RobotType want = null;
-        boolean rush = builtSchool == 0 && rushSeen();
-        if (rush) { if (soup < RobotType.DESIGN_SCHOOL.cost) return false; want = RobotType.DESIGN_SCHOOL; Debug.log("@rush school"); }   // Iteration 29: the school before the refinery
-        else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
+        if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
@@ -66,27 +90,6 @@ public strictfp class Miner extends Robot {
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
         int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
-        boolean outward = dist == C.BUILD_DIST && !rush;
-        if (outward) {
-            // Iteration 28b: choose once, among all circle tiles with an outward site, the one whose outward site is
-            // highest (then nearest), and walk there for up to 40 rounds before building where we stand.
-            if (stand == null) {
-                int bd = 1 << 30;
-                for (int dx = -dist; dx <= dist; dx++) for (int dy = -dist; dy <= dist; dy++) {
-                    if (Math.max(Math.abs(dx), Math.abs(dy)) != dist) continue;
-                    MapLocation t = new MapLocation(home.x + dx, home.y + dy);
-                    if (!rc.onTheMap(t)) continue;
-                    // reachable: within two climbable steps of the HQ's height (a 99-high wall tile is not a stand)
-                    if (rc.canSenseLocation(t) && rc.canSenseLocation(home) && Math.abs(rc.senseElevation(t) - rc.senseElevation(home)) > 6) continue;
-                    int e = outwardElev(t, home, dist); if (e == Integer.MIN_VALUE) continue;
-                    int d = loc.distanceSquaredTo(t) - 100 * Math.min(e, 30);
-                    if (d < bd) { bd = d; stand = t; }
-                }
-                standSince = round;
-                if (stand != null) Debug.log("@stand " + stand);
-            }
-            if (stand != null && !loc.equals(stand) && round - standSince < 40) { nav.setTarget(stand); nav.step(); return true; }
-        }
         if (Nav.cheb(loc, home) != dist) {
             // walk to the nearest tile at that distance
             MapLocation best = null; int bd = 1 << 30;
@@ -100,14 +103,10 @@ public strictfp class Miner extends Robot {
             nav.setTarget(best); nav.step(); return true;
         }
         // on the circle: build on an adjacent tile that is also on the circle (never inward: the ring must stay free)
-        // Iteration 28b: the refinery and school go outward of the BUILD_DIST circle when they can. That circle is the
-        // miners' only way round the ring and the landscapers' helper posts; on an edge HQ it is an arc, and a building
-        // on it sealed five miners behind the HQ on Climb (Iteration 28). The circle is used only when nothing outward is free.
         Direction bestD = null; int bs = 1 << 30;
-        for (int pass = 0; pass < 2 && bestD == null; pass++)
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist + (pass == 0 && dist == C.BUILD_DIST ? 1 : 0) || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
+            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
@@ -120,22 +119,6 @@ public strictfp class Miner extends Robot {
         else if (want == RobotType.NET_GUN) builtNet++;
         else builtFC++;
         return true;
-    }
-
-    private MapLocation stand = null; private int standSince = 0;   // Iteration 28b: where the builder builds the refinery and school
-    /** The highest outward neighbour of l that a builder standing on l could build on (the engine refuses a spawn more
-     *  than 3 from the builder's height); unsensed counts 0, flooded is skipped; MIN_VALUE if there is none. */
-    private int outwardElev(MapLocation l, MapLocation home, int dist) {
-        int best = Integer.MIN_VALUE, e0 = Integer.MIN_VALUE;
-        try { if (rc.canSenseLocation(l)) e0 = rc.senseElevation(l); } catch (GameActionException ex) { }
-        for (int i = 8; --i >= 0;) {
-            MapLocation n = l.add(DIRS[i]); if (Nav.cheb(n, home) <= dist || !rc.onTheMap(n)) continue;
-            int e = 0;
-            try { if (rc.canSenseLocation(n)) { if (rc.senseFlooding(n)) continue; e = rc.senseElevation(n); } } catch (GameActionException ex) { continue; }
-            if (e0 != Integer.MIN_VALUE && Math.abs(e - e0) > 3) continue;
-            if (e > best) best = e;
-        }
-        return best;
     }
 
     // ---------------------------------------------------------------- worker

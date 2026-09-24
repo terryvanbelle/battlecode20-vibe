@@ -1,4 +1,4 @@
-package bot;
+package arch_rush;
 
 import battlecode.common.*;
 
@@ -27,8 +27,6 @@ public strictfp class HQ extends Robot {
         boolean want = built < C.MINERS_EARLY
             || (built < C.MINERS_MAX && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS)
             || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS);
-        // Iteration 29: under a rush, no miner until our school stands (the 70s go to the school and its landscapers)
-        if (want && rushSeen()) { boolean school = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL) { school = true; break; } if (!school) want = false; }
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
         // Iteration 7: re-post every 100 rounds so robots born late (and the drones) learn home, the origin and the enemy HQ

@@ -1117,6 +1117,32 @@ binding constraint is income: five miners sit idle with twelve soup tiles in mem
 map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
 of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
 
+## Iteration 29 -- rush response, stacked on 28b (2026-09-24)
+
+**Gate `gate28c`: 92-100, SPRT REJECT**: the stack loses its newest member; `src/bot` is back to 28b.
+
+**Trace** (open line 2; poortho is a target-tier opponent at 33%, so its losses are reviewable):
+block 45 on Europe, lost at r119. poortho plants a design school beside our HQ at ~r55, its
+landscapers bury the HQ from r85 (50 dirt by r119). We had 168 soup at r50 but built the refinery
+(r70) and then the school (r80); two landscapers dug against five.
+
+**Archetype `src/arch_rush`** (new sparring partner, from g_iter5): the HQ's second miner reads the
+enemy HQ from the enemy's round-2 chain post (the g_iter family's own codec; a stand-in for the
+field's scouting), walks there, plants a school within distance^2 18 at 150 soup (r57 on Europe,
+like poortho); the builder holds its buildings until r150; the forward school builds 10
+landscapers that attack. g_iter5 as team A on Europe: HQ buried, dead at r256.
+
+**Candidate** = 28b + `Robot.rushSeen` (an enemy school or landscaper within distance^2 64 of our
+HQ before r400): the builder builds the school before the refinery, and the HQ builds no miner
+until our school stands. Diagnostic vs arch_rush on Europe (team A): the HQ held its miners (6 vs
+g_iter5's 8), the school came at r64 instead of r86 and away from the enemy school; HQ buried at
+most 4, won r932 on tiebreak. (The builder's own trigger did not fire: the enemy school was out of
+its sight; the HQ's did.)
+
+**Pre-registration.** Arm 1: mirror vs g_iter5 (`gate29`). Arm 2: vs `arch_rush`, MAPSET=quick,
+both sides, 24 games for the candidate (`rush29c`) and 24 for g_iter5 (`rush29b`); a finding if the
+candidate wins at least 5 more. A null in both is a reject.
+
 ## Iteration 28b -- refinery and school off the Chebyshev-2 circle (2026-09-24)
 
 **Candidate** = g_iter5 + the builder chooses once, among the Chebyshev-2 tiles within 6 of the

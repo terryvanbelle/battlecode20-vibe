@@ -1,4 +1,4 @@
-package bot;
+package arch_rush;
 
 import battlecode.common.*;
 
@@ -220,13 +220,6 @@ public abstract strictfp class Robot {
         return best != null && tryMove(best);
     }
 
-    /** Iteration 29: an enemy design school or landscaper near our HQ early (poortho buries the HQ by r120). */
-    protected boolean rushSeen() {
-        if (round >= C.RUSH_UNTIL || MapState.home == null) return false;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i];
-            if ((e.type == RobotType.DESIGN_SCHOOL || e.type == RobotType.LANDSCAPER) && e.location.distanceSquaredTo(MapState.home) <= C.RUSH_D2) return true; }
-        return false;
-    }
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
     protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
