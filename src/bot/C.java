@@ -30,15 +30,6 @@ public final class C {
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
-    // Iteration 16: the late guns. Every net gun drowns at r700 and the HQ alone shoots one drone a round; the field's
-    // swarms (11-32 drones, r1500-2100) lift the seats and bury the HQ. The builder parks on high dry ground from
-    // PARK_ROUND and from GUN_ROUND rebuilds a net gun on an adjacent tile that stays dry GUN_LIFE rounds, again when it drowns.
-    public static final int PARK_ROUND = 660;
-    public static final int PARK_RADIUS = 4;
-    public static final int GUN_ROUND = 900;
-    public static final int GUN_LIFE = 60;            // a gun that stands 60 rounds through a wave has earned its 250; the builder rebuilds when it drowns (300 found no site on Prison: nothing near the HQ is 5 high)
-    public static final int LATE_GUNS_MAX = 6;
-    public static final int LATE_GUN_BANK = 100;
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
     public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks

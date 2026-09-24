@@ -692,7 +692,33 @@ built -- the builder perched on its own tile (no log) and no adjacent tile stood
 the water (`GUN_LIFE`); Prison has nothing 5 high near the HQ. `GUN_LIFE` 60: a gun standing
 through one wave has earned its 250, and the builder rebuilds when it drowns.
 
+Second diagnostics (`GUN_LIFE` 60): still no gun. The builder's perch is a distance-2 tile at 5;
+every neighbour is a ring tile (excluded), another helper's tile (occupied) or a distance-3 tile at
+3-4 that the water reaches within 60 rounds. After the flood the only dry ground near the HQ is
+the ring and the helpers' own tiles, and a gun on either costs a wall body. **Closed** (ledger):
+post-flood guns need raised ground the ring-1 design does not have. `src/bot` back to g_iter3.
+
+## What the field does that we do not (2026-09-24, from the blocks 8-9 traces)
+
+battlecode20-team4 at r1000: 33 miners, 44 landscapers, 44 drones, **44 vaporators**, 5 schools,
+5 centers -- 88 soup a round from vaporators alone, all of it alive at r1000 and r1500, so its
+buildings stand on ground the water never reaches. laurenschneider and cormackikkert show the same
+shape at smaller scale (V 6-18, DS 1-3, NG 1-5 at r2000). The pattern is a **raised base**: the
+ground under the buildings is lifted before the flood, the vaporators pay for themselves in 250
+rounds, and the economy runs to the end. Our ring-1 design raises only the ring; everything we own
+outside it drowns at r700 and our soup sits idle from then on. The citadel (Iteration 6) reached
+for this with the wrong geometry (a sealed pocket, 16 wall tiles). The next structural candidate
+is the vaporator plateau: seats on the ring as now, helpers on the 16 distance-2 tiles feeding the
+ring, feeders on distance 3 piling dirt onto the helper tiles so they rise as a plateau, the
+builder parked on it, vaporators and a school built on it at height once it is dry for good --
+production and guns that survive the flood. It is days of work and needs the seal-by-r700 of the
+ring-1 design to be kept intact; it goes in HANDOFF as the plan.
+
 ## Ledger (closed directions)
+
+- **The late guns (Iteration 16, 2026-09-24)** -- a parked builder rebuilding net guns after the
+  flood. Blocked on geometry: no dry tile near the HQ that is not the ring or a helper's own tile.
+  Kind: blocked. Reopen with a raised base.
 
 - **The late drone raid (Iteration 9, 2026-09-23/24)** -- provisional at 135-105 over g_iter3,
   withdrawn after 228 ladder games at 20.2% (upper bound 25.6%) against g_iter3's 25.9%. Kind:
