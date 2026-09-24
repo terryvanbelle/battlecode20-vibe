@@ -1,4 +1,4 @@
-package bot;
+package arch_perch;
 
 /** Tunable constants, one place. Each one names the measurement that set it, once there is one. */
 public final class C {
@@ -27,6 +27,28 @@ public final class C {
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
+    // Iteration 23: the home guard. The ladder's reviewable mid-game losses (45 of 167, ending at r1216-1217 and
+    // r1563-1571 against benzyx and team4) are timed raids of 20-140 drones that lift our seats and drop landscapers
+    // on the ring; our drones are never built on the ladder (a center in 18 of 248 games) and 1,300 soup sits idle from
+    // r700. From HOME_ROUND every drone guards a box round the HQ and lifts whatever lands within CHASE_RADIUS of it.
+    // (Gate 23 rejected buying the drones before the flood; Iteration 24 buys them after it, from the perch.)
+    public static final int HOME_ROUND = 900;
+    // Iteration 24: the perch. Three tiles at Chebyshev 3 (B for the builder, F for a center, V for a vaporator), all
+    // adjacent to the helper post P at Chebyshev 2 on the side away from the map centre, raised by P's helper (the
+    // mason) to the water level of PERCH_UNTIL before the flood. The builder climbs onto B at PERCH_ROUND, rides up as
+    // the mason raises B under it, and builds the center and the vaporator from there; they outlive the flood by 1,500
+    // rounds and turn the idle post-flood soup into drones for the guard.
+    public static final int PERCH_UNTIL = 2200;       // the perch stays dry until about this round (water 30)
+    public static final int PERCH_ROUND = 420;        // the builder goes to B from this round (F and V stay within 3 of B until it stands there)
+    public static final int PERCH_PICK_ROUND = 80;    // the HQ picks the perch once the school stands (its spawn tiles are known)
+    public static final int PERCH_GIVEUP_ROUND = 650;  // the builder leaves an unraised perch at this round and builds as before
+    public static final int PERCH_STALL = 40;         // builder turns stalled on the way to B before giving the perch up
+    public static final int DRONE_LATE_RESERVE = 0;   // after the flood every 150 soup is a drone ...
+    public static final int VAPORATOR_FIRST_UNTIL = 1000;   // ... but the perch center saves for the vaporator (500) until this round
+    public static final int DRONES_LATE_MAX = 16;     // ... up to this many from the perch center (40 on Prison blocked the helpers' digging)
+    public static final int CHASE_RADIUS = 8;         // Chebyshev from the HQ
+    public static final int GUARD_RADIUS = 6;         // guards hold slots on this square round the HQ: distance 2 is the helpers' tier, 3-4 their dig sources
+
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile

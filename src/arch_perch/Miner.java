@@ -1,4 +1,4 @@
-package bot;
+package arch_perch;
 
 import battlecode.common.*;
 
@@ -33,6 +33,7 @@ public strictfp class Miner extends Robot {
         sense(); int b0 = Clock.getBytecodeNum(); if (round % 3 == 0) readBlock(); int b1 = Clock.getBytecodeNum(); probeEdges(); MapState.markSeen(loc);
         if (round % 8 == id % 8 && Clock.getBytecodeNum() < 3000) observeTerrain();
         int b2 = Clock.getBytecodeNum();
+        if (round == birth && MapState.perch == null) readBack(12);   // Iteration 24: every miner (a refugee must not climb the perch)
         if (round % 100 == 0) Debug.log("@minerstat builder=" + builder + " mined=" + mined + " deposits=" + deposits + " explores=" + explores + " soupMem=" + nSoup + " unreachable=" + unreachable);
         rememberSoup(); int b3 = Clock.getBytecodeNum();
         try { turn2(); } finally { int b4 = Clock.getBytecodeNum(); if (b4 > 8000) Debug.log("@bcprof sense=" + b0 + " block=" + (b1 - b0) + " terrain=" + (b2 - b1) + " soup=" + (b3 - b2) + " act=" + (b4 - b3) + " bug=" + nav.isBugging()); }
@@ -45,13 +46,49 @@ public strictfp class Miner extends Robot {
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }
         }
+        if (!builder && !perchBuilder && MapState.perch != null && MapState.isPerch(loc) && rc.isReady()) {   // Iteration 24: the perch is reserved (a miner idling on V kept it at 9)
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!MapState.isPerch(n) && !onRing(n) && !n.equals(MapState.home) && tryMove(d)) { Debug.log("@offperch"); return; } }
+        }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
+        if (MapState.perch != null && round >= C.PERCH_ROUND && !perchFailed) {   // Iteration 24: the builder, or any miner that finds B empty (the builder died at r279 in one diagnostic)
+            MapLocation b = MapState.perchB();
+            if (!builder && !perchBuilder && rc.canSenseLocation(b) && rc.senseRobotAtLocation(b) == null) {
+                boolean nearer = false; int myD = loc.distanceSquaredTo(b);
+                for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER && f.location.distanceSquaredTo(b) < myD) { nearer = true; break; } }
+                if (!nearer) { perchBuilder = true; Debug.log("@perchtake"); }
+            }
+            if ((builder || perchBuilder) && perchDuty()) return;
+        }
         if (builder && build()) return;
         work();
     }
 
     // ---------------------------------------------------------------- builder
+    private boolean perchFailed = false, perched = false, perchBuilder = false; private int perchStall = 0;
+    /** Iteration 24: the builder climbs onto B before the mason raises it, rides up, and builds the center (then a vaporator)
+     *  on F and V once they are within reach. Holds B for the rest of the game. */
+    private boolean perchDuty() throws GameActionException {
+        MapLocation b = MapState.perchB(), f = MapState.perchF(), v = MapState.perchV();
+        if (!loc.equals(b)) {
+            if (rc.canSenseLocation(b)) { RobotInfo r = rc.senseRobotAtLocation(b); if (r != null && (r.type.isBuilding() || (r.type == RobotType.MINER && r.team == us))) { perchFailed = true; Debug.log("@perchfail " + (r.type.isBuilding() ? "built-over" : "taken")); return false; } }   // another miner holds B: it is the perch builder now
+            nav.setTarget(b); nav.step();
+            if (nav.stalled() && ++perchStall > C.PERCH_STALL) { perchFailed = true; Debug.log("@perchfail stalled"); return false; }
+            if (loc.equals(b)) { perched = true; Debug.log("@perched at=" + b + " elev=" + rc.senseElevation(b)); }
+            return true;
+        }
+        if (!rc.isReady()) return true;
+        int target = MapState.perchTarget(), eB = rc.senseElevation(loc), soup = rc.getTeamSoup();
+        if (round >= C.PERCH_GIVEUP_ROUND && eB < target - 12 && rc.senseElevation(f) < target - 12) { perchFailed = true; Debug.log("@perchfail unraised elev=" + eB); return false; }   // no mason came
+        RobotInfo rf = rc.canSenseLocation(f) ? rc.senseRobotAtLocation(f) : null, rv = rc.canSenseLocation(v) ? rc.senseRobotAtLocation(v) : null;
+        boolean fBuilt = rf != null && rf.type.isBuilding(), vBuilt = rv != null && rv.type.isBuilding();
+        if (eB >= target - 2) {
+            if (!fBuilt && rc.senseElevation(f) >= target - 2 && soup >= RobotType.FULFILLMENT_CENTER.cost && rc.canBuildRobot(RobotType.FULFILLMENT_CENTER, loc.directionTo(f))) { rc.buildRobot(RobotType.FULFILLMENT_CENTER, loc.directionTo(f)); builtFC++; Debug.log("@build t=" + RobotType.FULFILLMENT_CENTER.ordinal() + " at=" + f + " soup=" + soup + " perch=true"); return true; }
+            if (fBuilt && !vBuilt && rc.senseElevation(v) >= target - 2 && soup >= RobotType.VAPORATOR.cost && rc.canBuildRobot(RobotType.VAPORATOR, loc.directionTo(v))) { rc.buildRobot(RobotType.VAPORATOR, loc.directionTo(v)); builtVap++; Debug.log("@build t=" + RobotType.VAPORATOR.ordinal() + " at=" + v + " soup=" + soup + " perch=true"); return true; }
+        }
+        if (round % 100 == 0) Debug.log("@perchstat elev=" + eB + " f=" + rc.senseElevation(f) + " v=" + rc.senseElevation(v) + " target=" + target + " fBuilt=" + fBuilt + " vBuilt=" + vBuilt);
+        return true;
+    }
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         int soup = rc.getTeamSoup();
@@ -80,7 +117,7 @@ public strictfp class Miner extends Robot {
         Direction bestD = null; int bs = 1 << 30;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
+            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n) || MapState.isPerch(n)) continue;   // Iteration 24: the perch is reserved
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }

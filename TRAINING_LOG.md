@@ -1020,6 +1020,14 @@ block reads out: the candidate is kept provisional only if `cand24` (48 games ag
 challenge pool) scores at least 16/48 (33%) against g_iter3's 21.9% over 1,116 games; below that
 the perch is closed as priced below the gate and the guard's value on the ladder is answered.
 
+**`cand24`: 11/48 (22.9%)** -- g_iter3's 21.9%. Losses by end round: 3 before r500, 1 by r1000, **18
+between r1000 and r2000**, 10 by r3000, 5 after; the raid window is untouched (49% of losses, against
+45% for g_iter3). Wins 4/4 against wpine215, 2/4 EmaPajic, 1/4 each against cormackikkert, benzyx
+and team4, 0/4 against winkelmantanner, uvafan, ronniesong and IvanGeffner. **Closed: priced below
+the gate (45.5%) and no ladder gain.** Code kept as `src/arch_perch`; `src/bot` is g_iter3 again.
+Whether the guards were absent or merely outnumbered in the mid-game losses is read from the
+block's study table below.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
@@ -1099,6 +1107,11 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **The perch (Iteration 24, 2026-09-24)** -- three tiles raised to 32 before the flood by one helper, a
+  miner on one builds a center and a vaporator on the others (alive to r2200), post-flood soup buys
+  up to 16 guards on fixed slots. Gate 51-61 vs g_iter3; ladder 11/48 vs 21.9%. Kind: priced below
+  the gate, no ladder gain. Every mechanism shown in diagnostics (TwoLakeLand, Prison); the raid
+  window (r1000-2000) still holds half the losses. Code `src/arch_perch`.
 - **The home guard (Iteration 23, 2026-09-24)** -- early center, drones bought down to a 300 reserve
   from r550 up to 16, every drone a home guard from r900. Gate 16-32 vs g_iter3; arm vs arch_raider
   14/24 against g_iter3's 15/24. Kind: refuted as built. Pre-flood drones are helpers not built;

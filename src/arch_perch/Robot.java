@@ -1,4 +1,4 @@
-package bot;
+package arch_perch;
 
 import battlecode.common.*;
 
@@ -108,8 +108,17 @@ public abstract strictfp class Robot {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
+                case Comms.PERCH: if (MapState.perch == null) MapState.perch = new MapLocation(m[1], m[2]); break;
                 default: break;
             }
+        }
+    }
+
+    /** Iteration 24: scan the last k blocks (two rounds back and earlier) for the perch post. ~100 bytecodes a block. */
+    protected void readBack(int k) throws GameActionException {
+        for (int r = round - 2; r >= 1 && r >= round - k; r--) {
+            Transaction[] block = rc.getBlock(r);
+            for (int i = block.length; --i >= 0;) { int[] m = block[i].getMessage(); if (m.length > 2 && m[0] == Comms.PERCH && Comms.ours(m, r, us)) { MapState.perch = new MapLocation(m[1], m[2]); return; } }
         }
     }
 
@@ -117,6 +126,11 @@ public abstract strictfp class Robot {
     protected boolean post(int[] m) throws GameActionException {
         if (!rc.canSubmitTransaction(m, 1)) return false;
         rc.submitTransaction(m, 1); return true;
+    }
+    /** Post at a chosen fee (fee-1 posts lose the mint race three times in four). */
+    protected boolean post(int[] m, int fee) throws GameActionException {
+        if (!rc.canSubmitTransaction(m, fee)) return false;
+        rc.submitTransaction(m, fee); return true;
     }
 
     /**
@@ -177,7 +191,7 @@ public abstract strictfp class Robot {
     protected boolean climb() throws GameActionException {
         if (!rc.isReady()) return false;
         Direction best = null; int be = Integer.MIN_VALUE;
-        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!rc.canMove(d)) continue; MapLocation n = loc.add(d); if (!safeTile(n)) continue; int e = rc.senseElevation(n); if (e > be) { be = e; best = d; } }
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!rc.canMove(d)) continue; MapLocation n = loc.add(d); if (!safeTile(n) || MapState.isPerch(n)) continue; /* Iteration 24: the perch is not a refuge (a miner parked on V blocked the vaporator) */ int e = rc.senseElevation(n); if (e > be) { be = e; best = d; } }
         if (best == null) return false;
         rc.move(best); loc = rc.getLocation(); Debug.log("@climb to=" + loc + " e=" + be); return true;
     }
