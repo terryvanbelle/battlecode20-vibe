@@ -966,6 +966,10 @@ drowned them, and the HQ stood to the end with 0-1 dirt on it. **Mechanism shown
 (mirror vs g_iter3, cap 240) and the second arm (`arm23`: bot vs arch_raider on the quick set,
 `arm23ref`: g_iter3 vs arch_raider) launched together.
 
+## Block 31 -- g_iter3 against the challenge pool (run block31, 2026-09-24)
+
+48 games: **9/48 (19%)**; cumulative for g_iter3 201/924 (21.8%). Elo 1297, rank 65 of 66.
+
 ## Block 30 -- g_iter3 against the challenge pool (run block30, 2026-09-24)
 
 48 games: **13/48 (27%)**; cumulative for g_iter3 192/876 (21.9%). Elo 1403, rank 62 of 66.
