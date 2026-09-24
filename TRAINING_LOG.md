@@ -813,6 +813,10 @@ per landscaper (both criteria met); **CentralSoup lost 1776 vs 1881**, deaths 29
 chosen diagnostics by 10-15%. Closed for this session (ledger); `src/arch_plateau` keeps the code
 and `src/bot` is g_iter3.
 
+## Block 20 -- g_iter3 against the challenge pool (run block20, 2026-09-24)
+
+48 games: **6/48**; cumulative for g_iter3 86/396 (21.7%).
+
 ## Block 19 -- g_iter3 against the challenge pool (run block19, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 80/348 (23%).
