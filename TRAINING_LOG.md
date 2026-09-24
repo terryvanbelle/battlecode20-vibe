@@ -1129,6 +1129,10 @@ it with `EXPLORE=n` never-played bots. Plan: calibration blocks of g_iter5 again
 never-played bots at a time, two games each (`POOLSIZE=0 EXPLORE=48 N=96`), until the 220
 untested bots are placed; then blocks on the band as before.
 
+## Block 39 -- g_iter5 against the challenge pool (run block39, 2026-09-24)
+
+48 games: **8/48 (17%)**; cumulative for g_iter5 24/144 (16.7%; Wilson upper bound 23.6%, still above g_iter3's 21.9%, so not withdrawn -- but the last block on the old pool; the calibration blocks restate both bots on the band).
+
 ## Block 38 -- g_iter5 against the challenge pool (run block38, 2026-09-24)
 
 48 games: **9/48 (19%)**; cumulative for g_iter5 16/96 (16.7%, Wilson upper bound about 25%, above g_iter3's 21.9%: not withdrawn). Elo 1304, rank 65 of 66.
