@@ -109,3 +109,7 @@ OK, let's look at it from a different perspective.  Given what you know about Fa
 ## 23. 2026-09-24
 
 OK, I'm going to upgrade you to Fable.  Please make all necessary preparations
+
+## 24. 2026-09-24
+
+OK, you're now back on Fable 5.1
