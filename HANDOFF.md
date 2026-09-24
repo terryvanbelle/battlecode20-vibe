@@ -11,11 +11,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Running on the VM:** `gate32` (Iteration 32, `src/bot` = `src/cand32`: miners keep off the Chebyshev-2 circle once
-  the refinery exists, so the seats' and helpers' pits cannot trap them; mirror vs g_iter6, seeded). Iteration 31 (gun
-  perches) is closed: gates 7-25 and 13-35, ladder arm 52/96 (code in `src/cand31`, `src/cand31b`). No incumbent
-  blocks (PROMPTS 26). Diagnostics run on the VM when it is idle (`tools/vm-run.sh diagN '... tools/run-dev.sh ...'`):
-  the driver's two cores make a game take twenty minutes when a study is running.
+- **VM:** idle. Iteration 32 (miners off the circle) rejected 77-83, neutral (code in `src/cand32`); Iteration 31 closed
+  (gates 7-25, 13-35; `src/cand31`, `src/cand31b`). `src/bot` = g_iter6. No incumbent blocks (PROMPTS 26). Diagnostics
+  run on the VM when it is idle (`tools/vm-run.sh diagN '... tools/run-dev.sh ...'`).
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.

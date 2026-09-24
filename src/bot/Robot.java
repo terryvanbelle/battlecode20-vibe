@@ -24,7 +24,6 @@ public abstract strictfp class Robot {
     protected RobotInfo nearestEnemy; protected int nearestEnemyD2;
     protected RobotInfo hqInfo;             // our HQ if in sight (its dirtCarrying is how buried it is)
     protected boolean avoidRing = false;    // miners/drones: never step onto the wall ring (Iteration 2: miners fleeing the flood took the landscapers' seats)
-    protected boolean avoidCircle = false;  // Iteration 32: miners keep off the Chebyshev-2 circle too: the seats dig it into pits and the helpers dig Chebyshev 3, and a miner between them cannot move (RandomSoup1: no miner moved from r200 to r400)
     protected boolean ringSeen = false;     // a friendly landscaper is on a ring tile
 
     // bytecode monitor
@@ -161,12 +160,10 @@ public abstract strictfp class Robot {
     /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
         if (avoidRing && onRing(l)) return false;
-        if (avoidCircle && onCircle(l)) return false;
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
     /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
-    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)) && !(avoidCircle && onCircle(l)); }
-    protected static boolean onCircle(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 2; }
+    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
     protected boolean floodDanger() throws GameActionException {

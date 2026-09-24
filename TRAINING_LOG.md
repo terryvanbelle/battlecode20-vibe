@@ -1170,6 +1170,15 @@ candidate's went on to 349 and the candidate won (r2998). The five-miner start o
 was the seed, not the rule: with the sides swapped the candidate built nine. Mechanism shown. Snapshot
 `src/cand32`; **`gate32`** (mirror vs g_iter6, seeded, six jobs) running.
 
+**Gate 32: REJECT at 77-83 (48%)** after ten batches -- neutral. The freeze is real and gone, but the
+mirror's wall race does not pay for it: a circle-free miner mines the near-HQ soup from one tile further out,
+walks round the circle to deposit, and the freeze itself only bites in some games and seeds (the incumbent's
+own side did not freeze in two of three diagnostic games). Kind: refuted as built (priced at zero). Re-open
+as a narrower form: free only a miner that has had no legal step for 20 rounds (it cannot move, so the form
+must be prevention -- seats leaving the four axis tiles of the circle undug and helpers the tile outward of
+each, a gate per side), and test on the ladder as well as the mirror, since the freeze showed in ladder
+losses against strong economies. Code kept as `src/cand32`; `src/bot` is g_iter6 again.
+
 ## Iteration 31 -- gun perches (2026-09-24, PROMPTS 24-25)
 
 **Where the losses are** (blocks 50-56, 336 games, 159 losses; scores and map data only, so every

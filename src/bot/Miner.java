@@ -40,14 +40,8 @@ public strictfp class Miner extends Robot {
     private void turn2() throws GameActionException {
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
         avoidRing = refinery != null;   // Iteration 29: with no refinery (the school came first under a rush) the HQ is the only drop-off, ring or not
-        avoidCircle = refinery != null && (!builder || builtSchool > 0);   // Iteration 32: the builder needs the circle only until its school stands
-        if (avoidCircle && onCircle(loc) && rc.isReady()) {   // step outward off the circle; along it if nothing outward is open
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, MapState.home) >= 3 && tryMove(d)) { Debug.log("@offcircle"); return; } }
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onCircle(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offcircle slide"); return; } }
-        }
         if (avoidRing && onRing(loc) && rc.isReady()) {
-            // off the ring: the only non-ring neighbours are circle tiles, so the circle is a transit tile here (Iteration 32)
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) && !n.equals(MapState.home) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring"); return; } }
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }
         }
