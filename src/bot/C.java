@@ -34,7 +34,6 @@ public final class C {
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
-    public static final int LAST_STAND_ROUND = 2600;  // Iteration 14: from here the water rises faster than a helper can raise its own tile (0.5 a round); every deposit goes on the ring
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
     public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks

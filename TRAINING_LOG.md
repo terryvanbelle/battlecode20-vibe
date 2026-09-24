@@ -541,6 +541,17 @@ helpers on both sides drown by r2700 (the water outruns them from r2550). Centra
 informative: side A wins it by 900 whatever the candidate. Gate `gate15` vs `REF=g_iter4`,
 launched 02:35. Falsifier: below 53%.
 
+**Gate 15: REJECT 57-71 (44.5%)** after eight batches. Helpers that stop raising their tile at r2600
+drown within a few rounds; the incumbent's keep theirs above water to about r2700 and, it turns
+out, still feed the ring in between (the self-raise only fires when the tile is below the margin).
+Ledger. `src/bot` back to g_iter4.
+
+**Five rejections in a row (Iterations 10-14).** Every one moved a mirror diagnostic and none moved
+the mirror gate. The wall race between two copies of the same economy is a coin flip decided by
+map and side; the mirror cannot see the things the ladder losses are made of (schools alive after
+the flood, drone swarms, rushes). Next: an external-facing candidate measured against external
+evidence -- the sparring archetypes and the challenge pool itself -- as TRAINING_ALGORITHM allows.
+
 ## Block 12 -- g_iter4 against the challenge pool (run block12, 2026-09-24)
 
 48 games: **9/48 (19%)**. `mvpatel2000.qual` 2/3, `wpine215` 2/4, `IvanGeffner` 2/4; cumulative for
@@ -614,6 +625,9 @@ school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on
 
 ## Ledger (closed directions)
 
+- **The helpers' last stand (Iteration 14, 2026-09-24)** -- helpers stop self-raising from r2600.
+  Gate 57-71 vs g_iter4. Kind: refuted. They drown at once and the incumbent's helpers were feeding
+  the ring anyway between self-raises.
 - **The second school (Iteration 13, 2026-09-24)** -- a parked builder rebuilds the school after the
   flood on the idle bank. Gates 51-61 and 103-105 vs g_iter4. Kind: priced below the gate. The bank
   buys landscapers but not posts for them (16 at distance 2, all taken by r700), and parking the
@@ -631,7 +645,7 @@ school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy (builder, sites) | Iteration 11 (inconclusive 52%) | 1 |
-| flood defence (wall) | Iteration 13 (reject 51-61, 103-105) | 2 |
+| flood defence (wall) | Iteration 14 (reject 57-71) | 3 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | Iteration 10 (reject 120-120) | 1 |
