@@ -813,6 +813,12 @@ per landscaper (both criteria met); **CentralSoup lost 1776 vs 1881**, deaths 29
 chosen diagnostics by 10-15%. Closed for this session (ledger); `src/arch_plateau` keeps the code
 and `src/bot` is g_iter3.
 
+Plateau claims settled on arrival, tier 3 by the water level (`arch_plateau`, not gated): quick-set
+sweep `plat7` vs g_iter3 **8/24**. The claim scheme was not the whole story; the stage-1 roles stay
+in the ledger until the deaths are traced game by game (the sweep's per-game table needs the
+gauntlet's replay directory, which the collector does not keep for wins -- a tool gap noted for
+the next session).
+
 ## Block 20 -- g_iter3 against the challenge pool (run block20, 2026-09-24)
 
 48 games: **6/48**; cumulative for g_iter3 86/396 (21.7%).
