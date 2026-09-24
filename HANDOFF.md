@@ -12,7 +12,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
   sequential Elo had put us at rank 4 after the easy calibration games. g_iter5's final grade over 720 ladder games:
   1745 +- 30, rank 16 of 71 players, field score 72.8%. Withdrawal now compares ratings.
-- **Running on the VM:** blocks 51 and 52 (`tools/scrim.sh`, BOT=g_iter6, the band). Block 50 was 18/48; the archetype
+- **Running on the VM:** blocks 53 and 54 (`tools/scrim.sh`, BOT=g_iter6, the band) and `gate30` (Iteration 30,
+  spend the bank, `src/bot`, mirror vs g_iter6). g_iter6 1747 +- 62 after blocks 50-52. Block 50 was 18/48; the archetype
   regression passed (vs `arch_swarm` 21/24, g_iter5 19/24). Post blocks with `tools/post-block.sh <run> g_iter6`;
   give a concurrent run its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses. The session loop is
   `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise, carry on as before`.

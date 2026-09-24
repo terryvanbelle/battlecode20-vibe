@@ -1117,6 +1117,18 @@ binding constraint is income: five miners sit idle with twelve soup tiles in mem
 map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
 of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
 
+## Iteration 30 -- spend the bank (2026-09-24)
+
+**Evidence**: the census above; in the benzyx RandomSoup1 loss the HQ's ring was full from r300
+(`@econ ring=8`, 5 miners built all game), and at r800 the school, center and builder were still
+alive with 1,513 soup while the caps held drones at 8 and net guns at 2. **Candidate** = g_iter6 +
+above a bank of 1,000 the drone cap lifts to 40 and the net-gun cap to 6 (`C.RICH_BANK`).
+**Diagnostic** (vs g_iter6, RandomSoup1): 28 drones against 7 by r1000, won r3200. **Gate `gate30`**
+(mirror vs g_iter6) running.
+
+Blocks 51-52 (g_iter6): **28/48** and **38/48**; g_iter6 1747 +- 62 after 144 games, rank 16 of 72,
+field score 73.2% (g_iter5 1739 +- 30). Blocks 53-54 running.
+
 ## Block 50 and the unspent bank (2026-09-24)
 
 **Block 50** (`20260924-180832-scrim-g_iter6`, g_iter6's first): **18/48**; g_iter6 1677 +- 107 (one
