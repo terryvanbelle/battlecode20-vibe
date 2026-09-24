@@ -1129,12 +1129,27 @@ refinery and school outward; the circle itself only when nothing outward is free
 free; the school drifted west to (1,37) and flooded; HQ alive to r1547 instead of r931, 1929 digs
 by then instead of 487 at r931. Three versions were needed: the nearest stand (west, height 2,
 flooded), a stand scored by unreachable 99-high wall tiles, then the height limits above.
-**Gate `gate28b`** running.
 
-## Blocks 42-43 -- g_iter5 on the band (2026-09-24)
+**Gate `gate28b`: 129-111 (53.8%) over 240, SPRT inconclusive: kept provisionally** (TRAINING_ALGORITHM
+4.4: >= 53% over >= 200; code at commit 79fd4a5). Strong on ALandDivided 6/6, GSF 7/7, Swirl 5/5,
+Constriction 6/6; Toothpaste 0/7, CentralSoup 0/5, Climb 0/5.
+
+**Iteration 28c** (stacked revision, tested against g_iter5): Toothpaste diagnostic showed the
+stand scored mainly by height was an unclimbable pillar (height 8 among 2s) and the refinery came at
+r131 instead of r57. Now the nearest stand wins (a higher outward site is worth at most 8, against
+4 per unit of squared distance), and the 15-round walk limit counts walking rounds only: on Climb
+the builder reached its stand, went back to mining while soup was short, and when soup returned the
+wall-clock limit had run out and it built on the arc. Diagnostics: Climb refinery (7,37), HQ alive to
+r1547; Toothpaste refinery r96 at distance 3, lost r2964 (28b's version won r3056 on the second
+try); Swirl distance 3, won r3044. **Gate `gate28c`** running.
+
+## Blocks 42-45 -- g_iter5 on the band (2026-09-24)
 
 Block 42 (`20260924-145032`): **24/48**. Block 43 (`20260924-150252`): **30/48**. g_iter5 now
-1714 +- 40, rank 16 of 71, field score 70.7%. Block 44 running.
+1714 +- 40, rank 16 of 71, field score 70.7%.
+
+Block 44 (`20260924-153525`): **29/48**. Block 45 (`20260924-160816`): **34/48**. g_iter5 now
+1738 +- 35, rank 16 of 71, field score 72.4%. Block 46 running.
 
 ## Block 41 -- g_iter5 on the band (run 20260924-143804-scrim-g_iter5, 2026-09-24)
 

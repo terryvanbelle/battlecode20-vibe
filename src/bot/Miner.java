@@ -66,24 +66,24 @@ public strictfp class Miner extends Robot {
         int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
         boolean outward = dist == C.BUILD_DIST;
         if (outward) {
-            // Iteration 28b: choose once, among all circle tiles with an outward site, the one whose outward site is
-            // highest (then nearest), and walk there for up to 40 rounds before building where we stand.
+            // Iteration 28b: choose once, among all circle tiles with an outward site, the nearest (a higher outward
+            // site worth a little), and walk there for up to 15 rounds before building where we stand. Toothpaste: a
+            // stand scored mainly by height was an unclimbable pillar and the refinery came 70 rounds late.
             if (stand == null) {
-                int bd = 1 << 30;
+                int bd = 1 << 30, hqE = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
                 for (int dx = -dist; dx <= dist; dx++) for (int dy = -dist; dy <= dist; dy++) {
                     if (Math.max(Math.abs(dx), Math.abs(dy)) != dist) continue;
                     MapLocation t = new MapLocation(home.x + dx, home.y + dy);
                     if (!rc.onTheMap(t)) continue;
                     // reachable: within two climbable steps of the HQ's height (a 99-high wall tile is not a stand)
-                    if (rc.canSenseLocation(t) && rc.canSenseLocation(home) && Math.abs(rc.senseElevation(t) - rc.senseElevation(home)) > 6) continue;
+                    if (rc.canSenseLocation(t) && Math.abs(rc.senseElevation(t) - hqE) > 6) continue;
                     int e = outwardElev(t, home, dist); if (e == Integer.MIN_VALUE) continue;
-                    int d = loc.distanceSquaredTo(t) - 100 * Math.min(e, 30);
+                    int d = loc.distanceSquaredTo(t) * 4 - Math.max(0, Math.min(e - hqE, 8));
                     if (d < bd) { bd = d; stand = t; }
                 }
-                standSince = round;
                 if (stand != null) Debug.log("@stand " + stand);
             }
-            if (stand != null && !loc.equals(stand) && round - standSince < 40) { nav.setTarget(stand); nav.step(); return true; }
+            if (stand != null && !loc.equals(stand) && standWalk < 15) { standWalk++; nav.setTarget(stand); nav.step(); return true; }   // counts walking rounds only: the builder mines while soup is short
         }
         if (Nav.cheb(loc, home) != dist) {
             // walk to the nearest tile at that distance
@@ -120,7 +120,7 @@ public strictfp class Miner extends Robot {
         return true;
     }
 
-    private MapLocation stand = null; private int standSince = 0;   // Iteration 28b: where the builder builds the refinery and school
+    private MapLocation stand = null; private int standWalk = 0;   // Iteration 28b: where the builder builds the refinery and school
     /** The highest outward neighbour of l that a builder standing on l could build on (the engine refuses a spawn more
      *  than 3 from the builder's height); unsensed counts 0, flooded is skipped; MIN_VALUE if there is none. */
     private int outwardElev(MapLocation l, MapLocation home, int dist) {
