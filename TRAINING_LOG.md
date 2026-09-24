@@ -650,7 +650,10 @@ The field's burial swarm, built for the second arm the algorithm asks of a defen
 g_iter3 with the center right after the school, thirty drones on a 100 reserve, and from r1200
 the citadel's wave raid (scout the HQ guess from outside r2 15, gather eight at Chebyshev 7,
 charge together or at r1500, lift the nearest landscaper, drop it in the water). Baseline `spar2`:
-g_iter3 vs arch_swarm on the quick set.
+g_iter3 vs arch_swarm on the quick set: **12/24**, every game a wall race to r2900-3190 -- the
+waves lift too few seats to matter (the pair gamble again) and nothing gets buried. The field's
+swarm does something more: it carries its own landscapers onto the freed ring tiles and buries the
+HQ in 25 rounds. The archetype needs that ferry before it is an arm.
 
 ## Blocks 13-14 -- g_iter4 against the challenge pool (2026-09-24)
 
