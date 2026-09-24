@@ -68,6 +68,7 @@ public strictfp class Miner extends Robot {
                     if (e > be) { be = e; bestD = d; }
                 }
                 if (bestD != null) { rc.buildRobot(RobotType.NET_GUN, bestD); lateGuns++; Debug.log("@build t=8 at=" + loc.add(bestD) + " soup=" + rc.getTeamSoup() + " late=true e=" + be); return; }
+                else if (round % 100 == 0) Debug.log("@nogunsite at=" + loc + " e=" + rc.senseElevation(loc) + " need=" + (int) Math.ceil(waterLevel(round + C.GUN_LIFE)));
             }
         }
         if (perch == null || round % 50 == 0 || (rc.canSenseLocation(perch) && rc.senseFlooding(perch))) {

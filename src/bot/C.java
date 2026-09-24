@@ -36,7 +36,7 @@ public final class C {
     public static final int PARK_ROUND = 660;
     public static final int PARK_RADIUS = 4;
     public static final int GUN_ROUND = 900;
-    public static final int GUN_LIFE = 300;
+    public static final int GUN_LIFE = 60;            // a gun that stands 60 rounds through a wave has earned its 250; the builder rebuilds when it drowns (300 found no site on Prison: nothing near the HQ is 5 high)
     public static final int LATE_GUNS_MAX = 6;
     public static final int LATE_GUN_BANK = 100;
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats

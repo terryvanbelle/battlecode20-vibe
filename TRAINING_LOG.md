@@ -681,6 +681,17 @@ previous submission's point estimate, and 25.6 < 25.9. `src/g_iter3` is the subm
 incumbent again; the late raid goes to the ledger as provisional-then-withdrawn. Gate 16 was
 restarted against `REF=g_iter3` with Iteration 15 rebased on g_iter3 (04:05).
 
+## Block 15 -- g_iter3 against the challenge pool (run block15, 2026-09-24)
+
+48 games: **6/48 (12.5%)**; cumulative for g_iter3 34/156 (21.8%). The challenge pool now holds
+only bots that beat us at least half the time, and the rotation keeps tightening it; both builds
+drift down together. Elo 1263, rank 66.
+
+Iteration 16 first diagnostics (vs arch_swarm, Prison and CentralLake): both won but no gun was ever
+built -- the builder perched on its own tile (no log) and no adjacent tile stood 300 rounds above
+the water (`GUN_LIFE`); Prison has nothing 5 high near the HQ. `GUN_LIFE` 60: a gun standing
+through one wave has earned its 250, and the builder rebuilds when it drowns.
+
 ## Ledger (closed directions)
 
 - **The late drone raid (Iteration 9, 2026-09-23/24)** -- provisional at 135-105 over g_iter3,
