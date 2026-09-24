@@ -113,3 +113,7 @@ OK, I'm going to upgrade you to Fable.  Please make all necessary preparations
 ## 24. 2026-09-24
 
 OK, you're now back on Fable 5.1
+
+## 25. 2026-09-24
+
+While you're diagnosing game losses, I'd also like you to take into account the data used for ONSET.md, though it's at your discretion to decide how much or how little to weight that evidence
