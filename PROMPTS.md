@@ -81,3 +81,7 @@ I'd like to hear a summary of your new plan to fix the ladder system
 ## 16. 2026-09-24
 
 You can go ahead
+
+## 17. 2026-09-24
+
+Yeah, that looks a lot saner now
