@@ -1013,6 +1013,10 @@ at r1500 and 16 at r2000, ring 1874 vs 1900. **Mechanism shown.** Gate `gate24` 
 cap 240) launched; the ladder block of the candidate follows block 35, since the mirror cannot
 price a defence against a raid it never makes.
 
+## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
+
+48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
+
 ## Block 34 -- g_iter3 against the challenge pool (run block34, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 232/1068 (21.7%). Elo 1354, rank 65 of 66.
