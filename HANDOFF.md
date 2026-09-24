@@ -11,9 +11,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Running on the VM:** blocks 68 and 69 (`BOT=g_iter6`, seeded), the last incumbent blocks: g_iter6's grade is
-  settled (1756 +- 27 after 790 games; owner, PROMPTS 26). From here the VM plays gates and candidate ladder arms;
-  an incumbent block only when a candidate arm needs a same-period baseline. Blocks 50-67 are recorded and pushed.
+- **VM:** no incumbent blocks past 69 (g_iter6's grade is settled: see the ladder table; owner, PROMPTS 26). The VM plays
+  gates and candidate ladder arms; an incumbent block only when a candidate arm needs a same-period baseline. Blocks
+  50-69 are recorded and pushed.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
