@@ -29,7 +29,7 @@ public strictfp class Landscaper extends Robot {
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (attacker) { attack(); return; }
-        if (post == null || (!post.equals(loc) && occupiedByFriend(post))) { post = pickTile(home); if (post == null) { attacker = true; Debug.log("@attacker no tile"); attack(); return; } tier = Nav.cheb(post, home); Debug.log("@hold t=" + tier + " at=" + post); }
+        if (post == null || (!post.equals(loc) && loc.isAdjacentTo(post) && occupiedByFriend(post))) { post = pickTile(home); if (post == null) { attacker = true; Debug.log("@attacker no tile"); attack(); return; } tier = Nav.cheb(post, home); Debug.log("@hold t=" + tier + " at=" + post); }
         if (!loc.equals(post)) { approach(home); return; }
         hold(home);
     }
@@ -68,13 +68,12 @@ public strictfp class Landscaper extends Robot {
             if (t == 1 && !exposed(l)) continue;
             boolean isBad = false; for (int k = nBad; --k >= 0;) if (bad[k].equals(l)) { isBad = true; break; }
             if (isBad) continue;
-            if (t == 3 && ringCount() < exposedRingTiles(home) - 1) continue;   // tier 3 opens once the ring is seated
+            if (t == 3 && water < 2.0) continue;   // tier 3 opens with the water (about r450), not with a count other units cannot see the same way
             long s = (long) t * 1000000L;
             if (rc.canSenseLocation(l)) {
                 int e = rc.senseElevation(l);
                 if (rc.senseFlooding(l)) { if (t == 1 || e < water - C.SHALLOW || !holdsDryNeighbour(l)) continue; s += 300000; }   // shallow, and only from a dry tile we already hold next to it
                 else if (Math.abs(e - myE) > GameConstants.MAX_DIRT_DIFFERENCE && !l.equals(loc)) continue;   // a cliff or a raised seat: not for us
-                if (contested(l)) continue;   // another landscaper of ours is closer to it and not yet holding anything: the claim is theirs
                 RobotInfo r = rc.senseRobotAtLocation(l);
                 if (r != null && r.ID != id && (r.type.isBuilding() || (r.type == RobotType.LANDSCAPER && r.team == us))) continue;
                 if (t > 1 && nextToOurBuilding(l)) continue;   // leave the school, the center and the rest their spawn room (gate 18: Constriction had two landscapers all game)

@@ -82,6 +82,12 @@ hold** rather than fixed post lists:
 - The economy that pays for 32+ bodies before r700 is Iteration 17's (16 miners, vaporators from
   r150) with miners kept off the ring approaches on corner HQs.
 
+Claims (revised after gates 18-20): a landscaper picks a tile once and keeps walking to it whatever
+other units do; only on arrival, if the tile is taken, does it pick again from where it stands. No
+unit yields to a "closer" unit (that rule made units re-pick while walking). Tier 3 opens when the
+water passes 2, the same round for everyone. Before any gate: a quick-set sweep with logs, and
+deaths by r1000 plus re-picks per landscaper compared with the incumbent's on every map.
+
 Stage gates: (1) roles alone vs g_iter3 -- every surplus body holds a tile, none attacks; (2) with
 the economy -- distance-2 tier above 30 at r1000; (3) with the buildings -- a school alive at r1500;
 then the mirror gate and the `arch_swarm` arm.
