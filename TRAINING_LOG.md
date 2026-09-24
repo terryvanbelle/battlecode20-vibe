@@ -748,8 +748,15 @@ Iteration 12's tiers (16 helpers, 8 feeders) with Iteration 17's economy (16 min
 vaporators), vs g_iter3. Soup: the economy did not scale on a soup-poor map (8 miners, no
 vaporator, 13 landscapers, no feeder posted; ring 1357 vs the incumbent's on the same footing) --
 the miner cap is not the constraint there, soup on the ground is. Prison pending; a 24-game
-quick-set sweep (`plat2`) shows the map spread. The plateau plan stands, but stage 3 (the economy)
-needs miners that find and mine the 70% of soup we leave, not more miners.
+quick-set sweep (`plat2`) shows the map spread. Prison: the economy scaled (34 landscapers, 8
+vaporators, 13 drones at r1000) and was thrown away -- 22 landscapers died by r2000 as attackers
+with no post, no feeder was ever posted (the 16 helper posts took everyone and churned 49 times),
+two corner ring tiles stayed unseated behind the miner crowd, the tier stayed at water+2. `plat2`:
+**7/24** vs g_iter3. `src/bot` back to g_iter3. What the plateau needs before its next measurement:
+surplus landscapers that take and raise their own distance-3 tile instead of attacking; seats that
+are never blocked by miners on a corner HQ; feeders that get posted before helpers fill every
+distance-2 tile (or helpers that raise their tile toward the ring once fed by a feeder). The plan
+in HANDOFF is updated with these.
 
 ## Ledger (closed directions)
 
