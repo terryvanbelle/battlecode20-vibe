@@ -1026,7 +1026,13 @@ between r1000 and r2000**, 10 by r3000, 5 after; the raid window is untouched (4
 and team4, 0/4 against winkelmantanner, uvafan, ronniesong and IvanGeffner. **Closed: priced below
 the gate (45.5%) and no ladder gain.** Code kept as `src/arch_perch`; `src/bot` is g_iter3 again.
 Whether the guards were absent or merely outnumbered in the mid-game losses is read from the
-block's study table below.
+block's study table: **absent**. The perch center stood at r700 in 4 of the 21 reviewable games
+(CentralLake, WaterBot, Constriction, FourLakeLand); in the six reviewable mid-game losses (team4
+x3 at r1547-1573, EmaPajic x2, benzyx RandomSoup1) we had no center and no drone. Where the perch
+did fire it did not save the game either: WaterBot, 15 guards and 13 pickups against a 10-drone
+benzyx raid, lost at r1628; CentralLake, 16 guards, lost at r2890. The perch depends on a cardinal
+block of dry, level tiles beside the HQ and on a mason and a builder both surviving to r650, and
+the ladder's maps rarely give all of that.
 
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
