@@ -523,6 +523,20 @@ first version had lost, now 677 vs 545; Prison 1666 vs 1589 -- and goes to `gate
 r1210 and 2,460 soup sat idle at r1000 because `LANDSCAPERS_MAX` (24) was reached; more bodies
 need more posts, which is the Iteration 12 problem from the other side.
 
+**Gate 14: REJECT 103-105 (49.5%)** after thirteen batches -- neutral. The second school is closed
+(ledger): where it fires the bank buys landscapers for posts that do not exist, and where it does
+not fire the parked builder costs a miner's last hundred rounds. `src/bot` back to g_iter4.
+
+## Iteration 14 -- the helpers' last stand (2026-09-24)
+
+From about r2600 the water rises faster than 0.5 a round, so a helper that keeps its own tile at
+water+2 spends every deposit on a tile that floods anyway (Prison: 24 landscapers at r1000, 12 at
+r1500, 5 at r2500). Candidate = g_iter4 + from `LAST_STAND_ROUND` (2600) helpers stop raising
+their own tile and put every deposit on the ring until they drown. Eight helpers x ~100 deposits
+is ~100 of wall height at the moment mirror games are decided by 10-50. Diagnostic: Prison and
+CentralLake vs g_iter4 -- helper deposits onto the ring r2500-3000 above the incumbent's, ring at
+r3000 higher. Gate `gate15` vs `REF=g_iter4`. Falsifier: below 53%.
+
 ## Block 12 -- g_iter4 against the challenge pool (run block12, 2026-09-24)
 
 48 games: **9/48 (19%)**. `mvpatel2000.qual` 2/3, `wpine215` 2/4, `IvanGeffner` 2/4; cumulative for
@@ -596,6 +610,11 @@ school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on
 
 ## Ledger (closed directions)
 
+- **The second school (Iteration 13, 2026-09-24)** -- a parked builder rebuilds the school after the
+  flood on the idle bank. Gates 51-61 and 103-105 vs g_iter4. Kind: priced below the gate. The bank
+  buys landscapers but not posts for them (16 at distance 2, all taken by r700), and parking the
+  builder costs a miner's income on poor maps. Reopen only with more posts (a dry third tier).
+
 - **The citadel (ring at Chebyshev 2 with the buildings sealed inside; Iteration 6, 2026-09-23)** --
   refuted at the sweep stage: 4-9 of 24 against g_iter2 over ten sweeps after every mechanism was
   shown to work in diagnostics. Kind: priced below the gate. Reason: 16 tiles halve the wall rate
@@ -608,7 +627,7 @@ school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy (builder, sites) | Iteration 11 (inconclusive 52%) | 1 |
-| flood defence (wall) | Iteration 12 (reject 42-54) | 1 |
+| flood defence (wall) | Iteration 13 (reject 51-61, 103-105) | 2 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | Iteration 10 (reject 120-120) | 1 |

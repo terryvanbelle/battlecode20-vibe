@@ -14,8 +14,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Incumbent and submission: `src/g_iter4`** (Iteration 9, provisional: 135-105 inconclusive above the 53% keep line
   over g_iter3 on 2026-09-23; the late drone raid). `src/g_iter3` (Iteration 8, accepted 39-9 over g_iter2) is the
   fallback if a submission block disappoints.
-- `src/bot` = g_iter4 + idle-turn instrumentation for Iteration 12 (the seats' idle census). Iteration 10 (home-defence
-  drones) rejected 120-120; Iteration 11 (builder site fixes + spawn room) inconclusive 125-115, not kept.
+- `src/bot` = Iteration 14 = g_iter4 + helpers stop self-raising from r2600 (`LAST_STAND_ROUND`). Iterations 10-13
+  (home-defence drones, builder site fixes, three-tier wall, second school) all rejected or inconclusive below 53%;
+  the second school is in the ledger.
 - Sparring: `tools/gauntlet.sh` with `OPPONENTS=arch_drone MAPSET=quick` measures swarm vulnerability (run `spar1`).
 - Ladder: g_iter2 is 37/156 (24%) on the strong field over blocks 1-6; Elo 1372, rank 66/66 (`progress/ELO.md`).
 - Benchmarks: 285 packages from 96 repos compiled (`~/projects/vibe/bc20-benchmarks/manifest.tsv`);

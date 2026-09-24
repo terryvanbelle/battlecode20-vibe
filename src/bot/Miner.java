@@ -47,53 +47,18 @@ public strictfp class Miner extends Robot {
         }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
-        if (builder && round >= C.PARK_ROUND) { parkAndRebuild(); return; }   // Iteration 13
         if (builder && build()) return;
         work();
     }
 
     // ---------------------------------------------------------------- builder
-    /** Iteration 13: the builder survives the flood on the highest dry tile near the HQ and, once no school of ours is in
-     *  sight after SECOND_SCHOOL_ROUND, builds another on an adjacent tile that will stay dry for SCHOOL_LIFE rounds. */
-    private MapLocation perch;
-    private void parkAndRebuild() throws GameActionException {
-        MapLocation home = MapState.home;
-        if (round >= C.SECOND_SCHOOL_ROUND && rc.isReady() && rc.getTeamSoup() >= RobotType.DESIGN_SCHOOL.cost) {
-            boolean schoolSeen = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL) { schoolSeen = true; break; }
-            if (!schoolSeen) {
-                Direction bestD = null; int be = -1;
-                for (int i = 8; --i >= 0;) {
-                    Direction d = DIRS[i]; MapLocation n = loc.add(d);
-                    if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canBuildRobot(RobotType.DESIGN_SCHOOL, d) || rc.senseFlooding(n)) continue;
-                    int e = rc.senseElevation(n); if (e < waterLevel(round + C.SCHOOL_LIFE)) continue;
-                    if (e > be) { be = e; bestD = d; }
-                }
-                if (bestD != null) { rc.buildRobot(RobotType.DESIGN_SCHOOL, bestD); builtSchool++; Debug.log("@build t=4 at=" + loc.add(bestD) + " soup=" + rc.getTeamSoup() + " second=true"); return; }
-            }
-        }
-        // the perch: the highest dry tile within PARK_RADIUS of the HQ that is not the ring, re-chosen when ours floods or a better one is 3+ higher
-        if (perch == null || round % 50 == 0 || (rc.canSenseLocation(perch) && rc.senseFlooding(perch))) {
-            MapLocation best = perch; int be = perch != null && rc.canSenseLocation(perch) && !rc.senseFlooding(perch) ? rc.senseElevation(perch) + 2 : Integer.MIN_VALUE;
-            for (int dx = -C.PARK_RADIUS; dx <= C.PARK_RADIUS; dx++) for (int dy = -C.PARK_RADIUS; dy <= C.PARK_RADIUS; dy++) {
-                MapLocation t = new MapLocation(home.x + dx, home.y + dy);
-                if (Nav.cheb(t, home) < 2 || !rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t)) continue;
-                RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.ID != id) continue;
-                int e = rc.senseElevation(t); if (Math.abs(e - rc.senseElevation(loc)) > 3 && !t.equals(loc)) continue;
-                if (e > be) { be = e; best = t; }
-            }
-            if (best != null) perch = best;
-        }
-        if (perch == null) { if (floodDanger() && climb()) return; if (Nav.cheb(loc, home) > C.PARK_RADIUS) { nav.setTarget(home); nav.step(); } return; }   // out of sight of the perches: come home first
-        if (!loc.equals(perch)) { if (floodDanger() && climb()) return; nav.setTarget(perch); nav.step(); if (loc.equals(perch)) Debug.log("@perched at=" + perch + " e=" + rc.senseElevation(perch)); }
-    }
-
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         int soup = rc.getTeamSoup();
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK && round < C.VAPORATOR_LAST_ROUND) want = RobotType.VAPORATOR;   // Iteration 13: no vaporator that cannot pay back before the flood
+        else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;

@@ -34,14 +34,6 @@ public final class C {
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
-    // Iteration 13: the second school. The builder parks on high dry ground from PARK_ROUND and, once the first school
-    // has drowned, spends the idle bank on a new school whose landscapers fill the remaining distance-2 posts.
-    public static final int VAPORATOR_LAST_ROUND = 300;   // a vaporator (500) pays 2 a round and drowns at r700: nothing built after this ever pays back
-    public static final int PARK_ROUND = 660;         // the builder stops mining and climbs to the highest dry tile within PARK_RADIUS of the HQ (gate 13 losses on poor maps: 100 rounds of one miner is a landscaper)
-    public static final int SECOND_SCHOOL_MAX = 8;    // landscapers a school born after the flood builds: the free distance-2 posts, no more (16 surplus drowned as attackers on DisproportionatelySmallGap)
-    public static final int PARK_RADIUS = 4;
-    public static final int SECOND_SCHOOL_ROUND = 720;   // water 3.2: the first school (elevation 3-4) is gone or going
-    public static final int SCHOOL_LIFE = 150;        // a second school site must stay above the water this long
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
     public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
