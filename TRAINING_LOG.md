@@ -808,6 +808,11 @@ per landscaper (both criteria met); **CentralSoup lost 1776 vs 1881**, deaths 29
 (neither met -- the claim race persists among units already inside the tiers). Gate `gate20` vs
 `REF=g_iter3`, launched 11:35. Falsifier: below 53%.
 
+**Gate 20: REJECT 15-33 (31%)** after three batches. Three gates on the plateau's stage 1 (42-54,
+25-39, 15-33): the tile-holding roles lose the mirror however the claims are tuned, while winning
+chosen diagnostics by 10-15%. Closed for this session (ledger); `src/arch_plateau` keeps the code
+and `src/bot` is g_iter3.
+
 ## Block 19 -- g_iter3 against the challenge pool (run block19, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 80/348 (23%).
@@ -826,6 +831,12 @@ per landscaper (both criteria met); **CentralSoup lost 1776 vs 1881**, deaths 29
   g_iter3. Diagnostics 1-2 with 5,000-6,000 soup idle at r1000. Kind: blocked on the sink. Reopen
   together with the plateau (a place to spend soup after r700).
 
+- **The plateau, stage 1: tile-holding landscaper roles (Iterations 18-20, 2026-09-24)** -- gates
+  42-54, 25-39, 15-33 vs g_iter3. Kind: refuted as built. The roles win single diagnostics by
+  10-15% and lose the random-map mirror by 10-20 points; the losses show claim races, drownings on
+  the way to tiles, and more deaths than the incumbent. Reopen with a claim scheme that never
+  re-picks (a unit keeps the first tile it reaches) and with tiers opened by the water level, not
+  by counts; and measure deaths and re-picks on ten maps before any gate.
 - **The late guns (Iteration 16, 2026-09-24)** -- a parked builder rebuilding net guns after the
   flood. Blocked on geometry: no dry tile near the HQ that is not the ring or a helper's own tile.
   Kind: blocked. Reopen with a raised base.
@@ -854,7 +865,7 @@ per landscaper (both criteria met); **CentralSoup lost 1776 vs 1881**, deaths 29
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy (miners, builder, sites) | Iteration 15 (reject 56-72) | 2 |
-| flood defence (wall) | Iteration 14 (reject 57-71) | 3 |
+| flood defence (wall) | Iterations 18-20, the plateau (reject x3) | 6 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | Iteration 10 (reject 120-120) | 1 |
