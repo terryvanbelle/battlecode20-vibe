@@ -89,3 +89,7 @@ Yeah, that looks a lot saner now
 ## 18. 2026-09-24
 
 Make sure that TRAINING_ALGORITHM and the rest of the documents are updated to reflect this
+
+## 19. 2026-09-24
+
+ELO.md has g_iter6 at 1677 and 20th place, which contradicts your statement.  Which is correct?
