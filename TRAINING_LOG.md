@@ -758,6 +758,14 @@ are never blocked by miners on a corner HQ; feeders that get posted before helpe
 distance-2 tile (or helpers that raise their tile toward the ring once fed by a feeder). The plan
 in HANDOFF is updated with these.
 
+Plateau revision (feeders on any distance-3 tile, shallow flooded ones resurfaced from next door):
+Prison again -- 48 landscapers at r1000, 437 struck-off posts, not one feeder assigned (`pickPost`
+always returns one of the 16 distance-2 tiles, which then proves unreachable), the distance-3 tier
+dug to -3000, 36 landscapers dead by r2000. The Iteration 12 role code cannot be patched into a
+plateau; the roles need a rewrite around tiles a landscaper can hold: pick the nearest free tile it
+can reach and keep dry, at distance 2 or 3, and feed inward. That rewrite is the plateau's stage 2
+and the first job of the next session. `src/bot` back to g_iter3.
+
 ## Ledger (closed directions)
 
 - **The economy regime (Iteration 17, 2026-09-24)** -- 8-24 miners, early vaporators, 20 drones on
