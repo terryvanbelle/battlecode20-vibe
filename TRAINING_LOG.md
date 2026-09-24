@@ -831,6 +831,10 @@ none on TwoLakeLand, ring at r2500. Result: the reports flow and the cap rises t
 the ring at about r150 the HQ has no free adjacent tile to spawn onto**. The miner count is fixed
 by r150, so the only economy lever is `MINERS_EARLY` (Iteration 15, 44%). Not gated; ledger.
 
+## Block 21 -- g_iter3 against the challenge pool (run block21, 2026-09-24)
+
+48 games: **12/48 (25%)**; cumulative for g_iter3 98/444 (22.1%).
+
 ## Block 20 -- g_iter3 against the challenge pool (run block20, 2026-09-24)
 
 48 games: **6/48**; cumulative for g_iter3 86/396 (21.7%).
