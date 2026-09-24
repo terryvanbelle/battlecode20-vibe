@@ -1104,6 +1104,19 @@ the HQ, never sees 150. Ring tiles at 2, 4 and 7 beside seats at 44; the tile at
 r500 and the HQ at 4 drowns at r931. The other side spawned 8 and still lost 3 seats to cliff
 tiles it could not climb.
 
+## Iteration 27 -- no miners for a starved map (2026-09-24)
+
+Hills showed the Climb shape (soup 100-200 to r500, 10-11 miners built, the school spawns 2-4,
+ring tiles at 2 flood at r500 beside seats at 135); GSF in the g_iter5 mirror is not map-dead
+(5-7 seats, no flooded tile), so seats-first already covers it. Candidate = g_iter5 with the HQ's
+replacement miners gated on a bank of 350 instead of 200, so a school with a seat to fill always
+gets its 150 first. Diagnostics on Climb and Hills came out identical to the g_iter5 mirror to the
+last digit: the HQ built no replacement miner before r500 in either version (soup never reached
+200), and the school spawned twice on Climb because soup reached 150 only twice by r500. The
+binding constraint is income: five miners sit idle with twelve soup tiles in memory while the
+map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
+of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
+
 ## The graded ladder (owner decision, 2026-09-24, PROMPTS 7-9)
 
 Asked for our progress against a fixed roster, the answer was that the pool "just above us" had
