@@ -535,7 +535,11 @@ r1500, 5 at r2500). Candidate = g_iter4 + from `LAST_STAND_ROUND` (2600) helpers
 their own tile and put every deposit on the ring until they drown. Eight helpers x ~100 deposits
 is ~100 of wall height at the moment mirror games are decided by 10-50. Diagnostic: Prison and
 CentralLake vs g_iter4 -- helper deposits onto the ring r2500-3000 above the incumbent's, ring at
-r3000 higher. Gate `gate15` vs `REF=g_iter4`. Falsifier: below 53%.
+r3000 higher. Result: on Prison our ring grew 108 from r2500 to r2700 against the incumbent's 61,
+and at r2900 the unstuck tiles led 1631 vs 1562 (one seat tile stuck at 1615 lost the game by 7);
+helpers on both sides drown by r2700 (the water outruns them from r2550). CentralLake is not
+informative: side A wins it by 900 whatever the candidate. Gate `gate15` vs `REF=g_iter4`,
+launched 02:35. Falsifier: below 53%.
 
 ## Block 12 -- g_iter4 against the challenge pool (run block12, 2026-09-24)
 
