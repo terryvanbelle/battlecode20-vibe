@@ -780,6 +780,14 @@ landscapers at r1000 and tier-2 tiles at 270 where tier 3 fed them; **Soup won, 
 re-holds, 276 struck tiles) and 27 deaths by r2000. Gate `gate18` vs `REF=g_iter3`, launched 09:35.
 Falsifier: below 53%.
 
+**Gate 18: REJECT 42-54 (44%)** after six batches, the first batch 2-14. Losses fetched: on
+Constriction our school built two landscapers all game -- tier-2 holders stood on every tile around
+it; elsewhere one or two ring tiles lagged (175 vs 228 at r600) because the early seat claims came
+late for the same reason. Fix: no holder takes a tile adjacent to one of our buildings (the HQ
+excepted). Re-diagnosed: Constriction now a **win at r1547** (the incumbent's own school is boxed in
+there: 3 landscapers), BeachFrontProperty a close loss with an even ring (1609 vs 1680, 13 v 13).
+Gate `gate19` vs `REF=g_iter3`, launched 10:35. Falsifier: below 53%.
+
 ## Block 17 -- g_iter3 against the challenge pool (run block17, 2026-09-24)
 
 48 games: **11/48 (23%)**; cumulative for g_iter3 55/252 (21.8%).

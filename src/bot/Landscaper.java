@@ -34,6 +34,11 @@ public strictfp class Landscaper extends Robot {
         hold(home);
     }
 
+    private boolean nextToOurBuilding(MapLocation l) {
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type.isBuilding() && f.type != RobotType.HQ && f.location.isAdjacentTo(l)) return true; }
+        return false;
+    }
+
     private boolean occupiedByFriend(MapLocation l) throws GameActionException {
         if (!rc.canSenseLocation(l)) return false;
         RobotInfo r = rc.senseRobotAtLocation(l);
@@ -57,6 +62,7 @@ public strictfp class Landscaper extends Robot {
                 else if (Math.abs(e - myE) > GameConstants.MAX_DIRT_DIFFERENCE && !l.equals(loc)) continue;   // a cliff or a raised seat: not for us
                 RobotInfo r = rc.senseRobotAtLocation(l);
                 if (r != null && r.ID != id && (r.type.isBuilding() || (r.type == RobotType.LANDSCAPER && r.team == us))) continue;
+                if (t > 1 && nextToOurBuilding(l)) continue;   // leave the school, the center and the rest their spawn room (gate 18: Constriction had two landscapers all game)
                 if (t > 1) {   // prefer the tile whose inner neighbour is lowest: dirt goes where the wall is weakest
                     int lowest = Integer.MAX_VALUE;
                     for (int i = 8; --i >= 0;) { MapLocation n = l.add(DIRS[i]); if (Nav.cheb(n, home) == t - 1 && !n.equals(home) && rc.canSenseLocation(n) && (t > 2 || exposed(n))) lowest = Math.min(lowest, rc.senseElevation(n)); }
