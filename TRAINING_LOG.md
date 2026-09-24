@@ -854,6 +854,16 @@ the same map by side). Deaths track the incumbent's now. Two more changes before
 slot posts at fee 5, and a unit that has re-picked three times attacks instead (bounded churn).
 Sweep `plat9` after block 25.
 
+Sweep `plat9` (slots at fee 5, churn bounded at three re-picks): **9/24**. Three sweeps of the
+slot-claim revision at 8-10/24; the pre-gate rule (deaths and churn no worse than the incumbent
+on the quick set) is not met, so nothing goes to the gate. The plateau's stage 1 stays in the
+ledger; the next attempt starts from the role design, not the claim rule.
+
+## Block 25 -- g_iter3 against the challenge pool (run block25, 2026-09-24)
+
+48 games: **4/48 (8%)**; cumulative for g_iter3 138/636 (21.7%). The challenge pool keeps
+tightening toward the bots that beat us most; single blocks swing from 4 to 14 of 48.
+
 ## Block 24 -- g_iter3 against the challenge pool (run block24, 2026-09-24)
 
 48 games: **14/48 (29%)**; cumulative for g_iter3 134/588 (22.8%).
