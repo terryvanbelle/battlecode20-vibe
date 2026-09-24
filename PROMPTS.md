@@ -101,3 +101,7 @@ Thanks.  I frequently look at the docs in the Github repository to get a sense o
 ## 21. 2026-09-24
 
 Given everything you've learned about Battlecode, what is your estimate for how much better Fable 5.1 is over Opus 5.5 for making progress in the game?
+
+## 22. 2026-09-24
+
+OK, let's look at it from a different perspective.  Given what you know about Fable's general strengths and weaknesses vs. the ones for Opus 5.5,  along with what you know about the things required for Battlecode, would you predict that Fable would be a large improvement, or not much improvement at all, or something else?
