@@ -859,6 +859,14 @@ slot-claim revision at 8-10/24; the pre-gate rule (deaths and churn no worse tha
 on the quick set) is not met, so nothing goes to the gate. The plateau's stage 1 stays in the
 ledger; the next attempt starts from the role design, not the claim rule.
 
+Sweep `plat10` (slots read from the last two blocks -- the sandbox constructs a robot a round late):
+**9/24**, but the table is finally informative: slot coverage is near complete (22 of 25, 24 of 41,
+25 of 39 newborns), deaths match the incumbent's, and the roles still lose at equal bodies (Squares
+A: 14 landscapers, ring 1705 vs 2212). Cause read off the code: with all sixteen distance-2 tiles
+held, a seat has no free tile to dig from -- it may dig under a friend only from a margin the (few)
+feeders never build -- so the ring starves while the incumbent's eight helpers leave eight dig
+sources. Fix: tier 2 is the eight corner and midpoint tiles only. Sweep `plat11`.
+
 ## Block 26 -- g_iter3 against the challenge pool (run block26, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 150/684 (21.9%).
