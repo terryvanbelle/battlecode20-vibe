@@ -1096,6 +1096,14 @@ opponent is, and the HQ drowns at r931-932 when the water reaches its elevation.
 them. Candidates in order: the map-dead games first (a school that is never built or never
 spawns is a defect, and it is worth three maps), then the rush (school before refinery).
 
+Climb, g_iter5 mirror: the school (r84) has free spawn tiles and spawns twice all game. Soup sits at
+84-175 from r100 to r500: the map's soup lies behind 99-high cliffs, the miners mine 39 soup in the
+first hundred rounds and nothing after, and the HQ keeps replenishing miners (13 built, 910 soup)
+because the ring is short and soup touches 200 every 60 rounds -- the school, which acts after
+the HQ, never sees 150. Ring tiles at 2, 4 and 7 beside seats at 44; the tile at 2 floods at
+r500 and the HQ at 4 drowns at r931. The other side spawned 8 and still lost 3 seats to cliff
+tiles it could not climb.
+
 ## Block 37 -- g_iter5 against the challenge pool (run block37, 2026-09-24)
 
 48 games: **7/48 (14.6%)**; the first block of the new incumbent (g_iter3's single blocks ranged
