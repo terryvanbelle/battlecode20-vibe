@@ -1203,6 +1203,21 @@ yet; the mirror prices what stands. arch_swarm never approached a gun (it flees 
 read from the ladder arm's benzyx replays. Snapshot `src/cand31`; **`gate31`** (mirror vs g_iter6, seeded, cap 240) and
 **`arm31a`/`arm31b`** (two 48-game band blocks as `us:cand31`) running together on the VM.
 
+**Gate 31: REJECT at 7-25 (22%)** after two batches. The loss on BeachFrontProperty (team B, r3090, a wall
+race): our gun stood from r300, but landscapers 11-13 against g_iter6's 12-16 and mining 501 against 568.
+The reserve that holds 250 for a raised site stays on for as long as the site has no gun -- the second site
+was raised and never built -- so the school built helpers only above 550 and attackers above 950, and the HQ
+its replacement miners only above 450, for the whole game. The guns cost nothing like 78% of games; the
+throttle did. Kind: refuted as built. The ladder arm (`arm31a`/`arm31b`) runs to completion: it says whether
+the guns bite against real raids, which decides whether a 31b (the reserve and the builder's site duty bounded
+to before r700 and to 150 rounds after a site is raised) is worth a gate.
+
+**Onset, blocks 50-69 merged** (`progress/ONSET-merged.md`, 786 games, noise floor 0.07): the earliest risers
+are now **net worth (us-them) at r150 (+0.44)** and mines, robots, spawned at r200 (+0.40 to +0.52), before
+landscapers at r350 (+0.58) and digs at r550 (+0.59); pickups (us-them) rise at r550 (+0.37); drones, net guns,
+vaporators, miners and soup never pass +0.30. The early economy -- how much has been mined by r200 -- is the
+earliest signal in the whole record; the raid signal follows it by 400 rounds.
+
 ## The fixed seed (2026-09-24, PROMPTS 24-25)
 
 Four benzyx MoreCowbell losses in blocks 50-56 were the same game to the round. The engine seeds its

@@ -180,7 +180,8 @@ the ladder; reallocations of a resource mostly do not.
 - `BENCHMARK.md`: the external field, tiers per build; the tier governs replay access.
 - `HANDOFF.md`: the state of the loop and the gotchas that cost time.
 - `progress/`: `ELO.md` (ratings and each build's grade), `elo.png` (every rating with its 95%
-  interval), `ONSET.md`, `onset-ladder.png`, `games.csv` (every scrimmage), `METRICS.md`.
+  interval), `ONSET.md` (the last block) and `ONSET-merged.md` (every block of the submission: the one to read),
+  `onset-ladder.png`, `games.csv` (every scrimmage), `METRICS.md`.
 - `PROMPTS.md`: every user prompt, verbatim.
 
 ## 7. When the loop stalls

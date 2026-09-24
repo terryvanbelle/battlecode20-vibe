@@ -27,6 +27,7 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `scrim-study.sh <run>` | the block study: `--metrics` and `--navstats` for every replay -> `study.tsv`, `nav.tsv`; `scrim-study.py` prints medians |
 | `correlate.py <run> [--round N]` | raw and within-opponent correlation of each metric with the result |
 | `onset.py <run> [--md --plot]` | per metric, the first round at which its lead correlates with the result |
+| `onset-merged.sh <build>` | the same over every recorded block of one build (`progress/ONSET-merged.md`; 786 games of g_iter6 give a noise floor of 0.07 against one block's 0.30) |
 | `polarity.py`, `statlib.py`, `derived.py` | orientation, statistics and derived metrics shared by the two above; tested by `test_metrics.py` |
 | `compare.py base cand` | game-by-game diff of two gauntlet runs |
 | `log-scan.sh <run>` | every `@tag` log line of our side for every game of a block, one pass |
