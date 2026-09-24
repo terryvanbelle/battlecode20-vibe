@@ -1013,6 +1013,13 @@ at r1500 and 16 at r2000, ring 1874 vs 1900. **Mechanism shown.** Gate `gate24` 
 cap 240) launched; the ladder block of the candidate follows block 35, since the mirror cannot
 price a defence against a raid it never makes.
 
+**Gate 24: REJECT at 51-61 (45.5%)** after seven batches (batches 4-7 all 7-9 or 9-7; every game a wall
+race settled after r3000). The mirror prices the perch at about 4.5 points: a miner parked from
+r420, ~90 loads of ring dirt, the center's 150 at r640. Decision rule written before the ladder
+block reads out: the candidate is kept provisional only if `cand24` (48 games against the
+challenge pool) scores at least 16/48 (33%) against g_iter3's 21.9% over 1,116 games; below that
+the perch is closed as priced below the gate and the guard's value on the ladder is answered.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
