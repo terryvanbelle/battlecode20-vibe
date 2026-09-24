@@ -1076,7 +1076,8 @@ g_iter5's 6 falling to 3). Seats-first removed the urgency of seating, so the ec
 before the ring closes. Candidate = g_iter5 with MINERS_EARLY 8 (the HQ's first eight builds are
 miners; the school seats them afterwards, and seats-first keeps the tiles climbable). Diagnostics
 vs g_iter3: Squares **8 seats, ring 2387 vs 2251 (+6%)** where g_iter5 alone scored -9%; TwoLakeLand
-pending. Gate vs g_iter5 if TwoLakeLand holds.
+TwoLakeLand 8 seats, ring 1959 vs 1869 (+5%). Both maps above the incumbent line. Gate `gate26`
+(`cand25b` vs g_iter5, mirror, cap 240) launched beside blocks 36 and 37.
 
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
