@@ -819,6 +819,15 @@ in the ledger until the deaths are traced game by game (the sweep's per-game tab
 gauntlet's replay directory, which the collector does not keep for wins -- a tool gap noted for
 the next session).
 
+## Iteration 21 -- soup-driven miners (2026-09-24)
+
+Iteration 17 showed a tripled economy wins on rich maps (Soup +24% ring) and loses on poor ones
+(TwoLakeLand: 22 miners drowned unpaid). Candidate = g_iter3 + a miner with six or more soup
+tiles in memory posts a SOUP report (fee 1, once per 50 rounds, before r600); the HQ raises its
+miner cap by the reports of the last 150 rounds (up to 8 extra). Rich maps get up to 16 miners,
+poor maps keep 8. Diagnostic: Soup, TwoLakeLand, Prison vs g_iter3 -- reports and cap on Soup,
+none on TwoLakeLand, ring at r2500. Gate `gate21` vs `REF=g_iter3`. Falsifier: below 53%.
+
 ## Block 20 -- g_iter3 against the challenge pool (run block20, 2026-09-24)
 
 48 games: **6/48**; cumulative for g_iter3 86/396 (21.7%).
