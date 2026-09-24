@@ -81,6 +81,9 @@ game () {  # opp map side
   local OPP="$1" MAP="$2" SIDE="$3" TA TB UA UB PA PB rb ro
   rb=$(resolve "$BOT"); ro=$(resolve "$OPP")
   PB=${rb%% *}; UB=${rb#* }; PA=${ro%% *}; UA=${ro#* }
+  # the engine seed: the cell's 4th field when given (reproducible), else random. Without it the map's own seed
+  # is used and the same pairing replays the same game (2026-09-24: 12-29% of ladder games were exact repeats).
+  local SEED="${4:-$(( (RANDOM << 15) | RANDOM ))}"
   local silence
   if [ "$SIDE" = A ]; then TA=$PB; TB=$PA; UAA=$UB; UBB=$UA; silence=-Dbc.engine.silence-b=true
   else TA=$PA; TB=$PB; UAA=$UA; UBB=$UB; silence=-Dbc.engine.silence-a=true; fi
@@ -91,7 +94,7 @@ game () {  # opp map side
     -Dbc.engine.debug-methods=false -Dbc.engine.enable-profiler=false -Dbc.server.robot-player-replay-file-per-team-limit-bytes=${LOG_LIMIT:-4000000} \
     "$silence" -Dbc.game.team-a="$TA" -Dbc.game.team-b="$TB" \
     -Dbc.game.team-a.url="$UAA" -Dbc.game.team-b.url="$UBB" \
-    -Dbc.game.maps="$MAP" -Dbc.server.save-file="$REPLAY" \
+    -Dbc.game.maps="$MAP" -Dbc.server.save-file="$REPLAY" -Dbc.game.seed="$SEED" \
     -cp "$(engine_cp)" battlecode.server.Main -c=- 2>&1 </dev/null) || TO=$?
   local R; R=$(parse_result "$LOG")   # RESULT W round reason
   set -- $R; local W="$2" RND="$3"; shift 3; local RE="$*"
@@ -101,16 +104,16 @@ game () {  # opp map side
   if printf '%s\n' "$LOG" | grep -q "Error instrumenting ${PB}\."; then res=unknown; RE="OUR bot failed to instrument"; fi
   if [ "$W" = "?" ] && [ "$TO" = 124 ]; then res=unknown; RE="timeout after ${GAME_TIMEOUT:-1800}s"; fi
   if [ "$res" = unknown ] || [ "$res" = dud ]; then printf '%s\n' "$LOG" | grep -v '^\s*at ' | head -60 > "$OUT/${res}__${OPP}__${MAP}__bot${SIDE}.log"; fi
-  printf '%s,%s,%s,%s,%s,%s,%s\n' "$OPP" "$MAP" "$SIDE" "$W" "$RND" "$res" "$RE" >> "$OUT/results.raw"
+  printf '%s,%s,%s,%s,%s,%s,%s,%s\n' "$OPP" "$MAP" "$SIDE" "$W" "$RND" "$res" "$RE" "$SEED" >> "$OUT/results.raw"
   [ "$res" = win ] && [ "${KEEP_ALL:-0}" != 1 ] && rm -f "$REPLAY"
   [ "$res" = loss ] && mv "$REPLAY" "$OUT/losses/" 2>/dev/null
   printf '  [%3d/%d] %-4s %-28s %-24s r%s\n' "$(wc -l < "$OUT/results.raw")" "$NG" "$res" "$MAP" "$OPP" "$RND"
 }
 export -f game resolve parse_result engine_cp; export OUT BOT ENGINE_DIR REPO MANIFEST GAME_XMX KEEP_ALL NG BENCH_CLASSES CLASSES
 { if [ -n "${CELLS:-}" ]; then cat "$CELLS"; else for OPP in $OPPONENTS; do for MAP in $MAPS; do for SIDE in A B; do echo "$OPP $MAP $SIDE"; done; done; done; fi; } \
-  | xargs -P "$MAXJOBS" -L 1 bash -c 'game "$0" "$1" "$2"'
+  | xargs -P "$MAXJOBS" -L 1 bash -c 'game "$0" "$1" "$2" "$3"'
 
-{ echo "opponent,map,bot_side,winner_side,rounds,bot_result,reason"; sort "$OUT/results.raw"; } > "$OUT/results.csv"
+{ echo "opponent,map,bot_side,winner_side,rounds,bot_result,reason,seed"; sort "$OUT/results.raw"; } > "$OUT/results.csv"
 rm -f "$OUT/results.raw"; rmdir "$OUT/replays" 2>/dev/null || true
 {
   total=$(($(wc -l < "$OUT/results.csv") - 1)); wins=$(awk -F, 'NR>1&&$6=="win"' "$OUT/results.csv" | wc -l)

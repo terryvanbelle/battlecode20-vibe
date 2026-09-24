@@ -1134,7 +1134,29 @@ field score 73.2% (g_iter5 1739 +- 30). Blocks 53-54 (`20260924-190807`, `-19081
 (1743 +- 30); the upper end (1768) is above g_iter5's rating, so no withdrawal.
 
 Blocks 55-56 (`20260924-193834`, `-193842`): **31/48** and **28/48**; g_iter6 1736 +- 40 after 336
-games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 running.
+games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`20260924-194653`, `-194718`):
+**28/48** and **24/48**; on distinct games g_iter6 is 1740 +- 43, g_iter5 1743 +- 33 (see "The fixed seed").
+
+## The fixed seed (2026-09-24, PROMPTS 24-25)
+
+Four benzyx MoreCowbell losses in blocks 50-56 were the same game to the round. The engine seeds its
+robot IDs and every sandboxed `Random` from the map file's seed (`LiveMap.getSeed`), so a pairing on
+the same map and side replays identically: of 336 games in blocks 50-56, 38 pairings recurred and
+all 38 gave identical results (41 games were repeats); over `games.csv`, 491 of 2,825 games were
+repeats -- 320 of g_iter3's 1,116. The mirror gate draws map and side with replacement from 104
+cells, so a 240-game gate has at most 104 distinct games and its SPRT counts repeats as evidence:
+gate29b's 160 games held 83 distinct cells (77 repeats, 71 identical); the distinct-cell record
+was 48-35 (58%), the same direction as the reported 72-40 but far weaker.
+
+**Fix:** `tools/build-engine.sh` patches `LiveMap.getSeed` to honour `-Dbc.game.seed`; `gauntlet.sh`
+draws a random seed per game (the cell's 4th field when given) and records it as an 8th column;
+`scrim-record.py` carries it into `games.csv` (new `seed` column, empty for every game before
+today); `elolib.fit` counts one game per (teamA, teamB, map, seed). `run-dev.sh`/`run-match.sh`
+keep the map seed unless `GAME_SEED` is set, so diagnostics stay reproducible. Ratings on distinct
+games: g_iter6 1740 +- 43 (295 of 336), g_iter5 1743 +- 33 (618 of 720), g_iter3 1700 +- 32
+(796 of 1,116): the order is unchanged, the intervals were overstated. Every gate before today
+was overconfident in the same way; none is re-run (their directions stand), but from block 59 and
+the next gate on, every game is a new game.
 
 ## Block 50 and the unspent bank (2026-09-24)
 

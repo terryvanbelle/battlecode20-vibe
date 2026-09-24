@@ -131,7 +131,8 @@ Every candidate passes through these in order, and most die early. That is the d
    candidate gates at 50% whatever it is worth.
 4. **Gate.** The mirror under a sequential probability ratio test: candidate vs incumbent,
    random map and random side per game, batches of 16, `H0 p=0.50` against `H1 p=0.58`,
-   `alpha = beta = 0.05`, cap 240 games. ACCEPT snapshots; REJECT reverts; inconclusive at the
+   `alpha = beta = 0.05`, cap 240 games, a fresh engine seed per game (without one the same map and
+   side replays the same game, and 240 draws hold at most 104 distinct games: 2026-09-24). ACCEPT snapshots; REJECT reverts; inconclusive at the
    cap keeps the change **provisionally** if it read >= 53% over >= 200 games (no snapshot, no
    submission) and further candidates stack on it, each tested against the incumbent. A stack
    that reaches ACCEPT is snapshotted; one that reaches REJECT loses its newest member.

@@ -35,7 +35,7 @@ run_game () {
     -Dbc.server.robot-player-replay-file-per-team-limit-bytes=${LOG_LIMIT:-4000000} \
     -Dbc.game.team-a="$TA" -Dbc.game.team-b="$TB" \
     -Dbc.game.team-a.url="$UA" -Dbc.game.team-b.url="$UB" \
-    -Dbc.game.maps="$MAP" -Dbc.server.save-file="$REPLAY" "$@" \
+    -Dbc.game.maps="$MAP" -Dbc.server.save-file="$REPLAY" ${GAME_SEED:+-Dbc.game.seed=$GAME_SEED} "$@" \
     -cp "$(engine_cp)" battlecode.server.Main -c=-
 }
 

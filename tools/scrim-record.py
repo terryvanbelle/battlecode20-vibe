@@ -16,10 +16,11 @@ for i, line in enumerate(open(src)):
     f = line.rstrip('\n').split(',')
     if run.endswith('-ladder'):
         if len(f) < 6 or f[3] not in ('A', 'B'): continue
-        A, B, m, w, rnd, reason = f[:6]
+        A, B, m, w, rnd, reason = f[:6]; f = f[:6]
     else:
         if len(f) < 7 or f[5] not in ('win', 'loss'): continue
         opp, m, side, w, rnd, res, reason = f[:7]; us = 'us:' + (a.label or 'bot')
         A, B = (us, opp) if side == 'A' else (opp, us)
-    new.append(dict(run=run, seq=i, teamA=A, teamB=B, map=m, winner=w, rounds=rnd, reason=reason[:40]))
+    seed = f[7] if len(f) > 7 else ''   # '' = the map's own seed (every game before 2026-09-24)
+    new.append(dict(run=run, seq=i, teamA=A, teamB=B, map=m, winner=w, rounds=rnd, reason=reason[:40], seed=seed))
 elolib.append(new); print(f"recorded {len(new)} games from {run}")

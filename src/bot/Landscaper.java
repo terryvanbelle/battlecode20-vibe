@@ -17,7 +17,18 @@ public strictfp class Landscaper extends Robot {
     private MapLocation post;                 // helper station at distance 2
     private final MapLocation[] badSeat = new MapLocation[8]; private int nBad = 0;
     private int helperDeps = 0;
-    private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0;
+    private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0, gunDeps = 0;
+    /** Iteration 31: the stand of gun tile g is its Chebyshev-3 neighbour (of the HQ) with the higher elevation. */
+    protected MapLocation gunStand(MapLocation g, MapLocation home) throws GameActionException {
+        MapLocation best = null; int be = Integer.MIN_VALUE;
+        for (int i = 8; --i >= 0;) { MapLocation s = g.add(DIRS[i]); if (Nav.cheb(s, home) != 3 || !rc.onTheMap(s) || !rc.canSenseLocation(s) || rc.senseFlooding(s)) continue;
+            int e = rc.senseElevation(s); if (e > be) { be = e; best = s; } }
+        return best;
+    }
+    private boolean isGunStand(MapLocation n, MapLocation home) throws GameActionException {
+        for (int k = 2; --k >= 0;) { MapLocation g = MapState.guns[k]; if (g != null && n.isAdjacentTo(g) && Nav.cheb(n, home) == 3 && n.equals(gunStand(g, home))) return true; }
+        return false;
+    }
 
     Landscaper(RobotController rc) { super(rc); nav.stallLimit = 30; }
 
@@ -27,7 +38,7 @@ public strictfp class Landscaper extends Robot {
     }
     private void turn2() throws GameActionException {
         sense(); if (round % 3 == 1) readBlock(); probeEdges();
-        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
+        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " gunDeps=" + gunDeps + " elev=" + rc.senseElevation(loc));
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (!attacker && !helper) {
@@ -121,6 +132,15 @@ public strictfp class Landscaper extends Robot {
         // 1. keep our own tile above the water that is coming
         boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
+        // 1b. Iteration 31: a gun tile next door is below its target: raise it (its stand first, to GUN_STAND above the HQ)
+        if (rc.getDirtCarrying() > 0) {
+            int e0 = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
+            for (int k = 2; --k >= 0;) { MapLocation g = MapState.guns[k]; if (g == null || !loc.isAdjacentTo(g) || !rc.canSenseLocation(g)) continue;
+                RobotInfo rg = rc.senseRobotAtLocation(g); if (rg != null && rg.type.isBuilding()) continue;   // the gun stands: done
+                MapLocation st = gunStand(g, home);
+                if (st != null && loc.isAdjacentTo(st) && rc.senseElevation(st) < e0 + C.GUN_STAND && rc.canDepositDirt(loc.directionTo(st))) { rc.depositDirt(loc.directionTo(st)); gunDeps++; return; }
+                if (rc.senseElevation(g) < e0 + C.GUN_RAISE && rc.canDepositDirt(loc.directionTo(g))) { rc.depositDirt(loc.directionTo(g)); gunDeps++; return; } }
+        }
         // 2. feed the lowest adjacent ring tile (never a building)
         if (rc.getDirtCarrying() > 0) {
             Direction bestD = null; int be = Integer.MAX_VALUE;
@@ -133,7 +153,7 @@ public strictfp class Landscaper extends Robot {
         // 3. dig from a tile outside both rings (lowest first), never under a building or the HQ
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d)) continue;
+            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d) || MapState.isGunSite(n) || isGunStand(n, home)) continue;   // Iteration 31: never dig a gun tile or its stand
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
             int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
         if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;   // nothing outside: eat our own margin

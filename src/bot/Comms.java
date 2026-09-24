@@ -16,6 +16,7 @@ public final strictfp class Comms {
     public static final int SOUP = 3;          // payload: x, y, amount (a soup deposit worth walking to)
     public static final int MAP_ORIGIN = 4;    // payload: minX, minY
     public static final int SYMMETRY = 5;      // payload: surviving hypothesis bits
+    public static final int GUN_SITES = 6;     // payload: x1, y1, x2, y2 of the two gun tiles (Iteration 31; -1 = none)
 
     static final int SALT = 0x5eed2020;
 

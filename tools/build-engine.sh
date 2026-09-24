@@ -47,6 +47,11 @@ def patch(p, subs):
     s = open(p).read(); o = s
     for a, b in subs: s = s.replace(a, b)
     if s != o: open(p, 'w').write(s)
+# 2026-09-24 (PROMPTS 25): the engine seeds robot IDs and every sandboxed Random from the map file's seed, so the
+# same pairing on the same map and side replays the same game (38 of 38 repeated ladder pairings were identical;
+# a 240-game mirror gate had at most 104 distinct games). -Dbc.game.seed=<int> overrides it per game.
+patch('engine/src/main/battlecode/world/LiveMap.java', [('    public int getSeed() {\n        return seed;',
+      '    public int getSeed() {\n        return Integer.getInteger("bc.game.seed", seed);')])
 patch('engine/build.gradle', [
     ('  jcenter()\n  mavenCentral()\n', '  mavenCentral()\n  flatDir { dirs "libs" }\n'),
     ("[group: 'net.sf.jsi', name: 'jsi', version: '1.1.0-SNAPSHOT'],", "[name: 'jsi-1.1.0-SNAPSHOT'],"),
@@ -73,7 +78,7 @@ PY
 CP="$(./gradlew --no-daemon -q :engine:printClasspath | tail -1)"
 
 # --- stage -------------------------------------------------------------------
-OUT="$REPO/engine"; rm -rf "$OUT"; mkdir -p "$OUT/lib" "$OUT/maps"
+OUT="${ENGINE_OUT:-$REPO/engine}"; rm -rf "$OUT"; mkdir -p "$OUT/lib" "$OUT/maps"   # ENGINE_OUT: stage elsewhere (a swap while games use engine/)
 cp engine/build/libs/engine.jar "$OUT/engine.jar"
 echo "$CP" | tr ':' '\n' | grep '\.jar$' | grep -v 'tools.jar' | while read -r j; do cp "$j" "$OUT/lib/"; done
 cp engine/src/main/battlecode/world/resources/*.map20 "$OUT/maps/"

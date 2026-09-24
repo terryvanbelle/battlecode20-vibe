@@ -137,6 +137,10 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 
 ## Method
 
+- **A fixed engine seed makes repeated pairings the same game.** 491 of 2,825 ladder games were exact
+  repeats (29% of g_iter3's), and a 240-game mirror gate held at most 104 distinct games, so every
+  sequential test was overconfident. Seed every game and count a repeated cell once (2026-09-24).
+
 - **Rate the ladder with a batch fit, each build its own player.** A sequential K=32 Elo with one
   rating shared by every build depends on play order: 96 calibration games against unplaced bots
   (88 wins) lifted us from rank 65 to rank 4 of 66, above bots 104-9 against us. The batch

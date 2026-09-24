@@ -8,13 +8,12 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Incumbent and submission: `src/g_iter6`** (Iteration 29b, accepted 72-40 over g_iter5: refinery and school outward of
   the Chebyshev-2 circle, the rush response, miners off the ring only once a refinery exists). `src/bot` = g_iter6
   (checked: `git diff src/bot` against the snapshot is empty after the package rename).
-- **Ladder (batch Bradley-Terry, `tools/elo.py --build B`):** g_iter6 1736 +- 40 after 336 games (blocks 50-56), rank 17
-  of 72, field score 72.4%; g_iter5 1742 +- 30 over 720. Level: the mirror gain has not shown on the ladder yet.
-- **Jobs left running on the VM** -- post each with `tools/post-block.sh <run> g_iter6` unless `progress/games.csv`
-  already holds the run id, and commit the regenerated `progress/` files and BENCHMARK.md in the same push (owner, PROMPTS
-  19-20: the owner reads the docs on GitHub; never report a number the pushed repo does not show):
-  block 57 and block 58 (`BOT=g_iter6`, 48 games each, band pool; run ids in `gauntlet/block57.log` and `block58.log`
-  on the VM). Blocks 50-56 are recorded and pushed.
+- **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
+  (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
+  shown on the ladder yet.
+- **VM state:** idle at the last check; blocks 50-58 are recorded and pushed. Do not start a block until the VM's
+  `engine/engine.jar` is the seed-patched build (see the gotcha below); with the old jar `-Dbc.game.seed` is ignored and
+  repeated pairings would be recorded as distinct games.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
@@ -102,6 +101,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   `build/mirror-classes` unless told otherwise. Without it `gauntlet.sh` refuses (block 49 was lost to this once).
 - A `( while ...; do sleep; done; cmd ) &` queued from a Bash tool call dies with the call's shell; run queued
   follow-ups with the tool's background mode instead (block 46's study was silently skipped this way).
+- The engine replays a pairing identically unless `-Dbc.game.seed` differs (patched in, 2026-09-24): `gauntlet.sh`
+  seeds every game and records the seed; `run-dev.sh` keeps the map seed unless `GAME_SEED` is set. The VM's
+  `engine/engine.jar` must be the patched build (copy it from the driver; `engine/VERSION` says when it was built).
 - The engine refuses to spawn a robot on a tile more than 3 higher or lower than the builder's (`assertCanBuildRobot`);
   site choices must use the builder's own height, not the HQ's.
 - 2020-specific: `rc.canMove` does not check water; `senseNearbyRobots` is row-major; a robot

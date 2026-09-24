@@ -61,8 +61,10 @@ if a.build:
     print(f"{a.build}: {wins[p_]}/{games[p_]} = {p:.1%} [{lo:.1%}, {hi:.1%}]; rating {R[p_]:.0f} +- {1.96 * SE[p_]:.0f}, "
           f"rank {rank.get(p_, '-')} of {len(table)}; expected score vs the {len(bots)}-bot field {elolib.field_score(R, p_, bots):.1%}")
     raise SystemExit
+ndist = len(elolib.dedupe(rows))
 lines = ["# Ladder", "",
-         f"{len(rows)} scrimmages (ours only), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); "
+         f"{len(rows)} scrimmages (ours only), {ndist} distinct (a repeated pairing with the same seed replays the same game and counts once), "
+         f"rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); "
          f"each of our builds is its own player. {len(rated)} of {len(bots)} ladder bots met.", "",
          "Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each):", "",
          "| build | rating | rank | games | record | field score |", "|---|---|---|---|---|---|"]
