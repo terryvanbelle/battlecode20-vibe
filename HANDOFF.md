@@ -10,9 +10,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
   sequential Elo had put us at rank 4 after the easy calibration games. True grade: g_iter5 1684 +- 60, rank 16 of
   71 players (15th of 65 bots plus our builds), level with g_iter3 (1693 +- 27). Withdrawal now compares ratings.
-- **Running on the VM:** block 49 (`tools/scrim.sh`, BOT=g_iter5, the band); `gate29` (Iteration 29 = 28b + rush
-  response, `src/bot`, mirror vs g_iter5) and its pre-registered second arm `rush29` (MAPSET=quick vs `src/arch_rush`,
-  TAG rush29c for the candidate then rush29b for g_iter5; a finding if the candidate wins >= 5 more of 24). 28b is kept
+- **Running on the VM:** block 49 (`tools/scrim.sh`, BOT=g_iter5, the band); `gate29b` (Iteration 29b = 28b + rush
+  response + miners off the ring only once a refinery exists, `src/bot`, mirror vs g_iter5) and its pre-registered second
+  arm `rush29d` (MAPSET=quick vs `src/arch_rush`; a finding if the candidate reaches 17/24 against g_iter5's 12/24). 28b is kept
   provisionally (129-111 over 240); 28c was rejected 92-100. Post blocks with `tools/post-block.sh <run> g_iter5`; the
   session loop is `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise,
   carry on as before`.

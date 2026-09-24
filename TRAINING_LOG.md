@@ -1143,6 +1143,16 @@ its sight; the HQ's did.)
 both sides, 24 games for the candidate (`rush29c`) and 24 for g_iter5 (`rush29b`); a finding if the
 candidate wins at least 5 more. A null in both is a reject.
 
+**Arm 2 result: candidate 8/24 (`rush29c`), g_iter5 12/24 (`rush29b`).** Early deaths (< r400) 6
+against 5; the candidate lost both maptestsmall games g_iter5 won. Diagnostic (maptestsmall, team
+A): the rush trigger fired at r42 and the school stood at r43, but income stopped (soup 129-148
+from r80 to r100, two landscapers): with the school before the refinery, a seated landscaper set
+`ringSeen`, miners kept off the ring, and the HQ was the only drop-off. **Bug, not a verdict.** Fix
+(29b): miners avoid the ring only once a refinery exists. Same game: six landscapers by r140, HQ
+never buried, won r257. `gate29` (the buggy candidate, 92-68 at the stop) is **voided**; `gate29b`
+and `rush29d` run the fixed candidate under the same pre-registration (g_iter5's 12/24 baseline
+stands: neither side of it changed).
+
 ## Iteration 28b -- refinery and school off the Chebyshev-2 circle (2026-09-24)
 
 **Candidate** = g_iter5 + the builder chooses once, among the Chebyshev-2 tiles within 6 of the

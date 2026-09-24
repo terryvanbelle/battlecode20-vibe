@@ -39,7 +39,7 @@ public strictfp class Miner extends Robot {
     }
     private void turn2() throws GameActionException {
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
-        avoidRing = refinery != null || ringSeen;   // deposit at the HQ only while the wall has not started
+        avoidRing = refinery != null;   // Iteration 29: with no refinery (the school came first under a rush) the HQ is the only drop-off, ring or not
         if (avoidRing && onRing(loc) && rc.isReady()) {
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
