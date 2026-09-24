@@ -1169,13 +1169,16 @@ wall-clock limit had run out and it built on the arc. Diagnostics: Climb refiner
 r1547; Toothpaste refinery r96 at distance 3, lost r2964 (28b's version won r3056 on the second
 try); Swirl distance 3, won r3044. **Gate `gate28c`** running.
 
-## Blocks 42-45 -- g_iter5 on the band (2026-09-24)
+## Blocks 42-48 -- g_iter5 on the band (2026-09-24)
 
 Block 42 (`20260924-145032`): **24/48**. Block 43 (`20260924-150252`): **30/48**. g_iter5 now
 1714 +- 40, rank 16 of 71, field score 70.7%.
 
 Block 44 (`20260924-153525`): **29/48**. Block 45 (`20260924-160816`): **34/48**. g_iter5 now
-1738 +- 35, rank 16 of 71, field score 72.4%. Block 46 running.
+1738 +- 35, rank 16 of 71, field score 72.4%.
+
+Block 46 (`20260924-163339`): **19/48**. Block 47 (`20260924-164120`): **28/48**. Block 48
+(`20260924-170808`): **21/48**. g_iter5 now 1743 +- 31, rank 16 of 71, field score 72.7%.
 
 ## Block 41 -- g_iter5 on the band (run 20260924-143804-scrim-g_iter5, 2026-09-24)
 
