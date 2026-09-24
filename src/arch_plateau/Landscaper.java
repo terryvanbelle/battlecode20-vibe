@@ -68,6 +68,7 @@ public strictfp class Landscaper extends Robot {
             MapLocation l = new MapLocation(home.x + dx, home.y + dy);
             if (!rc.onTheMap(l)) continue;
             if (t == 1 && !exposed(l)) continue;
+            if (t == 2 && !(Math.abs(dx) == 2 && Math.abs(dy) == 2) && dx != 0 && dy != 0) continue;   // tier 2: corners and midpoints only -- the other eight distance-2 tiles are the seats' dig sources (plat10: seats starved)
             if (rc.canSenseLocation(l)) { int e = rc.senseElevation(l); if (e - hqE > GameConstants.MAX_DIRT_DIFFERENCE + 3 || (t > 1 && rc.senseFlooding(l))) continue; RobotInfo r = rc.senseRobotAtLocation(l); if (r != null && r.type.isBuilding()) continue; }
             if (t > 1 && nextToOurBuilding(l)) continue;
             if (n == k) return l;
@@ -95,6 +96,7 @@ public strictfp class Landscaper extends Robot {
             MapLocation l = new MapLocation(home.x + dx, home.y + dy);
             if (!rc.onTheMap(l)) continue;
             if (t == 1 && !exposed(l)) continue;
+            if (t == 2 && !(Math.abs(dx) == 2 && Math.abs(dy) == 2) && dx != 0 && dy != 0) continue;   // tier 2: corners and midpoints only
             boolean isBad = false; for (int k = nBad; --k >= 0;) if (bad[k].equals(l)) { isBad = true; break; }
             if (isBad) continue;
             if (t == 3 && water < 2.0) continue;   // tier 3 opens with the water (about r450), not with a count other units cannot see the same way
