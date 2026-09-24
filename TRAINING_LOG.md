@@ -844,6 +844,16 @@ the soup memory never fills before r300 (no report, no extra miner) and the unfe
 drags the ring's minimum to 958 vs 1352, because the seats' equalising rule pours the whole ring's
 dirt into it after r300. Not gated; ledger. `src/bot` back to g_iter3.
 
+## Plateau claims, second revision: slots (arch_plateau, 2026-09-24)
+
+The school posts `SLOT(k, x, y)` the round it builds; the newborn takes slot k of a canonical list.
+Sweep `plat8` vs g_iter3 with every replay kept: **10/24**. Per game: only 3-16 of 10-48
+landscapers received a slot (fee-1 posts lose the mint race), and the rest churned as before --
+Prison 431 and 473 re-picks among 43 units, ring 1078 vs 1436 and 1434 vs 745 (a win and a loss on
+the same map by side). Deaths track the incumbent's now. Two more changes before the next sweep:
+slot posts at fee 5, and a unit that has re-picked three times attacks instead (bounded churn).
+Sweep `plat9` after block 25.
+
 ## Block 24 -- g_iter3 against the challenge pool (run block24, 2026-09-24)
 
 48 games: **14/48 (29%)**; cumulative for g_iter3 134/588 (22.8%).

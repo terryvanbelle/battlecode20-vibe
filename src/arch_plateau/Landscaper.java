@@ -31,7 +31,7 @@ public strictfp class Landscaper extends Robot {
         if (attacker) { attack(); return; }
         if (round == birth + 1 && MapState.mySlot < 0) readBlock();   // the slot the school posted the round we were built
         if (post == null && MapState.mySlot >= 0 && !slotTried) { slotTried = true; post = slotTile(home, MapState.mySlot); if (post != null) { tier = Nav.cheb(post, home); Debug.log("@slot k=" + MapState.mySlot + " at=" + post); } }
-        if (post == null || (!post.equals(loc) && loc.isAdjacentTo(post) && occupiedByFriend(post))) { post = pickTile(home); if (post == null) { attacker = true; Debug.log("@attacker no tile"); attack(); return; } tier = Nav.cheb(post, home); Debug.log("@hold t=" + tier + " at=" + post); }
+        if (post == null || (!post.equals(loc) && loc.isAdjacentTo(post) && occupiedByFriend(post))) { rePicks++; post = rePicks > 3 ? null : pickTile(home); if (post == null) { attacker = true; Debug.log("@attacker no tile"); attack(); return; } tier = Nav.cheb(post, home); Debug.log("@hold t=" + tier + " at=" + post); }
         if (!loc.equals(post)) { approach(home); return; }
         hold(home);
     }
@@ -49,7 +49,7 @@ public strictfp class Landscaper extends Robot {
     /** Ring tiles held by landscapers of ours, as seen from here. */
     private int ringCount() { int n = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && onRing(friends[i].location)) n++; if (onRing(loc)) n++; return n; }
 
-    private boolean slotTried = false;
+    private boolean slotTried = false; private int rePicks = -1;   // a unit that has re-picked three times attacks: bounded churn (Prison: 431 re-picks among 43 units)
     /** The k-th tile of the canonical list: exposed ring tiles in DIRS order, then distance-2 tiles, then distance-3, skipping
      *  tiles off the map, cliffs (more than 3 above the HQ) and tiles beside our buildings. Every landscaper computes the same list. */
     private MapLocation slotTile(MapLocation home, int k) throws GameActionException {
