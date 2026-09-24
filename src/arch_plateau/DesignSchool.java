@@ -12,6 +12,6 @@ public strictfp class DesignSchool extends Robot {
         boolean want = built < C.WALL_LANDSCAPERS ? soup >= RobotType.LANDSCAPER.cost
                      : built < C.WALL_LANDSCAPERS + C.WALL_HELPERS ? soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost
                      : built < C.LANDSCAPERS_MAX && soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost;   // plateau: the third tier at the helpers' bank
-        if (want && tryBuild(RobotType.LANDSCAPER, MapState.home)) built++;
+        if (want && tryBuild(RobotType.LANDSCAPER, MapState.home)) { post(Comms.make(Comms.SLOT, round, us, built, lastBuilt.x, lastBuilt.y)); built++; }   // the plateau: the newborn reads its slot next round
     }
 }

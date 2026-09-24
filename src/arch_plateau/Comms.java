@@ -16,6 +16,7 @@ public final strictfp class Comms {
     public static final int SOUP = 3;          // payload: x, y, amount (a soup deposit worth walking to)
     public static final int MAP_ORIGIN = 4;    // payload: minX, minY
     public static final int SYMMETRY = 5;      // payload: surviving hypothesis bits
+    public static final int SLOT = 7;          // payload: slot index, x, y of the tile a landscaper was just spawned onto (the plateau's deterministic claims)
 
     static final int SALT = 0x5eed2020;
 

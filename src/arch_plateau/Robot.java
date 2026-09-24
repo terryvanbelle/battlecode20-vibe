@@ -107,6 +107,7 @@ public abstract strictfp class Robot {
             switch (m[0]) {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
+                case Comms.SLOT: if (m[2] == loc.x && m[3] == loc.y && MapState.mySlot < 0) MapState.mySlot = m[1]; break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
                 default: break;
             }
@@ -189,6 +190,7 @@ public abstract strictfp class Robot {
     }
 
     /** Build type in the free direction nearest `toward` (relative tie-break; random when null). */
+    protected MapLocation lastBuilt;
     protected boolean tryBuild(RobotType t, MapLocation toward) throws GameActionException {
         if (!rc.isReady() || rc.getTeamSoup() < t.cost) return false;
         Direction best = null; int bd = 1 << 30;
@@ -201,7 +203,7 @@ public abstract strictfp class Robot {
             if (s < bd) { bd = s; best = d; }
         }
         if (best == null) return false;
-        rc.buildRobot(t, best);
+        rc.buildRobot(t, best); lastBuilt = loc.add(best);
         Debug.log("@build t=" + t.ordinal() + " at=" + loc.add(best) + " soup=" + rc.getTeamSoup());
         return true;
     }

@@ -29,6 +29,8 @@ public strictfp class Landscaper extends Robot {
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (attacker) { attack(); return; }
+        if (round == birth + 1 && MapState.mySlot < 0) readBlock();   // the slot the school posted the round we were built
+        if (post == null && MapState.mySlot >= 0 && !slotTried) { slotTried = true; post = slotTile(home, MapState.mySlot); if (post != null) { tier = Nav.cheb(post, home); Debug.log("@slot k=" + MapState.mySlot + " at=" + post); } }
         if (post == null || (!post.equals(loc) && loc.isAdjacentTo(post) && occupiedByFriend(post))) { post = pickTile(home); if (post == null) { attacker = true; Debug.log("@attacker no tile"); attack(); return; } tier = Nav.cheb(post, home); Debug.log("@hold t=" + tier + " at=" + post); }
         if (!loc.equals(post)) { approach(home); return; }
         hold(home);
@@ -46,6 +48,25 @@ public strictfp class Landscaper extends Robot {
     private int exposedRingTiles(MapLocation home) { if (exposedRing < 0) { exposedRing = 0; for (int k = 8; --k >= 0;) { MapLocation t = home.add(DIRS[k]); if (rc.onTheMap(t) && exposed(t)) exposedRing++; } } return exposedRing; }
     /** Ring tiles held by landscapers of ours, as seen from here. */
     private int ringCount() { int n = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && onRing(friends[i].location)) n++; if (onRing(loc)) n++; return n; }
+
+    private boolean slotTried = false;
+    /** The k-th tile of the canonical list: exposed ring tiles in DIRS order, then distance-2 tiles, then distance-3, skipping
+     *  tiles off the map, cliffs (more than 3 above the HQ) and tiles beside our buildings. Every landscaper computes the same list. */
+    private MapLocation slotTile(MapLocation home, int k) throws GameActionException {
+        int hqE = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
+        int n = 0;
+        for (int t = 1; t <= C.TIER_MAX; t++) for (int dx = -t; dx <= t; dx++) for (int dy = -t; dy <= t; dy++) {
+            if (Math.max(Math.abs(dx), Math.abs(dy)) != t) continue;
+            MapLocation l = new MapLocation(home.x + dx, home.y + dy);
+            if (!rc.onTheMap(l)) continue;
+            if (t == 1 && !exposed(l)) continue;
+            if (rc.canSenseLocation(l)) { int e = rc.senseElevation(l); if (e - hqE > GameConstants.MAX_DIRT_DIFFERENCE + 3 || (t > 1 && rc.senseFlooding(l))) continue; RobotInfo r = rc.senseRobotAtLocation(l); if (r != null && r.type.isBuilding()) continue; }
+            if (t > 1 && nextToOurBuilding(l)) continue;
+            if (n == k) return l;
+            n++;
+        }
+        return null;
+    }
 
     private boolean nextToOurBuilding(MapLocation l) {
         for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type.isBuilding() && f.type != RobotType.HQ && f.location.isAdjacentTo(l)) return true; }

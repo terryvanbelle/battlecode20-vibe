@@ -14,7 +14,8 @@ public final strictfp class MapState {
 
     public static int width, height;
     public static int minX = -1, minY = -1;          // origin; -1 unknown (the map corner is random)
-    public static MapLocation home;                  // our HQ
+    public static MapLocation home;
+    public static int mySlot = -1;                    // the plateau: the slot the school gave this landscaper at birth                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
 

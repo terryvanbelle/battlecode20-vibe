@@ -88,6 +88,13 @@ unit yields to a "closer" unit (that rule made units re-pick while walking). Tie
 water passes 2, the same round for everyone. Before any gate: a quick-set sweep with logs, and
 deaths by r1000 plus re-picks per landscaper compared with the incumbent's on every map.
 
+Claims, second revision (deterministic slots): the school posts `SLOT(k, x, y)` on the chain the
+round it builds its k-th landscaper; the newborn reads the block next round, finds its own tile in
+it and takes slot k of a canonical list every landscaper computes alike -- exposed ring tiles in
+direction order, then distance 2, then distance 3, skipping tiles off the map, cliffs, flooded tiles
+and tiles beside our buildings. No two units ever head for the same tile; a unit whose slot proves
+unreachable falls back to the nearest-free rule once.
+
 Stage gates: (1) roles alone vs g_iter3 -- every surplus body holds a tile, none attacks; (2) with
 the economy -- distance-2 tier above 30 at r1000; (3) with the buildings -- a school alive at r1500;
 then the mirror gate and the `arch_swarm` arm.
