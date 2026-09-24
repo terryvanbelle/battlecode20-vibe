@@ -80,7 +80,7 @@ public strictfp class Miner extends Robot {
         Direction bestD = null; int bs = 1 << 30;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
+            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n) || cutsPath(n)) continue;
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
@@ -93,6 +93,21 @@ public strictfp class Miner extends Robot {
         else if (want == RobotType.NET_GUN) builtNet++;
         else builtFC++;
         return true;
+    }
+
+    /** Would a building on n split the walkable tiles around it (Nav.groups)? Walkable: on the map, sensed, not
+     *  the HQ, not a ring tile, not a building, and within 3 of the site's height (a cliff of unclimbable tiles
+     *  beside the site is not a path, and would otherwise count as a group of its own). */
+    private boolean cutsPath(MapLocation n) throws GameActionException {
+        boolean[] open = new boolean[8]; int[] elev = new int[8]; int e0 = rc.senseElevation(n);
+        for (int i = 8; --i >= 0;) {
+            MapLocation t = n.add(DIRS[i]);
+            if (!rc.canSenseLocation(t) || onRing(t) || t.equals(MapState.home)) continue;
+            RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) continue;
+            int e = rc.senseElevation(t); if (Math.abs(e - e0) > 3) continue;
+            open[i] = true; elev[i] = e;
+        }
+        return Nav.groups(open, elev) > 1;
     }
 
     // ---------------------------------------------------------------- worker

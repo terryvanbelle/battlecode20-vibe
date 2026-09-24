@@ -25,6 +25,23 @@ public final strictfp class Nav {
 
     Nav(RobotController rc, Robot bot) { this.rc = rc; this.bot = bot; rightHanded = bot.nextInt(2) == 0; }
 
+    /** Walkable groups among a tile's 8 neighbours, clockwise from NORTH (open[i]: walkable; elev[i]: its height).
+     *  Neighbours i and i+1 touch; two orthogonal neighbours (i, i+2 with i even) touch across the corner between
+     *  them. Two tiles join only if their heights differ by at most 3. A building on a tile whose neighbours form
+     *  more than one group may cut the only path between them (Climb, 2026-09-24: the refinery on the one tile of
+     *  the Chebyshev-2 arc that bypassed the ring sealed five miners behind the HQ). */
+    public static int groups(boolean[] open, int[] elev) {
+        int[] p = {0, 1, 2, 3, 4, 5, 6, 7};
+        for (int i = 0; i < 8; i++) {
+            if (!open[i]) continue;
+            int j = (i + 1) & 7; if (open[j] && Math.abs(elev[i] - elev[j]) <= 3) join(p, i, j);
+            if ((i & 1) == 0) { j = (i + 2) & 7; if (open[j] && Math.abs(elev[i] - elev[j]) <= 3) join(p, i, j); }
+        }
+        int n = 0; for (int i = 0; i < 8; i++) if (open[i] && find(p, i) == i) n++;
+        return n;
+    }
+    private static int find(int[] p, int i) { while (p[i] != i) i = p[i]; return i; }
+    private static void join(int[] p, int a, int b) { a = find(p, a); b = find(p, b); if (a != b) p[a] = b; }
     public static int cheb(MapLocation a, MapLocation b) { int dx = a.x - b.x, dy = a.y - b.y; if (dx < 0) dx = -dx; if (dy < 0) dy = -dy; return dx > dy ? dx : dy; }
 
     public void setTarget(MapLocation t) {

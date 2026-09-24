@@ -1117,6 +1117,39 @@ binding constraint is income: five miners sit idle with twelve soup tiles in mem
 map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
 of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
 
+## Iteration 28 -- a building must not cut the miners' path (2026-09-24)
+
+**Trace** (open line 1, map-dead games; `diag/iter27-Climb.bc20`, miner #12659): Climb gives each
+base a strip four rows high against the map edge, with a 3-high staircase climbing east. Miners
+avoid the eight ring tiles once a refinery exists, so the only way past the HQ is the Chebyshev-2
+arc, and the builder put the refinery on that arc at (5,39) at r46. Every miner west of the HQ was
+sealed in: #12659 mined until r63, then walked a 12-tile loop behind the HQ carrying its soup to
+r900 (mined 10, deposited 0); team mines stayed at 111 from r100 to r500.
+
+**Candidate** = g_iter5 + `Miner.cutsPath`: the builder skips a site whose walkable neighbours
+(not ring, not HQ, not a building, within 3 of the site's height) fall into more than one group
+(`Nav.groups`, unit-tested). On an open map the Chebyshev-2 circle is a closed loop and nothing
+changes; on an edge HQ the arc's inner tiles are refused.
+
+**Diagnostic** (`diag/cut-Climb.bc20`, vs g_iter5): the refinery went to (7,37) and the school to
+(6,38). Mechanism shown:
+
+| r900, us | g_iter5 (iter27 diag) | candidate |
+|---|---|---|
+| mines | 196 | 337 |
+| landscapers | 2 | 13 |
+| dirt deposited | 459 | 800 |
+
+The game still ends at r931: the three west ring tiles (height 2) flood at r500, and the HQ
+(height 4) drowns when the water reaches 4. Only two landscapers ever seat; six pick west seats
+they cannot reach (`@badseat`), because digging beside the east seats turns row 39 into a cliff.
+That is the next defect on this map. **Gate `gate28`** (mirror vs g_iter5, SPRT) running on the VM.
+
+## Block 40 -- g_iter5 on the band (run 20260924-140716-scrim-g_iter5, 2026-09-24)
+
+48 games against the 8 bots rated nearest g_iter5: **25/48 (52%)**, as a centred band should give.
+g_iter5 now 1690 +- 52, rank 16 of 71, field score 68.9%. Block 41 running.
+
 ## Calibration and the ladder fix (calib1 + tools, 2026-09-24, PROMPTS 14-16)
 
 **calib1** (`20260924-133731-scrim-g_iter5`): g_iter5 against the 48 ladder bots never played, two
