@@ -789,8 +789,17 @@ there: 3 landscapers), BeachFrontProperty a close loss with an even ring (1609 v
 Gate `gate19` vs `REF=g_iter3`, launched 10:35. Falsifier: below 53%.
 
 **Gate 19: REJECT 25-39 (39%)** after four batches. The plateau roles alone lose the mirror; the
-code is kept as `src/arch_plateau` (the plan's stage 1) and `src/bot` is g_iter3 again. Loss
-traces below.
+code is kept as `src/arch_plateau` (the plan's stage 1) and `src/bot` is g_iter3 again. Six losses
+traced: our ring lags from r1000 (BeachFrontProperty 367 vs 502, CentralSoup 555 vs 682) with the
+same or fewer bodies at the wall and far more deaths (BeachFront 32 of 43 spawned dead by r1000
+against 11 of 26; CentralSoup 32 vs 23) and heavy claim churn (116-192 `@hold t=1`, 27-72 struck
+tiles per game). The roles as written race for tiles -- several units claim the same one, all but
+one re-pick, and units walking to shallow flooded tier-3 tiles drown on the way -- and every
+re-pick is rounds of digging lost. For the plateau's next attempt: claims must be stable (a unit
+keeps its target until it is physically taken, and picks among tiles no other unit is walking to),
+tier 3 opens only after the ring is seated, and a flooded tile is never a target unless the unit
+already holds a dry neighbour. Diagnostics pre-registered: deaths by r1000 no higher than the
+incumbent's, `@hold` re-picks under two per landscaper.
 
 ## Block 17 -- g_iter3 against the challenge pool (run block17, 2026-09-24)
 

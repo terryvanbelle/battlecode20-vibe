@@ -13,7 +13,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   `tools/citadel-diag.sh` and `replay-dump.sh --ringd`.
 - **Incumbent and submission: `src/g_iter3`** (Iteration 8, accepted 39-9 over g_iter2). `src/g_iter4` (the late raid,
   provisional) was withdrawn on 2026-09-24 after 228 ladder games at 20% against g_iter3's 26%.
-- `src/bot` = Iteration 18 = g_iter3 + the plateau's tile-holding landscaper roles (DESIGN.md "The plateau"); gate `gate18` vs g_iter3. Before it, `src/bot` was an exact copy of g_iter3: Iterations 10-16 (2026-09-23/24) were all rejected, inconclusive below 53%, or
+- Plateau stage 1 (tile-holding roles) gated twice: 42-54 with holders boxing in the school, 25-39 after the spawn-room
+  fix -- claim races and drownings on the way to shallow tier-3 tiles cost more bodies than the roles add (details and
+  the pre-registered fixes in TRAINING_LOG.md, gate 19). Code in `src/arch_plateau`.
+- `src/bot` was Iteration 18 = g_iter3 + the plateau's tile-holding landscaper roles (DESIGN.md "The plateau"); gates 18/19 vs g_iter3. `src/bot` is an exact copy of g_iter3 again. Iterations 10-16 (2026-09-23/24) were all rejected, inconclusive below 53%, or
   blocked; a control run (g_iter3 vs itself, 49-47) confirmed the mirror gate is fair. The next structural candidate is
   the **vaporator plateau** (TRAINING_LOG.md "What the field does that we do not"): raise the distance-2 tier as a
   plateau with distance-3 feeders, park the builder on it, put vaporators, a school and net guns on it at height.
