@@ -12,7 +12,7 @@ public strictfp class Drone extends Robot {
     private MapLocation water;                 // nearest flooded tile seen
     private MapLocation patrol;
     private int pickups = 0, drops = 0, raidKills = 0;
-    private boolean raiding = false;
+    private boolean raiding = false, holdingFriend = false;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
 
@@ -26,6 +26,15 @@ public strictfp class Drone extends Robot {
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canShoot()) { int d = loc.distanceSquaredTo(e.location); if (d < gd) { gd = d; gun = e.location; } } }
         boolean raidTime = round >= C.RAID_ROUND && MapState.enemyHQGuess() != null;
         if (gun != null && gd <= (raidTime ? 15 : 24) && !raiding && fleeFrom(gun)) return;
+        if (rc.isCurrentlyHoldingUnit() && holdingFriend) {   // arch_swarm: deliver one of our landscapers onto a free tile beside the enemy HQ
+            MapLocation ehq = MapState.enemyHQ != null ? MapState.enemyHQ : MapState.enemyHQGuess();
+            if (ehq == null) { holdingFriend = false; return; }
+            Direction bestD = null; int bd = 1 << 30;
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, ehq) > 2 || !rc.canDropUnit(d) || rc.senseFlooding(n)) continue; int dd = n.distanceSquaredTo(ehq); if (dd < bd) { bd = dd; bestD = d; } }
+            if (bestD != null) { rc.dropUnit(bestD); drops++; holdingFriend = false; Debug.log("@deliver at=" + loc.add(bestD)); return; }
+            nav.setTarget(ehq); nav.step(); return;
+        }
+        holdingFriend = false;
         if (rc.isCurrentlyHoldingUnit()) {
             // drop into adjacent water, else fly toward water (or drop anywhere after a long carry)
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (rc.canDropUnit(d) && rc.senseFlooding(n)) { rc.dropUnit(d); drops++; Debug.log("@drown at=" + n); return; } }
@@ -45,6 +54,13 @@ public strictfp class Drone extends Robot {
                 RobotInfo v = null; int vd = 1 << 30;
                 for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; if (rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; raidKills++; Debug.log("@pickup t=" + e.type.ordinal() + " id=" + e.ID + " raid=true"); return; } int d = loc.distanceSquaredTo(e.location) + (e.type == RobotType.LANDSCAPER ? 0 : 100); if (d < vd) { vd = d; v = e; } }
                 if (v != null) { nav.setTarget(v.location); nav.step(); return; }
+                // nothing left to lift here: fetch one of our helpers from home and drop it on their ring
+                MapLocation home = MapState.home;
+                if (home != null) {
+                    for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) == 2 && rc.canPickUpUnit(f.ID)) { rc.pickUpUnit(f.ID); holdingFriend = true; Debug.log("@lift-helper id=" + f.ID); return; } }
+                    if (Nav.cheb(loc, home) > 3) { nav.setTarget(home); nav.step(); return; }
+                    for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) == 2) { nav.setTarget(f.location); nav.step(); return; } }
+                }
                 approachSafely(ehq); return;
             }
             MapLocation h = MapState.home != null ? MapState.home : loc;

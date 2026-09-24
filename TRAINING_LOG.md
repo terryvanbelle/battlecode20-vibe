@@ -655,6 +655,23 @@ waves lift too few seats to matter (the pair gamble again) and nothing gets buri
 swarm does something more: it carries its own landscapers onto the freed ring tiles and buries the
 HQ in 25 rounds. The archetype needs that ferry before it is an arm.
 
+Ferry added (drones with nothing left to lift fetch a helper from home and drop it beside the
+enemy HQ; a landscaper that finds itself within 2 of the enemy HQ buries). Diagnostics vs g_iter3:
+Prison, the swarm won r3028 -- six seats lifted at r1200-1300 (13 -> 7 at the wall), one helper
+delivered, no burial; CentralLake lost with 0 lifts and 8 carriers shot. It lifts seats the way the
+field does at r1550; it does not yet bury. Good enough for an arm on seat loss.
+
+## Iteration 16 -- the late guns (2026-09-24)
+
+Every net gun drowns at r700 and the HQ alone shoots one drone a round; blocks 8-9 lost five
+games to swarms that lift the seats and bury the HQ at r1550-2100. Candidate = g_iter3 + the
+builder parks on the highest dry tile within 4 of the HQ from r660 and from r900, whenever no net
+gun of ours is in sight and the bank allows, builds one on an adjacent tile that will stay above
+the water for 300 rounds (up to six over the game). Two arms: mirror vs g_iter3 (expect neutral or
+a small gain from shooting its hunting drones) and `arch_swarm` (baseline 12/24; expect more).
+Diagnostics: Prison and CentralLake vs arch_swarm -- guns built after r900, our shots > 0, seats
+at the wall after r1300 above the baseline's 7. Falsifier: mirror below 47% or the arm no better.
+
 ## Blocks 13-14 -- g_iter4 against the challenge pool (2026-09-24)
 
 Block 13 (24 games) 6/24; block 14 (48 games) **6/48 (12.5%)**. Cumulative for g_iter4: 46/228

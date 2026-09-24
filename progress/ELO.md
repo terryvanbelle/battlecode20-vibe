@@ -1,22 +1,22 @@
 # Elo ladder
 
-713 scrimmages (ours only); K=32 from 1500; our team is **us**: rank 66 of 66 rated bots, Elo 1284, 713 games; 0 bots not yet met.
+761 scrimmages (ours only); K=32 from 1500; our team is **us**: rank 66 of 66 rated bots, Elo 1263, 761 games; 0 bots not yet met.
 
 | rank | bot | Elo | games | W-L (theirs) |
 |---|---|---|---|---|
-| 1 | awesomelemonade.citricsky | 1721 | 39 | 38-1 |
-| 2 | AngusRitossa.newbot | 1717 | 39 | 37-2 |
-| 3 | EmaPajic.Qualifications | 1709 | 36 | 34-2 |
-| 4 | uvafan.v14_final_bot | 1698 | 36 | 35-1 |
-| 5 | ronniesong0809.finalbota | 1678 | 37 | 34-3 |
-| 6 | rzhan11.quals_bot | 1638 | 39 | 35-4 |
-| 7 | IvanGeffner.finalbota | 1636 | 40 | 35-5 |
-| 8 | mvpatel2000.qual | 1611 | 38 | 32-6 |
-| 9 | winkelmantanner.tannerplayer | 1564 | 35 | 28-7 |
-| 10 | poortho.stable_seeding_bot | 1558 | 39 | 30-9 |
-| 11 | battlecode20-team4.finalbota | 1557 | 40 | 32-8 |
-| 12 | laurenschneider.pdx_team_one | 1550 | 37 | 26-11 |
-| 13 | cormackikkert.whyPermutator | 1525 | 38 | 28-10 |
+| 1 | awesomelemonade.citricsky | 1729 | 43 | 42-1 |
+| 2 | AngusRitossa.newbot | 1727 | 43 | 41-2 |
+| 3 | EmaPajic.Qualifications | 1719 | 40 | 38-2 |
+| 4 | uvafan.v14_final_bot | 1709 | 40 | 39-1 |
+| 5 | ronniesong0809.finalbota | 1660 | 41 | 37-4 |
+| 6 | rzhan11.quals_bot | 1654 | 43 | 39-4 |
+| 7 | IvanGeffner.finalbota | 1649 | 44 | 39-5 |
+| 8 | mvpatel2000.qual | 1599 | 42 | 35-7 |
+| 9 | poortho.stable_seeding_bot | 1575 | 42 | 33-9 |
+| 10 | winkelmantanner.tannerplayer | 1569 | 36 | 29-7 |
+| 11 | battlecode20-team4.finalbota | 1566 | 42 | 34-8 |
+| 12 | laurenschneider.pdx_team_one | 1537 | 40 | 28-12 |
+| 13 | cormackikkert.whyPermutator | 1510 | 41 | 30-11 |
 | 14 | ovimura.welovesoup | 1491 | 1 | 0-1 |
 | 15 | TeamSerpentine.eendagsvliegjes | 1491 | 1 | 0-1 |
 | 16 | orionquick.aldebaranplayer | 1491 | 1 | 0-1 |
@@ -64,9 +64,9 @@
 | 58 | GabrielDWu.buildawall2 | 1432 | 5 | 0-5 |
 | 59 | cs454-w20-team3.playbot | 1431 | 10 | 4-6 |
 | 60 | A9ine.potato | 1424 | 5 | 0-5 |
-| 61 | benzyx.seeding | 1424 | 38 | 23-15 |
-| 62 | 9mAhmad.lostincoordinates | 1412 | 5 | 0-5 |
+| 61 | 9mAhmad.lostincoordinates | 1412 | 5 | 0-5 |
+| 62 | benzyx.seeding | 1400 | 39 | 23-16 |
 | 63 | 9mAhmad.MahinBot | 1398 | 5 | 0-5 |
 | 64 | mhahn2003.nonrush | 1387 | 21 | 9-12 |
-| 65 | wpine215.stardustv2 | 1357 | 38 | 22-16 |
-| 66 | **us** | 1284 | 713 | 218-495 |
+| 65 | wpine215.stardustv2 | 1364 | 41 | 24-17 |
+| 66 | **us** | 1263 | 761 | 224-537 |
