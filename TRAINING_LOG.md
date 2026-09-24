@@ -916,6 +916,46 @@ keeping every load on the eight ring tiles until the ring is safe (no tier-2 or 
 before ~r1500) and letting claimants hold a tile in place without ever re-picking; anything else
 is the citadel again.
 
+## Iteration 23 -- the home guard (2026-09-24)
+
+Where the ladder games go (g_iter3, 780 games, from `progress/games.csv`): 608 of 616 losses are our
+HQ destroyed, and they end in the middle of the game -- 41 before r500, 50 by r1000, **274 between
+r1000 and r2000**, 151 by r3000, 96 after. The 45 reviewable mid-game losses (study tables) end at
+r1216-1217 (benzyx) and r1563-1571 (team4): timed raids of 25-140 drones with 40-160 landscapers
+and 30-100 vaporators behind them, while we hold 6-14 landscapers, **0 drones** and 1,300 idle
+soup at r1200. Iteration 10's trace already named the mechanism (drones lift our seats, 7-11
+landscapers dropped on the freed tiles bury the HQ in 25 rounds); it died in the mirror, which has
+no raid to defend against, and its drones were split half hunting.
+
+Second fact: g_iter3 built a fulfillment center in **18 of 248** reviewable ladder games. The
+center comes after the first vaporator (650 bank) and the ladder's peak pre-flood soup reaches 650
+in 38% of games, 500 in 51%, 400 in 81%. Our drones are not dying on the ladder; they are never
+built.
+
+Candidate = g_iter3 with (1) the center right after the school at a 250 bank (Iteration 2's
+placing; its 52% gate was the mirror pricing drones that hunt); (2) from r550 the center buys
+drones down to a 300 reserve up to 16 -- soup unspent at r700 is never spent (base income only
+after the flood); (3) from r900 every drone is a home guard: it patrols the annulus 3-5 round the
+HQ and lifts any enemy unit within Chebyshev 8 of it, landscapers first, those on the ring or
+beside the HQ first, and drops it in the water that surrounds the ring after r700. Before r900
+drones hunt as g_iter3's do (Iteration 10's first attempt lost the mirror's pre-flood attrition).
+Falsifiers: mirror below 47% (the drones cost helpers, and the ladder cannot recover a wall that
+loses the mirror by more); the second arm, `arch_raider` (arch_swarm whose wave reaches our ring
+before fetching cargo and ferries any of its landscapers onto freed ring tiles from r1000), must
+show the guard lifting the cargo; and the judge that matters is a ladder block against g_iter3's
+21.6%, since the mirror cannot see a defence against a raid it never makes.
+
+Diagnostics so far: vs arch_swarm on CentralLake and IsThisProcedural the swarm never raided (its
+ferry waits at home for helpers it no longer has) and on CentralLake we built no center at all:
+an enemy landscaper buried our school at r241 and the builder died at r301, so 1,100 soup sat idle
+from r700 (a single point of failure worth its own iteration: 14 of 258 ladder games show 650+
+soup at r500 and nothing built). Mirror on TwoLakeLand with the early center: 2 drones, ring 1726
+vs 1783 (-3%), lost -- the drones' cost in the mirror, as expected.
+
+## Block 30 -- g_iter3 against the challenge pool (run block30, 2026-09-24)
+
+48 games: **13/48 (27%)**; cumulative for g_iter3 192/876 (21.9%). Elo 1403, rank 62 of 66.
+
 ## Block 29 -- g_iter3 against the challenge pool (run block29, 2026-09-24)
 
 48 games: **11/48 (23%)**; cumulative for g_iter3 179/828 (21.6%). Elo 1379, rank 64 of 66.

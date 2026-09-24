@@ -18,7 +18,7 @@ public final class C {
     public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
     public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
-    public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
+    public static final int FC_EARLY_BANK = 250;      // Iteration 2: the center right after the school; Iteration 23: 250 (the ladder's peak pre-flood soup reaches 400 in 81% of games, 500 in 51%)
     public static final int VAPORATORS_MAX = 6;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;

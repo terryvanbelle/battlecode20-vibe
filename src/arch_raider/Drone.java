@@ -26,9 +26,10 @@ public strictfp class Drone extends Robot {
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canShoot()) { int d = loc.distanceSquaredTo(e.location); if (d < gd) { gd = d; gun = e.location; } } }
         boolean raidTime = round >= C.RAID_ROUND && MapState.enemyHQGuess() != null;
         if (gun != null && gd <= (raidTime ? 15 : 24) && !raiding && fleeFrom(gun)) return;
-        if (rc.isCurrentlyHoldingUnit() && holdingFriend) {   // arch_swarm: deliver one of our landscapers onto a free tile beside the enemy HQ
+        if (rc.isCurrentlyHoldingUnit() && holdingFriend) {   // arch_raider: a carrier waits at the rally with its cargo until the wave is assembled, then drops it beside the enemy HQ
             MapLocation ehq = MapState.enemyHQ != null ? MapState.enemyHQ : MapState.enemyHQGuess();
             if (ehq == null) { holdingFriend = false; return; }
+            if (!assembled(ehq)) { goRally(ehq); return; }
             Direction bestD = null; int bd = 1 << 30;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, ehq) > 2 || !rc.canDropUnit(d) || rc.senseFlooding(n)) continue; int dd = n.distanceSquaredTo(ehq); if (dd < bd) { bd = dd; bestD = d; } }
             if (bestD != null) { rc.dropUnit(bestD); drops++; holdingFriend = false; Debug.log("@deliver at=" + loc.add(bestD)); return; }
@@ -47,26 +48,26 @@ public strictfp class Drone extends Robot {
         if (raidTime) {
             MapLocation ehq = MapState.enemyHQGuess();
             if (MapState.enemyHQ == null) { if (!rc.canSenseLocation(ehq)) approachSafely(ehq); return; }
-            int near = 0; boolean follow = false;
-            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; near++; if (Nav.cheb(f.location, ehq) < C.RAID_RALLY - 1) follow = true; }
-            raiding = near + 1 >= C.RAID_SIZE || follow || round >= C.RAID_LATEST;
+            MapLocation home = MapState.home;
+            if ((id & 1) == 1 && home != null && !rc.isCurrentlyHoldingUnit()) {   // arch_raider: a carrier fetches one of our landscapers (seats included) before joining the wave
+                for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) >= 1 && rc.canPickUpUnit(f.ID)) { rc.pickUpUnit(f.ID); holdingFriend = true; Debug.log("@lift-helper id=" + f.ID); return; } }
+                if (Nav.cheb(loc, home) > 3) { nav.setTarget(home); nav.step(); return; }
+                MapLocation perch = null; int pd = 1 << 30;   // a free tile beside one of our landscapers (drones never enter the ring, so never the seat itself)
+                for (int i = nFriend; --i >= 0;) {
+                    RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER || Nav.cheb(f.location, home) < 1) continue;
+                    for (int k = 8; --k >= 0;) { MapLocation n = f.location.add(DIRS[k]); if (!rc.onTheMap(n) || !allowedTile(n) || n.equals(home)) continue; if (rc.canSenseLocation(n) && rc.isLocationOccupied(n) && !n.equals(loc)) continue; int d = loc.distanceSquaredTo(n); if (d < pd) { pd = d; perch = n; } }
+                }
+                if (perch != null) { nav.setTarget(perch); nav.step(); return; }
+                return;   // nothing left to carry: wait
+            }
+            raiding = assembled(ehq);
             if (raiding) {
                 RobotInfo v = null; int vd = 1 << 30;
                 for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; if (rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; raidKills++; Debug.log("@pickup t=" + e.type.ordinal() + " id=" + e.ID + " raid=true"); return; } int d = loc.distanceSquaredTo(e.location) + (e.type == RobotType.LANDSCAPER ? 0 : 100); if (d < vd) { vd = d; v = e; } }
                 if (v != null) { nav.setTarget(v.location); nav.step(); return; }
-                // nothing left to lift here: fetch one of our helpers from home and drop it on their ring
-                MapLocation home = MapState.home;
-                if (home != null) {
-                    for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) >= 1 && rc.canPickUpUnit(f.ID)) { rc.pickUpUnit(f.ID); holdingFriend = true; Debug.log("@lift-helper id=" + f.ID); return; } }
-                    if (Nav.cheb(loc, home) > 3) { nav.setTarget(home); nav.step(); return; }
-                    for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) >= 1) { nav.setTarget(f.location); nav.step(); return; } }
-                }
-                approachSafely(ehq); return;
+                approachSafely(ehq); return;   // within sight of their ring, waiting for something liftable
             }
-            MapLocation h = MapState.home != null ? MapState.home : loc;
-            int dx = Integer.signum(h.x - ehq.x), dy = Integer.signum(h.y - ehq.y);
-            MapLocation rally = new MapLocation(ehq.x + dx * C.RAID_RALLY, ehq.y + dy * C.RAID_RALLY);
-            if (loc.distanceSquaredTo(rally) > 8) { nav.setTarget(rally); nav.step(); }
+            goRally(ehq);
             return;
         }
         // pick up
@@ -85,6 +86,19 @@ public strictfp class Drone extends Robot {
         nav.setTarget(patrol); if (!nav.step()) patrol = null;
     }
 
+    /** The wave is assembled: RAID_SIZE drones in sight (or one already charging, or RAID_LATEST). */
+    private boolean assembled(MapLocation ehq) {
+        int near = 0; boolean follow = false;
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; near++; if (Nav.cheb(f.location, ehq) < C.RAID_RALLY - 1) follow = true; }
+        return (near + 1 >= C.RAID_SIZE && round >= C.RAID_ROUND + 80) || follow || round >= C.RAID_LATEST;   // 80 rounds for the carriers to fetch their cargo
+    }
+    /** Toward the rally point RAID_RALLY tiles from the enemy HQ on our side of it. */
+    private void goRally(MapLocation ehq) throws GameActionException {
+        MapLocation h = MapState.home != null ? MapState.home : loc;
+        int dx = Integer.signum(h.x - ehq.x), dy = Integer.signum(h.y - ehq.y);
+        MapLocation rally = new MapLocation(ehq.x + dx * C.RAID_RALLY, ehq.y + dy * C.RAID_RALLY);
+        if (loc.distanceSquaredTo(rally) > 8) { nav.setTarget(rally); nav.step(); }
+    }
     /** One step toward t onto a tile outside r2 15 of it (the HQ's reach). */
     private void approachSafely(MapLocation t) throws GameActionException {
         if (!rc.isReady()) return;
