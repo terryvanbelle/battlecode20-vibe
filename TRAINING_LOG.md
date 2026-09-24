@@ -1003,6 +1003,16 @@ replay. Side finding: on Prison the incumbent's own post-r400 building spree (si
 two net guns at distance 3, on the helpers' dig tiles) costs it 13% of ring; a parked builder
 scored 1823 vs 1595.
 
+Three more fixes before the gate: the mason raises F and V only when nobody stands on them and
+non-builder miners step off any perch tile (a miner rode V up and blocked the vaporator); any
+miner that finds B empty from r420 takes it, and a builder that arrives to find B held defers (the
+builder died at r279 in one run); the HQ posts the perch until r700 so the center, born at
+r520-650, learns it and saves 350 for the vaporator (born after the last post it bought a drone
+with every 150). Final TwoLakeLand: successor on B at r464, center r640, vaporator r927, 11 guards
+at r1500 and 16 at r2000, ring 1874 vs 1900. **Mechanism shown.** Gate `gate24` (mirror vs g_iter3,
+cap 240) launched; the ladder block of the candidate follows block 35, since the mirror cannot
+price a defence against a raid it never makes.
+
 ## Block 34 -- g_iter3 against the challenge pool (run block34, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 232/1068 (21.7%). Elo 1354, rank 65 of 66.
