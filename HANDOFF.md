@@ -11,7 +11,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Running on the VM:** blocks 65 and 66 (`BOT=g_iter6`, seeded). Blocks 50-64 are recorded and pushed. Post each
+- **Running on the VM:** blocks 66 and 67 (`BOT=g_iter6`, seeded). Blocks 50-65 are recorded and pushed. Post each
   finished block with `tools/post-block.sh <run> g_iter6` and push the regenerated `progress/` files in the same commit.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;

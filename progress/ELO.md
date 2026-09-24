@@ -1,51 +1,51 @@
 # Ladder
 
-3209 scrimmages (ours only), 2685 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 65 of 65 ladder bots met.
+3257 scrimmages (ours only), 2733 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 65 of 65 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each):
 
 | build | rating | rank | games | record | field score |
 |---|---|---|---|---|---|
-| g_iter6 | 1750 +- 29 | 16 of 72 | 646 | 339-307 | 73.2% |
+| g_iter6 | 1753 +- 28 | 16 of 72 | 694 | 366-328 | 73.4% |
 | g_iter5 | 1743 +- 33 | 17 of 72 | 618 | 329-289 | 72.8% |
 | iter24 | 1706 +- 128 | 18 of 72 | 46 | 11-35 | 70.3% |
 | g_iter3 | 1701 +- 32 | 19 of 72 | 796 | 167-629 | 70.0% |
-| g_iter4 | 1680 +- 63 | 20 of 72 | 217 | 43-174 | 68.4% |
-| g_iter2 | 1634 +- 67 | 21 of 72 | 192 | 44-148 | 64.9% |
-| g_iter1 | 1610 +- 69 | 22 of 72 | 170 | 95-75 | 62.9% |
+| g_iter4 | 1679 +- 63 | 20 of 72 | 217 | 43-174 | 68.4% |
+| g_iter2 | 1635 +- 67 | 21 of 72 | 192 | 44-148 | 65.0% |
+| g_iter1 | 1611 +- 69 | 22 of 72 | 170 | 95-75 | 63.0% |
 
 | rank | player | rating | +- 95% | games | W-L |
 |---|---|---|---|---|---|
 | 1 | awesomelemonade.citricsky | 2305 | 200 | 103 | 101-2 |
 | 2 | uvafan.v14_final_bot | 2296 | 200 | 98 | 96-2 |
 | 3 | AngusRitossa.newbot | 2236 | 174 | 95 | 92-3 |
-| 4 | StoneT2000.FinalChowBotStable | 2059 | 212 | 21 | 19-2 |
+| 4 | StoneT2000.FinalChowBotStable | 2060 | 212 | 21 | 19-2 |
 | 5 | rzhan11.quals_bot | 2046 | 115 | 86 | 77-9 |
 | 6 | IvanGeffner.finalbota | 2042 | 105 | 101 | 90-11 |
 | 7 | ronniesong0809.finalbota | 2035 | 105 | 97 | 86-11 |
-| 8 | EmaPajic.Qualifications | 1992 | 90 | 107 | 91-16 |
-| 9 | mvpatel2000.qual | 1984 | 86 | 115 | 97-18 |
+| 8 | mvpatel2000.qual | 1984 | 86 | 115 | 97-18 |
+| 9 | EmaPajic.Qualifications | 1983 | 86 | 113 | 95-18 |
 | 10 | battlecode20-team4.finalbota | 1980 | 75 | 142 | 118-24 |
-| 11 | winkelmantanner.tannerplayer | 1979 | 84 | 116 | 97-19 |
-| 12 | poortho.stable_seeding_bot | 1874 | 53 | 203 | 144-59 |
-| 13 | laurenschneider.pdx_team_one | 1807 | 48 | 218 | 135-83 |
-| 14 | cormackikkert.whyPermutator | 1793 | 48 | 211 | 127-84 |
-| 15 | benzyx.seeding | 1769 | 47 | 214 | 122-92 |
-| 16 | **us:g_iter6** | 1750 | 29 | 646 | 339-307 |
+| 11 | winkelmantanner.tannerplayer | 1980 | 84 | 116 | 97-19 |
+| 12 | poortho.stable_seeding_bot | 1872 | 51 | 209 | 147-62 |
+| 13 | laurenschneider.pdx_team_one | 1810 | 47 | 224 | 139-85 |
+| 14 | cormackikkert.whyPermutator | 1790 | 47 | 217 | 129-88 |
+| 15 | benzyx.seeding | 1780 | 47 | 220 | 128-92 |
+| 16 | **us:g_iter6** | 1753 | 28 | 694 | 366-328 |
 | 17 | **us:g_iter5** | 1743 | 33 | 618 | 329-289 |
 | 18 | **us:iter24** | 1706 | 128 | 46 | 11-35 |
 | 19 | **us:g_iter3** | 1701 | 32 | 796 | 167-629 |
-| 20 | **us:g_iter4** | 1680 | 63 | 217 | 43-174 |
-| 21 | **us:g_iter2** | 1634 | 67 | 192 | 44-148 |
-| 22 | **us:g_iter1** | 1610 | 69 | 170 | 95-75 |
-| 23 | wpine215.stardustv2 | 1608 | 50 | 209 | 72-137 |
-| 24 | mhahn2003.nonrush | 1556 | 74 | 106 | 29-77 |
-| 25 | eggag32.BrutalPigeonBot | 1553 | 87 | 80 | 20-60 |
-| 26 | Tim-gubski.AngryWaffleMaker | 1507 | 167 | 20 | 5-15 |
-| 27 | cs454-w20-team3.playbot | 1506 | 127 | 38 | 9-29 |
+| 20 | **us:g_iter4** | 1679 | 63 | 217 | 43-174 |
+| 21 | **us:g_iter2** | 1635 | 67 | 192 | 44-148 |
+| 22 | **us:g_iter1** | 1611 | 69 | 170 | 95-75 |
+| 23 | wpine215.stardustv2 | 1603 | 49 | 215 | 72-143 |
+| 24 | mhahn2003.nonrush | 1563 | 72 | 112 | 31-81 |
+| 25 | eggag32.BrutalPigeonBot | 1539 | 86 | 86 | 20-66 |
+| 26 | Tim-gubski.AngryWaffleMaker | 1508 | 167 | 20 | 5-15 |
+| 27 | cs454-w20-team3.playbot | 1507 | 127 | 38 | 9-29 |
 | 28 | TeamSerpentine.noodleBot | 1504 | 167 | 20 | 5-15 |
-| 29 | yaonam.Robot_1 | 1495 | 166 | 21 | 5-16 |
-| 30 | ARognes.FinalSubmission | 1475 | 148 | 31 | 6-25 |
+| 29 | yaonam.Robot_1 | 1496 | 166 | 21 | 5-16 |
+| 30 | ARognes.FinalSubmission | 1476 | 148 | 31 | 6-25 |
 | 31 | WilliamYue37.Player1 | 1445 | 143 | 40 | 6-34 |
 | 32 | VinayaBhat.team10pdx | 1444 | 235 | 9 | 2-7 |
 | 33 | jenlz.bustedJulianbot | 1424 | 278 | 8 | 1-7 |
