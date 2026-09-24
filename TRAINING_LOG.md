@@ -635,6 +635,13 @@ Gate 10 relaunched at 22:25 with the parity split and the defenders on the 5-7 a
 diagnostics on FourLakeLand and MtDoom were single games decided by building placement luck: our
 school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on both runs).
 
+**Gate 16: REJECT 56-72 (43.8%)** after eight batches (vs g_iter3). One constant changed and the
+mirror says 44%. Six rejections in a row, four of them at 44-46%, is either a run of genuinely bad
+ideas or a harness that is not fair to the `bot` package. **Control run `control1`** (04:50):
+`src/bot` made an exact copy of g_iter3, mirror vs g_iter3, 96 games. Expected 50%; a result
+outside 40-60% means the gate has been measuring the harness, and every verdict since gate 10
+is suspect.
+
 ## Blocks 13-14 -- g_iter4 against the challenge pool (2026-09-24)
 
 Block 13 (24 games) 6/24; block 14 (48 games) **6/48 (12.5%)**. Cumulative for g_iter4: 46/228
@@ -669,7 +676,7 @@ restarted against `REF=g_iter3` with Iteration 15 rebased on g_iter3 (04:05).
 
 | area | last attempt | consecutive rejects |
 |---|---|---|
-| economy (builder, sites) | Iteration 11 (inconclusive 52%) | 1 |
+| economy (miners, builder, sites) | Iteration 15 (reject 56-72) | 2 |
 | flood defence (wall) | Iteration 14 (reject 57-71) | 3 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |

@@ -8,7 +8,7 @@ public final class C {
     public static final int ARCHETYPE = 0;            // sparring-partner switch, set by tools/snapshot.sh
 
     // --- economy (Iteration 1: unmeasured starting values)
-    public static final int MINERS_EARLY = 5;   // Iteration 15: one more miner from round 1         // miners the HQ builds before anything else is affordable
+    public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
     public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
     public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
