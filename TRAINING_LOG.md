@@ -1092,6 +1092,10 @@ r2000, 9 by r3000, 6 after -- the raid window holds 46% of the losses, as before
 policy applies: withdraw if the Wilson upper bound of the accumulated g_iter5 blocks falls below
 g_iter3's 21.6%.
 
+## Block 36 -- g_iter3 against the challenge pool (run block36, 2026-09-24)
+
+48 games: **12/48 (25%)**; cumulative for g_iter3 256/1164 (22.0%). The last g_iter3 block; the ladder now measures g_iter5.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
