@@ -640,7 +640,7 @@ mirror says 44%. Six rejections in a row, four of them at 44-46%, is either a ru
 ideas or a harness that is not fair to the `bot` package. **Control run `control1`** (04:50):
 `src/bot` made an exact copy of g_iter3, mirror vs g_iter3, 96 games. Expected 50%; a result
 outside 40-60% means the gate has been measuring the harness, and every verdict since gate 10
-is suspect. **Result: 48-48 after 96 games** (6-10, 10-6, 8-8, 8-8, 8-8, 8-8). The harness is
+is suspect. **Result: 49-47 after 96 games** (6-10, 10-6, 8-8, 8-8, then 17-15). The harness is
 fair; the six rejections stand. (The engine gives the silenced side a no-op print stream and the
 other a stream into the replay; whatever that costs, it does not show at 96 games.)
 
