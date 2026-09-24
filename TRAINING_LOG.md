@@ -916,6 +916,10 @@ keeping every load on the eight ring tiles until the ring is safe (no tier-2 or 
 before ~r1500) and letting claimants hold a tile in place without ever re-picking; anything else
 is the citadel again.
 
+## Block 29 -- g_iter3 against the challenge pool (run block29, 2026-09-24)
+
+48 games: **11/48 (23%)**; cumulative for g_iter3 179/828 (21.6%). Elo 1379, rank 64 of 66.
+
 ## Block 28 -- g_iter3 against the challenge pool (run block28, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 168/780 (21.5%). Elo 1361, rank 65 of 66.

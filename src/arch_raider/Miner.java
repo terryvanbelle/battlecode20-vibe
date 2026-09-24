@@ -1,4 +1,4 @@
-package bot;
+package arch_raider;
 
 import battlecode.common.*;
 
@@ -58,8 +58,8 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtFC == 0 && soup >= C.FC_EARLY_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 23: the center right after the school (Iteration 2's placing; after the vaporator it was built in 18 of 248 ladder games)
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
+        else if (builtSchool > 0 && builtFC == 0 && soup >= 300 + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // arch_swarm: the center early   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings

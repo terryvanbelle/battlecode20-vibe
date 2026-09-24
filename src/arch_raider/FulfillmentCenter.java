@@ -1,4 +1,4 @@
-package bot;
+package arch_raider;
 
 import battlecode.common.*;
 
@@ -8,10 +8,7 @@ public strictfp class FulfillmentCenter extends Robot {
     FulfillmentCenter(RobotController rc) { super(rc); }
     @Override protected void turn() throws GameActionException {
         int soup = rc.getTeamSoup();
-        int round = rc.getRoundNum();
-        boolean want = round >= C.DRONE_SPEND_ROUND
-            ? built < C.DRONES_LATE_MAX && soup >= RobotType.DELIVERY_DRONE.cost + C.DRONE_LATE_RESERVE   // Iteration 23: spend down before the flood
-            : built < C.DRONES_MAX && soup >= RobotType.DELIVERY_DRONE.cost + (round < C.DRONE_ROUND ? C.DRONE_EARLY_BANK : C.DRONE_RESERVE);
+        boolean want = built < C.DRONES_MAX && soup >= RobotType.DELIVERY_DRONE.cost + (rc.getRoundNum() < C.DRONE_ROUND ? C.DRONE_EARLY_BANK : C.DRONE_RESERVE);   // arch_swarm: 30 drones, small reserve
         if (want && tryBuild(RobotType.DELIVERY_DRONE, null)) built++;
     }
 }
