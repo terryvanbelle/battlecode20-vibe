@@ -26,7 +26,7 @@ public strictfp class HQ extends Robot {
         // then one more miner per MINER_REPLENISH rounds while rich, up to a hard total
         boolean want = built < C.MINERS_EARLY
             || (built < C.MINERS_MAX && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS)
-            || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_REPLENISH_BANK && landscapersAdj < C.WALL_LANDSCAPERS);   // Iteration 27
+            || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS);
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
         // Iteration 7: re-post every 100 rounds so robots born late (and the drones) learn home, the origin and the enemy HQ

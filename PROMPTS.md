@@ -65,3 +65,7 @@ I didn't mean that the blocks should be bigger, but that you should play more ga
 ## 12. 2026-09-24
 
 But your plan to revisit the ladder grading is a good one
+
+## 13. 2026-09-24
+
+I'm going to switch you to Opus 5.5, but that's going to require a restart of Claude.  Let me know when you're ready

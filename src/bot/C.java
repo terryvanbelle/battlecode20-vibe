@@ -12,7 +12,6 @@ public final class C {
     public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
     public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
-    public static final int MINER_REPLENISH_BANK = 350; // Iteration 27: a replacement miner leaves a landscaper's worth in the bank (Climb: 13 miners, 910 soup, soup behind cliffs, school spawned twice)
     public static final int MINER_SOUP_RESERVE = 200; // after MINERS_EARLY the HQ builds a miner only above this bank
     public static final int SOUP_RETURN = 70;         // a miner heads home to deposit at this much carried soup
     public static final int SOUP_MEMORY = 12;         // remembered soup tiles per miner
