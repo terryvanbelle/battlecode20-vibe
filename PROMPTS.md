@@ -49,3 +49,11 @@ What's our progress against a fixed roster of opponents?
 ## 8. 2026-09-24
 
 Is it possible you're working on beating a roster that's too strong at the moment?
+
+## 9. 2026-09-24
+
+You're approved
+
+## 10. 2026-09-24
+
+This year the games run a lot faster, so it makes sense to run more games to get a good baseline

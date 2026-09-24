@@ -17,6 +17,9 @@ ap.add_argument('--established', type=int, default=0,
 ap.add_argument('--challenge', type=int, default=0,
                 help='the N bots that beat us at least half the time, fewest games against us first, then highest rating: '
                      'the climb pool (block 3 showed "nearest above us" collapses to the easy end after a block against the strong end)')
+ap.add_argument('--band', type=int, default=0,
+                help='the N rated bots nearest to us in rating on EITHER side: the graded pool (owner, 2026-09-24, PROMPTS 8-9: '
+                     'a pool drawn only from above us had drifted to bots that beat us 70-99% of the time)')
 ap.add_argument('--quiet', action='store_true'); a = ap.parse_args()
 rows = elolib.load(); R, games, wins, hist = elolib.ratings(rows)
 bots = elolib.ladder_bots()
@@ -37,10 +40,11 @@ if a.challenge:
 if a.established:
     rated = [b for b in elolib.ladder_bots() if games[b] > 0]
     print(' '.join(sorted(rated, key=lambda b: (-games[b], -R[b]))[:a.established])); raise SystemExit
-if a.pool or a.explore:
+if a.pool or a.explore or a.band:
     import random
     above = [b for _, b in table if b != 'us' and R[b] >= R['us']]
     pool = above[-a.pool:] if a.pool else []      # the closest rated ones above us
+    if a.band: pool = sorted((b for b in rated), key=lambda b: abs(R[b] - R['us']))[:a.band]   # nearest on either side
     if len(pool) < a.pool:                        # not enough above: fill with the closest below
         below = [b for _, b in table if b != 'us' and R[b] < R['us']]
         pool += below[:a.pool - len(pool)]

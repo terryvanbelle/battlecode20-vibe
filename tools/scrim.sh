@@ -41,7 +41,9 @@ if [ -z "${POOL:-}" ]; then
       # 20/36 and does not change between blocks, so win rates finally chain.
       POOL="$(python3 "$REPO/tools/elo.py" --established "${POOLSIZE:-8}")"
     else
-      POOL="$(python3 "$REPO/tools/elo.py" --pool "${POOLSIZE:-8}" --explore "$EXPLORE")"
+      # 2026-09-24 (PROMPTS 8-9, owner approved): the graded pool -- the POOLSIZE rated bots nearest to us on either side
+      # (tools/elo.py --band), seeded with EXPLORE never-played bots; POOLMODE=above restores the old "just above us" pool.
+      if [ "${POOLMODE:-band}" = band ]; then POOL="$(python3 "$REPO/tools/elo.py" --band "${POOLSIZE:-8}" --explore "$EXPLORE")"; else POOL="$(python3 "$REPO/tools/elo.py" --pool "${POOLSIZE:-8}" --explore "$EXPLORE")"; fi
     fi
   else
     echo "ladder history has under 40 games: using tools/roster.txt" >&2

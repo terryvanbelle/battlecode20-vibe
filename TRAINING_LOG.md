@@ -1104,6 +1104,17 @@ the HQ, never sees 150. Ring tiles at 2, 4 and 7 beside seats at 44; the tile at
 r500 and the HQ at 4 drowns at r931. The other side spawned 8 and still lost 3 seats to cliff
 tiles it could not climb.
 
+## The graded ladder (owner decision, 2026-09-24, PROMPTS 7-9)
+
+Asked for our progress against a fixed roster, the answer was that the pool "just above us" had
+drifted to bots that beat us 70-99% of the time (we are rank 65 of 66 rated, 11 of the 15 pool
+regulars over 70%), so a 48-game block moves 4-14 wins on noise and most of its games are locked
+from review. The owner approved a graded ladder and asked for bigger blocks now that games run
+faster. `tools/elo.py --band N` draws the N rated bots nearest to us on either side; `scrim.sh`
+uses it by default (`POOLMODE=above` restores the old pool) and seeds it with `EXPLORE=n`
+never-played bots. Plan: two 96-game seeding blocks with EXPLORE=8, then a 144-game baseline for
+g_iter5 and g_iter3 on the settled band, and every later block at 96.
+
 ## Block 38 -- g_iter5 against the challenge pool (run block38, 2026-09-24)
 
 48 games: **9/48 (19%)**; cumulative for g_iter5 16/96 (16.7%, Wilson upper bound about 25%, above g_iter3's 21.9%: not withdrawn). Elo 1304, rank 65 of 66.
