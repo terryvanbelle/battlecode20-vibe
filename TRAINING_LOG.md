@@ -552,6 +552,18 @@ map and side; the mirror cannot see the things the ladder losses are made of (sc
 the flood, drone swarms, rushes). Next: an external-facing candidate measured against external
 evidence -- the sparring archetypes and the challenge pool itself -- as TRAINING_ALGORITHM allows.
 
+Probe (Hourglass, CowFarm mirrors): the ring tiles that never rise are cliffs whose ring neighbours
+are cliffs too, or lake tiles no seat borders -- no seat is adjacent to feed them. Not a bug in
+the feeding rule; Hourglass ends at r2525 for both sides on its 100-high tile and goes to the
+tiebreak. Archetype note: `arch_drone` never reaches our ring (its 7 wins in `spar1` were wall races
+and Hourglass), so it is no swarm arm; a real one would need the raid drones' wave logic.
+
+## Iteration 15 -- a fifth early miner (2026-09-24)
+
+An economy parameter the mirror can price: `MINERS_EARLY` 4 -> 5. Diagnostic: Prison, Soup,
+TwoLakeLand vs g_iter4 -- soup and landscapers at r400/r700 above the incumbent's, ring at r2500.
+Gate `gate16` vs `REF=g_iter4`. Falsifier: below 53%.
+
 ## Block 12 -- g_iter4 against the challenge pool (run block12, 2026-09-24)
 
 48 games: **9/48 (19%)**. `mvpatel2000.qual` 2/3, `wpine215` 2/4, `IvanGeffner` 2/4; cumulative for
