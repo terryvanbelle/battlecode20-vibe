@@ -731,7 +731,18 @@ more landscapers, vaporators and drones before r700 than the 5th miner of Iterat
 Diagnostic: Prison, Soup, TwoLakeLand vs g_iter3 -- soup and landscapers at r400/r700, ring at
 r2500. Gate `gate17` vs `REF=g_iter3`. Falsifier: below 53%.
 
+Diagnostics: Soup won with the ring 1698 vs 1373 (+24%); Prison lost (24 miners crowded a corner
+HQ, two seats never reached their tiles, 6,165 soup idle at r1000); TwoLakeLand lost 1485 vs 1944
+(22 miners drowned at r700 having mined less than they cost). Tuned (16 miners, reserve 250):
+Prison still lost the same way with 4,866 soup idle. **Not gated.** The economy can be tripled on
+some maps, but the only sink that decides the mirror is the wall, and the wall takes 24 bodies;
+everything past that piles up. Ledger: the sink comes first (the plateau), then the economy.
+
 ## Ledger (closed directions)
+
+- **The economy regime (Iteration 17, 2026-09-24)** -- 8-24 miners, early vaporators, 20 drones on
+  g_iter3. Diagnostics 1-2 with 5,000-6,000 soup idle at r1000. Kind: blocked on the sink. Reopen
+  together with the plateau (a place to spend soup after r700).
 
 - **The late guns (Iteration 16, 2026-09-24)** -- a parked builder rebuilding net guns after the
   flood. Blocked on geometry: no dry tile near the HQ that is not the ring or a helper's own tile.

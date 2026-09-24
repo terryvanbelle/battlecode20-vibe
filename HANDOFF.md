@@ -17,6 +17,16 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   blocked; a control run (g_iter3 vs itself, 49-47) confirmed the mirror gate is fair. The next structural candidate is
   the **vaporator plateau** (TRAINING_LOG.md "What the field does that we do not"): raise the distance-2 tier as a
   plateau with distance-3 feeders, park the builder on it, put vaporators, a school and net guns on it at height.
+- **The plateau plan (next structural candidate, several sessions).** Order of work: (1) a seal-by-r700 ring of 8 seats
+  exactly as g_iter3; (2) 16 helpers on the distance-2 tiles feeding the ring, 8+ feeders at distance 3 piling dirt on
+  the helper tiles so the tier rises as a plateau (Iteration 12's code in commit 64e1839, which never got its feeders
+  because the soup ran out); (3) the economy to pay for 32+ bodies before r700 -- 16 miners and early vaporators
+  (Iteration 17's constants, with miners kept off the ring approaches: two seats were blocked on a corner HQ); (4) the
+  builder parked on the plateau, building vaporators, a school and net guns on it once its tiles stay dry for good;
+  (5) landscapers born after r700 take distance-3 tiles they raise themselves. Each stage has a diagnostic (ring and
+  tier heights via `replay-dump.sh --ring --ringd 2`, `@build` by round) and the whole goes to the mirror gate plus the
+  `arch_swarm` arm (baseline g_iter3 15/24). The field's version: team4 at r1000 had 33 miners, 44 vaporators, 44
+  drones, 5 schools, all alive.
 - Archetypes: `src/arch_swarm` (early center, 30 drones, wave raid from r1200 that lifts seats and ferries helpers onto
   the enemy ring) is the second arm for defence candidates; `spar2` baseline g_iter3 12/24 before its ferry, `spar3`
   after it. `src/arch_drone` never reaches our ring and is no swarm arm.
