@@ -889,6 +889,16 @@ that stalled on the way (the school and refinery sit on the path) struck the til
 came back, and no later unit looked at the ring again. Fix: every unit not on the ring re-checks
 for a free climbable ring tile every ten rounds. Sweep `plat13`.
 
+Sweep `plat13` (standing ring-first check): **2/24**, still five of eight seats on nearly every
+map. The re-check cannot help after r150: an unheld ring tile is fed by its neighbours' equalising
+to within two of them, so it is hundreds high and unclimbable from any other tile; the eight seats
+must be won in the first hundred rounds or never. g_iter3 wins all eight with the same "nearest
+free ring tile" rule and the rewrite wins five, and the reason is not in any table so far. **The
+plateau line is closed for the session** (seven sweeps of the slot revision at 2-10/24); the open
+question for the next session is a step-by-step comparison of the first eight newborns' seat
+choices under `arch_plateau/Landscaper.pickTile`/`freeRingTile` and `g_iter3/Landscaper.pickSeat`
+on Squares, where three claimants fail.
+
 ## Block 27 -- g_iter3 against the challenge pool (run block27, 2026-09-24)
 
 48 games: **6/48 (12.5%)**; cumulative for g_iter3 156/732 (21.3%).

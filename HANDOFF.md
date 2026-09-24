@@ -13,6 +13,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   `tools/citadel-diag.sh` and `replay-dump.sh --ringd`.
 - **Incumbent and submission: `src/g_iter3`** (Iteration 8, accepted 39-9 over g_iter2). `src/g_iter4` (the late raid,
   provisional) was withdrawn on 2026-09-24 after 228 ladder games at 20% against g_iter3's 26%.
+- Plateau, final state 2026-09-24: seven sweeps of the slot revision at 2-10/24. Root cause narrowed to the first
+  hundred rounds -- the rewrite seats five of eight ring tiles where g_iter3 seats eight, and an unseated ring tile is
+  unclimbable ever after. First job if reopened: trace the first eight newborns' seat choices on Squares under both
+  implementations (TRAINING_LOG.md, plat13).
 - Plateau claims were revised twice more after the gates (arrival-settled, then deterministic slots posted by the school
   and read from the last two blocks at birth): sweeps `plat7`-`plat11` 8, 10, 9, 9, 5 of 24 vs g_iter3 with per-game
   tables (slots, churn, deaths, ring minima) in TRAINING_LOG.md. At the incumbent's own structure the rewritten roles
