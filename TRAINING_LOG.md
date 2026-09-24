@@ -1156,7 +1156,8 @@ keep the map seed unless `GAME_SEED` is set, so diagnostics stay reproducible. R
 games: g_iter6 1740 +- 43 (295 of 336), g_iter5 1743 +- 33 (618 of 720), g_iter3 1700 +- 32
 (796 of 1,116): the order is unchanged, the intervals were overstated. Every gate before today
 was overconfident in the same way; none is re-run (their directions stand), but from block 59 and
-the next gate on, every game is a new game.
+the next gate on, every game is a new game. Verified on the VM (`seedtest2`): g_iter6 vs g_iter5 on
+maptestsmall with seeds 1, 2, 1 gave 3109 (win), 3094 (loss), 3109 (win).
 
 ## Block 50 and the unspent bank (2026-09-24)
 

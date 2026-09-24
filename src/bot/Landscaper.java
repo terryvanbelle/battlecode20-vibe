@@ -13,7 +13,8 @@ import battlecode.common.*;
  */
 public strictfp class Landscaper extends Robot {
     private MapLocation seat;                 // our ring tile, once chosen
-    private boolean attacker = false, helper = false;
+    private boolean attacker = false, helper = false, gunner = false;
+    private MapLocation gunSite, gunStandTile;   // Iteration 31: the gunner raises gunSite to hqElev+GUN_RAISE standing on gunStandTile (raised to hqElev+GUN_STAND)
     private MapLocation post;                 // helper station at distance 2
     private final MapLocation[] badSeat = new MapLocation[8]; private int nBad = 0;
     private int helperDeps = 0;
@@ -24,6 +25,48 @@ public strictfp class Landscaper extends Robot {
         for (int i = 8; --i >= 0;) { MapLocation s = g.add(DIRS[i]); if (Nav.cheb(s, home) != 3 || !rc.onTheMap(s) || !rc.canSenseLocation(s) || rc.senseFlooding(s)) continue;
             int e = rc.senseElevation(s); if (e > be) { be = e; best = s; } }
         return best;
+    }
+    /** Iteration 31: a posted gun tile that is dry, unbuilt, below target and has no gunner beside it yet -> claim it. */
+    private boolean pickGun(MapLocation home) throws GameActionException {
+        int e0 = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
+        for (int k = 0; k < 2; k++) { MapLocation g = MapState.guns[k]; if (g == null || !rc.canSenseLocation(g) || rc.senseFlooding(g)) continue;
+            RobotInfo r = rc.senseRobotAtLocation(g); if (r != null && r.type.isBuilding()) continue;
+            if (rc.senseElevation(g) >= e0 + C.GUN_RAISE) continue;
+            boolean taken = false;
+            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && f.ID != id && f.location.isAdjacentTo(g) && Nav.cheb(f.location, home) == 3) taken = true; }
+            if (taken) continue;
+            MapLocation st = gunStand(g, home); if (st == null) continue;
+            gunSite = g; gunStandTile = st; return true; }
+        return false;
+    }
+    /** The gunner: stand on the stand tile; raise the gun tile to hqElev+GUN_RAISE (never more than 3 above the stand),
+     *  the stand under itself to hqElev+GUN_STAND; dig from outside (Chebyshev >= 4). Done, or the site lost: a helper. */
+    private void gun(MapLocation home) throws GameActionException {
+        int e0 = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
+        boolean lost = !rc.canSenseLocation(gunSite) || rc.senseFlooding(gunSite);
+        if (!lost) { RobotInfo r = rc.senseRobotAtLocation(gunSite); if (r != null && r.type.isBuilding()) lost = true; }
+        boolean done = !lost && rc.senseElevation(gunSite) >= e0 + C.GUN_RAISE && rc.canSenseLocation(gunStandTile) && rc.senseElevation(gunStandTile) >= e0 + C.GUN_STAND;
+        if (lost || done) { Debug.log("@gunner " + (done ? "done" : "lost") + " site=" + gunSite); gunner = false; gunSite = null; return; }
+        if (!loc.equals(gunStandTile)) {
+            if (occupiedByOther(gunStandTile)) { RobotInfo r = rc.senseRobotAtLocation(gunStandTile); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { gunner = false; gunSite = null; return; } }
+            if (nav.target() == gunStandTile && nav.stalled()) { gunner = false; gunSite = null; Debug.log("@gunner stalled"); return; }
+            if (floodDanger() && climb()) return;
+            nav.setTarget(gunStandTile); nav.step(); return;
+        }
+        if (!rc.isReady()) return;
+        int eg = rc.senseElevation(gunSite), es = rc.senseElevation(loc); Direction dg = loc.directionTo(gunSite);
+        if (rc.getDirtCarrying() > 0) {
+            if (eg < e0 + C.GUN_RAISE && eg < es + 3 && rc.canDepositDirt(dg)) { rc.depositDirt(dg); gunDeps++; return; }
+            if (es < e0 + C.GUN_STAND && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); gunDeps++; return; }
+            if (eg < e0 + C.GUN_RAISE && rc.canDepositDirt(dg)) { rc.depositDirt(dg); gunDeps++; return; }
+        }
+        Direction bestD = null; int be = Integer.MAX_VALUE;
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
+            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 3 || !rc.canDigDirt(d) || MapState.isGunSite(n)) continue;
+            RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null) continue;
+            int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
+        if (bestD == null) { for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (rc.onTheMap(n) && Nav.cheb(n, home) == 3 && !n.equals(gunSite) && rc.canDigDirt(d) && rc.senseRobotAtLocation(n) == null) { bestD = d; break; } } }   // nothing outside: the other Chebyshev-3 neighbour
+        if (bestD != null) { rc.digDirt(bestD); digs++; }
     }
     private boolean isGunStand(MapLocation n, MapLocation home) throws GameActionException {
         for (int k = 2; --k >= 0;) { MapLocation g = MapState.guns[k]; if (g != null && n.isAdjacentTo(g) && Nav.cheb(n, home) == 3 && n.equals(gunStand(g, home))) return true; }
@@ -38,14 +81,16 @@ public strictfp class Landscaper extends Robot {
     }
     private void turn2() throws GameActionException {
         sense(); if (round % 3 == 1) readBlock(); probeEdges();
-        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " gunDeps=" + gunDeps + " elev=" + rc.senseElevation(loc));
+        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " gunDeps=" + gunDeps + " gunner=" + gunner + " elev=" + rc.senseElevation(loc));
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (!attacker && !helper) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
-            if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
+            if (seat == null && pickGun(home)) { gunner = true; Debug.log("@gunner site=" + gunSite + " stand=" + gunStandTile); }
+            else if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
         }
+        if (gunner) { gun(home); return; }
         if (attacker) { attack(); return; }
         if (helper) { help(home); return; }
         if (!loc.equals(seat)) { if (floodDanger() && climb()) return; nav.setTarget(seat); nav.step(); if (loc.equals(seat)) Debug.log("@seated at=" + seat); return; }
@@ -132,15 +177,6 @@ public strictfp class Landscaper extends Robot {
         // 1. keep our own tile above the water that is coming
         boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
-        // 1b. Iteration 31: a gun tile next door is below its target: raise it (its stand first, to GUN_STAND above the HQ)
-        if (rc.getDirtCarrying() > 0) {
-            int e0 = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
-            for (int k = 2; --k >= 0;) { MapLocation g = MapState.guns[k]; if (g == null || !loc.isAdjacentTo(g) || !rc.canSenseLocation(g)) continue;
-                RobotInfo rg = rc.senseRobotAtLocation(g); if (rg != null && rg.type.isBuilding()) continue;   // the gun stands: done
-                MapLocation st = gunStand(g, home);
-                if (st != null && loc.isAdjacentTo(st) && rc.senseElevation(st) < e0 + C.GUN_STAND && rc.canDepositDirt(loc.directionTo(st))) { rc.depositDirt(loc.directionTo(st)); gunDeps++; return; }
-                if (rc.senseElevation(g) < e0 + C.GUN_RAISE && rc.canDepositDirt(loc.directionTo(g))) { rc.depositDirt(loc.directionTo(g)); gunDeps++; return; } }
-        }
         // 2. feed the lowest adjacent ring tile (never a building)
         if (rc.getDirtCarrying() > 0) {
             Direction bestD = null; int be = Integer.MAX_VALUE;

@@ -60,7 +60,7 @@ public strictfp class HQ extends Robot {
         else if ((!postedOrigin || round % 100 == 25) && MapState.originKnown()) postedOrigin = post(Comms.make(Comms.MAP_ORIGIN, round, us, MapState.minX, MapState.minY));
         else if (round % 100 == 75 && MapState.enemyHQ != null) post(Comms.make(Comms.ENEMY_HQ, round, us, MapState.enemyHQ.x, MapState.enemyHQ.y));
         if (round == 3) chooseGunSites();
-        if (round % 20 == 10 && round <= C.GUN_POST_UNTIL && (MapState.guns[0] != null || MapState.guns[1] != null))
+        if (round % 20 == 5 && round <= C.GUN_POST_UNTIL && (MapState.guns[0] != null || MapState.guns[1] != null))
             post(Comms.make(Comms.GUN_SITES, round, us, MapState.guns[0] == null ? -1 : MapState.guns[0].x, MapState.guns[0] == null ? -1 : MapState.guns[0].y,
                                                        MapState.guns[1] == null ? -1 : MapState.guns[1].x, MapState.guns[1] == null ? -1 : MapState.guns[1].y));
         if (round % 100 == 0) Debug.log("@econ soup=" + rc.getTeamSoup() + " built=" + built + " minersSeen=" + miners + " ring=" + landscapersAdj + " buried=" + rc.getDirtCarrying() + " sym=" + MapState.sym);
