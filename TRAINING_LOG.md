@@ -883,6 +883,10 @@ tier-3 slot, so nobody came back for the ring; the empty tiles were fed only by 
 equalising and set the ring's minimum (897 vs 1747). Fix: a newborn takes the nearest free ring
 tile it can still climb before consulting its slot. Sweep `plat12` after block 27.
 
+## Block 27 -- g_iter3 against the challenge pool (run block27, 2026-09-24)
+
+48 games: **6/48 (12.5%)**; cumulative for g_iter3 156/732 (21.3%).
+
 ## Block 26 -- g_iter3 against the challenge pool (run block26, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 150/684 (21.9%).
