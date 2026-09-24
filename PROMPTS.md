@@ -41,3 +41,7 @@ OK, I guess it's harmless
 ## 6. 2026-09-23
 
 /loop 30m task check.  If the VM is idle and nothing is in the workqueue, start a new idea.  Otherwise, carry on as before
+
+## 7. 2026-09-24
+
+What's our progress against a fixed roster of opponents?
