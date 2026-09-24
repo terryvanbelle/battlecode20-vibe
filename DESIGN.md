@@ -61,6 +61,31 @@ the gate itself is the last target (a 16th seat), which also tells the school to
 `C.RAID_ROUND` the center builds drones without cap; they gather at `C.RAID_RALLY` from the enemy
 HQ guess and charge when `C.RAID_SIZE` are together, lifting enemy seats into the water.
 
+## The plateau (planned, 2026-09-24)
+
+The next structural candidate; see TRAINING_LOG.md "What the field does that we do not" and
+HANDOFF.md for the measurements behind it. Roles are rewritten around **tiles a landscaper can
+hold** rather than fixed post lists:
+
+- A landscaper without a job picks the nearest tile at Chebyshev 1-3 from the HQ that it can reach
+  (within 3 of its own elevation along a dry path), that no friend holds, and that it can keep dry
+  (elevation now at or above the water, or shallow enough to resurface from next door). Ring tiles
+  first, then distance 2, then distance 3. No attackers while such a tile exists.
+- Every holder keeps its own tile at water(round+60)+2, then feeds **inward**: a seat raises the
+  lowest of itself and its ring neighbours; a distance-2 holder feeds the lowest adjacent ring tile;
+  a distance-3 holder piles onto the lowest adjacent distance-2 tile. Digging is always outward
+  (never a tile a friend holds unless its margin over the water exceeds `FEED_MARGIN`).
+- The distance-2 tier therefore rises with the dirt the distance-3 tier delivers, and its holders
+  spend their own turns on the ring. The tier becomes the plateau: the builder parks on it from
+  r660 and, once a plateau tile has stayed dry for 200 rounds, builds vaporators, a school and a
+  net gun on the highest plateau tiles.
+- The economy that pays for 32+ bodies before r700 is Iteration 17's (16 miners, vaporators from
+  r150) with miners kept off the ring approaches on corner HQs.
+
+Stage gates: (1) roles alone vs g_iter3 -- every surplus body holds a tile, none attacks; (2) with
+the economy -- distance-2 tier above 30 at r1000; (3) with the buildings -- a school alive at r1500;
+then the mirror gate and the `arch_swarm` arm.
+
 ## The turn loop (`Robot.loop`)
 
 ```
