@@ -8,14 +8,13 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Incumbent and submission: `src/g_iter6`** (Iteration 29b, accepted 72-40 over g_iter5: refinery and school outward of
   the Chebyshev-2 circle, the rush response, miners off the ring only once a refinery exists). `src/bot` = g_iter6
   (checked: `git diff src/bot` against the snapshot is empty after the package rename).
-- **Ladder (batch Bradley-Terry, `tools/elo.py --build B`):** g_iter6 1720 +- 48 after 240 games (blocks 50-54), rank 17
-  of 72, field score 71.3%; g_iter5 1743 +- 30 over 720. Level: the mirror gain has not shown on the ladder yet.
+- **Ladder (batch Bradley-Terry, `tools/elo.py --build B`):** g_iter6 1736 +- 40 after 336 games (blocks 50-56), rank 17
+  of 72, field score 72.4%; g_iter5 1742 +- 30 over 720. Level: the mirror gain has not shown on the ladder yet.
 - **Jobs left running on the VM** -- post each with `tools/post-block.sh <run> g_iter6` unless `progress/games.csv`
   already holds the run id, and commit the regenerated `progress/` files and BENCHMARK.md in the same push (owner, PROMPTS
   19-20: the owner reads the docs on GitHub; never report a number the pushed repo does not show):
-  block 55 = `20260924-193834-scrim-g_iter6`, block 56 = `20260924-193842-scrim-g_iter6` (48 games each, band pool).
-  Blocks 53-54 are recorded and pushed; their study/onset step may still have been running on the driver at the switch
-  (re-run `tools/post-block.sh` on them -- idempotent -- if `progress/ONSET.md` is not newer than the run).
+  block 57 and block 58 (`BOT=g_iter6`, 48 games each, band pool; run ids in `gauntlet/block57.log` and `block58.log`
+  on the VM). Blocks 50-56 are recorded and pushed.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.

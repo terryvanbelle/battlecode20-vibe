@@ -1133,6 +1133,9 @@ field score 73.2% (g_iter5 1739 +- 30). Blocks 53-54 (`20260924-190807`, `-19081
 **18/48**; g_iter6 1720 +- 48 after 240 games, rank 17 of 72, field score 71.3%, level with g_iter5
 (1743 +- 30); the upper end (1768) is above g_iter5's rating, so no withdrawal.
 
+Blocks 55-56 (`20260924-193834`, `-193842`): **31/48** and **28/48**; g_iter6 1736 +- 40 after 336
+games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 running.
+
 ## Block 50 and the unspent bank (2026-09-24)
 
 **Block 50** (`20260924-180832-scrim-g_iter6`, g_iter6's first): **18/48**; g_iter6 1677 +- 107 (one
