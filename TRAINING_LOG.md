@@ -509,6 +509,20 @@ on 500 cannot pay back before the flood). Rerun: Prison flipped to a win (perche
 school r966 with 2,205 soup, 13 landscapers r900-1000; ring 1672 vs 1590), CentralLake 2380 vs
 1675. Gate `gate13` vs `REF=g_iter4`, launched 00:45. Falsifier: below 53%.
 
+Gate 13 at 36-44 after five batches (00:45-01:20). Six losses fetched: on poor maps neither side
+gets a second school and our side has one or two landscapers fewer (the builder stops mining at
+r600, 13 vs 15 spawned); on DisproportionatelySmallGap the second school built 16 more than the
+free posts (31 landscapers at r1000, 15 at r1500 -- the surplus went attacking into the flood)
+and the wall still lost 1825 vs 1911. Two refinements under test before a relaunch: park at r660,
+and a school born after r720 builds at most `SECOND_SCHOOL_MAX` (8).
+
+**Gate 13: REJECT 51-61 (45.5%)** after seven batches. The refined candidate (park at r660, a
+post-flood school builds at most 8) won its diagnostics -- DidAMonkeyMakeThis, a poor map where the
+first version had lost, now 677 vs 545; Prison 1666 vs 1589 -- and goes to `gate14` vs g_iter4
+(launched 01:40). Falsifier: below 53%. Note for later: on Prison the first school survived to
+r1210 and 2,460 soup sat idle at r1000 because `LANDSCAPERS_MAX` (24) was reached; more bodies
+need more posts, which is the Iteration 12 problem from the other side.
+
 ## Block 12 -- g_iter4 against the challenge pool (run block12, 2026-09-24)
 
 48 games: **9/48 (19%)**. `mvpatel2000.qual` 2/3, `wpine215` 2/4, `IvanGeffner` 2/4; cumulative for
