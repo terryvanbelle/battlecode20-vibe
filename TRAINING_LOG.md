@@ -1079,6 +1079,14 @@ vs g_iter3: Squares **8 seats, ring 2387 vs 2251 (+6%)** where g_iter5 alone sco
 TwoLakeLand 8 seats, ring 1959 vs 1869 (+5%). Both maps above the incumbent line. Gate `gate26`
 (`cand25b` vs g_iter5, mirror, cap 240) launched beside blocks 36 and 37.
 
+## Block 37 -- g_iter5 against the challenge pool (run block37, 2026-09-24)
+
+48 games: **7/48 (14.6%)**; the first block of the new incumbent (g_iter3's single blocks ranged
+4-14 of 48 around 21.6%). Losses by end round: 5 before r500, 2 by r1000, 19 between r1000 and
+r2000, 9 by r3000, 6 after -- the raid window holds 46% of the losses, as before. Provisional
+policy applies: withdraw if the Wilson upper bound of the accumulated g_iter5 blocks falls below
+g_iter3's 21.6%.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
