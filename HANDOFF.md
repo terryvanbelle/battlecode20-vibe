@@ -12,15 +12,16 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
   sequential Elo had put us at rank 4 after the easy calibration games. g_iter5's final grade over 720 ladder games:
   1745 +- 30, rank 16 of 71 players, field score 72.8%. Withdrawal now compares ratings.
-- **Running on the VM:** blocks 53 and 54 (`tools/scrim.sh`, BOT=g_iter6, the band) and `gate30` (Iteration 30,
-  spend the bank, `src/bot`, mirror vs g_iter6). g_iter6 1747 +- 62 after blocks 50-52. Block 50 was 18/48; the archetype
-  regression passed (vs `arch_swarm` 21/24, g_iter5 19/24). Post blocks with `tools/post-block.sh <run> g_iter6`;
+- **Running on the VM:** blocks 55 and 56 (`tools/scrim.sh`, BOT=g_iter6, the band). g_iter6 1720 +- 48 after blocks
+  50-54 (240 games), level with g_iter5 (1743 +- 30); archetype regression passed (vs `arch_swarm` 21/24, g_iter5 19/24).
+  Iteration 30 (lift the drone and net-gun caps above a 1000 bank) was rejected 58-70; `src/bot` = g_iter6. Post blocks with `tools/post-block.sh <run> g_iter6`;
   give a concurrent run its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses. The session loop is
   `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise, carry on as before`.
 - **Open lines, in order:** (1) map-dead games: the idle miners were sealed behind the HQ by our own refinery
   (Iteration 28 rejected 24-40; 28b folded into g_iter6). Next on Climb: six landscapers cannot reach the west seats (`@badseat`) because digging
   beside the east seats turns row 39 into a cliff, so the west ring floods at r500 (`diag/cut-Climb.bc20`). (2) poortho's rush: g_iter6 answers it; `src/arch_rush` is the sparring partner (g_iter6 13/24, g_iter5 12/24). (3) The unspent bank: every reviewable loss of blocks 48-50 ends with no miner, school or center and 1,200-10,700 soup
-  unspent (TRAINING_LOG "Block 50 and the unspent bank"); the next structural line. (4) Candidates are judged on the
+  unspent (TRAINING_LOG "Block 50 and the unspent bank"); more drones and guns did not help (Iteration 30): the
+  missing piece is a producer that outlives the flood. (4) Candidates are judged on the
   band by rating, not raw win rate.
 - Iterations 23 (home guard), 24 (the perch, `src/arch_perch`), 26 (miners first) and 27 closed 2026-09-24; TRAINING_LOG.md.
 

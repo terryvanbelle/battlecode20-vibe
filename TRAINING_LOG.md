@@ -1123,11 +1123,15 @@ of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformat
 (`@econ ring=8`, 5 miners built all game), and at r800 the school, center and builder were still
 alive with 1,513 soup while the caps held drones at 8 and net guns at 2. **Candidate** = g_iter6 +
 above a bank of 1,000 the drone cap lifts to 40 and the net-gun cap to 6 (`C.RICH_BANK`).
-**Diagnostic** (vs g_iter6, RandomSoup1): 28 drones against 7 by r1000, won r3200. **Gate `gate30`**
-(mirror vs g_iter6) running.
+**Diagnostic** (vs g_iter6, RandomSoup1): 28 drones against 7 by r1000, won r3200. **Gate `gate30`:
+58-70, SPRT REJECT.** More drones and guns from the bank lose the mirror; `src/bot` back to g_iter6.
+Kind: refuted as built -- the bank is not short of drones; what it lacks is a producer that
+outlives the flood.
 
 Blocks 51-52 (g_iter6): **28/48** and **38/48**; g_iter6 1747 +- 62 after 144 games, rank 16 of 72,
-field score 73.2% (g_iter5 1739 +- 30). Blocks 53-54 running.
+field score 73.2% (g_iter5 1739 +- 30). Blocks 53-54 (`20260924-190807`, `-190813`): **16/48** and
+**18/48**; g_iter6 1720 +- 48 after 240 games, rank 17 of 72, field score 71.3%, level with g_iter5
+(1743 +- 30); the upper end (1768) is above g_iter5's rating, so no withdrawal.
 
 ## Block 50 and the unspent bank (2026-09-24)
 
