@@ -1159,6 +1159,17 @@ moment its school stands), stepping outward if caught on it. Deposits at a refin
 made from Chebyshev 4. Diagnostic: RandomSoup1 vs g_iter6 -- mining actions past r200 and moves in r200-400
 against the incumbent's own. Gate: the mirror (an economy change is priced there); no second arm.
 
+**Diagnostics** (on the VM: the driver's two cores were shared with a study and a compile took ten minutes).
+First run: newborn miners could no longer step off the ring (the only non-ring neighbours are circle tiles),
+sat on seats, the ring never sealed and the HQ drowned at r945 -- the circle is now a transit tile for a
+miner leaving the ring, and a miner caught on the circle with nothing outward open slides along it. Then,
+RandomSoup1 vs g_iter6 both ways and Islands2: the candidate's miners never stop (RandomSoup1 973 and 1,200
+mining actions by r900 in the two games; the incumbent's own side 1,375 and 1,296 -- no freeze in those
+seeds); on Islands2 the incumbent's miners froze at 258 from r200 to r600 as in the ladder loss while the
+candidate's went on to 349 and the candidate won (r2998). The five-miner start of the first RandomSoup1 game
+was the seed, not the rule: with the sides swapped the candidate built nine. Mechanism shown. Snapshot
+`src/cand32`; **`gate32`** (mirror vs g_iter6, seeded, six jobs) running.
+
 ## Iteration 31 -- gun perches (2026-09-24, PROMPTS 24-25)
 
 **Where the losses are** (blocks 50-56, 336 games, 159 losses; scores and map data only, so every
