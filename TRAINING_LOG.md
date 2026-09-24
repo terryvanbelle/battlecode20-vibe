@@ -714,6 +714,23 @@ builder parked on it, vaporators and a school built on it at height once it is d
 production and guns that survive the flood. It is days of work and needs the seal-by-r700 of the
 ring-1 design to be kept intact; it goes in HANDOFF as the plan.
 
+Plateau stage-one measurement (Iteration 12's code vs g_iter3, Prison and TwoLakeLand): the
+distance-2 helper tiles track water+2 (22 at r2000, 119 at r2500), the seats' dig sources are pits
+at -800 to -2300, and no feeder was ever built -- the pre-flood soup runs out at about 24
+landscapers. A plateau needs an economy first. `spar3` (g_iter3 vs arch_swarm with its ferry):
+**15/24**; the carriers get shot, so the ferry made the archetype weaker than the plain waves
+(12/24). Arm baseline: 15/24.
+
+## Iteration 17 -- the economy regime (2026-09-24)
+
+team4 at r1000: 33 miners, 44 vaporators; we mine about 30% of a map's soup with 8 miners and
+leave the rest. Candidate = g_iter3 with `MINERS_EARLY` 8, `MINERS_MAX` 20, `MINERS_TOTAL` 30,
+`MINER_REPLENISH` 20, `MINER_SOUP_RESERVE` 100, `VAPORATOR_BANK` 400, `VAPORATORS_MAX` 8,
+`DRONES_MAX` 20. The wall code is untouched; the question is whether a three-times economy buys
+more landscapers, vaporators and drones before r700 than the 5th miner of Iteration 15 cost.
+Diagnostic: Prison, Soup, TwoLakeLand vs g_iter3 -- soup and landscapers at r400/r700, ring at
+r2500. Gate `gate17` vs `REF=g_iter3`. Falsifier: below 53%.
+
 ## Ledger (closed directions)
 
 - **The late guns (Iteration 16, 2026-09-24)** -- a parked builder rebuilding net guns after the

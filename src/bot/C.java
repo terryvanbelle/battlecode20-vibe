@@ -8,22 +8,22 @@ public final class C {
     public static final int ARCHETYPE = 0;            // sparring-partner switch, set by tools/snapshot.sh
 
     // --- economy (Iteration 1: unmeasured starting values)
-    public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
-    public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
-    public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
-    public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
-    public static final int MINER_SOUP_RESERVE = 200; // after MINERS_EARLY the HQ builds a miner only above this bank
+    public static final int MINERS_EARLY = 8;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */         // miners the HQ builds before anything else is affordable
+    public static final int MINERS_MAX = 20;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */           // never more live miners than this (each costs a wall-ring build slot)
+    public static final int MINERS_TOTAL = 30;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */         // hard cap on miners ever built by the HQ
+    public static final int MINER_REPLENISH = 20;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */     // rounds between replacement miners after MINERS_MAX
+    public static final int MINER_SOUP_RESERVE = 100;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */ // after MINERS_EARLY the HQ builds a miner only above this bank
     public static final int SOUP_RETURN = 70;         // a miner heads home to deposit at this much carried soup
     public static final int SOUP_MEMORY = 12;         // remembered soup tiles per miner
     public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
-    public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
+    public static final int VAPORATOR_BANK = 400;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */     // a builder buys a vaporator when the bank exceeds this
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
-    public static final int VAPORATORS_MAX = 6;
+    public static final int VAPORATORS_MAX = 8;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
-    public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
+    public static final int DRONES_MAX = 20;   /* Iteration 17: the economy regime (team4 at r1000: 33 miners, 44 vaporators; we mine 30% of a map) */           // Iteration 2: drones fly over the flood and count at the tiebreak
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
