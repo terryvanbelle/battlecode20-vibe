@@ -8,7 +8,7 @@ public final class C {
     public static final int ARCHETYPE = 0;            // sparring-partner switch, set by tools/snapshot.sh
 
     // --- economy (Iteration 1: unmeasured starting values)
-    public static final int MINERS_EARLY = 5;   // Iteration 15: one more miner from round 1 (every earlier economy change was gated on the wall it buys)         // miners the HQ builds before anything else is affordable
+    public static final int MINERS_EARLY = 5;   // Iteration 15: one more miner from round 1         // miners the HQ builds before anything else is affordable
     public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
     public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
@@ -27,10 +27,6 @@ public final class C {
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
-    // Iteration 9: the late raid. After the flood only the enemy HQ shoots (one drone a round, r2 15, and it acts first);
-    // helpers on the corners at Chebyshev 2 can be lifted from a tile at r2 18, seats only at the price of a drone.
-    public static final int RAID_ROUND = 2300;        // late enough that every enemy net gun has drowned, early enough to stall their wall before r2500
-    public static final int RAID_LATEST = 2450;       // from here the drones also gamble on the seats in pairs (one is shot, one lifts)
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile

@@ -562,7 +562,7 @@ and Hourglass), so it is no swarm arm; a real one would need the raid drones' wa
 
 An economy parameter the mirror can price: `MINERS_EARLY` 4 -> 5. Diagnostic: Prison, Soup,
 TwoLakeLand vs g_iter4 -- soup and landscapers at r400/r700 above the incumbent's, ring at r2500.
-Gate `gate16` vs `REF=g_iter4`. Falsifier: below 53%.
+Gate `gate16` vs `REF=g_iter3` (g_iter4 withdrawn meanwhile). Falsifier: below 53%.
 
 ## Block 12 -- g_iter4 against the challenge pool (run block12, 2026-09-24)
 
@@ -635,8 +635,21 @@ Gate 10 relaunched at 22:25 with the parity split and the defenders on the 5-7 a
 diagnostics on FourLakeLand and MtDoom were single games decided by building placement luck: our
 school boxed in by 99-cliffs, the refinery and water stopped spawning at r400 on both runs).
 
+## Blocks 13-14 -- g_iter4 against the challenge pool (2026-09-24)
+
+Block 13 (24 games) 6/24; block 14 (48 games) **6/48 (12.5%)**. Cumulative for g_iter4: 46/228
+(20.2%, Wilson 95% 15.4-25.6%) against g_iter3's 28/108 (25.9%, 18.7-34.8%). **Withdrawn**: the
+rule (TRAINING_ALGORITHM 4.5) withdraws a build whose block's Wilson upper bound falls below the
+previous submission's point estimate, and 25.6 < 25.9. `src/g_iter3` is the submission and the
+incumbent again; the late raid goes to the ledger as provisional-then-withdrawn. Gate 16 was
+restarted against `REF=g_iter3` with Iteration 15 rebased on g_iter3 (04:05).
+
 ## Ledger (closed directions)
 
+- **The late drone raid (Iteration 9, 2026-09-23/24)** -- provisional at 135-105 over g_iter3,
+  withdrawn after 228 ladder games at 20.2% (upper bound 25.6%) against g_iter3's 25.9%. Kind:
+  priced below the gate on the ladder. It needs a center before r700, which the strong maps rarely
+  allow, and the drones it keeps alive were worth more hunting miners.
 - **The helpers' last stand (Iteration 14, 2026-09-24)** -- helpers stop self-raising from r2600.
   Gate 57-71 vs g_iter4. Kind: refuted. They drown at once and the incumbent's helpers were feeding
   the ring anyway between self-raises.
