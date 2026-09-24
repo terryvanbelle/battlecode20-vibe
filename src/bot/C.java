@@ -35,6 +35,11 @@ public final class C {
     public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
     public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
+    // Iteration 25: seats first. Reviewable ladder losses show 2-6 of 8 seats at r700 (median 4): a newborn's ring tile
+    // was raised by its seated neighbours' equalising and by the helpers' feeding before it arrived, and a tile 4 above
+    // the ground is unclimbable for good. Until SEATS_BY nobody raises an unoccupied ring tile, and a helper beside a
+    // free, climbable ring tile takes the seat.
+    public static final int SEATS_BY = 400;
     public static final int WALL_LEVEL_SLACK = 2;     // a seat raises a neighbouring ring tile when it is more than this below itself
     public static final int WALL_BORROW_MARGIN = 10;  // a seat with no outside dirt digs from a ring neighbour at least this much taller
 

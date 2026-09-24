@@ -1034,6 +1034,25 @@ benzyx raid, lost at r1628; CentralLake, 16 guards, lost at r2890. The perch dep
 block of dry, level tiles beside the HQ and on a mason and a builder both surviving to r650, and
 the ladder's maps rarely give all of that.
 
+## Iteration 25 -- seats first (2026-09-24)
+
+Evidence: the HQ's `@econ ring=` count at r700 (landscapers on the eight ring tiles) in the last
+fourteen reviewable g_iter3 loss replays: 6, 4, 4, 4, 4, 4, 3, 5, 3, 2, 6 (three games had no r700).
+The mirror diagnostics show the same: five seats on TwoLakeLand and Squares. The Squares seat
+trace (after plat13) gave the mechanism: the first five seats sit down at r100-150, equalise the
+ring tiles beside them (slack 2) and the helpers pour their loads onto the lowest exposed ring
+tile, which is exactly the unseated one; by r150 it stands 4 or more above the ground and the
+sixth newborn strikes it off (`@badseat`) and becomes a helper. Three open tiles beside the HQ
+for the rest of the game, and three fewer diggers on the ring.
+
+Candidate = g_iter3 with (1) until SEATS_BY (r400) a seat equalises, and a helper feeds, only ring
+tiles that hold one of our landscapers -- an unseated tile stays at ground level and climbable;
+(2) a helper whose post touches a free ring tile within 3 of its own elevation takes it as a seat
+(`@reseat`). Cost: the late tiles start rising at r200-400 instead of r100 and the school builds
+16 landscapers as before, so a reseat converts a helper into a seat. Falsifier: fewer than 8 seats
+at r700 in the diagnostics, or a gate below 50% (the change is aimed at the mirror as much as at
+the ladder: a seat is a digger for 2,500 rounds). Diagnostics: TwoLakeLand, Squares vs g_iter3.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.

@@ -111,6 +111,13 @@ public strictfp class Landscaper extends Robot {
             nav.setTarget(post); nav.step(); if (loc.equals(post)) Debug.log("@posted at=" + post); return;
         }
         if (!rc.isReady()) return;
+        // Iteration 25: a free ring tile next door that we can climb is a seat going spare -- take it
+        if (round % 3 == id % 3) {
+            int myE = rc.senseElevation(loc);
+            for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (!onRing(n) || !exposed(n) || !rc.canSenseLocation(n) || rc.senseFlooding(n) || rc.senseRobotAtLocation(n) != null) continue;
+                if (Math.abs(rc.senseElevation(n) - myE) > GameConstants.MAX_DIRT_DIFFERENCE) continue;
+                seat = n; helper = false; post = null; Debug.log("@reseat at=" + n); return; }
+        }
         // 1. keep our own tile above the water that is coming
         boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
@@ -119,6 +126,7 @@ public strictfp class Landscaper extends Robot {
             Direction bestD = null; int be = Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !exposed(n) || !rc.canDepositDirt(d)) continue;
                 RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && r.type.isBuilding()) continue;
+                if (round < C.SEATS_BY && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: never raise an unseated tile early
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); helperDeps++; return; }
         }
@@ -145,6 +153,7 @@ public strictfp class Landscaper extends Robot {
             int myE = rc.senseElevation(loc); Direction bestD = Direction.CENTER; int be = exposed(loc) ? myE : Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !rc.canSenseLocation(n) || !exposed(n)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
+                if (round < C.SEATS_BY && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: an unseated tile stays climbable
                 int e = rc.senseElevation(n); if (e < be - C.WALL_LEVEL_SLACK) { be = e; bestD = d; } }
             if (be != Integer.MAX_VALUE && rc.canDepositDirt(bestD)) { rc.depositDirt(bestD); deposits++; if (bestD != Direction.CENTER) equalised++; return; }
         }
