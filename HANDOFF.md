@@ -5,20 +5,20 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 
 ## State (2026-09-24, after the restart; read this block first)
 
-- **Incumbent and submission: `src/g_iter5`** (Iteration 25 "seats first", accepted 45-19). `src/bot` = g_iter5.
+- **Incumbent and submission: `src/g_iter6`** (Iteration 29b accepted 72-40 over g_iter5, 2026-09-24: 28b's refinery and
+  school outward of the Chebyshev-2 circle, the rush response, miners off the ring only once a refinery exists).
+  `src/bot` = g_iter6. Ladder blocks now run `BOT=g_iter6`.
 - **Ladder fixed (PROMPTS 14-16):** calibration done (calib1, 88/96; all 65 ladder bots met -- the list has 65, not
   220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
-  sequential Elo had put us at rank 4 after the easy calibration games. True grade: g_iter5 1684 +- 60, rank 16 of
-  71 players (15th of 65 bots plus our builds), level with g_iter3 (1693 +- 27). Withdrawal now compares ratings.
-- **Running on the VM:** block 49 (`tools/scrim.sh`, BOT=g_iter5, the band); `gate29b` (Iteration 29b = 28b + rush
-  response + miners off the ring only once a refinery exists, `src/bot`, mirror vs g_iter5) and its pre-registered second
-  arm `rush29d` (MAPSET=quick vs `src/arch_rush`; a finding if the candidate reaches 17/24 against g_iter5's 12/24). 28b is kept
-  provisionally (129-111 over 240); 28c was rejected 92-100. Post blocks with `tools/post-block.sh <run> g_iter5`; the
-  session loop is `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise,
-  carry on as before`.
+  sequential Elo had put us at rank 4 after the easy calibration games. g_iter5's final grade over 720 ladder games:
+  1745 +- 30, rank 16 of 71 players, field score 72.8%. Withdrawal now compares ratings.
+- **Running on the VM:** block 50 (`tools/scrim.sh`, BOT=g_iter6, the band; its first block) and `regr6` (g_iter6 then
+  g_iter5 vs `arch_swarm`, quick set, the archetype regression). Post blocks with `tools/post-block.sh <run> g_iter6`;
+  give a concurrent run its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses. The session loop is
+  `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise, carry on as before`.
 - **Open lines, in order:** (1) map-dead games: the idle miners were sealed behind the HQ by our own refinery
-  (Iteration 28 rejected 24-40; 28b provisional at 53.8%; 28c rejected). Next on Climb: six landscapers cannot reach the west seats (`@badseat`) because digging
-  beside the east seats turns row 39 into a cliff, so the west ring floods at r500 (`diag/cut-Climb.bc20`). (2) poortho's rush: Iteration 29 gating, with `src/arch_rush` as the sparring partner. (3) Candidates are judged on the band by rating, not raw win rate.
+  (Iteration 28 rejected 24-40; 28b folded into g_iter6). Next on Climb: six landscapers cannot reach the west seats (`@badseat`) because digging
+  beside the east seats turns row 39 into a cliff, so the west ring floods at r500 (`diag/cut-Climb.bc20`). (2) poortho's rush: g_iter6 answers it; `src/arch_rush` is the sparring partner (g_iter6 13/24, g_iter5 12/24). (3) Candidates are judged on the band by rating, not raw win rate.
 - Iterations 23 (home guard), 24 (the perch, `src/arch_perch`), 26 (miners first) and 27 closed 2026-09-24; TRAINING_LOG.md.
 
 ## State (2026-09-23, evening; superseded above where they differ)

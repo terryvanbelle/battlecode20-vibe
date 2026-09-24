@@ -1153,6 +1153,13 @@ never buried, won r257. `gate29` (the buggy candidate, 92-68 at the stop) is **v
 and `rush29d` run the fixed candidate under the same pre-registration (g_iter5's 12/24 baseline
 stands: neither side of it changed).
 
+**Gate `gate29b`: ACCEPT at 72-40 (64.3%)** after seven batches. Arm 2 (`rush29d`): 13/24 against
+g_iter5's 12/24, a null there: the rush response does not measurably beat `arch_rush`, and the
+mirror's gain comes from the stack as a whole (28b's outward buildings plus the rush response and
+the drop-off fix). Snapshot **`src/g_iter6`** (the VM's gated `src/bot`, checksums identical) is the
+incumbent and the submission; block 50 is its first ladder block, and `regr6` plays g_iter6 and
+g_iter5 against `arch_swarm` (quick set) as the archetype regression.
+
 ## Iteration 28b -- refinery and school off the Chebyshev-2 circle (2026-09-24)
 
 **Candidate** = g_iter5 + the builder chooses once, among the Chebyshev-2 tiles within 6 of the
@@ -1179,7 +1186,7 @@ wall-clock limit had run out and it built on the arc. Diagnostics: Climb refiner
 r1547; Toothpaste refinery r96 at distance 3, lost r2964 (28b's version won r3056 on the second
 try); Swirl distance 3, won r3044. **Gate `gate28c`** running.
 
-## Blocks 42-48 -- g_iter5 on the band (2026-09-24)
+## Blocks 42-49 -- g_iter5 on the band (2026-09-24)
 
 Block 42 (`20260924-145032`): **24/48**. Block 43 (`20260924-150252`): **30/48**. g_iter5 now
 1714 +- 40, rank 16 of 71, field score 70.7%.
@@ -1188,7 +1195,8 @@ Block 44 (`20260924-153525`): **29/48**. Block 45 (`20260924-160816`): **34/48**
 1738 +- 35, rank 16 of 71, field score 72.4%.
 
 Block 46 (`20260924-163339`): **19/48**. Block 47 (`20260924-164120`): **28/48**. Block 48
-(`20260924-170808`): **21/48**. g_iter5 now 1743 +- 31, rank 16 of 71, field score 72.7%.
+(`20260924-170808`): **21/48**. Block 49 (`20260924-175104`): **23/48**. g_iter5 final: 1745 +- 30,
+rank 16 of 71, field score 72.8%, 375/720 on the ladder.
 
 ## Block 41 -- g_iter5 on the band (run 20260924-143804-scrim-g_iter5, 2026-09-24)
 
