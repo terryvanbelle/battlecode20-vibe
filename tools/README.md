@@ -12,9 +12,9 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `gauntlet.sh` | BOT vs OPPONENTS on MAPS/MAPSET (`full`, `quick` 12, `screen` 4), both sides, parallel; writes `gauntlet/<run>/results.csv`, `summary.txt`, `losses/`; `CELLS=file` plays given cells; `CLASSES=build/x` compiles privately; refuses external opponents unless `SCRIM=1` |
 | `mirror.sh` (BOT, REF, N, BATCH, W0/L0) | the accept gate: candidate vs incumbent, random map and side per game, batches of 16, `sprt.py` after each |
 | `sprt.py <wins> <losses>` | sequential probability ratio test, H0 p=0.50 vs H1 p=0.58: ACCEPT / REJECT / CONTINUE |
-| `scrim.sh` (BOT, N, POOL, SEED) | the only way to play an external bot: random map and side, rotating opponents from the Elo pool |
+| `scrim.sh` (BOT, N, POOL, SEED) | the only way to play an external bot: random map and side, rotating opponents from the rating band around `BOT` (default); `POOLSIZE=0 EXPLORE=n` is a calibration block of never-played bots; `CHALLENGE=1`, `POOLMODE=above`/`established` select the old pools |
 | `scrim-record.py <run> --label <build>` | appends a block to `progress/games.csv` |
-| `elo.py [--challenge N] [--pool N --explore K] [--build B] [--established N]` | the Elo ladder from our scrimmages only: `progress/ELO.md`, `elo.png`; `--challenge N` = the climb pool (bots that beat us at least half the time, fewest games first), which `scrim.sh` uses by default |
+| `elo.py [--band N --as B] [--explore K] [--build B] [--challenge N] [--pool N] [--established N]` | the ladder from our scrimmages only, by the batch Bradley-Terry fit of `elolib.py` (each build its own player): `progress/ELO.md`, `elo.png`; `--build B` prints a build's grade (record, rating +- 95%, rank, field score); `--band N` = the N rated bots nearest build B's rating, the pool `scrim.sh` uses by default |
 | `snapshot.sh name [archetype]` | freeze `src/bot` as `src/<name>` |
 | `replay-dump.sh replay [flags]` | replay -> text: `--every`, `--from/--to`, `--robot`, `--map/--map-at`, `--logs REGEX --logs-team A`, `--metrics`, `--bytecode`, `--navstats`, `--threat A` |
 | `bench-compile.sh` | compile every benchmark repo without displaying source; writes `manifest.tsv` |
@@ -23,7 +23,7 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `vm.sh`, `vm-sync.sh`, `vm-run.sh <log> '<cmd>'`, `vm-tail.sh`, `vm-collect.sh <run>`, `vm-stop.sh` | the VM handles |
 | `unit-tests.sh` | compile and run `test/bot/*Test.java` and `tools/test_tools.py` |
 | `mapinfo/MapInfo.java` | the map corpus table `tools/mapdata.csv` |
-| `post-block.sh <run> <label>` | after a scrimmage block: collect, record, Elo, roster, study, correlate, onset (one command) |
+| `post-block.sh <run> <label>` | after a scrimmage block: collect, record, ratings, roster, study, correlate, onset (one command) |
 | `scrim-study.sh <run>` | the block study: `--metrics` and `--navstats` for every replay -> `study.tsv`, `nav.tsv`; `scrim-study.py` prints medians |
 | `correlate.py <run> [--round N]` | raw and within-opponent correlation of each metric with the result |
 | `onset.py <run> [--md --plot]` | per metric, the first round at which its lead correlates with the result |

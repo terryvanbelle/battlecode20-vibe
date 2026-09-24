@@ -85,3 +85,7 @@ You can go ahead
 ## 17. 2026-09-24
 
 Yeah, that looks a lot saner now
+
+## 18. 2026-09-24
+
+Make sure that TRAINING_ALGORITHM and the rest of the documents are updated to reflect this

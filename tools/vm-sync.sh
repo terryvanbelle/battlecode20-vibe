@@ -16,7 +16,7 @@ if [ "${FULL:-0}" = 1 ] || ! gssh "test -f ~/$REMOTE_REPO/engine/engine.jar"; th
   echo "pushing engine ..."; tar -C "$REPO" -czf - engine | gssh "tar -C ~/$REMOTE_REPO -xzf -"
 fi
 echo "pushing repo tree ..."
-# progress/ travels too: tools/scrim.sh picks its challenge pool with tools/elo.py, which reads
+# progress/ travels too: tools/scrim.sh picks its pool with tools/elo.py, which reads
 # progress/games.csv, and silently falls back to the fixed 8-bot tools/roster.txt when that file has
 # fewer than 40 rows. It was never synced, so every ladder block since 2026-09-17 took the fallback
 # and the "challenge the bots just above us" rule never actually ran on the VM (found 2026-09-20).

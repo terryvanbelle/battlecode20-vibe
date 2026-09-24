@@ -33,7 +33,7 @@ maps an opponent name `<owner>.<package>` to (package, classdir, repo, commit).
 | locked | < 20% | score only |
 | target | 20-50% | replays may be reviewed; the primary loss source |
 | peer | 50-90% | regression check |
-| solved | > 90% twice | leaves the challenge pool, stays rated |
+| solved | > 90% twice | stays rated; far below us, so the band pool rarely draws it |
 
 ## Roster
 

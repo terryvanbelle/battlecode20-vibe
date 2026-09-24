@@ -137,4 +137,11 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 
 ## Method
 
+- **Rate the ladder with a batch fit, each build its own player.** A sequential K=32 Elo with one
+  rating shared by every build depends on play order: 96 calibration games against unplaced bots
+  (88 wins) lifted us from rank 65 to rank 4 of 66, above bots 104-9 against us. The batch
+  Bradley-Terry fit of the same 2009 games puts g_iter5 at rank 16 of 71 (2026-09-24). A pool
+  drawn only from bots above us had also drifted to bots that beat us 70-99%, where a 48-game block
+  moves on noise: draw from the band on both sides.
+
 See `TRAINING_ALGORITHM.md`; the portable account of why is `METHOD.md` in battlecode21-vibe.

@@ -3,20 +3,16 @@
 # the map and the side are drawn at random for every game, opponents rotate (never the same
 # one twice in a row, each at most ceil(N/pool) times per block). This is the ONLY way an
 # external bot may be played; gauntlet.sh refuses external opponents unless SCRIM=1 (set here).
-#   BOT=bot N=24 tools/scrim.sh                 # opponents: 6 rated bots just above us + 2 least-known (tools/roster.txt until 40 games exist)
+#   BOT=g_iter5 N=48 tools/scrim.sh             # the band: 8 rated bots nearest g_iter5's rating, either side
+#   BOT=g_iter5 POOLSIZE=0 EXPLORE=48 N=96 tools/scrim.sh   # calibration: 48 never-played bots, two games each
 #   POOL="a.b c.d" N=12 SEED=7 tools/scrim.sh   # explicit pool; SEED for a reproducible draw
 # Maps: tools/bc20-maps.txt (the released corpus). Results: gauntlet/<run>-scrim-<BOT>/ ;
-# record them with tools/scrim-record.py <run-dir> --label <build> (appends progress/scrims.csv).
+# record them with tools/post-block.sh <run> <build> (appends progress/games.csv, refits the ladder).
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BOT="${BOT:-bot}"; N="${N:-24}"; MAXJOBS="${MAXJOBS:-6}"
-# Challenge pool: the rated bots nearest above us (tools/elo.py --pool --explore).
-# 2026-09-20 (PROMPTS 67): 4 rated + 4 never-played, to widen a thin field.
-# 2026-09-21 (PROMPTS 74): exploration OFF -- 8 rated, 0 new -- "hold off on adding any new opponents to
-# the ladder until our standing improves". Four blocks of exploration took the rated field from 9 bots to
-# 21 and our rank from 4th to 18th, which is the ladder becoming accurate rather than the bot getting
-# worse, but it also means consecutive blocks no longer share a field and their win rates cannot be
-# chained. A fixed pool fixes both. Set EXPLORE=n to sample new bots again.
+# The pool (2026-09-24, PROMPTS 8-17): ratings are the batch Bradley-Terry fit of tools/elolib.py, and the
+# pool is centred on BOT's own rating (a candidate with no games yet uses the build of our latest game).
 # tools/roster.txt is used until 40 games exist.
 # Refuse rather than fall back silently. The roster fallback is only legitimate before the ladder has
 # 40 games; a MISSING games.csv means the history did not reach this machine, and quietly substituting a

@@ -15,7 +15,7 @@ themselves retired. `RULES.md` is the game, `TRAINING_LOG.md` is the record, `ME
    beat that bot at least 20% of the time. Until then only its score is visible. The tooling
    enforces this and fails closed.
 4. External bots are played only as **scrimmages**: random map from the released corpus, random
-   side, rotating opponents, challenges aimed at the bots rated just above us. Our own snapshots
+   side, rotating opponents drawn from the rating band around the build in play. Our own snapshots
    and archetypes may be played any way we like.
 5. The ladder is built from our games only; external bots never play each other. Ratings are a
    batch Bradley-Terry fit on the Elo scale with each of our builds rated separately (`tools/elolib.py`).
@@ -34,8 +34,19 @@ ourselves can measure that directly, so the loop keeps three instruments and nev
 | **scrimmage ladder**: rated blocks against the external field, contest rules | are we actually stronger; what the field punishes | *why*, for bots below the 20% line |
 
 The gate decides; the ladder is the consequence, not a test. A real team cannot scrimmage
-without submitting, so every accepted build is submitted (a scrimmage block) and its rating moves
-with it. A build whose block clearly drops us is withdrawn.
+without submitting, so every accepted build is submitted (a scrimmage block) and earns its own
+rating. A build rated clearly below the previous submission is withdrawn (section 4.5).
+
+**The ladder grade** (owner approved 2026-09-24, PROMPTS 8-17). Every game of ours goes into one
+batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`): all games at once, so play order does
+not matter, and each build is its own player, so one build's games never move another's rating.
+A build's grade is three numbers from `tools/elo.py --build B`: its rating with a 95% interval, its
+rank among the ladder bots and our builds, and its **field score**, the expected score against
+every ladder bot one game each. Raw win rates are never compared across builds, because each
+build met a different pool. Blocks draw from the **band**: the 8 rated bots nearest the playing
+build's rating on either side (`tools/scrim.sh` default), where results are informative both
+ways. A bot never played is placed by a calibration block, two games each
+(`POOLSIZE=0 EXPLORE=n N=2n`); all 65 ladder bots have been placed.
 
 ## 2. Phase 0: instruments before strategy
 
@@ -167,7 +178,8 @@ the ladder; reallocations of a resource mostly do not.
   every ten accepts.
 - `BENCHMARK.md`: the external field, tiers per build; the tier governs replay access.
 - `HANDOFF.md`: the state of the loop and the gotchas that cost time.
-- `progress/`: `ELO.md`, `elo.png`, `ONSET.md`, `onset-ladder.png`, `games.csv`, `METRICS.md`.
+- `progress/`: `ELO.md` (ratings and each build's grade), `elo.png` (every rating with its 95%
+  interval), `ONSET.md`, `onset-ladder.png`, `games.csv` (every scrimmage), `METRICS.md`.
 - `PROMPTS.md`: every user prompt, verbatim.
 
 ## 7. When the loop stalls
