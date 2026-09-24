@@ -1117,6 +1117,25 @@ binding constraint is income: five miners sit idle with twelve soup tiles in mem
 map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
 of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
 
+## Iteration 28b -- refinery and school off the Chebyshev-2 circle (2026-09-24)
+
+**Candidate** = g_iter5 + the builder chooses once, among the Chebyshev-2 tiles within 6 of the
+HQ's height, the stand whose buildable outward neighbour (Chebyshev 3, within 3 of the stand's
+height, as the engine requires) is highest, walks there for up to 40 rounds, and builds the
+refinery and school outward; the circle itself only when nothing outward is free.
+
+**Diagnostics** (vs g_iter5): Swirl unchanged from g_iter5's own choice (refinery (1,37), school
+(0,37), both at distance 3; won r3038). Climb: stand (6,38), refinery (7,37) off the arc, miners
+free; the school drifted west to (1,37) and flooded; HQ alive to r1547 instead of r931, 1929 digs
+by then instead of 487 at r931. Three versions were needed: the nearest stand (west, height 2,
+flooded), a stand scored by unreachable 99-high wall tiles, then the height limits above.
+**Gate `gate28b`** running.
+
+## Blocks 42-43 -- g_iter5 on the band (2026-09-24)
+
+Block 42 (`20260924-145032`): **24/48**. Block 43 (`20260924-150252`): **30/48**. g_iter5 now
+1714 +- 40, rank 16 of 71, field score 70.7%. Block 44 running.
+
 ## Block 41 -- g_iter5 on the band (run 20260924-143804-scrim-g_iter5, 2026-09-24)
 
 48 games: **34/48 (71%)**. g_iter5 now 1705 +- 47, rank 16 of 71, field score 70.1%. Block 42 running.
@@ -1147,7 +1166,14 @@ changes; on an edge HQ the arc's inner tiles are refused.
 The game still ends at r931: the three west ring tiles (height 2) flood at r500, and the HQ
 (height 4) drowns when the water reaches 4. Only two landscapers ever seat; six pick west seats
 they cannot reach (`@badseat`), because digging beside the east seats turns row 39 into a cliff.
-That is the next defect on this map. **Gate `gate28`** (mirror vs g_iter5, SPRT) running on the VM.
+That is the next defect on this map.
+
+**Gate `gate28`: 24-40, SPRT REJECT.** Losses spread over 20 maps; Swirl 0/5, TheHighGround 0/3,
+Climb 0/3. Diagnostic on Swirl (`diag/cut-Swirl.bc20`): corner HQ, three ring tiles; the group test
+refused g_iter5's distance-3 sites on rough ground and the school went onto the Chebyshev-2 arc
+(1,38), a helper post; our ring reached half of g_iter5's height all game (r1500: 316 vs 731).
+Kind: refuted as built -- a local group test is the wrong filter; the arc itself is the thing to
+keep free.
 
 ## Block 40 -- g_iter5 on the band (run 20260924-140716-scrim-g_iter5, 2026-09-24)
 

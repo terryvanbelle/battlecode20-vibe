@@ -10,12 +10,12 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
   sequential Elo had put us at rank 4 after the easy calibration games. True grade: g_iter5 1684 +- 60, rank 16 of
   71 players (15th of 65 bots plus our builds), level with g_iter3 (1693 +- 27). Withdrawal now compares ratings.
-- **Running on the VM:** block 42 (`tools/scrim.sh`, BOT=g_iter5, N=48, the band) and `gate28` (Iteration 28, the
-  path-cut builder rule in `src/bot`, mirror vs g_iter5). Post blocks with `tools/post-block.sh <run> g_iter5`, then
+- **Running on the VM:** block 44 (`tools/scrim.sh`, BOT=g_iter5, N=48, the band) and `gate28b` (Iteration 28b in
+  `src/bot`: refinery and school outward of the Chebyshev-2 circle; mirror vs g_iter5). Iteration 28 was rejected 24-40. Post blocks with `tools/post-block.sh <run> g_iter5`, then
   keep running band blocks; the session loop is `/loop 30m task
   check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise, carry on as before`.
 - **Open lines, in order:** (1) map-dead games: the idle miners were sealed behind the HQ by our own refinery
-  (Iteration 28, gating). Next on Climb: six landscapers cannot reach the west seats (`@badseat`) because digging
+  (Iteration 28 rejected 24-40; 28b gating). Next on Climb: six landscapers cannot reach the west seats (`@badseat`) because digging
   beside the east seats turns row 39 into a cliff, so the west ring floods at r500 (`diag/cut-Climb.bc20`). (2) poortho's rush: school before refinery so the first landscapers dig the HQ
   out by r80-90. (3) Candidates are judged on the band by rating, not raw win rate.
 - Iterations 23 (home guard), 24 (the perch, `src/arch_perch`), 26 (miners first) and 27 closed 2026-09-24; TRAINING_LOG.md.

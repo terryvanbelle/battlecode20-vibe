@@ -64,6 +64,27 @@ public strictfp class Miner extends Robot {
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
         int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
+        boolean outward = dist == C.BUILD_DIST;
+        if (outward) {
+            // Iteration 28b: choose once, among all circle tiles with an outward site, the one whose outward site is
+            // highest (then nearest), and walk there for up to 40 rounds before building where we stand.
+            if (stand == null) {
+                int bd = 1 << 30;
+                for (int dx = -dist; dx <= dist; dx++) for (int dy = -dist; dy <= dist; dy++) {
+                    if (Math.max(Math.abs(dx), Math.abs(dy)) != dist) continue;
+                    MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+                    if (!rc.onTheMap(t)) continue;
+                    // reachable: within two climbable steps of the HQ's height (a 99-high wall tile is not a stand)
+                    if (rc.canSenseLocation(t) && rc.canSenseLocation(home) && Math.abs(rc.senseElevation(t) - rc.senseElevation(home)) > 6) continue;
+                    int e = outwardElev(t, home, dist); if (e == Integer.MIN_VALUE) continue;
+                    int d = loc.distanceSquaredTo(t) - 100 * Math.min(e, 30);
+                    if (d < bd) { bd = d; stand = t; }
+                }
+                standSince = round;
+                if (stand != null) Debug.log("@stand " + stand);
+            }
+            if (stand != null && !loc.equals(stand) && round - standSince < 40) { nav.setTarget(stand); nav.step(); return true; }
+        }
         if (Nav.cheb(loc, home) != dist) {
             // walk to the nearest tile at that distance
             MapLocation best = null; int bd = 1 << 30;
@@ -77,10 +98,14 @@ public strictfp class Miner extends Robot {
             nav.setTarget(best); nav.step(); return true;
         }
         // on the circle: build on an adjacent tile that is also on the circle (never inward: the ring must stay free)
+        // Iteration 28b: the refinery and school go outward of the BUILD_DIST circle when they can. That circle is the
+        // miners' only way round the ring and the landscapers' helper posts; on an edge HQ it is an arc, and a building
+        // on it sealed five miners behind the HQ on Climb (Iteration 28). The circle is used only when nothing outward is free.
         Direction bestD = null; int bs = 1 << 30;
+        for (int pass = 0; pass < 2 && bestD == null; pass++)
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n) || cutsPath(n)) continue;
+            if (Nav.cheb(n, home) < dist + (pass == 0 && dist == C.BUILD_DIST ? 1 : 0) || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
@@ -95,19 +120,20 @@ public strictfp class Miner extends Robot {
         return true;
     }
 
-    /** Would a building on n split the walkable tiles around it (Nav.groups)? Walkable: on the map, sensed, not
-     *  the HQ, not a ring tile, not a building, and within 3 of the site's height (a cliff of unclimbable tiles
-     *  beside the site is not a path, and would otherwise count as a group of its own). */
-    private boolean cutsPath(MapLocation n) throws GameActionException {
-        boolean[] open = new boolean[8]; int[] elev = new int[8]; int e0 = rc.senseElevation(n);
+    private MapLocation stand = null; private int standSince = 0;   // Iteration 28b: where the builder builds the refinery and school
+    /** The highest outward neighbour of l that a builder standing on l could build on (the engine refuses a spawn more
+     *  than 3 from the builder's height); unsensed counts 0, flooded is skipped; MIN_VALUE if there is none. */
+    private int outwardElev(MapLocation l, MapLocation home, int dist) {
+        int best = Integer.MIN_VALUE, e0 = Integer.MIN_VALUE;
+        try { if (rc.canSenseLocation(l)) e0 = rc.senseElevation(l); } catch (GameActionException ex) { }
         for (int i = 8; --i >= 0;) {
-            MapLocation t = n.add(DIRS[i]);
-            if (!rc.canSenseLocation(t) || onRing(t) || t.equals(MapState.home)) continue;
-            RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) continue;
-            int e = rc.senseElevation(t); if (Math.abs(e - e0) > 3) continue;
-            open[i] = true; elev[i] = e;
+            MapLocation n = l.add(DIRS[i]); if (Nav.cheb(n, home) <= dist || !rc.onTheMap(n)) continue;
+            int e = 0;
+            try { if (rc.canSenseLocation(n)) { if (rc.senseFlooding(n)) continue; e = rc.senseElevation(n); } } catch (GameActionException ex) { continue; }
+            if (e0 != Integer.MIN_VALUE && Math.abs(e - e0) > 3) continue;
+            if (e > best) best = e;
         }
-        return Nav.groups(open, elev) > 1;
+        return best;
     }
 
     // ---------------------------------------------------------------- worker
