@@ -7,7 +7,8 @@ Sources, newest first:
                         `teamA`/`teamB` carry `us:<build>`, `winner` is A or B.
   progress/history.csv  the older gauntlet era: per-opponent, per-map wins/total.
 
-The tier uses the MOST RECENT build's record against that opponent, because tier
+The tier uses the most recent SUBMISSION's record against that opponent (the latest build with at
+least 200 recorded games: a candidate's 96-game ladder arm locked laurenschneider on 0 of 6, 2026-09-24), because tier
 governs whether its replays may be read and an old rate would unlock the wrong ones.
 Rewritten 2026-09-20: it read a `win_pct` column that history.csv has never had, so
 it raised KeyError and the table had not been regenerated since `g_iter4`.
@@ -52,16 +53,25 @@ def per_build():
         out[opp] = OrderedDict(sorted(out[opp].items(), key=lambda kv: rank.get(kv[0], 0)))
     return out
 
+SUBMISSION_GAMES = 200
+def submissions(hist):
+    """The builds with at least SUBMISSION_GAMES games in all: a candidate's short ladder arm never re-tiers the field."""
+    totals = defaultdict(int)
+    for opp in hist:
+        for b, (w, g) in hist[opp].items(): totals[b] += g
+    return {b for b, g in totals.items() if g >= SUBMISSION_GAMES}
+
 def main():
     rows = list(csv.DictReader(open(MANIFEST), delimiter="\t"))
-    hist = per_build()
+    hist = per_build(); subs = submissions(hist)
     lines = ["| opponent | repo (commit) | last win % | games | tier | history |",
              "|---|---|---|---|---|---|"]
     for r in sorted(rows, key=lambda r: (r["repo"], r["name"])):
         h = list(hist.get(r["name"], {}).items())
-        last = h[-1][1] if h else None
+        hs = [kv for kv in h if kv[0] in subs] or h   # the tier: the latest submission's record (any build if none qualifies)
+        last = hs[-1][1] if hs else None
         pct = 100.0 * last[0] / last[1] if last and last[1] else None
-        prev = h[-2][1] if len(h) >= 2 else None
+        prev = hs[-2][1] if len(hs) >= 2 else None
         prev_solved = bool(prev and prev[1] and 100.0 * prev[0] / prev[1] > 90)
         series = " ".join(f"{100.0*w/g:.0f}" for _, (w, g) in h if g)
         lines.append(f"| `{r['name']}` | {r['repo']} ({r['commit'][:7]}) | "
