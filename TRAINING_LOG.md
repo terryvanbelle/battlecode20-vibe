@@ -766,6 +766,10 @@ plateau; the roles need a rewrite around tiles a landscaper can hold: pick the n
 can reach and keep dry, at distance 2 or 3, and feed inward. That rewrite is the plateau's stage 2
 and the first job of the next session. `src/bot` back to g_iter3.
 
+## Block 17 -- g_iter3 against the challenge pool (run block17, 2026-09-24)
+
+48 games: **11/48 (23%)**; cumulative for g_iter3 55/252 (21.8%).
+
 ## Ledger (closed directions)
 
 - **The economy regime (Iteration 17, 2026-09-24)** -- 8-24 miners, early vaporators, 20 drones on
