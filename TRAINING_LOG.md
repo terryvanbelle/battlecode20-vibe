@@ -1084,6 +1084,18 @@ seats and the wall on random maps by more than the extra soup buys; the two chos
 had said +5% and +6% against g_iter3, not against g_iter5. Kind: refuted. The code was g_iter5
 with MINERS_EARLY 8 and is not kept.
 
+## Where the early losses go (2026-09-24, study tables of the g_iter3 and g_iter5 blocks)
+
+Thirty-nine reviewable losses end before r1000, in two shapes. (1) **poortho's rush**, 18 games:
+our HQ carries 3-23 dirt at r100 with 0-3 landscapers of ours alive and 2-5 of theirs beside it,
+and dies at r119-250; no drone is involved. Our school comes at r61-75 after the refinery, the
+first landscaper at r85-100, and four rushers bury faster than one seat digs. (2) **map-dead
+games**, 13: on Climb, Hills and GSF our landscaper count is 0-3 through r500 whoever the
+opponent is, and the HQ drowns at r931-932 when the water reaches its elevation. Those maps are
+0/14, 0/17 and 0/15 on the ladder, with TheHighGround 0/20, MtDoom 0/24 and Prison 0/24 beside
+them. Candidates in order: the map-dead games first (a school that is never built or never
+spawns is a defect, and it is worth three maps), then the rush (school before refinery).
+
 ## Block 37 -- g_iter5 against the challenge pool (run block37, 2026-09-24)
 
 48 games: **7/48 (14.6%)**; the first block of the new incumbent (g_iter3's single blocks ranged
