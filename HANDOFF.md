@@ -11,6 +11,13 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - Iteration 6, the citadel (ring at Chebyshev 2, buildings sealed inside, drone ferry and raid), is closed after ten
   24-game sweeps at 4-9/24 against g_iter2 (TRAINING_LOG ledger); its code is `src/arch_citadel`, its tools
   `tools/citadel-diag.sh` and `replay-dump.sh --ringd`.
+- **Current candidate (2026-09-24, under `gate24`): Iteration 24, the perch** -- `src/bot` = g_iter3 + a helper (the mason)
+  that raises three Chebyshev-3 tiles to 32 before the flood, a miner that climbs onto one and builds a fulfillment
+  center and a vaporator on the others (they outlive the flood to r2200), post-flood soup spent on up to 16 drones that
+  guard fixed slots at Chebyshev 6 and lift anything landing near the HQ. Why: 274 of 616 ladder losses end at
+  r1000-2000 in timed drone raids and g_iter3 built a center in 18 of 248 ladder games. Verdict rule for this one: the
+  mirror must not lose clearly (it prices only the cost), the ladder block decides. Everything measured so far is in
+  TRAINING_LOG.md "Iteration 24"; the diagnostic script is the `diag24` pattern (run-dev on TwoLakeLand and Prison).
 - **Incumbent and submission: `src/g_iter3`** (Iteration 8, accepted 39-9 over g_iter2). `src/g_iter4` (the late raid,
   provisional) was withdrawn on 2026-09-24 after 228 ladder games at 20% against g_iter3's 26%.
 - Plateau, final state 2026-09-24: seven sweeps of the slot revision at 2-10/24. The Squares seat trace (TRAINING_LOG.md

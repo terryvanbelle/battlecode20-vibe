@@ -16,6 +16,16 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   Real maps promise HQ elevation 2-5, i.e. r256-r1210.
 - **Robots act in spawn order, from a snapshot taken at the start of the round**
   (`ObjectInfo.eachDynamicBodyByExecOrder`): a robot built this round acts next round.
+- **A robot only ever reads the previous round's block** (`readBlock` = `getBlock(round-1)`), and each role reads on
+  one residue mod 3. A message posted once is seen by a third of the units alive that round and by nobody born later.
+  Anything that must reach every unit is re-posted every 10 rounds and newborns scan 12-20 blocks back (`readBack`).
+  Found 2026-09-24 when no helper ever took the perch post (Iteration 24).
+- **Units parked or wandering near the base cost the wall.** Helpers dig only tiles at Chebyshev 3 that hold no friend;
+  guards flying between random points crossed them (Prison: 16 guards, ring 1303 vs 1601; fixed slots at Chebyshev 6:
+  1585 vs 1601), and the incumbent's own vaporators and net guns at distance 3 take the same tiles (builder parked:
+  1823 vs 1595). Buildings cannot be raised afterwards: dirt on a building buries it, so ground is raised first.
+- **A raised tile is a magnet**: miners fleeing the flood climb to the highest dry tile in reach and never leave, and
+  a landscaper depositing under a unit lifts it. Reserved tiles need both an exclusion in `climb()` and a step-off.
 - **Blockchain timing**: messages submitted during round r are minted at the end of r (top 7 by
   fee, ties by a deterministic random id) and readable with `getBlock(r)` from round r+1
   (`getBlock` requires `round < currentRound`). Losers stay queued; the fee is never refunded.
