@@ -766,6 +766,20 @@ plateau; the roles need a rewrite around tiles a landscaper can hold: pick the n
 can reach and keep dry, at distance 2 or 3, and feed inward. That rewrite is the plateau's stage 2
 and the first job of the next session. `src/bot` back to g_iter3.
 
+## Iteration 18 -- the plateau, stage 1: tile-holding roles (2026-09-24)
+
+`Landscaper.java` rewritten (DESIGN.md "The plateau"): every landscaper holds the nearest free tile
+at Chebyshev 1-3 it can reach and keep dry (ring first; a shallow flooded tile is resurfaced from
+next door), keeps its own tile above the water, feeds inward (seat: lowest of self and ring
+neighbours; tier 2: lowest adjacent exposed ring tile; tier 3: lowest adjacent tier-2 tile), digs
+outward and under a friend only from that tile's margin, and attacks only with no tile left (and
+comes back when one frees). Economy and everything else as g_iter3; `LANDSCAPERS_MAX` 48, the third
+tier at the helpers' bank. Diagnostics vs g_iter3: **Prison won, ring 1535 vs 1330 (+15%)** with 43
+landscapers at r1000 and tier-2 tiles at 270 where tier 3 fed them; **Soup won, 1449 vs 1322
+(+10%)** with 13 landscapers (4 seats, 9 tier 2, no deaths). Cost seen: seat churn on Prison (776
+re-holds, 276 struck tiles) and 27 deaths by r2000. Gate `gate18` vs `REF=g_iter3`, launched 09:35.
+Falsifier: below 53%.
+
 ## Block 17 -- g_iter3 against the challenge pool (run block17, 2026-09-24)
 
 48 games: **11/48 (23%)**; cumulative for g_iter3 55/252 (21.8%).
