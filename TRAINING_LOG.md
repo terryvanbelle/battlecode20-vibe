@@ -867,6 +867,14 @@ held, a seat has no free tile to dig from -- it may dig under a friend only from
 feeders never build -- so the ring starves while the incumbent's eight helpers leave eight dig
 sources. Fix: tier 2 is the eight corner and midpoint tiles only. Sweep `plat11`.
 
+Sweep `plat11` (tier 2 restricted to corners and midpoints): **5/24**, the worst yet -- Squares A
+1114 vs 2136 at equal bodies, Prison 793 vs 1416 with 42 landscapers and 136 attackers. With the
+same structure as the incumbent (8 seats, 8 helpers) the rewritten roles lose by 40%, so the gap
+is in the rewrite's wall mechanics, not in the tiers; finding it needs a turn-by-turn comparison
+of one seat under each implementation, which is the next session's first plateau task if the line
+is reopened. Four sweeps of the slot revision at 5-10/24; **the plateau stays in the ledger** and
+`src/arch_plateau` holds the code and this table.
+
 ## Block 26 -- g_iter3 against the challenge pool (run block26, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 150/684 (21.9%).

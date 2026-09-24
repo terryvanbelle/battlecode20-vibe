@@ -13,6 +13,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   `tools/citadel-diag.sh` and `replay-dump.sh --ringd`.
 - **Incumbent and submission: `src/g_iter3`** (Iteration 8, accepted 39-9 over g_iter2). `src/g_iter4` (the late raid,
   provisional) was withdrawn on 2026-09-24 after 228 ladder games at 20% against g_iter3's 26%.
+- Plateau claims were revised twice more after the gates (arrival-settled, then deterministic slots posted by the school
+  and read from the last two blocks at birth): sweeps `plat7`-`plat11` 8, 10, 9, 9, 5 of 24 vs g_iter3 with per-game
+  tables (slots, churn, deaths, ring minima) in TRAINING_LOG.md. At the incumbent's own structure the rewritten roles
+  lose by 40%: the wall mechanics of `arch_plateau/Landscaper.java` are worse than g_iter3's `wall()`/`help()`, and a
+  turn-by-turn comparison of one seat under each is the first job if the line is reopened.
 - Plateau stage 1 (tile-holding roles) gated three times: 42-54, 25-39, 15-33 vs g_iter3 (ledger). Code in
   `src/arch_plateau`. The next attempt needs a claim scheme with no re-picks and tiers opened by the water level.
 - `src/bot` is an exact copy of g_iter3. Iterations 10-16 (2026-09-23/24) were all rejected, inconclusive below 53%, or
