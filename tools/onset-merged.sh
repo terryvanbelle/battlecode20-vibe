@@ -5,6 +5,10 @@
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILD="${1:?build label, e.g. g_iter6}"
+# only a submission (>= 200 recorded games, the roster's rule) owns progress/ONSET-merged.md: a candidate's two-block
+# ladder arm once overwrote the incumbent's 786-game table
+N=$(awk -F, -v b="us:$BUILD" 'NR>1 && ($3==b || $4==b)' "$REPO/progress/games.csv" | wc -l)
+if [ "$N" -lt 200 ]; then echo "onset-merged: $BUILD has $N games (< 200): not a submission, table unchanged"; exit 0; fi
 TMP="$(mktemp -d)"; trap 'rm -rf "$TMP"' EXIT
 python3 - "$REPO" "$BUILD" "$TMP/study.tsv" <<'PY'
 import csv, glob, sys, os
