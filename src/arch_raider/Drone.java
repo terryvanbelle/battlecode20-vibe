@@ -30,6 +30,7 @@ public strictfp class Drone extends Robot {
             MapLocation ehq = MapState.enemyHQ != null ? MapState.enemyHQ : MapState.enemyHQGuess();
             if (ehq == null) { holdingFriend = false; return; }
             if (!assembled(ehq)) { goRally(ehq); return; }
+            raiding = true;   // arch_raider: a charging carrier does not flee the HQ (the flee rule above fires at r2 15 otherwise and it oscillates at the edge of range)
             Direction bestD = null; int bd = 1 << 30;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, ehq) > 2 || !rc.canDropUnit(d) || rc.senseFlooding(n)) continue; int dd = n.distanceSquaredTo(ehq); if (dd < bd) { bd = dd; bestD = d; } }
             if (bestD != null) { rc.dropUnit(bestD); drops++; holdingFriend = false; Debug.log("@deliver at=" + loc.add(bestD)); return; }

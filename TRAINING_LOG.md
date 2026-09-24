@@ -952,6 +952,20 @@ from r700 (a single point of failure worth its own iteration: 14 of 258 ladder g
 soup at r500 and nothing built). Mirror on TwoLakeLand with the early center: 2 drones, ring 1726
 vs 1783 (-3%), lost -- the drones' cost in the mirror, as expected.
 
+The raider had to be built before the guard could be seen: arch_swarm's wave fetches cargo only
+when it has helpers (it has none by r1000), its carriers steered onto the seat tile itself (a tile
+drones never enter), charged one at a time into the HQ's one-shot-a-round, and fled at r2 15 with
+the cargo aboard. `arch_raider` now splits by id parity (even lift, odd carry a landscaper of our
+own, seats included), assembles 8 in sight 80 rounds after RAID_ROUND (1000), and charges without
+fleeing. Even so, against a shooting HQ nothing landed on CentralLake (carriers arrive in file and
+die at cheb 3). So the mechanism check silenced our HQ (a throwaway `diag_bot` copy with the shot
+disabled, deleted afterwards) on Prison, where the candidate has 16 drones: the raider lifted all
+15 of our landscapers and delivered 7 onto ring tile [4,4]; the guards lifted 6 of them within one
+or two rounds of landing (`@deliver` r1193 -> `@pickup guard=true hc=2` r1194, and so on) and
+drowned them, and the HQ stood to the end with 0-1 dirt on it. **Mechanism shown.** Gate `gate23`
+(mirror vs g_iter3, cap 240) and the second arm (`arm23`: bot vs arch_raider on the quick set,
+`arm23ref`: g_iter3 vs arch_raider) launched together.
+
 ## Block 30 -- g_iter3 against the challenge pool (run block30, 2026-09-24)
 
 48 games: **13/48 (27%)**; cumulative for g_iter3 192/876 (21.9%). Elo 1403, rank 62 of 66.
