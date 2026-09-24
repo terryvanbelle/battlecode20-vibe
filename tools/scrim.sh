@@ -28,22 +28,18 @@ if [ -z "${POOL:-}" ]; then
     exit 4
   fi
   if [ "$(grep -c . "$REPO/progress/games.csv")" -ge 40 ]; then
-    if [ "${CHALLENGE:-1}" = 1 ]; then
-      # 2026-09-23 (2020 project, block 3 lesson): the climb pool is the bots that beat us at least half the
-      # time, fewest games against us first. "Nearest above us" collapsed to the easy end of the field right
-      # after a block against the strong end had depressed our rating.
+    # Pool modes (2026-09-24, PROMPTS 7-10, owner approved): the default is the graded pool -- the POOLSIZE rated bots
+    # nearest to us in rating on either side (tools/elo.py --band) plus EXPLORE never-played bots (POOLSIZE=0 EXPLORE=48
+    # is a pure calibration block). CHALLENGE=1 is the old climb pool (bots that beat us at least half the time);
+    # POOLMODE=above the old "just above us" pool; POOLMODE=established the fixed most-played field.
+    if [ "${CHALLENGE:-0}" = 1 ]; then
       POOL="$(python3 "$REPO/tools/elo.py" --challenge "${POOLSIZE:-20}")"
-    elif [ "${EXPLORE:-0}" = 0 ]; then
-      # A FIXED field of the most-played rated bots. "Nearest above us" cannot be used here: our rank
-      # fell to 18th of 21 as exploration added bots, and the eight nearest above us are now seven bots
-      # we have beaten 6-0 whose ratings rest on six games each. Playing those would raise our Elo
-      # without telling us anything. The most-played set spans awesomelemonade at 4/54 to arya-k at
-      # 20/36 and does not change between blocks, so win rates finally chain.
+    elif [ "${POOLMODE:-band}" = established ]; then
       POOL="$(python3 "$REPO/tools/elo.py" --established "${POOLSIZE:-8}")"
+    elif [ "${POOLMODE:-band}" = above ]; then
+      POOL="$(python3 "$REPO/tools/elo.py" --pool "${POOLSIZE:-8}" --explore "${EXPLORE:-0}")"
     else
-      # 2026-09-24 (PROMPTS 8-9, owner approved): the graded pool -- the POOLSIZE rated bots nearest to us on either side
-      # (tools/elo.py --band), seeded with EXPLORE never-played bots; POOLMODE=above restores the old "just above us" pool.
-      if [ "${POOLMODE:-band}" = band ]; then POOL="$(python3 "$REPO/tools/elo.py" --band "${POOLSIZE:-8}" --explore "$EXPLORE")"; else POOL="$(python3 "$REPO/tools/elo.py" --pool "${POOLSIZE:-8}" --explore "$EXPLORE")"; fi
+      POOL="$(python3 "$REPO/tools/elo.py" --band "${POOLSIZE:-8}" --explore "${EXPLORE:-0}")"
     fi
   else
     echo "ladder history has under 40 games: using tools/roster.txt" >&2
