@@ -30,6 +30,10 @@ public strictfp class Landscaper extends Robot {
         if (home == null) { nav.setTarget(null); return; }
         if (attacker) { attack(); return; }
         if (round <= birth + 1 && MapState.mySlot < 0) readSlot();   // the slot the school posted the round we were built (the sandbox may construct us a round late: look two blocks back)
+        if (tier != 1 && round % 10 == id % 10 && !attacker) {   // a seat is worth more than any other role: any unit not on the ring re-checks for a free climbable ring tile (plat12: five of eight seats held on almost every map)
+            MapLocation ringFree = freeRingTile(home);
+            if (ringFree != null) { post = ringFree; tier = 1; Debug.log("@ringfirst at=" + post); }
+        }
         if (post == null && !slotTried) {   // a free exposed ring tile we can still climb comes before any slot (plat11: three ring tiles stood empty all game after their first holders were lost)
             slotTried = true;
             MapLocation ringFree = freeRingTile(home);
