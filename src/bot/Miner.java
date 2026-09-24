@@ -47,19 +47,43 @@ public strictfp class Miner extends Robot {
         }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
+        if (builder && MapState.perch != null && round >= C.PERCH_ROUND && !perchFailed && perchDuty()) return;   // Iteration 24
         if (builder && build()) return;
         work();
     }
 
     // ---------------------------------------------------------------- builder
+    private boolean perchFailed = false, perched = false; private int perchStall = 0;
+    /** Iteration 24: the builder climbs onto B before the mason raises it, rides up, and builds the center (then a vaporator)
+     *  on F and V once they are within reach. Holds B for the rest of the game. */
+    private boolean perchDuty() throws GameActionException {
+        MapLocation b = MapState.perchB(), f = MapState.perchF(), v = MapState.perchV();
+        if (!loc.equals(b)) {
+            if (rc.canSenseLocation(b)) { RobotInfo r = rc.senseRobotAtLocation(b); if (r != null && r.type.isBuilding()) { perchFailed = true; Debug.log("@perchfail built-over"); return false; } }
+            nav.setTarget(b); nav.step();
+            if (nav.stalled() && ++perchStall > C.PERCH_STALL) { perchFailed = true; Debug.log("@perchfail stalled"); return false; }
+            if (loc.equals(b)) { perched = true; Debug.log("@perched at=" + b + " elev=" + rc.senseElevation(b)); }
+            return true;
+        }
+        if (!rc.isReady()) return true;
+        int target = MapState.perchTarget(), eB = rc.senseElevation(loc), soup = rc.getTeamSoup();
+        RobotInfo rf = rc.canSenseLocation(f) ? rc.senseRobotAtLocation(f) : null, rv = rc.canSenseLocation(v) ? rc.senseRobotAtLocation(v) : null;
+        boolean fBuilt = rf != null && rf.type.isBuilding(), vBuilt = rv != null && rv.type.isBuilding();
+        if (eB >= target - 2) {
+            if (!fBuilt && rc.senseElevation(f) >= target - 2 && soup >= RobotType.FULFILLMENT_CENTER.cost && rc.canBuildRobot(RobotType.FULFILLMENT_CENTER, loc.directionTo(f))) { rc.buildRobot(RobotType.FULFILLMENT_CENTER, loc.directionTo(f)); builtFC++; Debug.log("@build t=" + RobotType.FULFILLMENT_CENTER.ordinal() + " at=" + f + " soup=" + soup + " perch=true"); return true; }
+            if (fBuilt && !vBuilt && rc.senseElevation(v) >= target - 2 && soup >= RobotType.VAPORATOR.cost && rc.canBuildRobot(RobotType.VAPORATOR, loc.directionTo(v))) { rc.buildRobot(RobotType.VAPORATOR, loc.directionTo(v)); builtVap++; Debug.log("@build t=" + RobotType.VAPORATOR.ordinal() + " at=" + v + " soup=" + soup + " perch=true"); return true; }
+        }
+        if (round % 100 == 0) Debug.log("@perchstat elev=" + eB + " f=" + rc.senseElevation(f) + " v=" + rc.senseElevation(v) + " target=" + target + " fBuilt=" + fBuilt + " vBuilt=" + vBuilt);
+        return true;
+    }
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         int soup = rc.getTeamSoup();
         RobotType want = null;
         if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtFC == 0 && soup >= C.FC_EARLY_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 23: the center right after the school (Iteration 2's placing; after the vaporator it was built in 18 of 248 ladder games)
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
+        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
@@ -80,7 +104,7 @@ public strictfp class Miner extends Robot {
         Direction bestD = null; int bs = 1 << 30;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
+            if (Nav.cheb(n, home) < dist || !rc.canBuildRobot(want, d) || rc.senseFlooding(n) || MapState.isPerch(n)) continue;   // Iteration 24: the perch is reserved
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }

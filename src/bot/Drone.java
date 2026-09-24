@@ -33,7 +33,7 @@ public strictfp class Drone extends Robot {
         }
         // pick up. Iteration 23: from HOME_ROUND a drone is a home guard -- only enemies within CHASE_RADIUS of the HQ,
         // landscapers before miners, anything on the ring or beside the HQ first.
-        MapLocation home = MapState.home; boolean guard = round >= C.HOME_ROUND && home != null;
+        MapLocation home = MapState.home; boolean guard = (round >= C.HOME_ROUND || birth >= 700) && home != null;   // Iteration 24: born after the flood = a guard from birth
         RobotInfo tgt = null; long bd = Long.MAX_VALUE;
         for (int i = nEnemy; --i >= 0;) {
             RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue;

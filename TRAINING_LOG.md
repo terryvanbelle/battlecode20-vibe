@@ -966,6 +966,14 @@ drowned them, and the HQ stood to the end with 0-1 dirt on it. **Mechanism shown
 (mirror vs g_iter3, cap 240) and the second arm (`arm23`: bot vs arch_raider on the quick set,
 `arm23ref`: g_iter3 vs arch_raider) launched together.
 
+**Gate 23: REJECT at 16-32 (33%)** after three batches (4-12, 8-8, 4-12). Arm: bot vs arch_raider
+**14/24**, g_iter3 vs arch_raider 15/24. The mirror prices sixteen pre-flood drones as sixteen
+helpers not built (Prison diagnostic: ring 1339 vs 1516, -12%), and the raider cannot land cargo
+against a shooting HQ, so the guard never fired in the arm either. Ledger: refuted as built. What
+survives: the guard role itself (shown on Prison) and the finding that our drones are never built
+on the ladder. The drones must come from soup the mirror does not value -- the post-flood soup
+(1,300 idle at r1200), which needs a center that outlives the flood: Iteration 24.
+
 ## Block 31 -- g_iter3 against the challenge pool (run block31, 2026-09-24)
 
 48 games: **9/48 (19%)**; cumulative for g_iter3 201/924 (21.8%). Elo 1297, rank 65 of 66.
@@ -1029,6 +1037,11 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **The home guard (Iteration 23, 2026-09-24)** -- early center, drones bought down to a 300 reserve
+  from r550 up to 16, every drone a home guard from r900. Gate 16-32 vs g_iter3; arm vs arch_raider
+  14/24 against g_iter3's 15/24. Kind: refuted as built. Pre-flood drones are helpers not built;
+  the guard itself works (Prison, HQ silenced: 6 of 7 landed raiders lifted within two rounds).
+  Reopen only with drones bought from post-flood soup (a center that outlives the flood).
 - **The economy regime (Iteration 17, 2026-09-24)** -- 8-24 miners, early vaporators, 20 drones on
   g_iter3. Diagnostics 1-2 with 5,000-6,000 soup idle at r1000. Kind: blocked on the sink. Reopen
   together with the plateau (a place to spend soup after r700).

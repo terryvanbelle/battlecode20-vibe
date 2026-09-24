@@ -16,6 +16,14 @@ public final strictfp class MapState {
     public static int minX = -1, minY = -1;          // origin; -1 unknown (the map corner is random)
     public static MapLocation home;                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
+    public static MapLocation perch;                 // Iteration 24: the perch post P (Chebyshev 2 from home); null = no perch this game
+    private static int perchDx() { return (perch.x - home.x) / 2; }
+    private static int perchDy() { return (perch.y - home.y) / 2; }
+    public static MapLocation perchB() { return new MapLocation(home.x + 3 * perchDx(), home.y + 3 * perchDy()); }
+    public static MapLocation perchF() { return new MapLocation(home.x + 3 * perchDx() + perchDy(), home.y + 3 * perchDy() - perchDx()); }
+    public static MapLocation perchV() { return new MapLocation(home.x + 3 * perchDx() - perchDy(), home.y + 3 * perchDy() + perchDx()); }
+    public static boolean isPerch(MapLocation l) { return perch != null && home != null && (l.equals(perchB()) || l.equals(perchF()) || l.equals(perchV())); }
+    public static int perchTarget() { return (int) Math.ceil(Robot.waterLevel(C.PERCH_UNTIL)) + 2; }
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
 
     // remembered terrain, indexed by (x - minX) + (y - minY) * width once the origin is known

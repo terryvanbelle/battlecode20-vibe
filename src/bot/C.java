@@ -18,7 +18,7 @@ public final class C {
     public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
     public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
-    public static final int FC_EARLY_BANK = 250;      // Iteration 2: the center right after the school; Iteration 23: 250 (the ladder's peak pre-flood soup reaches 400 in 81% of games, 500 in 51%)
+    public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
     public static final int VAPORATORS_MAX = 6;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
@@ -29,15 +29,23 @@ public final class C {
     public static final int DRONE_EARLY_BANK = 800;
     // Iteration 23: the home guard. The ladder's reviewable mid-game losses (45 of 167, ending at r1216-1217 and
     // r1563-1571 against benzyx and team4) are timed raids of 20-140 drones that lift our seats and drop landscapers
-    // on the ring; our drones are all dead by r800 (hunting) and 1,300 soup sits idle from r700. From HOME_ROUND every
-    // drone guards a box round the HQ and lifts whatever lands within CHASE_RADIUS of it; from DRONE_SPEND_ROUND the
-    // center buys drones down to DRONE_LATE_RESERVE up to DRONES_LATE_MAX (soup unspent at r700 is never spent).
+    // on the ring; our drones are never built on the ladder (a center in 18 of 248 games) and 1,300 soup sits idle from
+    // r700. From HOME_ROUND every drone guards a box round the HQ and lifts whatever lands within CHASE_RADIUS of it.
+    // (Gate 23 rejected buying the drones before the flood; Iteration 24 buys them after it, from the perch.)
     public static final int HOME_ROUND = 900;
+    // Iteration 24: the perch. Three tiles at Chebyshev 3 (B for the builder, F for a center, V for a vaporator), all
+    // adjacent to the helper post P at Chebyshev 2 on the side away from the map centre, raised by P's helper (the
+    // mason) to the water level of PERCH_UNTIL before the flood. The builder climbs onto B at PERCH_ROUND, rides up as
+    // the mason raises B under it, and builds the center and the vaporator from there; they outlive the flood by 1,500
+    // rounds and turn the idle post-flood soup into drones for the guard.
+    public static final int PERCH_UNTIL = 2200;       // the perch stays dry until about this round (water 30)
+    public static final int PERCH_ROUND = 480;        // the builder goes to B from this round
+    public static final int PERCH_PICK_ROUND = 80;    // the HQ picks the perch once the school stands (its spawn tiles are known)
+    public static final int PERCH_STALL = 40;         // builder turns stalled on the way to B before giving the perch up
+    public static final int DRONE_LATE_RESERVE = 0;   // after the flood every 150 soup is a drone
     public static final int CHASE_RADIUS = 8;         // Chebyshev from the HQ
     public static final int GUARD_INNER = 3, GUARD_OUTER = 5;   // the patrol annulus (distance 2 is the helpers' tier)
-    public static final int DRONE_SPEND_ROUND = 550;
-    public static final int DRONE_LATE_RESERVE = 300; // helpers (HELPER_BANK 300) still get built
-    public static final int DRONES_LATE_MAX = 16;
+
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile

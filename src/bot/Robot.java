@@ -108,6 +108,7 @@ public abstract strictfp class Robot {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
+                case Comms.PERCH: if (MapState.perch == null) MapState.perch = new MapLocation(m[1], m[2]); break;
                 default: break;
             }
         }
@@ -117,6 +118,11 @@ public abstract strictfp class Robot {
     protected boolean post(int[] m) throws GameActionException {
         if (!rc.canSubmitTransaction(m, 1)) return false;
         rc.submitTransaction(m, 1); return true;
+    }
+    /** Post at a chosen fee (fee-1 posts lose the mint race three times in four). */
+    protected boolean post(int[] m, int fee) throws GameActionException {
+        if (!rc.canSubmitTransaction(m, fee)) return false;
+        rc.submitTransaction(m, fee); return true;
     }
 
     /**

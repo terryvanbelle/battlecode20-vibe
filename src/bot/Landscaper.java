@@ -16,7 +16,7 @@ public strictfp class Landscaper extends Robot {
     private boolean attacker = false, helper = false;
     private MapLocation post;                 // helper station at distance 2
     private final MapLocation[] badSeat = new MapLocation[8]; private int nBad = 0;
-    private int helperDeps = 0;
+    private int helperDeps = 0, masonDeps = 0;
     private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0;
 
     Landscaper(RobotController rc) { super(rc); nav.stallLimit = 30; }
@@ -27,7 +27,7 @@ public strictfp class Landscaper extends Robot {
     }
     private void turn2() throws GameActionException {
         sense(); if (round % 3 == 1) readBlock(); probeEdges();
-        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
+        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " masonDeps=" + masonDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (!attacker && !helper) {
@@ -94,6 +94,7 @@ public strictfp class Landscaper extends Robot {
                 if (lowest == Integer.MAX_VALUE) continue;   // a post that touches no exposed ring tile feeds nothing
             }
             long s = (long) (lowest == Integer.MAX_VALUE ? 0 : lowest) * 10000 + loc.distanceSquaredTo(t) + nextInt(2);
+            if (t.equals(MapState.perch)) s = -1;   // Iteration 24: the perch post goes to the first helper that can take it (the mason)
             if (s < bs) { bs = s; best = t; }
         }
         return best;
@@ -114,6 +115,21 @@ public strictfp class Landscaper extends Robot {
         // 1. keep our own tile above the water that is coming
         boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
+        // 1b. Iteration 24: the mason. From P, raise F and V to the perch target, and B once the builder stands on it.
+        if (rc.getDirtCarrying() > 0 && round < 700 && loc.equals(MapState.perch)) {
+            int target = MapState.perchTarget(); MapLocation[] tiles = {MapState.perchF(), MapState.perchV(), MapState.perchB()};
+            Direction bestD = null; int be = Integer.MAX_VALUE;
+            for (int i = 0; i < 3; i++) {
+                MapLocation t = tiles[i]; if (!rc.canSenseLocation(t)) continue;
+                RobotInfo r = rc.senseRobotAtLocation(t);
+                if (r != null && r.type.isBuilding()) continue;                                  // never bury a building
+                if (i == 2 && (r == null || r.type != RobotType.MINER || r.team != us)) continue;   // B only under the builder
+                int e = rc.senseElevation(t); if (e >= target || e >= be) continue;
+                Direction d = loc.directionTo(t); if (!rc.canDepositDirt(d)) continue;
+                be = e; bestD = d;
+            }
+            if (bestD != null) { rc.depositDirt(bestD); masonDeps++; if (masonDeps % 20 == 1) Debug.log("@mason deps=" + masonDeps + " f=" + rc.senseElevation(tiles[0]) + " v=" + rc.senseElevation(tiles[1]) + " b=" + rc.senseElevation(tiles[2]) + " target=" + target); return; }
+        }
         // 2. feed the lowest adjacent ring tile (never a building)
         if (rc.getDirtCarrying() > 0) {
             Direction bestD = null; int be = Integer.MAX_VALUE;
@@ -125,7 +141,7 @@ public strictfp class Landscaper extends Robot {
         // 3. dig from a tile outside both rings (lowest first), never under a building or the HQ
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d)) continue;
+            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d) || MapState.isPerch(n)) continue;   // Iteration 24: never dig the perch
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
             int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
         if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;   // nothing outside: eat our own margin
