@@ -831,6 +831,19 @@ none on TwoLakeLand, ring at r2500. Result: the reports flow and the cap rises t
 the ring at about r150 the HQ has no free adjacent tile to spawn onto**. The miner count is fixed
 by r150, so the only economy lever is `MINERS_EARLY` (Iteration 15, 44%). Not gated; ledger.
 
+## Iteration 22 -- the spawn gap (2026-09-24)
+
+From Iteration 21's finding: the HQ cannot spawn once the ring is seated. Candidate = Iteration 21
+(soup-driven miner cap) + one ring tile, the exposed tile farthest from the map centre, kept
+unseated until r300 (`GAP_ROUND`) so the HQ can build the extra miners the reports justify; it
+costs that tile about 75 of height early, which the seats' equalising rule pays back. Diagnostic:
+Soup, TwoLakeLand, Prison vs g_iter3 -- miners above 8 by r300 on the soup-rich maps, the gap
+seated by r350, ring at r2500. Gate `gate22` vs `REF=g_iter3`. Falsifier: below 53%.
+
+## Block 22 -- g_iter3 against the challenge pool (run block22, 2026-09-24)
+
+48 games: **8/48 (17%)**; cumulative for g_iter3 106/492 (21.5%). Elo 1314, rank 66.
+
 ## Block 21 -- g_iter3 against the challenge pool (run block21, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 98/444 (22.1%).
