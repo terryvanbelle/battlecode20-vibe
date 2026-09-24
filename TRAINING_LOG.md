@@ -1139,6 +1139,20 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 33 -- a deposit worth the action (2026-09-24)
+
+**Evidence** (the Iteration 32 traces): a miner beside the HQ or a refinery deposits whatever it carries every
+turn it can, so a miner mining next to a drop-off spends an action on every 7 soup: 13-22 deposit actions per
+30 mining actions by r100 in the traced ladder losses (RandomSoup1, Islands2), against the field's one deposit
+per 14 mining actions. **Candidate** = g_iter6 + a miner deposits only a load of at least `SOUP_RETURN` (70), or
+whatever it carries once no soup is left within reach (it is about to walk anyway).
+
+**Diagnostics** (VM; RandomSoup1 both ways, Prison): mining actions by r300 on the same side, candidate against
+the incumbent's own -- side A 557 vs 432, side B 865 vs 696 (RandomSoup1); Prison 479 vs 454. The bank runs
+lower early (soup in the miners' hands: r100 42 vs 110 and 128 vs 178) and level by r300 on side B (521 vs 551).
+Mechanism shown (fewer deposits, more mining); the mirror prices the timing. Snapshot `src/cand33`; **`gate33`**
+(mirror vs g_iter6, seeded) running.
+
 ## Iteration 32 -- miners off the circle (2026-09-24, PROMPTS 25)
 
 **Evidence.** The merged onset (786 games) puts net worth (us-them) at r150 and mines, robots, spawned at r200
