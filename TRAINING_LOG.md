@@ -1139,6 +1139,26 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 32 -- miners off the circle (2026-09-24, PROMPTS 25)
+
+**Evidence.** The merged onset (786 games) puts net worth (us-them) at r150 and mines, robots, spawned at r200
+before everything else. The census at those rounds (blocks 50-69, medians): we field 8 miners to the field's 4
+and out-mine it early (309 mining actions to 231 by r200), yet per miner we do 39 actions to their 61, and in
+the games we lose the opponent's mining overtakes ours between r300 and r500 (483 to 416). Two reviewable
+losses traced: RandomSoup1 (poortho, block 62) -- our eight miners' `mined` counters stop at r200 (155 by
+r100, 210 by r200, 210 at r300) and **not one miner moves between r200 and r400** (55 mining actions, 4
+deposits, 0 moves in the whole team); miner #10821 stood on (20,7), a Chebyshev-2 tile, from r100 to r300.
+Islands2 (laurenschneider, block 59): the same freeze from r300 (mined 82/51/62/20 at r300 and at r500),
+coverage 1.4% of the map against their 14.5%, 2,447 moves against 16,651. The seats dig the Chebyshev-2
+circle into pits (their dirt source) and the helpers dig Chebyshev 3; a miner standing on the circle between
+them has no legal step (ring, pits, buildings) and stays there for the rest of the game. Iteration 28 met the
+same trap made by the refinery; this is the general form.
+
+**Candidate** = g_iter6 + miners keep off the Chebyshev-2 circle once a refinery exists (the builder from the
+moment its school stands), stepping outward if caught on it. Deposits at a refinery at Chebyshev 3 (28b) are
+made from Chebyshev 4. Diagnostic: RandomSoup1 vs g_iter6 -- mining actions past r200 and moves in r200-400
+against the incumbent's own. Gate: the mirror (an economy change is priced there); no second arm.
+
 ## Iteration 31 -- gun perches (2026-09-24, PROMPTS 24-25)
 
 **Where the losses are** (blocks 50-56, 336 games, 159 losses; scores and map data only, so every
