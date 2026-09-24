@@ -105,3 +105,7 @@ Given everything you've learned about Battlecode, what is your estimate for how 
 ## 22. 2026-09-24
 
 OK, let's look at it from a different perspective.  Given what you know about Fable's general strengths and weaknesses vs. the ones for Opus 5.5,  along with what you know about the things required for Battlecode, would you predict that Fable would be a large improvement, or not much improvement at all, or something else?
+
+## 23. 2026-09-24
+
+OK, I'm going to upgrade you to Fable.  Please make all necessary preparations

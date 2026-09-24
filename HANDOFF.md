@@ -3,27 +3,35 @@
 Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the tail of
 `TRAINING_LOG.md`.
 
-## State (2026-09-24, after the restart; read this block first)
+## State at the 2026-09-24 evening restart (switch to Fable 5.1; read this block first)
 
-- **Incumbent and submission: `src/g_iter6`** (Iteration 29b accepted 72-40 over g_iter5, 2026-09-24: 28b's refinery and
-  school outward of the Chebyshev-2 circle, the rush response, miners off the ring only once a refinery exists).
-  `src/bot` = g_iter6. Ladder blocks now run `BOT=g_iter6`.
-- **Ladder fixed (PROMPTS 14-16):** calibration done (calib1, 88/96; all 65 ladder bots met -- the list has 65, not
-  220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
-  sequential Elo had put us at rank 4 after the easy calibration games. g_iter5's final grade over 720 ladder games:
-  1745 +- 30, rank 16 of 71 players, field score 72.8%. Withdrawal now compares ratings.
-- **Running on the VM:** blocks 55 and 56 (`tools/scrim.sh`, BOT=g_iter6, the band). g_iter6 1720 +- 48 after blocks
-  50-54 (240 games), level with g_iter5 (1743 +- 30); archetype regression passed (vs `arch_swarm` 21/24, g_iter5 19/24).
-  Iteration 30 (lift the drone and net-gun caps above a 1000 bank) was rejected 58-70; `src/bot` = g_iter6. Post blocks with `tools/post-block.sh <run> g_iter6`;
-  give a concurrent run its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses. The session loop is
-  `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise, carry on as before`.
-- **Open lines, in order:** (1) map-dead games: the idle miners were sealed behind the HQ by our own refinery
-  (Iteration 28 rejected 24-40; 28b folded into g_iter6). Next on Climb: six landscapers cannot reach the west seats (`@badseat`) because digging
-  beside the east seats turns row 39 into a cliff, so the west ring floods at r500 (`diag/cut-Climb.bc20`). (2) poortho's rush: g_iter6 answers it; `src/arch_rush` is the sparring partner (g_iter6 13/24, g_iter5 12/24). (3) The unspent bank: every reviewable loss of blocks 48-50 ends with no miner, school or center and 1,200-10,700 soup
-  unspent (TRAINING_LOG "Block 50 and the unspent bank"); more drones and guns did not help (Iteration 30): the
-  missing piece is a producer that outlives the flood. (4) Candidates are judged on the
-  band by rating, not raw win rate.
-- Iterations 23 (home guard), 24 (the perch, `src/arch_perch`), 26 (miners first) and 27 closed 2026-09-24; TRAINING_LOG.md.
+- **Incumbent and submission: `src/g_iter6`** (Iteration 29b, accepted 72-40 over g_iter5: refinery and school outward of
+  the Chebyshev-2 circle, the rush response, miners off the ring only once a refinery exists). `src/bot` = g_iter6
+  (checked: `git diff src/bot` against the snapshot is empty after the package rename).
+- **Ladder (batch Bradley-Terry, `tools/elo.py --build B`):** g_iter6 1720 +- 48 after 240 games (blocks 50-54), rank 17
+  of 72, field score 71.3%; g_iter5 1743 +- 30 over 720. Level: the mirror gain has not shown on the ladder yet.
+- **Jobs left running on the VM** -- post each with `tools/post-block.sh <run> g_iter6` unless `progress/games.csv`
+  already holds the run id, and commit the regenerated `progress/` files and BENCHMARK.md in the same push (owner, PROMPTS
+  19-20: the owner reads the docs on GitHub; never report a number the pushed repo does not show):
+  block 55 = `20260924-193834-scrim-g_iter6`, block 56 = `20260924-193842-scrim-g_iter6` (48 games each, band pool).
+  Blocks 53-54 are recorded and pushed; their study/onset step may still have been running on the driver at the switch
+  (re-run `tools/post-block.sh` on them -- idempotent -- if `progress/ONSET.md` is not newer than the run).
+- **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
+  Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
+  every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
+- **This session (Opus 5.5, PROMPTS 14-23):** ladder rating rebuilt as a batch fit (owner approved); calibration done
+  (all 65 ladder bots met); Iterations 28 (rejected 24-40), 28b (provisional 129-111), 28c (rejected 92-100), 29
+  (voided: bug), 29b (ACCEPTED 72-40 -> g_iter6), 30 (rejected 58-70); new sparring partner `src/arch_rush` (poortho's
+  early school-by-our-HQ rush; kills g_iter5 on Europe at r256).
+- **Open lines, in order:**
+  1. **A producer that outlives the flood.** Every reviewable loss of blocks 48-50 ends with no miner, school or center and
+     1,200-10,700 soup unspent; the HQ cannot spawn once its eight ring tiles are seated (r300 on). Closed forms, do not
+     repeat: more helpers (Iteration 12), a second school after r700 (13), guards bought on a perch (24), more drones and
+     net guns from the bank (30). An untried form must say why it avoids each of those failures.
+  2. **Climb-type maps:** after g_iter6 the miners are free, but six landscapers cannot reach the west seats
+     (`@badseat`) because digging beside the east seats turns row 39 into a cliff (`diag/cut-Climb.bc20`).
+  3. team4 kills us at r1565-1570 on five maps (a timed attack) but is locked at 17%; only its scores may be used.
+- Iterations 23, 24, 26, 27 closed earlier on 2026-09-24; TRAINING_LOG.md has every entry above with numbers.
 
 ## State (2026-09-23, evening; superseded above where they differ)
 
@@ -91,5 +99,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - `vm-sync.sh` replaces `src tools test progress` on the VM at every `vm-run.sh`.
 - `git checkout` cannot undo a committed change to `src/bot`; restore from the snapshot with
   `for f in src/g_iterN/*.java; do sed 's/^package g_iterN;/package bot;/' "$f" > src/bot/$(basename $f); done`.
+- Two runs on the VM at once: give each its own class tree (`CLASSES=build/classes-<name>`); `mirror.sh` already uses
+  `build/mirror-classes` unless told otherwise. Without it `gauntlet.sh` refuses (block 49 was lost to this once).
+- A `( while ...; do sleep; done; cmd ) &` queued from a Bash tool call dies with the call's shell; run queued
+  follow-ups with the tool's background mode instead (block 46's study was silently skipped this way).
+- The engine refuses to spawn a robot on a tile more than 3 higher or lower than the builder's (`assertCanBuildRobot`);
+  site choices must use the builder's own height, not the HQ's.
 - 2020-specific: `rc.canMove` does not check water; `senseNearbyRobots` is row-major; a robot
   built this round acts next round; the blockchain block for round r is readable from r+1.
