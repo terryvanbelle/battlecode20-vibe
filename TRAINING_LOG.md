@@ -640,7 +640,17 @@ mirror says 44%. Six rejections in a row, four of them at 44-46%, is either a ru
 ideas or a harness that is not fair to the `bot` package. **Control run `control1`** (04:50):
 `src/bot` made an exact copy of g_iter3, mirror vs g_iter3, 96 games. Expected 50%; a result
 outside 40-60% means the gate has been measuring the harness, and every verdict since gate 10
-is suspect.
+is suspect. **Result: 48-48 after 96 games** (6-10, 10-6, 8-8, 8-8, 8-8, 8-8). The harness is
+fair; the six rejections stand. (The engine gives the silenced side a no-op print stream and the
+other a stream into the replay; whatever that costs, it does not show at 96 games.)
+
+## Archetype `arch_swarm` (2026-09-24)
+
+The field's burial swarm, built for the second arm the algorithm asks of a defence candidate:
+g_iter3 with the center right after the school, thirty drones on a 100 reserve, and from r1200
+the citadel's wave raid (scout the HQ guess from outside r2 15, gather eight at Chebyshev 7,
+charge together or at r1500, lift the nearest landscaper, drop it in the water). Baseline `spar2`:
+g_iter3 vs arch_swarm on the quick set.
 
 ## Blocks 13-14 -- g_iter4 against the challenge pool (2026-09-24)
 
