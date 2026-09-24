@@ -86,6 +86,12 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   IsThisProcedural was a 99-high cliff; it walked at it for 600 rounds with 5,000 soup idle and no
   school. Any walker choosing a target by distance needs an elevation check and a stall exit.
 
+- **The eight tiles around a spawner are infrastructure.** Any role that parks units near the HQ
+  (helpers, tier holders, parked builders, hovering drones) will sooner or later stand on every tile
+  a design school or center can spawn onto, and production stops without a log line: Constriction
+  had two landscapers all game (gate 18, 2-14 in its first batch), the incumbent itself has three
+  there. Every station picker must skip tiles adjacent to our own buildings.
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for
