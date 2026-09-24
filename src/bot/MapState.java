@@ -16,14 +16,6 @@ public final strictfp class MapState {
     public static int minX = -1, minY = -1;          // origin; -1 unknown (the map corner is random)
     public static MapLocation home;                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
-    public static final MapLocation[] guns = new MapLocation[2];   // Iteration 31: the two gun tiles the HQ posted (null = none)
-    public static final boolean[] gunRaised = new boolean[2];      // the HQ saw the tile at its target height (no gunner needed)
-    public static final boolean[] gunBuilt = new boolean[2];       // a gun stands there (set by whoever sees it)
-    public static final boolean[] gunManned = new boolean[2];      // the HQ sees a landscaper of ours beside the site (a gunner at work)
-    /** Iteration 31: a site raised to target with no gun on it yet: the bank keeps NET_GUN.cost for the builder. */
-    public static int gunRound = 0;                                // the round of the last GUN_SITES post read
-    public static boolean gunPending() { return gunRound < C.GUN_UNTIL && ((gunRaised[0] && !gunBuilt[0]) || (gunRaised[1] && !gunBuilt[1])); }
-    public static boolean isGunSite(MapLocation l) { return l != null && (l.equals(guns[0]) || l.equals(guns[1])); }
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
 
     // remembered terrain, indexed by (x - minX) + (y - minY) * width once the origin is known

@@ -1227,6 +1227,17 @@ r600 and was gone before the raid. Both arms null: **cand31 is refuted as built*
 **31b** (`src/cand31b`: no reserve, builder duty or gunner after r700) is in `gate31b` on the strength of the
 arm's direction; if that gate is not a clear reject it gets the arm again with the flood-round deaths excluded.
 
+**Gate 31b: REJECT at 13-35 (27%)** after three batches: bounding the reserve did not recover the mirror, so the
+reserve was not the main cost. What remains in the candidate: two gun tiles and their stands reserved from
+buildings (the refinery and school fell back onto the Chebyshev-2 circle in the diagnostics, Iteration 28's
+sealed-miner failure), gun tiles and stands off limits to stand on or dig, helpers leaving their posts to
+become gunners (13 claims a game), miners leaving the soup to build. Each is small; the mirror's wall race
+is decided by small margins (BeachFrontProperty: 11-13 landscapers against 12-16). **Closed: priced far below
+the gate (22%, 27%), and the ladder arm null (6 mid-game losses of 96 against a threshold of 5).** Re-open
+only with a placement that reserves nothing the base needs (a site chosen after the refinery and school
+stand, on the side away from them) and a gunner drawn from the attackers rather than the helpers. Code kept
+as `src/cand31` and `src/cand31b`; `src/bot` is g_iter6 again.
+
 ## The fixed seed (2026-09-24, PROMPTS 24-25)
 
 Four benzyx MoreCowbell losses in blocks 50-56 were the same game to the round. The engine seeds its

@@ -36,13 +36,6 @@ public final class C {
     public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;
-    // Iteration 31: two net guns on raised tiles at Chebyshev 3 on opposite sides of the HQ. The mid-game losses
-    // (r1000-2000, 42 of 336 games in blocks 50-56) are drone raids that lift the seats off a sealed ring; the HQ alone
-    // kills one drone a round. A gun tile at hqElev+6 stays dry to about r1700; its stand at hqElev+3 lets the builder up.
-    public static final int GUN_RAISE = 6;             // gun tile target above the HQ's elevation
-    public static final int GUN_STAND = 3;             // stand tile target above the HQ's elevation
-    public static final int GUN_POST_UNTIL = 800;      // the HQ re-posts the sites every 10 rounds until this round
-    public static final int GUN_UNTIL = 700;           // 31b: no reserve, no builder duty, no gunner after this round (gate 31: the reserve on all game cost 78% of mirror games)
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
     // Iteration 25: seats first. Reviewable ladder losses show 2-6 of 8 seats at r700 (median 4): a newborn's ring tile
     // was raised by its seated neighbours' equalising and by the helpers' feeding before it arrived, and a tile 4 above

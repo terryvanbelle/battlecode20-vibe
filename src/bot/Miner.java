@@ -48,11 +48,6 @@ public strictfp class Miner extends Robot {
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (builder && build()) return;
-        // Iteration 31: any miner near a raised, unbuilt gun site builds the gun (the builder alone was boxed in by pits)
-        if (!builder && round < C.GUN_UNTIL && MapState.gunPending() && rc.getTeamSoup() >= RobotType.NET_GUN.cost) {
-            MapLocation g = readyGunSite();
-            if (g != null && nearestMinerToSite(g) && buildGun(g)) return;   // whatever the distance: the window before the flood is short
-        }
         work();
     }
 
@@ -65,7 +60,6 @@ public strictfp class Miner extends Robot {
         if (rush) { if (soup < RobotType.DESIGN_SCHOOL.cost) return false; want = RobotType.DESIGN_SCHOOL; Debug.log("@rush school"); }   // Iteration 29: the school before the refinery
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtNet < 2 && round < C.GUN_UNTIL && soup >= RobotType.NET_GUN.cost && readyGunSite() != null) return buildGun(readyGunSite());   // Iteration 31 (31b: before GUN_UNTIL only)
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
@@ -99,7 +93,7 @@ public strictfp class Miner extends Robot {
             for (int dx = -dist; dx <= dist; dx++) for (int dy = -dist; dy <= dist; dy++) {
                 if (Math.max(Math.abs(dx), Math.abs(dy)) != dist) continue;
                 MapLocation t = new MapLocation(home.x + dx, home.y + dy);
-                if (!rc.onTheMap(t) || gunReserved(t)) continue;
+                if (!rc.onTheMap(t)) continue;
                 int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
             }
             if (best == null) return false;
@@ -113,7 +107,7 @@ public strictfp class Miner extends Robot {
         for (int pass = 0; pass < 2 && bestD == null; pass++)
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist + (pass == 0 && dist == C.BUILD_DIST ? 1 : 0) || !rc.canBuildRobot(want, d) || rc.senseFlooding(n) || gunReserved(n)) continue;
+            if (Nav.cheb(n, home) < dist + (pass == 0 && dist == C.BUILD_DIST ? 1 : 0) || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
         }
@@ -142,45 +136,6 @@ public strictfp class Miner extends Robot {
             if (e > best) best = e;
         }
         return best;
-    }
-
-    // ---------------------------------------------------------------- Iteration 31: the gun perches
-    /** A gun tile that has no gun yet and is raised to its target (or out of sight: walk and see). */
-    private MapLocation readyGunSite() throws GameActionException {
-        MapLocation home = MapState.home; int e0 = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
-        for (int k = 0; k < 2; k++) { MapLocation g = MapState.guns[k]; if (g == null) continue;
-            if (!rc.canSenseLocation(g)) return g;   // unknown: go and look
-            RobotInfo r = rc.senseRobotAtLocation(g); if (r != null && r.type.isBuilding()) continue;
-            if (rc.senseFlooding(g) || rc.senseElevation(g) < e0 + C.GUN_RAISE) continue;
-            return g; }
-        return null;
-    }
-    /** Stand next to the gun tile within 3 of its height and build; walk toward it otherwise. */
-    private boolean buildGun(MapLocation g) throws GameActionException {
-        if (rc.canSenseLocation(g) && loc.isAdjacentTo(g) && Math.abs(rc.senseElevation(g) - rc.senseElevation(loc)) <= 3) {
-            // on a stand: build when ready; otherwise WAIT here (a nav step toward our own tile walked the miner off the stand)
-            if (rc.canBuildRobot(RobotType.NET_GUN, loc.directionTo(g))) { rc.buildRobot(RobotType.NET_GUN, loc.directionTo(g)); builtNet++; gunWait = 0; Debug.log("@build t=8 at=" + g + " soup=" + rc.getTeamSoup() + " gun=true"); return true; }
-            if (rc.isReady()) { gunWait++; if (round % 10 == 0) Debug.log("@gunfail eg=" + rc.senseElevation(g) + " es=" + rc.senseElevation(loc) + " soup=" + rc.getTeamSoup() + " occ=" + (rc.senseRobotAtLocation(g) != null)); }
-            if (gunWait > 30) { gunWait = 0; return false; }   // something else blocks the site: let it go for now
-            return true; }
-        if (!rc.canSenseLocation(g)) { nav.setTarget(g); nav.step(); return true; }
-        int eg = rc.senseElevation(g); MapLocation best = gunStand(g, MapState.home);
-        if (best != null && rc.canSenseLocation(best)) { if (Math.abs(rc.senseElevation(best) - eg) > 3) best = null; else { RobotInfo r = rc.senseRobotAtLocation(best); if (r != null && r.ID != id) best = null; } }
-        if (best == null) { gunWait++; if (round % 10 == 0) Debug.log("@gunnostand g=" + g + " eg=" + eg); if (gunWait > 40) MapState.guns[MapState.guns[0] != null && MapState.guns[0].equals(g) ? 0 : 1] = null; return false; }   // no stand: give the site up
-        if (round % 20 == 0) Debug.log("@gunwalk to=" + best + " from=" + loc);
-        nav.setTarget(best); nav.step(); return true;
-    }
-    private int gunWait = 0;
-    /** No other miner in sight is nearer to the site (nine miners once jammed the two-tile corridor beside the refinery). */
-    private boolean nearestMinerToSite(MapLocation g) {
-        int d = loc.distanceSquaredTo(g);
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER && f.location.distanceSquaredTo(g) < d) return false; }
-        return true;
-    }
-    /** Buildings never take a gun tile or its stand. */
-    private boolean gunReserved(MapLocation t) throws GameActionException {
-        for (int k = 2; --k >= 0;) { MapLocation g = MapState.guns[k]; if (g != null && (t.equals(g) || t.equals(gunStand(g, MapState.home)))) return true; }
-        return false;
     }
 
     // ---------------------------------------------------------------- worker

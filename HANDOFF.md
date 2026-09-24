@@ -11,11 +11,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Running on the VM:** `gate31b` (Iteration 31b, `src/bot` = `src/cand31b`: gun perches with the bank reserve and the
-  builder's site duty bounded to before r700; mirror vs g_iter6, seeded). Gate 31 was rejected 7-25 (the reserve
-  stayed on all game); the ladder arm of cand31 was 52/96 with 6 mid-game losses (threshold 5; two were flood deaths).
-  If gate31b is not a clear reject: two seeded band blocks as `BOT=cand31b`, a finding if at most 5 losses between
-  r1000 and r2000 that are not within 3 rounds of the map's `hqFloodRound`. No incumbent blocks (PROMPTS 26).
+- **VM:** idle. Iteration 31 (gun perches) is closed: gates 7-25 and 13-35, ladder arm 52/96 with 6 mid-game losses
+  (code in `src/cand31`, `src/cand31b`; `src/bot` = g_iter6). No incumbent blocks (PROMPTS 26).
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
@@ -24,13 +21,17 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   (voided: bug), 29b (ACCEPTED 72-40 -> g_iter6), 30 (rejected 58-70); new sparring partner `src/arch_rush` (poortho's
   early school-by-our-HQ rush; kills g_iter5 on Europe at r256).
 - **Open lines, in order:**
-  1. **A producer that outlives the flood.** Every reviewable loss of blocks 48-50 ends with no miner, school or center and
+  1. **The early economy.** The merged onset over blocks 50-69 (`progress/ONSET-merged.md`, 786 games) puts net worth
+     (us-them) at r150 and mines/robots/spawned at r200 ahead of every other signal (+0.4 to +0.5); landscapers follow at
+     r350. First job: a census of what limits our mining by r200 against the field's (miners, deposits, refinery timing,
+     the HQ's 20-a-turn refining cap) from the study tables, then one trace.
+  2. **A producer that outlives the flood.** Every reviewable loss of blocks 48-50 ends with no miner, school or center and
      1,200-10,700 soup unspent; the HQ cannot spawn once its eight ring tiles are seated (r300 on). Closed forms, do not
      repeat: more helpers (Iteration 12), a second school after r700 (13), guards bought on a perch (24), more drones and
      net guns from the bank (30). An untried form must say why it avoids each of those failures.
-  2. **Climb-type maps:** after g_iter6 the miners are free, but six landscapers cannot reach the west seats
+  3. **Climb-type maps:** after g_iter6 the miners are free, but six landscapers cannot reach the west seats
      (`@badseat`) because digging beside the east seats turns row 39 into a cliff (`diag/cut-Climb.bc20`).
-  3. team4 kills us at r1565-1570 on five maps (a timed attack) but is locked at 17%; only its scores may be used.
+  4. team4 kills us at r1565-1570 on five maps (a timed attack) but is locked at 17%; only its scores may be used.
 - Iterations 23, 24, 26, 27 closed earlier on 2026-09-24; TRAINING_LOG.md has every entry above with numbers.
 
 ## State (2026-09-23, evening; superseded above where they differ)

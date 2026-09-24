@@ -108,7 +108,6 @@ public abstract strictfp class Robot {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
-                case Comms.GUN_SITES: MapState.guns[0] = m[1] < 0 ? null : new MapLocation(m[1], m[2]); MapState.guns[1] = m[3] < 0 ? null : new MapLocation(m[3], m[4]); MapState.gunRaised[0] = (m[5] & 1) != 0; MapState.gunRaised[1] = (m[5] & 2) != 0; MapState.gunBuilt[0] = (m[5] & 4) != 0; MapState.gunBuilt[1] = (m[5] & 8) != 0; MapState.gunManned[0] = (m[5] & 16) != 0; MapState.gunManned[1] = (m[5] & 32) != 0; MapState.gunRound = round; break;
                 default: break;
             }
         }
@@ -161,11 +160,10 @@ public abstract strictfp class Robot {
     /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
         if (avoidRing && onRing(l)) return false;
-        if (MapState.isGunSite(l)) return false;   // Iteration 31: nobody stands on a gun tile (a miner queuing at the refinery blocked the gun)
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
     /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
-    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)) && !MapState.isGunSite(l); }
+    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
     protected boolean floodDanger() throws GameActionException {
@@ -228,20 +226,6 @@ public abstract strictfp class Robot {
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i];
             if ((e.type == RobotType.DESIGN_SCHOOL || e.type == RobotType.LANDSCAPER) && e.location.distanceSquaredTo(MapState.home) <= C.RUSH_D2) return true; }
         return false;
-    }
-    /** Iteration 31: the stand of gun tile g is the tile beyond it, one further from the HQ (Chebyshev 4): open ground,
-     *  reachable round the outside. The Chebyshev-2 tiles are dug into pits by the seats and cut the base into
-     *  compartments, so a stand at Chebyshev 3 was unreachable from the far side (RandomSoup1). Null if off the map,
-     *  flooded, or more than GUN_STAND above / 3 below the HQ's height before raising. */
-    protected MapLocation gunStand(MapLocation g, MapLocation home) throws GameActionException {
-        int dx = Integer.signum(g.x - home.x), dy = Integer.signum(g.y - home.y);
-        MapLocation s = g.translate(dx, dy);
-        if (!rc.onTheMap(s)) return null;
-        if (!rc.canSenseLocation(s)) return s;   // out of sight: assume it; the gunner checks on arrival
-        if (rc.senseFlooding(s)) return null;
-        int e0 = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
-        int e = rc.senseElevation(s); if (e > e0 + C.GUN_STAND || e < e0 - 3) return null;
-        return s;
     }
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
     protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
