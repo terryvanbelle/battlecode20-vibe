@@ -1117,6 +1117,22 @@ binding constraint is income: five miners sit idle with twelve soup tiles in mem
 map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
 of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
 
+## Block 50 and the unspent bank (2026-09-24)
+
+**Block 50** (`20260924-180832-scrim-g_iter6`, g_iter6's first): **18/48**; g_iter6 1677 +- 107 (one
+block; the upper end is above g_iter5's 1740, so no withdrawal). Archetype regression (`regr6`/`regr5`,
+quick set vs `arch_swarm`): g_iter6 21/24, g_iter5 19/24. team4 won five games at r1565-1570 (a
+timed attack), but it is locked at 17% against the latest build: not reviewed.
+
+**Census of the reviewable losses of blocks 48-50** (final line of each replay, our side): 30 of 30
+listed end with M=0, DS=0, FC=0 (one M=10 on Climb) and a bank of **1,230 to 10,671 soup**, 18 of them
+above 2,500. benzyx on RandomSoup1: V=6, DS=1, FC=1, NG=2 at r700, all gone by r1000 (flooded
+283 -> 942 tiles), then 3,688 soup unspent at death (r1226) against 129 enemy drones. The HQ is
+the only producer left, and with the ring seated it has no free tile to spawn on. **Next line:**
+a producer that survives the flood (the perch of Iteration 24 did this but spent on fixed guards;
+this time the question is what the bank should buy -- helpers for the wall, or drones/net guns
+against the r1200-2000 drone wave), starting with where each of these losses' buildings died.
+
 ## Iteration 29 -- rush response, stacked on 28b (2026-09-24)
 
 **Gate `gate28c`: 92-100, SPRT REJECT**: the stack loses its newest member; `src/bot` is back to 28b.
