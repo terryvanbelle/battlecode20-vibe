@@ -826,7 +826,10 @@ Iteration 17 showed a tripled economy wins on rich maps (Soup +24% ring) and los
 tiles in memory posts a SOUP report (fee 1, once per 50 rounds, before r600); the HQ raises its
 miner cap by the reports of the last 150 rounds (up to 8 extra). Rich maps get up to 16 miners,
 poor maps keep 8. Diagnostic: Soup, TwoLakeLand, Prison vs g_iter3 -- reports and cap on Soup,
-none on TwoLakeLand, ring at r2500. Gate `gate21` vs `REF=g_iter3`. Falsifier: below 53%.
+none on TwoLakeLand, ring at r2500. Result: the reports flow and the cap rises to 16 on both maps
+(TwoLakeLand's miners report too), but not one extra miner is built: **once the eight seats sit on
+the ring at about r150 the HQ has no free adjacent tile to spawn onto**. The miner count is fixed
+by r150, so the only economy lever is `MINERS_EARLY` (Iteration 15, 44%). Not gated; ledger.
 
 ## Block 20 -- g_iter3 against the challenge pool (run block20, 2026-09-24)
 
@@ -850,6 +853,9 @@ none on TwoLakeLand, ring at r2500. Gate `gate21` vs `REF=g_iter3`. Falsifier: b
   g_iter3. Diagnostics 1-2 with 5,000-6,000 soup idle at r1000. Kind: blocked on the sink. Reopen
   together with the plateau (a place to spend soup after r700).
 
+- **Soup-driven miners (Iteration 21, 2026-09-24)** -- blocked: the HQ cannot spawn after the ring
+  is seated (r150), so no report can add a miner. Kind: blocked on geometry. Reopen only with a
+  spawn gap in the ring (one seat held back until r300) -- which costs wall.
 - **The plateau, stage 1: tile-holding landscaper roles (Iterations 18-20, 2026-09-24)** -- gates
   42-54, 25-39, 15-33 vs g_iter3. Kind: refuted as built. The roles win single diagnostics by
   10-15% and lose the random-map mirror by 10-20 points; the losses show claim races, drownings on

@@ -101,6 +101,10 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   rounds of digging lost; the incumbent's fixed eight seats never race. A claim must be settled
   once (first to reach keeps it) or assigned deterministically.
 
+- **The HQ stops spawning the moment the ring is seated.** Its eight neighbours are the wall; from
+  about r150 no miner can be built whatever the bank says. Every economy decision is made in the
+  first 150 rounds (Iteration 21: a rising miner cap changed nothing).
+
 ## Infrastructure
 
 - A 32x32 game where both HQs flood at r257 takes 13 s on the 2-core driver; expect minutes for

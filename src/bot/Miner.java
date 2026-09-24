@@ -34,7 +34,7 @@ public strictfp class Miner extends Robot {
         if (round % 8 == id % 8 && Clock.getBytecodeNum() < 3000) observeTerrain();
         int b2 = Clock.getBytecodeNum();
         if (round % 100 == 0) Debug.log("@minerstat builder=" + builder + " mined=" + mined + " deposits=" + deposits + " explores=" + explores + " soupMem=" + nSoup + " unreachable=" + unreachable);
-        rememberSoup(); reportRich(); int b3 = Clock.getBytecodeNum();
+        rememberSoup(); int b3 = Clock.getBytecodeNum();
         try { turn2(); } finally { int b4 = Clock.getBytecodeNum(); if (b4 > 8000) Debug.log("@bcprof sense=" + b0 + " block=" + (b1 - b0) + " terrain=" + (b2 - b1) + " soup=" + (b3 - b2) + " act=" + (b4 - b3) + " bug=" + nav.isBugging()); }
     }
     private void turn2() throws GameActionException {
@@ -98,13 +98,6 @@ public strictfp class Miner extends Robot {
     // ---------------------------------------------------------------- worker
     /** Sample the visible soup into memory: a strided pass over at most SOUP_SCAN tiles (the full array can be
      *  100+ tiles and a full O(tiles x memory) scan overran the 10k budget in the first diagnostic). */
-    private int lastRichPost = -1000;
-    /** Iteration 21: more soup in memory than one miner can work -> tell the HQ (fee 1), at most once per RICH_POST_EVERY rounds. */
-    private void reportRich() throws GameActionException {
-        if (nSoup < C.RICH_MEMORY || round - lastRichPost < C.RICH_POST_EVERY || round > 600) return;
-        if (post(Comms.make(Comms.SOUP, round, us, loc.x, loc.y, nSoup))) { lastRichPost = round; Debug.log("@rich n=" + nSoup); }
-    }
-
     private void rememberSoup() throws GameActionException {
         if (nSoup >= C.SOUP_MEMORY || (round & 1) != (id & 1) || Clock.getBytecodeNum() > 4500) return;
         MapLocation[] s = rc.senseNearbySoup();
