@@ -1062,6 +1062,12 @@ its own open seats. Seats-first removes the urgency of seating, so the economy c
 variant `cand25b` = the same with MINERS_EARLY 8 (all eight miners before the ring closes), in
 diagnostics on Squares and TwoLakeLand while the gate runs.
 
+**Gate 25: ACCEPT at 45-19 (70.3%)** after four batches (11-5, 12-4, 10-6, 11-5). Snapshot
+`src/g_iter5` (the VM's gated `src/bot`, identical to the driver's) is the incumbent and the
+submission. First accepted change since Iteration 8; the flood-defence area's streak of six
+rejects ends on a change that took no new mechanism, only the withholding of one: nobody raises
+a ring tile that has no seat on it yet.
+
 ## Block 35 -- g_iter3 against the challenge pool (run block35, 2026-09-24)
 
 48 games: **12/48 (25%)**; cumulative for g_iter3 244/1116 (21.8%). Elo 1329, rank 65 of 66.
@@ -1195,7 +1201,7 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 | area | last attempt | consecutive rejects |
 |---|---|---|
 | economy (miners, builder, sites) | Iteration 15 (reject 56-72) | 2 |
-| flood defence (wall) | Iterations 18-20, the plateau (reject x3) | 6 |
+| flood defence (wall) | Iteration 25 (ACCEPT 45-19) | 0 |
 | navigation | Iteration 1 | 0 |
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | Iteration 10 (reject 120-120) | 1 |

@@ -16,7 +16,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   vaporator on the others, alive to r2200; post-flood soup buys up to 16 guards on fixed slots at Chebyshev 6). All
   mechanisms work (TRAINING_LOG.md "Iteration 24" lists the nine fixes it took); the ladder's r1000-2000 losses did not
   move. Reopen only with evidence about what the guards met in those games (the study table of `cand24`).
-- **Incumbent and submission: `src/g_iter3`** (Iteration 8, accepted 39-9 over g_iter2). `src/g_iter4` (the late raid,
+- **Incumbent and submission: `src/g_iter5`** (Iteration 25 "seats first", accepted 45-19 over g_iter3 on 2026-09-24:
+  until r400 nobody raises a ring tile without a seat on it, and a helper beside a free climbable ring tile takes it;
+  8 seats instead of 4-5). Ladder blocks now run `BOT=g_iter5`. Open follow-up: `cand25b` (MINERS_EARLY 8 -- a closed
+  ring cannot spawn miners, so the economy must be built before r200), in diagnostics.
+- Previous incumbent `src/g_iter3`** (Iteration 8, accepted 39-9 over g_iter2). `src/g_iter4` (the late raid,
   provisional) was withdrawn on 2026-09-24 after 228 ladder games at 20% against g_iter3's 26%.
 - Plateau, final state 2026-09-24: seven sweeps of the slot revision at 2-10/24. The Squares seat trace (TRAINING_LOG.md
   after plat13) showed that g_iter3 also seats only five ring tiles there; it wins because its helpers put every load on
