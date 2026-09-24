@@ -97,3 +97,7 @@ ELO.md has g_iter6 at 1677 and 20th place, which contradicts your statement.  Wh
 ## 20. 2026-09-24
 
 Thanks.  I frequently look at the docs in the Github repository to get a sense of where we are, so it's important to keep them up to date
+
+## 21. 2026-09-24
+
+Given everything you've learned about Battlecode, what is your estimate for how much better Fable 5.1 is over Opus 5.5 for making progress in the game?
