@@ -10,7 +10,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   220). Ratings are now a batch Bradley-Terry fit with each build its own player (`tools/elolib.py`); the old
   sequential Elo had put us at rank 4 after the easy calibration games. True grade: g_iter5 1684 +- 60, rank 16 of
   71 players (15th of 65 bots plus our builds), level with g_iter3 (1693 +- 27). Withdrawal now compares ratings.
-- **Running on the VM:** block 41 (`tools/scrim.sh`, BOT=g_iter5, N=48, the band) and `gate28` (Iteration 28, the
+- **Running on the VM:** block 42 (`tools/scrim.sh`, BOT=g_iter5, N=48, the band) and `gate28` (Iteration 28, the
   path-cut builder rule in `src/bot`, mirror vs g_iter5). Post blocks with `tools/post-block.sh <run> g_iter5`, then
   keep running band blocks; the session loop is `/loop 30m task
   check. If the VM is idle and nothing is in the workqueue, start a new idea. Otherwise, carry on as before`.

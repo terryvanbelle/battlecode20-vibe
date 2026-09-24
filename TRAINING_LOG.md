@@ -1117,6 +1117,10 @@ binding constraint is income: five miners sit idle with twelve soup tiles in mem
 map's soup lies up a staircase of 3-high steps. Why they do not walk there is the open question
 of the map-dead line. **Not gated; `src/bot` back to g_iter5.** Kind: uninformative as built.
 
+## Block 41 -- g_iter5 on the band (run 20260924-143804-scrim-g_iter5, 2026-09-24)
+
+48 games: **34/48 (71%)**. g_iter5 now 1705 +- 47, rank 16 of 71, field score 70.1%. Block 42 running.
+
 ## Iteration 28 -- a building must not cut the miners' path (2026-09-24)
 
 **Trace** (open line 1, map-dead games; `diag/iter27-Climb.bc20`, miner #12659): Climb gives each
