@@ -9,13 +9,6 @@ public final class C {
 
     // --- economy (Iteration 1: unmeasured starting values)
     public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
-    // Iteration 21: soup-driven miners. A miner that sees more soup than it can mine reports it; the HQ raises the miner cap
-    // by the reports of the last RICH_WINDOW rounds, up to RICH_EXTRA. Rich maps get more miners, poor maps keep eight.
-    public static final int GAP_ROUND = 300;          // Iteration 22: one ring tile (the gap) stays unseated until this round so the HQ can still spawn miners
-    public static final int RICH_MEMORY = 6;          // soup tiles in memory that count as "more than I can mine"
-    public static final int RICH_POST_EVERY = 50;
-    public static final int RICH_WINDOW = 150;
-    public static final int RICH_EXTRA = 8;
     public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
     public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX

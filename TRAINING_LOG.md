@@ -838,7 +838,11 @@ From Iteration 21's finding: the HQ cannot spawn once the ring is seated. Candid
 unseated until r300 (`GAP_ROUND`) so the HQ can build the extra miners the reports justify; it
 costs that tile about 75 of height early, which the seats' equalising rule pays back. Diagnostic:
 Soup, TwoLakeLand, Prison vs g_iter3 -- miners above 8 by r300 on the soup-rich maps, the gap
-seated by r350, ring at r2500. Gate `gate22` vs `REF=g_iter3`. Falsifier: below 53%.
+seated by r350, ring at r2500. Result: refuted at the diagnostic. On TwoLakeLand the gap works
+(15 miners built) and the miners cost the wall -- 11 landscapers to 15, ring 1262 vs 1655; on Soup
+the soup memory never fills before r300 (no report, no extra miner) and the unfed gap tile alone
+drags the ring's minimum to 958 vs 1352, because the seats' equalising rule pours the whole ring's
+dirt into it after r300. Not gated; ledger. `src/bot` back to g_iter3.
 
 ## Block 22 -- g_iter3 against the challenge pool (run block22, 2026-09-24)
 
@@ -870,6 +874,9 @@ seated by r350, ring at r2500. Gate `gate22` vs `REF=g_iter3`. Falsifier: below 
   g_iter3. Diagnostics 1-2 with 5,000-6,000 soup idle at r1000. Kind: blocked on the sink. Reopen
   together with the plateau (a place to spend soup after r700).
 
+- **The spawn gap (Iteration 22, 2026-09-24)** -- one ring tile kept free until r300 so the HQ can
+  spawn soup-driven miners. Refuted at the diagnostic: more miners after r150 cost more wall than
+  they mine (TwoLakeLand 1262 vs 1655), and an unfed ring tile costs the ring its minimum.
 - **Soup-driven miners (Iteration 21, 2026-09-24)** -- blocked: the HQ cannot spawn after the ring
   is seated (r150), so no report can add a miner. Kind: blocked on geometry. Reopen only with a
   spawn gap in the ring (one seat held back until r300) -- which costs wall.
