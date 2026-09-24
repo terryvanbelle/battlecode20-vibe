@@ -165,7 +165,7 @@ public strictfp class Landscaper extends Robot {
         // 3. dig from a tile outside both rings (lowest first), never under a building or the HQ
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d) || MapState.isPerch(n)) continue;   // Iteration 24: never dig the perch
+            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= (loc.equals(MapState.perch) ? 1 : 2) || !rc.canDigDirt(d) || MapState.isPerch(n) || n.equals(post)) continue;   // Iteration 24: never dig the perch; the mason, whose outside neighbours are all perch tiles, digs the pits beside it
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
             int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
         if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;   // nothing outside: eat our own margin

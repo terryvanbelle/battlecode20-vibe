@@ -10,7 +10,7 @@ import battlecode.common.*;
  */
 public strictfp class Drone extends Robot {
     private MapLocation water;                 // nearest flooded tile seen
-    private MapLocation patrol;
+    private MapLocation patrol, slot; private int slotK = -1;
     private int pickups = 0, drops = 0, homePickups = 0;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
@@ -46,16 +46,28 @@ public strictfp class Drone extends Robot {
             if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; if (guard) homePickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " guard=" + guard + " hc=" + Nav.cheb(tgt.location, home == null ? loc : home)); return; }
             if (gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
         }
-        // patrol: a guard walks the annulus GUARD_INNER..GUARD_OUTER round the HQ; before that the line from home to the enemy HQ guess
-        if (patrol == null || loc.distanceSquaredTo(patrol) <= (guard ? 2 : 4) || (guard && Nav.cheb(patrol, home) > C.GUARD_OUTER)) {
-            MapLocation g = MapState.enemyHQGuess(), h = home;
-            if (guard) {
-                int r = C.GUARD_INNER + nextInt(C.GUARD_OUTER - C.GUARD_INNER + 1), k = nextInt(8 * r);
-                int dx, dy; if (k < 2 * r) { dx = -r + k; dy = -r; } else if (k < 4 * r) { dx = r; dy = -r + (k - 2 * r); } else if (k < 6 * r) { dx = r - (k - 4 * r); dy = r; } else { dx = -r; dy = r - (k - 6 * r); }
-                patrol = new MapLocation(h.x + dx, h.y + dy);
-                if (!rc.onTheMap(patrol)) patrol = h;
+        // a guard holds one slot on the square at GUARD_RADIUS round the HQ (by id; the next free one if taken) and never wanders:
+        // guards flying between random points crossed the helpers' dig tiles and cost the wall (Prison: 16 guards, ring -23%)
+        if (guard) {
+            if (slot == null || (rc.canSenseLocation(slot) && rc.isLocationOccupied(slot) && !loc.equals(slot))) {
+                int r = C.GUARD_RADIUS, n = 8 * r, k0 = slot == null ? id % n : (slotK + 1) % n;
+                for (int t = 0; t < n; t++) {
+                    int k = (k0 + t) % n; int dx, dy;
+                    if (k < 2 * r) { dx = -r + k; dy = -r; } else if (k < 4 * r) { dx = r; dy = -r + (k - 2 * r); } else if (k < 6 * r) { dx = r - (k - 4 * r); dy = r; } else { dx = -r; dy = r - (k - 6 * r); }
+                    MapLocation s = new MapLocation(home.x + dx, home.y + dy);
+                    if (!rc.onTheMap(s)) continue;
+                    if (rc.canSenseLocation(s) && rc.isLocationOccupied(s) && !s.equals(loc)) continue;
+                    slot = s; slotK = k; break;
+                }
+                if (slot == null) slot = loc;
             }
-            else if (g != null && h != null) { int t = nextInt(5); patrol = new MapLocation(h.x + (g.x - h.x) * t / 5, h.y + (g.y - h.y) * t / 5); }
+            if (!loc.equals(slot)) { nav.setTarget(slot); nav.step(); }
+            return;
+        }
+        // patrol: the line from home to the enemy HQ guess
+        if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {
+            MapLocation g = MapState.enemyHQGuess(), h = home;
+            if (g != null && h != null) { int t = nextInt(5); patrol = new MapLocation(h.x + (g.x - h.x) * t / 5, h.y + (g.y - h.y) * t / 5); }
             else patrol = new MapLocation(loc.x + nextInt(21) - 10, loc.y + nextInt(21) - 10);
         }
         nav.setTarget(patrol); if (!nav.step()) patrol = null;

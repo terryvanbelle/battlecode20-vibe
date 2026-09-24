@@ -44,9 +44,10 @@ public final class C {
     public static final int PERCH_GIVEUP_ROUND = 650;  // the builder leaves an unraised perch at this round and builds as before
     public static final int PERCH_STALL = 40;         // builder turns stalled on the way to B before giving the perch up
     public static final int DRONE_LATE_RESERVE = 0;   // after the flood every 150 soup is a drone ...
+    public static final int VAPORATOR_FIRST_UNTIL = 1000;   // ... but the perch center saves for the vaporator (500) until this round
     public static final int DRONES_LATE_MAX = 16;     // ... up to this many from the perch center (40 on Prison blocked the helpers' digging)
     public static final int CHASE_RADIUS = 8;         // Chebyshev from the HQ
-    public static final int GUARD_INNER = 5, GUARD_OUTER = 7;   // the patrol annulus: distance 2 is the helpers' tier and 3-4 their dig sources (Prison: 40 parked drones starved the wall, ring 1040 vs 1598)
+    public static final int GUARD_RADIUS = 6;         // guards hold slots on this square round the HQ: distance 2 is the helpers' tier, 3-4 their dig sources
 
 
     // --- wall
