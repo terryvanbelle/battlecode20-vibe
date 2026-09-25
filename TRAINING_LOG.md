@@ -1139,6 +1139,22 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 38 -- seats spare the walkway (2026-09-25, on g_iter7)
+
+**Evidence.** Flood-round deaths were 27 of the 159 losses of blocks 50-56 (GSF, Hills, Spiral, Toothpaste, Climb:
+the HQ drowns at the map's `hqFloodRound` through a ring tile nobody seated). Climb, read (`diag/cut-Climb.bc20`,
+HQ at (4,37), elevation 4, against the map's south cliff): the school stands east of the HQ; the three west ring
+tiles are at 2 and never seated (`@badseat` 51 times on the six west and north tiles); the ring at r500 reads
+2F 2F 2F 29 52 26 132 131 and the HQ drowns at r931. The only walkway from the east to the west ring on that map
+is the two circle tiles north of the HQ, (4,39) and (5,39), and the east seats dig exactly those -- their lowest
+non-ring neighbours -- to -6 by r150 and -9 by r350. Landscapers born at the school then walk at a cliff for ever.
+
+**Candidate** = g_iter7 + before `SEATS_BY` (r400) a seat never digs a circle tile that touches an exposed ring
+tile not held by one of our landscapers: the walkway stays until the seats are in. It costs nothing after r400
+and, on maps where the seats fill by r200, almost nothing before. Diagnostics (VM): Climb both ways and Hills --
+`@badseat` counts, the ring at r500 (no tile under water), the HQ alive past the flood round -- and RandomSoup1
+plus controls on Climb and Hills (g_iter7 vs itself) for the ring at r3000.
+
 ## Iteration 37 -- one gun on the site (2026-09-25, on g_iter7)
 
 **Why now.** The raid table (five band opponents with clocks, a third of the band's losses) and two closed forms:
