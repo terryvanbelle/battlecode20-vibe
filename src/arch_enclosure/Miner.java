@@ -135,7 +135,7 @@ public strictfp class Miner extends Robot {
         MapLocation school = null;
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL && Nav.cheb(friends[i].location, home) == 1) school = friends[i].location;
         boolean opposite = school != null && Nav.cheb(loc, school) >= 2;
-        if (Nav.cheb(loc, home) != 1 || (school != null && !opposite)) {   // stage 6: stand on a ring tile away from the school, so the tiles beside us are not its yard
+        if (Nav.cheb(loc, home) != 1 || (school != null && !opposite && builtFC == 0)) {   // stage 6: stand on a ring tile away from the school, so the tiles beside us are not its yard (stage 13: once the center stands the builder roams the ring for sites)
             MapLocation best = null; int bd = 1 << 30;
             for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t) || (rc.canSenseLocation(t) && (rc.isLocationOccupied(t) || rc.senseFlooding(t)))) continue; if (school != null && Nav.cheb(t, school) < 2) continue; int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; } }
             if (best != null) { nav.setTarget(best); nav.step(); }
@@ -153,6 +153,8 @@ public strictfp class Miner extends Robot {
             if (want == RobotType.DESIGN_SCHOOL && school != null) return false;
             int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; site = t; } }
         if (site == null || (want != RobotType.DESIGN_SCHOOL && buildings >= C.INSIDE_MAX)) return false;
+        if (!loc.isAdjacentTo(site) && Nav.cheb(loc, home) == 1) {   // stage 13: no site beside us -- stand on the free tile itself; its ring neighbours are then beside us (one vaporator was built, then the builder sat between it and the center for 2,000 rounds)
+            nav.setTarget(site); if (nav.stalled()) { buildPause = round + 50; return false; } nav.step(); return true; }
         if (loc.isAdjacentTo(site)) { Direction d = loc.directionTo(site); if (rc.canBuildRobot(want, d)) { rc.buildRobot(want, d); Debug.log("@build t=" + want.ordinal() + " at=" + site + " inside soup=" + rc.getTeamSoup());
                 if (want == RobotType.DESIGN_SCHOOL) builtSchool++; else if (want == RobotType.VAPORATOR) builtVap++; else if (want == RobotType.NET_GUN) builtNet++; else builtFC++; return true; }
             return false; }

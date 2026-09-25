@@ -1819,6 +1819,14 @@ and a building's tile must be within 3 of its builder. RandomSoup1 with the refi
 552-565 at r2000, alive to r2992. Stage 12: no quarry at all (the flooded outside is a source without end); a
 landscaper set down at Chebyshev 3 holds there too (none had, so the outer shell never gained a holder).
 
+**Stage 12: the first vaporator, and the interior at ground.** RandomSoup1 and Prison each built one vaporator
+inside; every interior tile stands at 4-5 all game; the shells 513-536 / 357-453 / 228-350 at r2000, the HQs alive
+to r2981 / r2939 / r2819. The holders are at the dig-deposit ceiling (0.48 a body a round on RandomSoup1), so the
+shell's rate is the body count, and the body count is 11-17 because the school's vaporator reserve waits for a
+second vaporator that never comes: the builder built one on the tile beside it and then sat between the center and
+the vaporator with no free tile in reach for 2,000 rounds. Stage 13: once the center stands the builder roams the
+ring, standing on a free tile to bring the next one within reach.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
