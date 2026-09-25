@@ -63,8 +63,8 @@ public strictfp class Miner extends Robot {
         if (rush) { if (soup < RobotType.DESIGN_SCHOOL.cost) return false; want = RobotType.DESIGN_SCHOOL; Debug.log("@rush school"); }   // Iteration 29: the school before the refinery
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
+        else if (builtSchool > 0 && builtFC == 0 && soup >= RobotType.FULFILLMENT_CENTER.cost + 150) want = RobotType.FULFILLMENT_CENTER;   // the enclosure: the elevator's center right after the school
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
-        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
         if (want != RobotType.REFINERY) return buildInside(want, home);   // the enclosure: everything but the refinery lives on the ring
@@ -129,11 +129,14 @@ public strictfp class Miner extends Robot {
 
     /** The enclosure: build on a free ring tile (Chebyshev 1), never the last INSIDE_MAX-th free one, from a tile beside it. */
     private boolean buildInside(RobotType want, MapLocation home) throws GameActionException {
-        int buildings = 0; MapLocation site = null; int bd = 1 << 30;
+        int buildings = 0; MapLocation site = null, school = null; int bd = 1 << 30;
+        for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (rc.onTheMap(t) && rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type == RobotType.DESIGN_SCHOOL && r.team == us) school = t; } }
         for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t)) continue;
-            if (rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) { buildings++; continue; } if (r != null || rc.senseFlooding(t)) continue; }
+            if (rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) { if (r.type != RobotType.DESIGN_SCHOOL) buildings++; continue; } if (r != null || rc.senseFlooding(t)) continue; }
+            if (school != null && Nav.cheb(t, school) <= 1) continue;   // the yard: the school's two ring neighbours stay free for its spawns
+            if (want == RobotType.DESIGN_SCHOOL && school != null) return false;
             int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; site = t; } }
-        if (site == null || buildings >= C.INSIDE_MAX) return false;
+        if (site == null || (want != RobotType.DESIGN_SCHOOL && buildings >= C.INSIDE_MAX)) return false;
         if (loc.isAdjacentTo(site)) { Direction d = loc.directionTo(site); if (rc.canBuildRobot(want, d)) { rc.buildRobot(want, d); Debug.log("@build t=" + want.ordinal() + " at=" + site + " inside soup=" + rc.getTeamSoup());
                 if (want == RobotType.DESIGN_SCHOOL) builtSchool++; else if (want == RobotType.VAPORATOR) builtVap++; else if (want == RobotType.NET_GUN) builtNet++; else builtFC++; return true; }
             return false; }

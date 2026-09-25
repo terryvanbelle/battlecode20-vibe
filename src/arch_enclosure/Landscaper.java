@@ -12,7 +12,7 @@ import battlecode.common.*;
  */
 public strictfp class Landscaper extends Robot {
     private MapLocation tile;                 // our shell tile, once chosen
-    private boolean feeder = false, attacker = false;
+    private boolean feeder = false, attacker = false, waiting = false;
     private final MapLocation[] bad = new MapLocation[8]; private int nBad = 0;
     private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, fed = 0, selfDeps = 0;
 
@@ -28,9 +28,11 @@ public strictfp class Landscaper extends Robot {
         if (tile != null && !tile.equals(loc) && nav.target() == tile && nav.stalled()) { if (nBad < 8) bad[nBad++] = tile; Debug.log("@badtile " + tile); tile = null; }
         if (tile == null || (!tile.equals(loc) && occupiedByOther(tile))) tile = pickShell(home);
         if (tile == null) {
-            if (Nav.cheb(loc, home) <= 1) { feeder = true; Debug.log("@feeder at=" + loc); feed(home); return; }
+            // stage 2: no feeders -- a body inside waits in the yard for a drone to lift it onto the shell; one outside attacks
+            if (Nav.cheb(loc, home) <= 1) { if (!waiting) { waiting = true; Debug.log("@yard at=" + loc); } if (rc.isReady()) feed(home); return; }
             attacker = true; Debug.log("@attacker shell full"); attack(); return;
         }
+        waiting = false;
         if (!loc.equals(tile)) { if (floodDanger() && climb()) return; nav.setTarget(tile); nav.step(); if (loc.equals(tile)) Debug.log("@held " + tile + " d=" + Nav.cheb(tile, home)); return; }
         hold(home);
     }

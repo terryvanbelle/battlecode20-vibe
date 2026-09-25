@@ -35,7 +35,8 @@ public final class C {
     public static final int LANDSCAPERS_MAX = 48;     // the enclosure: 16 inner shell + 24 outer + feeders
     public static final int SHELL_CLIMB = 3;          // a shell tile is takeable within this of our own elevation
     public static final int SHELL_SLACK = 2;          // equalise an adjacent shell tile only when it is this much below ours
-    public static final int INSIDE_MAX = 6;           // buildings on the ring at most (the HQ and the school need a spawn tile)
+    public static final int INSIDE_MAX = 4;           // buildings on the ring besides the school (the yard: the school's two ring neighbours stay free)
+    public static final int GUARD_BOX = 4;            // drones patrol within this of the HQ
     public static final int ATTACKER_BANK = 200;      // Iteration 43b: was 700, 43 tried 0 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;

@@ -3,51 +3,88 @@ package arch_enclosure;
 import battlecode.common.*;
 
 /**
- * Delivery drone. Carrying an enemy unit: fly to the nearest known water and drop it in. Empty:
- * pick up any enemy miner/landscaper (or a cow) within reach, else patrol between our HQ and the
- * enemy HQ guess looking for one. Never enters the shooting radius (r2 15) of an enemy HQ or net
- * gun that is in sight.
+ * The enclosure's drone: the ELEVATOR and the guard. A landscaper waiting in the yard (a ring tile) cannot climb
+ * onto a shell tile once the shell stands 3 above the ground; a drone lifts it and drops it on the nearest free
+ * shell tile (Chebyshev 2, then 3 beside a held one). Otherwise it patrols Chebyshev 3-4 around the HQ, lifting
+ * anything of the enemy's within the box and drowning it, and never enters the ring or the circle except on the
+ * way to a pickup (a hovering drone occupies its tile).
  */
 public strictfp class Drone extends Robot {
-    private MapLocation water;                 // nearest flooded tile seen
-    private MapLocation patrol;
-    private int pickups = 0, drops = 0;
+    private MapLocation water, patrol, liftTarget;
+    private boolean holdingFriend = false, chasing = false;
+    private int pickups = 0, drops = 0, lifts = 0;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
+    @Override protected boolean allowedTile(MapLocation l) { MapLocation h = MapState.home; if (h == null) return true; int d = Nav.cheb(l, h); return d >= 3 || (d <= 2 && (chasing || holdingFriend)); }
 
     @Override protected void turn() throws GameActionException {
         sense(); if (round % 3 == 2) readBlock(); probeEdges();
-        if (round % 100 == 0) Debug.log("@dronestat pickups=" + pickups + " drops=" + drops + " holding=" + rc.isCurrentlyHoldingUnit());
-        // remember water
+        if (round % 100 == 0) Debug.log("@dronestat pickups=" + pickups + " drops=" + drops + " lifts=" + lifts + " holding=" + rc.isCurrentlyHoldingUnit());
         if (water == null || round % 5 == 0) { MapLocation[] near = nearWater(); if (near != null) water = near[0]; }
-        // danger: an enemy gun in sight
+        MapLocation home = MapState.home;
         MapLocation gun = null; int gd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canShoot()) { int d = loc.distanceSquaredTo(e.location); if (d < gd) { gd = d; gun = e.location; } } }
-        if (gun != null && gd <= 24 && fleeFrom(gun)) return;
+        if (gun != null && gd <= 24 && !holdingFriend && fleeFrom(gun)) return;
+        // the elevator, carrying: drop on the target shell tile (or any free shell tile beside us if the target is gone)
+        if (rc.isCurrentlyHoldingUnit() && holdingFriend) {
+            if (liftTarget != null && (!rc.canSenseLocation(liftTarget) || rc.isLocationOccupied(liftTarget))) liftTarget = null;
+            if (liftTarget == null) liftTarget = freeShell(home);
+            if (liftTarget == null) { for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) >= 1 && rc.canDropUnit(d) && !rc.senseFlooding(n)) { rc.dropUnit(d); holdingFriend = false; drops++; Debug.log("@lift-drop anywhere at=" + n); return; } } nav.setTarget(home); nav.step(); return; }
+            if (loc.isAdjacentTo(liftTarget)) { Direction d = loc.directionTo(liftTarget); if (rc.canDropUnit(d)) { rc.dropUnit(d); holdingFriend = false; lifts++; Debug.log("@lift to=" + liftTarget + " d=" + Nav.cheb(liftTarget, home)); liftTarget = null; return; } }
+            nav.setTarget(liftTarget); nav.step(); return;
+        }
         if (rc.isCurrentlyHoldingUnit()) {
-            // drop into adjacent water, else fly toward water (or drop anywhere after a long carry)
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (rc.canDropUnit(d) && rc.senseFlooding(n)) { rc.dropUnit(d); drops++; Debug.log("@drown at=" + n); return; } }
             if (water != null) { nav.setTarget(water); if (nav.step()) return; }
             MapLocation[] near = nearWater(); if (near != null) { water = near[0]; nav.setTarget(water); nav.step(); return; }
             nav.setTarget(MapState.center()); nav.step(); return;
         }
-        // pick up
-        RobotInfo tgt = null; int bd = 1 << 30;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
+        // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
+        if (home != null) {
+            RobotInfo w = null; int wd = 1 << 30;
+            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER || Nav.cheb(f.location, home) != 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < wd) { wd = d; w = f; } }
+            if (w != null) {
+                MapLocation t = freeShell(home);
+                if (t != null) {
+                    holdingFriend = true;   // set before the move so allowedTile lets us into the circle
+                    if (rc.canPickUpUnit(w.ID)) { rc.pickUpUnit(w.ID); liftTarget = t; pickups++; Debug.log("@lift-up id=" + w.ID + " for=" + t); return; }
+                    holdingFriend = false; chasing = true; nav.setTarget(w.location); nav.step(); chasing = false; return;
+                }
+            }
+        }
+        // the guard: anything of theirs within the box, landscapers on the ring or beside the HQ first
+        RobotInfo tgt = null; long bs = Long.MAX_VALUE;
+        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp() || home == null || Nav.cheb(e.location, home) > C.GUARD_BOX + 2) continue;
+            int hd = Nav.cheb(e.location, home);
+            long s = (e.type == RobotType.LANDSCAPER ? 0 : 1000000L) + (hd <= 1 ? 0 : 10000L) + loc.distanceSquaredTo(e.location);
+            if (s < bs) { bs = s; tgt = e; } }
+        chasing = tgt != null;
         if (tgt != null) {
-            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID); return; }
+            if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " home=" + Nav.cheb(tgt.location, home)); return; }
             if (gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
         }
-        // patrol: between home and the enemy HQ guess
-        if (patrol == null || loc.distanceSquaredTo(patrol) <= 4) {
-            MapLocation g = MapState.enemyHQGuess(), h = MapState.home;
-            if (g != null && h != null) { int t = nextInt(5); patrol = new MapLocation(h.x + (g.x - h.x) * t / 5, h.y + (g.y - h.y) * t / 5); }
-            else patrol = new MapLocation(loc.x + nextInt(21) - 10, loc.y + nextInt(21) - 10);
+        if (patrol == null || loc.distanceSquaredTo(patrol) <= 2 || (home != null && (Nav.cheb(patrol, home) > C.GUARD_BOX || Nav.cheb(patrol, home) < 3))) {
+            if (home != null) { for (int t = 0; t < 8; t++) { MapLocation p = new MapLocation(home.x + nextInt(2 * C.GUARD_BOX + 1) - C.GUARD_BOX, home.y + nextInt(2 * C.GUARD_BOX + 1) - C.GUARD_BOX); if (Nav.cheb(p, home) >= 3) { patrol = p; break; } } }
+            else patrol = new MapLocation(loc.x + nextInt(9) - 4, loc.y + nextInt(9) - 4);
         }
-        nav.setTarget(patrol); if (!nav.step()) patrol = null;
+        if (patrol != null) { nav.setTarget(patrol); if (!nav.step()) patrol = null; }
     }
 
-    /** The nearest flooded tile in sight, or null. */
+    /** The nearest free, dry shell tile: Chebyshev 2 first, then 3 beside a held 2. */
+    private MapLocation freeShell(MapLocation home) throws GameActionException {
+        if (home == null) return null;
+        MapLocation best = null; int bd = 1 << 30;
+        for (int ring = 2; ring <= 3 && best == null; ring++)
+            for (int dx = -ring; dx <= ring; dx++) for (int dy = -ring; dy <= ring; dy++) {
+                if (Math.max(Math.abs(dx), Math.abs(dy)) != ring) continue;
+                MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+                if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue;
+                if (ring == 3) { boolean held = false; for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue; RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { held = true; break; } } if (!held) continue; }
+                int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
+            }
+        return best;
+    }
+
     private MapLocation[] nearWater() throws GameActionException {
         MapLocation best = null; int bd = 1 << 30;
         for (int dx = -4; dx <= 4; dx++) for (int dy = -4; dy <= 4; dy++) {
