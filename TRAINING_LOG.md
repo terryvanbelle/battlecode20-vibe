@@ -3062,3 +3062,12 @@ after, 75-132 soup, seven miners (three built at r60-80) -- one landscaper diggi
 2 of our HQ: walk beside it, dig anywhere but the HQ or a building, deposit on it (15 dirt kills it) -- unless the HQ
 is buried to 35, then the HQ first. Diagnostic `diag53` against `arch_rush` (our own rusher; unrestricted) on
 InADitch, Squares and FourLakeLand, both sides, with g_iter10 as the control.
+
+**Diagnostic 53: refuted.** Against `arch_rush` the rule never fired at range 2 (the rusher's school stands at
+Chebyshev 3: InADitch (37,27) against our HQ (37,30)); at range 3 it fires and kills the school (DS 1 -> 0 by r150) --
+and loses faster: InADitch as A dead at r219 (control r292), FourLakeLand as A dead at r679 (control r2978). The
+rusher rebuilds its school by r200; our landscapers were at its school instead of under the HQ (buried 6 -> 17 -> 41),
+and the no-miner rule held us at four miners and four landscapers with 300-600 soup idle to r650 while the rusher
+reached 26 bodies. Killing the spawner is the wrong answer to a spawner that is rebuilt for 150; the HQ's own
+bodies are. Iteration 53 closed as built (`src/cand53` kept); `src/bot` = g_iter10. A reopening would keep the
+miners, keep the landscapers on the HQ, and only bury an enemy school a landscaper already stands beside.

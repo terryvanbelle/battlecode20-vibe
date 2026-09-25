@@ -29,9 +29,6 @@ public strictfp class HQ extends Robot {
             || (built < C.MINERS_TOTAL && round - lastBuild >= C.MINER_REPLENISH && rc.getTeamSoup() >= C.MINER_SOUP_RESERVE && landscapersAdj < C.WALL_LANDSCAPERS);
         // Iteration 29: under a rush, no miner until our school stands (the 70s go to the school and its landscapers)
         if (want && rushSeen()) { boolean school = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL) { school = true; break; } if (!school) want = false; }
-        // Iteration 53: and after it, no miner past the early four while the rush lasts (poortho on InADitch: three more
-        // miners at r60-80 left 75-132 soup and one landscaper against four burying the HQ -- dead at r159)
-        if (want && built >= C.MINERS_EARLY && rushSeen()) want = false;
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
         // Iteration 7: re-post every 100 rounds so robots born late (and the drones) learn home, the origin and the enemy HQ

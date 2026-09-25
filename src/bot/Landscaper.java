@@ -30,7 +30,6 @@ public strictfp class Landscaper extends Robot {
         if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
-        if (killSpawner(home)) return;   // Iteration 53
         if (!attacker && !helper) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
@@ -42,26 +41,6 @@ public strictfp class Landscaper extends Robot {
         wall(home);
     }
 
-    /** Iteration 53: an enemy design school or fulfillment center within 2 of our HQ is buried before anything else
-     *  (15 dirt kills it); only a HQ buried to 35 of its 50 is dug out first. poortho's school stood beside our HQ on
-     *  InADitch at r80 and its four landscapers buried the HQ by r159 while ours dug the HQ out one dirt at a time. */
-    private boolean killSpawner(MapLocation home) throws GameActionException {
-        if (round >= C.RUSH_UNTIL + 200) return false;
-        RobotInfo tgt = null; int bd = 1 << 30;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if ((e.type == RobotType.DESIGN_SCHOOL || e.type == RobotType.FULFILLMENT_CENTER) && Nav.cheb(e.location, home) <= 2) { int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } } }
-        if (tgt == null) return false;
-        if (hqInfo != null && hqInfo.dirtCarrying >= 35) return false;   // the HQ first when it is close to dying
-        if (!rc.isReady()) return true;
-        if (loc.isAdjacentTo(tgt.location)) {
-            Direction d = loc.directionTo(tgt.location);
-            if (rc.getDirtCarrying() > 0 && rc.canDepositDirt(d)) { rc.depositDirt(d); buryDeposits++; if (buryDeposits % 5 == 1) Debug.log("@killspawner t=" + tgt.type.ordinal() + " at=" + tgt.location + " onIt=" + tgt.dirtCarrying); return true; }
-            // dig: never the HQ, never the target, never an enemy building; a unit's tile is fine
-            for (int i = 8; --i >= 0;) { Direction dd = DIRS[i]; MapLocation n = loc.add(dd); if (n.equals(home) || n.equals(tgt.location) || !rc.canDigDirt(dd)) continue; RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && r.type.isBuilding()) continue; rc.digDirt(dd); digs++; return true; }
-            if (rc.canDigDirt(Direction.CENTER)) { rc.digDirt(Direction.CENTER); digs++; return true; }
-            return true;
-        }
-        nav.setTarget(tgt.location); nav.step(); return true;
-    }
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
         if (!rc.canSenseLocation(l)) return false;
         RobotInfo r = rc.senseRobotAtLocation(l);

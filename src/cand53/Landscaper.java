@@ -42,13 +42,13 @@ public strictfp class Landscaper extends Robot {
         wall(home);
     }
 
-    /** Iteration 53: an enemy design school or fulfillment center within 2 of our HQ is buried before anything else
+    /** Iteration 53: an enemy design school or fulfillment center within 3 of our HQ is buried before anything else
      *  (15 dirt kills it); only a HQ buried to 35 of its 50 is dug out first. poortho's school stood beside our HQ on
      *  InADitch at r80 and its four landscapers buried the HQ by r159 while ours dug the HQ out one dirt at a time. */
     private boolean killSpawner(MapLocation home) throws GameActionException {
         if (round >= C.RUSH_UNTIL + 200) return false;
         RobotInfo tgt = null; int bd = 1 << 30;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if ((e.type == RobotType.DESIGN_SCHOOL || e.type == RobotType.FULFILLMENT_CENTER) && Nav.cheb(e.location, home) <= 2) { int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } } }
+        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if ((e.type == RobotType.DESIGN_SCHOOL || e.type == RobotType.FULFILLMENT_CENTER) && Nav.cheb(e.location, home) <= 3) { int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } } }
         if (tgt == null) return false;
         if (hqInfo != null && hqInfo.dirtCarrying >= 35) return false;   // the HQ first when it is close to dying
         if (!rc.isReady()) return true;
