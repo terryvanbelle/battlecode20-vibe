@@ -25,8 +25,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   program; the next session should design it on paper first, from the census numbers, not code it in an evening.
 - **The flood-round deaths** (27 of 159 losses in blocks 50-56: GSF, Hills, Spiral, Toothpaste, Climb): Iteration 38 (seats
   spare the walkway to unseated tiles before r400, `src/cand38`) seated two more tiles on Climb but not the corner
-  one, changed nothing on Hills, and cost 6% of ring on RandomSoup1 -- not gated. The next form must act only where a
-  seat-seeker is stalled (TRAINING_LOG "Iteration 38").
+  one, changed nothing on Hills, and cost 6% of ring on RandomSoup1 -- not gated. The tile-by-tile reading of Climb (end of the
+  Iteration 39 entry) names the two-part form that was not tried: seats spare a circle tile beside a ring tile still
+  unseated past r250, and a boxed-in miner beside an unseated ring tile steps onto it.
 - **A question for the owner (no action taken):** three acceptances in a row (25, 29b, 33+34b) gained 55-65% in the mirror
   and 2-3 points on the ladder; two raid answers (31, 37) were priced out by the mirror at 12-27% while their ladder
   arms were nulls. The mirror sees only what the incumbent lacks. Should a candidate that is neutral in the mirror

@@ -1170,6 +1170,18 @@ built.** Code kept as `src/cand39b`; `src/bot` is g_iter7. The flood-round line 
 closed (38, 39, 39b); the next one must first show, on Climb, which tile the last seat-seeker needs and what
 stands in its way, tile by tile, before any rule is written.
 
+Tile by tile (Climb, `diag/cut-Climb.bc20`, HQ (4,37) at 4, the map's cliff along row 35, the map's edge along row
+39): the six unseated ring tiles are the west and north ones, all at 2-4 and walkable from the west. Ten
+landscapers try them in turn (`@badseat` 51 times: [4,38] first, then [5,36], [3,36], [3,37], [3,38]) and every one
+ends a helper on the east side. From the school at (6,38) the north way west runs through (5,39)-(4,39): (4,39) is
+the pit the seat at (5,38) dug (-9 by r200). The south way runs through (6,36)-(5,36): (6,36) and (7,36) are held
+from r100 to the end by two of our own miners, boxed in by the cliff, the ring, the pit at (6,37) and the
+refinery -- Iteration 32's trap, on the only other walkway. Two closed forms meet here: the seats' pits (38) and
+the miners on the circle (32). A form for this map needs both: a seat leaves the circle tile beside an unseated
+ring tile alone only once that tile has stayed unseated past r250 (38 paid 6% because early on every tile is
+unseated), and a boxed-in miner beside an unseated ring tile steps onto it to free the way (it can go nowhere
+else). Both are cheap to write; neither was tried.
+
 ## Iteration 38 -- seats spare the walkway (2026-09-25, on g_iter7)
 
 **Evidence.** Flood-round deaths were 27 of the 159 losses of blocks 50-56 (GSF, Hills, Spiral, Toothpaste, Climb:
