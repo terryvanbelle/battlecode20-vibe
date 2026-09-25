@@ -1158,6 +1158,13 @@ tile at 4 at r500 (the control's lowest 97), ring 1046 against 1304 at r3000 and
 control wins -- the seat-starving cost of part (a) on a soup-poor map, as with 38. The two parts are read apart:
 **40b** is part (b) alone (`WALKWAY_FROM` 400, so (a) never applies), the same five games.
 
+**40b (part (b) alone):** Hills as B sealed again (147 145 74 147 116 147 144 71) and won at r931 -- part (b) is what
+seals Hills; Climb as B five tiles at 145 for the control's three at 108 (the corner still 2F); RandomSoup1 2492
+against 2445. **GSF as A is part (b)'s cost too**: the ring tile at 4 at r500, 1060 against 1304 at r3000, the game
+lost -- the miner stepped onto a ring tile twenty times over the game (`@uncork` 20) and, boxed in, stayed there
+blocking the seat each time. **40c**: the step only when a landscaper of ours is within 2 (someone waiting to
+pass), and never twice in 100 rounds; the same five games.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
