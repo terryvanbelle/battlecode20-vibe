@@ -3136,3 +3136,8 @@ being buried now. `src/cand56` kept.
 
 **Iteration 57 (`src/cand57` = cand54 + the far-side placement for the rush center):** Iteration 54's drones failed
 only because the center never found a site; the far-side search places it. Diagnostic `diag57` on the three seeds.
+
+**Diagnostic 57:** the center is placed in every game (one each) and the drones fire (FourLakeLand 2 pickups, 2
+drowned; CowFarm 2 and 2), but the bank buys one drone, not three. MtDoom lives to r957 (control r163), FourLakeLand
+r677 (r678), CowFarm r421 (r949). Mixed on three seeds; the mechanism fires, so **`gate57r`** (paired vs
+`arch_rush`, cand57 vs g_iter10) decides.
