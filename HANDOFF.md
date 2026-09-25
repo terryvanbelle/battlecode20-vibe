@@ -38,8 +38,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   tier and ONSET-merged follow g_iter9 at 200 games). `src/bot` = g_iter9. Iteration 44 (six early miners) refuted
   at the diagnostic (ring 4-13% lower on three maps of four).
 - **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
-  draw?) and `diag45` (Iteration 45: `seatsBy` from the HQ's own flood round, for maptestsmall r256 and WateredDown
-  r464; `src/bot` = g_iter9 + 45).
+  draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
+  tiles open where the control lives). `src/bot` = g_iter9.
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>

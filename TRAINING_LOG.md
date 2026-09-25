@@ -1441,6 +1441,14 @@ round when that is sooner (floor 100); the three `SEATS_BY` reads in `Landscaper
 **Diagnostic** (VM, seed 41, vs g_iter9, controls g_iter9 vs itself): WateredDown and maptestsmall, both sides --
 `@seatsby` 314 and 106, the walk firing before the flood round, open tiles at r150-450, the HQ outliving it.
 
+**Refuted as built.** WateredDown (HQ at 2, `seatsBy` 314): as A the seats walked and fed 65 times from r314 and
+the HQ **drowned at r468 with two tiles open, where the control has one open at r450 and lives to r2967** -- with
+five landscapers for eight tiles, feeding the neighbours from r314 drains the few seats there are; as B (89
+walks) sealed by r450 and won at r2967, as the control does. maptestsmall (HQ at 1, `seatsBy` 106): as A sealed
+at r150 where the control still had one tile open, then lost at r3057 against the control's r3113; as B won at
+r2988 against the control's r3113 -- noise either way. The early walk helps nothing and can cost the HQ; the
+three flood-round deaths on these maps are bodies, not timing. `src/bot` back to g_iter9. Not gated.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
