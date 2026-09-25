@@ -1139,6 +1139,19 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
+
+Iteration 12's re-open condition was soup before the school drowns; g_iter7 banks 3,000-12,000 by r700-1000.
+Candidate = g_iter7 + `WALL_HELPERS` 16 (every distance-2 post). Diagnostics (VM, four games, ring minimum at
+r3000, candidate against the incumbent's own side): RandomSoup1 as A 2446 vs 2739, as B 2727 vs 2532; Prison as A
+2089 vs 1893; Squares as B 2174 vs 2264 -- two up, two down, and in every game the side that won the ring race
+was the same side regardless of build. Both builds reach `LANDSCAPERS_MAX` (24) by r700; the sixteen posts fill
+(L=24) and the ring grows no faster: eight seats plus sixteen distance-2 posts are every tile adjacent to the
+ring, so the intake ceiling (0.5 dirt per body-round, about 1.5 height a round over eight tiles) is reached
+either way, and the eight attackers the incumbent sends instead cost nothing the ring can see. **Not gated;
+`src/bot` back to g_iter7.** Kind: uninformative as built. The wall race is a ceiling contest: the next census
+is where seats and helpers lose turns against that ceiling (Iteration 12's idle census, on g_iter7's own games).
+
 ## Iteration 34 -- a full miner that cannot get home (2026-09-25, stacked on 33)
 
 **Census** (VM, the 311 reviewable losses of blocks 50-69, every miner's `@minerstat` at r300 and r500): of
