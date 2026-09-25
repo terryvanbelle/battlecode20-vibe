@@ -1254,6 +1254,17 @@ onto. GSF as B, Toothpaste as B, RandomSoup1 as A: nothing to walk to, the games
 tile. **41b**: when the tile between is too low to step onto, the seat feeds it level first (`@seatfeed`), then
 walks; Spiral A, Hills B, GSF B again.
 
+**Diagnostic 41b.** Spiral as A: the feed starts at r400 (369 deposits on the tile between), the walk at r794, all
+three open tiles sealed by r900 and the HQ alive past the flood round; but the seat that fed two tiles grew
+neither, the ring reads 53 188 101 189 225 51 225 227 at r1000 and 253-383 at r2000, and the game is lost at r2823
+where the control (whose corner was sealed some other way after r500) lasts to r3143. Hills as B: the same game as
+41 (the feed ran from r400, the walk still at r523, sealed by r600, lost at r2981 against the control's r931). GSF
+as B: nothing fires, identical to the control. **The form turns a flood-round death into a wall race and costs
+the wall where the control would have sealed anyway**; what it is worth is a ladder question (against g_iter7's
+wall the surviving HQ still loses; against the field's weaker walls it may not). Snapshot `src/cand41b`;
+**`gate41b`** (the first paired gate: N=320 pairs, `LOGTAG=@seat`) and **`arm41b-a`/`arm41b-b`** (96 seeded band
+games as `us:cand41b`; pre-registered: 2 or fewer flood-round losses of 96 against g_iter7's 6-7).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
