@@ -1139,6 +1139,27 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## The wall ceiling census (2026-09-25)
+
+Every landscaper's `@wallstat` counters at r1000 and r2000 in g_iter7's 145 reviewable ladder games (blocks
+70-75): **seats (n=1,105) and helpers (n=677) both run at the ceiling** -- a median of 1,000 actions per 1,000
+rounds (500 digs, 500 deposits; p25 986 and 996), and only 10 seats and 6 helpers below 700. Nothing at the wall
+is idle. What the ring gets is bodies: 7.6 seats and **4.7 helpers alive per game** at r1000-2000 against 16
+posts, because helpers die after the flood (drowned, lifted) and the school that made them is under water by
+r700. At 0.5 dirt per body-round that is 6 dirt a round over eight tiles -- the +750 per thousand rounds the
+diagnostics show -- while a full second ring (8 + 16 bodies) would give 12. Iteration 35 (16 helpers before
+the flood) did not change it because the pre-flood posts fill either way and the losses come later.
+
+**Read with the rest:** g_iter7 banks 3,000-12,000 soup by r700-1000 that nothing spends; the wall race
+(39% of its losses end after r3000) is decided by how many bodies stand beside the ring after r1000; every
+form of buying those bodies tried so far failed on where the producer stands (Iteration 13's second school
+on ground that floods, 24's perch that carried a center instead of a school, the plateau's claim churn).
+The next structural candidate is the one DESIGN.md names: a school on ground raised before r700, beside
+posts it can reach after the flood, spending the bank on helpers as they die. It has two prerequisites the
+earlier attempts lacked and now hold -- the soup arrives before r700 (33+34b) and the seats are all taken
+by r400 (25). The first job is the geometry: which distance-2 posts stay reachable from a raised
+distance-3 tile after r1000, on the corpus.
+
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
 
 Iteration 12's re-open condition was soup before the school drowns; g_iter7 banks 3,000-12,000 by r700-1000.

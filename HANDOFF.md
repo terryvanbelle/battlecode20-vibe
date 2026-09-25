@@ -22,11 +22,14 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   (voided: bug), 29b (ACCEPTED 72-40 -> g_iter6), 30 (rejected 58-70); new sparring partner `src/arch_rush` (poortho's
   early school-by-our-HQ rush; kills g_iter5 on Europe at r256).
 - **Open lines, in order:**
-  1. **The early economy.** The merged onset over blocks 50-69 (`progress/ONSET-merged.md`, 786 games) puts net worth
-     (us-them) at r150 and mines/robots/spawned at r200 ahead of every other signal (+0.4 to +0.5); landscapers follow at
-     r350. First job: a census of what limits our mining by r200 against the field's (miners, deposits, refinery timing,
-     the HQ's 20-a-turn refining cap) from the study tables, then one trace.
-  2. **A producer that outlives the flood.** Every reviewable loss of blocks 48-50 ends with no miner, school or center and
+  1. **Bodies at the wall after the flood** (TRAINING_LOG "The wall ceiling census", 2026-09-25): seats and helpers run at
+     the dig-deposit ceiling; the ring is limited by the 4.7 helpers alive per game at r1000-2000 (16 posts), and the
+     bank g_iter7 leaves unspent (3,000-12,000 by r700-1000) can buy replacements only from a school that outlives the
+     flood beside posts it can reach. The structural candidate: a school on ground raised before r700 next to the
+     distance-2 posts (DESIGN.md's plateau, reduced to one school and its posts). First job: the geometry census on
+     the corpus -- which posts stay reachable from a raised distance-3 tile after r1000. Closed forms not to repeat:
+     Iterations 12, 13, 24, 30, 31, 35 (ledger).
+  2. **A producer that outlives the flood** (the same line, older notes). Every reviewable loss of blocks 48-50 ends with no miner, school or center and
      1,200-10,700 soup unspent; the HQ cannot spawn once its eight ring tiles are seated (r300 on). Closed forms, do not
      repeat: more helpers (Iteration 12), a second school after r700 (13), guards bought on a perch (24), more drones and
      net guns from the bank (30). An untried form must say why it avoids each of those failures.
