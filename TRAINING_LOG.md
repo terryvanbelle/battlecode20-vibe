@@ -1391,6 +1391,10 @@ r3143**; Prison as B 484 / 1597 against 475 / 1587 (level, lost either way). Sna
 **`arm43b-a`/`arm43b-b`** (96 band games as `us:cand43b`; pre-registered: rating above g_iter8's 1727, and the
 late losses (r2900+) fewer than g_iter8's 36 of 240 pro rata, that is 14 or fewer of 96).
 
+**Arm 43b: 64-32 (66.7%), rating 1771 +- 79 (g_iter8 1727 +- 49), late losses 10 of 96 (the bar was 14),
+flood-round losses 2.** Both pre-registered arm criteria met; the best block record of any build (g_iter8's best
+of five was 24-24).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
