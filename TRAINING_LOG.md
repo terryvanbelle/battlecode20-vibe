@@ -1158,8 +1158,11 @@ HQ is two shots a round against the raid's 17-40 drones -- not a wall, a price.
 Squares, and the ring at r3000 read against `ctrl7` (g_iter7 vs itself, same map and side: Prison A 2109,
 RandomSoup1 A 2445, Squares B 2182) -- within 5% is the bar. Arm 1: the mirror vs g_iter7 (a small loss is
 expected: 250 soup and a landscaper's thirty rounds). Arm 2: two seeded band blocks as `us:cand37`; a finding if
-the losses in the raid windows (r1000-2300, not within 3 rounds of the map's `hqFloodRound`) are at most 6 of 96
-against g_iter7's rate (blocks 70-75: to be counted before the arm reads out). A null in both arms is a reject.
+the losses in the raid windows (r1000-2300, not within 3 rounds of the map's `hqFloodRound`) are at most **12 of
+96**. Counted before the arm runs: g_iter7 lost 58 of its 288 band games (blocks 70-75) in that window, 20.1%,
+19.3 expected in 96 (cormackikkert 17, benzyx 14, EmaPajic 14, mvpatel 9); the chance of 12 or fewer at that
+rate is about 4%. (The bar of 6 first written here assumed a lower rate and is withdrawn before any arm data.)
+A null in both arms is a reject.
 
 ## Mirror gains and the field (2026-09-25)
 
