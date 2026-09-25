@@ -61,7 +61,7 @@ the gate itself is the last target (a 16th seat), which also tells the school to
 `C.RAID_ROUND` the center builds drones without cap; they gather at `C.RAID_RALLY` from the enemy
 HQ guess and charge when `C.RAID_SIZE` are together, lifting enemy seats into the water.
 
-## The enclosure (planned, 2026-09-25; supersedes the plateau below)
+## The enclosure (2026-09-25; CLOSED after 36 stages -- see the last paragraph of the state)
 
 What the field's top bots build (TRAINING_LOG "The enclosure": 56 late losses, both boards read): a **shell** of
 landscapers at Chebyshev 2 (16 tiles) and 3 (24 tiles) around the HQ, each holding its own tile above the water,
@@ -84,7 +84,7 @@ map), or the interior floods and the HQ with it. The first build is an archetype
 against g_iter9 in the mirror and read for the shell's completion round and its height at r1000-3000; then the
 bot. This is a multi-session program; every stage needs its diagnostic before its gate.
 
-**Stage 35 (2026-09-25 evening) is the reference configuration:** every hole closed (the gate, the builder, stray miners, lift loops), the shell level at 1,760 at r3000 on RandomSoup1, alive to r3139 / r3106 / r3038 on RandomSoup1 / Prison / Squares -- and g_iter9's wall (2,535 at r3000) outlives it everywhere. The bound below is reached.
+**CLOSED at stage 36 (2026-09-25 evening):** interior feeders added +60 at r3000; the program's own closing criterion (the sprint not made) is met, and the wall design stays. **Stage 35 was the reference configuration:** every hole closed (the gate, the builder, stray miners, lift loops), the shell level at 1,760 at r3000 on RandomSoup1, alive to r3139 / r3106 / r3038 on RandomSoup1 / Prison / Squares -- and g_iter9's wall (2,535 at r3000) outlives it everywhere. The bound below is reached.
 
 **State after twenty-seven stages (2026-09-25, `src/arch_enclosure`, TRAINING_LOG "The enclosure, stage 1" onward):**
 the inner shell closes and holds (16 tiles, level to within ten, 1,200 at r2000 on RandomSoup1), the interior stays

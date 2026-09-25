@@ -2113,6 +2113,23 @@ feeds the lowest shell tile beside it from its own tile, dug down (the interior 
 tiles are free of buildings; the yard's two stay clear. Expected: +0.1 to +0.2 a shell tile a round from r1000,
 ~+150-300 at r3000 -- not the 775, but it says whether interior production counts.
 
+**Stage 36: +8, +1, +5 rounds (RandomSoup1 r3147, Prison r3107, Squares r3043); the shell 1,820 at r3000 (+60).** One
+or two feeders a game: the school stops at two bodies inside, and a feeder is one of them. Interior production
+counts, a little, and cannot grow without starving the lifts.
+
+**THE ENCLOSURE PROGRAM IS CLOSED (2026-09-25 evening, 36 stages).** By the criterion written at stage 30 (HANDOFF):
+the sprint -- bodies on all 24 outer tiles before the flood -- was not made, and with every defect gone the shell
+stands 715 below g_iter9's wall at r3000 on RandomSoup1 and g_iter9's HQ outlives ours on every map by 50-150
+rounds. The reason is geometry and was measured, not guessed: inflow is the number of holders adjacent to the
+structure that dig an external tile, times half; a 16-tile shell needs twice the wall's bodies per height, bodies
+are placed only on dry tiles, and the outer ring floods at r950-1250. The field's enclosures win with 40-54 bodies
+placed early; we reached 33 by r700, most of them waiting on lifts. `src/arch_enclosure` stays as the reference
+(stage 36) and as a sparring archetype.
+
+What carries to the wall design (none gated): a builder that parks on a structure tile removes a holder; a
+hovering drone keeps dirt off its tile; dirt goes where holders are adjacent, never down chains; reclaiming pits is
+bottomless; the late bank is unspendable once the ring is up. The loop returns to the incumbent.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
