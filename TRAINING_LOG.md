@@ -1813,6 +1813,12 @@ Squares, four miners cut off at r300, no vaporator ever built (the school takes 
 bank fills; the field runs four vaporators inside by r700). Stage 11: the refinery at Chebyshev 3; after eight
 bodies the school leaves the builder its vaporator money until two vaporators stand inside.
 
+**Stage 11: still no vaporator, and now the reserve starves the school** (Squares: nine bodies all game with the
+school waiting for 800). The builder had the money and no site: every ring tile it could reach was quarried to -9,
+and a building's tile must be within 3 of its builder. RandomSoup1 with the refinery off the shell: all 16 dry,
+552-565 at r2000, alive to r2992. Stage 12: no quarry at all (the flooded outside is a source without end); a
+landscaper set down at Chebyshev 3 holds there too (none had, so the outer shell never gained a holder).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
