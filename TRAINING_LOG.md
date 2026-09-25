@@ -1594,6 +1594,17 @@ been seen, and rule 5 says no test without it. Code kept as `src/cand48b`; `src/
 raider archetype (drones that charge the HQ's gun, lift seats, and carry landscapers in behind) is the prerequisite
 for any raid answer, and it is the next tool to build if this line is to move.
 
+## Iteration 49 -- feed to the end (2026-09-25, on g_iter9)
+
+**Why.** Helpers hold their posts (Chebyshev 2, kept at the water 60 rounds out plus 2) and drown together at
+r2700-2750 (19 to 8 on RandomSoup1, 13 to 7 on Toothpaste, 12 to 7 on Prison): from about r2600 the water rises
+faster than one body digs (0.0028 x 160 = 0.45 a round against 0.5), so the last 100-150 rounds of a helper's
+life go entirely into a post that is lost anyway. **Change:** a helper keeps its post only while the water 60
+rounds out is under `HELPER_HOLD` 160; past that it feeds the ring and digs until the water takes it. Expected: the
+helpers die 60-100 rounds sooner and the ring gains 40-80 by r3000 -- five to eight rounds at the end, where the
+mirror's margins are 10-50. **Diagnostic** (VM, seed 41, vs g_iter9): RandomSoup1 A, Toothpaste A, Prison B, Squares
+B (with its control) -- landscapers alive r2500-2900, the ring at r2800-3100, the end round.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
