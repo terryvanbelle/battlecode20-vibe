@@ -1304,6 +1304,12 @@ read yet); as A identical to the control. Snapshot `src/cand42`; **`gate42`** (p
 1-2 per 96 games, below what an arm can see; the rating and the gate decide). RandomSoup1 as A on seed 41 is the
 cost check against `ctrl41` (2642 at r3000).
 
+**Cost check failed: RandomSoup1 as A 578 at r1000 and 2056 at r3000 against the control's 765 and 2642 (-22%).**
+Every building's neighbours as doorsteps (refineries, vaporators, net guns at Chebyshev 3 make most of the seats'
+dig tiles at 2 untouchable) starve the seats. `gate42` and its arms were stopped in their first batch (nothing
+recorded). **42b**: the doorstep is only the school's and the fulfillment center's (the buildings that spawn);
+`src/bot` = g_iter8 + 42b; the same checks again (RandomSoup1 A, GSF B seed 1, Toothpaste B).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

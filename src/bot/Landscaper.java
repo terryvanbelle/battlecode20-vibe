@@ -207,8 +207,8 @@ public strictfp class Landscaper extends Robot {
     /** Iteration 42: a tile beside one of our buildings (not the HQ) is its doorstep -- the school spawns onto it, the
      *  refinery is reached over it. Dug to -9 it is neither (GSF as B, 2026-09-25: the school's last dry neighbour was a
      *  seat's pit, two miners stood on the other two, and no landscaper came out after r300 in any of 14 losses). */
-    private boolean doorstep(MapLocation n) {
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type.isBuilding() && f.type != RobotType.HQ && Nav.cheb(f.location, n) <= 1) return true; }
+    private boolean doorstep(MapLocation n) {   // 42b: only the buildings that spawn (every building's doorstep cost RandomSoup1 22% of ring)
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if ((f.type == RobotType.DESIGN_SCHOOL || f.type == RobotType.FULFILLMENT_CENTER) && Nav.cheb(f.location, n) <= 1) return true; }
         return false;
     }
 
