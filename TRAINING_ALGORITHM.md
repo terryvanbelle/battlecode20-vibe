@@ -137,9 +137,11 @@ Every candidate passes through these in order, and most die early. That is the d
    16 pairs, cap 320 pairs. Unpaired, a gate scores the draw: gate 40c read 34-46 (REJECT) when 74 of its 80 pairs
    were concordant and the rest 4-2 for the candidate (2026-09-25). Without a fresh seed per game the same map
    and side replays the same game, and 240 draws hold at most 104 distinct games (2026-09-24).
-   ACCEPT snapshots; REJECT reverts; inconclusive at the cap keeps the change **provisionally** if the sign test
-   on the discordant pairs favours it at p < 0.10 with at least 12 discordant pairs (no snapshot, no submission)
-   and further candidates stack on it, each tested against the incumbent. A stack that reaches ACCEPT is
+   ACCEPT snapshots; REJECT reverts. At the cap the discordant pairs are read by the sign test: p < 0.01 with at
+   least 12 discordant pairs is an ACCEPT (the SPRT's `p1 = 0.58` bound was set for the unpaired mirror and needs
+   20-0 on discordant pairs; gate 41b's 14-0 in 320 pairs, 2026-09-25, was the case that named this); p < 0.10
+   keeps the change **provisionally** (no snapshot, no submission) and further candidates stack on it, each
+   tested against the incumbent. A stack that reaches ACCEPT is
    snapshotted; one that reaches REJECT loses its newest member.
    A change built to answer something only the external field does (a rush, a swarm) is
    pre-registered with a **second arm** against the archetype that has that property; a null in

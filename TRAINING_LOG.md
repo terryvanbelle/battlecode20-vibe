@@ -1270,6 +1270,16 @@ games as `us:cand41b`; pre-registered: 2 or fewer flood-round losses of 96 again
 the last candidate on this line, had 6). The seat walk removes the flood-round death from the ladder; the rating
 is level with the incumbent's inside the arm's interval.
 
+**Gate 41b (paired, 320 pairs): discordant 14-0, concordant 154-152 -- INCONCLUSIVE by the SPRT bound, ACCEPTED by
+the cap rule.** The SPRT's `H1 p=0.58` was written for the unpaired mirror and its bound (LLR 2.94) needs 20-0
+on discordant pairs; the sign test on 14-0 is p = 0.0001 (the cap rule asks p < 0.10 on 12 or more), and the arm
+holds the pre-registered finding. The fourteen: GSF as A twice (the control drowns at r932-933, the candidate wins
+at r2970), Climb and Hills as A (the control loses the r931 tiebreak, the candidate wins it), Hourglass as A three
+times (the r2525 tiebreak flipped), InADitch four times (wall races won by 15-30 rounds), and the last batch's
+four. Not one pair went the other way in 320: where the walk does not fire the game is the incumbent's, and where
+it fires it has not yet lost one. **Accepted: `src/g_iter8` = g_iter7 + the seat walk (Iterations 41/41b).**
+Submission blocks `sub8-1..5` (240 seeded band games as `us:g_iter8`) running.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

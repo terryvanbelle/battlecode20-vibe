@@ -16,10 +16,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   discordant 4-2; TRAINING_LOG), the arm null (57-39, 1729 +- 77, flood-round losses 6 of 96 at the incumbent's
   rate, each with a ring tile unseated at r500). **The gate is paired now** (`mirror.sh` `PAIRED=1`, `tools/paired.sh`,
   TRAINING_ALGORITHM 4.4): the SPRT counts discordant pairs only, N counts pairs, cap 320.
-- **Running on the VM:** `gate41b` (Iteration 41b, the seat walk: a seat two from an open ring tile no seat touches
-  feeds the tile between level, steps onto it and feeds the open tile; `src/bot` = `src/cand41b`; the first PAIRED
-  gate, 320 pairs) and `arm41b-a`/`arm41b-b` (`BOT=cand41b`; post with `tools/post-block.sh <run> cand41b`; a
-  finding at 2 or fewer flood-round losses of 96). Diagnostics: Hills B and Spiral A, flood-round deaths in the control
+- **ACCEPTED: `src/g_iter8`** = g_iter7 + the seat walk (Iteration 41b: a seat two from an open ring tile no seat
+  touches feeds the tile between level, steps onto it and feeds the open tile). Gate paired 14-0 discordant in 320
+  pairs (not one against), arm 1 flood-round loss of 96 (the finding). **Running on the VM:** the submission blocks
+  `sub8-1..5` (240 seeded band games as `us:g_iter8`; post each with `tools/post-block.sh <run> g_iter8`; the roster
+  tier and ONSET-merged follow g_iter8 once 200 games are in). `src/bot` = g_iter8. Diagnostics: Hills B and Spiral A, flood-round deaths in the control
   (r931/r932), become wall races lost at r2981/r2823 (TRAINING_LOG, Iteration 41). **Arm posted: flood-round losses
   1 of 96 (the finding; g_iter7 6-7), 51-45, 1737 +- 76.** The gate decides the rest.
 - **The other flood-round line:** GSF as B never builds the wall (0-4 landscapers at r500): a production failure.

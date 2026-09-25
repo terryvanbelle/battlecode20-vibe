@@ -146,6 +146,12 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   repeats (29% of g_iter3's), and a 240-game mirror gate held at most 104 distinct games, so every
   sequential test was overconfident. Seed every game and count a repeated cell once (2026-09-24).
 
+- **Every open ring tile needs a seat beside it.** Of 52 flood-round losses with a wall, 51 had the open tile at
+  r500 with no landscaper of ours adjacent: seats take the nearest free tiles and raise their neighbours from where
+  they sit, so the far tile is 100 below with its outward side under water and nobody who can reach it. A seat
+  two away that feeds the tile between level and steps onto it removed the flood-round death from the ladder
+  (1 of 96 against 6-7) and won 14 paired mirror games to 0 (Iteration 41b, g_iter8, 2026-09-25).
+
 - **Pair the mirror: the incumbent against itself on the same seed.** Under a fixed seed the engine is
   deterministic, so a candidate plays the incumbent's exact game wherever its change does not fire, and an
   unpaired mirror scores the map-side-seed draw: gate 40c read 34-46 (REJECT) with 74 of 80 pairs concordant
