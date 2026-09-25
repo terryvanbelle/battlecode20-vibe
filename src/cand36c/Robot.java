@@ -1,4 +1,4 @@
-package bot;
+package cand36c;
 
 import battlecode.common.*;
 
@@ -108,6 +108,7 @@ public abstract strictfp class Robot {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
+                case Comms.SCHOOL_SITE: MapState.site = new MapLocation(m[1], m[2]); MapState.siteRaised = (m[3] & 1) != 0; MapState.siteBuilt = (m[3] & 2) != 0; MapState.siteManned = (m[3] & 4) != 0; MapState.siteRound = round; break;
                 default: break;
             }
         }
@@ -227,6 +228,8 @@ public abstract strictfp class Robot {
             if ((e.type == RobotType.DESIGN_SCHOOL || e.type == RobotType.LANDSCAPER) && e.location.distanceSquaredTo(MapState.home) <= C.RUSH_D2) return true; }
         return false;
     }
+    /** Iteration 36: the stand for site tile s is the tile beyond it, one further from the HQ (Chebyshev 4): open ground. */
+    protected static MapLocation siteStand(MapLocation s, MapLocation home) { return s.translate(Integer.signum(s.x - home.x), Integer.signum(s.y - home.y)); }
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
     protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the

@@ -1,4 +1,4 @@
-package bot;
+package cand36c;
 
 import battlecode.common.*;
 
@@ -16,6 +16,7 @@ public final strictfp class Comms {
     public static final int SOUP = 3;          // payload: x, y, amount (a soup deposit worth walking to)
     public static final int MAP_ORIGIN = 4;    // payload: minX, minY
     public static final int SYMMETRY = 5;      // payload: surviving hypothesis bits
+    public static final int SCHOOL_SITE = 6;   // payload: x, y of the replacement school's tile, bits (1 raised, 2 built, 4 a mason on the stand)
 
     static final int SALT = 0x5eed2020;
 

@@ -1206,6 +1206,17 @@ attackers "carry a load before walking over" by digging any empty adjacent tile 
 tile, which they dug down beside the school. Both are fixed in **36c** (a newborn beside the school holds its own
 post; nobody digs a ring tile or the posts beside the school), diagnostics running.
 
+**36c**: Prison as B is the same game as 36b's to the digit (17 replacements, ring 1367 vs 2190): the HQ stops
+posting the site at r800, so a replacement born after that never learns it, hunts a seat and ends an attacker as
+before -- the fix did not reach them. RandomSoup1 as A: 6 replacements, one held its post, ring 2467 vs 2630.
+Prison as A: no replacement (the posts beside the site never free), 1979 vs 1779. Three rounds of diagnostics
+say the same thing: a second school on raised ground can be built and can spawn, and the bodies it spawns do
+not become ring height. **Closed for this session, not gated**; code kept as `src/cand36c`, `src/bot` is
+g_iter7. If reopened: the site posted until r2000 (the replacements' whole life), replacements limited to the
+posts the mason raised, and the question answered first whether a helper born at r800 on a raised post adds
+dirt to the ring at all -- the r1000-2000 census says a live helper does 500 deposits a thousand rounds, so the
+bodies here must be dying or standing somewhere the ring cannot see.
+
 
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
