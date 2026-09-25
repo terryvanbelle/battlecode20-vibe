@@ -27,7 +27,8 @@ public final class C {
     // when the site will stay dry GUN_DRY rounds. The raids come at r1525-1620 (EmaPajic, team4, benzyx), r1893 (mvpatel)
     // and r2135-2262 (cormackikkert); a gun at ground level drowns by r930-1200.
     public static final int PARK_FROM = 600;          // the miner parks from this round
-    public static final int KEEP_AHEAD = 800;         // the keeper raises M and S to waterLevel(round + KEEP_AHEAD) + 2
+    public static final int KEEP_AHEAD = 800;         // the keeper raises M and S to waterLevel(round + KEEP_AHEAD) + 2 ...
+    public static final int KEEP_CAP = 42;            // 47d: ... but never above this: 42 is dry to about r2290, past the last raid clock (the uncapped target reached 94 by r1700 on Squares, -10% of ring)
     public static final int GUN_FROM = 1150;          // the parked miner builds from this round
     public static final int GUN_DRY = 700;            // ... on a site above waterLevel(round + GUN_DRY)
     public static final int GUN_BANK = 200;           // ... leaving this much soup

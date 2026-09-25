@@ -104,7 +104,7 @@ public strictfp class Landscaper extends Robot {
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null) continue;   // occupied (a gun of ours, anything): the next site is another tile
                 int e = rc.senseElevation(n); if (e > best) { best = e; site = n; } }
         }
-        int target = (int) waterLevel(round + C.KEEP_AHEAD) + 2;
+        int target = (int) waterLevel(round + C.KEEP_AHEAD) + 2; if (target > C.KEEP_CAP) target = C.KEEP_CAP;   // 47d
         Direction toM = loc.directionTo(m.location); int eM = rc.senseElevation(m.location);
         Direction toS = site == null ? null : loc.directionTo(site); int eS = site == null ? Integer.MAX_VALUE : rc.senseElevation(site);
         if (eM < target && (eM <= eS || toS == null) && rc.canDepositDirt(toM)) { rc.depositDirt(toM); deposits++; if (round % 50 == 0) Debug.log("@keep M=" + m.location + " e=" + eM + " target=" + target); return true; }

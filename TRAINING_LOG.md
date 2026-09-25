@@ -1515,6 +1515,14 @@ controls. **47c**: a keeper acts only for a miner that has stood on the same til
 stationarity is the park), and the builder walks home when no helper is in sight. RandomSoup1 A, Prison B,
 Toothpaste A, and Squares A (with its control).
 
+**47c: the form works on three maps of four.** RandomSoup1 A: park r650, gun at r1150 (16), standing r1200-1900,
+ring 2626 against 2744 (-4%), won as the control does. Prison B: park r608, gun r1150, standing to r1900, -3%.
+Toothpaste A: no park (the builder never reached a helper), identical. **Squares A: park r617 but the gun only at
+r1710, on a site at 94** -- the keeper's target `waterLevel(round + 800) + 2` is 13 at r1150 but 92 at r1700 and
+keeps growing, and the keeper poured its dirt into two tiles chasing it: ring 1872 against 2085 (**-10%**), lost
+where the control wins. **47d**: the kept height is capped at 42 (dry to about r2290, past cormackikkert's clock),
+so the keeper's whole job is about a hundred dirt; RandomSoup1 A, Prison B, Squares A, Toothpaste A, Hourglass B.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
