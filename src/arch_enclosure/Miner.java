@@ -135,7 +135,7 @@ public strictfp class Miner extends Robot {
         MapLocation school = null;
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL && Nav.cheb(friends[i].location, home) == 1) school = friends[i].location;
         boolean opposite = school != null && Nav.cheb(loc, school) >= 2;
-        if (Nav.cheb(loc, home) != 1 || (school != null && !opposite && builtFC == 0)) {   // stage 6: stand on a ring tile away from the school, so the tiles beside us are not its yard (stage 13: once the center stands the builder roams the ring for sites)
+        if (Nav.cheb(loc, home) != 1 || (school != null && !opposite && builtFC == 0) || (school != null && Nav.cheb(loc, school) <= 1)) {   // stage 23: never on the yard (the builder stood on a yard tile on every map: half the lifts on RandomSoup1, none on Prison)   // stage 6: stand on a ring tile away from the school, so the tiles beside us are not its yard (stage 13: once the center stands the builder roams the ring for sites)
             MapLocation best = null; int bd = 1 << 30;
             for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t) || (rc.canSenseLocation(t) && (rc.isLocationOccupied(t) || rc.senseFlooding(t)))) continue; if (school != null && Nav.cheb(t, school) < 2) continue; int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; } }
             if (best != null) { nav.setTarget(best); nav.step(); }

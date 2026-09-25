@@ -1909,6 +1909,38 @@ the second vaporator never came and the school's reserve sat on the soup), and o
 Chebyshev 2 from r1 cut the early mining (soup 58-400 all game). Stage 22: miner lifts only before r500; miners
 keep off the shell only from r250.
 
+**Stage 22 (three maps, seed 41):** RandomSoup1 as A alive to r2967 (24 bodies, the builder alive all game),
+Squares as B to r2798 (8 bodies until r1500, 20 by r2500), Prison as A to r2708 (14 bodies, one lift, 51 waits).
+Four defects, each read off the logs and boards:
+
+- **The school is throttled by lifts, not soup.** RandomSoup1: 10 bodies by r250, then the vaporator bank
+  (800 needed, income 2 a round) until r600, then `waiting=2` from r700 to the end with 2,000-3,500 soup unspent.
+  Fourteen lifts in 900 rounds, the last at r1328; 24 bodies at r1300 and never another, though the school could
+  have paid for 48 by r1500. The elevator's trace at r1500: gate (20,6), a waiter beside it at (19,5), a free
+  target at (21,5), and no lift for the remaining 1,600 rounds. The three outer tiles beside the gate -- (21,5),
+  (21,6), (21,7) -- are the only tiles a drone can reach the gate from (the interior is forbidden, the shell held),
+  and the elevator's own drops filled them: landed holders at (21,7) r1055 and (21,6) r1169. The approach sealed
+  the gate.
+- **The builder stands on the yard.** RandomSoup1 r1500: the miner at (19,7), one of the two yard tiles; Prison
+  r600: the miner at (1,1), and the waiter at (1,2) boxed in by the school, the vaporator, the center and the
+  builder -- its one-step walk to the other yard tile (3,1) could not get there. Prison's 51 waits and one lift.
+- **The late game is lost to reclaiming.** RandomSoup1's shell: 707 at r2500, 757 at r2700, then 761, 762, 763,
+  764, 766 at r2950 -- nine dirt in 250 rounds from 17 holders -- and the water passed it at r2960 (712 at r2950,
+  774 at r2967). The holders' counters: reclaimed 3,096 at r2500, 5,016 at r2900, while self and fed fell. From
+  r2700 the water rises 2-3 a round, so no outer tile beside a holder is ever dry, so the rule reclaims every turn,
+  and the outer tiles are pits (-150 to -3,481): the whole output went into the sea. Without it, 0.5 a round a
+  tile from r2700 gives ~890 at r2967 -- level with the wall bot, not ahead. The lead has to come from bodies.
+- **Squares' miners freeze at r400** (mined 112, 95, 59 and never another) beside the pit at (49,32): the base
+  sits in a three-column corridor (elevation 7) between the 99 plateau and the 20 stripe; miners keep off
+  Chebyshev 2, so the corridor is one column wide, and the holders' outside digging cut it. Structural; left
+  for now.
+
+Stage 23: the three outer tiles beside the gate are the elevator's approach (never a drop target, never a
+holder's tile); the builder never stands on the yard; a waiter navigates to the nearest free yard tile; reclaiming
+stops at r2000 and never fills a pit (only tiles within 15 of dry); the first drone needs no bank (two waiters block
+the school until it comes); the vaporator reserve ends when one stands (INSIDE_MAX 3 never allows a second); the
+elevator logs its chase every tenth round.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

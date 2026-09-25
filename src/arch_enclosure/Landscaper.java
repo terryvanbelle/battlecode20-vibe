@@ -36,7 +36,10 @@ public strictfp class Landscaper extends Robot {
             if (Nav.cheb(loc, home) <= 1) { if (!waiting) { waiting = true; Debug.log("@yard at=" + loc); }
                 // stage 15: wait on the yard tile beside the gate, where the elevator can reach us without coming in
                 MapLocation g = gateTile(home);
-                if (g != null && Nav.cheb(loc, g) > 1 && rc.isReady()) { for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (Nav.cheb(n, home) == 1 && Nav.cheb(n, g) == 1 && rc.canMove(DIRS[i])) { rc.move(DIRS[i]); loc = rc.getLocation(); return; } } }
+                if (g != null && Nav.cheb(loc, g) > 1 && rc.isReady()) {   // stage 23: navigate to the nearest free yard tile (one step was not enough: on Prison the waiter was boxed in two tiles from the yard for 2,000 rounds)
+                    MapLocation y = null; int yd = 1 << 30;
+                    for (int i = 8; --i >= 0;) { MapLocation n = home.add(DIRS[i]); if (!rc.onTheMap(n) || Nav.cheb(n, g) != 1 || occupiedByOther(n)) continue; int d = loc.distanceSquaredTo(n); if (d < yd) { yd = d; y = n; } }
+                    if (y != null) { nav.setTarget(y); nav.step(); } }
                 return; }
             attacker = true; Debug.log("@attacker shell full"); attack(); return;
         }
@@ -64,6 +67,7 @@ public strictfp class Landscaper extends Robot {
                 boolean b = false; for (int k = nBad; --k >= 0;) if (bad[k].equals(t)) { b = true; break; }
                 if (b) continue;
                 if (ring == 2 && t.equals(gateTile(home))) continue;   // stage 8: the gate is the drones' way in and out
+                if (ring == 3 && gateTile(home) != null && Nav.cheb(t, gateTile(home)) <= 1) continue;   // stage 23: the three outer tiles beside the gate are the elevator's approach (holders set down there sealed the gate: no lift after r1328)
                 if (rc.canSenseLocation(t)) {
                     if (rc.senseFlooding(t)) continue;
                     if (Math.abs(rc.senseElevation(t) - myE) > C.SHELL_CLIMB) continue;   // a raised tile nobody holds is a cliff to us
@@ -106,9 +110,9 @@ public strictfp class Landscaper extends Robot {
             // stage 18: reclaim every turn until one outer tile beside us is dry land (the elevator had nowhere to set bodies down:
             // 172 waits for 10 lifts), then every third turn
             boolean dryOuter = false; for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (Nav.cheb(n, home) == myD + 1 && Nav.cheb(n, home) <= 3 && rc.canSenseLocation(n) && !rc.senseFlooding(n) && rc.senseElevation(n) >= (int) waterLevel(round + 60) + 2) { dryOuter = true; break; } }
-            if (myE >= need + C.RECLAIM_MARGIN && (round % 3 == 0 || !dryOuter)) { bestD = null; int bh = Integer.MIN_VALUE; int dry = (int) waterLevel(round + 60) + 2;
+            if (round < C.RECLAIM_UNTIL && myE >= need + C.RECLAIM_MARGIN && (round % 3 == 0 || !dryOuter)) { bestD = null; int bh = Integer.MIN_VALUE; int dry = (int) waterLevel(round + 60) + 2;   // stage 23: not after RECLAIM_UNTIL
                 for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) != myD + 1 || Nav.cheb(n, home) > 3 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
-                    if (rc.senseRobotAtLocation(n) != null) continue; int e = rc.senseElevation(n); if (e >= dry) continue; if (e > bh) { bh = e; bestD = d; } }
+                    if (rc.senseRobotAtLocation(n) != null) continue; int e = rc.senseElevation(n); if (e >= dry || e < dry - C.RECLAIM_DEPTH) continue; if (e > bh) { bh = e; bestD = d; } }   // stage 23: never a pit
                 if (bestD != null) { rc.depositDirt(bestD); deposits++; reclaimed++; return; } }
             if (rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; selfDeps++; return; }
         }
