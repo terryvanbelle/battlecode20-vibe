@@ -1853,6 +1853,12 @@ RandomSoup1 as A drowned at r947 again: the gate (20,6) beside the school (19,6)
 queuing over it for the same waiter, and nothing lands under a drone. Prison: the gate (2,0) is on the map's
 edge and the waiter never stood beside it. Stage 17: one elevator (the lowest drone id in sight); the rest patrol.
 
+**Stage 17: the gate rises and RandomSoup1 lives to r2986** (the gate 162 by r1000, the shell 532-544 at r2000,
+15 bodies, 10 lifts for 172 waits). Squares 11 bodies, 14 lifts, alive to r2848; Prison 13, no lift (the corner
+case stands). One elevator lifts little because it has nowhere to set a body down: the inner ring is full and an
+outer tile is dry only when a holder with 20 to spare has reclaimed it, one turn in three. Stage 18: a holder
+reclaims every turn until one outer tile beside it is dry land.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

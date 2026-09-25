@@ -92,7 +92,10 @@ r2700-2990 against g_iter9 -- 200-300 rounds short of the wall race. What is sti
 the field's 27-54: the school waits on the yard and the elevator's throughput), the outer shell (holders at
 Chebyshev 3 are lifted there only when the inner ring is full and the outer tile has been reclaimed dry), corner
 HQs (Prison: the gate and the exit vectors need on-map fallbacks), and the drones' discipline around the gate.
-Every stage's defect and fix is in the log; the archetype is the design's proof and the bot's template.
+Every stage's defect and fix is in the log; the archetype is the design's proof and the bot's template. After
+stage 17 (2026-09-25 evening): the gate is raised and RandomSoup1 lives to r2986 with 15 bodies and the shell at
+540 by r2000; the elevator's throughput (10 lifts for 172 waits: no dry outer tile to set a body on) is the next
+limit, then the outer shell's holders, then the corner-HQ cases.
 
 ## The plateau (planned, 2026-09-24; superseded above)
 
