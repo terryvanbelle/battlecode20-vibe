@@ -1,16 +1,16 @@
 # Ladder
 
-5225 scrimmages (ours only), 4701 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 65 of 65 ladder bots met.
+5273 scrimmages (ours only), 4749 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 65 of 65 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each):
 
 | build | rating | rank | games | record | field score |
 |---|---|---|---|---|---|
 | cand43b | 1750 +- 79 | 14 of 84 | 96 | 64-32 | 76.0% |
-| cand49b | 1747 +- 75 | 15 of 84 | 96 | 42-54 | 75.8% |
-| g_iter10 | 1737 +- 61 | 17 of 84 | 144 | 61-83 | 75.2% |
+| cand49b | 1747 +- 74 | 16 of 84 | 96 | 42-54 | 75.8% |
+| g_iter10 | 1737 +- 53 | 17 of 84 | 192 | 81-111 | 75.2% |
 | cand47d | 1733 +- 53 | 18 of 84 | 192 | 73-119 | 75.0% |
-| g_iter9 | 1719 +- 48 | 20 of 84 | 240 | 78-162 | 74.1% |
+| g_iter9 | 1718 +- 48 | 20 of 84 | 240 | 78-162 | 74.1% |
 | g_iter8 | 1703 +- 49 | 21 of 84 | 240 | 108-132 | 73.1% |
 | cand41b | 1702 +- 76 | 22 of 84 | 96 | 51-45 | 73.0% |
 | g_iter7 | 1692 +- 44 | 23 of 84 | 288 | 135-153 | 72.4% |
@@ -20,8 +20,8 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | cand42c | 1684 +- 76 | 27 of 84 | 96 | 49-47 | 71.9% |
 | iter24 | 1659 +- 129 | 28 of 84 | 46 | 11-35 | 70.2% |
 | cand37 | 1658 +- 76 | 29 of 84 | 96 | 46-50 | 70.1% |
-| g_iter3 | 1652 +- 33 | 30 of 84 | 796 | 167-629 | 69.6% |
-| cand31 | 1645 +- 76 | 31 of 84 | 96 | 52-44 | 69.2% |
+| g_iter3 | 1651 +- 33 | 30 of 84 | 796 | 167-629 | 69.6% |
+| cand31 | 1646 +- 76 | 31 of 84 | 96 | 52-44 | 69.2% |
 | g_iter4 | 1630 +- 64 | 32 of 84 | 217 | 43-174 | 68.1% |
 | g_iter2 | 1576 +- 69 | 33 of 84 | 192 | 44-148 | 63.7% |
 | g_iter1 | 1557 +- 69 | 34 of 84 | 170 | 95-75 | 62.1% |
@@ -36,18 +36,18 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | 6 | battlecode20-team4.finalbota | 1992 | 65 | 226 | 195-31 |
 | 7 | IvanGeffner.finalbota | 1992 | 105 | 101 | 90-11 |
 | 8 | ronniesong0809.finalbota | 1985 | 105 | 97 | 86-11 |
-| 9 | winkelmantanner.tannerplayer | 1960 | 59 | 236 | 196-40 |
-| 10 | mvpatel2000.qual | 1927 | 57 | 223 | 179-44 |
-| 11 | EmaPajic.Qualifications | 1924 | 50 | 287 | 229-58 |
-| 12 | poortho.stable_seeding_bot | 1830 | 35 | 455 | 316-139 |
-| 13 | laurenschneider.pdx_team_one | 1753 | 32 | 470 | 279-191 |
+| 9 | winkelmantanner.tannerplayer | 1956 | 57 | 242 | 200-42 |
+| 10 | mvpatel2000.qual | 1929 | 56 | 229 | 184-45 |
+| 11 | EmaPajic.Qualifications | 1922 | 49 | 293 | 233-60 |
+| 12 | poortho.stable_seeding_bot | 1828 | 34 | 461 | 319-142 |
+| 13 | laurenschneider.pdx_team_one | 1753 | 32 | 476 | 282-194 |
 | 14 | **us:cand43b** | 1750 | 79 | 96 | 64-32 |
-| 15 | **us:cand49b** | 1747 | 75 | 96 | 42-54 |
-| 16 | cormackikkert.whyPermutator | 1747 | 32 | 463 | 271-192 |
-| 17 | **us:g_iter10** | 1737 | 61 | 144 | 61-83 |
+| 15 | cormackikkert.whyPermutator | 1748 | 32 | 469 | 275-194 |
+| 16 | **us:cand49b** | 1747 | 74 | 96 | 42-54 |
+| 17 | **us:g_iter10** | 1737 | 53 | 192 | 81-111 |
 | 18 | **us:cand47d** | 1733 | 53 | 192 | 73-119 |
-| 19 | benzyx.seeding | 1728 | 32 | 466 | 261-205 |
-| 20 | **us:g_iter9** | 1719 | 48 | 240 | 78-162 |
+| 19 | benzyx.seeding | 1728 | 32 | 472 | 264-208 |
+| 20 | **us:g_iter9** | 1718 | 48 | 240 | 78-162 |
 | 21 | **us:g_iter8** | 1703 | 49 | 240 | 108-132 |
 | 22 | **us:cand41b** | 1702 | 76 | 96 | 51-45 |
 | 23 | **us:g_iter7** | 1692 | 44 | 288 | 135-153 |
@@ -57,12 +57,12 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | 27 | **us:cand42c** | 1684 | 76 | 96 | 49-47 |
 | 28 | **us:iter24** | 1659 | 129 | 46 | 11-35 |
 | 29 | **us:cand37** | 1658 | 76 | 96 | 46-50 |
-| 30 | **us:g_iter3** | 1652 | 33 | 796 | 167-629 |
-| 31 | **us:cand31** | 1645 | 76 | 96 | 52-44 |
+| 30 | **us:g_iter3** | 1651 | 33 | 796 | 167-629 |
+| 31 | **us:cand31** | 1646 | 76 | 96 | 52-44 |
 | 32 | **us:g_iter4** | 1630 | 64 | 217 | 43-174 |
 | 33 | **us:g_iter2** | 1576 | 69 | 192 | 44-148 |
 | 34 | **us:g_iter1** | 1557 | 69 | 170 | 95-75 |
-| 35 | wpine215.stardustv2 | 1513 | 37 | 419 | 115-304 |
+| 35 | wpine215.stardustv2 | 1514 | 37 | 425 | 117-308 |
 | 36 | mhahn2003.nonrush | 1464 | 52 | 250 | 56-194 |
 | 37 | eggag32.BrutalPigeonBot | 1464 | 59 | 194 | 42-152 |
 | 38 | ARognes.FinalSubmission | 1423 | 147 | 31 | 6-25 |
