@@ -51,9 +51,9 @@ public strictfp class Miner extends Robot {
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         // Iteration 55: a school that is gone is rebuilt (arch_rush buried ours at r164 on InADitch and we never had
         // another: four landscapers, the HQ dead at r292 with 200 soup idle). The builder checks when it stands near home.
-        if (builder && builtSchool > 0 && round < 1000 && MapState.home != null && Nav.cheb(loc, MapState.home) <= 3) {
-            boolean seen = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL) { seen = true; break; }
-            if (!seen) { builtSchool = 0; stand = null; Debug.log("@school lost -- rebuilding"); } }
+        if (builder && builtSchool > 0 && round < 1000 && schoolLoc != null && rc.canSenseLocation(schoolLoc)) {   // by its tile: the friends list is capped at 64 and the first form fired on a live school
+            RobotInfo r = rc.senseRobotAtLocation(schoolLoc);
+            if (r == null || r.type != RobotType.DESIGN_SCHOOL || r.team != us) { builtSchool = 0; schoolLoc = null; stand = null; Debug.log("@school lost -- rebuilding"); } }
         if (builder && build()) return;
         work();
     }
@@ -124,13 +124,14 @@ public strictfp class Miner extends Robot {
         rc.buildRobot(want, bestD);
         Debug.log("@build t=" + want.ordinal() + " at=" + loc.add(bestD) + " soup=" + rc.getTeamSoup());
         if (want == RobotType.REFINERY) { builtRefinery++; refinery = loc.add(bestD); }
-        else if (want == RobotType.DESIGN_SCHOOL) builtSchool++;
+        else if (want == RobotType.DESIGN_SCHOOL) { builtSchool++; schoolLoc = loc.add(bestD); }
         else if (want == RobotType.VAPORATOR) builtVap++;
         else if (want == RobotType.NET_GUN) builtNet++;
         else builtFC++;
         return true;
     }
 
+    private MapLocation schoolLoc = null;   // Iteration 55
     private MapLocation stand = null; private int standSince = 0;   // Iteration 28b: where the builder builds the refinery and school
     /** The highest outward neighbour of l that a builder standing on l could build on (the engine refuses a spawn more
      *  than 3 from the builder's height); unsensed counts 0, flooded is skipped; MIN_VALUE if there is none. */
