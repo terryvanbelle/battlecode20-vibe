@@ -125,3 +125,7 @@ How many blocks are you planning to run?  It seems like we've got the g_iter6 ra
 ## 27. 2026-09-25
 
 Can you move the legend in the onset-ladder.png to the bottom right?
+
+## 28. 2026-09-25
+
+Can you make me a graph of Field Score from ELO.md over time, and do a linear fit extrapolating out to the end of 1 and 2 weeks?
