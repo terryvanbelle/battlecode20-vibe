@@ -135,7 +135,7 @@ if o.plot:
     ax.axhline(0, color='0.4', lw=0.8)
     ax.set_xlabel('round'); ax.set_ylabel('correlation with the result')
     ax.set_title('When each metric starts predicting the result\n(earliest riser is the likeliest cause)')
-    ax.grid(alpha=.3); ax.legend(fontsize=8, loc='upper left')
+    ax.grid(alpha=.3); ax.legend(fontsize=8, loc='lower right')
     fig.tight_layout(); fig.savefig(o.plot, dpi=120); print('wrote', o.plot)
 if o.md:
     rank = sorted(table)

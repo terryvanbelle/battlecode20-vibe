@@ -121,3 +121,7 @@ While you're diagnosing game losses, I'd also like you to take into account the 
 ## 26. 2026-09-24
 
 How many blocks are you planning to run?  It seems like we've got the g_iter6 rating nailed down pretty well
+
+## 27. 2026-09-25
+
+Can you move the legend in the onset-ladder.png to the bottom right?
