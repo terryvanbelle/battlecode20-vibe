@@ -1848,6 +1848,11 @@ its neighbours from raising it (no dirt lands under a drone, by the boards), and
 Prison as A: no lift in 2,000 rounds again, 120 waits, 7,200 soup unspent. Stage 16: a drone goes to the gate only
 when a waiter already stands beside it, and leaves the moment it is done; the gate's position is logged.
 
+**Stage 16: eight drones on one gate.** Squares as B: 28 lifts, 18 holders, five of them outer, alive to r2906.
+RandomSoup1 as A drowned at r947 again: the gate (20,6) beside the school (19,6) stayed at 4 with all eight drones
+queuing over it for the same waiter, and nothing lands under a drone. Prison: the gate (2,0) is on the map's
+edge and the waiter never stood beside it. Stage 17: one elevator (the lowest drone id in sight); the rest patrol.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

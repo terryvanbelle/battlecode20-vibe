@@ -53,8 +53,10 @@ public strictfp class Drone extends Robot {
                 chasing = true; nav.setTarget(gate != null ? gate : m.location); nav.step(); chasing = false; return;
             }
         }
+        // stage 17: one elevator -- the drone with the lowest id in sight; eight of them queued on the gate and it never rose
+        boolean elevator = true; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE && friends[i].ID < id) { elevator = false; break; }
         // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
-        if (home != null) {
+        if (home != null && elevator) {
             RobotInfo w = null; int wd = 1 << 30;
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER || Nav.cheb(f.location, home) != 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < wd) { wd = d; w = f; } }
             if (w != null) {
