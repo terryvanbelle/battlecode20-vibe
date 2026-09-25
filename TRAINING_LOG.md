@@ -3128,3 +3128,11 @@ The school stands beside the HQ at Chebyshev 2, which is where the rusher's land
 **Iteration 56 (`src/cand56` = cand55 + the far school, `src/bot` = cand56):** under a rush the school goes three out
 on the side of the HQ farthest from the rusher's landscapers and school (their centroid in sight), with cand55's
 rebuild when it is lost. Diagnostic `diag56` on the three read seeds, then the paired gate against the rusher.
+
+**Diagnostic 56: refuted.** The far school fires (MtDoom (1,13), FourLakeLand (7,13), CowFarm (0,6); FourLakeLand
+rebuilt twice) and loses faster where it matters: CowFarm dead at r138 (control r949), MtDoom r191 (r163),
+FourLakeLand r677 (r678). A school three out on the far side sends each new landscaper the long way to a HQ that is
+being buried now. `src/cand56` kept.
+
+**Iteration 57 (`src/cand57` = cand54 + the far-side placement for the rush center):** Iteration 54's drones failed
+only because the center never found a site; the far-side search places it. Diagnostic `diag57` on the three seeds.
