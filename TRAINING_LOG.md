@@ -1718,6 +1718,19 @@ refinery stays outside; miners may cross the ring; the school builds to 48. Firs
 41, against g_iter9): RandomSoup1 A, Toothpaste B, Prison A, GSF B -- tiles held at 2 and 3, feeders, the shell's
 minimum at r500-3000, the interior, bodies and buildings by round, the HQ's fate.
 
+**Stage 1 fails as it should, and says what stage 2 is.** The shell never closed: 8, 4, 0 and 2 tiles held of
+16, and the HQ drowned at r2822, r2527, r1241 and r932. Landscapers stopped at 9-11 from r300 with 1,800-16,000
+soup in the bank: **the school on the ring is boxed in** -- its neighbours are the HQ, two ring tiles and five
+shell tiles, and once those are held or built on it has nowhere to spawn (on Prison five vaporators filled the
+ring around it). And a body spawned inside cannot climb onto a shell tile once the shell is more than 3 above the
+ground. The field's answer is on their own boards: their landscaper count rose 27 to 40 between r1000 and r1500
+with the block already at 99+ and no bodies inside at r1500 -- **the drones are the elevator**, lifting new
+landscapers from the yard onto free shell tiles (4-9 drones in every one of their bases, 124 in winkelmantanner's).
+Stage 2: the yard (the two ring tiles beside the school stay free, other buildings take the rest, at most four),
+no feeders (a body inside waits in the yard), and drones from a center inside that lift a waiting landscaper onto
+the nearest free shell tile, Chebyshev 2 first and then 3 beside a held tile. `tools/enc-read.py` reads the
+diagnostic.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
