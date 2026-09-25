@@ -1,6 +1,6 @@
-# Which metric starts predicting the result first -- every recorded block of g_iter9 merged
+# Which metric starts predicting the result first -- every recorded block of g_iter10 merged
 
-133 games, 55 wins. Noise floor about 0.17; a correlation inside that band is not evidence.
+219 games, 97 wins. Noise floor about 0.14; a correlation inside that band is not evidence.
 
 Every metric is oriented so **higher is better for us**, so a positive correlation always means
 "this being better goes with winning". `~avg` is the running mean over all rounds so far rather than
@@ -12,46 +12,46 @@ See `progress/METRICS.md` for how each quantity is computed.
 
 | onset | anti | metric | peak corr | r100 | r200 | r300 | r400 | r600 | r900 |
 |---|---|---|---|---|---|---|---|---|---|
-| r550 | - | pickups (us-them) | +0.31 | +0.06 | +0.04 | +0.11 | +0.22 | +0.31 | +0.26 |
-| r600 | - | digs (us-them) | +0.46 | -0.09 | +0.14 | +0.17 | +0.24 | +0.31 | +0.39 |
-| r650 | - | dirtDeps (us-them) | +0.44 | -0.09 | +0.11 | +0.13 | +0.19 | +0.29 | +0.38 |
-| r700 | - | landscapers (us-them) | +0.39 | +0.06 | +0.12 | +0.13 | +0.17 | +0.28 | +0.35 |
-| r700 | - | robots (us-them) | +0.40 | +0.23 | +0.16 | +0.21 | +0.25 | +0.28 | +0.40 |
-| r700 | - | robots (us-them) ~avg | +0.39 | +0.25 | +0.20 | +0.21 | +0.24 | +0.28 | +0.36 |
-| r700 | - | worth (us-them) | +0.31 | +0.12 | +0.14 | +0.16 | +0.22 | +0.27 | +0.30 |
-| r750 | - | spawned (us-them) | +0.37 | +0.23 | +0.16 | +0.24 | +0.26 | +0.26 | +0.35 |
-| r750 | - | spawned (us-them) ~avg | +0.36 | +0.25 | +0.20 | +0.22 | +0.25 | +0.28 | +0.32 |
-| r750 | - | units (us-them) | +0.39 | +0.25 | +0.18 | +0.19 | +0.20 | +0.22 | +0.35 |
-| r800 | - | digs (us-them) ~avg | +0.41 | -0.08 | +0.11 | +0.15 | +0.18 | +0.25 | +0.33 |
-| r850 | - | landscapers (us-them) ~avg | +0.37 | +0.07 | +0.10 | +0.09 | +0.11 | +0.22 | +0.32 |
-| r900 | - | dirtDeps (us-them) ~avg | +0.40 | -0.08 | +0.10 | +0.10 | +0.13 | +0.21 | +0.31 |
-| r950 | - | worth (us-them) ~avg | +0.32 | +0.11 | +0.13 | +0.13 | +0.18 | +0.25 | +0.30 |
-| r1000 | - | units (us-them) ~avg | +0.34 | +0.29 | +0.23 | +0.21 | +0.20 | +0.23 | +0.29 |
-| - | - | aba (us-them) [inverted] | +0.16 | +0.03 | +0.10 | +0.15 | +0.10 | +0.08 | +0.01 |
-| - | - | aba (us-them) [inverted] ~avg | +0.15 | +0.04 | +0.11 | +0.15 | +0.14 | +0.13 | +0.08 |
-| - | - | cov (us-them) | +0.29 | +0.11 | +0.29 | +0.22 | +0.20 | +0.12 | +0.04 |
-| - | - | cov (us-them) ~avg | +0.28 | +0.09 | +0.26 | +0.28 | +0.26 | +0.21 | +0.13 |
-| - | - | died (us-them) [inverted] | +0.19 | -0.07 | +0.12 | -0.08 | +0.04 | +0.14 | +0.15 |
-| - | - | died (us-them) [inverted] ~avg | +0.16 | -0.07 | +0.10 | -0.06 | -0.03 | +0.08 | +0.16 |
-| - | - | drones (us-them) | +0.20 | +0.13 | -0.01 | +0.04 | +0.02 | +0.02 | +0.13 |
-| - | - | drones (us-them) ~avg | +0.15 | +0.13 | +0.08 | +0.06 | +0.04 | +0.01 | +0.08 |
+| r100 | - | mines (us-them) | +0.44 | +0.34 | +0.37 | +0.41 | +0.44 | +0.39 | +0.40 |
+| r100 | - | mines (us-them) ~avg | +0.45 | +0.32 | +0.36 | +0.39 | +0.43 | +0.44 | +0.42 |
+| r100 | - | worth (us-them) | +0.50 | +0.33 | +0.37 | +0.43 | +0.48 | +0.48 | +0.48 |
+| r100 | - | worth (us-them) ~avg | +0.50 | +0.31 | +0.37 | +0.41 | +0.47 | +0.49 | +0.50 |
+| r250 | - | robots (us-them) | +0.52 | +0.27 | +0.30 | +0.38 | +0.44 | +0.49 | +0.52 |
+| r250 | - | robots (us-them) ~avg | +0.54 | +0.29 | +0.30 | +0.34 | +0.42 | +0.50 | +0.54 |
+| r250 | - | spawned (us-them) | +0.51 | +0.26 | +0.29 | +0.37 | +0.41 | +0.47 | +0.51 |
+| r250 | - | spawned (us-them) ~avg | +0.52 | +0.28 | +0.29 | +0.33 | +0.39 | +0.48 | +0.52 |
+| r400 | - | landscapers (us-them) | +0.57 | +0.09 | +0.14 | +0.18 | +0.34 | +0.47 | +0.57 |
+| r400 | - | units (us-them) | +0.48 | +0.22 | +0.23 | +0.27 | +0.32 | +0.40 | +0.48 |
+| r400 | - | units (us-them) ~avg | +0.50 | +0.24 | +0.24 | +0.25 | +0.30 | +0.40 | +0.50 |
+| r400 | - | vaporators (us-them) | +0.41 | -0.02 | +0.11 | +0.24 | +0.31 | +0.41 | +0.36 |
+| r500 | - | landscapers (us-them) ~avg | +0.61 | +0.08 | +0.13 | +0.11 | +0.22 | +0.43 | +0.58 |
+| r500 | - | vaporators (us-them) ~avg | +0.40 | +0.01 | +0.08 | +0.17 | +0.24 | +0.36 | +0.40 |
+| r600 | - | digs (us-them) | +0.59 | +0.02 | +0.14 | +0.14 | +0.20 | +0.34 | +0.50 |
+| r600 | - | dirtDeps (us-them) | +0.57 | +0.03 | +0.10 | +0.11 | +0.16 | +0.32 | +0.48 |
+| r600 | - | netguns (us-them) | +0.32 | -0.08 | +0.01 | +0.04 | +0.06 | +0.32 | +0.28 |
+| r700 | - | digs (us-them) ~avg | +0.53 | -0.00 | +0.12 | +0.11 | +0.15 | +0.25 | +0.42 |
+| r700 | - | dirtDeps (us-them) ~avg | +0.51 | +0.01 | +0.09 | +0.08 | +0.11 | +0.22 | +0.40 |
+| r700 | - | moves (us-them) | +0.39 | -0.12 | +0.07 | +0.14 | +0.20 | +0.28 | +0.36 |
+| r800 | - | moves (us-them) ~avg | +0.37 | -0.15 | +0.00 | +0.11 | +0.15 | +0.23 | +0.32 |
+| r1200 | - | drones (us-them) | +0.31 | +0.23 | +0.17 | +0.20 | +0.13 | +0.14 | +0.28 |
+| - | - | aba (us-them) [inverted] | -0.22 | +0.17 | +0.04 | -0.05 | -0.01 | -0.11 | -0.19 |
+| - | - | aba (us-them) [inverted] ~avg | +0.20 | +0.20 | +0.10 | +0.02 | +0.00 | -0.06 | -0.13 |
+| - | - | cov (us-them) | +0.22 | -0.18 | -0.08 | +0.04 | +0.08 | +0.14 | +0.18 |
+| - | - | cov (us-them) ~avg | +0.18 | -0.16 | -0.13 | -0.04 | +0.01 | +0.08 | +0.13 |
+| - | - | died (us-them) [inverted] | +0.26 | +0.11 | +0.09 | +0.12 | +0.23 | +0.24 | +0.13 |
+| - | - | died (us-them) [inverted] ~avg | +0.24 | +0.11 | +0.11 | +0.13 | +0.19 | +0.23 | +0.22 |
+| - | - | drones (us-them) ~avg | +0.27 | +0.24 | +0.23 | +0.25 | +0.21 | +0.15 | +0.24 |
 | - | - | drowned (us-them) [inverted] | . | . | . | . | . | . | . |
 | - | - | drowned (us-them) [inverted] ~avg | . | . | . | . | . | . | . |
-| - | - | hqBuried (us-them) [inverted] | +0.15 | +0.04 | +0.13 | +0.12 | +0.07 | -0.07 | -0.09 |
-| - | - | hqBuried (us-them) [inverted] ~avg | +0.13 | +0.04 | +0.10 | +0.01 | +0.03 | -0.08 | -0.10 |
-| - | - | miners (us-them) | +0.24 | +0.23 | +0.17 | +0.15 | +0.11 | +0.13 | +0.24 |
-| - | - | miners (us-them) ~avg | +0.28 | +0.28 | +0.25 | +0.25 | +0.20 | +0.15 | +0.19 |
-| - | - | mines (us-them) | +0.27 | +0.15 | +0.21 | +0.26 | +0.26 | +0.19 | +0.15 |
-| - | - | mines (us-them) ~avg | +0.27 | +0.16 | +0.20 | +0.23 | +0.26 | +0.26 | +0.20 |
-| - | - | moves (us-them) | +0.23 | +0.17 | +0.21 | +0.18 | +0.13 | +0.16 | +0.18 |
-| - | - | moves (us-them) ~avg | +0.22 | +0.14 | +0.22 | +0.22 | +0.18 | +0.17 | +0.19 |
-| - | - | netguns (us-them) | -0.15 | . | -0.00 | +0.03 | +0.06 | +0.04 | +0.05 |
-| - | - | netguns (us-them) ~avg | -0.15 | . | -0.03 | +0.02 | +0.03 | +0.03 | +0.03 |
-| - | - | pickups (us-them) ~avg | +0.29 | +0.06 | +0.04 | +0.07 | +0.15 | +0.25 | +0.29 |
-| - | - | soup (us-them) | -0.21 | -0.02 | +0.13 | -0.06 | -0.18 | -0.15 | -0.21 |
-| - | - | soup (us-them) ~avg | -0.20 | -0.04 | +0.09 | +0.08 | -0.01 | -0.15 | -0.20 |
-| - | - | vaporators (us-them) | +0.26 | -0.19 | -0.14 | +0.00 | +0.10 | +0.24 | +0.24 |
-| - | - | vaporators (us-them) ~avg | +0.25 | -0.19 | -0.18 | -0.09 | +0.01 | +0.16 | +0.24 |
+| - | - | hqBuried (us-them) [inverted] | +0.15 | +0.15 | +0.09 | +0.03 | +0.06 | +0.06 | +0.02 |
+| - | - | hqBuried (us-them) [inverted] ~avg | +0.15 | +0.15 | +0.12 | +0.08 | +0.08 | +0.09 | +0.09 |
+| - | - | miners (us-them) | +0.24 | +0.14 | +0.14 | +0.11 | +0.04 | +0.11 | +0.22 |
+| - | - | miners (us-them) ~avg | +0.24 | +0.21 | +0.20 | +0.20 | +0.14 | +0.10 | +0.16 |
+| - | - | netguns (us-them) ~avg | +0.27 | -0.08 | -0.01 | +0.02 | +0.04 | +0.16 | +0.26 |
+| - | - | pickups (us-them) | +0.30 | +0.13 | +0.23 | +0.26 | +0.29 | +0.23 | +0.24 |
+| - | - | pickups (us-them) ~avg | +0.30 | +0.13 | +0.23 | +0.25 | +0.30 | +0.27 | +0.26 |
+| - | - | soup (us-them) | +0.13 | +0.00 | +0.07 | +0.01 | +0.01 | +0.02 | -0.01 |
+| - | - | soup (us-them) ~avg | +0.09 | -0.03 | +0.08 | +0.09 | +0.07 | +0.02 | +0.01 |
 
 **Reading it.** Earliest onset is the first place to look: temporal precedence is the one causal hint a
 correlation can honestly give. Late-onset metrics are usually the scoreboard rather than the cause -- by then
