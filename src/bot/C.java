@@ -30,7 +30,6 @@ public final class C {
 
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
-    public static final int HELPER_HOLD = 160;        // Iteration 49: a helper keeps its own post above the water only while the water 60 rounds out is below this; past it (about r2600) the water rises faster than one body can dig, and the post is lost anyway -- the helper feeds the ring until it drowns instead
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 200;        // Iteration 43b: was 300, 43 tried 0 (the HQ starved of miners); 200 leaves the HQ its MINER_SOUP_RESERVE -- the bank it guarded is never spent (12,000 unspent at r3000)
     public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks

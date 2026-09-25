@@ -1605,6 +1605,14 @@ helpers die 60-100 rounds sooner and the ring gains 40-80 by r3000 -- five to ei
 mirror's margins are 10-50. **Diagnostic** (VM, seed 41, vs g_iter9): RandomSoup1 A, Toothpaste A, Prison B, Squares
 B (with its control) -- landscapers alive r2500-2900, the ring at r2800-3100, the end round.
 
+**Inert as built.** All four games identical to their controls to the tile and the round (RandomSoup1 A: 20
+landscapers to r2700, 8 from r2750, the ring 2594 / 2744 / 2794 at r2700 / 3000 / 3100 both ways; Squares, Prison,
+Toothpaste the same). The rule should have turned the helpers' self-maintenance off from about r2580 and changed
+their deposits for their last hundred rounds; it changed nothing, so the twelve bodies that die at r2700-2750 are
+not spending those rounds where the model put them (the drowning is sudden, not a slow falling-behind: the posts
+are held to the round the water passes them). What they do in r2600-2750 needs a trace before any form here is
+worth a gate; the prize is five to eight rounds at the end. `src/bot` back to g_iter9. Not gated.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
