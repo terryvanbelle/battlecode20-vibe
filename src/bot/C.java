@@ -13,6 +13,7 @@ public final class C {
     public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
     public static final int MINER_SOUP_RESERVE = 200; // after MINERS_EARLY the HQ builds a miner only above this bank
+    public static final int MINER_INCOME_WINDOW = 100; // Iteration 46: and only while the team soup rose within this many rounds
     public static final int SOUP_RETURN = 70;         // a miner heads home to deposit at this much carried soup
     public static final int SOUP_MEMORY = 12;         // remembered soup tiles per miner
     public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)

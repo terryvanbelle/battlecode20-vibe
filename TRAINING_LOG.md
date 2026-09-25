@@ -1449,6 +1449,19 @@ at r150 where the control still had one tile open, then lost at r3057 against th
 r2988 against the control's r3113 -- noise either way. The early walk helps nothing and can cost the HQ; the
 three flood-round deaths on these maps are bodies, not timing. `src/bot` back to g_iter9. Not gated.
 
+**`gate37p` (the gun on a site, paired against g_iter7): 0-10 discordant after 32 pairs** -- the old 2-14 was the
+gun, not the draw. The unpaired mirror's wide rejects stand.
+
+## Iteration 46 -- no miner without income (2026-09-25, on g_iter9)
+
+**Why.** On GSF the lowlands flood at r250-300 and mining stops for good (the mines count flat from r300 in every
+GSF loss and in the controls), yet the HQ goes on buying a miner per 60 rounds above a 200 bank (16 to 21 spawned by
+r700 on seed 1 as B), each 70 soup the school wanted for a seat (six to eight seats there, never all eight). The HQ
+cannot see the mines; it can see the team soup rise. **Change:** the HQ replenishes a miner only while the team
+soup rose within the last `MINER_INCOME_WINDOW` (100) rounds (`@nomines` logged; the first `MINERS_EARLY` are
+unconditional). **Diagnostic** (VM, seed 1 and 41, vs g_iter9): GSF B and Spiral B (mining stops at r300: expect
+`@nomines`, fewer spawns, more seats); Toothpaste A and RandomSoup1 A (mining runs to the flood: expect no change).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
