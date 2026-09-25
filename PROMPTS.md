@@ -129,3 +129,7 @@ Can you move the legend in the onset-ladder.png to the bottom right?
 ## 28. 2026-09-25
 
 Can you make me a graph of Field Score from ELO.md over time, and do a linear fit extrapolating out to the end of 1 and 2 weeks?
+
+## 29. 2026-09-25
+
+Yeah, it looks like linear fit is not so useful.  Can you recommend a more appropriate fit function?
