@@ -1318,6 +1318,13 @@ rounds. **42c**: the doorstep holds only while the building would otherwise be l
 tiles it can spawn onto (dry, within 3 of its elevation) -- the school keeps a door and the seats keep their dig
 tiles wherever the school has room. RandomSoup1 A, GSF B seed 1, Hills A again.
 
+**42c fires where it should and costs nothing measurable.** RandomSoup1 as A: identical to the control to the
+tile (765 / 2641, won r3219). Hills as A: the ring identical to the control at r500 and r1000. GSF as B seed 1: the
+school keeps its doors (one pit at its far corner at r400), every tile sealed by r700, the ring 317 at r1000 against
+42b's 203, the HQ alive to r2922 where the control drowns at r932. Snapshot `src/cand42c` (the doorstep with the
+three-door limit, and no building on a ring tile); **`gate42c`** (paired vs g_iter8, 320 pairs) and
+**`arm42c-a`/`arm42c-b`** (96 band games as `us:cand42c`; no count pre-registered, the gate and the rating decide).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

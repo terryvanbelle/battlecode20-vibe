@@ -23,10 +23,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   tier and ONSET-merged follow g_iter8 once 200 games are in). `src/bot` = g_iter8. Diagnostics: Hills B and Spiral A, flood-round deaths in the control
   (r931/r932), become wall races lost at r2981/r2823 (TRAINING_LOG, Iteration 41). **Arm posted: flood-round losses
   1 of 96 (the finding; g_iter7 6-7), 51-45, 1737 +- 76.** The gate decides the rest.
-- **Iteration 42 (the doorstep) in the gate:** seats never dig beside our buildings (the school's spawn tiles were a
-  pit and two boxed miners on GSF), and no building goes on a ring tile (a refinery there drowned the HQ on seed 1).
-  `src/bot` = `src/cand42` (on g_iter8). `gate42` (paired) and `arm42-a`/`arm42-b` running; post with
-  `tools/post-block.sh <run> cand42`.
+- **Iteration 42c (the doorstep) in the gate:** seats never dig a tile beside the school or the fulfillment center
+  when the building would be left fewer than three doors (the school's spawn tiles were a pit and two boxed miners
+  on GSF; the unlimited forms 42/42b cost RandomSoup1 22%/12%), and no building goes on a ring tile (a refinery
+  there drowned the HQ on seed 1). `src/bot` = `src/cand42c` (on g_iter8). `gate42c` (paired) and
+  `arm42c-a`/`arm42c-b` running; post with `tools/post-block.sh <run> cand42c`.
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>
