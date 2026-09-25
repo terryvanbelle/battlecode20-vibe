@@ -1155,6 +1155,15 @@ and, on maps where the seats fill by r200, almost nothing before. Diagnostics (V
 `@badseat` counts, the ring at r500 (no tile under water), the HQ alive past the flood round -- and RandomSoup1
 plus controls on Climb and Hills (g_iter7 vs itself) for the ring at r3000.
 
+**Diagnostics** (VM, with controls). Climb as A: the ring at r500 reads 2F 24 26 72 73 75 74 75 against the control's
+2F 24 27 4 109 7 109 112 -- seven tiles seated instead of five, `@badseat` 20 against 17 -- and the west corner tile
+is still under water, so the HQ drowns at r931 as before. Climb as B: identical to the control (the B side's walkway
+is not the dug one). Hills as A: one flooded tile either way, the HQ drowns at r931 either way. RandomSoup1 as A:
+ring 2290 at r3000 against the control's 2445 (-6%): the seats' dig restriction before r400 costs on ordinary maps.
+**Not gated; uninformative as built.** Code kept as `src/cand38`; `src/bot` is g_iter7. The last unseated tile on
+Climb needs its own trace (the corner beside the map's water), and the rule must not touch maps whose seats fill by
+r200 -- a form that spares only walkways a landscaper is actually walking, or that a stalled seat-seeker asks for.
+
 ## Iteration 37 -- one gun on the site (2026-09-25, on g_iter7)
 
 **Why now.** The raid table (five band opponents with clocks, a third of the band's losses) and two closed forms:

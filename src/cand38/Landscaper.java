@@ -1,4 +1,4 @@
-package bot;
+package cand38;
 
 import battlecode.common.*;
 
@@ -41,6 +41,12 @@ public strictfp class Landscaper extends Robot {
         wall(home);
     }
 
+    /** Iteration 38: does circle tile n touch a ring tile that is exposed, on the map and not held by one of our landscapers? */
+    private boolean touchesUnseatedRing(MapLocation n, MapLocation home) throws GameActionException {
+        for (int i = 8; --i >= 0;) { MapLocation t = n.add(DIRS[i]); if (!onRing(t) || !rc.onTheMap(t) || !exposed(t) || !rc.canSenseLocation(t)) continue;
+            RobotInfo r = rc.senseRobotAtLocation(t); if (r == null || r.type != RobotType.LANDSCAPER || r.team != us) return true; }
+        return false;
+    }
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
         if (!rc.canSenseLocation(l)) return false;
         RobotInfo r = rc.senseRobotAtLocation(l);
@@ -162,6 +168,7 @@ public strictfp class Landscaper extends Robot {
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d)) continue;
+            if (round < C.SEATS_BY && touchesUnseatedRing(n, home)) continue;   // Iteration 38: a circle tile beside an unseated ring tile is the walkway to it (Climb: the east seats dug the only path west into pits by r150 and the west ring never sealed)
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
             if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
             int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles
