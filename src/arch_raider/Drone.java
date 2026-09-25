@@ -13,6 +13,7 @@ public strictfp class Drone extends Robot {
     private MapLocation patrol;
     private int pickups = 0, drops = 0, raidKills = 0;
     private boolean raiding = false, holdingFriend = false;
+    private int dropWait = 0;   // 2026-09-25: a carrier holds out for a ring tile (adjacent to the enemy HQ, where its landscaper can bury) for 40 rounds before settling for the circle
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
 
@@ -32,8 +33,9 @@ public strictfp class Drone extends Robot {
             if (!assembled(ehq)) { goRally(ehq); return; }
             raiding = true;   // arch_raider: a charging carrier does not flee the HQ (the flee rule above fires at r2 15 otherwise and it oscillates at the edge of range)
             Direction bestD = null; int bd = 1 << 30;
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, ehq) > 2 || !rc.canDropUnit(d) || rc.senseFlooding(n)) continue; int dd = n.distanceSquaredTo(ehq); if (dd < bd) { bd = dd; bestD = d; } }
-            if (bestD != null) { rc.dropUnit(bestD); drops++; holdingFriend = false; Debug.log("@deliver at=" + loc.add(bestD)); return; }
+            int ringMax = dropWait < 40 ? 1 : 2; dropWait++;
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, ehq) > ringMax || Nav.cheb(n, ehq) < 1 || !rc.canDropUnit(d) || rc.senseFlooding(n)) continue; int dd = (Nav.cheb(n, ehq) == 1 ? 0 : 1000) + n.distanceSquaredTo(ehq); if (dd < bd) { bd = dd; bestD = d; } }
+            if (bestD != null) { rc.dropUnit(bestD); drops++; holdingFriend = false; dropWait = 0; Debug.log("@deliver at=" + loc.add(bestD) + " ring=" + Nav.cheb(loc.add(bestD), ehq)); return; }
             nav.setTarget(ehq); nav.step(); return;
         }
         holdingFriend = false;
@@ -64,7 +66,11 @@ public strictfp class Drone extends Robot {
             raiding = assembled(ehq);
             if (raiding) {
                 RobotInfo v = null; int vd = 1 << 30;
-                for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; if (rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; raidKills++; Debug.log("@pickup t=" + e.type.ordinal() + " id=" + e.ID + " raid=true"); return; } int d = loc.distanceSquaredTo(e.location) + (e.type == RobotType.LANDSCAPER ? 0 : 100); if (d < vd) { vd = d; v = e; } }
+                RobotInfo lift = null; int ld = 1 << 30;   // 2026-09-25: the seats first (landscapers on the ring free the tiles the carriers drop on)
+                for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue;
+                    int d = loc.distanceSquaredTo(e.location) + (e.type == RobotType.LANDSCAPER ? 0 : 100) + (Nav.cheb(e.location, ehq) == 1 ? 0 : 50);
+                    if (rc.canPickUpUnit(e.ID)) { if (d < ld) { ld = d; lift = e; } } else if (d < vd) { vd = d; v = e; } }
+                if (lift != null) { rc.pickUpUnit(lift.ID); pickups++; raidKills++; Debug.log("@pickup t=" + lift.type.ordinal() + " id=" + lift.ID + " raid=true ring=" + Nav.cheb(lift.location, ehq)); return; }
                 if (v != null) { nav.setTarget(v.location); nav.step(); return; }
                 approachSafely(ehq); return;   // within sight of their ring, waiting for something liftable
             }

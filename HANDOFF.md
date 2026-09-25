@@ -42,8 +42,14 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Iteration 47d (the keeper: a parked miner, a keeper helper, one net gun at 16 standing r1200-1900) closed:**
   gate paired 2-14 discordant in 320 pairs (REJECT by the cap rule) and the arm at 192 games 33% raid-window losses
   against g_iter9's 35% (the first 96 games' 22 was the pool's draw). One gun does not turn a raid of 8-25 drones.
-  `src/cand47d` kept. The raid line's remaining form is the home guard (Iteration 48, in diagnostics: drones that
-  never hunt lift the landscapers dropped on the ring).
+  `src/cand47d` kept. The raid line's remaining form is the home guard (Iteration 48b, `src/cand48b`: drones
+  that never hunt stay at Chebyshev 3-4 and lift what lands within the box) -- **shelved**: no cost in the mirror,
+  but no sparring partner reproduces the band's raid (seats lifted under fire, landscapers dropped on the freed
+  tiles), so the claim has not been seen to fire and rule 5 forbids the test. **A question for the owner:** for a
+  field-only mechanism whose code path fires (pickups of strays) but whose claimed case exists only in locked
+  opponents' games, may the arm (96-192 band games, the raid-window count) stand in for the diagnostic? Or should
+  the next tool be a faithful raider archetype (drones that charge the HQ's gun, lift seats, carry landscapers in
+  behind)? `src/bot` = g_iter9.
 - **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
   draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
   tiles open where the control lives). `src/bot` = g_iter9.

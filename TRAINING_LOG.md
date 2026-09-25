@@ -1583,6 +1583,17 @@ one job -- lifting what lands beside the HQ -- has not been seen to fire. Next: 
 band's raiders do (drop its landscapers on the ring tiles its carriers have just cleared, and bury), then the
 diagnostic again; without that, no test.
 
+**48c: the archetype cannot be made to do it in an afternoon.** `arch_raider` with its lifters told to take seats
+first and its carriers to hold out for a ring tile: 0 deliveries and 0 seats lifted in three games (its drones
+will not enter the ring or face the HQ's gun, and its carriers never come within drop range); it still lifts 4-7
+helpers from the posts, and our HQ lives either way. The band's raid -- 8-25 drones that lift the seats under the
+HQ's fire and drop 1-11 landscapers on the freed tiles -- is not something our sparring partners do. **48 is
+shelved, not refuted**: the guard costs nothing in the mirror (identical games) and its code path fires (our
+drones lift strays within the box), but the claim -- lifting what lands beside the HQ during a raid -- has not
+been seen, and rule 5 says no test without it. Code kept as `src/cand48b`; `src/bot` back to g_iter9. A faithful
+raider archetype (drones that charge the HQ's gun, lift seats, and carry landscapers in behind) is the prerequisite
+for any raid answer, and it is the next tool to build if this line is to move.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
