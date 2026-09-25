@@ -1633,6 +1633,11 @@ the arm reads the late losses (g_iter9: 56 of 240, 22 or fewer of 96 is the bar)
 raid-window 27, early 2.** Null on the arm. Gate 49b at 160 pairs: discordant 3-0 -- the change flips one game in
 fifty, all its way so far.
 
+**Gate 49b, 320 pairs: discordant 8-0, concordant 149-163 -- INCONCLUSIVE, under the twelve-pair floor** (the sign
+test on 8-0 says p = 0.008). As with 42c, a second block of 320 pairs is pre-registered now (`gate49b-2`, the record
+carried with `W0=8 L0=0`): the reading at 640 pairs is the sign test on every discordant pair, twelve or more
+required, p < 0.01 an accept and p < 0.10 a provisional keep.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

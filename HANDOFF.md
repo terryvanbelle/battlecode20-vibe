@@ -52,8 +52,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   behind)? `src/bot` = g_iter9. **Iteration 49b (helpers feed the ring
   to the end once the water outruns a body, `HELPER_HOLD` 230) in the gate and the arm:** the trace showed twelve
   helpers putting 77 dirt each into posts lost 150 rounds later; the rule gained +40 of ring on RandomSoup1.
-  `src/bot` = `src/cand49b`; `gate49b` (paired vs g_iter9) and `arm49b-a`/`-b` running (post with
-  `tools/post-block.sh <run> cand49b`).
+  `src/bot` = `src/cand49b`. Arm posted (42-54, 1751 +- 74, late losses 25 of 96: null on the bar of 22).
+  Gate 49b 8-0 discordant in 320 pairs (under the twelve-pair floor): **`gate49b-2` running**, a second
+  pre-registered block of 320 pairs; the verdict is the sign test on all discordant pairs at 640.
 - **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
   draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
   tiles open where the control lives). `src/bot` = g_iter9.
