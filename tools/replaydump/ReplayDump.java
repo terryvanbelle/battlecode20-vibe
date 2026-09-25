@@ -42,7 +42,8 @@ public class ReplayDump {
     static int threatTeam = 0, ringEvery = 0, ringD = 1;
     static Pattern logPat = null; static int logsTeam = -1;
     static TreeSet<Integer> mapAt = new TreeSet<>(), elevAt = new TreeSet<>();
-    static int seatTeam = 0; static TreeSet<Integer> seatAt = new TreeSet<>();   // --seats A|B --seats-at N: the unseated ring tiles and what is around them
+    static int seatTeam = 0; static TreeSet<Integer> seatAt = new TreeSet<>();
+    static boolean elevRaw = false;   // --seats A|B --seats-at N: the unseated ring tiles and what is around them
 
     static final class Robot {
         int id, team, x, y, spawnRound; byte type; boolean alive = true;
@@ -79,6 +80,7 @@ public class ReplayDump {
                 case "--map": mapEvery = Integer.parseInt(args[++i]); break;
                 case "--map-at": mapAt.add(Integer.parseInt(args[++i])); break;
                 case "--elev-at": elevAt.add(Integer.parseInt(args[++i])); quiet = true; break;
+                case "--elev-raw": elevRaw = true; break;   // numbers under the robots too (a robot's tile prints its dirt, the glyph goes)
                 case "--ring": ringEvery = Integer.parseInt(args[++i]); quiet = true; break;
                 case "--seats": seatTeam = args[++i].equals("A") ? 1 : 2; quiet = true; break;
                 case "--seats-at": seatAt.add(Integer.parseInt(args[++i])); break;
@@ -322,7 +324,7 @@ public class ReplayDump {
             StringBuilder s = new StringBuilder(String.format("%3d ", y));
             for (int x = 0; x < width; x++) { int k = x + y * width; int e = Math.max(-9, Math.min(99, dirt[k]));
                 Robot occ = null; for (Robot r : bots.values()) if (r.x - minX == x && r.y - minY == y) { occ = r; break; }
-                if (occ != null) s.append(GLYPH[occ.team][Math.min(occ.type, 9)]).append(water[k] ? '~' : ' ');
+                if (occ != null && !elevRaw) s.append(GLYPH[occ.team][Math.min(occ.type, 9)]).append(water[k] ? '~' : ' ');
                 else if (water[k]) s.append("~~"); else s.append(String.format("%2d", e)); }
             System.out.println(s);
         }

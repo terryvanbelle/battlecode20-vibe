@@ -61,7 +61,30 @@ the gate itself is the last target (a 16th seat), which also tells the school to
 `C.RAID_ROUND` the center builds drones without cap; they gather at `C.RAID_RALLY` from the enemy
 HQ guess and charge when `C.RAID_SIZE` are together, lifting enemy seats into the water.
 
-## The plateau (planned, 2026-09-24)
+## The enclosure (planned, 2026-09-25; supersedes the plateau below)
+
+What the field's top bots build (TRAINING_LOG "The enclosure": 56 late losses, both boards read): a **shell** of
+landscapers at Chebyshev 2 (16 tiles) and 3 (24 tiles) around the HQ, each holding its own tile above the water,
+and an **interior** at Chebyshev 0-1 that is never raised. Flooding spreads only from a flooded neighbour, so a
+complete shell keeps the interior dry at any elevation: the HQ spawns miners onto its ring tiles all game, a
+school on a ring tile spawns landscapers all game, vaporators there pay all game, net guns there cover the shell
+(r2 15 reaches Chebyshev 3), and the interior is the **quarry** -- ring tiles dug to -9 and below, never flooded,
+always in reach, so the shell is fed from inside by bodies that need no tile of their own. Their count: 27
+landscapers at r1000, 40 at r2000, 30-124 drones; ours 14 and 7, none.
+
+What changes for us: the seats go. Roles become **shell-holder** (a Chebyshev-2 tile, later a Chebyshev-3 tile
+outside a held one; keep it at water(round+60)+2, dig outward or from the quarry, feed the lowest adjacent shell
+tile), **feeder** (inside the shell: dig a quarry tile, deposit on the lowest adjacent shell tile), and the
+buildings inside: refinery, school, center, two guns, vaporators on ring tiles, one ring tile kept free as the
+spawn yard. Intake is no longer bodies adjacent to eight tiles: a 16-tile shell with 16 holders and 8 feeders
+takes 12 dirt a round, the same as today, but production never stops, so it grows -- and the guns and drones are
+inside. Costs to price: the shell has twice the tiles of the ring (the same dirt buys half the height until the
+feeders and the new bodies pay), and the shell must be complete before the water reaches Chebyshev 2 (r250-700 by
+map), or the interior floods and the HQ with it. The first build is an archetype (`arch_enclosure`) played
+against g_iter9 in the mirror and read for the shell's completion round and its height at r1000-3000; then the
+bot. This is a multi-session program; every stage needs its diagnostic before its gate.
+
+## The plateau (planned, 2026-09-24; superseded above)
 
 The next structural candidate; see TRAINING_LOG.md "What the field does that we do not" and
 HANDOFF.md for the measurements behind it. Roles are rewritten around **tiles a landscaper can

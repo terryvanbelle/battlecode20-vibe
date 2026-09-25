@@ -1675,6 +1675,38 @@ two structural lines HANDOFF has carried all session -- a producer that outlives
 stops a pickup -- are the whole of the late losses, and the raid losses besides. Where their schools stand
 (count, elevation, distance from their HQ at r1000-2000) is the next census, from the same replays.
 
+## The enclosure (2026-09-25): what the field does that we do not
+
+The same 56 replays, their side: a school in 51 of 56 games at r1000 and 40 at r1500, net guns in 43 (median 2-3),
+vaporators median 4. And the board (`--elev-raw`, `laurenschneider` on CentralLake, their HQ at (33,33), r1000,
+r1500 and r2500 identical):
+
+```
+ 36 ~~~~99999999999999~~~~        99 = 99 or more (clipped)
+ 35 ~~~~99999999999999~~~~
+ 34 ~~~~9999-9 3-99999~~~~        the 7x7 block: Chebyshev 2 and 3 all at 99+ by r1000,
+ 33 ~~~~999910 3 39999~~~~        the HQ's own ring at 3, 10, 11 and -9 (dug), the HQ at 3
+ 32 ~~~~9999-911-99999~~~~
+ 31 ~~~~99999999999999~~~~
+ 30 ~~~~99999999999999~~~~
+```
+
+The glyph view of the same board at r1500 shows the block solid with landscapers, three net guns and a
+vaporator standing on the ring tiles at ground level, and drones overhead. **Flooding spreads only from a
+flooded neighbour** (RULES.md), so a complete dry shell at Chebyshev 2-3 keeps everything inside dry at any
+elevation, for ever: the HQ keeps its spawn tiles, the school on a ring tile keeps spawning, the vaporators keep
+paying, the guns keep shooting from inside the wall, and the interior is the quarry -- dug to -9 and lower, never
+flooded, always reachable, so the shell's dirt comes from inside as well as out and bodies inside the shell feed
+the shell from behind. That is how they stand 40-54 landscapers and 30-124 drones at r1500-2000 against our 7-14
+and none: not a taller wall, a wall around a working base.
+
+**We raise the ring itself.** Eight seats on the HQ's own tiles at 2,600 wall the HQ off from its spawn tiles
+by r400, drown the school, the center and the refineries at cheb 3 by r700-1000, and leave the helpers at cheb 2
+holding posts at the water's edge until it takes them at r2750. Every acceptance this session (the walk, the
+doorstep, the bank) tuned that design; every structural try (guns on a site, the keeper, the guard) fought the
+fact that nothing of ours outlives the flood. DESIGN.md's plateau raised the producers; the field does not raise
+them, it encloses them. **The next program is the enclosure**, written up in DESIGN.md and HANDOFF.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

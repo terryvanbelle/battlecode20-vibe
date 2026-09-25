@@ -55,6 +55,13 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   `src/bot` = `src/cand49b`. Arm posted (42-54, 1751 +- 74, late losses 25 of 96: null on the bar of 22).
   Gate 49b 9-0 discordant in 640 pairs -- under the twelve-pair floor, **not kept** (`src/cand49b`); one wall race
   in seventy is not what the late losses are lost by. `src/bot` = g_iter9. **VM idle.**
+- **THE FINDING OF THE SESSION (TRAINING_LOG "The enclosure", DESIGN.md "The enclosure"):** the field's top bots
+  do not raise the HQ's ring; they hold a shell at Chebyshev 2-3 and keep the interior at ground level, where the
+  school, the center, vaporators and net guns live all game and the ring tiles are the quarry -- flooding spreads
+  only from a flooded neighbour. They stand 40-54 landscapers and 30-124 drones at r1500-2000 against our 7-14 and
+  none, and win the late games by half a wall. Every line this session tuned or fought our design; this replaces it.
+  **Next program: `arch_enclosure`** (an archetype built from the bot: shell-holders, feeders, the yard), read in
+  the mirror against g_iter9 for the shell's completion round and height, then the bot. Multi-session.
 - **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
   draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
   tiles open where the control lives). `src/bot` = g_iter9.

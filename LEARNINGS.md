@@ -146,6 +146,12 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   repeats (29% of g_iter3's), and a 240-game mirror gate held at most 104 distinct games, so every
   sequential test was overconfident. Seed every game and count a repeated cell once (2026-09-24).
 
+- **Enclose the base; do not raise it.** Flooding spreads only from a flooded neighbour, so a complete dry shell
+  at Chebyshev 2-3 keeps the HQ's ring dry at ground level for ever: the field's top bots keep their school,
+  vaporators and guns on the ring tiles, dig the ring as a quarry, and stand 40-54 landscapers and 30-124 drones
+  after the flood to our 7-14 and none. Raising the ring itself (our design since Iteration 3) walls the HQ off
+  from its own spawn tiles and drowns every producer by r1000 (2026-09-25, 56 late-loss boards).
+
 - **A reserve nobody spends is bodies nobody has.** The school held 300 then 700 soup back before landscapers
   9-16 and 17-24 (reserves from the gun and drone lines, long closed), so the last eight bodies came 200 rounds late
   on RandomSoup1 and never on Toothpaste as A, while the bank ended every game at 2,000-12,000 unspent. At 200 (the
