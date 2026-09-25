@@ -1792,6 +1792,11 @@ yard (the enclosure let miners cross the ring and the shell closed behind them).
 nearest on-map tile at Chebyshev 3; miners keep out of the interior once a refinery stands (the builder lives
 there).
 
+**Stage 9 went backwards on bodies:** 9-12 landscapers on every map (RandomSoup1 had 21 in stage 8), 2-4 lifts,
+no waiters ever logged; the shells still rise (317-433 at r2000) and the HQs live to r2848-2925, Prison's three
+corner holes unchanged. The school stops at ten and nothing in the counts says why; a school trace (what it
+wants, who stands inside, whether the spawn goes through, every 50 rounds) runs first.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
