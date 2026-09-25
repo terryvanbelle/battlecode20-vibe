@@ -2985,3 +2985,9 @@ by r121 and none after (its spawn tiles closed; the school was gone by r500) -- 
 Results: Spiral A lost both (the candidate lived to r2927, the control to r2823), Spiral B won both; GSF 1-1
 discordant (A won where the control lost, B lost where the control won), GSF's miners freeze less (mines 313-334 vs
 204-314). The mechanism shown firing, the gate: **`gate50`** (paired, cand50 vs g_iter9, cap 320 pairs).
+
+**Gate 50: ACCEPT at 112 pairs, discordant 32-9 (78%), concordant 51-61, the change fired in every cell.**
+**`src/g_iter10` = g_iter9 + Iteration 50** (a miner never falls through to explore while a soup target stands).
+`src/bot` = g_iter10. Submission blocks `sub10-1..5` (5 x 48 band games as `us:g_iter10`) launched; each is posted
+with `tools/post-block.sh <run> g_iter10`, which refreshes the ladder, the roster tier, ONSET and the field-score
+chart.
