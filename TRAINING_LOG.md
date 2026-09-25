@@ -1173,6 +1173,16 @@ a helper, and the HQ requires two dry tiles beyond the stand when it chooses the
 maps of three, the ring within the bar on both. Snapshot `src/cand37`; **`gate37`** (mirror vs g_iter7, seeded)
 and **`arm37a`/`arm37b`** (two seeded band blocks as `us:cand37`) running together.
 
+**Arm 2: 46/96, raid-window losses 19 of 96 -- g_iter7's rate to the game (19.3 expected); null.** EmaPajic took
+nine of them at r1528-1768 (its clock is about r1550), benzyx four at r1223-1639, cormackikkert three at r2006-2152.
+**Arm 1 (`gate37`): 2-14 in the first batch**, the mirror pricing the site machinery as it priced the gun perches,
+whatever stands on the site; stopped there, both arms null. **Closed: refuted.** Code kept as `src/cand37`;
+`src/bot` is g_iter7. The ledger's reading of the raid line after 10, 23, 24, 31 and 37: one gun is a drop against
+17-40 drones, and every pre-flood diversion of a landscaper's rounds or a tile beside the ring is priced by the
+mirror at far more than the raids return on the ladder. A raid answer that the mirror can tolerate has to cost
+nothing before the flood -- which leaves the bank after r700 (thousands, unspent) and nothing that can spend it
+where the raid lands. That is the same wall as the post-flood producer, from the other side.
+
 ## Mirror gains and the field (2026-09-25)
 
 g_iter7 against g_iter6 on the same opponents, weighted by g_iter7's games (distinct games, blocks 70-75 against

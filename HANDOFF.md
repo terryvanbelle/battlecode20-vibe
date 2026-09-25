@@ -12,10 +12,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Running on the VM:** `gate37` (Iteration 37, one net gun on the raised site, `src/bot` = `src/cand37`; mirror vs g_iter7,
-  seeded) and its ladder arm `arm37a`/`arm37b` (`BOT=cand37`, post with `tools/post-block.sh <run> cand37`; a finding if
-  at most 12 of 96 losses fall in the raid window, r1000-2300 not at the map's flood round; g_iter7's rate gives 19).
-  Iteration 36 (replacement school) closed by a control run; 35 uninformative. Diagnostics run on the VM when idle.
+- **VM:** idle. `src/bot` = g_iter7. Iteration 37 (one net gun on the raised site) refuted: ladder arm 19 raid-window
+  losses of 96 (g_iter7's rate exactly), gate 2-14 in its first batch (`src/cand37`). Iterations 35 and 36 closed
+  earlier today. The two structural lines (bodies at the wall after the flood; the timed raids) both come down to
+  spending the post-flood bank where it matters, and every form tried costs the pre-flood wall more than it returns.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
@@ -42,7 +42,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
      mvpatel r1896-1932, cormackikkert r2139-2292 -- drones lift the seats, landscapers bury the HQ, the HQ's one shot a
      round is the only defence; a third of the band's losses. Drones as guards are closed (10, 23, 24); gun perches (31)
      were priced far below the gate by what they reserved, not by the guns. A gun form that reserves nothing is the
-     open question; the raid arm for it is the ladder (benzyx and cormackikkert are reviewable).
+     open question -- Iteration 37 (one gun on a raised site, nothing reserved) answered it: arm null (19 of 96, the
+     incumbent's rate), gate 2-14. Any pre-flood diversion is priced out by the mirror; a defence must cost nothing
+     before r700.
 - Iterations 23, 24, 26, 27 closed earlier on 2026-09-24; TRAINING_LOG.md has every entry above with numbers.
 
 ## State (2026-09-23, evening; superseded above where they differ)
