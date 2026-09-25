@@ -1171,6 +1171,15 @@ Islands2 800 vs 444, 2,583 vs 311, 6 of 8 vs 5 of 8 (the island's soup runs out 
 of 8; Prison 886 vs 711, 588 vs 766, 2 of 11 vs 5 of 11. Refineries built on the spot: 1, 0, 2, 6. Four wins
 of four. Snapshot `src/cand34`; **`gate34`** (the stack vs g_iter6, seeded) running.
 
+**Gate 34: ACCEPT at 62-34 (64.6%)** after six batches, every game seeded and distinct (8-8, 11-5, 12-4, 11-5,
+10-6, 10-6). Snapshot **`src/g_iter7`** (the VM's gated `src/bot`, checksum identical to the driver's and to
+`src/cand34`) is the incumbent and the submission: g_iter6 + a miner deposits only a load of 70 or once the
+soup within reach is gone (33) + a full miner whose walk to a drop-off stalls builds a refinery where it
+stands (34b) + the builder's walks pause on a stall. Blocks 70-71 (`BOT=g_iter7`, seeded band blocks) and the
+archetype regression `regr7` (vs `arch_swarm`, quick set; g_iter6 was 21/24) running. The third acceptance
+since the restart: seats first (25), the rush answer with buildings off the bypass (29b), and now the miners
+kept working.
+
 ## Iteration 33 -- a deposit worth the action (2026-09-24)
 
 **Evidence** (the Iteration 32 traces): a miner beside the HQ or a refinery deposits whatever it carries every

@@ -5,17 +5,16 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 
 ## State at the 2026-09-24 evening restart (switch to Fable 5.1; read this block first)
 
-- **Incumbent and submission: `src/g_iter6`** (Iteration 29b, accepted 72-40 over g_iter5: refinery and school outward of
-  the Chebyshev-2 circle, the rush response, miners off the ring only once a refinery exists). `src/bot` = g_iter6
-  (checked: `git diff src/bot` against the snapshot is empty after the package rename).
+- **Incumbent and submission: `src/g_iter7`** (Iterations 33+34b accepted 62-34 over g_iter6 on 2026-09-25: a miner
+  deposits only a 70-soup load or once the soup in reach is gone; a full miner whose walk to a drop-off stalls builds a
+  refinery where it stands; the builder's walks pause on a stall). `src/bot` = g_iter7. Ladder blocks run `BOT=g_iter7`
+  until its rating interval is about +-40 (roughly 300 games), then stop (owner, PROMPTS 26).
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Running on the VM:** `gate34` (`src/bot` = `src/cand34` = Iteration 33 (loads of 70 before a deposit, provisional at
-  132-108) + 34b (a full miner whose walk to a drop-off stalls builds a refinery where it stands); mirror vs g_iter6,
-  seeded). ACCEPT snapshots the stack as g_iter7 and submits it; REJECT drops 34b and leaves cand33 provisional.
-  Iterations 31 (7-25, 13-35) and 32 (77-83) rejected on 2026-09-24. No incumbent blocks (PROMPTS 26). Diagnostics
-  run on the VM when it is idle (`tools/vm-run.sh diagN '... run-dev.sh ...'`).
+- **Running on the VM:** blocks 70 and 71 (`BOT=g_iter7`, seeded band blocks: the submission's first grade; post with
+  `tools/post-block.sh <run> g_iter7` and push the `progress/` files in the same commit) and `regr7` (g_iter7 vs
+  `arch_swarm`, quick set; g_iter6 was 21/24). Iterations 31 (7-25, 13-35) and 32 (77-83) rejected on 2026-09-24.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
