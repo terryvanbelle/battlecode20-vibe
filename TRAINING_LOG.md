@@ -1164,6 +1164,15 @@ the losses in the raid windows (r1000-2300, not within 3 rounds of the map's `hq
 rate is about 4%. (The bar of 6 first written here assumed a lower rate and is withdrawn before any arm data.)
 A null in both arms is a reject.
 
+**Diagnostics** (VM, against `ctrl7`). Prison as A: site r140, mason done r297, the gun built r313, standing to
+r1700 (three guns at r700, one at r1700, none at r2000 as designed), ring 2177 vs the control's 2109 (+3%).
+RandomSoup1 as A: mason done r234, gun built r474, standing r1200-1700, ring 2798 vs 2445. Squares as B: two masons
+claimed and neither finished, no gun, ring 2030 vs 2182 (-7%): the tiles beyond the stand are water on Squares, so
+a mason there has nothing to dig from and stands idle -- two fixes, a mason that cannot dig for 20 rounds becomes
+a helper, and the HQ requires two dry tiles beyond the stand when it chooses the site. Mechanism shown on two
+maps of three, the ring within the bar on both. Snapshot `src/cand37`; **`gate37`** (mirror vs g_iter7, seeded)
+and **`arm37a`/`arm37b`** (two seeded band blocks as `us:cand37`) running together.
+
 ## Mirror gains and the field (2026-09-25)
 
 g_iter7 against g_iter6 on the same opponents, weighted by g_iter7's games (distinct games, blocks 70-75 against

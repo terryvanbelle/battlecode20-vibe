@@ -12,10 +12,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **VM:** idle. `src/bot` = g_iter7. Iteration 36 (the replacement school) is **closed**: after five diagnostic rounds and
-  a control run (g_iter7 vs itself: side effects of 7-18% on the ring), the candidate's ring is 7-12% lower than the
-  control on three maps of four; code kept as `src/cand36e`. Iteration 35 (16 helpers) uninformative. Read every
-  diagnostic against a control from now on (TRAINING_ALGORITHM 4.3). Diagnostics run on the VM when it is idle.
+- **Running on the VM:** `gate37` (Iteration 37, one net gun on the raised site, `src/bot` = `src/cand37`; mirror vs g_iter7,
+  seeded) and its ladder arm `arm37a`/`arm37b` (`BOT=cand37`, post with `tools/post-block.sh <run> cand37`; a finding if
+  at most 12 of 96 losses fall in the raid window, r1000-2300 not at the map's flood round; g_iter7's rate gives 19).
+  Iteration 36 (replacement school) closed by a control run; 35 uninformative. Diagnostics run on the VM when idle.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
