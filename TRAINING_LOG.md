@@ -2976,3 +2976,12 @@ The comment above that code names the same trap for "nearest" soup changing; thi
 returns, never falls through to explore; the stall now counts and marks the soup unreachable after `STALL` turns,
 and the miner moves on to the next soup or explores. `@soupwait` every 25 rounds shows it waiting. `src/bot` =
 cand50. Diagnostic first (Spiral, GSF, the mirror against g_iter9): mined counts that rise after r300.
+
+**Diagnostic 50 (Spiral and GSF, both sides, seed 7, against the g_iter9 mirror on the same seed):** the mechanism
+fires (`@soupwait` 4-44 and `@unreachable` 13-222 per game, the control 0-8). Spiral: the candidate's mines run
+403 / 624 / 727 at r300 / 500 / 800 as A (control 130, flat) and 367 / 720 / 822 as B (control 255, flat); as B its
+landscapers are 15 at r500 against 6. As A it banked 1,930 soup at r500 with four landscapers: the school built five
+by r121 and none after (its spawn tiles closed; the school was gone by r500) -- a second defect, the doorstep again.
+Results: Spiral A lost both (the candidate lived to r2927, the control to r2823), Spiral B won both; GSF 1-1
+discordant (A won where the control lost, B lost where the control won), GSF's miners freeze less (mines 313-334 vs
+204-314). The mechanism shown firing, the gate: **`gate50`** (paired, cand50 vs g_iter9, cap 320 pairs).
