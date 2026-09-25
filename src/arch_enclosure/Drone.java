@@ -10,7 +10,7 @@ import battlecode.common.*;
  * way to a pickup (a hovering drone occupies its tile).
  */
 public strictfp class Drone extends Robot {
-    private MapLocation water, patrol, liftTarget, lastTarget, scoutTarget, scout; private int lastTargetUntil = 0, scoutI = 0;
+    private MapLocation water, patrol, liftTarget, lastTarget, scoutTarget, scout; private int lastTargetUntil = 0, scoutI = 0, scoutRest = 0;
     private boolean holdingFriend = false, chasing = false;
     private int pickups = 0, drops = 0, lifts = 0;
 
@@ -80,7 +80,15 @@ public strictfp class Drone extends Robot {
                 if (t != null) scoutTarget = t; else t = scoutTarget;
                 if (round % 100 == 0) Debug.log("@gate " + gate + " waiter=" + w.location + " target=" + t);
                 if (t == null && gate != null && Nav.cheb(w.location, gate) <= 1) {
-                    if (scout == null || loc.distanceSquaredTo(scout) <= 2) { scoutI = (scoutI + 1) & 3; int sx = (scoutI & 1) == 0 ? -4 : 4, sy = (scoutI & 2) == 0 ? -4 : 4; scout = new MapLocation(home.x + sx, home.y + sy); if (!rc.onTheMap(scout)) scout = new MapLocation(home.x + sx / 2, home.y + sy / 2); }
+                    // stage 28: one lap of the on-map corners at Chebyshev 3, then a hundred rounds on station (stage 26's lap
+                    // flew at Chebyshev 4 with off-map corners folded onto shell tiles it may not enter: Prison's elevator
+                    // circled for 400 rounds and lifted three)
+                    MapLocation station = new MapLocation(gate.x + (gate.x - home.x) / 2, gate.y + (gate.y - home.y) / 2);
+                    if (round < scoutRest) { if (rc.onTheMap(station) && !loc.equals(station)) { nav.setTarget(station); nav.step(); } return; }
+                    if (scout == null || loc.distanceSquaredTo(scout) <= 2) {
+                        scout = null;
+                        while (scout == null && scoutI < 4) { int sx = (scoutI & 1) == 0 ? -3 : 3, sy = (scoutI & 2) == 0 ? -3 : 3; scoutI++; MapLocation c = new MapLocation(home.x + sx, home.y + sy); if (rc.onTheMap(c)) scout = c; }
+                        if (scout == null) { scoutI = 0; scoutRest = round + 100; return; } }
                     if (round % 25 == 0) Debug.log("@scout to=" + scout + " waiter=" + w.location);
                     nav.setTarget(scout); nav.step(); return; }
                 if (t != null && gate != null && Nav.cheb(w.location, gate) <= 1) {   // stage 16: only when the waiter stands beside the gate -- a drone on the gate keeps it from being raised
@@ -156,6 +164,7 @@ public strictfp class Drone extends Robot {
                 if (ring == 2 && !isShell(t, home)) continue;   // stage 26: the edge side of a corner enclosure is interior
                 if (ring == 3 && gate(home) != null && Nav.cheb(t, gate(home)) <= 1) continue;   // stage 23: the approach to the gate stays free too
                 if (lastTarget != null && round < lastTargetUntil && t.equals(lastTarget)) continue;   // stage 24: a body is on its way there
+                if (ring == 3 && !isStand(t, home)) continue;   // stage 28: stands only
                 if (ring == 3) { boolean held = false; for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue; RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { held = true; break; } } if (!held) continue; }
                 int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
             }

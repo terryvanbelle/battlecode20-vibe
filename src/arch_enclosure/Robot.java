@@ -170,6 +170,10 @@ public abstract strictfp class Robot {
         for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) == 3 && rc.onTheMap(n)) return true; }
         return false;
     }
+    /** Stage 28: the outer ring is pits and stands by parity -- an inner holder digs only pits, bodies stand only on stands,
+     *  so every stand stays at ground until the sea comes and is cheap to reclaim after (the pits were 35 bad tiles). Every
+     *  inner tile touches at least one pit and one stand. */
+    protected boolean isStand(MapLocation t, MapLocation home) { return Nav.cheb(t, home) == 3 && (((t.x - home.x) + (t.y - home.y)) & 1) == 0; }
     /** Stage 26: inside the enclosure -- Chebyshev 1, or a Chebyshev-2 tile that is not shell. */
     protected boolean inside(MapLocation t, MapLocation home) { int d = Nav.cheb(t, home); return d <= 1 || (d == 2 && !isShell(t, home)); }
     protected boolean allowedTile(MapLocation l) { return !(avoidRing && MapState.home != null && Nav.cheb(l, MapState.home) <= (round >= C.SHELL_FROM ? 2 : 1)); }

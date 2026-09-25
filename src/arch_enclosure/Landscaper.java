@@ -69,7 +69,8 @@ public strictfp class Landscaper extends Robot {
                 if (ring == 2 && t.equals(gateTile(home))) continue;   // stage 8: the gate is the drones' way in and out
                 if (ring == 2 && !isShell(t, home)) continue;   // stage 26: not the edge side of a corner enclosure
                 if (ring == 3 && gateTile(home) != null && Nav.cheb(t, gateTile(home)) <= 1) continue;
-                if (ring == 3 && Nav.cheb(loc, home) <= 1) continue;   // stage 24: not from inside (the shell is in the way; Prison's waiters walked at an outer tile for 90 rounds)   // stage 23: the three outer tiles beside the gate are the elevator's approach (holders set down there sealed the gate: no lift after r1328)
+                if (ring == 3 && Nav.cheb(loc, home) <= 1) continue;   // stage 24: not from inside (the shell is in the way; Prison's waiters walked at an outer tile for 90 rounds)
+                if (ring == 3 && !isStand(t, home)) continue;   // stage 28: stands only   // stage 23: the three outer tiles beside the gate are the elevator's approach (holders set down there sealed the gate: no lift after r1328)
                 if (rc.canSenseLocation(t)) {
                     if (rc.senseFlooding(t)) continue;
                     if (Math.abs(rc.senseElevation(t) - myE) > C.SHELL_CLIMB) continue;   // a raised tile nobody holds is a cliff to us
@@ -122,7 +123,7 @@ public strictfp class Landscaper extends Robot {
             boolean dryOuter = false; for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (Nav.cheb(n, home) == myD + 1 && Nav.cheb(n, home) <= 3 && rc.canSenseLocation(n) && !rc.senseFlooding(n) && rc.senseElevation(n) >= (int) waterLevel(round + 60) + 2) { dryOuter = true; break; } }
             if (round < C.RECLAIM_UNTIL && myE >= need + C.RECLAIM_MARGIN && (round % 3 == 0 || !dryOuter)) { bestD = null; int bh = Integer.MIN_VALUE; int dry = (int) waterLevel(round + 60) + 2;   // stage 23: not after RECLAIM_UNTIL
                 for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) != myD + 1 || Nav.cheb(n, home) > 3 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
-                    if (rc.senseRobotAtLocation(n) != null) continue; int e = rc.senseElevation(n); if (e >= dry || e < dry - C.RECLAIM_DEPTH) continue; if (e > bh) { bh = e; bestD = d; } }   // stage 23: never a pit
+                    if (rc.senseRobotAtLocation(n) != null || (Nav.cheb(n, home) == 3 && !isStand(n, home))) continue; int e = rc.senseElevation(n); if (e >= dry || e < dry - C.RECLAIM_DEPTH) continue; if (e > bh) { bh = e; bestD = d; } }   // stage 23: never a pit; stage 28: stands only
                 if (bestD != null) { rc.depositDirt(bestD); deposits++; reclaimed++; return; } }
             if (rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; selfDeps++; return; }
         }
@@ -159,7 +160,7 @@ public strictfp class Landscaper extends Robot {
             int cd = Nav.cheb(n, home); int e = rc.senseElevation(n);
             int s;
             if (cd <= 1) continue;   // stage 12: no quarry at all -- every ring tile dug to -9 was a vaporator site lost (a building needs its tile within 3 of the builder), and the flooded outside is a source without end
-            else if (cd > Nav.cheb(loc, home)) s = e;                    // outside: lowest first (under water is fine)
+            else if (cd > Nav.cheb(loc, home)) { if (isStand(n, home)) continue; s = e; }   // outside: lowest first (under water is fine); stage 28: never a stand
             else if (shell(n) && e > waterLevel(round + 200) + C.SHELL_SLACK + 3) s = 5000 - e;   // a shell tile with margin to spare, unheld
             else continue;
             if (r != null) s += 100;                                    // prefer empty tiles

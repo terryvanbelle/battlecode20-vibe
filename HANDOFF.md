@@ -63,17 +63,19 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   school, the center, vaporators and net guns live all game and the ring tiles are the quarry -- flooding spreads
   only from a flooded neighbour. They stand 40-54 landscapers and 30-124 drones at r1500-2000 against our 7-14 and
   none, and win the late games by half a wall. Every line this session tuned or fought our design; this replaces it.
-  **The program is under way: `src/arch_enclosure`, seventeen stages on 2026-09-25** (TRAINING_LOG "The
-  enclosure, stage 1" onward; DESIGN.md "The enclosure" has the state). The inner shell closes and holds, the
-  interior stays at ground with the school, the center and vaporators on it, one elevator drone lifts waiting
-  landscapers out through a gate onto the shell, and the HQ lives to r2700-2990 against g_iter9 -- 200-300 rounds
-  short. Bodies (11-15 against the field's 27-54) are the limit: the elevator's throughput, then the outer shell,
-  then the corner-HQ gate. Diagnostics: `tools/vm-run.sh diagencN '... tools/run-dev.sh arch_enclosure g_iter9 <map>
-  ...; python3 tools/enc-read.py <replay> <side> <log>'` (each stage's command is in the session transcript's
-  shape; `enc-read.py` prints bodies, buildings, the shell at 2 and the interior at 1 by round, and the role tags).
-- **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
-  draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
-  tiles open where the control lives). `src/bot` = g_iter9.
+  **The program is under way: `src/arch_enclosure`, twenty-eight stages on 2026-09-25** (TRAINING_LOG "The
+  enclosure, stage 1" onward; DESIGN.md "The enclosure" has the state and the arithmetic). The shell holds, the
+  interior stays at ground, every drone lifts through the gate, outer holders feed inward, corner HQs get a
+  nine-tile shell, eight miners; alive to r3000-3140 against g_iter9 on three maps and still behind its wall on
+  every one (its 8 tiles take 1.1 a tile a round from 17 bodies; our 16 take 0.7 from 31, at capacity). The bound
+  is bodies per tile, and bodies are bound by dry tiles to stand on. Next: stands filled before the flood (the
+  sprint), interior feeders, burying buildings for feeder tiles. **Not a candidate yet** -- it loses the wall
+  race to the incumbent by 100-300 rounds on every map; the gate would refute it. Diagnostics: `tools/vm-run.sh
+  diagencN '... tools/run-dev.sh arch_enclosure g_iter9 <map> ...; python3 tools/enc-read.py <replay> <side>
+  <log>'` (`enc-read.py` prints bodies, buildings, the shell at 2 and the interior at 1 by round, and the role
+  tags; the per-holder dirt accounting script is in the transcript, `acct.py`: digs/self/fed/reclaimed per 100
+  rounds by tile distance).
+- **VM:** the stage diagnostics only (three games, ~25 minutes); nothing gated. `src/bot` = g_iter9.
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>

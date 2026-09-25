@@ -84,20 +84,30 @@ map), or the interior floods and the HQ with it. The first build is an archetype
 against g_iter9 in the mirror and read for the shell's completion round and its height at r1000-3000; then the
 bot. This is a multi-session program; every stage needs its diagnostic before its gate.
 
-**State after sixteen stages (2026-09-25, `src/arch_enclosure`, TRAINING_LOG "The enclosure, stage 1" onward):**
-the inner shell closes and holds (16 tiles dry from r300, level to within ten, 400-540 high at r2000 on
-RandomSoup1 and Squares), the interior stays at ground all game with the school, the center and up to three
-vaporators on it, drones lift waiting landscapers out through the gate onto shell tiles, and the HQ lives to
-r2700-2990 against g_iter9 -- 200-300 rounds short of the wall race. What is still missing: bodies (13-19 against
-the field's 27-54: the school waits on the yard and the elevator's throughput), the outer shell (holders at
-Chebyshev 3 are lifted there only when the inner ring is full and the outer tile has been reclaimed dry), corner
-HQs (Prison: the gate and the exit vectors need on-map fallbacks), and the drones' discipline around the gate.
-Every stage's defect and fix is in the log; the archetype is the design's proof and the bot's template. After
-stage 17 (2026-09-25 evening): the gate is raised and RandomSoup1 lives to r2986 with 15 bodies and the shell at
-540 by r2000; the elevator's throughput (10 lifts for 172 waits: no dry outer tile to set a body on) is the next
-limit, then the outer shell's holders, then the corner-HQ cases. After stage 19: the elevator keeps station
-outside the gate and lifts 32 on Squares (seven outer holders), but on RandomSoup1 the gate stays at 4 and the
-interior floods at r947 -- the gate's raising under a visiting drone is the open defect; then the corner-HQ gate.
+**State after twenty-seven stages (2026-09-25, `src/arch_enclosure`, TRAINING_LOG "The enclosure, stage 1" onward):**
+the inner shell closes and holds (16 tiles, level to within ten, 1,200 at r2000 on RandomSoup1), the interior stays
+at ground all game with the school, the center and a vaporator on it; every drone lifts waiting landscapers out
+through the gate (the shell tile straight out from the school; its three outer neighbours are the elevator's
+approach and are never held) onto shell tiles, then onto outer tiles at Chebyshev 3; outer holders keep their own
+tile just above the water and put everything else on the lowest inner tile beside them; the yard is the two
+interior tiles beside the gate, the builder never idles there, the school goes where the gate's approach is on the
+map, eight miners (the ones born inside are lifted out), four drones; a corner HQ's shell is the region's edge
+toward the map (a Chebyshev-2 tile with an on-map neighbour at 3): nine tiles on Prison, the edge side interior.
+Alive against g_iter9 to r3140 (RandomSoup1), r2997-3108 (Prison), r3031 (Squares); g_iter9's HQ outlives ours on
+every map.
+
+**The arithmetic that bounds it (stage 26-27):** every holder digs 50 dirt a hundred rounds and deposits all of it;
+the shell takes 11-12 dirt a round from 28-31 holders, 0.7 a tile a round, against g_iter9's wall at 8.8 a round
+on 8 tiles, 1.1 a tile (79 at r300, 738 at r1000, 1,844 at r2000, 2,535 at r3000; ours 351 at r1000, 1,207 at
+r2000, 1,720 at r3000). Inflow is the count of holders adjacent to the structure that dig an external tile, times
+half; chains (a body feeding a body's tile) add nothing. The wall's 8 tiles are adjacent to 24 tiles, the shell's
+16 to 48 minus the 8 interior ones, and a shell twice the size needs twice the bodies per height. The bodies are
+capped by where they can stand: the outer ring floods at r950-1250 by map, and after that only reclaimed tiles
+take a body. Stage 28 splits the outer ring into pits (dug) and stands (never dug, cheap to reclaim) by parity.
+What remains open, in order: bodies on the stands before the flood (the sprint: g_iter9 has 24 landscapers at
+r300, we 12), interior feeders on the free interior tiles digging an interior quarry (an interior pit never
+floods), burying the center and the vaporator after r1000 for two more feeder tiles, and only then whether the
+enclosure can beat the wall at all -- its edge is production through the flood, and that needs stands.
 
 ## The plateau (planned, 2026-09-24; superseded above)
 

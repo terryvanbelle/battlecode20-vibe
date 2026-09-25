@@ -2014,6 +2014,24 @@ The lever is the sprint: bodies on the shell before the outer ring floods (r950 
 wall bot's economy and a lift every 15 rounds. Stage 27: eight miners (as g_iter9; the ones born inside are
 lifted out before r500), and every drone lifts, not only the one nearest the gate.
 
+**Stage 27: the economy is no longer the limit; the stands are.** RandomSoup1 as A: 1,236 soup at r500, 3,969 at
+r1000, 9,305 at r3000; 21 bodies at r500, 28 at r700, 31 at r1500 and never more; alive to r3140 (+6). The shell
+1,207 at r2000, 1,720 at r3000. **g_iter9's wall, measured at last:** 79 at r300, 226 at r500, 738 at r1000,
+1,296 at r1500, 1,844 at r2000, 2,285 at r2500, 2,535 at r3000 -- 0.94 a tile a round to r1000 and 1.1 to r2000,
+from 24 landscapers at r300 and 17 late; its seats: eleven kept just above the water (4 to 22 to 223) and five dug
+to -4,176 as quarries. Ours: 0.35 to r1000, 0.86 to r2000, 0.7 after, at capacity (every holder 50 digs a hundred
+rounds, all deposited). The bound is geometry: inflow is holders adjacent to the structure digging external tiles,
+times half, and the shell has twice the tiles. Bodies are bound by stands: 35 bad tiles this game -- the outer
+tiles the inner holders dug are pits nobody can stand in. Prison as A: three lifts (from 30), 11 bodies, alive to
+r2997 (from 3108): stage 26's scouting lap flew to corners at Chebyshev 4 that fold onto shell tiles when off the
+map, which a drone may not enter -- the elevator circled for 400 rounds with four waiters inside. Squares as B to
+r3031 (from 2973): eight miners frozen as four were.
+
+Stage 28: the outer ring is pits and stands by parity ((dx+dy) even is a stand) -- inner holders dig only pits,
+bodies are set down and reclaim only on stands, so every stand is at ground until the sea comes and within reach
+of reclaim after; the scouting lap flies the on-map corners at Chebyshev 3 once, then rests a hundred rounds on
+station.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
