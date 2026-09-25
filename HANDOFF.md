@@ -18,9 +18,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   TRAINING_ALGORITHM 4.4): the SPRT counts discordant pairs only, N counts pairs, cap 320.
 - **ACCEPTED: `src/g_iter8`** = g_iter7 + the seat walk (Iteration 41b: a seat two from an open ring tile no seat
   touches feeds the tile between level, steps onto it and feeds the open tile). Gate paired 14-0 discordant in 320
-  pairs (not one against), arm 1 flood-round loss of 96 (the finding). **Running on the VM:** the submission blocks
-  `sub8-1..5` (240 seeded band games as `us:g_iter8`; post each with `tools/post-block.sh <run> g_iter8`; the roster
-  tier and ONSET-merged follow g_iter8 once 200 games are in). `src/bot` = g_iter8. Diagnostics: Hills B and Spiral A, flood-round deaths in the control
+  pairs (not one against), arm 1 flood-round loss of 96 (the finding). **Submitted: 240 band games, 108-132, 1727 +-
+  49, rank 16 of 79, flood-round losses 4 of 240** (g_iter7: 1734 +- 44, 19 of 288). The roster tier and
+  ONSET-merged follow g_iter8. Level with g_iter7 on the ladder: the flood-round deaths became wall races the band
+  mostly wins. Diagnostics: Hills B and Spiral A, flood-round deaths in the control
   (r931/r932), become wall races lost at r2981/r2823 (TRAINING_LOG, Iteration 41). **Arm posted: flood-round losses
   1 of 96 (the finding; g_iter7 6-7), 51-45, 1737 +- 76.** The gate decides the rest.
 - **Iteration 42c (the doorstep) in the gate:** seats never dig a tile beside the school or the fulfillment center

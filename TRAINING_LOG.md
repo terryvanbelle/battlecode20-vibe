@@ -1287,6 +1287,9 @@ of 192** (Europe r932, and WateredDown r466 and maptestsmall r258, maps that flo
 upper end 1766 is above 1734); the flood-round deaths went and the rating did not move -- the seat walk turns them
 into wall races the band's opponents win more often than not. The fifth block is posted separately (the driver's
 disk filled during its collection: 2,451 loss replays and logs of g_iter1-g_iter5 runs deleted, the tables kept).
+**All five blocks (240 games): 108-132 (45.0%), rating 1727 +- 49, rank 16 of 79; flood-round losses 4 of 240**
+(Europe r932 twice, WateredDown r466, maptestsmall r258). Level with g_iter7 (1734 +- 44) on the ladder; the roster
+tier and `ONSET-merged.md` now follow g_iter8.
 
 ## Iteration 42 -- the doorstep (2026-09-25, on g_iter8)
 
@@ -1331,6 +1334,9 @@ school keeps its doors (one pit at its far corner at r400), every tile sealed by
 42b's 203, the HQ alive to r2922 where the control drowns at r932. Snapshot `src/cand42c` (the doorstep with the
 three-door limit, and no building on a ring tile); **`gate42c`** (paired vs g_iter8, 320 pairs) and
 **`arm42c-a`/`arm42c-b`** (96 band games as `us:cand42c`; no count pre-registered, the gate and the rating decide).
+
+**Arm 42c: 49-47, rating 1710 +- 76 (g_iter8 1727 +- 49), flood-round losses 0 of 96.** Level; the doorstep's
+few-landscaper case is 1-2 games in 96 and the arm cannot see it.
 
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
