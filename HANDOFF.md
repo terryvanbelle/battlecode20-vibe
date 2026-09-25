@@ -12,9 +12,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Running on the VM:** blocks 70 and 71 (`BOT=g_iter7`, seeded band blocks: the submission's first grade; post with
-  `tools/post-block.sh <run> g_iter7` and push the `progress/` files in the same commit) and `regr7` (g_iter7 vs
-  `arch_swarm`, quick set; g_iter6 was 21/24). Iterations 31 (7-25, 13-35) and 32 (77-83) rejected on 2026-09-24.
+- **Running on the VM:** blocks 72 and 73 (`BOT=g_iter7`, seeded band blocks; post with `tools/post-block.sh <run> g_iter7`
+  and push the `progress/` files in the same commit). Blocks 70-71 recorded (29/48, 31/48); regression vs `arch_swarm`
+  21/24 (g_iter6 21/24). Stop the incumbent blocks once g_iter7's interval is about +-40 (owner, PROMPTS 26).
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.

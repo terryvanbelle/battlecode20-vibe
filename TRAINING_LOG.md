@@ -1180,6 +1180,9 @@ archetype regression `regr7` (vs `arch_swarm`, quick set; g_iter6 was 21/24) run
 since the restart: seats first (25), the rush answer with buildings off the bypass (29b), and now the miners
 kept working.
 
+Archetype regression `regr7`: **21/24** vs `arch_swarm` (g_iter6 21/24). Blocks 70-71 (`20260925-003836`, `-003842`):
+**29/48** and **31/48**; g_iter7 rating 1766 +- 77, rank 16 of 74 after 96 games. Blocks 72-73 running.
+
 ## Iteration 33 -- a deposit worth the action (2026-09-24)
 
 **Evidence** (the Iteration 32 traces): a miner beside the HQ or a refinery deposits whatever it carries every
