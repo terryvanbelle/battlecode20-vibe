@@ -1859,6 +1859,10 @@ case stands). One elevator lifts little because it has nowhere to set a body dow
 outer tile is dry only when a holder with 20 to spare has reclaimed it, one turn in three. Stage 18: a holder
 reclaims every turn until one outer tile beside it is dry land.
 
+**Stage 18: the outer ring dries (fourteen tiles at 19-21 on RandomSoup1 by r2000) and the lifts do not move**
+(10 for 174 waits; Squares 12 for 29). Targets were not the limit; the elevator itself is. An elevator trace
+(where it is, what it holds, its target, the gate and the free tile it sees, every 25 rounds) runs first.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

@@ -55,6 +55,7 @@ public strictfp class Drone extends Robot {
         }
         // stage 17: one elevator -- the drone with the lowest id in sight; eight of them queued on the gate and it never rose
         boolean elevator = true; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE && friends[i].ID < id) { elevator = false; break; }
+        if (elevator && round % 25 == 0 && round >= 500) Debug.log("@elev at=" + loc + " d=" + (home == null ? -1 : Nav.cheb(loc, home)) + " holding=" + rc.isCurrentlyHoldingUnit() + " friend=" + holdingFriend + " target=" + liftTarget + " gate=" + gate(home) + " free=" + freeShell(home));
         // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
         if (home != null && elevator) {
             RobotInfo w = null; int wd = 1 << 30;
