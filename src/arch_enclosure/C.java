@@ -33,6 +33,7 @@ public final class C {
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 200;        // Iteration 43b: was 300, 43 tried 0 (the HQ starved of miners); 200 leaves the HQ its MINER_SOUP_RESERVE -- the bank it guarded is never spent (12,000 unspent at r3000)
     public static final int LANDSCAPERS_MAX = 48;     // the enclosure: 16 inner shell + 24 outer + feeders
+    public static final int SHELL_FROM = 250;         // stage 22: miners keep off Chebyshev 2 from this round (the shell is being held by then; before it their corridors run through it)
     public static final int SHELL_CLIMB = 3;          // a shell tile is takeable within this of our own elevation
     public static final int SHELL_SLACK = 2;          // equalise an adjacent shell tile only when it is this much below ours
     public static final int QUARRY_FLOOR = -9;        // stage 4: the interior is dug down to this and no further (the field's boards read -9)

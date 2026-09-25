@@ -53,7 +53,7 @@ public strictfp class Drone extends Robot {
             MapLocation g = gate(home); exiting = true; nav.setTarget(g != null ? g : home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); boolean moved = nav.step(); exiting = false; if (moved) return; }
         // stage 10: a miner trapped inside (not the builder: the one beside a building it is building for) is lifted out to
         // the nearest free dry tile at Chebyshev 3 or more -- it was born after the shell closed and stands on the yard
-        if (home != null && !rc.isCurrentlyHoldingUnit() && elevator) {   // stage 20: the elevator's job, nobody else's
+        if (home != null && !rc.isCurrentlyHoldingUnit() && elevator && round < 500) {   // stage 20: the elevator's job, nobody else's; stage 22: only before r500 (the builder was lifted out and drowned at r1000, and no miner is born inside after the first four)
             RobotInfo m = null; int md = 1 << 30;
             MapLocation sch = null; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL && Nav.cheb(friends[i].location, home) == 1) sch = friends[i].location;
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) > 1 || sch == null || Nav.cheb(f.location, sch) > 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < md) { md = d; m = f; } }   // stage 14: only a miner on the yard (the builder never stands there)

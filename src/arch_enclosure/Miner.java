@@ -42,7 +42,7 @@ public strictfp class Miner extends Robot {
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
         if (refineryBadUntil > 0 && round >= refineryBadUntil) { refineryBadUntil = 0; }
         avoidRing = !builder && refinery != null && refineryBadUntil == 0;   // stage 9: miners stay out of the interior once a refinery stands (five of them were trapped inside on Squares and blocked the school's yard); the builder lives there   // Iteration 29: with no refinery (the school came first under a rush) the HQ is the only drop-off, ring or not; Iteration 34: likewise while the refinery is unreachable
-        if (avoidRing && MapState.home != null && Nav.cheb(loc, MapState.home) <= 2 && rc.isReady()) {   // stage 21: off the shell as well as the ring
+        if (avoidRing && MapState.home != null && Nav.cheb(loc, MapState.home) <= (round >= C.SHELL_FROM ? 2 : 1) && rc.isReady()) {   // stage 21: off the shell as well as the ring (stage 22: from SHELL_FROM)
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }

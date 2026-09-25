@@ -1899,6 +1899,16 @@ tile with a robot on it is one no holder takes. Prison: 655 waits, one lift (the
 off Chebyshev 2 cut its early mining, to be read). And the arithmetic: 26 productive bodies dig 13 dirt a round and
 the inner ring gains 4-6 of it; the rest goes somewhere. The holders' turn accounting at r2000 says where.
 
+**The accounting (RandomSoup1, r2000, 26 holders):** 14,714 digs and 14,700 deposits -- 5,536 on their own tiles,
+7,944 equalising neighbours, 1,221 reclaiming outer tiles. Nothing is lost; the dirt is spread over 26 tiles
+instead of 16, and 27 bodies arriving over 1,500 rounds average 0.28 a tile a round, which is the ceiling for
+that many. The field's 0.35 at r1000 is 27 bodies on 40 tiles, and its 2,500 by r3000 is 54 bodies. So the
+program is now what it looked like at stage 1: bodies, sooner. Two things throttled them in this game: **the
+builder was gone by r1000** (no miner alive; lifted out as a trapped miner while roaming across a yard tile, so
+the second vaporator never came and the school's reserve sat on the soup), and on Squares keeping miners off
+Chebyshev 2 from r1 cut the early mining (soup 58-400 all game). Stage 22: miner lifts only before r500; miners
+keep off the shell only from r250.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

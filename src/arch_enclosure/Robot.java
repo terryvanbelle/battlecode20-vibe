@@ -159,11 +159,11 @@ public abstract strictfp class Robot {
 
     /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
-        if (avoidRing && MapState.home != null && Nav.cheb(l, MapState.home) <= 2) return false;   // stage 21: the enclosure's miners keep off the shell too (a stray on a shell tile kept its holder away and the corner flooded)
+        if (avoidRing && MapState.home != null && Nav.cheb(l, MapState.home) <= (round >= C.SHELL_FROM ? 2 : 1)) return false;   // stage 21: the enclosure's miners keep off the shell too (a stray on a shell tile kept its holder away and the corner flooded); stage 22: from SHELL_FROM, not before (Squares' early mining needed the corridor)
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
     /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
-    protected boolean allowedTile(MapLocation l) { return !(avoidRing && MapState.home != null && Nav.cheb(l, MapState.home) <= 2); }
+    protected boolean allowedTile(MapLocation l) { return !(avoidRing && MapState.home != null && Nav.cheb(l, MapState.home) <= (round >= C.SHELL_FROM ? 2 : 1)); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
     protected boolean floodDanger() throws GameActionException {
