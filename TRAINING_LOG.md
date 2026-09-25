@@ -1151,6 +1151,12 @@ maps never see it. Diagnostics (VM, with controls): Climb both ways, GSF, Hills,
 `@badseat` counts, the ring at r500 without a flooded tile, the HQ alive past the flood round, RandomSoup1's
 ring against the control.
 
+**Diagnostics:** `@bridge` fired in no game; Climb both ways, GSF, Hills and RandomSoup1 are identical to their
+controls to the digit (RandomSoup1 2445, Climb 2F 24 27 4 109 7 109 112). The stalled seat-seekers do not stand
+beside a pit that lies toward their seat -- wherever they stall, it is not the case the rule was written for.
+**Not gated; uninformative as built.** Code kept as `src/cand39`; `src/bot` is g_iter7. Before another form: trace
+one `@badseat` landscaper on Climb -- its tile at the stall and the eight tiles round it.
+
 ## Iteration 38 -- seats spare the walkway (2026-09-25, on g_iter7)
 
 **Evidence.** Flood-round deaths were 27 of the 159 losses of blocks 50-56 (GSF, Hills, Spiral, Toothpaste, Climb:

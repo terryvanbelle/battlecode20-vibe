@@ -12,7 +12,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **VM:** idle. `src/bot` = g_iter7. Iteration 37 (one net gun on the raised site) refuted: ladder arm 19 raid-window
+- **VM:** idle. `src/bot` = g_iter7. Iterations 38 (seats spare the walkway; -6% ring elsewhere) and 39 (a stalled
+  seat-seeker fills the pit; never fired) were not gated (`src/cand38`, `src/cand39`). Iteration 37 (one net gun on the raised site) refuted: ladder arm 19 raid-window
   losses of 96 (g_iter7's rate exactly), gate 2-14 in its first batch (`src/cand37`). Iterations 35 and 36 closed
   earlier today. The two structural lines (bodies at the wall after the flood; the timed raids) both come down to
   spending the post-flood bank where it matters, and every form tried costs the pre-flood wall more than it returns.
