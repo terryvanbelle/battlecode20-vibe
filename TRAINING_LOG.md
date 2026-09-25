@@ -1613,6 +1613,13 @@ not spending those rounds where the model put them (the drowning is sudden, not 
 are held to the round the water passes them). What they do in r2600-2750 needs a trace before any form here is
 worth a gate; the prize is five to eight rounds at the end. `src/bot` back to g_iter9. Not gated.
 
+**The trace** (g_iter9, RandomSoup1 A, every helper logged every 25 rounds from r2500): twelve helpers on their
+posts, each rising 12-13 per 25 rounds (the 0.5 a round ceiling), `lowSelf` true from r2525 on, three above the
+water at r2700 (219 against 216) and all gone by r2725. From r2550 the water 60 rounds out is beyond them and
+every deposit goes into a post the water takes 150 rounds later: **77 dirt a helper, 930 in all, 116 of ring** --
+the water climbs 7 a round at r3200, so that is about sixteen rounds at the end, not five. The rule's retest with
+the trace (`trace49b`) says whether it reaches the helpers at all.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
