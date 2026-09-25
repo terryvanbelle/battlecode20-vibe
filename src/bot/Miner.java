@@ -224,10 +224,6 @@ public strictfp class Miner extends Robot {
         MapLocation s = MapState.nextSector(loc, id);
         if (s != null) return s;
         if (MapState.originKnown()) return new MapLocation(MapState.minX + nextInt(MapState.width), MapState.minY + nextInt(MapState.height));
-        // Iteration 52: with the origin unknown, a ray, not a random point within 20 -- on Hills the soup field lay 25-38
-        // east of the HQ across flat ground and eight miners exploring at random found none of it in 500 rounds (soupMem 0,
-        // mined 0-49 each). Rays reach an edge (which teaches the origin, and then the sectors take over) and cover ground.
-        Direction d = DIRS[(id + explores) & 7];
-        return new MapLocation(loc.x + 30 * d.getDeltaX(), loc.y + 30 * d.getDeltaY());
+        return new MapLocation(loc.x + nextInt(41) - 20, loc.y + nextInt(41) - 20);
     }
 }

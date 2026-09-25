@@ -3036,3 +3036,13 @@ explore count. A ray reaches an edge (the origin, then the sector search) and cr
 g_iter10): Hills' low ground floods by r150 -- the far field is under water and eight miners drowned at r250-300 on
 the way (A: M 8 -> 2); TheHighGround's soup is on plateaus. Those two maps are geography, the same for both sides.
 The mechanism fires where there is open ground to cross; **`gate52`** (paired, cand52 vs g_iter10).
+
+**Gate 52: 52-53 discordant in 320 pairs (concordant 108-107) -- inconclusive, not kept.** The rays change a third
+of all games and win exactly as many as they lose. `src/cand52` kept; `src/bot` = g_iter10.
+
+**g_iter10's 137 ladder losses by length:** 61 after r2700 (the wall race), 15 at r2000-2700, 41 at r1300-2000 (the
+raid window), 20 before r1300. The late losses go mostly to winkelmantanner (25 of all), mvpatel2000 (23) and
+poortho (22). The onset table (219 games) keeps its order: worth and mines predict from r100 (+0.44-0.50), robots
+from r250, landscapers from r400 (+0.57 at r900). Next: a seat census in our own late game (g_iter10 mirror on
+RandomSoup1 and Squares, `--seats` at r1500-2700) -- whether anything of ours stands on a ring or helper tile late
+(the enclosure found a parked builder and hovering drones each cost a holder).
