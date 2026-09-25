@@ -161,3 +161,7 @@ OK, you're back on Opus 5.5
 ## 36. 2026-09-25
 
 Please don't wait until the next task check to start new work if you already know that you need to start new work
+
+## 37. 2026-09-25
+
+The loop task check is a failsafe
