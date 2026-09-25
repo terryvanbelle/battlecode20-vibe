@@ -1413,6 +1413,14 @@ seed): Toothpaste A and RandomSoup1 A (seed 41), GSF B (seed 1), Spiral B (seed 
 the ring at r1000 and r3000. Pre-registered: more landscapers at r450 on Toothpaste and GSF; the ring not below
 the control's at r3000 on RandomSoup1.
 
+**Refuted at the diagnostic.** Toothpaste as A: landscapers 8 / 13 / 18 at r300 / 400 / 500 against the control's
+12 / 16 / 22 (the two miners' 140 soup came out of the school's, and the HQ then kept 12 miners alive against 9),
+ring 508 against 583 at r1000 (-13%; the game itself ended at r1641 when the opponent's own corner tile drowned
+it, a side effect). RandomSoup1 as A 764 / 2641 against 787 / 2744 (-4%). GSF as B the same seven landscapers and
+the game lost at r2767 against r2922. Spiral as B alone better (5-6 landscapers against 3-4, ring 148 against 95
+at r1000), lost either way. Three of four down: more early miners buy income the school cannot turn into bodies
+before the lowlands flood. **`src/bot` back to g_iter9.** Not gated.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

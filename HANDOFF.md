@@ -35,7 +35,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   300/700 -> 200: bodies 200 rounds sooner, the HQ keeps its miner reserve). Gate paired ACCEPT 30-8 discordant at
   144 pairs; arm 64-32, 1771 +- 79, late losses 10 of 96 (bar 14). **Running on the VM:** `regr9` (vs arch_swarm,
   quick set) and the submission blocks `sub9-1..5` (post each with `tools/post-block.sh <run> g_iter9`; the roster
-  tier and ONSET-merged follow g_iter9 at 200 games). `src/bot` = g_iter9.
+  tier and ONSET-merged follow g_iter9 at 200 games). `src/bot` = g_iter9. Iteration 44 (six early miners) refuted
+  at the diagnostic (ring 4-13% lower on three maps of four).
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>
