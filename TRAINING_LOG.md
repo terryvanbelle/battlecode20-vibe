@@ -3013,3 +3013,10 @@ spit is one map in fifty-two. `src/cand51` kept; `src/bot` = g_iter10.
 
 Next: `census10` -- g_iter10 against itself on all 52 maps (seed 7), the same read as census9, to see which starved
 maps the miner fix lifted and what is left.
+
+**census10 (g_iter10 mirror, 52 maps, seed 7) against census9:** mean landscapers at r500 16.5 (15.7), mean mines at
+r300 452 (422), sides under 8 landscapers at r500 12 (14). The two early mirror deaths are gone (Swirl r684 -> r3169,
+WateredDown r468 -> r2911), Egg's weak side went 8 -> 24, SoupOnTheSide 9 -> 16, Spiral's mines 130/255 -> 537/358.
+Still starved: Hills (6/3, mines 205/205 -- identical to g_iter9: the fix never fired there), GSF (5/4), Spiral A (4),
+Climb A (5), Islands (8/8), TheHighGround (8/8, mines 264/264 identical), AMaze and Maze (8). Next: a logged
+diagnostic on Hills and TheHighGround (mirror, seed 7) -- what caps production where the miners do not freeze.
