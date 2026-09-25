@@ -59,6 +59,7 @@ public strictfp class Landscaper extends Robot {
                 if (!rc.onTheMap(t)) continue;
                 boolean b = false; for (int k = nBad; --k >= 0;) if (bad[k].equals(t)) { b = true; break; }
                 if (b) continue;
+                if (ring == 2 && t.equals(gateTile(home))) continue;   // stage 8: the gate is the drones' way in and out
                 if (rc.canSenseLocation(t)) {
                     if (rc.senseFlooding(t)) continue;
                     if (Math.abs(rc.senseElevation(t) - myE) > C.SHELL_CLIMB) continue;   // a raised tile nobody holds is a cliff to us
@@ -70,6 +71,10 @@ public strictfp class Landscaper extends Robot {
             }
         }
         return best;
+    }
+    private MapLocation gateTile(MapLocation home) {
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.DESIGN_SCHOOL && Nav.cheb(f.location, home) == 1) return new MapLocation(home.x + 2 * (f.location.x - home.x), home.y + 2 * (f.location.y - home.y)); }
+        return null;
     }
     private boolean besideHeld(MapLocation t, MapLocation home) throws GameActionException {
         for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue;

@@ -48,10 +48,12 @@ public strictfp class Drone extends Robot {
                 if (t != null) {
                     holdingFriend = true;   // set before the move so allowedTile lets us into the circle
                     if (rc.canPickUpUnit(w.ID)) { rc.pickUpUnit(w.ID); liftTarget = t; pickups++; Debug.log("@lift-up id=" + w.ID + " for=" + t); return; }
-                    holdingFriend = false; chasing = true; nav.setTarget(w.location); nav.step(); chasing = false; return;
+                    MapLocation gate = gate(home); holdingFriend = false; chasing = true; nav.setTarget(gate != null ? gate : w.location); nav.step(); chasing = false; return;
                 }
             }
         }
+        // stage 8: a drone at rest occupies its tile -- on the shell it makes a hole nobody can hold. Out to Chebyshev 3 first.
+        if (home != null && Nav.cheb(loc, home) <= 2) { chasing = true; nav.setTarget(new MapLocation(home.x + 3 * Integer.signum(loc.x - home.x + (loc.x == home.x ? 1 : 0)), home.y + 3 * Integer.signum(loc.y - home.y + (loc.y == home.y ? 1 : 0)))); boolean moved = nav.step(); chasing = false; if (moved) return; }
         // the guard: anything of theirs within the box, landscapers on the ring or beside the HQ first
         RobotInfo tgt = null; long bs = Long.MAX_VALUE;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp() || home == null || Nav.cheb(e.location, home) > C.GUARD_BOX + 2) continue;
@@ -70,6 +72,13 @@ public strictfp class Drone extends Robot {
         if (patrol != null) { nav.setTarget(patrol); if (!nav.step()) patrol = null; }
     }
 
+    /** Stage 8: the gate -- the shell tile straight out from the school (Chebyshev 2, beside the school's yard). Holders never
+     *  take it, their neighbours raise it, and the elevator lifts from it without entering the interior. */
+    private MapLocation gate(MapLocation home) {
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.DESIGN_SCHOOL && Nav.cheb(f.location, home) == 1) return new MapLocation(home.x + 2 * (f.location.x - home.x), home.y + 2 * (f.location.y - home.y)); }
+        return null;
+    }
+
     /** The nearest free, dry shell tile: Chebyshev 2 first, then 3 beside a held 2. */
     private MapLocation freeShell(MapLocation home) throws GameActionException {
         if (home == null) return null;
@@ -79,6 +88,7 @@ public strictfp class Drone extends Robot {
                 if (Math.max(Math.abs(dx), Math.abs(dy)) != ring) continue;
                 MapLocation t = new MapLocation(home.x + dx, home.y + dy);
                 if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue;
+                if (ring == 2 && t.equals(gate(home))) continue;   // stage 8: the gate stays free
                 if (ring == 3) { boolean held = false; for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue; RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { held = true; break; } } if (!held) continue; }
                 int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
             }

@@ -1774,6 +1774,16 @@ the holders' turns go to (digs and deposits per holder), why the elevator lifted
 yard; Prison built a center and no drone in 2,000 rounds -- its spawn tiles are where the waiters stand), and the
 outer shell (Chebyshev 3), which nobody has reclaimed.
 
+**Stage 7: twice the intake, and the holes have a cause.** With reclaiming rationed the inner shell reads 425-447
+at r2000 on RandomSoup1 (twice stage 6) and the HQ lives to r2924; Prison's held tiles 440-465, alive to r2937.
+The turn accounting: 390 digs a holder per thousand rounds, of which 280 had gone to reclaiming outer tiles. The
+holes: **our own drones at rest on shell tiles** (the boards show them at Chebyshev 2 after a chase), and a tile
+with a drone on it is one no holder can take; Prison's three holes stayed at 5-34 beside neighbours at 458. And
+the elevator lifted 2 and 5 with 13 and 122 waits: once the inner shell is complete a drone cannot reach the yard
+either -- a drone occupies a tile like anything else, and every way in is held. Stage 8: a drone at rest anywhere
+within 2 of the HQ leaves at once; and **the gate** -- the shell tile straight out from the school is never held,
+its neighbours raise it, and the elevator lifts a waiter from there, beside the yard, without entering.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
