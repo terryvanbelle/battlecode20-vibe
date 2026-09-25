@@ -3001,3 +3001,8 @@ old rule. **Diagnostic (driver, one game; the VM is playing sub10): Spiral as A,
 builder walked one step (`@schoolwalk`), built the school at (17,15), and the school built ten landscapers (from
 five); 8 at r300 (from 5); **won at r2957** where g_iter10 as A lost (r2927). The mechanism fires; **`gate51`**
 (paired, cand51 vs g_iter10) is queued behind the submission blocks.
+
+**g_iter10 submitted: 240 band games, 103-137, rating 1743 +- 47, rank 17 of 84** -- the best submission yet, 25
+above g_iter9 (1718 +- 48) on a pool that has kept moving up; inside both error bars, so level on the ladder with the
+mirror gain in hand. The roster tier, ONSET-merged and the field-score chart follow g_iter10 (projection: 82% at +7
+days, 85% at +14, from 75.2% now).
