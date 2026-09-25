@@ -74,18 +74,28 @@ public strictfp class Landscaper extends Robot {
         return best;
     }
 
-    /** Iteration 47: a tile beside a parked miner (Chebyshev 3 from the HQ) is another keeper's site or the miner's own: never dug. */
+    /** 47c: the nearest miner at Chebyshev 3 from the HQ within 2 of us, and how long it has stood on its tile; a miner
+     *  that has not moved for 20 rounds is parked (a stray beside a post drew 750 keeps on RandomSoup1: -9% of ring). */
+    private RobotInfo parkedMiner() {
+        RobotInfo best = null; int bd = 99; MapLocation home = MapState.home;
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) != 3) continue;
+            int d = Nav.cheb(f.location, loc); if (d <= 2 && d < bd) { bd = d; best = f; } }
+        if (best == null) { stillId = -1; stillSince = 0; return null; }
+        if (best.ID == stillId && best.location.equals(stillLoc)) stillSince++; else { stillId = best.ID; stillLoc = best.location; stillSince = 0; }
+        return stillSince >= 20 ? best : null;
+    }
+    private RobotInfo parkedNow = null;   // this turn's reading, taken once in help()
+
+    /** Iteration 47: a tile beside the parked miner (Chebyshev 3 from the HQ) is the keeper's site or the miner's own: never dug. */
     private boolean keptTile(MapLocation n) {
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER && Nav.cheb(f.location, n) <= 1 && Nav.cheb(f.location, MapState.home) == 3 && Nav.cheb(f.location, loc) <= 2) return true; }
-        return false;
+        return parkedNow != null && Nav.cheb(parkedNow.location, n) <= 1;
     }
 
     /** Iteration 47: raise the parked miner's tile M and the site S (adjacent to M and to us, at Chebyshev 3-4 from the
      *  HQ, not a ring or post tile, no building) to waterLevel(round + KEEP_AHEAD) + 2, the lower first. */
     private boolean keep(MapLocation home) throws GameActionException {
-        RobotInfo m = null;
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER && Nav.cheb(f.location, loc) == 1 && Nav.cheb(f.location, home) == 3) { m = f; break; } }
-        if (m == null) return false;
+        RobotInfo m = parkedNow;
+        if (m == null || Nav.cheb(m.location, loc) != 1) return false;
         if (site == null || !rc.canSenseLocation(site) || rc.senseFlooding(site) || Nav.cheb(site, m.location) > 1 || Nav.cheb(site, loc) > 1
                 || rc.senseRobotAtLocation(site) != null) {   // 47b: a gun stands on it now -- dirt there buries our own gun (both died within 150 rounds)
             site = null; int best = Integer.MIN_VALUE;
@@ -105,6 +115,7 @@ public strictfp class Landscaper extends Robot {
     /** A free tile at Chebyshev 2 from the HQ, next to the LOWEST ring tile it can feed (then nearest). */
     private final MapLocation[] badPost = new MapLocation[8]; private int nBadPost = 0;
     private MapLocation site = null;   // Iteration 47: the keeper's gun site, adjacent to the post and to the parked miner
+    private int stillId = -1, stillSince = 0; private MapLocation stillLoc = null;   // 47c: the miner at Chebyshev 3 that has not moved
     private MapLocation pickPost(MapLocation home) throws GameActionException {
         MapLocation best = null; long bs = Long.MAX_VALUE; int myE = rc.senseElevation(loc);
         for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
@@ -140,6 +151,7 @@ public strictfp class Landscaper extends Robot {
             nav.setTarget(post); nav.step(); if (loc.equals(post)) Debug.log("@posted at=" + post); return;
         }
         if (!rc.isReady()) return;
+        parkedNow = parkedMiner();   // 47c
         // Iteration 25: a free ring tile next door that we can climb is a seat going spare -- take it
         if (round % 3 == id % 3) {
             int myE = rc.senseElevation(loc);

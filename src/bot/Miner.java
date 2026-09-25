@@ -72,6 +72,8 @@ public strictfp class Miner extends Robot {
                 rc.move(DIRS[d]); loc = rc.getLocation(); parked = true; Debug.log("@park at=" + loc + " keeper=" + h.location); return true; }
             if (Nav.cheb(loc, h.location) <= 4) { nav.setTarget(h.location); nav.step(); return true; }
         }
+        // 47c: no helper in sight (the builder is out at its sites): walk home to find one
+        if (Nav.cheb(loc, home) > 4) { nav.setTarget(home); nav.step(); return true; }
         return false;
     }
     /** Parked: build a net gun on an adjacent site that will stay dry GUN_DRY rounds, up to KEEPER_GUNS, from GUN_FROM. */

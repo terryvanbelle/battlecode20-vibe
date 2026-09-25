@@ -1506,6 +1506,15 @@ the water reaches 16: **the keeper buried them** -- its site stayed the gun's ti
 parks (one keeper), and a site with anything standing on it is given up for the next tile. RandomSoup1 A, Prison B,
 Toothpaste A, Spiral B again.
 
+**47b.** Prison as B: **the form works** -- one park at r608, the gun at r1150 on a site at 16, standing from r1200
+to r1900 (the water reaches 16 at about r1950), the ring 1752 against 1812 (-3%), the game lost either way. But
+RandomSoup1 as A: **no park** (the builder is out at its vaporator sites and never sees a helper) and yet 15 keeps --
+a keeper found a stray miner standing beside its post and spent its dirt on that miner's tile and a site, 2508
+against 2744 (**-9%**), the game lost where the control wins. Toothpaste A and Spiral B: no park, identical to the
+controls. **47c**: a keeper acts only for a miner that has stood on the same tile beside it for 20 rounds (the
+stationarity is the park), and the builder walks home when no helper is in sight. RandomSoup1 A, Prison B,
+Toothpaste A, and Squares A (with its control).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
