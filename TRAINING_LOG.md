@@ -1159,6 +1159,29 @@ posts it can reach after the flood, spending the bank on helpers as they die. It
 earlier attempts lacked and now hold -- the soup arrives before r700 (33+34b) and the seats are all taken
 by r400 (25). The first job is the geometry: which distance-2 posts stay reachable from a raised
 distance-3 tile after r1000, on the corpus.
+Geometry census (the r1 elevation grids of 51 maps, 102 HQs): posts within 3 of the HQ's height that have a
+distance-3 neighbour within 3 of the post and 6 of the HQ -- median 16 per HQ, 88 HQs with at least 8, two with
+none (InADitch, the HQ in a pit at -5), Climb and Swirl with 3-4. Before the game digs the ground, nearly every
+HQ has the geometry.
+
+## Iteration 36 -- the replacement school (2026-09-25, on g_iter7)
+
+**Candidate.** At r100 (refinery and first school placed) the HQ picks one Chebyshev-3 tile S: dry, within 6 of
+its height, with a Chebyshev-4 stand beyond it within 3, at least two dry distance-2 posts adjacent to it, and
+as far from the refinery and the school as possible; it posts S every 10 rounds to r800. The ninth landscaper
+(or a helper that finds S unclaimed) is the mason: stands on the stand, raises S to hqElev+6 and the stand to
+hqElev+3, digging from Chebyshev 4, then becomes a helper. Once S reads hqElev+6 the builder (or the nearest
+miner) builds the second design school on S from the stand. From r650 that school builds a landscaper onto a
+free adjacent post whenever the bank holds 250, and never otherwise: the replacement takes the post (a seat
+if one is free and climbable, else the post). Nothing is reserved from other buildings except S and its stand,
+no tile is off limits to stand on, and the mason is drawn after the eight seats and eight helpers are filled.
+
+**Why this form is not a closed one.** Iteration 13's second school stood on ground that flooded and built
+landscapers for posts that did not exist; 24's perch carried a center; 31 reserved tiles the base needed. This
+school stands at hqElev+6 (dry to about r1700), spawns only onto a post that is free, and the posts beside it
+stay dry because their helpers keep them so. Diagnostic (VM): RandomSoup1 and Prison vs g_iter7 -- the second
+school alive at r1500, helpers alive at r1000-2000 above the incumbent's own, ring at r2000-3000 higher.
+
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
 
