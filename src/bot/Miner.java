@@ -61,9 +61,6 @@ public strictfp class Miner extends Robot {
         RobotType want = null;
         boolean rush = builtSchool == 0 && rushSeen();
         if (rush) { if (soup < RobotType.DESIGN_SCHOOL.cost) return false; want = RobotType.DESIGN_SCHOOL; Debug.log("@rush school"); }   // Iteration 29: the school before the refinery
-        // Iteration 54: under a rush, the center right after the school -- drones lift the rusher's landscapers away (the
-        // school's doors close under them: g_iter10 vs arch_rush on InADitch, four landscapers and dead at r292)
-        else if (builtSchool > 0 && builtFC == 0 && rushSeen() && soup >= RobotType.FULFILLMENT_CENTER.cost) { want = RobotType.FULFILLMENT_CENTER; Debug.log("@rush center"); }
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;

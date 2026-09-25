@@ -3084,3 +3084,12 @@ buys the fulfillment center right after the school (150, no bank) and the center
 cost; the drones' existing guard lifts enemy landscapers near the HQ and drops them in water. Diagnostic `diag54` on
 the harness (InADitch as A and B, FourLakeLand as A vs `arch_rush`) and one quiet game (RandomSoup1 vs g_iter10: the
 rule must not fire without a rush).
+
+**Diagnostic 54: refuted.** The center was wanted five or six times a game (`@rush center`) and never built -- no
+site the builder could reach under the rush -- so no drone flew. Meanwhile the school stayed at 3-4 landscapers
+with 300-500 soup idle: InADitch as A died at r680 (control r292: longer, by the builder's detours changing the
+game, not by drones), FourLakeLand as A at r677 (control r2978), InADitch as B won by the rusher at r2954. The quiet
+game (RandomSoup1) is unchanged (the rule did not fire). Iteration 54 closed (`src/cand54` kept); `src/bot` =
+g_iter10. Both rush answers failed on the same fact: under a rush our school stops spawning with soup in the bank
+(its doors are held or dug by the rusher's landscapers). The next rush idea should start there -- a school that
+cannot spawn for N rounds with the bank full, and what it would take to give it a door.
