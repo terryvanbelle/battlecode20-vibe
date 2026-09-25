@@ -153,3 +153,7 @@ OK, so cand43b just happened to get some more favorable matchups than g_iter9, a
 ## 34. 2026-09-25
 
 I'm going to switch you back to Opus 5.5.  Please make the necessary preparations
+
+## 35. 2026-09-25
+
+OK, you're back on Opus 5.5

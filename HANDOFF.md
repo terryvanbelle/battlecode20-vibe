@@ -11,7 +11,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   weaker; merged, 1739 +- 42 on 336 games); 47d was REJECTED paired 2-14; 49b sat under the twelve-pair floor.
 - **The owner's standing loop:** a cron prompt every 30 minutes ("task check. If the VM is idle and nothing is in
   the workqueue, start a new idea. Otherwise, carry on as before"). Record every user prompt in PROMPTS.md (next is
-  35). Push after every commit; `post-block.sh` refreshes `progress/field-score.png` after every posted block (the
+  36). Push after every commit; `post-block.sh` refreshes `progress/field-score.png` after every posted block (the
   owner watches it, PROMPTS 28-31).
 - **Running on the VM now: `diagenc31`** -- the enclosure's stage-31 diagnostic, three games (RandomSoup1 A,
   Prison A, Squares B; `arch_enclosure` vs g_iter9, seed 41). Read it with `source tools/vm.sh; ensure_vm; gssh
