@@ -1629,6 +1629,10 @@ out). **49b: `HELPER_HOLD` 230**, snapshot `src/cand49b`; **`gate49b`** (paired 
 Pre-registered: the gain is a taller ring in the last 500 rounds, which the mirror sees directly; the gate decides,
 the arm reads the late losses (g_iter9: 56 of 240, 22 or fewer of 96 is the bar).
 
+**Arm 49b: 42-54, rating 1751 +- 74 (g_iter9 1727 +- 48), late losses 25 of 96 (the bar was 22; g_iter9's rate gives 22.4),
+raid-window 27, early 2.** Null on the arm. Gate 49b at 160 pairs: discordant 3-0 -- the change flips one game in
+fifty, all its way so far.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
