@@ -1139,6 +1139,16 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 40 -- the walkway, two parts (2026-09-25, on g_iter7)
+
+**Candidate** = g_iter7 + (a) from r250 to r400 a seat never digs a circle tile beside an exposed ring tile that no
+landscaper of ours holds (38's rule, but only once a tile has stayed unseated past r250 -- before that every tile is
+unseated and 38 paid 6% of ring on ordinary maps); (b) a miner that has had no legal step for 20 rounds and stands
+beside an unseated ring tile steps onto it before r400 (it can go nowhere else, and it is the cork in the walkway
+to that seat: two miners held Climb's south way west all game). Diagnostics (VM, controls from `diag38`/`diag39`):
+Climb both ways, GSF, Hills, RandomSoup1 -- `@badseat` and `@uncork` counts, the ring at r500 without a flooded
+tile, the HQ alive past the flood round, RandomSoup1 within 5% of the control (2445 as A).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
