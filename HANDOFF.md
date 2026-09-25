@@ -16,6 +16,21 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   losses of 96 (g_iter7's rate exactly), gate 2-14 in its first batch (`src/cand37`). Iterations 35 and 36 closed
   earlier today. The two structural lines (bodies at the wall after the flood; the timed raids) both come down to
   spending the post-flood bank where it matters, and every form tried costs the pre-flood wall more than it returns.
+- **Why the post-flood bank is unspendable as the base stands** (2026-09-25, end of session): the HQ makes only
+  miners and the engine refuses a spawn more than 3 above the builder, so a ring at 600 leaves the HQ nothing to
+  spawn onto; the school, center and refineries are under water by r700-900; a producer on raised ground (24, 36)
+  or a gun there (31, 37) costs the pre-flood wall more than the mirror allows. The structural answer is the one
+  DESIGN.md names (a raised tier the producers stand on, built by the wall's own bodies) and it is a several-session
+  program; the next session should design it on paper first, from the census numbers, not code it in an evening.
+- **Next cheap line, costs nothing before the flood:** the flood-round deaths (27 of 159 losses in blocks 50-56 end within
+  3 rounds of the map's `hqFloodRound`: GSF, Hills, Spiral, Toothpaste, Climb) -- ring tiles never seated because the
+  seats' own digging makes the approach a cliff (`diag/cut-Climb.bc20`, `@badseat`). A rule about where seats dig is
+  pure gain if it works.
+- **A question for the owner (no action taken):** three acceptances in a row (25, 29b, 33+34b) gained 55-65% in the mirror
+  and 2-3 points on the ladder; two raid answers (31, 37) were priced out by the mirror at 12-27% while their ladder
+  arms were nulls. The mirror sees only what the incumbent lacks. Should a candidate that is neutral in the mirror
+  (45-55%) and beats the incumbent's rate on a pre-registered ladder arm be acceptable? Today's rule (TRAINING_ALGORITHM
+  4.4) says no unless the mirror reaches 53%.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
