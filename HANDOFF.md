@@ -31,7 +31,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   0 flood-round losses). **Gate 42c at 640 pairs: 12-2 discordant (p = 0.013): PROVISIONAL.** `src/bot` = g_iter8 + 42c
   (= `src/cand42c`); the next candidate stacks on it and its paired gate runs against g_iter8 (the incumbent stays
   g_iter8). A stack that reaches ACCEPT is snapshotted; one that REJECTS loses its newest member.
-- **VM idle.**
+- **Iteration 43 (no bank) in diagnostics** (`diag43`): `HELPER_BANK` and `ATTACKER_BANK` to 0 -- landscapers 17-24
+  waited for an 850 bank that is never spent otherwise (TRAINING_LOG "What ends a game"). `src/bot` = g_iter8 + 42c
+  + 43. If the diagnostic shows the bodies early and the ring up: `gate43` (paired vs g_iter8) and the arm.
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>

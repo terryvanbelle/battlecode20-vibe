@@ -1349,6 +1349,31 @@ discordant pairs: past the twelve-pair floor and under 0.10, not under 0.01). Th
 and won 12 of them; the arm was level with no flood-round loss. **Kept provisionally: `src/bot` = g_iter8 + 42c
 (`src/cand42c`), no snapshot, no submission; the next candidate stacks on it and is tested against g_iter8.**
 
+## What ends a game, and the bank that waits (2026-09-25)
+
+g_iter8's 132 ladder losses: 86 in the raid window (r700-2900; `team4` 28 and `EmaPajic` 26, both locked at 10%,
+`cormackikkert` 16, `benzyx` 11), 36 late (r2900+: `laurenschneider` 14, `poortho` 10), 6 early, 4 at the flood
+round. A late game ends when the water (`e^(0.0028 r ...)`: 911 at r3000, 1,496 at r3100, about 2,600 at r3220)
+passes the lower ring; the walls stand at 2,000-2,650 at r3000, so the margin is 10-50 rounds and the whole race is
+the dirt put on the ring before r2750, when the helpers drown (19 to 8 on RandomSoup1, 13 to 7 on Toothpaste; a
+body alone cannot outdig the water past a level of about 180, r2350). Intake is bodies adjacent to the ring times
+0.5 a round, and every one of those bodies is bought before the school drowns.
+
+**The bank they wait for.** The school builds landscapers 9-16 only above `HELPER_BANK` 300 + 150 and 17-24 only
+above `ATTACKER_BANK` 700 + 150; both reserves were for guns and drones that are never bought (the bank ends at
+12,000). On RandomSoup1 the bank sits at 400-850 from r250 to r500 while landscapers 17-24 trickle out one per
+fifty rounds (16 at r250, 24 at r550); on Toothpaste as A it hovers at 380-770 all the way to r700 and **landscapers
+14-24 are never built** (13 all game, the game lost; the other side had 20 by r600). Eight bodies 200 rounds
+sooner is 800 dirt, a hundred of ring.
+
+## Iteration 43 -- no bank (2026-09-25, stacked on g_iter8 + 42c)
+
+**Change:** `HELPER_BANK` 300 -> 0, `ATTACKER_BANK` 700 -> 0: a landscaper whenever 150 soup is there, up to
+`LANDSCAPERS_MAX` 24. A numeric change; the zero arm is the paired control. **Diagnostic** (VM, candidate and
+g_iter8 against g_iter8 on the same seed): RandomSoup1 A and Toothpaste A (seed 41), GSF B (seed 1), Hills B (seed
+41) -- landscapers at r300-700, the ring at r1000 and r3000. Pre-registered: 24 landscapers by r400 on RandomSoup1
+(g_iter8: r550) and more than 13 on Toothpaste A by r700; the ring above the control's at r3000 on both.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

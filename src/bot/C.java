@@ -31,9 +31,9 @@ public final class C {
     // --- wall
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
-    public static final int HELPER_BANK = 300;        // helpers are built above this bank (after the 8 seats)
+    public static final int HELPER_BANK = 0;          // Iteration 43: was 300 -- the bank it guarded is never spent (12,000 unspent at r3000)
     public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
-    public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
+    public static final int ATTACKER_BANK = 0;        // Iteration 43: was 700 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
