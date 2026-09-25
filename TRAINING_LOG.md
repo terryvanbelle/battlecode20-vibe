@@ -1731,6 +1731,18 @@ no feeders (a body inside waits in the yard), and drones from a center inside th
 the nearest free shell tile, Chebyshev 2 first and then 3 beside a held tile. `tools/enc-read.py` reads the
 diagnostic.
 
+**Stage 2: the principle holds; the machine does not run yet.** RandomSoup1 as A: **all 16 shell tiles dry from
+r300 to r2000** (16 / 40 / 109 / 255 at r300 / 500 / 1000 / 2000 with eight holders equalising the rest), **the
+interior dry all game** with three ring tiles quarried to -3,473, the HQ alive to r2815 -- where the shell, rising
+0.15 a round, is overtopped. Prison as A the same shape (13 tiles at 253-261, three at 5, alive to r2814);
+Toothpaste as B four tiles never rose and the interior flooded at r1000; GSF as B two holders, drowned at r932.
+What is missing is intake: 8-11 landscapers all game with 2,000-11,000 soup banked, because (1) the builder is
+outside the shell once it rises and builds nothing more inside (no center on RandomSoup1; on Prison the center
+came at r300 and eight drones followed but lifted nobody), (2) the school stops spawning at 7-11 (its yard is
+walked on), (3) the walkers that take no tile never log a stall, (4) the quarry has no floor. Stage 3: a quarry
+floor at -10 (then dig the flooded outside), the builder stays inside from the school on, the yard kept for spawns
+and lifts only, and a trace of every landscaper without a tile.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
