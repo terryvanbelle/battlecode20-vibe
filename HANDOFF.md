@@ -20,7 +20,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   feeds the tile between level, steps onto it and feeds the open tile; `src/bot` = `src/cand41b`; the first PAIRED
   gate, 320 pairs) and `arm41b-a`/`arm41b-b` (`BOT=cand41b`; post with `tools/post-block.sh <run> cand41b`; a
   finding at 2 or fewer flood-round losses of 96). Diagnostics: Hills B and Spiral A, flood-round deaths in the control
-  (r931/r932), become wall races lost at r2981/r2823 (TRAINING_LOG, Iteration 41).
+  (r931/r932), become wall races lost at r2981/r2823 (TRAINING_LOG, Iteration 41). **Arm posted: flood-round losses
+  1 of 96 (the finding; g_iter7 6-7), 51-45, 1737 +- 76.** The gate decides the rest.
 - **The other flood-round line:** GSF as B never builds the wall (0-4 landscapers at r500): a production failure.
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,

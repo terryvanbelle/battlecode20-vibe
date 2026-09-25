@@ -1265,6 +1265,11 @@ HQ still loses, so what it is worth is a ladder question (the field's walls are 
 **`gate41b`** (the first paired gate: N=320 pairs, `LOGTAG=@seat`) and **`arm41b-a`/`arm41b-b`** (96 seeded band
 games as `us:cand41b`; pre-registered: 2 or fewer flood-round losses of 96 against g_iter7's 6-7).
 
+**Arm 41b: 51-45 (53%), rating 1737 +- 76 (g_iter7 1734 +- 44), flood-round losses 1 of 96** (Islands2 r932) --
+**the pre-registered finding** (the threshold was 2; g_iter7's rate gives 6-7, P(1 or fewer) about 0.013; cand40c,
+the last candidate on this line, had 6). The seat walk removes the flood-round death from the ladder; the rating
+is level with the incumbent's inside the arm's interval.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
