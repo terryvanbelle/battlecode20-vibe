@@ -42,6 +42,7 @@ public class ReplayDump {
     static int threatTeam = 0, ringEvery = 0, ringD = 1;
     static Pattern logPat = null; static int logsTeam = -1;
     static TreeSet<Integer> mapAt = new TreeSet<>(), elevAt = new TreeSet<>();
+    static int seatTeam = 0; static TreeSet<Integer> seatAt = new TreeSet<>();   // --seats A|B --seats-at N: the unseated ring tiles and what is around them
 
     static final class Robot {
         int id, team, x, y, spawnRound; byte type; boolean alive = true;
@@ -79,6 +80,8 @@ public class ReplayDump {
                 case "--map-at": mapAt.add(Integer.parseInt(args[++i])); break;
                 case "--elev-at": elevAt.add(Integer.parseInt(args[++i])); quiet = true; break;
                 case "--ring": ringEvery = Integer.parseInt(args[++i]); quiet = true; break;
+                case "--seats": seatTeam = args[++i].equals("A") ? 1 : 2; quiet = true; break;
+                case "--seats-at": seatAt.add(Integer.parseInt(args[++i])); break;
                 case "--ringd": ringD = Integer.parseInt(args[++i]); break;
                 case "--from": fromRound = Integer.parseInt(args[++i]); break;
                 case "--to": toRound = Integer.parseInt(args[++i]); break;
@@ -257,6 +260,41 @@ public class ReplayDump {
         if ((mapEvery > 0 && round % mapEvery == 0) || mapAt.contains(round)) printBoard(round);
         if (elevAt.contains(round)) printElev(round);
         if (ringEvery > 0 && round % ringEvery == 0) printRing(round);
+        if (seatTeam != 0 && seatAt.contains(round)) printSeats(round);
+    }
+
+    /** --seats: every ring tile of our HQ under 10 (or flooded) at the round, with its occupant, the nearest own
+     *  landscaper and miner (Chebyshev), own landscapers and enemies within 3, and the dirt of the outward tiles
+     *  (Chebyshev 2 from the HQ, adjacent to the seat) a seat-seeker would stand on to reach it. */
+    static void printSeats(int round) {
+        Robot hq = null; for (Robot r : bots.values()) if (r.type == 0 && r.team == seatTeam) hq = r;
+        if (hq == null) { System.out.printf("SEAT r%d hq dead%n", round); return; }
+        int open = 0;
+        for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) {
+            if (dx == 0 && dy == 0) continue;
+            int x = hq.x + dx, y = hq.y + dy, k = idx(x, y); if (k < 0) continue;
+            if (dirt[k] >= 10 && !water[k]) continue;
+            open++;
+            Robot occ = null; int nl = 99, nm = 99, l3 = 0, e3 = 0;
+            for (Robot r : bots.values()) {
+                int d = Math.max(Math.abs(r.x - x), Math.abs(r.y - y));
+                if (d == 0) occ = r;
+                if (r.team == seatTeam && r.type == 6) { nl = Math.min(nl, d); if (d <= 3) l3++; }
+                if (r.team == seatTeam && r.type == 1) nm = Math.min(nm, d);
+                if (r.team != seatTeam && r.team != 0 && d <= 3) e3++;
+            }
+            StringBuilder out = new StringBuilder();
+            for (int ox = -1; ox <= 1; ox++) for (int oy = -1; oy <= 1; oy++) {
+                int tx = x + ox, ty = y + oy; if (Math.max(Math.abs(tx - hq.x), Math.abs(ty - hq.y)) != 2) continue;
+                int t = idx(tx, ty); out.append(' ').append(t < 0 ? "X" : (water[t] ? "F" : String.valueOf(dirt[t])));
+            }
+            System.out.printf("SEAT r%d (%d,%d) dirt=%d%s occ=%s ownL@%d ownL<=3=%d ownM@%d enemy<=3=%d out=[%s ]%n", round, dx, dy, dirt[k], water[k] ? "F" : "",
+                occ == null ? "-" : (occ.team == seatTeam ? "own" : "enemy") + ":" + TYPE[Math.min(occ.type, 9)], nl, l3, nm, e3, out);
+        }
+        int ownL = 0, ownM = 0, near = 0;
+        for (Robot r : bots.values()) { if (r.team == seatTeam && r.type == 6) ownL++; if (r.team == seatTeam && r.type == 1) ownM++;
+            if (r.team != seatTeam && r.team != 0 && Math.max(Math.abs(r.x - hq.x), Math.abs(r.y - hq.y)) <= 5) near++; }
+        System.out.printf("SEAT r%d summary open=%d ownL=%d ownM=%d enemy<=5ofHQ=%d%n", round, open, ownL, ownM, near);
     }
 
     /** --ring: the wall race in one line per round: both HQs' ring tiles, their minimum and the water. */

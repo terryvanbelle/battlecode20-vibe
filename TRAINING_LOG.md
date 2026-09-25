@@ -1207,6 +1207,30 @@ the tile only where a boxed-in miner was the block, and on the ladder the block 
 census question (what stands on, or fails to reach, the unseated tile at r300-500 in every flood-round loss).
 **40c is closed: gate null (paired 4-2), arm null.** Code kept as `src/cand40c`; `src/bot` is g_iter7.
 
+## The seat census (2026-09-25): why the ring tile is open at r500 in every flood-round loss
+
+`tools/replay-dump.sh <replay> --seats A|B --seats-at 300 --seats-at 400 --seats-at 500` prints every ring tile of
+our HQ under 10 (or flooded) at the round with its occupant, the nearest own landscaper and miner, the enemies
+within 3 and the dirt of its outward neighbours, plus a summary (own landscapers and miners alive). Run over every
+flood-round loss of g_iter6, g_iter7, cand37 and cand40c with a replay on the driver (118 games, 102 distinct once
+the old fixed-seed repeats are folded; every opponent passed `tier-check.sh`). Read at r500:
+
+| class | games | maps | what it is |
+|---|---|---|---|
+| few landscapers (3 or fewer alive at r500) | 28 | GSF 14, Hills 7, Spiral 3 | the wall never started: on GSF as B, g_iter6 has 0 landscapers and 7-11 miners at r500 in every case |
+| a miner of ours on the open tile | 26 | Spiral 9, Hills 8, Toothpaste 3, DidAMonkeyMakeThis 2 | the tile was empty at r300 and r400; the miner climbed onto it fleeing the flood (its outward neighbours read `F F F` at r500), sits at dirt 3-4 between seats at 100+, and cannot leave; 2-5 own landscapers within 3 |
+| a landscaper within 2, not seating | 18 | Climb 13 | the known Climb cliff (Iteration 39's tile-by-tile reading) |
+| the tile's outward neighbours all flooded, nobody on it | 7 | Hills 4, Spiral 3 | unreachable from outside; from the ring only by climbing down 100 tiles |
+| the game ended before r500 | 22 | WateredDown 10, maptestsmall 3 | maps that flood at r467 / r257: a different race |
+| an enemy on the tile | 1 | RealArt | |
+
+Two lines fall out. **(1) The tile nobody can stand on** (miner-held, outward flooded, or the Climb cliff: 51 of 102)
+has seats at 100+ on both sides of it that only ever deposit on themselves; feeding the low tile from the adjacent
+seat after r400 -- through the miner if one stands there (dirt on a unit's tile is legal; only buildings are
+buried) -- seals it at the cost of one seat's growth. Helpers already do this from the outside (`help()` step 2,
+Iteration 25) but their posts are under water by then. **(2) GSF as B** never builds the wall: a production
+failure to diagnose on its own (the control game `ctrl41` on GSF shows when the school and the landscapers come).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
