@@ -3030,3 +3030,9 @@ stands, so eight miners random-walk around the base for 500 rounds. **Iteration 
 cand52):** with the origin unknown, explore along a ray -- 30 tiles in one of the eight directions, cycling by id and
 explore count. A ray reaches an edge (the origin, then the sector search) and crosses open ground. Diagnostic
 `diag52`: Hills both sides, TheHighGround A, GSF A, against g_iter10.
+
+**Diagnostic 52:** the rays fire (explore targets 30 out, e.g. (44,12), (14,-20)), and on GSF as A the candidate mined
+416 by r300 against g_iter10's 315 (census10). Hills and TheHighGround unchanged (mines 205 and 264, identical to
+g_iter10): Hills' low ground floods by r150 -- the far field is under water and eight miners drowned at r250-300 on
+the way (A: M 8 -> 2); TheHighGround's soup is on plateaus. Those two maps are geography, the same for both sides.
+The mechanism fires where there is open ground to cross; **`gate52`** (paired, cand52 vs g_iter10).
