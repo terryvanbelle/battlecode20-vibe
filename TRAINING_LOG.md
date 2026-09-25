@@ -1279,7 +1279,14 @@ times (the r2525 tiebreak flipped), InADitch four times (wall races won by 15-30
 four. Not one pair went the other way in 320: where the walk does not fire the game is the incumbent's, and where
 it fires it has not yet lost one. **Accepted: `src/g_iter8` = g_iter7 + the seat walk (Iterations 41/41b).**
 Archetype regression `regr8`: **24/24** vs `arch_swarm` on the quick set (g_iter7 21/24). Submission blocks
-`sub8-1..5` (240 seeded band games as `us:g_iter8`) running.
+`sub8-1..5` (240 seeded band games as `us:g_iter8`).
+
+**g_iter8 after four blocks (192 games): 82-110 (42.7%), rating 1712 +- 54, rank 21 of 78; flood-round losses 3
+of 192** (Europe r932, and WateredDown r466 and maptestsmall r258, maps that flood before r500) against g_iter7's
+19 of 288 (6.6% to 1.6%). The rating sits inside g_iter7's interval (1734 +- 44) and no withdrawal applies (the
+upper end 1766 is above 1734); the flood-round deaths went and the rating did not move -- the seat walk turns them
+into wall races the band's opponents win more often than not. The fifth block is posted separately (the driver's
+disk filled during its collection: 2,451 loss replays and logs of g_iter1-g_iter5 runs deleted, the tables kept).
 
 ## Iteration 42 -- the doorstep (2026-09-25, on g_iter8)
 
