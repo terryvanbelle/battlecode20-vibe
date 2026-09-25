@@ -94,7 +94,7 @@ public strictfp class Landscaper extends Robot {
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); deposits++; fed++; return; }
             // reclaim: with margin to spare, raise the highest outer tile beside us that is not yet dry land for a newcomer
-            if (myE >= need + C.RECLAIM_MARGIN) { bestD = null; int bh = Integer.MIN_VALUE; int dry = (int) waterLevel(round + 60) + 2;
+            if (myE >= need + C.RECLAIM_MARGIN && round % 3 == 0) { bestD = null; int bh = Integer.MIN_VALUE; int dry = (int) waterLevel(round + 60) + 2;
                 for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) != myD + 1 || Nav.cheb(n, home) > 3 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
                     if (rc.senseRobotAtLocation(n) != null) continue; int e = rc.senseElevation(n); if (e >= dry) continue; if (e > bh) { bh = e; bestD = d; } }
                 if (bestD != null) { rc.depositDirt(bestD); deposits++; reclaimed++; return; } }
