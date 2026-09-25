@@ -133,3 +133,7 @@ Can you make me a graph of Field Score from ELO.md over time, and do a linear fi
 ## 29. 2026-09-25
 
 Yeah, it looks like linear fit is not so useful.  Can you recommend a more appropriate fit function?
+
+## 30. 2026-09-25
+
+Agreed, but I'd like to keep this graph updated over time, so the extrapolation will get more and more valid.  Go ahead with your recommended approach
