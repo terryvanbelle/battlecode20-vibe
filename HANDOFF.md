@@ -13,9 +13,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   the workqueue, start a new idea. Otherwise, carry on as before"). Record every user prompt in PROMPTS.md (next is
   36). Push after every commit; `post-block.sh` refreshes `progress/field-score.png` after every posted block (the
   owner watches it, PROMPTS 28-31).
-- **Running on the VM now: `diagenc31`** -- the enclosure's stage-31 diagnostic, three games (RandomSoup1 A,
+- **Running on the VM now: `diagenc32`** -- the enclosure's stage-32 diagnostic (stage 31 reproduced stage 27 on Prison and Squares; on RandomSoup1 a body stood on the gate from r420; stage 32 forbids it), three games (RandomSoup1 A,
   Prison A, Squares B; `arch_enclosure` vs g_iter9, seed 41). Read it with `source tools/vm.sh; ensure_vm; gssh
-  "cat ~/projects/vibe/2020/gauntlet/diagenc31.log"` (ends with DIAGDONE; ~25 minutes from 17:55 UTC). Each
+  "cat ~/projects/vibe/2020/gauntlet/diagenc32.log"` (ends with DIAGDONE; ~25 minutes from 18:20 UTC). Each
   stage's command is the same shape (TRAINING_LOG "Stage 22" onward); `tools/enc-read.py` summarises a game,
   `tools/enc-acct.py <log> <side> <hqx> <hqy>` gives the holders' dirt accounting by ring distance.
 - **The enclosure program (`src/arch_enclosure`, thirty stages; DESIGN.md "The enclosure" has the state and the

@@ -53,6 +53,9 @@ public strictfp class Landscaper extends Robot {
         RobotInfo r = rc.senseRobotAtLocation(l);
         return r != null && r.ID != id;   // stage 4: anything standing there (a miner too: walkers circled tiles miners stood on)
     }
+    /** Stage 32: a landscaper never steps onto the gate (a body inside walking to a shell tile routed out through the
+     *  gate, the one low tile in the shell, and stood there from r420: no lift for 2,600 rounds on RandomSoup1). */
+    @Override protected boolean allowedTile(MapLocation l) { MapLocation g = MapState.gate; return g == null || !l.equals(g) || l.equals(tile); }
     private boolean shell(MapLocation l) { int d = Nav.cheb(l, MapState.home); return (d == 2 && isShell(l, MapState.home)) || d == 3; }
 
     /** The nearest free shell tile we can reach: Chebyshev 2 first; Chebyshev 3 only beside a held Chebyshev-2 tile

@@ -2064,6 +2064,12 @@ Stage 31: stage 27's digging back (inner holders dig the outer ring, lowest firs
 school), keeping stage 28's scouting lap and stage 29's landed rule. The archetype rests at its best known
 configuration; the diagnostic confirms it against stage 27's r3140 / 31 bodies / 1,207 at r2000.
 
+**Stage 31: Prison and Squares reproduce stage 27 exactly (r2997, r3029); RandomSoup1 does not** -- r3073, 24
+bodies, 15 lifts, the last at r411. From r420 a landscaper stands on the gate (20,6): bodies inside walking to a
+shell tile they picked (the stage-24 rule bars only outer tiles from inside) route out through the gate, the one
+low tile in the shell, and one stopped there (its target a cliff beyond). The elevator logged a waiter and a
+target 60 times and never lifted. Stage 32: a landscaper never steps onto the gate.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
