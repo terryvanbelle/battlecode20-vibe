@@ -31,10 +31,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   0 flood-round losses). **Gate 42c at 640 pairs: 12-2 discordant (p = 0.013): PROVISIONAL.** `src/bot` = g_iter8 + 42c
   (= `src/cand42c`); the next candidate stacks on it and its paired gate runs against g_iter8 (the incumbent stays
   g_iter8). A stack that reaches ACCEPT is snapshotted; one that REJECTS loses its newest member.
-- **Iteration 43b (banks at 200) in the gate:** landscapers 9-24 waited for 450 / 850 in the bank that is never spent
-  otherwise; at 200 the bodies come 200 rounds sooner and the HQ keeps its miner reserve (43's zero bank starved
-  it). Ring +3% / +11% / level on three maps. `src/bot` = `src/cand43b` = g_iter8 + 42c + 43b. `gate43b` (paired vs
-  g_iter8) and `arm43b-a`/`arm43b-b` running; post with `tools/post-block.sh <run> cand43b`.
+- **ACCEPTED: `src/g_iter9`** = g_iter8 + 42c (the school's doorstep; no building on the ring) + 43b (landscaper banks
+  300/700 -> 200: bodies 200 rounds sooner, the HQ keeps its miner reserve). Gate paired ACCEPT 30-8 discordant at
+  144 pairs; arm 64-32, 1771 +- 79, late losses 10 of 96 (bar 14). **Running on the VM:** `regr9` (vs arch_swarm,
+  quick set) and the submission blocks `sub9-1..5` (post each with `tools/post-block.sh <run> g_iter9`; the roster
+  tier and ONSET-merged follow g_iter9 at 200 games). `src/bot` = g_iter9.
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>

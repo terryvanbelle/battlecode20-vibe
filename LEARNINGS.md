@@ -146,6 +146,13 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   repeats (29% of g_iter3's), and a 240-game mirror gate held at most 104 distinct games, so every
   sequential test was overconfident. Seed every game and count a repeated cell once (2026-09-24).
 
+- **A reserve nobody spends is bodies nobody has.** The school held 300 then 700 soup back before landscapers
+  9-16 and 17-24 (reserves from the gun and drone lines, long closed), so the last eight bodies came 200 rounds late
+  on RandomSoup1 and never on Toothpaste as A, while the bank ended every game at 2,000-12,000 unspent. At 200 (the
+  HQ's miner reserve intact; at 0 it starved) the paired gate accepted 30-8 and the arm read 64-32 (Iteration 43b,
+  g_iter9, 2026-09-25). The wall race is dirt on the ring before r2750; bodies bought before the flood are the
+  only lever left on it.
+
 - **Every open ring tile needs a seat beside it.** Of 52 flood-round losses with a wall, 51 had the open tile at
   r500 with no landscaper of ours adjacent: seats take the nearest free tiles and raise their neighbours from where
   they sit, so the far tile is 100 below with its outward side under water and nobody who can reach it. A seat
