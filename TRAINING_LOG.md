@@ -1162,6 +1162,14 @@ navigator bug-walked east instead -- (8,37) at r165, (28,36) by r190, up the sta
 from any pit. The check has to run before the walk. **39b**: when every neighbour closer to the seat is either a
 pit or unwalkable, fill the pit first; the same diagnostics.
 
+**39b diagnostics:** the bridge fires (Climb as A 4 times, as B 12, GSF 2, RandomSoup1 1) and the rings at r500
+on Climb are the controls' to the digit -- the filled pits led nobody to a seat -- while on GSF the candidate left
+a ring tile at 4 the control had at 97 and lost at r933 a game the control wins at r3024: seekers were diverted
+into bridging where a longer walk existed. RandomSoup1 2513 vs the control's 2445. **Not gated; refuted as
+built.** Code kept as `src/cand39b`; `src/bot` is g_iter7. The flood-round line stays open with three forms
+closed (38, 39, 39b); the next one must first show, on Climb, which tile the last seat-seeker needs and what
+stands in its way, tile by tile, before any rule is written.
+
 ## Iteration 38 -- seats spare the walkway (2026-09-25, on g_iter7)
 
 **Evidence.** Flood-round deaths were 27 of the 159 losses of blocks 50-56 (GSF, Hills, Spiral, Toothpaste, Climb:
