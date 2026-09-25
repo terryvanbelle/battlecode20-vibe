@@ -1875,6 +1875,14 @@ stage 17's single wandering elevator left the gate free to rise to 162). Prison 
 case). The gate's behaviour under a drone that visits it often is the open question: a trace of the gate tile
 (who stands on it, what its neighbours deposit) is the next diagnostic. The archetype stays at stage 19.
 
+**The gate board (RandomSoup1, r350-800):** the gate (20,6) beside the school (19,6) is raised after all -- 83 at
+r600, 99 at r800, with the elevator on station at (21,6) beside it. The holes are the two shell tiles south of it,
+(20,5) and (20,4), at 4 from r350 to r800: no holder ever took them (nine to ten held of sixteen), a stray outside
+miner stood on (20,5) at r500, and their one held neighbour at (19,4) did not raise them. So the interior floods
+through the shell's unheld corner, not the gate; the hole is a body short, and the elevator lifted five in 900
+rounds. Where the drones were at r450: two of them inside the interior at (17,5) and (19,5). The elevator and the
+drones' discipline are the program's next stage; the archetype rests here for the day.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
