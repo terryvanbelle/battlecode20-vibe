@@ -33,6 +33,13 @@ public strictfp class Landscaper extends Robot {
         if (tile == null || (!tile.equals(loc) && occupiedByOther(tile))) tile = pickShell(home);
         if (tile == null) {
             // stage 2: no feeders -- a body inside waits in the yard for a drone to lift it onto the shell; one outside attacks
+            if (inside(loc, home) && round >= C.FEED_FROM && gateTile(home) != null) {
+                // stage 36: an interior feeder -- off the yard, on a tile beside the shell, digs its own tile (the interior never
+                // floods) and feeds the lowest shell tile beside it: external digging the shell's holders cannot do from inside
+                MapLocation g = gateTile(home);
+                if (Nav.cheb(loc, g) > 1) { feeder = true; Debug.log("@feeder at=" + loc); feed(home); return; }
+                if (rc.isReady()) for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (Nav.cheb(n, home) == 1 && Nav.cheb(n, g) > 1 && rc.canMove(DIRS[i])) { rc.move(DIRS[i]); loc = rc.getLocation(); return; } }
+            }
             if (inside(loc, home)) { if (!waiting) { waiting = true; Debug.log("@yard at=" + loc); }
                 // stage 15: wait on the yard tile beside the gate, where the elevator can reach us without coming in
                 MapLocation g = gateTile(home);
@@ -145,6 +152,7 @@ public strictfp class Landscaper extends Robot {
             if (bestD != null) { rc.depositDirt(bestD); deposits++; fed++; return; }
         }
         Direction d = digSource(home);
+        if (d == null && Nav.cheb(loc, home) <= 1 && rc.canDigDirt(Direction.CENTER)) d = Direction.CENTER;   // stage 36: a feeder digs its own tile
         if (d != null) { rc.digDirt(d); digs++; return; }
         // nothing adjacent to dig or feed: step to another interior tile
         for (int i = 8; --i >= 0;) { Direction dd = DIRS[i]; MapLocation n = loc.add(dd); if (Nav.cheb(n, home) == 1 && rc.canMove(dd) && !rc.senseFlooding(n)) { rc.move(dd); loc = rc.getLocation(); return; } }

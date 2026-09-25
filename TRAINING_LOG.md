@@ -2108,6 +2108,11 @@ tiles: +0.1 a shell tile a round, small). Neither closes a 775 gap. **Checkpoint
 reference configuration; the program's open question is now whether any enclosure of 16 tiles can out-raise an
 8-tile wall with the bodies the economy allows before the flood, and the measured answer so far is no.
 
+Stage 36 (the last cheap lever): interior feeders -- from r1000 a body inside with no lift steps off the yard and
+feeds the lowest shell tile beside it from its own tile, dug down (the interior never floods). Up to six interior
+tiles are free of buildings; the yard's two stay clear. Expected: +0.1 to +0.2 a shell tile a round from r1000,
+~+150-300 at r3000 -- not the 775, but it says whether interior production counts.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

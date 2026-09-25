@@ -38,6 +38,7 @@ public final class C {
     public static final int SHELL_SLACK = 2;          // equalise an adjacent shell tile only when it is this much below ours
     public static final int QUARRY_FLOOR = -9;        // stage 4: the interior is dug down to this and no further (the field's boards read -9)
     public static final int RECLAIM_MARGIN = 20;      // stage 4: a holder this far above its need raises the highest outer tile beside it toward dry land (stage 7: 20, and only every third turn -- reclaiming took 70% of the holders' dirt)
+    public static final int FEED_FROM = 1000;         // stage 36: from this round a body inside with no lift becomes an interior feeder (the outer ring has flooded; there is nowhere left to set it down)
     public static final int RECLAIM_UNTIL = 2000;     // stage 23: no reclaiming after this round (from r2700 the holders reclaimed the sea instead of raising the shell: +9 in 250 rounds, drowned at r2967)
     public static final int RECLAIM_DEPTH = 15;       // stage 23: reclaim only an outer tile within this much of dry land (the pits are bottomless)
     public static final int INSIDE_MAX = 3;           // buildings on the ring besides the school (stage 14: three -- with four and the builder the yard had one tile, and a waiter on it stopped every spawn)
