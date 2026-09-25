@@ -1139,6 +1139,18 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
+
+**Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
+Climb, WateredDown, Toothpaste) and Iteration 38's reading of Climb: the walkway to the unseated tiles is a circle
+tile the seats dug to -9. Iteration 38 forbade the digging and paid 6% of ring on ordinary maps. **Candidate** =
+g_iter7 + a landscaper whose walk to its seat stalls looks for a pit toward the seat (a neighbour more than 3
+below it, not a ring tile) and fills it -- deposits into it, digging from its highest other neighbour -- for at
+most 60 rounds before striking the seat off as before. It acts only where a seat-seeker is stuck, so ordinary
+maps never see it. Diagnostics (VM, with controls): Climb both ways, GSF, Hills, RandomSoup1 -- `@bridge` and
+`@badseat` counts, the ring at r500 without a flooded tile, the HQ alive past the flood round, RandomSoup1's
+ring against the control.
+
 ## Iteration 38 -- seats spare the walkway (2026-09-25, on g_iter7)
 
 **Evidence.** Flood-round deaths were 27 of the 159 losses of blocks 50-56 (GSF, Hills, Spiral, Toothpaste, Climb:

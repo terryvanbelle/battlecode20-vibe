@@ -31,7 +31,11 @@ public strictfp class Landscaper extends Robot {
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (!attacker && !helper) {
-            if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
+            if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) {
+                // Iteration 39: stalled on the way to a seat -- if a pit lies between us and it, fill the pit (a walkway the
+                // seats dug: Climb, GSF, Hills, Spiral) before striking the seat off; the flood-round deaths are unseated tiles
+                if (bridge(home)) return;
+                if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
             if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
         }
@@ -41,6 +45,28 @@ public strictfp class Landscaper extends Robot {
         wall(home);
     }
 
+    private int bridgeRounds = 0;
+    /** Iteration 39: the neighbour toward the seat that is more than 3 below us and not a ring tile is a pit: deposit into it
+     *  (dig from the highest other neighbour) until it is within 3; at most 60 rounds per seat. */
+    private boolean bridge(MapLocation home) throws GameActionException {
+        if (bridgeRounds > 60) return false;
+        int e0 = rc.senseElevation(loc); MapLocation pit = null; int pd = 1 << 30;
+        for (int i = 8; --i >= 0;) { MapLocation n = loc.add(i < 0 ? DIRS[0] : DIRS[i]); if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
+            if (rc.senseElevation(n) >= e0 - 3) continue;
+            int d = n.distanceSquaredTo(seat); if (d < pd) { pd = d; pit = n; } }
+        if (pit == null || pd >= loc.distanceSquaredTo(seat)) return false;   // no pit toward the seat: not our case
+        bridgeRounds++;
+        if (!rc.isReady()) return true;
+        Direction dp = loc.directionTo(pit);
+        if (rc.getDirtCarrying() > 0 && rc.canDepositDirt(dp)) { rc.depositDirt(dp); deposits++; if (bridgeRounds % 10 == 1) Debug.log("@bridge pit=" + pit + " e=" + rc.senseElevation(pit)); nav.setTarget(null); return true; }
+        Direction bd = null; int be = Integer.MIN_VALUE;
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (n.equals(pit) || !rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d)) continue;
+            RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null) continue;
+            int e = rc.senseElevation(n); if (e > be) { be = e; bd = d; } }
+        if (bd == null && rc.canDigDirt(Direction.CENTER) && e0 > rc.senseElevation(pit) + 4) bd = Direction.CENTER;
+        if (bd != null) { rc.digDirt(bd); digs++; return true; }
+        return false;
+    }
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
         if (!rc.canSenseLocation(l)) return false;
         RobotInfo r = rc.senseRobotAtLocation(l);
