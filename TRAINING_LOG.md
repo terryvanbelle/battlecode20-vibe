@@ -1888,6 +1888,12 @@ and lift logic before the exit rule and never leaves; it stands on the yard tile
 cannot reach it. Now a drone inside leaves before it does anything else, and lifting trapped miners is the
 elevator's job alone.
 
+**Stage 20:** Squares 24 lifts, 15 holders (four outer), alive to r2852; RandomSoup1 still floods at r945 through
+the same south-east corner, three shell tiles at 4 with no waiter ever logged -- the bodies found tiles, but not
+those: a stray outside miner stood on one of them at r500 (miners kept off the ring, not off the shell), and a
+tile with a robot on it is one no holder takes. Prison: 655 waits, one lift (the corner-HQ gate, still). Stage
+21: miners keep off Chebyshev 2 as well once a refinery stands.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
