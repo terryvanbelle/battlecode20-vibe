@@ -1399,7 +1399,19 @@ of five was 24-24).
 SPRT bound, in nine batches. The bank change touches most games (38 discordant pairs in 144, against 42c's 14 in
 640) and wins four of five it touches. **Accepted: `src/g_iter9` = g_iter8 + 42c (the doorstep, provisional until
 now, carried in by the stack) + 43b (banks at 200).** Archetype regression `regr9`: **21/24** vs `arch_swarm`
-(g_iter8 24/24, g_iter7 21/24). Submission blocks `sub9-1..5` (240 seeded band games as `us:g_iter9`) running.
+(g_iter8 24/24, g_iter7 21/24). Submission blocks `sub9-1..5` (240 seeded band games as `us:g_iter9`) played;
+posted below.
+
+## Iteration 44 -- six early miners (2026-09-25, on g_iter9)
+
+**Why.** With the banks at 200 the 24 bodies arrive as fast as the soup does: r350 on RandomSoup1, but 13-16 at
+r450 on Toothpaste and 5-7 all game on GSF, where the lowlands flood at r250-300 and mining stops. The onset
+tables put net worth at r150 and mines at r200 first among every signal. The HQ builds `MINERS_EARLY` 4 before
+anything else, then one per 60 rounds above a 200 bank up to 8 alive. **Dose:** `MINERS_EARLY` 4 -> 6 (two more
+miners, 140 soup, at r1-r20, before the school). **Diagnostic** (VM, candidate and g_iter9 against g_iter9, same
+seed): Toothpaste A and RandomSoup1 A (seed 41), GSF B (seed 1), Spiral B (seed 41) -- landscapers at r300-700,
+the ring at r1000 and r3000. Pre-registered: more landscapers at r450 on Toothpaste and GSF; the ring not below
+the control's at r3000 on RandomSoup1.
 
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
