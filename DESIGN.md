@@ -84,6 +84,16 @@ map), or the interior floods and the HQ with it. The first build is an archetype
 against g_iter9 in the mirror and read for the shell's completion round and its height at r1000-3000; then the
 bot. This is a multi-session program; every stage needs its diagnostic before its gate.
 
+**State after sixteen stages (2026-09-25, `src/arch_enclosure`, TRAINING_LOG "The enclosure, stage 1" onward):**
+the inner shell closes and holds (16 tiles dry from r300, level to within ten, 400-540 high at r2000 on
+RandomSoup1 and Squares), the interior stays at ground all game with the school, the center and up to three
+vaporators on it, drones lift waiting landscapers out through the gate onto shell tiles, and the HQ lives to
+r2700-2990 against g_iter9 -- 200-300 rounds short of the wall race. What is still missing: bodies (13-19 against
+the field's 27-54: the school waits on the yard and the elevator's throughput), the outer shell (holders at
+Chebyshev 3 are lifted there only when the inner ring is full and the outer tile has been reclaimed dry), corner
+HQs (Prison: the gate and the exit vectors need on-map fallbacks), and the drones' discipline around the gate.
+Every stage's defect and fix is in the log; the archetype is the design's proof and the bot's template.
+
 ## The plateau (planned, 2026-09-24; superseded above)
 
 The next structural candidate; see TRAINING_LOG.md "What the field does that we do not" and

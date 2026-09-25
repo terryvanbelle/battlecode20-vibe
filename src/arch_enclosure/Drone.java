@@ -58,11 +58,12 @@ public strictfp class Drone extends Robot {
             RobotInfo w = null; int wd = 1 << 30;
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER || Nav.cheb(f.location, home) != 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < wd) { wd = d; w = f; } }
             if (w != null) {
-                MapLocation t = freeShell(home);
-                if (t != null) {
-                    holdingFriend = true;   // set before the move so allowedTile lets us into the circle
+                MapLocation t = freeShell(home); MapLocation gate = gate(home);
+                if (round % 100 == 0) Debug.log("@gate " + gate + " waiter=" + w.location + " target=" + t);
+                if (t != null && gate != null && Nav.cheb(w.location, gate) <= 1) {   // stage 16: only when the waiter stands beside the gate -- a drone on the gate keeps it from being raised
+                    holdingFriend = true;
                     if (rc.canPickUpUnit(w.ID)) { rc.pickUpUnit(w.ID); liftTarget = t; pickups++; Debug.log("@lift-up id=" + w.ID + " for=" + t); return; }
-                    MapLocation gate = gate(home); holdingFriend = false; chasing = true; nav.setTarget(gate != null ? gate : w.location); nav.step(); chasing = false; return;
+                    holdingFriend = false; chasing = true; nav.setTarget(gate); nav.step(); chasing = false; return;
                 }
             }
         }

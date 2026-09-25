@@ -1842,6 +1842,12 @@ lifts on RandomSoup1 and Squares for no new holders). Stage 15: the school on a 
 gate touches both yard tiles; the center two tiles from the school so its drones are born beside the gate; drones
 never enter the interior except to leave it through the gate; a waiter walks to the yard tile beside the gate.
 
+**Stage 15: the gate itself is the hole.** Squares as B: 34 lifts, four outer holders, alive to r2936. RandomSoup1
+as A drowned at r947 with two shell tiles at 4 -- the gate among them: an elevator drone waiting on the gate keeps
+its neighbours from raising it (no dirt lands under a drone, by the boards), and the interior flooded through it.
+Prison as A: no lift in 2,000 rounds again, 120 waits, 7,200 soup unspent. Stage 16: a drone goes to the gate only
+when a waiter already stands beside it, and leaves the moment it is done; the gate's position is logged.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
