@@ -27,20 +27,6 @@ public final strictfp class MapState {
         if (elev == null) { elev = new int[width * height]; known = new boolean[width * height]; }
     }
     public static void setHome(MapLocation l) { if (home == null) home = l; }
-
-    /** Iteration 45: the round the water first passes elevation e (coarse steps of 50, then single rounds). */
-    public static int floodRound(int e) {
-        int r = 0; while (r < 3500 && Robot.waterLevel(r + 50) <= e) r += 50;
-        while (r < 3500 && Robot.waterLevel(r) <= e) r++;
-        return r;
-    }
-    /** Iteration 45: the round by which the ring must be seated -- C.SEATS_BY, or 150 rounds before the HQ's own flood
-     *  round on maps that flood early (maptestsmall r256, WateredDown r464: SEATS_BY 400 came after the HQ drowned). */
-    public static int seatsBy = -1;
-    public static int seatsBy(int hqElev) {
-        if (seatsBy < 0) { int f = floodRound(hqElev) - 150; seatsBy = f < C.SEATS_BY ? (f < 100 ? 100 : f) : C.SEATS_BY; }
-        return seatsBy;
-    }
     public static boolean originKnown() { return minX >= 0 && minY >= 0; }
     public static int maxX() { return minX + width - 1; }
     public static int maxY() { return minY + height - 1; }
