@@ -44,8 +44,9 @@ public strictfp class Drone extends Robot {
         // the nearest free dry tile at Chebyshev 3 or more -- it was born after the shell closed and stands on the yard
         if (home != null && !rc.isCurrentlyHoldingUnit()) {
             RobotInfo m = null; int md = 1 << 30;
-            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) > 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < md) { md = d; m = f; } }
-            if (m != null && minersInside(home) > 1) {
+            MapLocation sch = null; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL && Nav.cheb(friends[i].location, home) == 1) sch = friends[i].location;
+            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) > 1 || sch == null || Nav.cheb(f.location, sch) > 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < md) { md = d; m = f; } }   // stage 14: only a miner on the yard (the builder never stands there)
+            if (m != null) {
                 MapLocation gate = gate(home);
                 if (rc.canPickUpUnit(m.ID)) { rc.pickUpUnit(m.ID); holdingFriend = true; liftTarget = outsideTile(home); Debug.log("@lift-miner id=" + m.ID + " to=" + liftTarget); return; }
                 chasing = true; nav.setTarget(gate != null ? gate : m.location); nav.step(); chasing = false; return;
@@ -100,7 +101,13 @@ public strictfp class Drone extends Robot {
     /** Stage 8: the gate -- the shell tile straight out from the school (Chebyshev 2, beside the school's yard). Holders never
      *  take it, their neighbours raise it, and the elevator lifts from it without entering the interior. */
     private MapLocation gate(MapLocation home) {
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.DESIGN_SCHOOL && Nav.cheb(f.location, home) == 1) return new MapLocation(home.x + 2 * (f.location.x - home.x), home.y + 2 * (f.location.y - home.y)); }
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.DESIGN_SCHOOL && Nav.cheb(f.location, home) == 1) {
+            MapLocation g = new MapLocation(home.x + 2 * (f.location.x - home.x), home.y + 2 * (f.location.y - home.y));
+            if (rc.onTheMap(g)) return g;
+            // stage 14: a corner HQ's gate may be off the map (Prison: no lift in 2,000 rounds) -- the nearest on-map shell tile beside the school's yard
+            MapLocation best = null; int bd = 1 << 30;
+            for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy); if (!rc.onTheMap(t) || Nav.cheb(t, f.location) > 2) continue; int d = t.distanceSquaredTo(f.location); if (d < bd) { bd = d; best = t; } }
+            return best; } }
         return null;
     }
 

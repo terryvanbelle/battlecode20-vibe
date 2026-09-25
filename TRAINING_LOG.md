@@ -1827,6 +1827,13 @@ second vaporator that never comes: the builder built one on the tile beside it a
 the vaporator with no free tile in reach for 2,000 rounds. Stage 13: once the center stands the builder roams the
 ring, standing on a free tile to bring the next one within reach.
 
+**Stage 13: three vaporators, soup 4,500-9,000 by r1500 -- and eleven bodies.** The money is there and the school
+does not spawn: with the school, the center, three vaporators and the builder on the ring, the yard is one tile,
+and a waiting landscaper on it stops every spawn; on Prison the elevator lifted nobody in 2,000 rounds because a
+corner HQ's gate (two steps out from the school) is off the map. Stage 14: three buildings besides the school, the
+gate falls back to the nearest on-map shell tile beside the yard, and the elevator lifts only miners standing on the
+yard (the builder never does).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

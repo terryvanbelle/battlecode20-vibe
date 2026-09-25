@@ -37,7 +37,7 @@ public final class C {
     public static final int SHELL_SLACK = 2;          // equalise an adjacent shell tile only when it is this much below ours
     public static final int QUARRY_FLOOR = -9;        // stage 4: the interior is dug down to this and no further (the field's boards read -9)
     public static final int RECLAIM_MARGIN = 20;      // stage 4: a holder this far above its need raises the highest outer tile beside it toward dry land (stage 7: 20, and only every third turn -- reclaiming took 70% of the holders' dirt)
-    public static final int INSIDE_MAX = 4;           // buildings on the ring besides the school (the yard: the school's two ring neighbours stay free)
+    public static final int INSIDE_MAX = 3;           // buildings on the ring besides the school (stage 14: three -- with four and the builder the yard had one tile, and a waiter on it stopped every spawn)
     public static final int GUARD_BOX = 4;            // drones patrol within this of the HQ
     public static final int ATTACKER_BANK = 200;      // Iteration 43b: was 700, 43 tried 0 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
