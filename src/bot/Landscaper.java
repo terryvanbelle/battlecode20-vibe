@@ -145,6 +145,10 @@ public strictfp class Landscaper extends Robot {
         Direction toHQ = loc.directionTo(home);
         if (round >= C.SEATS_BY && seatWalk(home)) return;   // Iteration 41: an open ring tile with no seat beside it gets one
         // 1. the HQ is being buried: dig it out
+        // Iteration 55: dig our own school or center out when it is being buried (15 kills it); the HQ first
+        if (hqInfo == null || hqInfo.dirtCarrying == 0) for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i];
+            if ((f.type == RobotType.DESIGN_SCHOOL || f.type == RobotType.FULFILLMENT_CENTER) && f.dirtCarrying > 0 && loc.isAdjacentTo(f.location) && rc.canDigDirt(loc.directionTo(f.location)) && rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) {
+                rc.digDirt(loc.directionTo(f.location)); digs++; Debug.log("@schooldig dirt=" + f.dirtCarrying); return; } }
         if (hqInfo != null && hqInfo.dirtCarrying > 0 && rc.canDigDirt(toHQ)) { rc.digDirt(toHQ); hqDigs++; digs++; Debug.log("@hqdig buried=" + hqInfo.dirtCarrying); return; }
         // 2. an enemy building or unit adjacent: bury it (deposit) if we carry, it is cheap denial
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.isBuilding() && loc.isAdjacentTo(e.location) && rc.getDirtCarrying() > 0 && rc.canDepositDirt(loc.directionTo(e.location))) { rc.depositDirt(loc.directionTo(e.location)); buryDeposits++; return; } }

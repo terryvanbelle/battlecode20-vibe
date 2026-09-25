@@ -3093,3 +3093,11 @@ game (RandomSoup1) is unchanged (the rule did not fire). Iteration 54 closed (`s
 g_iter10. Both rush answers failed on the same fact: under a rush our school stops spawning with soup in the bank
 (its doors are held or dug by the rusher's landscapers). The next rush idea should start there -- a school that
 cannot spawn for N rounds with the bank full, and what it would take to give it a door.
+
+**The rush harness read (`diag55`, a school trace):** g_iter10 as A vs `arch_rush` on InADitch -- the school never
+lacked doors; it **died**: buried at r164 (DS 1 -> 0) with four landscapers built, and the builder never builds a
+second school (`builtSchool > 0` forever). From r164 no landscaper is born; soup climbs 107 -> 206 idle; two of ours
+keep the HQ at 0-2 dirt while the rusher's landscapers grow from 5 to 8 around it, and at r280-292 eight of them bury
+it faster than two can dig. **Iteration 55 (`src/cand55`, `src/bot` = cand55):** (1) the builder, near home before
+r1000, rebuilds the school when none is in sight; (2) a seat beside our school or center that is being buried digs
+it out (the HQ first). Diagnostic `diag55b`: the harness both maps, InADitch as B, and a quiet game.

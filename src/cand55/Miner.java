@@ -49,6 +49,11 @@ public strictfp class Miner extends Robot {
         }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
+        // Iteration 55: a school that is gone is rebuilt (arch_rush buried ours at r164 on InADitch and we never had
+        // another: four landscapers, the HQ dead at r292 with 200 soup idle). The builder checks when it stands near home.
+        if (builder && builtSchool > 0 && round < 1000 && MapState.home != null && Nav.cheb(loc, MapState.home) <= 3) {
+            boolean seen = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL) { seen = true; break; }
+            if (!seen) { builtSchool = 0; stand = null; Debug.log("@school lost -- rebuilding"); } }
         if (builder && build()) return;
         work();
     }
