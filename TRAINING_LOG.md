@@ -1869,6 +1869,12 @@ view), the one on duty patrols three to six tiles from the HQ where the school i
 is the drone nearest the gate, and when idle it keeps station on the tile straight out from the gate, from where it
 sees the yard.
 
+**Stage 19: the elevator works on Squares (32 lifts, 18 holders, seven of them on the outer ring, alive to r2830)
+and the gate is a hole again on RandomSoup1** (the two tiles at 4 at r500, drowned at r947, as in stage 15 -- while
+stage 17's single wandering elevator left the gate free to rise to 162). Prison unchanged (no lift; the corner
+case). The gate's behaviour under a drone that visits it often is the open question: a trace of the gate tile
+(who stands on it, what its neighbours deposit) is the next diagnostic. The archetype stays at stage 19.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
