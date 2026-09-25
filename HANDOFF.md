@@ -12,10 +12,14 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **Gate 40c REJECTED 34-46** (losses late, a shorter wall; the step fires for mining miners, not only boxed-in ones --
-  TRAINING_LOG). Arms `arm40c-a`/`arm40c-b` still running (post them). Next: the reproduction diagnostic on the recorded
-  seeds, then a 40d with "boxed in" measured as no free non-ring move.
-- **Was running on the VM:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
+- **VM idle. `src/bot` = g_iter7.** Iteration 40c closed: the gate's 34-46 was the draw (74 of 80 pairs concordant,
+  discordant 4-2; TRAINING_LOG), the arm null (57-39, 1729 +- 77, flood-round losses 6 of 96 at the incumbent's
+  rate, each with a ring tile unseated at r500). **The gate is paired now** (`mirror.sh` `PAIRED=1`, `tools/paired.sh`,
+  TRAINING_ALGORITHM 4.4): the SPRT counts discordant pairs only, N counts pairs, cap 320.
+- **Next on the flood-round line:** the census of *why* the tile is unseated at r300-500 in every flood-round loss
+  (who stands on it; is a landscaper of ours within 3; is it a pit) -- 40c's step answers only the boxed-in miner,
+  which the ladder losses do not show.
+- **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>
   cand40c`; a finding at 2 or fewer flood-round losses of 96, g_iter7's rate gives 6-7). Diagnostics: Hills sealed

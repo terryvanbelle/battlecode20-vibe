@@ -146,6 +146,11 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
   repeats (29% of g_iter3's), and a 240-game mirror gate held at most 104 distinct games, so every
   sequential test was overconfident. Seed every game and count a repeated cell once (2026-09-24).
 
+- **Pair the mirror: the incumbent against itself on the same seed.** Under a fixed seed the engine is
+  deterministic, so a candidate plays the incumbent's exact game wherever its change does not fire, and an
+  unpaired mirror scores the map-side-seed draw: gate 40c read 34-46 (REJECT) with 74 of 80 pairs concordant
+  and the discordant 4-2 for the candidate. Only discordant pairs judge a change (2026-09-25, `tools/paired.sh`).
+
 - **Rate the ladder with a batch fit, each build its own player.** A sequential K=32 Elo with one
   rating shared by every build depends on play order: 96 calibration games against unplaced bots
   (88 wins) lifted us from rank 65 to rank 4 of 66, above bots 104-9 against us. The batch

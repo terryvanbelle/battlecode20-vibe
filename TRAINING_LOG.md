@@ -1187,6 +1187,26 @@ ring -- "boxed in" was measured as "not moved", which a working miner also is. R
 recorded): InADitch as A (seed 625931922) and RandomSoup2 as B (seed 158101714), the step logged with the soup
 carried and the free directions, against g_iter7 vs itself on the same seed.
 
+**The reproduction overturned the reading, and the gate with it.** Both loss seeds replayed with no step taken,
+and the candidate's game was the control's game to the tile (InADitch A: 2018...1825 at r3000 both ways, lost
+r3142 both ways; RandomSoup2 B: 1980 both ways, lost r3164 both ways). The engine is deterministic under a fixed
+seed, so wherever the change does not fire the candidate plays the incumbent's exact game, and the mirror scores
+a coin flip decided by the map, the side and the seed. **`tools/paired.sh`** replays a gate's cells twice, the
+candidate game and the incumbent against itself on the same seed. Over gate 40c's 80 cells: **74 pairs concordant**
+(30 wins, 44 losses -- g_iter7 against itself lost 55% of these draws from the candidate's side), **discordant 4-2
+in the candidate's favour** (sign test p=0.69), the step fired in 29 games, 56 pairs identical to the end round.
+The 34-46 was the draw, not the change. The gate is now paired (`mirror.sh` `PAIRED=1`, TRAINING_ALGORITHM 4.4):
+the SPRT counts discordant pairs only. Earlier gates that ended near 50% (28b 129-111, 30 58-70, 40c) carried
+this noise; the wide rejects (31 7-25, 31b 13-35, 37 2-14) did not need the pairing to be read.
+
+**Arm 40c: 57-39, rating 1729 +- 77 (g_iter7 1734 +- 44), flood-round losses 6 of 96** -- GSF r933, Egg r934,
+Hills r931, WateredDown r467 twice, maptestsmall r257 -- the incumbent's rate exactly (6-7 expected; the finding
+needed 2). The three reviewable ones all have a ring tile unseated at r500 (GSF as A min 4, Egg as A min 4, Hills as
+B a flooded corner tile): against a live opponent the tile stays open with the step in the code. The step seals
+the tile only where a boxed-in miner was the block, and on the ladder the block is something else -- the next
+census question (what stands on, or fails to reach, the unseated tile at r300-500 in every flood-round loss).
+**40c is closed: gate null (paired 4-2), arm null.** Code kept as `src/cand40c`; `src/bot` is g_iter7.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

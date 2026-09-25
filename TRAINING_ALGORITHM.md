@@ -129,13 +129,18 @@ Every candidate passes through these in order, and most die early. That is the d
    demonstrably fires and acts as claimed.** Three 2021 candidates were implemented, compiled and
    completely inert; only the counters showed it. Check `over=` for every robot type: an overrun
    candidate gates at 50% whatever it is worth.
-4. **Gate.** The mirror under a sequential probability ratio test: candidate vs incumbent,
-   random map and random side per game, batches of 16, `H0 p=0.50` against `H1 p=0.58`,
-   `alpha = beta = 0.05`, cap 240 games, a fresh engine seed per game (without one the same map and
-   side replays the same game, and 240 draws hold at most 104 distinct games: 2026-09-24). ACCEPT snapshots; REJECT reverts; inconclusive at the
-   cap keeps the change **provisionally** if it read >= 53% over >= 200 games (no snapshot, no
-   submission) and further candidates stack on it, each tested against the incumbent. A stack
-   that reaches ACCEPT is snapshotted; one that reaches REJECT loses its newest member.
+4. **Gate.** The **paired mirror** under a sequential probability ratio test (`tools/mirror.sh`, `PAIRED=1`):
+   each cell is a random map, a random side and a fresh engine seed, played twice -- the candidate against the
+   incumbent, and the incumbent against itself. The engine is deterministic under a fixed seed, so wherever the
+   change does not alter the game the candidate plays the incumbent's exact game and the pair is concordant; only
+   the **discordant pairs** enter the test (`H0 p=0.50` against `H1 p=0.58`, `alpha = beta = 0.05`), batches of
+   16 pairs, cap 320 pairs. Unpaired, a gate scores the draw: gate 40c read 34-46 (REJECT) when 74 of its 80 pairs
+   were concordant and the rest 4-2 for the candidate (2026-09-25). Without a fresh seed per game the same map
+   and side replays the same game, and 240 draws hold at most 104 distinct games (2026-09-24).
+   ACCEPT snapshots; REJECT reverts; inconclusive at the cap keeps the change **provisionally** if the sign test
+   on the discordant pairs favours it at p < 0.10 with at least 12 discordant pairs (no snapshot, no submission)
+   and further candidates stack on it, each tested against the incumbent. A stack that reaches ACCEPT is
+   snapshotted; one that reaches REJECT loses its newest member.
    A change built to answer something only the external field does (a rush, a swarm) is
    pre-registered with a **second arm** against the archetype that has that property; a null in
    the mirror plus a win in that arm is a finding, a null in both is a reject. Never reinterpret a

@@ -17,7 +17,6 @@ public strictfp class Miner extends Robot {
     private MapLocation refinery;                   // nearest known place to deposit (a refinery); HQ is the fallback
     private int builtRefinery = 0, builtSchool = 0, builtVap = 0, builtNet = 0, builtFC = 0;
     private int refineryBadUntil = 0, homeStalls = 0, buildPause = 0;   // Iteration 34: stall handling for the walks home and the builder's
-    private int boxed = 0, lastUncork = -1000; private MapLocation lastLoc = null;   // Iteration 40: rounds on the same tile
     private int deposits = 0, mined = 0, explores = 0, exploreFails = 0, unreachable = 0;
 
     Miner(RobotController rc) { super(rc); }
@@ -49,16 +48,6 @@ public strictfp class Miner extends Robot {
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }
         }
         if (floodDanger() && climb()) return;
-        // Iteration 40: boxed in (no move for 20 rounds) beside a ring tile nobody holds: step onto it -- we can go nowhere
-        // else, and we are the cork in the walkway to that seat (Climb: two miners held the south way west all game)
-        if (loc.equals(lastLoc)) boxed++; else boxed = 0; lastLoc = loc;
-        if (rc.isReady() && boxed > 20 && round < C.SEATS_BY && round - lastUncork > 100) {
-            boolean waiting = false;   // 40c: only when a landscaper of ours is within 2 (someone waiting to pass), and not twice in 100 rounds
-            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, loc) <= 2) { waiting = true; break; } }
-            if (waiting) for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !rc.canMove(d) || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
-                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null) continue;
-                rc.move(d); loc = rc.getLocation(); boxed = 0; lastUncork = round; Debug.log("@uncork onto=" + n); return; }
-        }
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (builder && build()) return;
         work();
