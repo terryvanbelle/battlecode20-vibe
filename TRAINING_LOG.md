@@ -1620,6 +1620,15 @@ every deposit goes into a post the water takes 150 rounds later: **77 dirt a hel
 the water climbs 7 a round at r3200, so that is about sixteen rounds at the end, not five. The rule's retest with
 the trace (`trace49b`) says whether it reaches the helpers at all.
 
+**It does.** With `HELPER_HOLD` 160 the helpers stop at r2575 (155 high), feed the ring, and drown together at
+r2640 instead of r2740; the ring reads **2634 / 2784 / 2834 at r2700 / 3000 / 3100 against the control's 2594 / 2744 /
+2794 (+40)**, the game won at r3221 as before. (The first diagnostic's identical games are unexplained; this one
+carries the trace that proves the rule ran.) Sixty rounds of feeding bought 40 of ring; the hold at 160 stops them
+75 rounds before the water outruns a body (0.5 a round at a level of about 178, r2650, which is 230 sixty rounds
+out). **49b: `HELPER_HOLD` 230**, snapshot `src/cand49b`; **`gate49b`** (paired vs g_iter9) and **`arm49b-a`/`-b`**.
+Pre-registered: the gain is a taller ring in the last 500 rounds, which the mirror sees directly; the gate decides,
+the arm reads the late losses (g_iter9: 56 of 240, 22 or fewer of 96 is the bar).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

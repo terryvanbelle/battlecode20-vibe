@@ -49,8 +49,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   field-only mechanism whose code path fires (pickups of strays) but whose claimed case exists only in locked
   opponents' games, may the arm (96-192 band games, the raid-window count) stand in for the diagnostic? Or should
   the next tool be a faithful raider archetype (drones that charge the HQ's gun, lift seats, carry landscapers in
-  behind)? `src/bot` = g_iter9. Iteration 49 (helpers feed to the end) inert as built: the helpers' last hundred
-  rounds are not where the model put them; a trace of r2600-2750 comes before any endgame form.
+  behind)? `src/bot` = g_iter9. **Iteration 49b (helpers feed the ring
+  to the end once the water outruns a body, `HELPER_HOLD` 230) in the gate and the arm:** the trace showed twelve
+  helpers putting 77 dirt each into posts lost 150 rounds later; the rule gained +40 of ring on RandomSoup1.
+  `src/bot` = `src/cand49b`; `gate49b` (paired vs g_iter9) and `arm49b-a`/`-b` running (post with
+  `tools/post-block.sh <run> cand49b`).
 - **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
   draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
   tiles open where the control lives). `src/bot` = g_iter9.
