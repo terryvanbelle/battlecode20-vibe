@@ -130,7 +130,7 @@ public strictfp class Landscaper extends Robot {
             if (r != null && r.team == us && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) continue;   // never a building of ours, never under a holder
             int cd = Nav.cheb(n, home); int e = rc.senseElevation(n);
             int s;
-            if (cd <= 1) { if (e <= C.QUARRY_FLOOR) continue; s = e - 10000; }   // stage 4: the quarry, down to its floor
+            if (cd <= 1) { if (e <= C.QUARRY_FLOOR || besideSpawner(n)) continue; s = e - 10000; }   // stage 4: the quarry, down to its floor; stage 5: never the yard (a school at 5 cannot spawn onto -9)
             else if (cd > Nav.cheb(loc, home)) s = e;                    // outside: lowest first (under water is fine)
             else if (shell(n) && e > waterLevel(round + 200) + C.SHELL_SLACK + 3) s = 5000 - e;   // a shell tile with margin to spare, unheld
             else continue;
@@ -139,6 +139,12 @@ public strictfp class Landscaper extends Robot {
         }
         if (best == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) best = Direction.CENTER;
         return best;
+    }
+
+    /** Stage 5: a tile beside the school or the center is their yard -- spawns and lifts need it at ground level. */
+    private boolean besideSpawner(MapLocation n) {
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if ((f.type == RobotType.DESIGN_SCHOOL || f.type == RobotType.FULFILLMENT_CENTER) && Nav.cheb(f.location, n) <= 1) return true; }
+        return false;
     }
 
     private boolean buryEnemy() throws GameActionException {
