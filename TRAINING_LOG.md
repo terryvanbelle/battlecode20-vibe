@@ -3101,3 +3101,11 @@ keep the HQ at 0-2 dirt while the rusher's landscapers grow from 5 to 8 around i
 it faster than two can dig. **Iteration 55 (`src/cand55`, `src/bot` = cand55):** (1) the builder, near home before
 r1000, rebuilds the school when none is in sight; (2) a seat beside our school or center that is being buried digs
 it out (the HQ first). Diagnostic `diag55b`: the harness both maps, InADitch as B, and a quiet game.
+
+**Diagnostic 55 (`diag55b`, `diag55c`).** The first form was wrong: it fired on live schools (the builder's friends
+list is capped at 64 units, so a school among 24 landscapers went unseen) and built second schools on RandomSoup1;
+InADitch as B died at r250. Fixed to test the school's own tile. **`diag55c`:** InADitch as A alive to **r704** (control
+r292; the school rebuilt once, 4 -> 7 landscapers); FourLakeLand as A r2976 (control r2978; rebuilt three times);
+InADitch as B lost at r2889 (control r2921, lost too); RandomSoup1 unchanged to the round (never fired). The rebuild
+fires only when a school is lost; `@schooldig` never fired (the rusher's school kill is faster than one seat's dig).
+**`gate55`** (paired, cand55 vs g_iter10): most cells will be concordant; the gate counts the ones with a rush.
