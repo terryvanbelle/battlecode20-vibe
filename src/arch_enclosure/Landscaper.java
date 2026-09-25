@@ -158,7 +158,7 @@ public strictfp class Landscaper extends Robot {
             if (r != null && r.team == us && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) continue;   // never a building of ours, never under a holder
             int cd = Nav.cheb(n, home); int e = rc.senseElevation(n);
             int s;
-            if (cd <= 1) { MapLocation g = gateTile(home); if (g != null && Nav.cheb(n, g) <= 1) continue; s = -100000 + e; }   // stage 29: the interior quarry (not the yard, never a building or the HQ) -- an interior pit never floods, and an inner holder that digs inside leaves every outer tile a stand (stage 12 had dropped it for the vaporator sites; the yard test keeps those)
+            if (cd <= 1) { MapLocation g = gateTile(home); if (g == null || round < C.QUARRY_FROM) continue; MapLocation sch = new MapLocation(home.x + (g.x - home.x) / 2, home.y + (g.y - home.y) / 2); if (Nav.cheb(n, sch) != 2) continue; s = -100000 + e; }   // stage 29-30: the interior quarry -- the three interior tiles opposite the school, from QUARRY_FROM; an interior pit never floods, and an inner holder that digs inside leaves every outer tile a stand (the yard and the two building sites beside the school are never dug)
             else if (cd > Nav.cheb(loc, home)) { if (Nav.cheb(loc, home) < 3) continue; s = e; }   // outside: outer holders only, lowest first (under water is fine); stage 29: inner holders never dig the outer ring
             else if (shell(n) && e > waterLevel(round + 200) + C.SHELL_SLACK + 3) s = 5000 - e;   // a shell tile with margin to spare, unheld
             else continue;

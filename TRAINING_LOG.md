@@ -2044,6 +2044,13 @@ Stage 29: the parity goes. The outer ring stays a stand the field's way: inner h
 any Chebyshev-1 tile that is not the yard, the HQ or a building; an interior pit never floods -- and never the outer
 ring; outer holders dig Chebyshev 4 as before. A tileless body never takes the gate or its approach.
 
+**Stage 29: stage 12's lesson, relearned.** RandomSoup1 as A drowned at r948: no center, no drone, no lift, one
+building inside; Squares as B the same to r1549; Prison as A to r2867 with the center but no vaporator. The inner
+holders quarried every free interior tile from r100 and the builder had no site within three of any tile it could
+stand on. Stage 30 assigns the interior: the school on its cardinal tile, the yard beside the gate, the two cardinal
+tiles beside the school for the center and the vaporator (never dug), and the three tiles opposite the school as
+the quarry, dug from r500, when both buildings stand.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
