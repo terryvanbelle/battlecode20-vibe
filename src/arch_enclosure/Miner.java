@@ -135,7 +135,8 @@ public strictfp class Miner extends Robot {
         MapLocation school = null;
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL && Nav.cheb(friends[i].location, home) == 1) school = friends[i].location;
         boolean opposite = school != null && Nav.cheb(loc, school) >= 2;
-        if (Nav.cheb(loc, home) != 1 || (school != null && !opposite && builtFC == 0) || (school != null && Nav.cheb(loc, school) <= 1)) {   // stage 23: never on the yard (the builder stood on a yard tile on every map: half the lifts on RandomSoup1, none on Prison)   // stage 6: stand on a ring tile away from the school, so the tiles beside us are not its yard (stage 13: once the center stands the builder roams the ring for sites)
+        if (Nav.cheb(loc, home) == 1 && school != null && isYard(loc, school, home) && build()) return;   // stage 24: a site is built from the yard too (with the center on the far side there was no other tile to build the vaporator from: none on three maps)
+        if (Nav.cheb(loc, home) != 1 || (school != null && !opposite && builtFC == 0) || (school != null && isYard(loc, school, home))) {   // stage 23: never idle on the yard (the builder stood on a yard tile on every map: half the lifts on RandomSoup1, none on Prison)   // stage 6: stand on a ring tile away from the school, so the tiles beside us are not its yard (stage 13: once the center stands the builder roams the ring for sites)
             MapLocation best = null; int bd = 1 << 30;
             for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t) || (rc.canSenseLocation(t) && (rc.isLocationOccupied(t) || rc.senseFlooding(t)))) continue; if (school != null && Nav.cheb(t, school) < 2) continue; int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; } }
             if (best != null) { nav.setTarget(best); nav.step(); }
@@ -143,16 +144,27 @@ public strictfp class Miner extends Robot {
         }
         if (build()) return;
     }
+    /** Stage 24: the yard is the two ring tiles beside the gate (the shell tile straight out from the school). */
+    static boolean isYard(MapLocation t, MapLocation school, MapLocation home) {
+        MapLocation g = new MapLocation(home.x + 2 * (school.x - home.x), home.y + 2 * (school.y - home.y));
+        return Nav.cheb(t, home) == 1 && Nav.cheb(t, g) == 1;
+    }
+    /** Stage 24: a school on this ring tile has its gate and the gate's three outer neighbours on the map. */
+    private boolean approachOnMap(MapLocation t, MapLocation home) {
+        int dx = t.x - home.x, dy = t.y - home.y; MapLocation a = new MapLocation(home.x + 3 * dx, home.y + 3 * dy);
+        return rc.onTheMap(a) && rc.onTheMap(a.add(dx == 0 ? Direction.EAST : Direction.NORTH)) && rc.onTheMap(a.add(dx == 0 ? Direction.WEST : Direction.SOUTH));
+    }
     /** The enclosure: build on a free ring tile (Chebyshev 1), never the last INSIDE_MAX-th free one, from a tile beside it. */
     private boolean buildInside(RobotType want, MapLocation home) throws GameActionException {
-        int buildings = 0; MapLocation site = null, school = null; int bd = 1 << 30;
+        int buildings = 0; MapLocation site = null, school = null; int bd = 1 << 30; int d0 = 0;
         for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (rc.onTheMap(t) && rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type == RobotType.DESIGN_SCHOOL && r.team == us) school = t; } }
         for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t)) continue;
             if (rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) { if (r.type != RobotType.DESIGN_SCHOOL) buildings++; continue; } if (r != null || rc.senseFlooding(t)) continue; }
-            if (school != null && Nav.cheb(t, school) <= 1) continue;   // the yard: the school's two ring neighbours stay free for its spawns
+            if (school != null && isYard(t, school, home)) continue;   // the yard: the two ring tiles beside the gate stay free for its spawns (stage 24: two, not the school's four neighbours)
             if (want == RobotType.DESIGN_SCHOOL && school != null) return false;
             if (want == RobotType.DESIGN_SCHOOL && t.x != home.x && t.y != home.y) continue;   // stage 15: the school on a cardinal ring tile, so one gate touches both yard tiles
-            int d = loc.distanceSquaredTo(t);
+            if (want == RobotType.DESIGN_SCHOOL && !approachOnMap(t, home)) d0 += 10000;   // stage 24: the gate and its approach on the map (Prison's corner HQ had its gate on the edge: the elevator was trapped on it, one lift in 2,700 rounds)
+            int d = loc.distanceSquaredTo(t) + d0; d0 = 0;
             if (want == RobotType.FULFILLMENT_CENTER && school != null && Nav.cheb(t, school) != 2) d += 10000;   // stage 15: the center two from the school, beside a yard tile: its drones are born beside the gate
             if (d < bd) { bd = d; site = t; } }
         if (site == null || (want != RobotType.DESIGN_SCHOOL && buildings >= C.INSIDE_MAX)) return false;

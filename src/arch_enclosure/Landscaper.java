@@ -67,7 +67,8 @@ public strictfp class Landscaper extends Robot {
                 boolean b = false; for (int k = nBad; --k >= 0;) if (bad[k].equals(t)) { b = true; break; }
                 if (b) continue;
                 if (ring == 2 && t.equals(gateTile(home))) continue;   // stage 8: the gate is the drones' way in and out
-                if (ring == 3 && gateTile(home) != null && Nav.cheb(t, gateTile(home)) <= 1) continue;   // stage 23: the three outer tiles beside the gate are the elevator's approach (holders set down there sealed the gate: no lift after r1328)
+                if (ring == 3 && gateTile(home) != null && Nav.cheb(t, gateTile(home)) <= 1) continue;
+                if (ring == 3 && Nav.cheb(loc, home) <= 1) continue;   // stage 24: not from inside (the shell is in the way; Prison's waiters walked at an outer tile for 90 rounds)   // stage 23: the three outer tiles beside the gate are the elevator's approach (holders set down there sealed the gate: no lift after r1328)
                 if (rc.canSenseLocation(t)) {
                     if (rc.senseFlooding(t)) continue;
                     if (Math.abs(rc.senseElevation(t) - myE) > C.SHELL_CLIMB) continue;   // a raised tile nobody holds is a cliff to us

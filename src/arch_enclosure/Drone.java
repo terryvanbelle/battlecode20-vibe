@@ -10,7 +10,7 @@ import battlecode.common.*;
  * way to a pickup (a hovering drone occupies its tile).
  */
 public strictfp class Drone extends Robot {
-    private MapLocation water, patrol, liftTarget;
+    private MapLocation water, patrol, liftTarget, lastTarget; private int lastTargetUntil = 0;
     private boolean holdingFriend = false, chasing = false;
     private int pickups = 0, drops = 0, lifts = 0;
 
@@ -31,7 +31,10 @@ public strictfp class Drone extends Robot {
             if (liftTarget != null && (!rc.canSenseLocation(liftTarget) || rc.isLocationOccupied(liftTarget))) liftTarget = null;
             if (liftTarget == null) liftTarget = freeShell(home);
             if (liftTarget == null) liftTarget = outsideTile(home);
-            if (liftTarget == null) { for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) >= 1 && rc.canDropUnit(d) && !rc.senseFlooding(n)) { rc.dropUnit(d); holdingFriend = false; drops++; Debug.log("@lift-drop anywhere at=" + n); return; } } nav.setTarget(home); nav.step(); return; }
+            if (liftTarget == null) {   // stage 24: never on the gate or its approach (a body set down on the gate at r1068 sealed it for the rest of the game); the yard is fine; else keep holding and wait on the approach
+                MapLocation g = gate(home);
+                for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) >= 1 && rc.canDropUnit(d) && !rc.senseFlooding(n) && (g == null || Nav.cheb(n, g) > 1 || Nav.cheb(n, home) <= 1)) { rc.dropUnit(d); holdingFriend = false; drops++; Debug.log("@lift-drop anywhere at=" + n); return; } }
+                if (g != null) { chasing = true; nav.setTarget(g); nav.step(); chasing = false; } return; }
             if (loc.isAdjacentTo(liftTarget)) { Direction d = loc.directionTo(liftTarget); if (rc.canDropUnit(d)) { rc.dropUnit(d); holdingFriend = false; lifts++; Debug.log("@lift to=" + liftTarget + " d=" + Nav.cheb(liftTarget, home)); liftTarget = null; return; } }
             nav.setTarget(liftTarget); nav.step(); return;
         }
@@ -73,7 +76,7 @@ public strictfp class Drone extends Robot {
                 if (round % 100 == 0) Debug.log("@gate " + gate + " waiter=" + w.location + " target=" + t);
                 if (t != null && gate != null && Nav.cheb(w.location, gate) <= 1) {   // stage 16: only when the waiter stands beside the gate -- a drone on the gate keeps it from being raised
                     holdingFriend = true;
-                    if (rc.canPickUpUnit(w.ID)) { rc.pickUpUnit(w.ID); liftTarget = t; pickups++; Debug.log("@lift-up id=" + w.ID + " for=" + t); return; }
+                    if (rc.canPickUpUnit(w.ID)) { rc.pickUpUnit(w.ID); liftTarget = t; lastTarget = t; lastTargetUntil = round + 30; pickups++; Debug.log("@lift-up id=" + w.ID + " for=" + t); return; }
                     holdingFriend = false; chasing = true; nav.setTarget(gate); boolean moved = nav.step(); chasing = false; if (round % 10 == 0) Debug.log("@chase at=" + loc + " gate=" + gate + " moved=" + moved + " waiter=" + w.location); return;
                 }
             }
@@ -142,6 +145,7 @@ public strictfp class Drone extends Robot {
                 if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue;
                 if (ring == 2 && t.equals(gate(home))) continue;   // stage 8: the gate stays free
                 if (ring == 3 && gate(home) != null && Nav.cheb(t, gate(home)) <= 1) continue;   // stage 23: the approach to the gate stays free too
+                if (lastTarget != null && round < lastTargetUntil && t.equals(lastTarget)) continue;   // stage 24: a body is on its way there
                 if (ring == 3) { boolean held = false; for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue; RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { held = true; break; } } if (!held) continue; }
                 int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
             }

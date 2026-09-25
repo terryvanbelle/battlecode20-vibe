@@ -1941,6 +1941,28 @@ stops at r2000 and never fills a pit (only tiles within 15 of dry); the first dr
 the school until it comes); the vaporator reserve ends when one stands (INSIDE_MAX 3 never allows a second); the
 elevator logs its chase every tenth round.
 
+**Stage 23:** RandomSoup1 as A alive to **r3041** (from r2967): reclaimed 157 all game (from 5,016), the shell 978 at
+r2700 and 1,100 at r3000 against water 911, and it fell only when the water passed 1,100 at r3040 -- the arithmetic
+of 16 holders on 16 tiles, half a dirt a tile a round, exactly. g_iter9's eight-tile wall with 17 bodies rises at
+twice that rate, so a 16-tile shell needs twice the bodies alive at the end to tie; the 25 we had at r2500 were 16
+by r2900 (the ten outer holders drowned at their own tiles, which needed the same dirt as an inner one). Prison to
+r2750 (from 2708), Squares to r2858 (from 2834). Lifts on RandomSoup1: 14, the last at r1053, then `waiting=2` with
+1,500-2,700 soup for 2,000 rounds again. The board at r1350 says why: **a landscaper stands on the gate.** At
+r1064 the elevator lifted a body for (16,5), the tile it had sent the previous body to at r1048; on arrival it was
+taken, no other target was free, and the fallback dropped the body "anywhere" -- on the gate (20,6), where it held
+for the rest of the game. **No vaporator on any map:** with the center at (17,6) the only vaporator sites are
+(17,5) and (17,7), reachable only from the yard, and stage 23's builder may not stand there; the school's reserve
+then sat on the soup all game (Squares: 9 bodies, soup 250-350, the center's drones took every 400). **Prison:**
+the gate (2,0) is on the map edge, its outer neighbours are off the map, and the elevator that reached it was
+trapped there (its only exits were held shell tiles and the forbidden interior) -- one lift, and a drone stuck on
+the yard tile (1,1) behind it.
+
+Stage 24: the fallback drop never lands on the gate or its approach (the yard is fine; else the elevator keeps
+holding and waits on the approach); a tile lifted for in the last 30 rounds is not chosen again; the yard is the
+two ring tiles beside the gate (not the school's four neighbours), and the builder builds from a yard tile but
+never idles on one; the school goes on the cardinal tile whose gate and approach are on the map; a body inside
+never picks an outer tile.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
