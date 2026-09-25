@@ -1178,6 +1178,15 @@ g_iter7 loses at the map's flood round in 6.6% of its ladder games (19 of 288; g
 6-7 such losses; a finding at 2 or fewer (P about 0.03 at the incumbent's rate). The arm's power is thin -- the
 gate decides, the arm says whether the flood-round deaths moved.
 
+**Gate 40c: REJECT at 34-46 (42.5%)** after five batches (11-5, 8-8, 5-11, 6-10, 4-12). The losses are late: 43
+of 46 end past r2900 with the HQ destroyed -- a wall shorter than g_iter7's, not flood-round deaths (one of those,
+against two flood-round wins). Worst maps InADitch 1-4, RandomSoup2 1-4, then eight maps at 0-2. The diagnostic
+maps were the wrong sample: on RandomSoup1 the step never fired, but on maps with soup beside the ring a miner
+*mining* stands still for 20 rounds too, and with a landscaper within 2 (the seats are there) it steps onto the
+ring -- "boxed in" was measured as "not moved", which a working miner also is. Reproduction next (the seeds are
+recorded): InADitch as A (seed 625931922) and RandomSoup2 as B (seed 158101714), the step logged with the soup
+carried and the free directions, against g_iter7 vs itself on the same seed.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
