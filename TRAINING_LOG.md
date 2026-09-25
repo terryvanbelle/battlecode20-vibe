@@ -1707,6 +1707,17 @@ doorstep, the bank) tuned that design; every structural try (guns on a site, the
 fact that nothing of ours outlives the flood. DESIGN.md's plateau raised the producers; the field does not raise
 them, it encloses them. **The next program is the enclosure**, written up in DESIGN.md and HANDOFF.
 
+## The enclosure, stage 1: `arch_enclosure` (2026-09-25, from g_iter9)
+
+The archetype is g_iter9 with the wall rewritten: no seats; a landscaper takes the nearest free shell tile
+(Chebyshev 2, then 3 beside a held 2) within 3 of its own elevation, keeps it at the water 60 rounds out plus 2,
+equalises the lowest adjacent shell tile, and digs the quarry first (ring tiles, never the HQ or a building), then
+outside; a landscaper inside a closed shell is a feeder (quarry to the lowest adjacent shell tile). The school,
+center, guns and vaporators are built on ring tiles from beside them (at most six, the yard stays free); the
+refinery stays outside; miners may cross the ring; the school builds to 48. First diagnostic (`diagenc1`, seed
+41, against g_iter9): RandomSoup1 A, Toothpaste B, Prison A, GSF B -- tiles held at 2 and 3, feeders, the shell's
+minimum at r500-3000, the interior, bodies and buildings by round, the HQ's fate.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
