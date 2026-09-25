@@ -2070,6 +2070,13 @@ shell tile they picked (the stage-24 rule bars only outer tiles from inside) rou
 low tile in the shell, and one stopped there (its target a cliff beyond). The elevator logged a waiter and a
 target 60 times and never lifted. Stage 32: a landscaper never steps onto the gate.
 
+**Stage 32: 78 lifts, 34 bodies at r700 on RandomSoup1, alive to r3081; Prison and Squares unchanged (r2997, r3030).**
+Eight of the 34 drowned when the outer ring flooded at r950. The shell at r3000: fifteen tiles at 1,728-1,744 and
+one at 1,309 -- the HQ drowned through it at r3081 (water 1,309 at about r3075). That tile lags by 100 at r1000 and
+by 420 at r3000: the gate, which only its neighbours raise, under drones that hover on it to lift (three lifts after
+r950, many visits). Level with the rest, the shell would have held to about r3110. Stage 33: no lifts after r1000
+and no drone over the gate after it (the outer ring has flooded; there is nowhere left to set a body down).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

@@ -15,7 +15,7 @@ public strictfp class Drone extends Robot {
     private int pickups = 0, drops = 0, lifts = 0;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
-    @Override protected boolean allowedTile(MapLocation l) { MapLocation h = MapState.home; if (h == null) return true; int d = Nav.cheb(l, h); return d >= 3 || (d == 2 && (chasing || holdingFriend || exiting)) || (d <= 1 && exiting); }   // stage 15: never inside except on the way out (born there)
+    @Override protected boolean allowedTile(MapLocation l) { MapLocation h = MapState.home; if (h == null) return true; int d = Nav.cheb(l, h); if (round >= C.LIFT_UNTIL && MapState.gate != null && l.equals(MapState.gate) && !exiting) return false; return d >= 3 || (d == 2 && (chasing || holdingFriend || exiting)) || (d <= 1 && exiting); }   // stage 15: never inside except on the way out (born there)
     private boolean exiting = false;
 
     @Override protected void turn() throws GameActionException {
@@ -68,7 +68,7 @@ public strictfp class Drone extends Robot {
         }
         // stage 17: one elevator -- the drone with the lowest id in sight; eight of them queued on the gate and it never rose
         // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
-        if (home != null) {   // stage 27: every drone lifts (one elevator gave a lift every 25 rounds; the outer ring is dry until r950 and the bodies have to be on it by then)
+        if (home != null && round < C.LIFT_UNTIL) {   // stage 27: every drone lifts (stage 33: until LIFT_UNTIL) (one elevator gave a lift every 25 rounds; the outer ring is dry until r950 and the bodies have to be on it by then)
             RobotInfo w = null; int wd = 1 << 30;
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER || Nav.cheb(f.location, home) != 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < wd) { wd = d; w = f; } }
             if (w != null) {
