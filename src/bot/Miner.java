@@ -108,20 +108,13 @@ public strictfp class Miner extends Robot {
         // miners' only way round the ring and the landscapers' helper posts; on an edge HQ it is an arc, and a building
         // on it sealed five miners behind the HQ on Climb (Iteration 28). The circle is used only when nothing outward is free.
         Direction bestD = null; int bs = 1 << 30;
-        // Iteration 51: the school needs doors -- at least three dry tiles beside it off the HQ's ring, within 3 of its
-        // height (on Spiral it went on a spit with one: five landscapers by r121, none after, 1,930 soup banked). Passes
-        // 0-1 insist on that; passes 2-3 (the old rule) only once the builder has looked for 60 rounds.
-        boolean school = want == RobotType.DESIGN_SCHOOL;
-        for (int pass = 0; pass < 4 && bestD == null; pass++) {
-        if (pass >= 2 && (!school || round - standSince < 60)) break;
+        for (int pass = 0; pass < 2 && bestD == null; pass++)
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (Nav.cheb(n, home) < dist + ((pass & 1) == 0 && dist == C.BUILD_DIST ? 1 : 0) || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
-            if (school && pass < 2 && doors(n, home) < 3) continue;
+            if (Nav.cheb(n, home) < dist + (pass == 0 && dist == C.BUILD_DIST ? 1 : 0) || !rc.canBuildRobot(want, d) || rc.senseFlooding(n)) continue;
             int s = -rc.senseElevation(n) * 100 + n.distanceSquaredTo(MapState.center()) + nextInt(3);   // Iteration 2: highest tile first, then toward the centre
             if (s < bs) { bs = s; bestD = d; }
-        } }
-        if (bestD == null && school && round - standSince < 60) { walkCircle(home, dist); return true; }   // Iteration 51: look along the circle for a site with doors
+        }
         if (bestD == null) { nav.setTarget(home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); nav.step(); return true; }
         rc.buildRobot(want, bestD);
         Debug.log("@build t=" + want.ordinal() + " at=" + loc.add(bestD) + " soup=" + rc.getTeamSoup());
@@ -136,22 +129,6 @@ public strictfp class Miner extends Robot {
     private MapLocation stand = null; private int standSince = 0;   // Iteration 28b: where the builder builds the refinery and school
     /** The highest outward neighbour of l that a builder standing on l could build on (the engine refuses a spawn more
      *  than 3 from the builder's height); unsensed counts 0, flooded is skipped; MIN_VALUE if there is none. */
-    /** Iteration 51: dry tiles beside l, off the HQ's ring, on the map, within 3 of l's height. */
-    private int doors(MapLocation l, MapLocation home) throws GameActionException {
-        int n = 0, e0 = rc.canSenseLocation(l) ? rc.senseElevation(l) : 0;
-        for (int i = 8; --i >= 0;) { MapLocation t = l.add(DIRS[i]); if (Nav.cheb(t, home) <= 1 || !rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t)) continue; if (Math.abs(rc.senseElevation(t) - e0) > 3) continue; n++; }
-        return n;
-    }
-    private MapLocation circleTarget;
-    /** Iteration 51: walk to the next tile along the build circle (clockwise), so the site search sees new ground. */
-    private void walkCircle(MapLocation home, int dist) throws GameActionException {
-        if (circleTarget == null || loc.equals(circleTarget) || nav.stalled()) {
-            int dx = loc.x - home.x, dy = loc.y - home.y; int ax = dx, ay = dy;
-            for (int k = 0; k < 3; k++) { if (ay == -dist && ax < dist) ax++; else if (ax == dist && ay < dist) ay++; else if (ay == dist && ax > -dist) ax--; else if (ax == -dist && ay > -dist) ay--; else { ax = dist; ay = -dist; } }
-            circleTarget = new MapLocation(home.x + ax, home.y + ay); Debug.log("@schoolwalk to=" + circleTarget);
-        }
-        nav.setTarget(circleTarget); nav.step();
-    }
     private int outwardElev(MapLocation l, MapLocation home, int dist) {
         int best = Integer.MIN_VALUE, e0 = Integer.MIN_VALUE;
         try { if (rc.canSenseLocation(l)) e0 = rc.senseElevation(l); } catch (GameActionException ex) { }

@@ -3006,3 +3006,10 @@ five); 8 at r300 (from 5); **won at r2957** where g_iter10 as A lost (r2927). Th
 above g_iter9 (1718 +- 48) on a pool that has kept moving up; inside both error bars, so level on the ladder with the
 mirror gain in hand. The roster tier, ONSET-merged and the field-score chart follow g_iter10 (projection: 82% at +7
 days, 85% at +14, from 75.2% now).
+
+**Gate 51: 5-3 discordant in 320 pairs (concordant 154-158) -- inconclusive, under the twelve-pair floor; not kept.**
+The rule fires everywhere and changes almost nothing: most maps give the school three doors anyway, and Spiral's
+spit is one map in fifty-two. `src/cand51` kept; `src/bot` = g_iter10.
+
+Next: `census10` -- g_iter10 against itself on all 52 maps (seed 7), the same read as census9, to see which starved
+maps the miner fix lifted and what is left.
