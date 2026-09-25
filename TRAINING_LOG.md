@@ -2962,3 +2962,17 @@ before it starts.
 Next: a diagnostic on two starved maps (Spiral, GSF) with logs -- the miners' `@minerstat` (mined, deposits,
 explores, unreachable) and the builder's timeline -- to see whether the income is capped by reachable soup, by the
 walk home, or by the miners' count.
+
+**The economy diagnostic (`diagecon`, g_iter9 mirror, Spiral and GSF, seed 7):** on both maps every miner's `mined`
+count is identical at r300 and r500 -- all eight miners of each side stop mining by r300 (Spiral: mined 1-134 each,
+`soupMem=12`, `explores=1`, `unreachable` 0-1). The board at r400: the miners stand idle beside the HQ with twelve
+soup tiles in memory. The mechanism, read in the code: with a soup target set, `Miner` sets the navigator to it and,
+when `nav.step()` returns false (no legal step, or not ready), falls through to exploring, which sets the navigator
+to the explore target -- and `Nav.setTarget` resets the stall counter whenever the target changes. Next turn the
+soup target resets it again. The stall that would mark the soup unreachable never counts, and the miner freezes.
+The comment above that code names the same trap for "nearest" soup changing; this is its second door.
+
+**Iteration 50 (`src/cand50` = g_iter9 + one line):** while a soup target stands, the miner steps toward it and
+returns, never falls through to explore; the stall now counts and marks the soup unreachable after `STALL` turns,
+and the miner moves on to the next soup or explores. `@soupwait` every 25 rounds shows it waiting. `src/bot` =
+cand50. Diagnostic first (Spiral, GSF, the mirror against g_iter9): mined counts that rise after r300.
