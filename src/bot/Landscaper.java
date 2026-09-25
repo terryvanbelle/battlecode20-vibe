@@ -207,8 +207,16 @@ public strictfp class Landscaper extends Robot {
     /** Iteration 42: a tile beside one of our buildings (not the HQ) is its doorstep -- the school spawns onto it, the
      *  refinery is reached over it. Dug to -9 it is neither (GSF as B, 2026-09-25: the school's last dry neighbour was a
      *  seat's pit, two miners stood on the other two, and no landscaper came out after r300 in any of 14 losses). */
-    private boolean doorstep(MapLocation n) {   // 42b: only the buildings that spawn (every building's doorstep cost RandomSoup1 22% of ring)
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if ((f.type == RobotType.DESIGN_SCHOOL || f.type == RobotType.FULFILLMENT_CENTER) && Nav.cheb(f.location, n) <= 1) return true; }
+    private boolean doorstep(MapLocation n) throws GameActionException {
+        // 42b: only the buildings that spawn (every building's doorstep cost RandomSoup1 22% of ring); 42c: and only
+        // when the building would be left with fewer than three other tiles it can spawn onto (dry, within 3 of its
+        // elevation) -- the school keeps a door, the seats keep their dig tiles (42b cost RandomSoup1 12%)
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i];
+            if ((f.type != RobotType.DESIGN_SCHOOL && f.type != RobotType.FULFILLMENT_CENTER) || Nav.cheb(f.location, n) > 1) continue;
+            int fe = rc.canSenseLocation(f.location) ? rc.senseElevation(f.location) : 0, doors = 0;
+            for (int k = 8; --k >= 0;) { MapLocation m = f.location.add(DIRS[k]); if (m.equals(n) || !rc.onTheMap(m) || !rc.canSenseLocation(m) || rc.senseFlooding(m)) continue;
+                if (Math.abs(rc.senseElevation(m) - fe) <= GameConstants.MAX_DIRT_DIFFERENCE) doors++; }
+            if (doors < 3) return true; }
         return false;
     }
 

@@ -1310,6 +1310,14 @@ dig tiles at 2 untouchable) starve the seats. `gate42` and its arms were stopped
 recorded). **42b**: the doorstep is only the school's and the fulfillment center's (the buildings that spawn);
 `src/bot` = g_iter8 + 42b; the same checks again (RandomSoup1 A, GSF B seed 1, Toothpaste B).
 
+**42b:** GSF as B seed 1: the school's east side level at r400 (one pit, at the far corner), every tile sealed by
+r700, the HQ alive to r2922 where the control drowns at r932. Toothpaste as B level with the control. But
+**RandomSoup1 as A 677 / 2315 against 765 / 2642 (-12%) and the game lost (r3198) where the control wins**: the
+school on RandomSoup1 stands on high ground all game, so its doorstep costs the seats three dig tiles for 3,000
+rounds. **42c**: the doorstep holds only while the building would otherwise be left with fewer than three other
+tiles it can spawn onto (dry, within 3 of its elevation) -- the school keeps a door and the seats keep their dig
+tiles wherever the school has room. RandomSoup1 A, GSF B seed 1, Hills A again.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
