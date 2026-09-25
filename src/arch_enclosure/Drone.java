@@ -15,7 +15,8 @@ public strictfp class Drone extends Robot {
     private int pickups = 0, drops = 0, lifts = 0;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
-    @Override protected boolean allowedTile(MapLocation l) { MapLocation h = MapState.home; if (h == null) return true; int d = Nav.cheb(l, h); return d >= 3 || (d <= 2 && (chasing || holdingFriend)); }
+    @Override protected boolean allowedTile(MapLocation l) { MapLocation h = MapState.home; if (h == null) return true; int d = Nav.cheb(l, h); return d >= 3 || (d == 2 && (chasing || holdingFriend || exiting)) || (d <= 1 && exiting); }   // stage 15: never inside except on the way out (born there)
+    private boolean exiting = false;
 
     @Override protected void turn() throws GameActionException {
         sense(); if (round % 3 == 2) readBlock(); probeEdges();
@@ -66,6 +67,8 @@ public strictfp class Drone extends Robot {
             }
         }
         // stage 8: a drone at rest occupies its tile -- on the shell it makes a hole nobody can hold. Out to Chebyshev 3 first.
+        if (home != null && Nav.cheb(loc, home) <= 1) {   // stage 15: born inside -- out through the gate, then away
+            MapLocation g = gate(home); exiting = true; nav.setTarget(g != null ? g : home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); boolean moved = nav.step(); exiting = false; if (moved) return; }
         if (home != null && Nav.cheb(loc, home) <= 2) {   // stage 9: to the nearest free on-map tile at Chebyshev 3 (a corner HQ has no tile straight out)
             MapLocation out = null; int od = 1 << 30;
             for (int dx = -3; dx <= 3; dx++) for (int dy = -3; dy <= 3; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 3) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy);

@@ -33,7 +33,11 @@ public strictfp class Landscaper extends Robot {
         if (tile == null || (!tile.equals(loc) && occupiedByOther(tile))) tile = pickShell(home);
         if (tile == null) {
             // stage 2: no feeders -- a body inside waits in the yard for a drone to lift it onto the shell; one outside attacks
-            if (Nav.cheb(loc, home) <= 1) { if (!waiting) { waiting = true; Debug.log("@yard at=" + loc); } if (rc.isReady()) feed(home); return; }
+            if (Nav.cheb(loc, home) <= 1) { if (!waiting) { waiting = true; Debug.log("@yard at=" + loc); }
+                // stage 15: wait on the yard tile beside the gate, where the elevator can reach us without coming in
+                MapLocation g = gateTile(home);
+                if (g != null && Nav.cheb(loc, g) > 1 && rc.isReady()) { for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (Nav.cheb(n, home) == 1 && Nav.cheb(n, g) == 1 && rc.canMove(DIRS[i])) { rc.move(DIRS[i]); loc = rc.getLocation(); return; } } }
+                return; }
             attacker = true; Debug.log("@attacker shell full"); attack(); return;
         }
         waiting = false;

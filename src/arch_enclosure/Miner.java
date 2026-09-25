@@ -151,7 +151,10 @@ public strictfp class Miner extends Robot {
             if (rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) { if (r.type != RobotType.DESIGN_SCHOOL) buildings++; continue; } if (r != null || rc.senseFlooding(t)) continue; }
             if (school != null && Nav.cheb(t, school) <= 1) continue;   // the yard: the school's two ring neighbours stay free for its spawns
             if (want == RobotType.DESIGN_SCHOOL && school != null) return false;
-            int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; site = t; } }
+            if (want == RobotType.DESIGN_SCHOOL && t.x != home.x && t.y != home.y) continue;   // stage 15: the school on a cardinal ring tile, so one gate touches both yard tiles
+            int d = loc.distanceSquaredTo(t);
+            if (want == RobotType.FULFILLMENT_CENTER && school != null && Nav.cheb(t, school) != 2) d += 10000;   // stage 15: the center two from the school, beside a yard tile: its drones are born beside the gate
+            if (d < bd) { bd = d; site = t; } }
         if (site == null || (want != RobotType.DESIGN_SCHOOL && buildings >= C.INSIDE_MAX)) return false;
         if (!loc.isAdjacentTo(site) && Nav.cheb(loc, home) == 1) {   // stage 13: no site beside us -- stand on the free tile itself; its ring neighbours are then beside us (one vaporator was built, then the builder sat between it and the center for 2,000 rounds)
             nav.setTarget(site); if (nav.stalled()) { buildPause = round + 50; return false; } nav.step(); return true; }

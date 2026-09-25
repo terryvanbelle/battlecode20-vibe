@@ -1834,6 +1834,14 @@ corner HQ's gate (two steps out from the school) is off the map. Stage 14: three
 gate falls back to the nearest on-map shell tile beside the yard, and the elevator lifts only miners standing on the
 yard (the builder never does).
 
+**Stage 14: 17-19 bodies, and the drones are inside.** The school's trace at r1500 shows two drones standing on
+interior tiles beside two waiting landscapers, `want=false`: drones are born at the center (on the ring) and the
+elevator chased waiters into the yard, and once inside a drone cannot get out either -- every shell tile but the
+gate is held -- so it lifts a waiter, finds no way to the shell, and sets it down in the yard again (27 and 75
+lifts on RandomSoup1 and Squares for no new holders). Stage 15: the school on a cardinal ring tile so that one
+gate touches both yard tiles; the center two tiles from the school so its drones are born beside the gate; drones
+never enter the interior except to leave it through the gate; a waiter walks to the yard tile beside the gate.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
