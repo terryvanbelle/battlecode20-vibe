@@ -84,6 +84,8 @@ map), or the interior floods and the HQ with it. The first build is an archetype
 against g_iter9 in the mirror and read for the shell's completion round and its height at r1000-3000; then the
 bot. This is a multi-session program; every stage needs its diagnostic before its gate.
 
+**Stage 35 (2026-09-25 evening) is the reference configuration:** every hole closed (the gate, the builder, stray miners, lift loops), the shell level at 1,760 at r3000 on RandomSoup1, alive to r3139 / r3106 / r3038 on RandomSoup1 / Prison / Squares -- and g_iter9's wall (2,535 at r3000) outlives it everywhere. The bound below is reached.
+
 **State after twenty-seven stages (2026-09-25, `src/arch_enclosure`, TRAINING_LOG "The enclosure, stage 1" onward):**
 the inner shell closes and holds (16 tiles, level to within ten, 1,200 at r2000 on RandomSoup1), the interior stays
 at ground all game with the school, the center and a vaporator on it; every drone lifts waiting landscapers out

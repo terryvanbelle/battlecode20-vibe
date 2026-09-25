@@ -2097,6 +2097,17 @@ r2997 (three lifts, six holders; untouched by the last eight stages -- its corne
 Stage 35: the gate ban is removed; a miner of ours on a shell tile is lifted out at any round by the nearest drone;
 a body set down by the fallback is not picked up again for 60 rounds.
 
+**Stage 35: the best on every map, and still short.** RandomSoup1 as A to r3139 (best r3140), the shell level at
+1,758-1,774 at r3000 (every tile within 16 -- no hole left); Prison as A to r3106 (best r3108; 100 lifts, 34 bodies
+at r1000, both vaporators); Squares as B to r3038 (best). g_iter9 outlives it on all three. With no hole, the shell's
+height is the program's whole answer: 1,760 at r3000 against the wall's 2,535. That is the geometry bound written
+at stage 27 -- 16 tiles, ~12 dirt a round of external digging, 0.7 a tile -- now reached with the defects gone.
+What remains is inflow: bodies placed before the outer ring floods (RandomSoup1: 33 at r700, 28 at r1000 -- the
+outer holders drown at r950 with their tiles) and interior feeders digging their own tiles (three free interior
+tiles: +0.1 a shell tile a round, small). Neither closes a 775 gap. **Checkpoint:** stage 35 is the archetype's
+reference configuration; the program's open question is now whether any enclosure of 16 tiles can out-raise an
+8-tile wall with the bodies the economy allows before the flood, and the measured answer so far is no.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
