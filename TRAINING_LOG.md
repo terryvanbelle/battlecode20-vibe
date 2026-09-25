@@ -1235,6 +1235,15 @@ Prison as B 1566 vs 2190 (two enclosed tiles lower, as before), Prison as A 1969
 vs 2706, Squares as B 1952 vs 2189. The same side wins Prison whatever the build, so these are read against a
 control -- g_iter7 against itself on the same maps (`ctrl7`), which this line never had.
 
+**Control (`ctrl7`, g_iter7 vs g_iter7, rings at r3000):** Prison A 2109 / B 1780; RandomSoup1 A 2445 / B 2616;
+Squares A 2329 / B 2182 -- the side effects are 7-18%, as large as anything the candidates showed. Read against
+it, 36e's ring is **7% lower** as Prison A (1969 vs 2109), **12% lower** as Prison B (1566 vs 1780), **11% lower**
+as Squares B (1952 vs 2182) and 2% higher as RandomSoup1 A (2502 vs 2445). One replacement a game does not pay
+for the mason's rounds, the undug tiles beside the site and the school itself. **Closed: refuted by controlled
+diagnostics, not gated.** Code kept as `src/cand36e`; `src/bot` is g_iter7. Method lesson written into
+TRAINING_ALGORITHM 4.3: a diagnostic's intermediate is read against the incumbent playing itself on the same map
+and side, never against the opposite side of the same game.
+
 
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)

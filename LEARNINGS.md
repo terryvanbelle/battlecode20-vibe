@@ -137,6 +137,11 @@ without one is a belief and is marked as such. `TRAINING_LOG.md` is the chronolo
 
 ## Method
 
+- **Read a diagnostic against a control, not against the opponent's side.** g_iter7 against itself gives
+  rings of 2109 vs 1780 on Prison and 2445 vs 2616 on RandomSoup1 at r3000: the side effect is 7-18%. Four
+  rounds of Iteration 36 diagnostics compared the candidate's ring with the incumbent's on the other side
+  and read noise as signal both ways (2026-09-25).
+
 - **A fixed engine seed makes repeated pairings the same game.** 491 of 2,825 ladder games were exact
   repeats (29% of g_iter3's), and a 240-game mirror gate held at most 104 distinct games, so every
   sequential test was overconfident. Seed every game and count a repeated cell once (2026-09-24).

@@ -140,6 +140,9 @@ Every candidate passes through these in order, and most die early. That is the d
    pre-registered with a **second arm** against the archetype that has that property; a null in
    the mirror plus a win in that arm is a finding, a null in both is a reject. Never reinterpret a
    null after seeing it.
+   A diagnostic's intermediate (ring height, mining actions, bodies) is read against the **incumbent playing
+   itself on the same map and side** (a control run), never against the other side of the same game: the side
+   effect on one map is 7-18% of the ring (2026-09-25, `ctrl7`), larger than most candidates' effects.
 5. **Submit.** Snapshot `src/g_iterN`; regression against the archetypes; a 48-game scrimmage
    block under contest rules; record it, rebuild the ladder and the roster tiers; mine the
    block (census, correlation, onset) for the next candidate; update the ledger and the state

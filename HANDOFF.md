@@ -12,10 +12,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **VM:** idle. `src/bot` = g_iter7. Iteration 36 (the replacement school, `src/cand36`, `src/cand36b`... final `src/cand36c`)
-  is closed for the session after three rounds of diagnostics: the site, mason and second school work, replacements
-  spawn (up to 26 a game), and the ring does not rise -- see the end of the Iteration 36 entry for what a reopening
-  must answer first. Iteration 35 (16 helpers) uninformative. Diagnostics run on the VM when it is idle.
+- **VM:** idle. `src/bot` = g_iter7. Iteration 36 (the replacement school) is **closed**: after five diagnostic rounds and
+  a control run (g_iter7 vs itself: side effects of 7-18% on the ring), the candidate's ring is 7-12% lower than the
+  control on three maps of four; code kept as `src/cand36e`. Iteration 35 (16 helpers) uninformative. Read every
+  diagnostic against a control from now on (TRAINING_ALGORITHM 4.3). Diagnostics run on the VM when it is idle.
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
@@ -30,7 +30,8 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
      flood beside posts it can reach. The structural candidate: a school on ground raised before r700 next to the
      distance-2 posts (DESIGN.md's plateau, reduced to one school and its posts). First job: the geometry census on
      the corpus -- which posts stay reachable from a raised distance-3 tile after r1000. Closed forms not to repeat:
-     Iterations 12, 13, 24, 30, 31, 35 (ledger).
+     Iterations 12, 13, 24, 30, 31, 35, 36 (ledger): the replacement school (36) built and spawned but one body a game
+     did not pay for its cost; a form that refills many posts, or raises bodies that never die, is what is left.
   2. **A producer that outlives the flood** (the same line, older notes). Every reviewable loss of blocks 48-50 ends with no miner, school or center and
      1,200-10,700 soup unspent; the HQ cannot spawn once its eight ring tiles are seated (r300 on). Closed forms, do not
      repeat: more helpers (Iteration 12), a second school after r700 (13), guards bought on a perch (24), more drones and
