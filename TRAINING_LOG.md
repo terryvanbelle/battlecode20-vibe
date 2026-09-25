@@ -1963,6 +1963,22 @@ two ring tiles beside the gate (not the school's four neighbours), and the build
 never idles on one; the school goes on the cardinal tile whose gate and approach are on the map; a body inside
 never picks an outer tile.
 
+**Stage 24: the lifts work.** RandomSoup1 as A: 18 bodies at r500, 26 at r700 (stage 23: 10 and 18), 27 held
+(14 outer), 40 lifts, the vaporator at r350; alive to r3018. Prison as A: 26 bodies at r1000 (from 13), 32 lifts
+(from one), the school's gate on the map now; alive to r2787 (from 2750). Squares as B: 9 bodies to r1500 as
+before (the frozen miners, income 2 a round; the center's drones take every 400), 15 by r2500, alive to r2902
+(from 2858). And RandomSoup1 still falls at r3018 with 6,755 soup unspent and 27 bodies from r1500 on: the
+inner shell was 626 at r2000 (stage 23: 672) and rose at the same half a dirt a tile a round. **The fourteen outer
+holders do nothing for it:** an outer holder deposits on its own tile until it is dry, then equalises neighbours
+at its own distance or nearer that are below its own height minus two -- and the inner tiles are 300 above it, so
+it only ever raises its own tile, to 300-500, and drowns at r2700-2900 when the water outruns half a dirt a round.
+Fourteen bodies for 1,500 rounds is 14,000 dirt, 875 an inner tile; the inner shell would have been about 1,500 at
+r2700 instead of 980, past r3100 instead of r3018. Bodies stop at 27 because there is no dry tile left to set one
+down on (the outer ring floods at r950 on this map; reclaiming never fills a pit).
+
+Stage 25: an outer holder keeps its own tile just above the water and puts everything else on the lowest inner
+tile beside it. It drowns late either way; what it dug goes into the shell first.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

@@ -100,6 +100,14 @@ public strictfp class Landscaper extends Robot {
         int myE = rc.senseElevation(loc); int need = (int) waterLevel(round + 60) + 2; int myD = Nav.cheb(loc, home);
         if (rc.getDirtCarrying() > 0) {
             if (myE < need && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; selfDeps++; return; }
+            // stage 25: an outer holder feeds the inner shell -- the lowest inner tile beside it -- and keeps its own tile
+            // only just above the water (14 outer holders on RandomSoup1 raised their own tiles to 300-500 and drowned at
+            // r2700-2900 with the inner shell at 0.5 a tile a round: 14,000 dirt that was 875 an inner tile)
+            if (myD == 3) { Direction bestD = null; int be = Integer.MAX_VALUE;
+                for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
+                    RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
+                    int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
+                if (bestD != null) { rc.depositDirt(bestD); deposits++; fed++; return; } }
             // equalise: the lowest shell tile beside us at our distance or nearer, held or not (stage 6: a hole in the
             // inner shell floods the interior; tiles at our distance are never our dig source, so there is no loop)
             Direction bestD = null; int be = myE - C.SHELL_SLACK;
