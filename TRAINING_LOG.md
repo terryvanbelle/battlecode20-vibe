@@ -1139,6 +1139,27 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 34 -- a full miner that cannot get home (2026-09-25, stacked on 33)
+
+**Census** (VM, the 311 reviewable losses of blocks 50-69, every miner's `@minerstat` at r300 and r500): of
+1,903 miners alive at both rounds, **895 (47%) mined nothing between them**; 249 losses had an idle miner and
+103 had every miner idle. By map: GSF 105 idle miners, Islands2 52, Toothpaste 50, TheHighGround 48, Climb 48,
+Hourglass 40, AMaze 39, Egg 35, Squares 34, Maze 33 -- the map-dead maps first, then everywhere.
+
+**Traces.** Islands2 (laurenschneider, block 59) miner #11226: r280-520 on a four-tile circuit beside our own
+HQ, no log line of any kind, `unreachable=0`. GSF (cormackikkert, block 50) miners #10140 and the builder
+#12669: on one tile from r280 to r520, no log line. Neither reaches the code that marks soup unreachable
+(step 4 of `work`) or the explore step: they are in step 2, a full load walking to a drop-off -- the refinery
+cut off by the seats' pits, and the HQ forbidden because the ring is (`avoidRing` once a refinery exists) --
+which had no stall handling; the builder's walks to its circle and stand had none either. Iteration 33 (loads
+of 70 before a deposit) makes this worse, which is why its mining actions rose and its bank did not.
+
+**Candidate** = cand33 + in step 2, a stall toward the refinery marks it unreachable for 200 rounds and sends
+the miner to the HQ with the ring allowed (Iteration 29's rule); a stall toward the HQ as well lets the miner
+mine a quarter of the time instead; a builder whose walk stalls pauses building for 50 rounds. Diagnostic
+(VM): Islands2, GSF, RandomSoup1 vs g_iter6 -- idle miners r300-500 per side and the stall tags; expected: idle
+miners well below the incumbent's own side, mining past r300. Gate: the mirror vs g_iter6 (the stack 33+34).
+
 ## Iteration 33 -- a deposit worth the action (2026-09-24)
 
 **Evidence** (the Iteration 32 traces): a miner beside the HQ or a refinery deposits whatever it carries every
