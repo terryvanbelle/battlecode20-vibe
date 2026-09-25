@@ -141,3 +141,7 @@ Agreed, but I'd like to keep this graph updated over time, so the extrapolation 
 ## 31. 2026-09-25
 
 Graph is great, please update it every time you submit a new candidate
+
+## 32. 2026-09-25
+
+Can you explain why cand43b, cand49b, and cand47d weren't accepted?  They all performed better in the ladder than g_iter9
