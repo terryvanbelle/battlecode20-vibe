@@ -1567,6 +1567,14 @@ against `arch_drone` (the raider archetype) on RandomSoup1 A and Prison B, with 
 control -- `@pickup home=0/1` counts, our HQ alive where the control's dies, drones alive at r1500; and against
 g_iter9 on RandomSoup1 A and Toothpaste B for the ring cost (identical is the expectation).
 
+**Diagnostic 48: the wrong archetype, and a 30% cost.** `arch_drone` never dropped anything near our HQ (no
+pickup either way; our eight drones alive all game at home). Against g_iter9 on RandomSoup1 A the ring read
+**1922 against 2744 (-30%)** and the game was lost: a hovering drone occupies its tile like anything else, and
+eight of them patrolling anywhere within 4 of the HQ sat on seats' ring tiles and helpers' posts. **48b**: drones
+never enter the ring, and the circle only on the way to a pickup; the patrol is the annulus at 3-4. The raider
+archetype is `arch_raider` (carriers fetch our landscapers and drop theirs beside our HQ at r1000): RandomSoup1 A
+and Prison B against it, with g_iter9 controls; RandomSoup1 A and Toothpaste B against g_iter9 for the cost.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

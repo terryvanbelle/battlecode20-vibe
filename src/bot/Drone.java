@@ -14,6 +14,11 @@ public strictfp class Drone extends Robot {
     private int pickups = 0, drops = 0;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
+    /** 48b: a hovering drone occupies its tile like anything else; on the ring it blocks a seat, on a post a helper.
+     *  Never the ring, and the circle (Chebyshev 2) only on the way to a pickup (the first form hovered anywhere within
+     *  4 of the HQ and cost RandomSoup1 30% of ring). */
+    private boolean chasing = false;
+    @Override protected boolean allowedTile(MapLocation l) { MapLocation h = MapState.home; if (h == null) return true; int d = Nav.cheb(l, h); return d >= 3 || (d == 2 && chasing); }
 
     @Override protected void turn() throws GameActionException {
         sense(); if (round % 3 == 2) readBlock(); probeEdges();
@@ -41,16 +46,17 @@ public strictfp class Drone extends Robot {
             int hd = home == null ? 9 : Nav.cheb(e.location, home);
             long s = (e.type == RobotType.LANDSCAPER ? 0 : 1000000L) + (hd <= 1 ? 0 : 10000L) + loc.distanceSquaredTo(e.location);
             if (s < bs) { bs = s; tgt = e; } }
+        chasing = tgt != null;
         if (tgt != null) {
             if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@pickup t=" + tgt.type.ordinal() + " id=" + tgt.ID + " home=" + Nav.cheb(tgt.location, home)); return; }
             if (gun == null || tgt.location.distanceSquaredTo(gun) > 15) { nav.setTarget(tgt.location); nav.step(); return; }
         }
-        // patrol: a box around our HQ
-        if (patrol == null || loc.distanceSquaredTo(patrol) <= 2 || (home != null && Nav.cheb(patrol, home) > C.GUARD_BOX)) {
-            if (home != null) patrol = new MapLocation(home.x + nextInt(2 * C.GUARD_BOX + 1) - C.GUARD_BOX, home.y + nextInt(2 * C.GUARD_BOX + 1) - C.GUARD_BOX);
+        // patrol: the annulus at Chebyshev 3..GUARD_BOX around our HQ (48b: never the ring or the circle)
+        if (patrol == null || loc.distanceSquaredTo(patrol) <= 2 || (home != null && (Nav.cheb(patrol, home) > C.GUARD_BOX || Nav.cheb(patrol, home) < 3))) {
+            if (home != null) { for (int t = 0; t < 8; t++) { MapLocation p = new MapLocation(home.x + nextInt(2 * C.GUARD_BOX + 1) - C.GUARD_BOX, home.y + nextInt(2 * C.GUARD_BOX + 1) - C.GUARD_BOX); if (Nav.cheb(p, home) >= 3) { patrol = p; break; } } }
             else patrol = new MapLocation(loc.x + nextInt(9) - 4, loc.y + nextInt(9) - 4);
         }
-        nav.setTarget(patrol); if (!nav.step()) patrol = null;
+        if (patrol != null) { nav.setTarget(patrol); if (!nav.step()) patrol = null; }
     }
 
     /** The nearest flooded tile in sight, or null. */
