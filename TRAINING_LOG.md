@@ -1344,6 +1344,11 @@ block of 320 pairs is pre-registered now (`gate42c-2`, the record carried with `
 pairs is the sign test on every discordant pair, twelve or more required, p < 0.01 an accept and p < 0.10 a
 provisional keep -- the same rule at twice the cap, declared before the block, not after.
 
+**Gate 42c at 640 pairs: discordant 12-2, concordant 314-312 -- PROVISIONAL** (sign test p = 0.013 on 14
+discordant pairs: past the twelve-pair floor and under 0.10, not under 0.01). The doorstep changed 14 games in 640
+and won 12 of them; the arm was level with no flood-round loss. **Kept provisionally: `src/bot` = g_iter8 + 42c
+(`src/cand42c`), no snapshot, no submission; the next candidate stacks on it and is tested against g_iter8.**
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

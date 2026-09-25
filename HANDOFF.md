@@ -28,8 +28,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   when the building would be left fewer than three doors (the school's spawn tiles were a pit and two boxed miners
   on GSF; the unlimited forms 42/42b cost RandomSoup1 22%/12%), and no building goes on a ring tile (a refinery
   there drowned the HQ on seed 1). `src/bot` = `src/cand42c` (on g_iter8). Arm posted (49-47, 1710 +- 76,
-  0 flood-round losses). Gate 42c 7-1 discordant in 320 pairs (below the twelve the cap rule needs): **`gate42c-2`
-  running**, a second pre-registered block of 320 pairs; the verdict is the sign test on all discordant pairs at 640.
+  0 flood-round losses). **Gate 42c at 640 pairs: 12-2 discordant (p = 0.013): PROVISIONAL.** `src/bot` = g_iter8 + 42c
+  (= `src/cand42c`); the next candidate stacks on it and its paired gate runs against g_iter8 (the incumbent stays
+  g_iter8). A stack that reaches ACCEPT is snapshotted; one that REJECTS loses its newest member.
+- **VM idle.**
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>
