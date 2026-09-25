@@ -1164,6 +1164,10 @@ ring 2290 at r3000 against the control's 2445 (-6%): the seats' dig restriction 
 Climb needs its own trace (the corner beside the map's water), and the rule must not touch maps whose seats fill by
 r200 -- a form that spares only walkways a landscaper is actually walking, or that a stalled seat-seeker asks for.
 
+Census (VM, every reviewable loss of g_iter6 and g_iter7 ending within 3 rounds of the map's flood round): 89
+games, **78 of them with at least one ring tile under 10 at r500** -- the flood-round death is an unseated tile in
+nearly every case; GSF 19, Hills 18, Spiral 15, Climb 13, WateredDown 7, Toothpaste 5. Five maps of 52 carry it.
+
 ## Iteration 37 -- one gun on the site (2026-09-25, on g_iter7)
 
 **Why now.** The raid table (five band opponents with clocks, a third of the band's losses) and two closed forms:
