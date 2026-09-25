@@ -3071,3 +3071,10 @@ and the no-miner rule held us at four miners and four landscapers with 300-600 s
 reached 26 bodies. Killing the spawner is the wrong answer to a spawner that is rebuilt for 150; the HQ's own
 bodies are. Iteration 53 closed as built (`src/cand53` kept); `src/bot` = g_iter10. A reopening would keep the
 miners, keep the landscapers on the HQ, and only bury an enemy school a landscaper already stands beside.
+
+**A reproducible rush loss for the next attempt:** g_iter10 as A against `arch_rush` on InADitch (seed 7) dies at
+r292 -- our own archetype reproduces poortho's result. The control's trace: the HQ holds four miners all game (the
+miner reserve of 200 never reached), the school at (38,33) builds four landscapers by r116 and none after with
+143-214 soup (its doors, not its soup: `tryBuild` fails; the rusher's landscapers stand and dig beside it), two
+refineries at r259/r283 take what soup there is. The harness for any rush idea:
+`GAME_SEED=7 tools/run-dev.sh <bot> arch_rush InADitch <replay>` (and FourLakeLand).
