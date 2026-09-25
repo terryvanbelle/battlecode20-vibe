@@ -1421,6 +1421,26 @@ the game lost at r2767 against r2922. Spiral as B alone better (5-6 landscapers 
 at r1000), lost either way. Three of four down: more early miners buy income the school cannot turn into bodies
 before the lowlands flood. **`src/bot` back to g_iter9.** Not gated.
 
+## The raids, read again (2026-09-25)
+
+g_iter8's raid-window losses are 65% of its losses, and 54 of the 86 are against `team4` and `EmaPajic`, both
+locked at 10% (never reviewed). The allowed raiders show the shape (`--threat`): **benzyx** sends 4-5 drones at
+r1200 that carry off 3-5 of our landscapers (15 to 10, 10 to 7), then 8-9 drones with 1-3 landscapers at r1600,
+and the HQ is buried within twenty rounds (r1618-1631): the seats are lifted off the ring, the enemy landscapers
+dropped where they stood. **cormackikkert** shows nothing within 15 of our HQ until r2100 and kills it at
+r2132-2215. Nothing but shots stops a pickup (the HQ fires once a round), and every gun form was priced by the
+unpaired mirror (31 at 7-25, 31b 13-35, 37 at 2-14 in one batch). **`gate37p`**: `cand37` (one gun on a raised
+site) against g_iter7 again, paired, 320 pairs -- was the 2-14 the draw or the gun?
+
+## Iteration 45 -- seats by the map's own flood round (2026-09-25, on g_iter9)
+
+**Why.** Three of g_iter8's four flood-round deaths are on maptestsmall (r258) and WateredDown (r466): the HQ
+floods before `SEATS_BY` 400, when unseated tiles may first be raised and the seat walk begins. **Change:**
+`MapState.floodRound(e)` inverts the water curve; `seatsBy` = `SEATS_BY`, or 150 rounds before the HQ's own flood
+round when that is sooner (floor 100); the three `SEATS_BY` reads in `Landscaper` use it (`@seatsby` logged).
+**Diagnostic** (VM, seed 41, vs g_iter9, controls g_iter9 vs itself): WateredDown and maptestsmall, both sides --
+`@seatsby` 314 and 106, the walk firing before the flood round, open tiles at r150-450, the HQ outliving it.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

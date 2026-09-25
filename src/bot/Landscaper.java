@@ -41,6 +41,13 @@ public strictfp class Landscaper extends Robot {
         wall(home);
     }
 
+    /** Iteration 45: SEATS_BY, or earlier on a map whose HQ floods before r550. */
+    private int seatsBy() throws GameActionException {
+        if (MapState.seatsBy >= 0) return MapState.seatsBy;
+        MapLocation h = MapState.home; int e = h != null && rc.canSenseLocation(h) ? rc.senseElevation(h) : rc.senseElevation(loc);
+        int by = MapState.seatsBy(e); Debug.log("@seatsby " + by + " hqElev=" + e); return by;
+    }
+
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
         if (!rc.canSenseLocation(l)) return false;
         RobotInfo r = rc.senseRobotAtLocation(l);
@@ -126,7 +133,7 @@ public strictfp class Landscaper extends Robot {
             Direction bestD = null; int be = Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !exposed(n) || !rc.canDepositDirt(d)) continue;
                 RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && r.type.isBuilding()) continue;
-                if (round < C.SEATS_BY && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: never raise an unseated tile early
+                if (round < seatsBy() && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: never raise an unseated tile early
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); helperDeps++; return; }
         }
@@ -143,7 +150,7 @@ public strictfp class Landscaper extends Robot {
     private void wall(MapLocation home) throws GameActionException {
         if (!rc.isReady()) return;
         Direction toHQ = loc.directionTo(home);
-        if (round >= C.SEATS_BY && seatWalk(home)) return;   // Iteration 41: an open ring tile with no seat beside it gets one
+        if (round >= seatsBy() && seatWalk(home)) return;   // Iteration 41: an open ring tile with no seat beside it gets one
         // 1. the HQ is being buried: dig it out
         if (hqInfo != null && hqInfo.dirtCarrying > 0 && rc.canDigDirt(toHQ)) { rc.digDirt(toHQ); hqDigs++; digs++; Debug.log("@hqdig buried=" + hqInfo.dirtCarrying); return; }
         // 2. an enemy building or unit adjacent: bury it (deposit) if we carry, it is cheap denial
@@ -154,7 +161,7 @@ public strictfp class Landscaper extends Robot {
             int myE = rc.senseElevation(loc); Direction bestD = Direction.CENTER; int be = exposed(loc) ? myE : Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !rc.canSenseLocation(n) || !exposed(n)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
-                if (round < C.SEATS_BY && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: an unseated tile stays climbable
+                if (round < seatsBy() && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: an unseated tile stays climbable
                 int e = rc.senseElevation(n); if (e < be - C.WALL_LEVEL_SLACK) { be = e; bestD = d; } }
             if (be != Integer.MAX_VALUE && rc.canDepositDirt(bestD)) { rc.depositDirt(bestD); deposits++; if (bestD != Direction.CENTER) equalised++; return; }
         }
