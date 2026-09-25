@@ -1534,6 +1534,13 @@ a paired REJECT refutes the form whatever the arm says (as it did 31 and 37); a 
 to the arm: raid-window losses (r700-2900, not the flood round) at most 22 of 96 (g_iter9's 35% gives 34; the
 chance of 22 or fewer at that rate is about 1%) and the rating within g_iter9's interval accepts it as g_iter10.
 
+**Arm 47d: 43-53 (44.8%), rating 1765 +- 74 (g_iter9 1735 +- 48), raid-window losses 22 of 96 -- on the bar**
+(`mvpatel2000` 6, `EmaPajic` 5, `cormackikkert` 4, `benzyx` 3, `winkelmantanner` 3); late 21, early 7, flood-round
+3. **Gate 47d at 160 pairs: discordant 0-7**, the gun built in 2-6 games of each 16 (`fired`): the mirror sees only
+the price, and every flip so far is against. Two more arm blocks (`arm47d-c`/`-d`) are queued so the field's
+answer rests on 192 games whatever the gate says -- the raid answers are the one line where the mirror and the
+ladder disagree by construction, and the owner's question in HANDOFF needs the numbers.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
