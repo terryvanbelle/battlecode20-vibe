@@ -50,6 +50,11 @@ public strictfp class Miner extends Robot {
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (builder && build()) return;
+        if (!builder && round < 750 && siteReady() && rc.getTeamSoup() >= RobotType.DESIGN_SCHOOL.cost) {   // Iteration 36: the nearest miner in sight builds it if the builder cannot
+            boolean nearest = true; int d = loc.distanceSquaredTo(MapState.site);
+            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER && f.location.distanceSquaredTo(MapState.site) < d) { nearest = false; break; } }
+            if (nearest && buildSchool2()) return;
+        }
         work();
     }
 
@@ -63,6 +68,7 @@ public strictfp class Miner extends Robot {
         if (rush) { if (soup < RobotType.DESIGN_SCHOOL.cost) return false; want = RobotType.DESIGN_SCHOOL; Debug.log("@rush school"); }   // Iteration 29: the school before the refinery
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
+        else if (builtSchool > 0 && siteReady() && soup >= RobotType.DESIGN_SCHOOL.cost) return buildSchool2();   // Iteration 36
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
@@ -140,6 +146,28 @@ public strictfp class Miner extends Robot {
             if (e > best) best = e;
         }
         return best;
+    }
+
+    // ---------------------------------------------------------------- Iteration 36: the replacement school
+    /** The site is posted, raised and unbuilt (by the chain, or by our own sight). */
+    private boolean siteReady() throws GameActionException {
+        MapLocation s = MapState.site; if (s == null || MapState.siteBuilt || round >= 750) return false;
+        if (rc.canSenseLocation(s)) { RobotInfo r = rc.senseRobotAtLocation(s); if (r != null && r.type.isBuilding()) return false;
+            int e0 = rc.canSenseLocation(MapState.home) ? rc.senseElevation(MapState.home) : rc.senseElevation(loc);
+            return !rc.senseFlooding(s) && rc.senseElevation(s) >= e0 + C.SITE_RAISE; }
+        return MapState.siteRaised;
+    }
+    private int siteWait = 0;
+    /** Stand on the stand and build; walk there otherwise; wait on the stand until the tile is free and we are ready. */
+    private boolean buildSchool2() throws GameActionException {
+        MapLocation s = MapState.site, st = siteStand(s, MapState.home);
+        if (loc.equals(st)) {
+            if (rc.canBuildRobot(RobotType.DESIGN_SCHOOL, loc.directionTo(s))) { rc.buildRobot(RobotType.DESIGN_SCHOOL, loc.directionTo(s)); builtSchool++; siteWait = 0; Debug.log("@build t=4 at=" + s + " soup=" + rc.getTeamSoup() + " school2=true"); return true; }
+            if (rc.isReady() && ++siteWait > 30) { siteWait = 0; return false; }
+            return true;
+        }
+        if (nav.target() == st && nav.stalled()) { return false; }
+        nav.setTarget(st); nav.step(); return true;
     }
 
     // ---------------------------------------------------------------- worker

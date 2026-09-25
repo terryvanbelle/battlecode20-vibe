@@ -1197,6 +1197,15 @@ which the helpers must then not dig; and the capacity question -- two or three p
 sites on opposite sides, or the school placed where the most posts touch it. The claim churn (five masons)
 wants the HQ's manned bit read before a claim, as the gun perch found.
 
+**36b** (the mason steps onto the site and raises the posts beside it to hqElev+3; seats never dig those posts;
+claims throttled): the replacements fire -- Prison as B 17 spawned (L=40 at r1000), RandomSoup1 as A 26 -- and
+the ring is **lower**: Prison 1367 vs 2190 (two tiles at 890 against 964 on the others at r2000), RandomSoup1
+2449 vs 2630; Prison as A 0 replacements (the posts beside the site never freed), ring 1979 vs 1779. Read from the
+board: a newborn on a post looks for a seat first, stalls under a cliff, strikes posts off and ends an attacker;
+attackers "carry a load before walking over" by digging any empty adjacent tile -- including a dead seat's ring
+tile, which they dug down beside the school. Both are fixed in **36c** (a newborn beside the school holds its own
+post; nobody digs a ring tile or the posts beside the school), diagnostics running.
+
 
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
