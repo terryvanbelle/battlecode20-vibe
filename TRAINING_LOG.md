@@ -2086,6 +2086,17 @@ tiles are unheld by design. So the gate has one feeder where every other shell t
 outer ring's. Stage 34: the builder never leaves the interior once the school stands; the lift cutoff is reverted
 (the gate rule for drones after r1000 stays: harmless).
 
+**Stage 34: the gate is fixed and two new holes open.** RandomSoup1 as A: the gate 1,510 at r3000 (from 1,309), level
+with its side -- but the west side (dx=-2, five tiles) at 1,050-1,071 and alive only to r3031: three miners stood on
+the west shell tiles (16,4), (16,6), (17,8) from r700 to the end (mined ~40 each, then trapped), so those tiles had no
+holder. And one landscaper was lifted 80 times between r962 and r1227: picked up for a target that went, set down
+on the yard by the fallback, picked up again. Squares as B fell to r2962 with four lifts: the "harmless" drone rule
+of stage 33 (no drone on the gate after r1000) is exactly what Squares' late lifts need. Prison as A unchanged at
+r2997 (three lifts, six holders; untouched by the last eight stages -- its corner layout is its own problem).
+
+Stage 35: the gate ban is removed; a miner of ours on a shell tile is lifted out at any round by the nearest drone;
+a body set down by the fallback is not picked up again for 60 rounds.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
