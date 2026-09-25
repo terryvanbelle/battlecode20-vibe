@@ -1656,6 +1656,25 @@ the wall race on the ladder is not lost by the forty of ring an endgame rule buy
 bodies missing after the flood, on maps and against opponents that take them. A body census of these games
 (landscapers and drones alive at r700-2000, both sides) follows.
 
+**The body census (56 late losses, both sides):**
+
+| round | our landscapers (median) | theirs | our drones | theirs |
+|---|---|---|---|---|
+| r700 | 16 | 20 | 0 | 4 |
+| r1000 | 14 | 29 | 0 | 5 |
+| r1500 | 13 | 40 | 0 | 9 |
+| r2000 | 7 | 40 | 0 | 8 |
+
+By opponent at r1000 / r2000, ours against theirs: `laurenschneider` 16/27 and 14/40; `mvpatel2000` 5/34 and 1/54
+(32 drones at r1500); `winkelmantanner` 20/30 and 0/43 (**124 drones at r1500**); `poortho` 11/28 and 10/28.
+**Their landscaper count rises after the flood -- from 29 at r1000 to 40 at r2000 -- while ours falls from 14 to
+7; they produce bodies through the flood, and the two with drone fleets carry ours off.** Our drones: none, in
+any of the 56 games (the center is never built on the ladder). This is the wall race in one table: the intake
+ceiling is 0.5 dirt a body a round and they have three to six times the bodies at the ring after r1500. The
+two structural lines HANDOFF has carried all session -- a producer that outlives the flood, and something that
+stops a pickup -- are the whole of the late losses, and the raid losses besides. Where their schools stand
+(count, elevation, distance from their HQ at r1000-2000) is the next census, from the same replays.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
