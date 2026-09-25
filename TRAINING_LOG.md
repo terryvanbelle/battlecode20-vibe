@@ -3046,3 +3046,19 @@ poortho (22). The onset table (219 games) keeps its order: worth and mines predi
 from r250, landscapers from r400 (+0.57 at r900). Next: a seat census in our own late game (g_iter10 mirror on
 RandomSoup1 and Squares, `--seats` at r1500-2700) -- whether anything of ours stands on a ring or helper tile late
 (the enclosure found a parked builder and hovering drones each cost a holder).
+
+**The seat census (`seats10`, g_iter10 mirror, RandomSoup1 and Squares):** clean -- no open seat, no miner or drone
+on the ring, 20 landscapers within 3 of the HQ from r1500 to r2500; the wall 2,005 / 2,485 / 2,610 at r2000 / 2500 /
+2750 on RandomSoup1 (1.0 a tile a round to r2500, 0.5 after, when the helpers drown). Nothing of ours blocks the wall.
+
+**The early losses (20 of 137 before r1300):** nine are poortho at r137-276 (InADitch three times, FourLakeLand,
+maptestsmall, WateredDown, TwoLakeLand, Squares, AMaze). poortho is reviewable (26.7% for g_iter10, 30.6% over all
+builds; `tier-check` passes). InADitch as B, r159: poortho's school at (36,6), beside our HQ (37,6), from r80; four of
+its landscapers bury the HQ 3 -> 17 -> 32 -> 50 by r159. Ours: the school at (38,3), one landscaper by r100 and one
+after, 75-132 soup, seven miners (three built at r60-80) -- one landscaper digging the HQ out against four burying it.
+
+**Iteration 53 (`src/cand53`, `src/bot` = cand53):** (1) under a rush, no miner past the early four while it lasts
+(it was only until our school stood); (2) a landscaper's first job, until r600, is an enemy school or center within
+2 of our HQ: walk beside it, dig anywhere but the HQ or a building, deposit on it (15 dirt kills it) -- unless the HQ
+is buried to 35, then the HQ first. Diagnostic `diag53` against `arch_rush` (our own rusher; unrestricted) on
+InADitch, Squares and FourLakeLand, both sides, with g_iter10 as the control.
