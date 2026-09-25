@@ -29,6 +29,7 @@ public strictfp class Landscaper extends Robot {
         // stage 3: a tile we stand beside but cannot climb is a cliff to us: give it up now, not after thirty stalls
         if (tile != null && !tile.equals(loc) && Nav.cheb(loc, tile) == 1 && rc.canSenseLocation(tile) && Math.abs(rc.senseElevation(tile) - rc.senseElevation(loc)) > GameConstants.MAX_DIRT_DIFFERENCE) { if (nBad < 8) bad[nBad++] = tile; Debug.log("@cliff " + tile); tile = null; }
         if (tile != null && !tile.equals(loc) && round % 50 == 0) Debug.log("@walk to=" + tile + " d=" + Nav.cheb(loc, tile) + " here=" + Nav.cheb(loc, home) + " myE=" + rc.senseElevation(loc) + (rc.canSenseLocation(tile) ? " tE=" + rc.senseElevation(tile) : ""));
+        if (tile == null && shell(loc) && Nav.cheb(loc, home) == 2) { tile = loc; Debug.log("@held " + tile + " d=2 (landed)"); }   // stage 6: set down by the elevator
         if (tile == null || (!tile.equals(loc) && occupiedByOther(tile))) tile = pickShell(home);
         if (tile == null) {
             // stage 2: no feeders -- a body inside waits in the yard for a drone to lift it onto the shell; one outside attacks
@@ -85,10 +86,11 @@ public strictfp class Landscaper extends Robot {
         int myE = rc.senseElevation(loc); int need = (int) waterLevel(round + 60) + 2; int myD = Nav.cheb(loc, home);
         if (rc.getDirtCarrying() > 0) {
             if (myE < need && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; selfDeps++; return; }
-            // equalise: the lowest HELD shell tile beside us, at our distance or nearer (stage 4: never an outer tile we dig from, that was a loop)
+            // equalise: the lowest shell tile beside us at our distance or nearer, held or not (stage 6: a hole in the
+            // inner shell floods the interior; tiles at our distance are never our dig source, so there is no loop)
             Direction bestD = null; int be = myE - C.SHELL_SLACK;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!shell(n) || Nav.cheb(n, home) > myD || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
-                RobotInfo r = rc.senseRobotAtLocation(n); if (r == null || r.type != RobotType.LANDSCAPER || r.team != us) continue;
+                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); deposits++; fed++; return; }
             // reclaim: with margin to spare, raise the highest outer tile beside us that is not yet dry land for a newcomer

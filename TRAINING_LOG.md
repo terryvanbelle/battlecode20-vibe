@@ -1757,6 +1757,14 @@ eight), and a school at 5 cannot spawn onto a tile at -9 (a spawn is refused mor
 -9 tile is the exception, not the rule. Stage 5: the quarry is only the ring tiles not beside the school or the
 center; the rest of the interior stays at ground for spawns and the elevator.
 
+**Stage 5: the machine runs.** Bodies 16-18 (the school spawns again), the elevator lifted 15 on Prison (twelve
+waited in the yard and were carried out), held tiles at 64-127 by r1000. Still no HQ past r1241: **holes** --
+three or four inner-shell tiles at ground on every map (nobody holds them, nobody feeds them since stage 4
+equalises only onto held tiles, walkers to them stall) and the interior floods through the first one the water
+reaches. RandomSoup1 also had no center (the builder stood beside the school, where every tile is the yard).
+Stage 6: equalise onto any inner-shell tile at our distance, held or not (never a dig source, so no loop); the
+builder stands opposite the school; a landscaper set down by the elevator holds where it lands.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
