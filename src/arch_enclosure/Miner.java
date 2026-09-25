@@ -41,7 +41,7 @@ public strictfp class Miner extends Robot {
     private void turn2() throws GameActionException {
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
         if (refineryBadUntil > 0 && round >= refineryBadUntil) { refineryBadUntil = 0; }
-        avoidRing = false;   // the enclosure: the ring is the interior, where the buildings and the quarry are   // Iteration 29: with no refinery (the school came first under a rush) the HQ is the only drop-off, ring or not; Iteration 34: likewise while the refinery is unreachable
+        avoidRing = !builder && refinery != null && refineryBadUntil == 0;   // stage 9: miners stay out of the interior once a refinery stands (five of them were trapped inside on Squares and blocked the school's yard); the builder lives there   // Iteration 29: with no refinery (the school came first under a rush) the HQ is the only drop-off, ring or not; Iteration 34: likewise while the refinery is unreachable
         if (avoidRing && onRing(loc) && rc.isReady()) {
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring

@@ -1784,6 +1784,14 @@ either -- a drone occupies a tile like anything else, and every way in is held. 
 within 2 of the HQ leaves at once; and **the gate** -- the shell tile straight out from the school is never held,
 its neighbours raise it, and the elevator lifts a waiter from there, beside the yard, without entering.
 
+**Stage 8: the elevator runs.** RandomSoup1 as A: 18 lifts, 21 landscapers, two of them holding outer tiles at
+290; the inner shell 532-545 at r2000 (0.27 a round per tile), the HQ alive to r2986. Prison as A: still 12 bodies,
+5 lifts, three holes at 5 -- its HQ is in the map's corner and the drones' exit vector points off the map, so they
+stayed on the shell. Squares as B: 8 bodies all game, five miners trapped in the interior blocking the school's
+yard (the enclosure let miners cross the ring and the shell closed behind them). Stage 9: drones leave to the
+nearest on-map tile at Chebyshev 3; miners keep out of the interior once a refinery stands (the builder lives
+there).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

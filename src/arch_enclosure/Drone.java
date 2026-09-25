@@ -53,7 +53,12 @@ public strictfp class Drone extends Robot {
             }
         }
         // stage 8: a drone at rest occupies its tile -- on the shell it makes a hole nobody can hold. Out to Chebyshev 3 first.
-        if (home != null && Nav.cheb(loc, home) <= 2) { chasing = true; nav.setTarget(new MapLocation(home.x + 3 * Integer.signum(loc.x - home.x + (loc.x == home.x ? 1 : 0)), home.y + 3 * Integer.signum(loc.y - home.y + (loc.y == home.y ? 1 : 0)))); boolean moved = nav.step(); chasing = false; if (moved) return; }
+        if (home != null && Nav.cheb(loc, home) <= 2) {   // stage 9: to the nearest free on-map tile at Chebyshev 3 (a corner HQ has no tile straight out)
+            MapLocation out = null; int od = 1 << 30;
+            for (int dx = -3; dx <= 3; dx++) for (int dy = -3; dy <= 3; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 3) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+                if (!rc.onTheMap(t) || (rc.canSenseLocation(t) && rc.isLocationOccupied(t))) continue; int d = loc.distanceSquaredTo(t); if (d < od) { od = d; out = t; } }
+            if (out != null) { chasing = true; nav.setTarget(out); boolean moved = nav.step(); chasing = false; if (moved) return; }
+        }
         // the guard: anything of theirs within the box, landscapers on the ring or beside the HQ first
         RobotInfo tgt = null; long bs = Long.MAX_VALUE;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp() || home == null || Nav.cheb(e.location, home) > C.GUARD_BOX + 2) continue;
