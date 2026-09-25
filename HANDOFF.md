@@ -38,7 +38,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
      net guns from the bank (30). An untried form must say why it avoids each of those failures.
   3. **Climb-type maps:** after g_iter6 the miners are free, but six landscapers cannot reach the west seats
      (`@badseat`) because digging beside the east seats turns row 39 into a cliff (`diag/cut-Climb.bc20`).
-  4. team4 kills us at r1565-1570 on five maps (a timed attack) but is locked at 17%; only its scores may be used.
+  4. **The timed raids** (TRAINING_LOG "Mirror gains and the field"): benzyx r1217-1228 and r1615-1624, team4 r1565-1582,
+     mvpatel r1896-1932, cormackikkert r2139-2292 -- drones lift the seats, landscapers bury the HQ, the HQ's one shot a
+     round is the only defence; a third of the band's losses. Drones as guards are closed (10, 23, 24); gun perches (31)
+     were priced far below the gate by what they reserved, not by the guns. A gun form that reserves nothing is the
+     open question; the raid arm for it is the ladder (benzyx and cormackikkert are reviewable).
 - Iterations 23, 24, 26, 27 closed earlier on 2026-09-24; TRAINING_LOG.md has every entry above with numbers.
 
 ## State (2026-09-23, evening; superseded above where they differ)

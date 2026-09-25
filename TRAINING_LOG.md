@@ -1148,6 +1148,12 @@ Per opponent: laurenschneider 50% vs 36% (36 games), poortho 38% vs 30%, EmaPaji
 same happened with g_iter5 over g_iter3 and g_iter6 over g_iter5: what the mirror rewards is what the incumbent
 lacks, and the field lacks less of it. The ladder arm belongs in every acceptance, not only the raid answers.
 
+cormackikkert, read: 17 of g_iter7's 26 losses to it end at r2139-2292 (DoesNotExist, block 70: our ring 1076 to
+their 743 at r2000, then 17 drones, 185 pickups over the game, 30 dirt onto our HQ in the last 40 rounds, the HQ
+shooting 37). It is the timed raid again, a thousand rounds after benzyx's, against a wall that was winning. The
+raid table now reads: benzyx r1217-1228 and r1615-1624, team4 r1565-1582, mvpatel r1896-1932, cormackikkert
+r2139-2292 -- five opponents of the band, each with a clock, and the HQ's one shot a round is the whole defence.
+
 ## The wall ceiling census (2026-09-25)
 
 Every landscaper's `@wallstat` counters at r1000 and r2000 in g_iter7's 145 reviewable ladder games (blocks
