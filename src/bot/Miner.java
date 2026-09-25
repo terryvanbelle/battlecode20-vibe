@@ -51,7 +51,7 @@ public strictfp class Miner extends Robot {
         if (parked) { keeperTurn(); return; }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
-        if (round >= C.PARK_FROM && !builder && park()) return;
+        if (round >= C.PARK_FROM && builder && park()) return;   // 47b: only the builder parks (three keepers cost RandomSoup1 14% of ring)
         if (builder && build()) return;
         work();
     }

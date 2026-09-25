@@ -86,12 +86,12 @@ public strictfp class Landscaper extends Robot {
         RobotInfo m = null;
         for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER && Nav.cheb(f.location, loc) == 1 && Nav.cheb(f.location, home) == 3) { m = f; break; } }
         if (m == null) return false;
-        if (site == null || !rc.canSenseLocation(site) || rc.senseFlooding(site) || Nav.cheb(site, m.location) > 1 || Nav.cheb(site, loc) > 1) {
+        if (site == null || !rc.canSenseLocation(site) || rc.senseFlooding(site) || Nav.cheb(site, m.location) > 1 || Nav.cheb(site, loc) > 1
+                || rc.senseRobotAtLocation(site) != null) {   // 47b: a gun stands on it now -- dirt there buries our own gun (both died within 150 rounds)
             site = null; int best = Integer.MIN_VALUE;
             for (int d = 8; --d >= 0;) { MapLocation n = loc.add(DIRS[d]);
                 if (Nav.cheb(n, m.location) != 1 || Nav.cheb(n, home) < 3 || !rc.onTheMap(n) || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
-                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type != RobotType.NET_GUN) continue;
-                if (r != null) continue;   // a gun stands there already: the next site is another tile
+                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null) continue;   // occupied (a gun of ours, anything): the next site is another tile
                 int e = rc.senseElevation(n); if (e > best) { best = e; site = n; } }
         }
         int target = (int) waterLevel(round + C.KEEP_AHEAD) + 2;

@@ -1496,6 +1496,16 @@ RandomSoup1 A, Toothpaste A, Prison B, Hills B -- a park by r700, the gun up by 
 r2000, the ring at r3000 within 5% of the control. Then the arm: raid-window losses at most 22 of 96 (g_iter9's
 rate gives 34).
 
+**Diagnostic 47: the parts fire, two defects.** RandomSoup1 as A: **three** miners parked at r606-607 beside three
+helpers, 55 keeps, two guns at r1150 (elevation 16) -- and both guns gone by r1300, the ring 2355 against 2744
+(**-14%**), the game lost where the control wins. Prison as B: one park at r643, two guns at r1150 and r1188
+(16 and 20), gone by r1400; ring -3%. Toothpaste as A: one park, one keep, no gun, the ring level. Hills as B:
+no miner alive to park (identical to the control). The guns die 150-250 rounds after they stand, 400 rounds before
+the water reaches 16: **the keeper buried them** -- its site stayed the gun's tile, and its dirt went on the gun
+(15 buries a net gun). And every miner that saw a helper parked, one keeper per park. **47b**: only the builder
+parks (one keeper), and a site with anything standing on it is given up for the next tile. RandomSoup1 A, Prison B,
+Toothpaste A, Spiral B again.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
