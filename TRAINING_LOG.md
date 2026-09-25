@@ -1638,6 +1638,14 @@ test on 8-0 says p = 0.008). As with 42c, a second block of 320 pairs is pre-reg
 carried with `W0=8 L0=0`): the reading at 640 pairs is the sign test on every discordant pair, twelve or more
 required, p < 0.01 an accept and p < 0.10 a provisional keep.
 
+**Gate 49b at 640 pairs: discordant 9-0, concordant 309-322 -- under the twelve-pair floor; not kept.** Nine flips
+in 640 pairs, every one its way (the sign test alone would say p = 0.004), one new flip in the whole second block;
+the arm null on the late losses. By the rule as written the change is neither accepted nor provisional, and the
+rule is not rewritten after the count. What it says about the form: +40 of ring in the last 500 rounds turns one
+wall race in seventy, and the ladder's late losses are lost by more than that. Code kept as `src/cand49b`;
+`src/bot` back to g_iter9. The twelve-pair floor has now sat on both sides of two candidates (42c 12-2 kept, 49b
+9-0 not) -- a note for the owner, not a change.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

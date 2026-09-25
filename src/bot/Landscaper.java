@@ -119,7 +119,7 @@ public strictfp class Landscaper extends Robot {
                 seat = n; helper = false; post = null; Debug.log("@reseat at=" + n); return; }
         }
         // 1. keep our own tile above the water that is coming
-        boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2 && waterLevel(round + 60) < C.HELPER_HOLD;   // Iteration 49
+        boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
         // 2. feed the lowest adjacent ring tile (never a building)
         if (rc.getDirtCarrying() > 0) {
