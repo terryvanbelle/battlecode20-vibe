@@ -70,7 +70,7 @@ public strictfp class Miner extends Robot {
         if (want == null) return false;
         if (want != RobotType.REFINERY) return buildInside(want, home);   // the enclosure: everything but the refinery lives on the ring
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
-        int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;
+        int dist = 3;   // stage 11: the refinery (the only building built outside) goes at Chebyshev 3, never on the shell (one stood on a shell tile on RandomSoup1 and the interior flooded through it at r951)
         boolean outward = dist == C.BUILD_DIST && !rush;
         if (outward) {
             // Iteration 28b: choose once, among all circle tiles with an outward site, the one whose outward site is

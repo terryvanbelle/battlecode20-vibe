@@ -1804,6 +1804,15 @@ ring rule could not move them (they cannot climb out). Stage 10: the HQ builds f
 enclosure's economy is four miners, a refinery outside and vaporators inside), and the elevator lifts any miner but
 the builder out of the interior to the nearest dry tile at Chebyshev 3 or more.
 
+**Stage 10: the bodies come.** Prison as A: 23 landscapers by r1000 (41 lifts), the shell 230-428 at r2000, alive
+to r2839; Squares as B: 18 bodies (21 lifts), **all sixteen tiles at 491-501 at r2000, level to within ten** (0.25
+a round per tile), alive to r2965. RandomSoup1 as A drowned at r951: the board shows **the refinery standing on a
+shell tile** (built at `BUILD_DIST` 2), a tile no holder can take and no dirt can raise, and the tile beside it at 4;
+the interior flooded through them. And the limit has moved to soup: 17-300 in the bank from r500 on Prison and
+Squares, four miners cut off at r300, no vaporator ever built (the school takes every 150 before the builder's 650
+bank fills; the field runs four vaporators inside by r700). Stage 11: the refinery at Chebyshev 3; after eight
+bodies the school leaves the builder its vaporator money until two vaporators stand inside.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
