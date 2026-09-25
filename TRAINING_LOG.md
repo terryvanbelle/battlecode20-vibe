@@ -1547,6 +1547,12 @@ says: `src/bot` back to g_iter9, the code kept as `src/cand47d`. What the mirror
 tiles to 42, a miner that stops mining at r600, 250 soup -- about 1-5% of ring, which loses two wall races in
 sixteen where the incumbent never raids. What it could not price is in the arm (192 games, posted below).
 
+**Arm 47d at 192 games: 73-119 (38%), rating 1742 +- 53 (g_iter9 1727 +- 48 on the same fit), raid-window losses
+64 of 192 (33%)** -- the second 96 games had 42 (`EmaPajic` 16, `cormackikkert` 14, `team4` 11, `benzyx` 10,
+`mvpatel2000` 9 over the 192), and the first block's 22 was the pool's draw. One gun at 16, standing r1200-1900,
+does not turn a raid of 8-25 drones; the mirror and the ladder agree. **47d closed.** The owner's question stays
+open in principle (a field-only change the mirror can only price) but this was not the case that needed it.
+
 ## Iteration 48 -- the home guard on the idle bank (2026-09-25, on g_iter9)
 
 **Why.** The bot already buys a fulfillment center after its first vaporator and up to eight drones, and the
