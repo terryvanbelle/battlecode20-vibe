@@ -1217,6 +1217,12 @@ posts the mason raised, and the question answered first whether a helper born at
 dirt to the ring at all -- the r1000-2000 census says a live helper does 500 deposits a thousand rounds, so the
 bodies here must be dying or standing somewhere the ring cannot see.
 
+Answered from the one replacement that held its post (RandomSoup1, #12074, born r706 on (16,7)): it fed the ring
+40 loads by r800, 139 by r1000, 337 by r1400 -- 50 deposits a hundred rounds, the ceiling -- and stood on a post
+that rose from 7 to 9 with the water, alive past r1600. The bodies work; only one of 24 replacements became one,
+because the HQ stops posting the site at r800 and a replacement born after that never learns it. **36d**: the
+site posted until r2000, and the diagnostics again.
+
 
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
