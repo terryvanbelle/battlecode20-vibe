@@ -3147,3 +3147,8 @@ kept.** The rush center stands on the far side, where it cannot see the rusher, 
 bought one drone at the early bank. **Iteration 58 (`src/cand58`, `src/bot` = cand58):** a center born before r350 is
 the rush center (the normal one follows the first vaporator) and buys its first three drones at cost. Diagnostic
 `diag58` on the three seeds, then `gate58r`.
+
+**Diagnostic 58:** the drones fire -- 6, 7 and 2 enemy landscapers lifted and drowned. MtDoom as A alive to **r2934**
+(control r163), FourLakeLand **r2933** (control r678), CowFarm r421 (control r949; the HQ buried to 30 by r200, before
+the center stood). **`gate58r`** (paired vs `arch_rush`), then **`gate58`** (the plain mirror, for the cost where no
+rush comes: a normal center born before r350 now also buys three cheap drones).
