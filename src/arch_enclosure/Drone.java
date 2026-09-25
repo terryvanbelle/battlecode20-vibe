@@ -54,7 +54,11 @@ public strictfp class Drone extends Robot {
             }
         }
         // stage 17: one elevator -- the drone with the lowest id in sight; eight of them queued on the gate and it never rose
-        boolean elevator = true; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE && friends[i].ID < id) { elevator = false; break; }
+        // stage 19: the elevator is the drone nearest the gate (lowest id on a tie), and it keeps station outside the gate
+        MapLocation gate0 = home == null ? null : gate(home);
+        boolean elevator = true;
+        if (gate0 != null) { int myd = loc.distanceSquaredTo(gate0); for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; int fd = f.location.distanceSquaredTo(gate0); if (fd < myd || (fd == myd && f.ID < id)) { elevator = false; break; } } }
+        else { for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE && friends[i].ID < id) { elevator = false; break; } }
         if (elevator && round % 25 == 0 && round >= 500) Debug.log("@elev at=" + loc + " d=" + (home == null ? -1 : Nav.cheb(loc, home)) + " holding=" + rc.isCurrentlyHoldingUnit() + " friend=" + holdingFriend + " target=" + liftTarget + " gate=" + gate(home) + " free=" + freeShell(home));
         // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
         if (home != null && elevator) {
@@ -78,6 +82,13 @@ public strictfp class Drone extends Robot {
             for (int dx = -3; dx <= 3; dx++) for (int dy = -3; dy <= 3; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 3) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy);
                 if (!rc.onTheMap(t) || (rc.canSenseLocation(t) && rc.isLocationOccupied(t))) continue; int d = loc.distanceSquaredTo(t); if (d < od) { od = d; out = t; } }
             if (out != null) { chasing = true; nav.setTarget(out); boolean moved = nav.step(); chasing = false; if (moved) return; }
+        }
+        // stage 19: the idle elevator waits on the tile straight out from the gate (Chebyshev 3), where it sees the yard
+        if (elevator && gate0 != null && !rc.isCurrentlyHoldingUnit()) {
+            MapLocation station = new MapLocation(gate0.x + (gate0.x - home.x) / 2, gate0.y + (gate0.y - home.y) / 2);
+            if (!rc.onTheMap(station)) { station = null; int sd = 1 << 30; for (int dx = -3; dx <= 3; dx++) for (int dy = -3; dy <= 3; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 3) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy); if (!rc.onTheMap(t)) continue; int d = t.distanceSquaredTo(gate0); if (d < sd) { sd = d; station = t; } } }
+            if (station != null && !loc.equals(station)) { nav.setTarget(station); nav.step(); return; }
+            if (station != null) return;
         }
         // the guard: anything of theirs within the box, landscapers on the ring or beside the HQ first
         RobotInfo tgt = null; long bs = Long.MAX_VALUE;

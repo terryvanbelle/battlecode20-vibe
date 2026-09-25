@@ -1863,6 +1863,12 @@ reclaims every turn until one outer tile beside it is dry land.
 (10 for 174 waits; Squares 12 for 29). Targets were not the limit; the elevator itself is. An elevator trace
 (where it is, what it holds, its target, the gate and the free tile it sees, every 25 rounds) runs first.
 
+**The elevator trace:** the duty passes between five drones (each takes "the lowest id in sight" from its own
+view), the one on duty patrols three to six tiles from the HQ where the school is out of sight and the gate reads
+`null`, and the waiters stand on the yard tile away from the gate; 4 lifts in 2,900 rounds. Stage 19: the elevator
+is the drone nearest the gate, and when idle it keeps station on the tile straight out from the gate, from where it
+sees the yard.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
