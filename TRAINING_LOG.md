@@ -1181,7 +1181,7 @@ since the restart: seats first (25), the rush answer with buildings off the bypa
 kept working.
 
 Archetype regression `regr7`: **21/24** vs `arch_swarm` (g_iter6 21/24). Blocks 70-71 (`20260925-003836`, `-003842`):
-**29/48** and **31/48**; g_iter7 rating 1766 +- 77, rank 16 of 74 after 96 games. Blocks 72-73 (`20260925-010839`, `-0108xx`) recorded: g_iter7 rating 1746 +- 54, rank 16 of 74 after 192 games; blocks 74-75 running.
+**29/48** and **31/48**; g_iter7 rating 1766 +- 77, rank 16 of 74 after 96 games. Blocks 72-73 (`20260925-010839`, `-0108xx`) recorded: g_iter7 rating 1746 +- 54, rank 16 of 74 after 192 games. Blocks 74-75 (`20260925-012550`, `-012603`): 16/48 and 26/48; g_iter7 rating 1745 +- 44, rank 16 of 74 after 288 games: the incumbent blocks stop here (owner, PROMPTS 26).
 
 ## Iteration 33 -- a deposit worth the action (2026-09-24)
 
