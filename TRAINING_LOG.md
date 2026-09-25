@@ -2946,3 +2946,19 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 | exploration / symmetry | Iteration 1 | 0 |
 | drones / combat | Iteration 10 (reject 120-120) | 1 |
 | communication | Iteration 8 (ACCEPT 39-9) | 0 |
+
+## The production census (g_iter9 mirror, 52 maps, seed 7; 2026-09-25 evening)
+
+`census9`: g_iter9 against itself on every map, bodies, soup and mines at r300/500/800 per side. The incumbent's
+production splits the maps in two. **Healthy (32 maps):** 15-24 landscapers a side by r500, mines 400-800 by r300.
+**Starved (ten maps):** Spiral, GSF, Hills, Climb, DidAMonkeyMakeThis, AMaze, CosmicBackgroundRadiation, Islands,
+Maze, TheHighGround -- 3-9 landscapers a side at r500 and still 3-12 at r800, mines 130-400 by r300, soup 130-300
+held (not banked: nothing to buy it with is not the problem, income is). These are the cliff and maze maps. Two
+games ended early with one side dead (Swirl r684, WateredDown r468: a flood-round death in the mirror), and
+Infinity's A side had no landscaper at r300 (1,083 mines). Mirror games say nothing about who wins, only where our
+own economy stalls; the starved maps are a fifth of the pool, and a side with 5 bodies at r800 is the wall race lost
+before it starts.
+
+Next: a diagnostic on two starved maps (Spiral, GSF) with logs -- the miners' `@minerstat` (mined, deposits,
+explores, unreachable) and the builder's timeline -- to see whether the income is capped by reachable soup, by the
+walk home, or by the miners' count.
