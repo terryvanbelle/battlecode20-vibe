@@ -1384,6 +1384,13 @@ two more helpers drowned at r650-750. Bar not met (the ring on both). **43b**: b
 builds at 350 and leaves the HQ its reserve; RandomSoup1 A, Toothpaste A, and Prison B (a third map) against
 g_iter8.
 
+**43b fires and the ring rises on every map.** RandomSoup1 as A 763 / 2719 against 765 / 2642 (+3% at r3000, won
+r3226); Toothpaste as A 543 / 1972 against 501 / 1772 (**+11%**) and **won at r3118 where the control loses at
+r3143**; Prison as B 484 / 1597 against 475 / 1587 (level, lost either way). Snapshot `src/cand43b` = g_iter8 + 42c
+(provisional) + 43b; **`gate43b`** (paired vs g_iter8, 320 pairs -- the stack against the incumbent) and
+**`arm43b-a`/`arm43b-b`** (96 band games as `us:cand43b`; pre-registered: rating above g_iter8's 1727, and the
+late losses (r2900+) fewer than g_iter8's 36 of 240 pro rata, that is 14 or fewer of 96).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
