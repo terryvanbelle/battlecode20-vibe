@@ -1541,6 +1541,12 @@ the price, and every flip so far is against. Two more arm blocks (`arm47d-c`/`-d
 answer rests on 192 games whatever the gate says -- the raid answers are the one line where the mirror and the
 ladder disagree by construction, and the owner's question in HANDOFF needs the numbers.
 
+**Gate 47d at 320 pairs: discordant 2-14, concordant 155-149, the gun built in 80 games of 320 -- REJECT by the
+cap rule** (sign test p = 0.004 against, 16 discordant). As pre-registered, the form is refuted whatever the arm
+says: `src/bot` back to g_iter9, the code kept as `src/cand47d`. What the mirror priced: one helper's dirt on two
+tiles to 42, a miner that stops mining at r600, 250 soup -- about 1-5% of ring, which loses two wall races in
+sixteen where the incumbent never raids. What it could not price is in the arm (192 games, posted below).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

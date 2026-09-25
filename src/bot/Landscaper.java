@@ -74,48 +74,8 @@ public strictfp class Landscaper extends Robot {
         return best;
     }
 
-    /** 47c: the nearest miner at Chebyshev 3 from the HQ within 2 of us, and how long it has stood on its tile; a miner
-     *  that has not moved for 20 rounds is parked (a stray beside a post drew 750 keeps on RandomSoup1: -9% of ring). */
-    private RobotInfo parkedMiner() {
-        RobotInfo best = null; int bd = 99; MapLocation home = MapState.home;
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) != 3) continue;
-            int d = Nav.cheb(f.location, loc); if (d <= 2 && d < bd) { bd = d; best = f; } }
-        if (best == null) { stillId = -1; stillSince = 0; return null; }
-        if (best.ID == stillId && best.location.equals(stillLoc)) stillSince++; else { stillId = best.ID; stillLoc = best.location; stillSince = 0; }
-        return stillSince >= 20 ? best : null;
-    }
-    private RobotInfo parkedNow = null;   // this turn's reading, taken once in help()
-
-    /** Iteration 47: a tile beside the parked miner (Chebyshev 3 from the HQ) is the keeper's site or the miner's own: never dug. */
-    private boolean keptTile(MapLocation n) {
-        return parkedNow != null && Nav.cheb(parkedNow.location, n) <= 1;
-    }
-
-    /** Iteration 47: raise the parked miner's tile M and the site S (adjacent to M and to us, at Chebyshev 3-4 from the
-     *  HQ, not a ring or post tile, no building) to waterLevel(round + KEEP_AHEAD) + 2, the lower first. */
-    private boolean keep(MapLocation home) throws GameActionException {
-        RobotInfo m = parkedNow;
-        if (m == null || Nav.cheb(m.location, loc) != 1) return false;
-        if (site == null || !rc.canSenseLocation(site) || rc.senseFlooding(site) || Nav.cheb(site, m.location) > 1 || Nav.cheb(site, loc) > 1
-                || rc.senseRobotAtLocation(site) != null) {   // 47b: a gun stands on it now -- dirt there buries our own gun (both died within 150 rounds)
-            site = null; int best = Integer.MIN_VALUE;
-            for (int d = 8; --d >= 0;) { MapLocation n = loc.add(DIRS[d]);
-                if (Nav.cheb(n, m.location) != 1 || Nav.cheb(n, home) < 3 || !rc.onTheMap(n) || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
-                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null) continue;   // occupied (a gun of ours, anything): the next site is another tile
-                int e = rc.senseElevation(n); if (e > best) { best = e; site = n; } }
-        }
-        int target = (int) waterLevel(round + C.KEEP_AHEAD) + 2; if (target > C.KEEP_CAP) target = C.KEEP_CAP;   // 47d
-        Direction toM = loc.directionTo(m.location); int eM = rc.senseElevation(m.location);
-        Direction toS = site == null ? null : loc.directionTo(site); int eS = site == null ? Integer.MAX_VALUE : rc.senseElevation(site);
-        if (eM < target && (eM <= eS || toS == null) && rc.canDepositDirt(toM)) { rc.depositDirt(toM); deposits++; if (round % 50 == 0) Debug.log("@keep M=" + m.location + " e=" + eM + " target=" + target); return true; }
-        if (toS != null && eS < target && rc.canDepositDirt(toS)) { rc.depositDirt(toS); deposits++; if (round % 50 == 0) Debug.log("@keep S=" + site + " e=" + eS + " target=" + target); return true; }
-        return false;
-    }
-
     /** A free tile at Chebyshev 2 from the HQ, next to the LOWEST ring tile it can feed (then nearest). */
     private final MapLocation[] badPost = new MapLocation[8]; private int nBadPost = 0;
-    private MapLocation site = null;   // Iteration 47: the keeper's gun site, adjacent to the post and to the parked miner
-    private int stillId = -1, stillSince = 0; private MapLocation stillLoc = null;   // 47c: the miner at Chebyshev 3 that has not moved
     private MapLocation pickPost(MapLocation home) throws GameActionException {
         MapLocation best = null; long bs = Long.MAX_VALUE; int myE = rc.senseElevation(loc);
         for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
@@ -151,7 +111,6 @@ public strictfp class Landscaper extends Robot {
             nav.setTarget(post); nav.step(); if (loc.equals(post)) Debug.log("@posted at=" + post); return;
         }
         if (!rc.isReady()) return;
-        parkedNow = parkedMiner();   // 47c
         // Iteration 25: a free ring tile next door that we can climb is a seat going spare -- take it
         if (round % 3 == id % 3) {
             int myE = rc.senseElevation(loc);
@@ -162,9 +121,6 @@ public strictfp class Landscaper extends Robot {
         // 1. keep our own tile above the water that is coming
         boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
-        // 1b. Iteration 47, the keeper: a miner parked beside us (Chebyshev 3 from the HQ) and its gun site are kept
-        //     KEEP_AHEAD rounds ahead of the water, the lower first; the gun goes on the site once it will stay dry
-        if (rc.getDirtCarrying() > 0 && keep(home)) return;
         // 2. feed the lowest adjacent ring tile (never a building)
         if (rc.getDirtCarrying() > 0) {
             Direction bestD = null; int be = Integer.MAX_VALUE;
@@ -177,7 +133,7 @@ public strictfp class Landscaper extends Robot {
         // 3. dig from a tile outside both rings (lowest first), never under a building or the HQ
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d) || doorstep(n) || n.equals(site) || keptTile(n)) continue;
+            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d) || doorstep(n)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
             int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
         if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;   // nothing outside: eat our own margin
