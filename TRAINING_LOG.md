@@ -1157,6 +1157,11 @@ beside a pit that lies toward their seat -- wherever they stall, it is not the c
 **Not gated; uninformative as built.** Code kept as `src/cand39`; `src/bot` is g_iter7. Before another form: trace
 one `@badseat` landscaper on Climb -- its tile at the stall and the eight tiles round it.
 
+Traced (Climb, #11374, seat (4,38) west of the school): born at (5,38) with the pit (4,39) in front of it, the
+navigator bug-walked east instead -- (8,37) at r165, (28,36) by r190, up the staircase -- and stalled thirty tiles
+from any pit. The check has to run before the walk. **39b**: when every neighbour closer to the seat is either a
+pit or unwalkable, fill the pit first; the same diagnostics.
+
 ## Iteration 38 -- seats spare the walkway (2026-09-25, on g_iter7)
 
 **Evidence.** Flood-round deaths were 27 of the 159 losses of blocks 50-56 (GSF, Hills, Spiral, Toothpaste, Climb:
