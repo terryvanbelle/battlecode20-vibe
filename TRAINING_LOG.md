@@ -1149,6 +1149,15 @@ to that seat: two miners held Climb's south way west all game). Diagnostics (VM,
 Climb both ways, GSF, Hills, RandomSoup1 -- `@badseat` and `@uncork` counts, the ring at r500 without a flooded
 tile, the HQ alive past the flood round, RandomSoup1 within 5% of the control (2445 as A).
 
+**Diagnostics.** Hills as B: the ring at r500 reads 136 134 74 136 102 136 133 71 -- **sealed** where the control's
+reads 135 97 2F 150 27 153 150 25 -- and the candidate wins the game at r931 that the control loses to the flood
+(`@uncork` 13). Climb as A: 2F 23 26 29 127 27 126 129 against 2F 24 27 4 109 7 109 112, seven seats for five, the
+west corner still under water, both sides drown, the candidate takes the tiebreak (`@uncork` 24); as B seven for
+five likewise (`@uncork` 27). RandomSoup1 as A 2492 against the control's 2445 (`@uncork` 10). GSF as A: one ring
+tile at 4 at r500 (the control's lowest 97), ring 1046 against 1304 at r3000 and the game lost at r3032 where the
+control wins -- the seat-starving cost of part (a) on a soup-poor map, as with 38. The two parts are read apart:
+**40b** is part (b) alone (`WALKWAY_FROM` 400, so (a) never applies), the same five games.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
