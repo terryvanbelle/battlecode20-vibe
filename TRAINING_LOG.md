@@ -3078,3 +3078,9 @@ miner reserve of 200 never reached), the school at (38,33) builds four landscape
 143-214 soup (its doors, not its soup: `tryBuild` fails; the rusher's landscapers stand and dig beside it), two
 refineries at r259/r283 take what soup there is. The harness for any rush idea:
 `GAME_SEED=7 tools/run-dev.sh <bot> arch_rush InADitch <replay>` (and FourLakeLand).
+
+**Iteration 54 (`src/cand54`, `src/bot` = cand54): drones against the rush.** Under a rush in sight, the builder
+buys the fulfillment center right after the school (150, no bank) and the center builds its first three drones at
+cost; the drones' existing guard lifts enemy landscapers near the HQ and drops them in water. Diagnostic `diag54` on
+the harness (InADitch as A and B, FourLakeLand as A vs `arch_rush`) and one quiet game (RandomSoup1 vs g_iter10: the
+rule must not fire without a rush).
