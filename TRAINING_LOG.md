@@ -1883,6 +1883,11 @@ through the shell's unheld corner, not the gate; the hole is a body short, and t
 rounds. Where the drones were at r450: two of them inside the interior at (17,5) and (19,5). The elevator and the
 drones' discipline are the program's next stage; the archetype rests here for the day.
 
+**Stage 20 (the next check): the drones inside were the block.** A drone that has come in chasing runs the chase
+and lift logic before the exit rule and never leaves; it stands on the yard tile beside the gate, and the waiters
+cannot reach it. Now a drone inside leaves before it does anything else, and lifting trapped miners is the
+elevator's job alone.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

@@ -41,9 +41,19 @@ public strictfp class Drone extends Robot {
             MapLocation[] near = nearWater(); if (near != null) { water = near[0]; nav.setTarget(water); nav.step(); return; }
             nav.setTarget(MapState.center()); nav.step(); return;
         }
+        // stage 19: the elevator is the drone nearest the gate (lowest id on a tie), and it keeps station outside the gate
+        MapLocation gate0 = home == null ? null : gate(home);
+        boolean elevator = true;
+        if (gate0 != null) { int myd = loc.distanceSquaredTo(gate0); for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; int fd = f.location.distanceSquaredTo(gate0); if (fd < myd || (fd == myd && f.ID < id)) { elevator = false; break; } } }
+        else { for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE && friends[i].ID < id) { elevator = false; break; } }
+        if (elevator && round % 25 == 0 && round >= 500) Debug.log("@elev at=" + loc + " d=" + (home == null ? -1 : Nav.cheb(loc, home)) + " holding=" + rc.isCurrentlyHoldingUnit() + " friend=" + holdingFriend + " target=" + liftTarget + " gate=" + gate(home) + " free=" + freeShell(home));
+        // stage 20: a drone inside leaves before it does anything else (the yard tiles beside the gate were blocked by drones
+        // that had come in chasing and stayed: the waiters could not reach the gate)
+        if (home != null && Nav.cheb(loc, home) <= 1) {
+            MapLocation g = gate(home); exiting = true; nav.setTarget(g != null ? g : home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); boolean moved = nav.step(); exiting = false; if (moved) return; }
         // stage 10: a miner trapped inside (not the builder: the one beside a building it is building for) is lifted out to
         // the nearest free dry tile at Chebyshev 3 or more -- it was born after the shell closed and stands on the yard
-        if (home != null && !rc.isCurrentlyHoldingUnit()) {
+        if (home != null && !rc.isCurrentlyHoldingUnit() && elevator) {   // stage 20: the elevator's job, nobody else's
             RobotInfo m = null; int md = 1 << 30;
             MapLocation sch = null; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DESIGN_SCHOOL && Nav.cheb(friends[i].location, home) == 1) sch = friends[i].location;
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) > 1 || sch == null || Nav.cheb(f.location, sch) > 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < md) { md = d; m = f; } }   // stage 14: only a miner on the yard (the builder never stands there)
@@ -54,12 +64,6 @@ public strictfp class Drone extends Robot {
             }
         }
         // stage 17: one elevator -- the drone with the lowest id in sight; eight of them queued on the gate and it never rose
-        // stage 19: the elevator is the drone nearest the gate (lowest id on a tie), and it keeps station outside the gate
-        MapLocation gate0 = home == null ? null : gate(home);
-        boolean elevator = true;
-        if (gate0 != null) { int myd = loc.distanceSquaredTo(gate0); for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DELIVERY_DRONE) continue; int fd = f.location.distanceSquaredTo(gate0); if (fd < myd || (fd == myd && f.ID < id)) { elevator = false; break; } } }
-        else { for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE && friends[i].ID < id) { elevator = false; break; } }
-        if (elevator && round % 25 == 0 && round >= 500) Debug.log("@elev at=" + loc + " d=" + (home == null ? -1 : Nav.cheb(loc, home)) + " holding=" + rc.isCurrentlyHoldingUnit() + " friend=" + holdingFriend + " target=" + liftTarget + " gate=" + gate(home) + " free=" + freeShell(home));
         // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
         if (home != null && elevator) {
             RobotInfo w = null; int wd = 1 << 30;
@@ -75,8 +79,6 @@ public strictfp class Drone extends Robot {
             }
         }
         // stage 8: a drone at rest occupies its tile -- on the shell it makes a hole nobody can hold. Out to Chebyshev 3 first.
-        if (home != null && Nav.cheb(loc, home) <= 1) {   // stage 15: born inside -- out through the gate, then away
-            MapLocation g = gate(home); exiting = true; nav.setTarget(g != null ? g : home.add(DIRS[nextInt(8)]).add(DIRS[nextInt(8)])); boolean moved = nav.step(); exiting = false; if (moved) return; }
         if (home != null && Nav.cheb(loc, home) <= 2) {   // stage 9: to the nearest free on-map tile at Chebyshev 3 (a corner HQ has no tile straight out)
             MapLocation out = null; int od = 1 << 30;
             for (int dx = -3; dx <= 3; dx++) for (int dy = -3; dy <= 3; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 3) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy);
