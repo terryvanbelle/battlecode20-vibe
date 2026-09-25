@@ -35,8 +35,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   300/700 -> 200: bodies 200 rounds sooner, the HQ keeps its miner reserve). Gate paired ACCEPT 30-8 discordant at
   144 pairs; arm 64-32, 1771 +- 79, late losses 10 of 96 (bar 14). **Running on the VM:** `regr9` (vs arch_swarm,
   quick set) and the submission blocks `sub9-1..5` (post each with `tools/post-block.sh <run> g_iter9`; the roster
-  tier and ONSET-merged follow g_iter9 at 200 games). `src/bot` = g_iter9. Iteration 44 (six early miners) refuted
-  at the diagnostic (ring 4-13% lower on three maps of four).
+  tier and ONSET-merged follow g_iter9). **Submitted: 240 games, 78-162, rating 1735 +- 48, rank 17 of 81 -- level
+  with g_iter8 (1719 +- 49); the pool had moved up to mvpatel/winkelmantanner and the locked raiders.** `src/bot` =
+  g_iter9. Iteration 44 (six early miners) refuted at the diagnostic (ring 4-13% lower on three maps of four);
+  Iteration 46 (no miner without income) inert on this base (the HQ cannot spawn once the ring is up).
 - **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
   draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
   tiles open where the control lives). `src/bot` = g_iter9.

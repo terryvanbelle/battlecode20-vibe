@@ -1462,6 +1462,22 @@ soup rose within the last `MINER_INCOME_WINDOW` (100) rounds (`@nomines` logged;
 unconditional). **Diagnostic** (VM, seed 1 and 41, vs g_iter9): GSF B and Spiral B (mining stops at r300: expect
 `@nomines`, fewer spawns, more seats); Toothpaste A and RandomSoup1 A (mining runs to the flood: expect no change).
 
+**Inert on this base.** The first form never fired: every team's soup rises by 1 a round (base income), which the
+rule read as mining; with the threshold above that (`46b`) `@nomines` fires from r300-400 on GSF and Spiral -- and
+**all four games are identical to the controls to the tile.** On g_iter9 the ring is up by r300-400 and the HQ,
+whose only spawn tiles are the ring tiles, cannot place a miner anyway (a spawn is refused more than 3 above the
+builder); the miners it bought for nothing in the g_iter6/g_iter7 GSF losses were bought while their ring was still
+at 4, and the doorstep (42c) has since taken that case away. Nothing to gate. `src/bot` back to g_iter9.
+
+**g_iter9 submitted (240 games): 78-162 (32.5%), rating 1735 +- 48, rank 17 of 81** (g_iter8 1719 +- 49 on the
+same fit); losses 89 in the raid window, 56 late, 10 early, 7 at the flood round. The raw record is far under the
+arm's 64-32 because the pool moved: the arm, drawn for an unrated candidate, met `yaonam` (12-0), `mhahn2003`
+(10-2) and `wpine215` (10-2); the submission's band held `mvpatel2000` (6-24), `winkelmantanner` (7-23) and the two
+locked raiders (9-51) instead. The rating reads through the pool: **level with g_iter8; no withdrawal** (the
+interval's top, 1783, is above 1719). Three acceptances on this line (walk, doorstep, bank) removed the flood-round
+deaths and raised the ring; the ladder has not moved, because the band's losses are raids (37% of games) and
+walls taller than ours (23%).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
