@@ -157,3 +157,7 @@ I'm going to switch you back to Opus 5.5.  Please make the necessary preparation
 ## 35. 2026-09-25
 
 OK, you're back on Opus 5.5
+
+## 36. 2026-09-25
+
+Please don't wait until the next task check to start new work if you already know that you need to start new work
