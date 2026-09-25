@@ -1182,6 +1182,22 @@ school stands at hqElev+6 (dry to about r1700), spawns only onto a post that is 
 stay dry because their helpers keep them so. Diagnostic (VM): RandomSoup1 and Prison vs g_iter7 -- the second
 school alive at r1500, helpers alive at r1000-2000 above the incumbent's own, ring at r2000-3000 higher.
 
+**Diagnostics** (VM; RandomSoup1 both ways, Prison vs g_iter7). The site machinery works: site chosen at r100-140,
+mason done at r234 and r319, the second school built at r433 and r363 and standing to r1500 on Prison (DS=2 from
+r700). **Not one replacement was spawned in three games.** Prison, read from the board: the school at (1,5) is
+hqElev+6 = 11; its three distance-2 neighbours are two posts held by live helpers all game and one tile the seats
+dug to -9. A post that came free would sit at hqElev+2 or so (its helper keeps it at water+2), 4 or more below
+the school, and the engine refuses a spawn more than 3 below the builder -- the same rule that shaped the gun
+perch. On RandomSoup1 as B five masons claimed the site and none finished (no stall logged: each found the stand
+taken or gave the role up silently). Rings: RandomSoup1 2539 vs 2610 and 2721 vs 2827 (lost both), Prison 2184
+vs 1780 (won, the side that wins there regardless). **Paused, not gated;** code kept as `src/cand36`, `src/bot` is
+g_iter7. What the next form needs: the mason raises the two or three posts beside the site to hqElev+3 as well
+(9 loads), so a freed post is within 3 of the school; the school may spawn onto its Chebyshev-3 neighbours too,
+which the helpers must then not dig; and the capacity question -- two or three posts per school -- says two
+sites on opposite sides, or the school placed where the most posts touch it. The claim churn (five masons)
+wants the HQ's manned bit read before a claim, as the gun perch found.
+
+
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
 

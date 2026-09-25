@@ -12,8 +12,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **VM:** idle after blocks 70-75 (g_iter7 rating 1745 +- 44, rank 16 of 74 after 288 games: no more incumbent blocks, owner PROMPTS 26). The VM
-  plays gates, candidate arms and diagnostics (`tools/vm-run.sh diagN '... run-dev.sh ...'`).
+- **VM:** idle. `src/bot` = g_iter7. Iteration 36 (the replacement school, `src/cand36`) is paused after three diagnostics:
+  the site, mason and second school work, but no replacement was ever spawned (the spawn rule: a post 4+ below the
+  school; the posts beside it held by live helpers); the next form is written at the end of the Iteration 36 entry.
+  Iteration 35 (16 helpers) uninformative. Diagnostics run on the VM when it is idle (`tools/vm-run.sh diagN '...'`).
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
