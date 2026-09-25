@@ -1547,6 +1547,20 @@ says: `src/bot` back to g_iter9, the code kept as `src/cand47d`. What the mirror
 tiles to 42, a miner that stops mining at r600, 250 soup -- about 1-5% of ring, which loses two wall races in
 sixteen where the incumbent never raids. What it could not price is in the arm (192 games, posted below).
 
+## Iteration 48 -- the home guard on the idle bank (2026-09-25, on g_iter9)
+
+**Why.** The bot already buys a fulfillment center after its first vaporator and up to eight drones, and the
+drones patrol toward the enemy HQ and die by r1000 (Iteration 10's trace; `Dr=0` at r1000 in every control). The
+raid drops 1-11 landscapers on the ring tiles its drones have just cleared, and the HQ is buried in 15-25 rounds; a
+drone of ours beside the ring lifts a landscaper in one action and drowns it in the next. Iterations 10 and 23
+tried the guard and died in the unpaired mirror with their drones "split half hunting" and the center rarely
+built for lack of bank; the bank is not the problem now. **Change:** drones never hunt -- they patrol a box of
+Chebyshev 4 around our HQ and lift anything of the enemy's within the box plus 2, landscapers on the ring or beside
+the HQ first. Nothing else changes: the same center, the same drones, the same soup. **Diagnostic** (VM, seed 41):
+against `arch_drone` (the raider archetype) on RandomSoup1 A and Prison B, with g_iter9 against the same as the
+control -- `@pickup home=0/1` counts, our HQ alive where the control's dies, drones alive at r1500; and against
+g_iter9 on RandomSoup1 A and Toothpaste B for the ring cost (identical is the expectation).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
