@@ -1165,6 +1165,19 @@ lost -- the miner stepped onto a ring tile twenty times over the game (`@uncork`
 blocking the seat each time. **40c**: the step only when a landscaper of ours is within 2 (someone waiting to
 pass), and never twice in 100 rounds; the same five games.
 
+**40c fires everywhere it should and costs nothing measurable.** Hills as B: sealed (147 145 74 147 116 147 144 71,
+five steps) and won at r931 where the control drowns. Climb as B: 118 115 98 115 96 26 24 2F against the control's
+110 108 7 108 4 26 24 2F -- two more seats (eight steps), won on the tiebreak. Climb as A: 2F 24 26 30 132 27 132 134
+against 2F 24 27 4 109 7 109 112 -- the tile at 4 seated (30), the two at 109 raised to 132, the corner still 2F,
+lost on the tiebreak either way (ten steps). GSF as A: every tile seated by r500 (min 96), 1181 against the
+control's 1304 at r3000 (-9%, inside the 7-18% the control run puts on side effects; 40b's -19% is gone), won at
+r3032 (one step). RandomSoup1 as A: 2446 against 2445, no step taken. The mechanism fires on the maps that carry
+the flood-round deaths and stays quiet elsewhere. Snapshot `src/cand40c`; **`gate40c`** (mirror vs g_iter7, seeded,
+cap 240) and **`arm40c-a`/`arm40c-b`** (96 seeded band games as `us:cand40c`). Pre-registered for the arm:
+g_iter7 loses at the map's flood round in 6.6% of its ladder games (19 of 288; g_iter6 9.1%), so 96 games expect
+6-7 such losses; a finding at 2 or fewer (P about 0.03 at the incumbent's rate). The arm's power is thin -- the
+gate decides, the arm says whether the flood-round deaths moved.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

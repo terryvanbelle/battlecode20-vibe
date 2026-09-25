@@ -12,7 +12,12 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **VM:** idle. `src/bot` = g_iter7. Iterations 38 (seats spare the walkway; -6% ring elsewhere), 39 (never fired) and 39b (bridges
+- **Running on the VM:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
+  landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
+  seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>
+  cand40c`; a finding at 2 or fewer flood-round losses of 96, g_iter7's rate gives 6-7). Diagnostics: Hills sealed
+  and won, Climb B two more seats, GSF within the control band, RandomSoup1 level (TRAINING_LOG, Iteration 40).
+- **Before 40c:** `src/bot` was g_iter7. Iterations 38 (seats spare the walkway; -6% ring elsewhere), 39 (never fired) and 39b (bridges
   fired, no seat gained, GSF lost) were not gated (`src/cand38`, `src/cand39`, `src/cand39b`). Iteration 37 (one net gun on the raised site) refuted: ladder arm 19 raid-window
   losses of 96 (g_iter7's rate exactly), gate 2-14 in its first batch (`src/cand37`). Iterations 35 and 36 closed
   earlier today. The two structural lines (bodies at the wall after the flood; the timed raids) both come down to
