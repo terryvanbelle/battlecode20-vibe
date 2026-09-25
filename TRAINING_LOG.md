@@ -1278,7 +1278,8 @@ at r2970), Climb and Hills as A (the control loses the r931 tiebreak, the candid
 times (the r2525 tiebreak flipped), InADitch four times (wall races won by 15-30 rounds), and the last batch's
 four. Not one pair went the other way in 320: where the walk does not fire the game is the incumbent's, and where
 it fires it has not yet lost one. **Accepted: `src/g_iter8` = g_iter7 + the seat walk (Iterations 41/41b).**
-Submission blocks `sub8-1..5` (240 seeded band games as `us:g_iter8`) running.
+Archetype regression `regr8`: **24/24** vs `arch_swarm` on the quick set (g_iter7 21/24). Submission blocks
+`sub8-1..5` (240 seeded band games as `us:g_iter8`) running.
 
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
