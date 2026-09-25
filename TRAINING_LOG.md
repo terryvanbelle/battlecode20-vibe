@@ -1480,8 +1480,8 @@ walls taller than ours (23%).
 
 The raid clocks in g_iter9's 240 games: `team4` r1562-1603 (26 losses), `EmaPajic` r1525-1570 (20),
 `cormackikkert` r2135-2262 (14), `benzyx` r1220 and r1610 (12), `mvpatel2000` r1893 (12): 84 losses, 35% of all
-games, on five clocks between r1525 and r2262. `gate37p` closed at 3-17 in 80 pairs: the site machinery's price
-was real. The bot already builds two net guns before the flood, on the ground, where they drown by r930-1200.
+games, on five clocks between r1525 and r2262. `gate37p` closed REJECT at 4-21 discordant in 112 pairs: the site machinery's
+price was real. The bot already builds two net guns before the flood, on the ground, where they drown by r930-1200.
 
 ## Iteration 47 -- the keeper (2026-09-25, on g_iter9)
 
