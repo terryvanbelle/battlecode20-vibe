@@ -191,10 +191,15 @@ public strictfp class Landscaper extends Robot {
             for (int k = 8; --k >= 0;) { MapLocation n = t.add(DIRS[k]); if (!onRing(n) || !rc.canSenseLocation(n)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { tended = true; break; } }
             if (tended) continue;
+            Direction feed = null; int fe = Integer.MAX_VALUE;
             for (int k = 8; --k >= 0;) { Direction d = DIRS[k]; MapLocation n = loc.add(d);
-                if (!onRing(n) || Nav.cheb(n, t) != 1 || !rc.canMove(d) || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
-                if (Math.abs(rc.senseElevation(n) - myE) > GameConstants.MAX_DIRT_DIFFERENCE) continue;
-                rc.move(d); seat = n; loc = rc.getLocation(); Debug.log("@seatwalk to=" + n + " for=" + t); return true; }
+                if (!onRing(n) || Nav.cheb(n, t) != 1 || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
+                int e = rc.senseElevation(n);
+                if (Math.abs(e - myE) <= GameConstants.MAX_DIRT_DIFFERENCE) { if (rc.canMove(d)) { rc.move(d); seat = n; loc = rc.getLocation(); Debug.log("@seatwalk to=" + n + " for=" + t); return true; } continue; }
+                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
+                if (e < myE && e < fe && rc.canDepositDirt(d)) { fe = e; feed = d; } }
+            // 41b: the tile between us is too low to step onto (Spiral as A: 29 beside a seat at 147): raise it level first
+            if (feed != null && rc.getDirtCarrying() > 0) { rc.depositDirt(feed); deposits++; Debug.log("@seatfeed " + loc.add(feed) + " e=" + fe + " for=" + t); return true; }
         }
         return false;
     }

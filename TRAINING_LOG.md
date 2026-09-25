@@ -1245,6 +1245,15 @@ corner at r500, seat at 2), GSF as B, Toothpaste as B, RandomSoup1 as A (the cos
 fires on Hills and Spiral, the tile is sealed by r600, the HQ outlives r931 on Hills; RandomSoup1's ring at r3000
 within the control band.
 
+**Diagnostic 41.** Hills as B: one walk at r523 (the seat steps beside the corner), the corner sealed by r600, the
+HQ alive past r931 where the control drowns; the game then runs to r2981 and is lost on the wall (225-269 on the
+fed side against the opponent's 282-296 at r1000) -- a flood-round death turned into a wall race. Spiral as A: **no
+walk**: the corner is open at r500-600 with the nearest seat at 2, but the tile between them stands at 29 beside a
+seat at 147 (step 3 has been feeding the seat's four low neighbours in lockstep since r400) and cannot be stepped
+onto. GSF as B, Toothpaste as B, RandomSoup1 as A: nothing to walk to, the games identical to the controls to the
+tile. **41b**: when the tile between is too low to step onto, the seat feeds it level first (`@seatfeed`), then
+walks; Spiral A, Hills B, GSF B again.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
