@@ -1,4 +1,4 @@
-package bot;
+package cand34;
 
 import battlecode.common.*;
 

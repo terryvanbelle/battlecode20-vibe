@@ -1160,6 +1160,17 @@ mine a quarter of the time instead; a builder whose walk stalls pauses building 
 (VM): Islands2, GSF, RandomSoup1 vs g_iter6 -- idle miners r300-500 per side and the stall tags; expected: idle
 miners well below the incumbent's own side, mining past r300. Gate: the mirror vs g_iter6 (the stack 33+34).
 
+**Diagnostics** (VM). First form (stall toward the refinery -> the HQ with the ring allowed): on Islands2 every one
+of our eight miners was still idle from r300 -- by then the ring is a cliff, so the HQ is no drop-off either, and
+a full miner with nowhere to unload is dead weight for the rest of the game (Iteration 33's 70-soup loads make
+it worse). **34b**: a full miner whose walk to a drop-off stalls builds a refinery where it stands when no
+refinery is within its sight and the bank holds 200 -- the field's pattern (3-4 refineries by r300 to our 1).
+Candidate (33+34b) against g_iter6's own side, mining actions by r600 / bank at r600 / idle miners r300-500:
+Islands2 800 vs 444, 2,583 vs 311, 6 of 8 vs 5 of 8 (the island's soup runs out at r400 for both); GSF 292 vs
+231 (the map-dead map: unchanged, 3 of 3 idle both sides); RandomSoup1 1,414 vs 947, 4,521 vs 813, 0 of 9 vs 1
+of 8; Prison 886 vs 711, 588 vs 766, 2 of 11 vs 5 of 11. Refineries built on the spot: 1, 0, 2, 6. Four wins
+of four. Snapshot `src/cand34`; **`gate34`** (the stack vs g_iter6, seeded) running.
+
 ## Iteration 33 -- a deposit worth the action (2026-09-24)
 
 **Evidence** (the Iteration 32 traces): a miner beside the HQ or a refinery deposits whatever it carries every

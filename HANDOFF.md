@@ -11,10 +11,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Ladder (batch Bradley-Terry over distinct games, `tools/elo.py --build B`):** g_iter6 1740 +- 41 after 432 games
   (blocks 50-58; 376 distinct), rank 17 of 72; g_iter5 1743 +- 33 (618 distinct of 720). Level: the mirror gain has not
   shown on the ladder yet.
-- **VM:** idle. `src/bot` = `src/cand33` (Iteration 33, a deposit worth the action), **provisional** at 132-108 (55%) over
-  240 seeded mirror games: the next candidate stacks on it and is gated against g_iter6; a stack that reaches ACCEPT is
-  snapshotted. Iterations 31 (7-25, 13-35) and 32 (77-83) rejected on 2026-09-24 (`src/cand31*`, `src/cand32`). No
-  incumbent blocks (PROMPTS 26). Diagnostics run on the VM when it is idle (`tools/vm-run.sh diagN '... run-dev.sh ...'`).
+- **Running on the VM:** `gate34` (`src/bot` = `src/cand34` = Iteration 33 (loads of 70 before a deposit, provisional at
+  132-108) + 34b (a full miner whose walk to a drop-off stalls builds a refinery where it stands); mirror vs g_iter6,
+  seeded). ACCEPT snapshots the stack as g_iter7 and submits it; REJECT drops 34b and leaves cand33 provisional.
+  Iterations 31 (7-25, 13-35) and 32 (77-83) rejected on 2026-09-24. No incumbent blocks (PROMPTS 26). Diagnostics
+  run on the VM when it is idle (`tools/vm-run.sh diagN '... run-dev.sh ...'`).
 - **The session loop** was `/loop 30m task check. If the VM is idle and nothing is in the workqueue, start a new idea.
   Otherwise, carry on as before` -- re-create it. Keep two ladder blocks running side by side when no gate needs the VM;
   every concurrent run needs its own class tree (`CLASSES=build/classes-<name>`) or gauntlet.sh refuses.
