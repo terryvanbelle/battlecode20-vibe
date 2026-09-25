@@ -1575,6 +1575,14 @@ never enter the ring, and the circle only on the way to a pickup; the patrol is 
 archetype is `arch_raider` (carriers fetch our landscapers and drop theirs beside our HQ at r1000): RandomSoup1 A
 and Prison B against it, with g_iter9 controls; RandomSoup1 A and Toothpaste B against g_iter9 for the cost.
 
+**48b: no cost, and nothing to see.** Against g_iter9: RandomSoup1 A 2737 against 2744, Toothpaste B identical.
+Against `arch_raider`: its carriers lifted ten of our landscapers at r1000-1100 on RandomSoup1 (24 to 14, in the
+control too) and our HQ lived either way; our drones made one pickup, none of them beside the HQ, the control's
+hunters made one and four. The archetype takes our seats but never puts a landscaper on the ring, so the guard's
+one job -- lifting what lands beside the HQ -- has not been seen to fire. Next: make `arch_raider` do what the
+band's raiders do (drop its landscapers on the ring tiles its carriers have just cleared, and bury), then the
+diagnostic again; without that, no test.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
