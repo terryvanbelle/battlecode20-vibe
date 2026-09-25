@@ -1229,6 +1229,12 @@ scan of the last 25 blocks ran from round 1 to round 0 and read nothing; every l
 posts learned the site only by the every-third-round block read, if at all (the gun perch's newborn scan had the
 same flaw). **36e**: the scan reads `rc.getRoundNum()`; diagnostics on Prison both ways, RandomSoup1, Squares.
 
+**36e**: the newborns now hold their posts -- and there is only one replacement per game, because the school
+spawns only onto a free post and the posts beside it free once. Rings at r3000, candidate vs the incumbent's side:
+Prison as B 1566 vs 2190 (two enclosed tiles lower, as before), Prison as A 1969 vs 1787, RandomSoup1 as A 2502
+vs 2706, Squares as B 1952 vs 2189. The same side wins Prison whatever the build, so these are read against a
+control -- g_iter7 against itself on the same maps (`ctrl7`), which this line never had.
+
 
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
