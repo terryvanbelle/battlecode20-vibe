@@ -1751,6 +1751,12 @@ three stood in it. Stage 4: equalise only onto a held shell tile at our distance
 floor at -9 (the field's depth); a holder with margin to spare raises the highest outer tile beside it toward dry
 land for a newcomer (reclaim); any robot counts as an occupant; no miner replenishment.
 
+**Stage 4: the held tiles rise (Prison: six tiles at 146-163 by r1000, the loop is gone) but the school stops
+at 6-11 bodies again -- the quarry dug its yard.** Every ring tile went to -9 by r300 (RandomSoup1 seven of
+eight), and a school at 5 cannot spawn onto a tile at -9 (a spawn is refused more than 3 away). The field's one
+-9 tile is the exception, not the rule. Stage 5: the quarry is only the ring tiles not beside the school or the
+center; the rest of the interior stays at ground for spawns and the elevator.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
