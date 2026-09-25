@@ -163,6 +163,15 @@ public abstract strictfp class Robot {
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
     /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
+    /** Stage 26: a shell tile is a Chebyshev-2 tile with an on-map neighbour at Chebyshev 3 -- toward the map, not the edge
+     *  (Prison's corner HQ held nine edge-side tiles that had no outside to dig from: 24 and 114 at r2000). */
+    protected boolean isShell(MapLocation t, MapLocation home) {
+        if (Nav.cheb(t, home) != 2) return false;
+        for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) == 3 && rc.onTheMap(n)) return true; }
+        return false;
+    }
+    /** Stage 26: inside the enclosure -- Chebyshev 1, or a Chebyshev-2 tile that is not shell. */
+    protected boolean inside(MapLocation t, MapLocation home) { int d = Nav.cheb(t, home); return d <= 1 || (d == 2 && !isShell(t, home)); }
     protected boolean allowedTile(MapLocation l) { return !(avoidRing && MapState.home != null && Nav.cheb(l, MapState.home) <= (round >= C.SHELL_FROM ? 2 : 1)); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */

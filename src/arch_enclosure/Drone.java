@@ -10,7 +10,7 @@ import battlecode.common.*;
  * way to a pickup (a hovering drone occupies its tile).
  */
 public strictfp class Drone extends Robot {
-    private MapLocation water, patrol, liftTarget, lastTarget; private int lastTargetUntil = 0;
+    private MapLocation water, patrol, liftTarget, lastTarget, scoutTarget, scout; private int lastTargetUntil = 0, scoutI = 0;
     private boolean holdingFriend = false, chasing = false;
     private int pickups = 0, drops = 0, lifts = 0;
 
@@ -73,7 +73,16 @@ public strictfp class Drone extends Robot {
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER || Nav.cheb(f.location, home) != 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < wd) { wd = d; w = f; } }
             if (w != null) {
                 MapLocation t = freeShell(home); MapLocation gate = gate(home);
+                // stage 26: a target seen while scouting is remembered; none in sight from the gate, the elevator flies the
+                // four corners at Chebyshev 4 to find one (the station sees one side of the shell: free=null for 2,000 rounds
+                // with dry tiles on the far side)
+                if (scoutTarget != null && rc.canSenseLocation(scoutTarget) && (rc.isLocationOccupied(scoutTarget) || rc.senseFlooding(scoutTarget) || (lastTarget != null && round < lastTargetUntil && scoutTarget.equals(lastTarget)))) scoutTarget = null;
+                if (t != null) scoutTarget = t; else t = scoutTarget;
                 if (round % 100 == 0) Debug.log("@gate " + gate + " waiter=" + w.location + " target=" + t);
+                if (t == null && gate != null && Nav.cheb(w.location, gate) <= 1) {
+                    if (scout == null || loc.distanceSquaredTo(scout) <= 2) { scoutI = (scoutI + 1) & 3; int sx = (scoutI & 1) == 0 ? -4 : 4, sy = (scoutI & 2) == 0 ? -4 : 4; scout = new MapLocation(home.x + sx, home.y + sy); if (!rc.onTheMap(scout)) scout = new MapLocation(home.x + sx / 2, home.y + sy / 2); }
+                    if (round % 25 == 0) Debug.log("@scout to=" + scout + " waiter=" + w.location);
+                    nav.setTarget(scout); nav.step(); return; }
                 if (t != null && gate != null && Nav.cheb(w.location, gate) <= 1) {   // stage 16: only when the waiter stands beside the gate -- a drone on the gate keeps it from being raised
                     holdingFriend = true;
                     if (rc.canPickUpUnit(w.ID)) { rc.pickUpUnit(w.ID); liftTarget = t; lastTarget = t; lastTargetUntil = round + 30; pickups++; Debug.log("@lift-up id=" + w.ID + " for=" + t); return; }
@@ -126,12 +135,12 @@ public strictfp class Drone extends Robot {
     private MapLocation gate(MapLocation home) {
         for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.DESIGN_SCHOOL && Nav.cheb(f.location, home) == 1) {
             MapLocation g = new MapLocation(home.x + 2 * (f.location.x - home.x), home.y + 2 * (f.location.y - home.y));
-            if (rc.onTheMap(g)) return g;
+            if (rc.onTheMap(g)) { MapState.gate = g; return g; }
             // stage 14: a corner HQ's gate may be off the map (Prison: no lift in 2,000 rounds) -- the nearest on-map shell tile beside the school's yard
             MapLocation best = null; int bd = 1 << 30;
             for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy); if (!rc.onTheMap(t) || Nav.cheb(t, f.location) > 2) continue; int d = t.distanceSquaredTo(f.location); if (d < bd) { bd = d; best = t; } }
-            return best; } }
-        return null;
+            MapState.gate = best; return best; } }
+        return MapState.gate;   // stage 26: cached once seen -- a drone on the far side set a body down on the gate at r988
     }
 
     /** The nearest free, dry shell tile: Chebyshev 2 first, then 3 beside a held 2. */
@@ -144,6 +153,7 @@ public strictfp class Drone extends Robot {
                 MapLocation t = new MapLocation(home.x + dx, home.y + dy);
                 if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue;
                 if (ring == 2 && t.equals(gate(home))) continue;   // stage 8: the gate stays free
+                if (ring == 2 && !isShell(t, home)) continue;   // stage 26: the edge side of a corner enclosure is interior
                 if (ring == 3 && gate(home) != null && Nav.cheb(t, gate(home)) <= 1) continue;   // stage 23: the approach to the gate stays free too
                 if (lastTarget != null && round < lastTargetUntil && t.equals(lastTarget)) continue;   // stage 24: a body is on its way there
                 if (ring == 3) { boolean held = false; for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue; RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { held = true; break; } } if (!held) continue; }

@@ -1979,6 +1979,26 @@ down on (the outer ring floods at r950 on this map; reclaiming never fills a pit
 Stage 25: an outer holder keeps its own tile just above the water and puts everything else on the lowest inner
 tile beside it. It drowns late either way; what it dug goes into the shell first.
 
+**Stage 25: the inner shell at 1,095 at r2000 (from 626), alive to r3129 (from r3018).** RandomSoup1 as A, the same
+27 bodies: fed 12,876 by r2000 (from 6,145), the shell 1,493 at r2600 and 1,705 at r3100, the water 1,496 at r3100
+and past the shell at r3129. And g_iter9's wall on the other side: **2,125 at r2600, 2,375 at r3100** -- 8 tiles with
+17 bodies against our 16 with 27. We move more dirt than they do (24,000 by r2600 against 17,000) over twice the
+tiles. The outer holder's schedule is already about right: keeping its own tile just above the water and drowning
+when the rise passes half a dirt a round (~r2650) nets ~660 dirt each for the shell; the shortfall is bodies per
+tile, 1.7 against 2.1. Bodies stopped at 27 because (a) soup ran out exactly at r700-950, the last rounds with a
+dry outer ring (26 bodies at r700 with 260 soup; eight drones had taken 1,200 and the helper bank 200 a body), and
+(b) after r950 the elevator on station at (21,6) saw no free tile (`free=null` for 2,000 rounds) while drones on the
+far side saw (16,8) and (16,5) -- and at r988 a drone that could not see the school (gate null) set a body down on
+the gate itself, sealing it. Prison as A alive to r2787 (unchanged): the corner enclosure's edge-side shell tiles
+-- (0,y) and (x,0), whose outer neighbours are off the map -- have nothing to dig and sit at 24 and 114 at r2000
+while the map-side tiles are at 800; nine of sixteen tiles for nothing. Squares as B to r2901: unchanged, the
+frozen miners.
+
+Stage 26: the gate is cached in MapState once any robot has seen the school; the shell is the region's edge
+toward the map (a Chebyshev-2 tile with an on-map neighbour at 3), so a corner HQ's enclosure is nine tiles and
+the edge side is interior; the elevator with a waiter and no target in sight flies the four corners at Chebyshev 4
+to find one and remembers it; no helper bank in the school; four drones, not eight.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

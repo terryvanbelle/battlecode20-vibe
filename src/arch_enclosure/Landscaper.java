@@ -33,7 +33,7 @@ public strictfp class Landscaper extends Robot {
         if (tile == null || (!tile.equals(loc) && occupiedByOther(tile))) tile = pickShell(home);
         if (tile == null) {
             // stage 2: no feeders -- a body inside waits in the yard for a drone to lift it onto the shell; one outside attacks
-            if (Nav.cheb(loc, home) <= 1) { if (!waiting) { waiting = true; Debug.log("@yard at=" + loc); }
+            if (inside(loc, home)) { if (!waiting) { waiting = true; Debug.log("@yard at=" + loc); }
                 // stage 15: wait on the yard tile beside the gate, where the elevator can reach us without coming in
                 MapLocation g = gateTile(home);
                 if (g != null && Nav.cheb(loc, g) > 1 && rc.isReady()) {   // stage 23: navigate to the nearest free yard tile (one step was not enough: on Prison the waiter was boxed in two tiles from the yard for 2,000 rounds)
@@ -53,7 +53,7 @@ public strictfp class Landscaper extends Robot {
         RobotInfo r = rc.senseRobotAtLocation(l);
         return r != null && r.ID != id;   // stage 4: anything standing there (a miner too: walkers circled tiles miners stood on)
     }
-    private boolean shell(MapLocation l) { int d = Nav.cheb(l, MapState.home); return d == 2 || d == 3; }
+    private boolean shell(MapLocation l) { int d = Nav.cheb(l, MapState.home); return (d == 2 && isShell(l, MapState.home)) || d == 3; }
 
     /** The nearest free shell tile we can reach: Chebyshev 2 first; Chebyshev 3 only beside a held Chebyshev-2 tile
      *  (the outer shell grows from the inner one). Within 3 of our own elevation, or of the HQ's early on. */
@@ -67,6 +67,7 @@ public strictfp class Landscaper extends Robot {
                 boolean b = false; for (int k = nBad; --k >= 0;) if (bad[k].equals(t)) { b = true; break; }
                 if (b) continue;
                 if (ring == 2 && t.equals(gateTile(home))) continue;   // stage 8: the gate is the drones' way in and out
+                if (ring == 2 && !isShell(t, home)) continue;   // stage 26: not the edge side of a corner enclosure
                 if (ring == 3 && gateTile(home) != null && Nav.cheb(t, gateTile(home)) <= 1) continue;
                 if (ring == 3 && Nav.cheb(loc, home) <= 1) continue;   // stage 24: not from inside (the shell is in the way; Prison's waiters walked at an outer tile for 90 rounds)   // stage 23: the three outer tiles beside the gate are the elevator's approach (holders set down there sealed the gate: no lift after r1328)
                 if (rc.canSenseLocation(t)) {
@@ -82,8 +83,8 @@ public strictfp class Landscaper extends Robot {
         return best;
     }
     private MapLocation gateTile(MapLocation home) {
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.DESIGN_SCHOOL && Nav.cheb(f.location, home) == 1) return new MapLocation(home.x + 2 * (f.location.x - home.x), home.y + 2 * (f.location.y - home.y)); }
-        return null;
+        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.DESIGN_SCHOOL && Nav.cheb(f.location, home) == 1) { MapState.gate = new MapLocation(home.x + 2 * (f.location.x - home.x), home.y + 2 * (f.location.y - home.y)); return MapState.gate; } }
+        return MapState.gate;   // stage 26: cached once seen
     }
     private boolean besideHeld(MapLocation t, MapLocation home) throws GameActionException {
         for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue;

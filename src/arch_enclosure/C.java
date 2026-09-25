@@ -23,7 +23,7 @@ public final class C {
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
-    public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
+    public static final int DRONES_MAX = 4;           // Iteration 2: drones fly over the flood and count at the tiebreak (stage 26: four -- eight cost 1,200 soup, eight bodies, in the rounds that decide how many tiles get held)
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
