@@ -1338,6 +1338,12 @@ three-door limit, and no building on a ring tile); **`gate42c`** (paired vs g_it
 **Arm 42c: 49-47, rating 1710 +- 76 (g_iter8 1727 +- 49), flood-round losses 0 of 96.** Level; the doorstep's
 few-landscaper case is 1-2 games in 96 and the arm cannot see it.
 
+**Gate 42c, 320 pairs: discordant 7-1, concordant 158-154 -- INCONCLUSIVE, and below the cap rule's twelve
+discordant pairs** (the sign test on 8 says p = 0.07). The doorstep changes one mirror game in forty. A second
+block of 320 pairs is pre-registered now (`gate42c-2`, the record carried with `W0=7 L0=1`): the reading at 640
+pairs is the sign test on every discordant pair, twelve or more required, p < 0.01 an accept and p < 0.10 a
+provisional keep -- the same rule at twice the cap, declared before the block, not after.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
