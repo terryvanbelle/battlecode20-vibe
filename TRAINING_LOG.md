@@ -1398,8 +1398,8 @@ of five was 24-24).
 **Gate 43b: ACCEPT at 144 pairs, discordant 30-8 (79%), concordant 60-46** -- the first paired gate to reach the
 SPRT bound, in nine batches. The bank change touches most games (38 discordant pairs in 144, against 42c's 14 in
 640) and wins four of five it touches. **Accepted: `src/g_iter9` = g_iter8 + 42c (the doorstep, provisional until
-now, carried in by the stack) + 43b (banks at 200).** Archetype regression `regr9` and submission blocks
-`sub9-1..5` (240 seeded band games as `us:g_iter9`) running.
+now, carried in by the stack) + 43b (banks at 200).** Archetype regression `regr9`: **21/24** vs `arch_swarm`
+(g_iter8 24/24, g_iter7 21/24). Submission blocks `sub9-1..5` (240 seeded band games as `us:g_iter9`) running.
 
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
