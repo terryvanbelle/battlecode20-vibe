@@ -1139,6 +1139,28 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Iteration 37 -- one gun on the site (2026-09-25, on g_iter7)
+
+**Why now.** The raid table (five band opponents with clocks, a third of the band's losses) and two closed forms:
+drones as guards (10, 23, 24) and the gun perches (31), which the mirror priced at 22-27% -- by what they reserved
+(two sites and two stands off limits to buildings, the bank held back, gun tiles nobody could stand on or dig,
+helpers pulled off their posts), not by the guns. Iteration 36 built site machinery that reserves nothing: one
+Chebyshev-3 tile chosen at r100-300 far from the refinery and the school, raised to hqElev+6 by the ninth
+landscaper from a Chebyshev-4 stand, built on from the stand. With a school on it the ring came out 7-12% below
+the control; the school's mason also raised three posts (nine more loads) and the seats spared them.
+
+**Candidate** = g_iter7 + that site with a **net gun** on it (250 soup, built when the site reads hqElev+6, by the
+builder or the nearest miner in sight), the mason raising only the site and the stand (nine loads), nothing else
+reserved, no bank held back, and nobody digs a ring tile (a genuine defect found on the way). One gun plus the
+HQ is two shots a round against the raid's 17-40 drones -- not a wall, a price.
+
+**Pre-registration.** Diagnostic: the gun standing from before r700 to about r1700 on Prison, RandomSoup1 and
+Squares, and the ring at r3000 read against `ctrl7` (g_iter7 vs itself, same map and side: Prison A 2109,
+RandomSoup1 A 2445, Squares B 2182) -- within 5% is the bar. Arm 1: the mirror vs g_iter7 (a small loss is
+expected: 250 soup and a landscaper's thirty rounds). Arm 2: two seeded band blocks as `us:cand37`; a finding if
+the losses in the raid windows (r1000-2300, not within 3 rounds of the map's `hqFloodRound`) are at most 6 of 96
+against g_iter7's rate (blocks 70-75: to be counted before the arm reads out). A null in both arms is a reject.
+
 ## Mirror gains and the field (2026-09-25)
 
 g_iter7 against g_iter6 on the same opponents, weighted by g_iter7's games (distinct games, blocks 70-75 against

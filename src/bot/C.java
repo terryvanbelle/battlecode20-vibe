@@ -36,6 +36,14 @@ public final class C {
     public static final int ATTACKER_BANK = 700;      // surplus landscapers only above this bank
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;
+    // Iteration 37: one net gun on a Chebyshev-3 tile raised to hqElev+SITE_RAISE (dry to about r1700), chosen far from the
+    // refinery and school, raised by the ninth landscaper (the mason) from a Chebyshev-4 stand; the site machinery of 36,
+    // with nothing reserved, no bank held back and no tile off limits (what priced the gun perches of 31 out)
+    public static final int SITE_RAISE = 6;
+    public static final int SITE_STAND = 3;
+    public static final int SITE_POST_UNTIL = 2000;    // 36d: the replacements' whole life, so every one of them learns the site
+    public static final int SCHOOL2_FROM = 650;
+    public static final int SCHOOL2_BANK = 250;        // a replacement needs this much banked (150 for the body, 100 kept)
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
     // Iteration 25: seats first. Reviewable ladder losses show 2-6 of 8 seats at r700 (median 4): a newborn's ring tile
     // was raised by its seated neighbours' equalising and by the helpers' feeding before it arrived, and a tile 4 above
