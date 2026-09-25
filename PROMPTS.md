@@ -145,3 +145,7 @@ Graph is great, please update it every time you submit a new candidate
 ## 32. 2026-09-25
 
 Can you explain why cand43b, cand49b, and cand47d weren't accepted?  They all performed better in the ladder than g_iter9
+
+## 33. 2026-09-25
+
+OK, so cand43b just happened to get some more favorable matchups than g_iter9, and that explains its higher ELO?

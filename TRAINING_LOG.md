@@ -2032,6 +2032,18 @@ bodies are set down and reclaim only on stands, so every stand is at ground unti
 of reclaim after; the scouting lap flies the on-map corners at Chebyshev 3 once, then rests a hundred rounds on
 station.
 
+**Stage 28: a regression, reverted.** RandomSoup1 as A: 21 bodies (from 31), the shell 911 at r2000 (from 1,207),
+48 bad tiles; Prison as A: six lifts, 14 bodies, alive to r3033 (the parity leaves Prison three stands, two of them
+the approach); Squares as B: six lifts, 13 bodies, to r2930. Stands by parity halve the tiles a body can take, and
+the reclaim they were meant to enable added 67 dirt all game. And on RandomSoup1 the gate was sealed from r757 to
+r2753 by bodies that had lost their tile: the "landed" rule takes whatever shell tile a tileless body stands on,
+and three of them stood on the approach tiles (21,5), (21,6) and (21,7) on their way past -- 39 waits, no lift for
+2,000 rounds with dry stands on the far side.
+
+Stage 29: the parity goes. The outer ring stays a stand the field's way: inner holders dig the interior quarry --
+any Chebyshev-1 tile that is not the yard, the HQ or a building; an interior pit never floods -- and never the outer
+ring; outer holders dig Chebyshev 4 as before. A tileless body never takes the gate or its approach.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

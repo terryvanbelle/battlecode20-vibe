@@ -164,7 +164,6 @@ public strictfp class Drone extends Robot {
                 if (ring == 2 && !isShell(t, home)) continue;   // stage 26: the edge side of a corner enclosure is interior
                 if (ring == 3 && gate(home) != null && Nav.cheb(t, gate(home)) <= 1) continue;   // stage 23: the approach to the gate stays free too
                 if (lastTarget != null && round < lastTargetUntil && t.equals(lastTarget)) continue;   // stage 24: a body is on its way there
-                if (ring == 3 && !isStand(t, home)) continue;   // stage 28: stands only
                 if (ring == 3) { boolean held = false; for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (Nav.cheb(n, home) != 2 || !rc.canSenseLocation(n)) continue; RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { held = true; break; } } if (!held) continue; }
                 int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; }
             }
