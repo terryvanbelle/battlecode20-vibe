@@ -1523,6 +1523,17 @@ keeps growing, and the keeper poured its dirt into two tiles chasing it: ring 18
 where the control wins. **47d**: the kept height is capped at 42 (dry to about r2290, past cormackikkert's clock),
 so the keeper's whole job is about a hundred dirt; RandomSoup1 A, Prison B, Squares A, Toothpaste A, Hourglass B.
 
+**47d.** RandomSoup1 A: park r650, gun r1150 (16), standing r1200-1900, ring 2717 against 2744 (**-1%**), won.
+Prison B: the same clock, -1%, lost either way. Squares A: park r617 but **no gun** (450 soup never banked on a poor
+map after the builder stopped mining), ring 1970 against 2085 (-5.5%), lost by one round where the control wins.
+Toothpaste A: no park, identical. Hourglass B: park r620, no keeps (three landscapers), identical. Where the gun
+comes it costs 1% of ring; where it does not, the parked builder's mining is the cost. Snapshot `src/cand47d`.
+**`gate47d`** (paired vs g_iter9, 320 pairs) and **`arm47d-a`/`arm47d-b`** (96 band games as `us:cand47d`).
+**Pre-registered before either runs:** the mirror cannot see a gun's worth (g_iter9 never raids), only its price;
+a paired REJECT refutes the form whatever the arm says (as it did 31 and 37); a null at the cap hands the decision
+to the arm: raid-window losses (r700-2900, not the flood round) at most 22 of 96 (g_iter9's 35% gives 34; the
+chance of 22 or fewer at that rate is about 1%) and the rating within g_iter9's interval accepts it as g_iter10.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

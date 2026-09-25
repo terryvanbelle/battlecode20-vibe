@@ -39,9 +39,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   with g_iter8 (1719 +- 49); the pool had moved up to mvpatel/winkelmantanner and the locked raiders.** `src/bot` =
   g_iter9. Iteration 44 (six early miners) refuted at the diagnostic (ring 4-13% lower on three maps of four);
   Iteration 46 (no miner without income) inert on this base (the HQ cannot spawn once the ring is up).
-- **Iteration 47 (the keeper) in diagnostics** (`diag47`): a miner parks beside a helper at r600, the helper keeps
-  its tile and a gun site ahead of the water, the miner builds a net gun there from r1150 for the raid clocks
-  (r1525-2262, 35% of g_iter9's games). `src/bot` = g_iter9 + 47.
+- **Iteration 47d (the keeper) in the gate and the arm:** the builder parks beside a helper at r600, that helper
+  keeps its tile and a gun site at up to 42, the miner builds a net gun there from r1150 (standing r1200-1900 in
+  the diagnostics) for the raid clocks (r1525-2262, 35% of g_iter9's games); 1% of ring where the gun comes, 5% on
+  a poor map where it does not. `src/bot` = `src/cand47d`. `gate47d` (paired vs g_iter9) and `arm47d-a`/`-b`
+  running (post with `tools/post-block.sh <run> cand47d`); the decision rule is pre-registered in TRAINING_LOG.
 - **Running on the VM:** `gate37p` (cand37, one gun on a raised site, paired against g_iter7: was the old 2-14 the
   draw?). Iteration 45 (seats by the map's own flood round) refuted at the diagnostic (WateredDown A drowned with two
   tiles open where the control lives). `src/bot` = g_iter9.
