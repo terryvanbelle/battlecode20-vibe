@@ -143,6 +143,7 @@ public strictfp class Landscaper extends Robot {
     private void wall(MapLocation home) throws GameActionException {
         if (!rc.isReady()) return;
         Direction toHQ = loc.directionTo(home);
+        if (round >= C.SEATS_BY && seatWalk(home)) return;   // Iteration 41: an open ring tile with no seat beside it gets one
         // 1. the HQ is being buried: dig it out
         if (hqInfo != null && hqInfo.dirtCarrying > 0 && rc.canDigDirt(toHQ)) { rc.digDirt(toHQ); hqDigs++; digs++; Debug.log("@hqdig buried=" + hqInfo.dirtCarrying); return; }
         // 2. an enemy building or unit adjacent: bury it (deposit) if we carry, it is cheap denial
@@ -172,6 +173,30 @@ public strictfp class Landscaper extends Robot {
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !rc.canDigDirt(d)) continue; int e = rc.senseElevation(n); if (e > bh) { bh = e; bestD = d; } }
             if (bestD != null) borrowed++; }
         if (bestD != null) { rc.digDirt(bestD); digs++; }
+    }
+
+    /** Iteration 41, the seat walk (seat census, 2026-09-25: of 52 flood-round losses with a wall (4+ landscapers) and
+     *  an open ring tile at r500, 51 had no landscaper of ours adjacent to the open tile -- the seats had clustered on
+     *  the near side, and step 3 feeds only adjacent tiles). After SEATS_BY, a seat two tiles from an open ring tile that no seat touches steps onto the raised,
+     *  empty ring tile between them, from where step 3 feeds it (through a miner standing on it if need be). */
+    private boolean seatWalk(MapLocation home) throws GameActionException {
+        int myE = rc.senseElevation(loc);
+        for (int i = 8; --i >= 0;) {
+            MapLocation t = home.add(DIRS[i]);
+            if (!rc.onTheMap(t) || !exposed(t) || Nav.cheb(t, loc) != 2 || !rc.canSenseLocation(t)) continue;
+            boolean low = rc.senseFlooding(t) || rc.senseElevation(t) < myE - GameConstants.MAX_DIRT_DIFFERENCE;
+            if (!low) continue;
+            RobotInfo on = rc.senseRobotAtLocation(t); if (on != null && (on.type.isBuilding() || (on.type == RobotType.LANDSCAPER && on.team == us))) continue;
+            boolean tended = false;
+            for (int k = 8; --k >= 0;) { MapLocation n = t.add(DIRS[k]); if (!onRing(n) || !rc.canSenseLocation(n)) continue;
+                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type == RobotType.LANDSCAPER && r.team == us) { tended = true; break; } }
+            if (tended) continue;
+            for (int k = 8; --k >= 0;) { Direction d = DIRS[k]; MapLocation n = loc.add(d);
+                if (!onRing(n) || Nav.cheb(n, t) != 1 || !rc.canMove(d) || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
+                if (Math.abs(rc.senseElevation(n) - myE) > GameConstants.MAX_DIRT_DIFFERENCE) continue;
+                rc.move(d); seat = n; loc = rc.getLocation(); Debug.log("@seatwalk to=" + n + " for=" + t); return true; }
+        }
+        return false;
     }
 
     private void attack() throws GameActionException {

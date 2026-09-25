@@ -16,9 +16,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   discordant 4-2; TRAINING_LOG), the arm null (57-39, 1729 +- 77, flood-round losses 6 of 96 at the incumbent's
   rate, each with a ring tile unseated at r500). **The gate is paired now** (`mirror.sh` `PAIRED=1`, `tools/paired.sh`,
   TRAINING_ALGORITHM 4.4): the SPRT counts discordant pairs only, N counts pairs, cap 320.
-- **Next on the flood-round line:** the census of *why* the tile is unseated at r300-500 in every flood-round loss
-  (who stands on it; is a landscaper of ours within 3; is it a pit) -- 40c's step answers only the boxed-in miner,
-  which the ladder losses do not show.
+- **Iteration 41 (the seat walk) in diagnostics** (`diag41` on the VM, seed 41, against `ctrl41`): the seat census
+  (TRAINING_LOG 2026-09-25) found that in 51 of 52 flood-round losses with a wall the open ring tile at r500 has no
+  landscaper of ours beside it; a seat two away steps onto the raised empty tile between them and feeds it.
+  `src/bot` = g_iter7 + `Landscaper.seatWalk()`. If it fires and seals: `gate41` (paired) and the arm.
+- **The other flood-round line:** GSF as B never builds the wall (0-4 landscapers at r500): a production failure.
 - **Iteration 40c as gated:** `gate40c` (Iteration 40c, `src/bot` = `src/cand40c`: a miner boxed in for 20 rounds with a
   landscaper of ours within 2 steps onto an empty ring tile, once per 100 rounds, before r400; mirror vs g_iter7,
   seeded, cap 240) and its ladder arm `arm40c-a`/`arm40c-b` (`BOT=cand40c`, post with `tools/post-block.sh <run>

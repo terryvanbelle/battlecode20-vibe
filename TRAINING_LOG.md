@@ -1224,12 +1224,26 @@ the old fixed-seed repeats are folded; every opponent passed `tier-check.sh`). R
 | the game ended before r500 | 22 | WateredDown 10, maptestsmall 3 | maps that flood at r467 / r257: a different race |
 | an enemy on the tile | 1 | RealArt | |
 
-Two lines fall out. **(1) The tile nobody can stand on** (miner-held, outward flooded, or the Climb cliff: 51 of 102)
-has seats at 100+ on both sides of it that only ever deposit on themselves; feeding the low tile from the adjacent
-seat after r400 -- through the miner if one stands there (dirt on a unit's tile is legal; only buildings are
-buried) -- seals it at the cost of one seat's growth. Helpers already do this from the outside (`help()` step 2,
-Iteration 25) but their posts are under water by then. **(2) GSF as B** never builds the wall: a production
-failure to diagnose on its own (the control game `ctrl41` on GSF shows when the school and the landscapers come).
+The classes share one cause. Seats already feed a low adjacent ring tile after r400 (`wall()` step 3 raises the
+lowest of its own tile and its ring neighbours, through a miner standing there if need be: the control `ctrl41` on
+Spiral as B had a miner on the corner at r400 and the tile sealed by r500). But **of the 52 losses with a wall (4+
+landscapers) and an open tile at r500, 51 have no landscaper of ours adjacent to the open tile** (Spiral 13, Climb
+13, Hills 12, GSF 4, Toothpaste 3): the seats took the nearest free tiles, clustered on the near side, and raised
+the tiles next to them from their seats -- so the far tile's ring neighbours are high and empty, nobody stands
+beside it, and nobody can (it is 100 below, and its outward side is under water). The other line is **GSF as B**,
+where g_iter6 had 0 landscapers and 7-11 miners at r500 in every loss (g_iter7 3-4): a production failure to
+diagnose on its own.
+
+## Iteration 41 -- the seat walk (2026-09-25, on g_iter7)
+
+**Change** (`Landscaper.seatWalk()`, first thing in `wall()` after `SEATS_BY`): a seat two tiles from an open ring
+tile (exposed; flooded or more than 3 below the seat; not a building or a seated landscaper of ours) that no
+landscaper of ours touches steps onto the raised, empty ring tile between them (climbable, not flooded), and from
+there step 3 feeds the open tile. `@seatwalk` logs each step. **Diagnostic** (VM, seed 41, against `ctrl41`): Hills as
+B (the control's corner is open at r500 with the nearest seat at 2, and it drowns at r931), Spiral as A (open
+corner at r500, seat at 2), GSF as B, Toothpaste as B, RandomSoup1 as A (the cost check). Pre-registered: the walk
+fires on Hills and Spiral, the tile is sealed by r600, the HQ outlives r931 on Hills; RandomSoup1's ring at r3000
+within the control band.
 
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
