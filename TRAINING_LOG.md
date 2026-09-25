@@ -1765,6 +1765,15 @@ reaches. RandomSoup1 also had no center (the builder stood beside the school, wh
 Stage 6: equalise onto any inner-shell tile at our distance, held or not (never a dig source, so no loop); the
 builder stands opposite the school; a landscaper set down by the elevator holds where it lands.
 
+**Stage 6: the interior holds.** RandomSoup1 as A: all 16 inner-shell tiles dry from r300 to r2000 (33 / 80 / 210
+at r500 / 1000 / 2000), the interior dry all game, **the HQ alive to r2735**; Prison as A: 16 dry, 25 / 45 / 78, alive
+to r2516; Toothpaste as B (HQ at 2, the lowlands flood by r450) five holes at r500 and the school drowned. The
+enclosure now does what the field's does -- until the water outgrows a shell that rises only 0.08-0.1 a round per
+tile with 11-14 holders, against the field's 0.34 with 27 bodies on 40 tiles. The next questions are intake: what
+the holders' turns go to (digs and deposits per holder), why the elevator lifted 2 and 0 (13 and 27 waited in the
+yard; Prison built a center and no drone in 2,000 rounds -- its spawn tiles are where the waiters stand), and the
+outer shell (Chebyshev 3), which nobody has reclaimed.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
