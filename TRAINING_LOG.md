@@ -3020,3 +3020,13 @@ WateredDown r468 -> r2911), Egg's weak side went 8 -> 24, SoupOnTheSide 9 -> 16,
 Still starved: Hills (6/3, mines 205/205 -- identical to g_iter9: the fix never fired there), GSF (5/4), Spiral A (4),
 Climb A (5), Islands (8/8), TheHighGround (8/8, mines 264/264 identical), AMaze and Maze (8). Next: a logged
 diagnostic on Hills and TheHighGround (mirror, seed 7) -- what caps production where the miners do not freeze.
+
+**The Hills diagnostic (`diaghills`, g_iter10 mirror, seed 7).** Hills and TheHighGround: no miner freezes -- every
+miner explores all game (13-28 explores by r500) with `soupMem=0`, and mining stops by r200 (Hills: 0-49 mined each;
+TheHighGround 11-57). The map: Hills' A HQ at (14,11) has a 13-tile soup diamond beside it and a 150-tile field at
+(39-52, 2-14), 25-38 east across flat ground. The miners never find it: with the origin unknown (`unseen=-1` on
+every explore -- no miner has seen two edges) `pickExplore` returns a random point within 20 of where the miner
+stands, so eight miners random-walk around the base for 500 rounds. **Iteration 52 (`src/cand52`, `src/bot` =
+cand52):** with the origin unknown, explore along a ray -- 30 tiles in one of the eight directions, cycling by id and
+explore count. A ray reaches an edge (the origin, then the sector search) and crosses open ground. Diagnostic
+`diag52`: Hills both sides, TheHighGround A, GSF A, against g_iter10.
