@@ -1139,6 +1139,15 @@ games, rank 17 of 72, field score 72.4%; g_iter5 1742 +- 30. Blocks 57-58 (`2026
 Blocks 59-60 (`20260924-204807`, `-204833`, the first seeded blocks): see the ladder table for the
 running total. Blocks 61-69 (`20260924-210822` to `-2150xx`) recorded: the last incumbent blocks (owner, PROMPTS 26).
 
+## Mirror gains and the field (2026-09-25)
+
+g_iter7 against g_iter6 on the same opponents, weighted by g_iter7's games (distinct games, blocks 70-75 against
+blocks 50-69): **44.9% vs 42.4%** -- a mirror result of 64.6% became two and a half points against the field.
+Per opponent: laurenschneider 50% vs 36% (36 games), poortho 38% vs 30%, EmaPajic 37% vs 16%, wpine215 77% vs
+76%, mhahn2003 75% vs 78%, benzyx 36% vs 41%, **cormackikkert 27% vs 44%** (36 vs 109 games, p about 0.06). The
+same happened with g_iter5 over g_iter3 and g_iter6 over g_iter5: what the mirror rewards is what the incumbent
+lacks, and the field lacks less of it. The ladder arm belongs in every acceptance, not only the raid answers.
+
 ## The wall ceiling census (2026-09-25)
 
 Every landscaper's `@wallstat` counters at r1000 and r2000 in g_iter7's 145 reviewable ladder games (blocks
