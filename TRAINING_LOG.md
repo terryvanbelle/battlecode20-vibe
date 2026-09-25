@@ -1894,6 +1894,11 @@ those: a stray outside miner stood on one of them at r500 (miners kept off the r
 tile with a robot on it is one no holder takes. Prison: 655 waits, one lift (the corner-HQ gate, still). Stage
 21: miners keep off Chebyshev 2 as well once a refinery stands.
 
+**Stage 21: 27 bodies on RandomSoup1.** 50 lifts, 18 inner and 8 outer holders, every inner tile dry from r300,
+456-524 at r2000, alive to r2937 -- the corner is held now. Squares fell to 8 bodies (soup 58-400: keeping miners
+off Chebyshev 2 cut its early mining, to be read). And the arithmetic: 26 productive bodies dig 13 dirt a round and
+the inner ring gains 4-6 of it; the rest goes somewhere. The holders' turn accounting at r2000 says where.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
