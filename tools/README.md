@@ -40,3 +40,5 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 Rules of the road: never read benchmark source; never review a game against a bot we beat under
 20%; never `pkill -f` a pattern that appears in your own command line; do not edit `gauntlet.sh`
 while a run is in flight (it re-executes from a private copy).
+
+- `tools/enc-acct.py <log> <A|B> <hqx> <hqy>` -- the enclosure holders' dirt accounting per 100 rounds by tile distance (digs, own-tile, fed, reclaimed), from the @wallstat tags.

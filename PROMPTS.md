@@ -149,3 +149,7 @@ Can you explain why cand43b, cand49b, and cand47d weren't accepted?  They all pe
 ## 33. 2026-09-25
 
 OK, so cand43b just happened to get some more favorable matchups than g_iter9, and that explains its higher ELO?
+
+## 34. 2026-09-25
+
+I'm going to switch you back to Opus 5.5.  Please make the necessary preparations

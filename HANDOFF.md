@@ -3,7 +3,52 @@
 Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the tail of
 `TRAINING_LOG.md`.
 
-## State at the 2026-09-24 evening restart (switch to Fable 5.1; read this block first)
+## State at the 2026-09-25 evening handoff (switch back to Opus 5.5; read this block first)
+
+- **Incumbent and submission: `src/g_iter9`** (1723 +- 48, rank 19 of 83 after 240 games; the pool has grown and
+  moved up). `src/bot` = g_iter9. Nothing is gated. The ladder rows `cand43b`, `cand49b`, `cand47d` are explained in
+  PROMPTS 32-33 and in the transcript: cand43b IS g_iter9 (the same code, its 96 arm games against a pool 250 points
+  weaker; merged, 1739 +- 42 on 336 games); 47d was REJECTED paired 2-14; 49b sat under the twelve-pair floor.
+- **The owner's standing loop:** a cron prompt every 30 minutes ("task check. If the VM is idle and nothing is in
+  the workqueue, start a new idea. Otherwise, carry on as before"). Record every user prompt in PROMPTS.md (next is
+  35). Push after every commit; `post-block.sh` refreshes `progress/field-score.png` after every posted block (the
+  owner watches it, PROMPTS 28-31).
+- **Running on the VM now: `diagenc30`** -- the enclosure's stage-30 diagnostic, three games (RandomSoup1 A,
+  Prison A, Squares B; `arch_enclosure` vs g_iter9, seed 41). Read it with `source tools/vm.sh; ensure_vm; gssh
+  "cat ~/projects/vibe/2020/gauntlet/diagenc30.log"` (ends with DIAGDONE; ~25 minutes from 17:25 UTC). Each
+  stage's command is the same shape (TRAINING_LOG "Stage 22" onward); `tools/enc-read.py` summarises a game,
+  `tools/enc-acct.py <log> <side> <hqx> <hqy>` gives the holders' dirt accounting by ring distance.
+- **The enclosure program (`src/arch_enclosure`, thirty stages; DESIGN.md "The enclosure" has the state and the
+  arithmetic, TRAINING_LOG "The enclosure, stage 1" onward has every defect and fix):** the shell holds, the interior
+  stays at ground, every drone lifts waiting bodies through the gate onto the shell and the outer ring, outer holders
+  feed inward, corner HQs get a nine-tile shell, eight miners, four drones. Best results: alive against g_iter9 to
+  r3140 on RandomSoup1 (stage 27), r3108 on Prison (stage 26), r3031 on Squares (stage 27) -- and g_iter9's HQ
+  outlives ours on every map. **Why (stages 26-27, measured):** every holder is at capacity (50 digs a hundred
+  rounds, all deposited); the shell takes 11-12 dirt a round on 16 tiles (0.7 a tile), g_iter9's wall 8.8 on 8
+  tiles (1.1 a tile): 79 at r300, 738 at r1000, 1,844 at r2000, 2,535 at r3000 against our 351/1,207/1,720. Inflow
+  is the number of holders adjacent to the structure that dig an EXTERNAL tile, times half; chains add nothing.
+  The field's top bots reach 2,500-3,600 with 40-54 bodies: 24 outer holders digging Chebyshev 4 plus inner holders
+  digging an interior quarry (an interior pit never floods), all placed before the outer ring floods (r950-1250 by
+  map). Our bodies capped at 27-33 because the inner holders dug the outer ring into pits nobody could stand in.
+  Stage 28 (stands by parity) regressed and was reverted; stage 29 (quarry every free interior tile) killed the
+  building sites (no center: no drones, RandomSoup1 drowned at r948); **stage 30** assigns the interior (sites beside
+  the school, the quarry = the three tiles opposite it, dug from r500) and inner holders never dig outside. Read
+  diagenc30 for: bodies by r1000 (want 35-40), the shell at r2000 (want > 1,500), the center and vaporator built,
+  lifts. Then, in order: bodies on all 24 outer tiles before the flood (lift rate, soup is no longer the limit),
+  interior feeders on free interior tiles, burying the center and vaporator after r1000 for feeder tiles. **Not a
+  candidate yet**: it loses the wall race to the incumbent; a gate would refute it. The honest question for the
+  next session: the enclosure needs about twice the wall's bodies per height by geometry, and the field's bots have
+  them; if the sprint (bodies on the outer ring by r950) cannot be made, the program should be closed and its
+  cheap lessons ported (none of them apply to the wall design directly).
+- **Open questions for the owner (unchanged):** field-only mechanisms vs rule 5 (the home guard 48b); the
+  twelve-pair floor (42c 12-2 kept, 49b 9-0 out).
+- Gotchas learned this session: `MapState` statics are per robot (each robot is its own sandbox) -- cache the
+  gate per robot, never assume another robot's view; a drone cannot fly over units, so the gate needs its three
+  outer neighbours free (the approach); a body that loses its tile takes the shell tile it stands on ("landed") --
+  filter that; `--robot ID` in replay-dump prints events, not positions; `pgrep -f` on the VM matches the ssh
+  command itself (use the `[b]racket` trick); python anchor edits must grep the exact text first.
+
+## State at the 2026-09-24 evening restart (switch to Fable 5.1; superseded above where they differ)
 
 - **Incumbent and submission: `src/g_iter7`** (Iterations 33+34b accepted 62-34 over g_iter6 on 2026-09-25: a miner
   deposits only a 70-soup load or once the soup in reach is gone; a full miner whose walk to a drop-off stalls builds a
