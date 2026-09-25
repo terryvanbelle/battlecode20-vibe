@@ -3116,3 +3116,15 @@ question is answerable without the ladder (the rule-5 question in HANDOFF is abo
 that). **`tools/paired.sh` and `tools/mirror.sh` take `OPP`:** both games of a cell are played against that build
 (cand55 vs arch_rush, g_iter10 vs arch_rush, same map, side and seed). **`gate55r`**: `OPP=arch_rush BOT=cand55
 REF=g_iter10 N=320 tools/mirror.sh`. Acceptance takes both: gate 55's no-cost mirror and a gate-55r ACCEPT.
+
+**Gate 55r (paired vs `arch_rush`): 7-7 discordant in 320 pairs -- not kept.** The rebuild changes nothing against
+the rusher either. What the gate measured instead: **g_iter10 loses to our own rusher about half the time** (37 of
+the first 72 control games, 22 of them before r1300, in three clusters: r143-330, ~r680, ~r930). Three replays read
+(g_iter10 vs arch_rush, the gate's seeds): MtDoom r163 (758 soup at r100 and the school only at r140; the HQ buried
+20 by r150), FourLakeLand r678 and CowFarm r949 -- in both the school is buried by r150-200 and never rebuilt, our side
+holds at three or four landscapers with 150-650 soup idle, and the rusher grows to 16-21 before it buries the HQ.
+The school stands beside the HQ at Chebyshev 2, which is where the rusher's landscapers stand.
+
+**Iteration 56 (`src/cand56` = cand55 + the far school, `src/bot` = cand56):** under a rush the school goes three out
+on the side of the HQ farthest from the rusher's landscapers and school (their centroid in sight), with cand55's
+rebuild when it is lost. Diagnostic `diag56` on the three read seeds, then the paired gate against the rusher.
