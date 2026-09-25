@@ -22,6 +22,16 @@ public final class C {
     public static final int VAPORATORS_MAX = 6;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
+    // Iteration 47, the keeper: one miner parks beside a helper's post before the flood; that helper keeps the miner's tile
+    // and one site tile KEEP_AHEAD rounds ahead of the water; the parked miner builds a net gun on the site from GUN_FROM
+    // when the site will stay dry GUN_DRY rounds. The raids come at r1525-1620 (EmaPajic, team4, benzyx), r1893 (mvpatel)
+    // and r2135-2262 (cormackikkert); a gun at ground level drowns by r930-1200.
+    public static final int PARK_FROM = 600;          // the miner parks from this round
+    public static final int KEEP_AHEAD = 800;         // the keeper raises M and S to waterLevel(round + KEEP_AHEAD) + 2
+    public static final int GUN_FROM = 1150;          // the parked miner builds from this round
+    public static final int GUN_DRY = 700;            // ... on a site above waterLevel(round + GUN_DRY)
+    public static final int GUN_BANK = 200;           // ... leaving this much soup
+    public static final int KEEPER_GUNS = 2;          // guns a parked miner builds at most
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
     public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back

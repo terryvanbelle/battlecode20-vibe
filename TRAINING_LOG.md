@@ -1478,6 +1478,24 @@ interval's top, 1783, is above 1719). Three acceptances on this line (walk, door
 deaths and raised the ring; the ladder has not moved, because the band's losses are raids (37% of games) and
 walls taller than ours (23%).
 
+The raid clocks in g_iter9's 240 games: `team4` r1562-1603 (26 losses), `EmaPajic` r1525-1570 (20),
+`cormackikkert` r2135-2262 (14), `benzyx` r1220 and r1610 (12), `mvpatel2000` r1893 (12): 84 losses, 35% of all
+games, on five clocks between r1525 and r2262. `gate37p` closed at 3-17 in 80 pairs: the site machinery's price
+was real. The bot already builds two net guns before the flood, on the ground, where they drown by r930-1200.
+
+## Iteration 47 -- the keeper (2026-09-25, on g_iter9)
+
+**Form.** One miner parks at r600 on a free tile at Chebyshev 3 beside a helper's post (`@park`); that helper
+becomes its keeper: after its own tile it raises the miner's tile and one site tile beside both to
+`waterLevel(round + 800) + 2`, the lower first (`@keep`), and no helper digs either; from r1150 the parked miner
+builds a net gun on the site when it will stay dry 700 rounds and 450 soup is banked (`@keepergun`), a second
+after the first if a second site can be raised. Nothing else is reserved; the keeper is one helper's output.
+A gun at 27 stands to r2143, over four of the five clocks; the HQ and one gun are two shots a round against
+the 8-9 drones that lift the seats. **Diagnostic** (VM, seed 41, vs g_iter9, controls g_iter9 vs itself):
+RandomSoup1 A, Toothpaste A, Prison B, Hills B -- a park by r700, the gun up by r1300 and standing at r1600 and
+r2000, the ring at r3000 within 5% of the control. Then the arm: raid-window losses at most 22 of 96 (g_iter9's
+rate gives 34).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

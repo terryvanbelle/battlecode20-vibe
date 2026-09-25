@@ -10,6 +10,7 @@ import battlecode.common.*;
  */
 public strictfp class Miner extends Robot {
     private boolean builder;
+    private boolean parked = false; private int keeperGuns = 0;   // Iteration 47
     private final MapLocation[] soupMem = new MapLocation[C.SOUP_MEMORY]; private int nSoup = 0;
     private MapLocation explore;
     private MapLocation soupTarget;                 // sticky: kept until reached, emptied or found unreachable
@@ -47,10 +48,40 @@ public strictfp class Miner extends Robot {
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }
         }
+        if (parked) { keeperTurn(); return; }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
+        if (round >= C.PARK_FROM && !builder && park()) return;
         if (builder && build()) return;
         work();
+    }
+
+    // ---------------------------------------------------------------- Iteration 47: the keeper's miner
+    /** Park on a free tile at Chebyshev 3 from the HQ beside a helper on its post (a landscaper at Chebyshev 2), unless a
+     *  miner is already parked beside that helper. Stepping onto the tile is the park; the keeper does the rest. */
+    private boolean park() throws GameActionException {
+        MapLocation home = MapState.home; if (home == null || !rc.isReady()) return false;
+        for (int i = nFriend; --i >= 0;) { RobotInfo h = friends[i];
+            if (h.type != RobotType.LANDSCAPER || Nav.cheb(h.location, home) != 2) continue;
+            boolean taken = false;
+            for (int k = nFriend; --k >= 0;) { RobotInfo m = friends[k]; if (m.type == RobotType.MINER && m.ID != id && Nav.cheb(m.location, h.location) <= 1 && Nav.cheb(m.location, home) == 3) { taken = true; break; } }
+            if (taken) continue;
+            if (Nav.cheb(loc, h.location) <= 1 && Nav.cheb(loc, home) == 3) { parked = true; Debug.log("@park at=" + loc + " keeper=" + h.location); return true; }
+            for (int d = 8; --d >= 0;) { MapLocation n = loc.add(DIRS[d]);
+                if (Nav.cheb(n, h.location) > 1 || Nav.cheb(n, home) != 3 || !rc.canMove(DIRS[d]) || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
+                rc.move(DIRS[d]); loc = rc.getLocation(); parked = true; Debug.log("@park at=" + loc + " keeper=" + h.location); return true; }
+            if (Nav.cheb(loc, h.location) <= 4) { nav.setTarget(h.location); nav.step(); return true; }
+        }
+        return false;
+    }
+    /** Parked: build a net gun on an adjacent site that will stay dry GUN_DRY rounds, up to KEEPER_GUNS, from GUN_FROM. */
+    private void keeperTurn() throws GameActionException {
+        if (!rc.isReady() || round < C.GUN_FROM || keeperGuns >= C.KEEPER_GUNS || rc.getTeamSoup() < RobotType.NET_GUN.cost + C.GUN_BANK) return;
+        for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.NET_GUN && Nav.cheb(friends[i].location, loc) <= 1) return;   // one gun at a time beside us
+        double dry = waterLevel(round + C.GUN_DRY);
+        for (int d = 8; --d >= 0;) { Direction dir = DIRS[d]; MapLocation n = loc.add(dir);
+            if (onRing(n) || !rc.onTheMap(n) || !rc.canSenseLocation(n) || rc.senseFlooding(n) || rc.senseElevation(n) < dry || !rc.canBuildRobot(RobotType.NET_GUN, dir)) continue;
+            rc.buildRobot(RobotType.NET_GUN, dir); keeperGuns++; Debug.log("@keepergun at=" + n + " e=" + rc.senseElevation(n) + " soup=" + rc.getTeamSoup()); return; }
     }
 
     // ---------------------------------------------------------------- builder
