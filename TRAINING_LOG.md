@@ -1646,6 +1646,16 @@ wall race in seventy, and the ladder's late losses are lost by more than that. C
 `src/bot` back to g_iter9. The twelve-pair floor has now sat on both sides of two candidates (42c 12-2 kept, 49b
 9-0 not) -- a note for the owner, not a change.
 
+## What the late losses are lost by (2026-09-25)
+
+g_iter9's 39 reviewable late losses (r2900+), both rings at r2800: **the opponent's lowest tile is a median 38%
+above ours** (quartiles 23% and 56%): `winkelmantanner` 15 games at a median 51% (682-1796 against 2031-2338),
+`mvpatel2000` 12 at 54% (1009-1513 against 1346-2099), `poortho` 8 at 34%; only `benzyx` (2) and `cormackikkert`
+(1) lose it close. Our ring in these games stands at 700-1500 at r2800 where the mirror's stands at 2400-2600:
+the wall race on the ladder is not lost by the forty of ring an endgame rule buys, it is lost by half a wall --
+bodies missing after the flood, on maps and against opponents that take them. A body census of these games
+(landscapers and drones alive at r700-2000, both sides) follows.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
