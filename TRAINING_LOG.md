@@ -1281,6 +1281,29 @@ it fires it has not yet lost one. **Accepted: `src/g_iter8` = g_iter7 + the seat
 Archetype regression `regr8`: **24/24** vs `arch_swarm` on the quick set (g_iter7 21/24). Submission blocks
 `sub8-1..5` (240 seeded band games as `us:g_iter8`) running.
 
+## Iteration 42 -- the doorstep (2026-09-25, on g_iter8)
+
+**Why.** The census's other class: 28 flood-round losses with 3 or fewer landscapers at r500, 14 of them GSF. In
+every GSF loss mining stops at r250-300 (the lowlands flood: 122 to 1,780 tiles under water) and the school stops
+producing while the HQ goes on buying miners (spawned 15 to 22 by r900, 7-9 alive, none mining). The two g_iter7
+losses on GSF as B (`eggag32.BrutalPigeonBot`, allowed) show why the school stops: it stands at elevation 0 three
+tiles from the HQ, and by r400 its neighbours are water on four sides, the refinery, a seat's pit dug to -9, and two
+miners boxed in on the last two dry tiles (water, the pit, the buildings and the raised seats around them) --
+nowhere to spawn, for 500 rounds. The same board in both games. A seed search on the VM (g_iter8 against itself
+on GSF, seeds 1-8) found one flood-round death, as B on seed 1, and it is a third thing: **our own refinery on a
+ring tile** (Iteration 34's stall refinery, built through `tryBuild` which never excluded the ring), which no seat
+can raise; the HQ drowns through it at r932.
+
+**Change (two rules).** (1) `Landscaper.doorstep(n)`: a tile beside one of our buildings (not the HQ) is never dug,
+in `wall()` step 4 and `help()` step 3 -- the school's spawn tiles and the refinery's approach stay level. (2)
+`Robot.tryBuild` never places a building on a ring tile. **Diagnostic** (seed 1, GSF): as B the school's east side
+reads 4 4 4 at r400 where the control has -9 -9 -9, landscapers 8 by r700 against 7, and the HQ lives to r2968
+where the control drowns at r932 (the refinery tile floods either way; why the candidate's HQ survives it is not
+read yet); as A identical to the control. Snapshot `src/cand42`; **`gate42`** (paired, 320 pairs) and
+**`arm42-a`/`arm42-b`** (96 band games as `us:cand42`; no count is pre-registered -- the few-landscaper losses are
+1-2 per 96 games, below what an arm can see; the rating and the gate decide). RandomSoup1 as A on seed 41 is the
+cost check against `ctrl41` (2642 at r3000).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
