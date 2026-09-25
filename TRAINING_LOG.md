@@ -3141,3 +3141,9 @@ only because the center never found a site; the far-side search places it. Diagn
 drowned; CowFarm 2 and 2), but the bank buys one drone, not three. MtDoom lives to r957 (control r163), FourLakeLand
 r677 (r678), CowFarm r421 (r949). Mixed on three seeds; the mechanism fires, so **`gate57r`** (paired vs
 `arch_rush`, cand57 vs g_iter10) decides.
+
+**Gate 57r: 21-13 discordant in 320 pairs (p = 0.23), concordant 143-143 -- in the right direction, not enough; not
+kept.** The rush center stands on the far side, where it cannot see the rusher, so `rushSeen()` is false for it and it
+bought one drone at the early bank. **Iteration 58 (`src/cand58`, `src/bot` = cand58):** a center born before r350 is
+the rush center (the normal one follows the first vaporator) and buys its first three drones at cost. Diagnostic
+`diag58` on the three seeds, then `gate58r`.
