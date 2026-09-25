@@ -1374,6 +1374,16 @@ g_iter8 against g_iter8 on the same seed): RandomSoup1 A and Toothpaste A (seed 
 41) -- landscapers at r300-700, the ring at r1000 and r3000. Pre-registered: 24 landscapers by r400 on RandomSoup1
 (g_iter8: r550) and more than 13 on Toothpaste A by r700; the ring above the control's at r3000 on both.
 
+**Diagnostic 43: mixed.** RandomSoup1 as A: 24 landscapers by r350 (the control r550), ring 801 / 2758 against
+765 / 2642 (+4%), won. Toothpaste as A: 16 landscapers by r450 (the control 15, and 13 from r550), but 11 alive
+after the flood against 13, ring 465 / 1573 against 501 / 1772 (**-11%**), lost 25 rounds sooner. GSF B and Hills B
+identical to the controls (the bank never reached 450 there). In both changed games the school's spending kept the
+bank under 150 and **the HQ never saw its 200-soup reserve again: one to two fewer miners, mining down 14-19%**
+(RandomSoup1 1,342 against 1,649). The bodies came early but the economy behind them thinned, and on Toothpaste
+two more helpers drowned at r650-750. Bar not met (the ring on both). **43b**: both banks at 200 -- the school
+builds at 350 and leaves the HQ its reserve; RandomSoup1 A, Toothpaste A, and Prison B (a third map) against
+g_iter8.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
