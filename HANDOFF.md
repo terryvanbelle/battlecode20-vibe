@@ -13,11 +13,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   the workqueue, start a new idea. Otherwise, carry on as before"). Record every user prompt in PROMPTS.md (next is
   36). Push after every commit; `post-block.sh` refreshes `progress/field-score.png` after every posted block (the
   owner watches it, PROMPTS 28-31).
-- **Running on the VM now: `diagenc33`** -- the enclosure's stage-33 diagnostic (stage 32: 78 lifts and 34 bodies on RandomSoup1, alive to r3081, drowned through the gate, which lags the shell by 420 under hovering drones; stage 33 ends lifts at r1000 and keeps drones off the gate after), three games (RandomSoup1 A,
-  Prison A, Squares B; `arch_enclosure` vs g_iter9, seed 41). Read it with `source tools/vm.sh; ensure_vm; gssh
-  "cat ~/projects/vibe/2020/gauntlet/diagenc33.log"` (ends with DIAGDONE; ~25 minutes from 18:45 UTC). Each
-  stage's command is the same shape (TRAINING_LOG "Stage 22" onward); `tools/enc-read.py` summarises a game,
-  `tools/enc-acct.py <log> <side> <hqx> <hqy>` gives the holders' dirt accounting by ring distance.
+- **Running on the VM now: `diagenc34`** -- the enclosure's stage-34 diagnostic (the HQ drowns through the gate, which has one feeder because the builder miner parks on the shell tile beside it; stage 34 keeps the builder inside). Read it with `source tools/vm.sh; ensure_vm; gssh "cat ~/projects/vibe/2020/gauntlet/diagenc34.log"` (ends with DIAGDONE). Each stage's command is the same shape (TRAINING_LOG "Stage 22" onward); `tools/enc-read.py` summarises a game, `tools/enc-acct.py <log> <side> <hqx> <hqy>` gives the holders' dirt accounting by ring distance; `--ring 100 --ringd 2` lists the 16 shell tiles in order dx=-2..2 outer, dy=-2..2 inner (index 13 = dx 2, dy 0).
 - **The enclosure program (`src/arch_enclosure`, thirty stages; DESIGN.md "The enclosure" has the state and the
   arithmetic, TRAINING_LOG "The enclosure, stage 1" onward has every defect and fix):** the shell holds, the interior
   stays at ground, every drone lifts waiting bodies through the gate onto the shell and the outer ring, outer holders

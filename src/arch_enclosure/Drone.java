@@ -68,7 +68,7 @@ public strictfp class Drone extends Robot {
         }
         // stage 17: one elevator -- the drone with the lowest id in sight; eight of them queued on the gate and it never rose
         // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
-        if (home != null && round < C.LIFT_UNTIL) {   // stage 27: every drone lifts (stage 33: until LIFT_UNTIL) (one elevator gave a lift every 25 rounds; the outer ring is dry until r950 and the bodies have to be on it by then)
+        if (home != null) {   // stage 27: every drone lifts (stage 33's cutoff at r1000 reverted in 34: Squares' bodies come after r1500) (one elevator gave a lift every 25 rounds; the outer ring is dry until r950 and the bodies have to be on it by then)
             RobotInfo w = null; int wd = 1 << 30;
             for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.LANDSCAPER || Nav.cheb(f.location, home) != 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < wd) { wd = d; w = f; } }
             if (w != null) {

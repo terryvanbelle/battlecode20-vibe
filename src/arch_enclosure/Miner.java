@@ -16,6 +16,9 @@ public strictfp class Miner extends Robot {
     private final MapLocation[] bad = new MapLocation[C.SOUP_BAD]; private int nBad = 0;   // unreachable soup regions (Chebyshev 2 around each)
     private MapLocation refinery;                   // nearest known place to deposit (a refinery); HQ is the fallback
     private int builtRefinery = 0, builtSchool = 0, builtVap = 0, builtNet = 0, builtFC = 0;
+    /** Stage 34: the builder, once the school stands, never leaves the interior (it parked on the shell tile beside the gate
+     *  from before r1000: that tile had no holder, the gate one feeder, and the HQ drowned through the gate at r3080). */
+    @Override protected boolean allowedTile(MapLocation l) { if (builder && builtSchool > 0 && MapState.home != null) return Nav.cheb(l, MapState.home) <= 1; return super.allowedTile(l); }
     private int refineryBadUntil = 0, homeStalls = 0, buildPause = 0;   // Iteration 34: stall handling for the walks home and the builder's
     private int deposits = 0, mined = 0, explores = 0, exploreFails = 0, unreachable = 0;
 

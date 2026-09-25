@@ -2077,6 +2077,15 @@ by 420 at r3000: the gate, which only its neighbours raise, under drones that ho
 r950, many visits). Level with the rest, the shell would have held to about r3110. Stage 33: no lifts after r1000
 and no drone over the gate after it (the outer ring has flooded; there is nowhere left to set a body down).
 
+**Stage 33: the hypothesis was wrong.** The lagging tile is the gate (index 13 is dx=2, dy=0: (20,6)) and it is 809
+at r2000 and 1,309 at r3000 exactly as in stage 32, drones or no drones -- RandomSoup1 to r3080. Squares lost its
+late lifts (8 from 38, bodies come after r1500 there) and fell to r2972. The boards say why the gate rises at half
+a dirt a round: of its two inner neighbours (20,5) and (20,7), (20,7) is occupied by the builder miner from before
+r1000 -- no holder there -- and the one holder at (20,5) puts all 804 of its deposits into the gate. The approach
+tiles are unheld by design. So the gate has one feeder where every other shell tile has its own holder plus the
+outer ring's. Stage 34: the builder never leaves the interior once the school stands; the lift cutoff is reverted
+(the gate rule for drones after r1000 stays: harmless).
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
