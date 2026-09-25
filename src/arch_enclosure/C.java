@@ -9,8 +9,8 @@ public final class C {
 
     // --- economy (Iteration 1: unmeasured starting values)
     public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
-    public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
-    public static final int MINERS_TOTAL = 8;          // the enclosure: no replenishment (a miner spawned inside a closed shell mines nothing)         // hard cap on miners ever built by the HQ
+    public static final int MINERS_MAX = 4;           // never more live miners than this (each costs a wall-ring build slot)
+    public static final int MINERS_TOTAL = 4;          // stage 10: four miners and no more -- every miner the HQ spawned after r200 was born inside the shell and stood on the school's yard for the rest of the game         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
     public static final int MINER_SOUP_RESERVE = 200; // after MINERS_EARLY the HQ builds a miner only above this bank
     public static final int SOUP_RETURN = 70;         // a miner heads home to deposit at this much carried soup

@@ -1797,6 +1797,13 @@ no waiters ever logged; the shells still rise (317-433 at r2000) and the HQs liv
 corner holes unchanged. The school stops at ten and nothing in the counts says why; a school trace (what it
 wants, who stands inside, whether the spawn goes through, every 50 rounds) runs first.
 
+**The school trace says it plainly:** from r500 the school wants a landscaper every turn (`want=true`, soup 300 to
+1,700) and the spawn never goes through -- **five miners stand on the interior's tiles** (plus the center and the
+HQ), miners the HQ spawned onto its ring after r200, into a shell already 20-40 high, with nowhere to go. Stage 9's
+ring rule could not move them (they cannot climb out). Stage 10: the HQ builds four miners and no more (the
+enclosure's economy is four miners, a refinery outside and vaporators inside), and the elevator lifts any miner but
+the builder out of the interior to the nearest dry tile at Chebyshev 3 or more.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

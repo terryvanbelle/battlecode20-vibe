@@ -29,6 +29,7 @@ public strictfp class Drone extends Robot {
         if (rc.isCurrentlyHoldingUnit() && holdingFriend) {
             if (liftTarget != null && (!rc.canSenseLocation(liftTarget) || rc.isLocationOccupied(liftTarget))) liftTarget = null;
             if (liftTarget == null) liftTarget = freeShell(home);
+            if (liftTarget == null) liftTarget = outsideTile(home);
             if (liftTarget == null) { for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) >= 1 && rc.canDropUnit(d) && !rc.senseFlooding(n)) { rc.dropUnit(d); holdingFriend = false; drops++; Debug.log("@lift-drop anywhere at=" + n); return; } } nav.setTarget(home); nav.step(); return; }
             if (loc.isAdjacentTo(liftTarget)) { Direction d = loc.directionTo(liftTarget); if (rc.canDropUnit(d)) { rc.dropUnit(d); holdingFriend = false; lifts++; Debug.log("@lift to=" + liftTarget + " d=" + Nav.cheb(liftTarget, home)); liftTarget = null; return; } }
             nav.setTarget(liftTarget); nav.step(); return;
@@ -38,6 +39,17 @@ public strictfp class Drone extends Robot {
             if (water != null) { nav.setTarget(water); if (nav.step()) return; }
             MapLocation[] near = nearWater(); if (near != null) { water = near[0]; nav.setTarget(water); nav.step(); return; }
             nav.setTarget(MapState.center()); nav.step(); return;
+        }
+        // stage 10: a miner trapped inside (not the builder: the one beside a building it is building for) is lifted out to
+        // the nearest free dry tile at Chebyshev 3 or more -- it was born after the shell closed and stands on the yard
+        if (home != null && !rc.isCurrentlyHoldingUnit()) {
+            RobotInfo m = null; int md = 1 << 30;
+            for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) > 1) continue; int d = loc.distanceSquaredTo(f.location); if (d < md) { md = d; m = f; } }
+            if (m != null && minersInside(home) > 1) {
+                MapLocation gate = gate(home);
+                if (rc.canPickUpUnit(m.ID)) { rc.pickUpUnit(m.ID); holdingFriend = true; liftTarget = outsideTile(home); Debug.log("@lift-miner id=" + m.ID + " to=" + liftTarget); return; }
+                chasing = true; nav.setTarget(gate != null ? gate : m.location); nav.step(); chasing = false; return;
+            }
         }
         // the elevator, empty: a landscaper of ours in the yard with a free shell tile to go to
         if (home != null) {
@@ -77,6 +89,14 @@ public strictfp class Drone extends Robot {
         if (patrol != null) { nav.setTarget(patrol); if (!nav.step()) patrol = null; }
     }
 
+    private int minersInside(MapLocation home) { int n = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.MINER && Nav.cheb(friends[i].location, home) <= 1) n++; return n; }
+    /** The nearest free dry tile at Chebyshev 3-5 from the HQ, for a miner lifted out. */
+    private MapLocation outsideTile(MapLocation home) throws GameActionException {
+        MapLocation best = null; int bd = 1 << 30;
+        for (int dx = -5; dx <= 5; dx++) for (int dy = -5; dy <= 5; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) < 3) continue; MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+            if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue; int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; } }
+        return best;
+    }
     /** Stage 8: the gate -- the shell tile straight out from the school (Chebyshev 2, beside the school's yard). Holders never
      *  take it, their neighbours raise it, and the elevator lifts from it without entering the interior. */
     private MapLocation gate(MapLocation home) {
