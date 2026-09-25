@@ -2991,3 +2991,13 @@ discordant (A won where the control lost, B lost where the control won), GSF's m
 `src/bot` = g_iter10. Submission blocks `sub10-1..5` (5 x 48 band games as `us:g_iter10`) launched; each is posted
 with `tools/post-block.sh <run> g_iter10`, which refreshes the ladder, the roster tier, ONSET and the field-score
 chart.
+
+**Iteration 51 (the school's doors).** Spiral as A in the Iteration 50 diagnostic: the school at (15,15), two north of
+the HQ (15,13), on a spit -- its neighbours three HQ-ring tiles (seated), four water, one dry tile. Five landscapers
+by r121 and none after. The builder had looked for an outward stand for 40 rounds and then built on the circle where
+it stood. **`src/cand51`** = g_iter10 + the school needs at least three dry doors off the HQ's ring within 3 of its
+height; without one beside it, the builder walks along the build circle for up to 60 rounds, then falls back to the
+old rule. **Diagnostic (driver, one game; the VM is playing sub10): Spiral as A, seed 7, against g_iter10** -- the
+builder walked one step (`@schoolwalk`), built the school at (17,15), and the school built ten landscapers (from
+five); 8 at r300 (from 5); **won at r2957** where g_iter10 as A lost (r2927). The mechanism fires; **`gate51`**
+(paired, cand51 vs g_iter10) is queued behind the submission blocks.
