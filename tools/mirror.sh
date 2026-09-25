@@ -8,6 +8,8 @@
 #   the engine is deterministic under a fixed seed, so a pair is concordant wherever the change did not alter the
 #   game, and the SPRT counts discordant pairs only (gate 40c: 34-46 unpaired, 74 of 80 pairs concordant, 4-2 on the
 #   rest). N counts pairs. PAIRED=0 is the old unpaired mirror.
+#   OPP=arch_rush (paired only): both builds play that archetype instead of each other -- BOT vs OPP against REF vs OPP
+#   on the same map, side and seed (tools/paired.sh); for a change that only fires against that archetype.
 # Plays in batches, runs tools/sprt.py after each, stops at ACCEPT or REJECT. Prints the verdict.
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

@@ -6,27 +6,31 @@
 # control down to the ring height), so a mirror's concordant games are coin flips the SPRT should not count.
 #   tools/paired.sh cells.txt            # lines: map side seed   (side = BOT's side; a gate's results.csv gives them)
 #   BOT=bot REF=g_iter7 MAXJOBS=6 LOGTAG='@uncork' KEEP_LOGS=0 CLASSES=build/paired-classes TAG=paired-40c
+#   OPP=arch_rush: both games of a cell are played against this third build instead (BOT vs OPP, then REF vs OPP, same
+#   map, side and seed) -- a paired gate against one of our own archetypes, for a change that only fires against it
 # Writes gauntlet/<stamp>-<TAG>/results.csv: map,side,seed,cand,ctrl,cand_rounds,ctrl_rounds,tags
 # (cand/ctrl = win|loss from BOT's side; tags = LOGTAG lines the BOT side printed in the candidate game) and prints
 # the pair table: concordant wins/losses, discordant each way, and the sign-test p.
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"; source "$REPO/tools/lib.sh"
 CELLS="${1:?cells file: map side seed}"
-BOT="${BOT:-bot}"; REF="${REF:-g_iter7}"; MAXJOBS="${MAXJOBS:-6}"; LOGTAG="${LOGTAG:-@uncork}"; KEEP_LOGS="${KEEP_LOGS:-0}"
+BOT="${BOT:-bot}"; REF="${REF:-g_iter7}"; OPP="${OPP:-}"; MAXJOBS="${MAXJOBS:-6}"; LOGTAG="${LOGTAG:-@uncork}"; KEEP_LOGS="${KEEP_LOGS:-0}"
 CLASSES="${CLASSES:-$REPO/build/paired-classes}"; TAG="${TAG:-paired-$BOT-vs-$REF}"
 OUT="$REPO/gauntlet/$(date +%Y%m%d-%H%M%S)-$TAG"; mkdir -p "$OUT/games"
-[ -d "$CLASSES/$BOT" ] && [ -d "$CLASSES/$REF" ] && [ "${SKIP_COMPILE:-0}" = 1 ] || { rm -rf "$CLASSES"; compile_src "$REPO/src" "$CLASSES" >&2; }
-export REPO CLASSES BOT REF LOGTAG KEEP_LOGS OUT
+[ -d "$CLASSES/$BOT" ] && [ -d "$CLASSES/$REF" ] && { [ -z "${OPP:-}" ] || [ -d "$CLASSES/$OPP" ]; } && [ "${SKIP_COMPILE:-0}" = 1 ] || { rm -rf "$CLASSES"; compile_src "$REPO/src" "$CLASSES" >&2; }
+export REPO CLASSES BOT REF OPP LOGTAG KEEP_LOGS OUT
 one_cell () {
   local MAP="$1" SIDE="$2" SEED="$3" A B LOG R W RC TAGS CLOG CR CW CRC
   source "$REPO/tools/lib.sh"; team_url () { echo "$CLASSES"; }
-  if [ "$SIDE" = A ]; then A="$BOT"; B="$REF"; else A="$REF"; B="$BOT"; fi
+  local O="${OPP:-$REF}"
+  if [ "$SIDE" = A ]; then A="$BOT"; B="$O"; else A="$O"; B="$BOT"; fi
   local base="$OUT/games/$MAP-$SIDE-$SEED"
   LOG="$(GAME_SEED="$SEED" run_game "$A" "$B" "$MAP" "$base-cand.bc20" -Dbc.server.robot-player-to-system-out=true 2>&1 || true)"
   TAGS=$(printf '%s\n' "$LOG" | grep -ac "^\[$SIDE:.*$LOGTAG" || true)
   [ "$KEEP_LOGS" = 1 ] && printf '%s\n' "$LOG" > "$base-cand.log"
   read -r _ W RC _ <<<"$(parse_result "$LOG")"; R=$([ "$W" = "$SIDE" ] && echo win || echo loss)
-  CLOG="$(GAME_SEED="$SEED" run_game "$REF" "$REF" "$MAP" "$base-ctrl.bc20" 2>&1 || true)"
+  local CA="$REF" CB="$REF"; [ -n "$OPP" ] && { if [ "$SIDE" = A ]; then CB="$OPP"; else CA="$OPP"; fi; }
+  CLOG="$(GAME_SEED="$SEED" run_game "$CA" "$CB" "$MAP" "$base-ctrl.bc20" 2>&1 || true)"
   read -r _ CW CRC _ <<<"$(parse_result "$CLOG")"; CR=$([ "$CW" = "$SIDE" ] && echo win || echo loss)
   [ "$R" = "$CR" ] && [ "$RC" = "$CRC" ] && rm -f "$base-cand.bc20" "$base-ctrl.bc20"   # a concordant pair: nothing to review
   echo "$MAP,$SIDE,$SEED,$R,$CR,$RC,$CRC,$TAGS"

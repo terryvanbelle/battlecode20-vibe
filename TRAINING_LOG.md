@@ -3109,3 +3109,10 @@ r292; the school rebuilt once, 4 -> 7 landscapers); FourLakeLand as A r2976 (con
 InADitch as B lost at r2889 (control r2921, lost too); RandomSoup1 unchanged to the round (never fired). The rebuild
 fires only when a school is lost; `@schooldig` never fired (the rusher's school kill is faster than one seat's dig).
 **`gate55`** (paired, cand55 vs g_iter10): most cells will be concordant; the gate counts the ones with a rush.
+
+**Gate 55: 1-0 discordant in 320 pairs (concordant 154-165) -- the rebuild costs nothing and changes nothing in the
+mirror,** because g_iter10 never rushes. The claim is about a rusher, and our own `arch_rush` reproduces it, so the
+question is answerable without the ladder (the rule-5 question in HANDOFF is about locked opponents; this is not
+that). **`tools/paired.sh` and `tools/mirror.sh` take `OPP`:** both games of a cell are played against that build
+(cand55 vs arch_rush, g_iter10 vs arch_rush, same map, side and seed). **`gate55r`**: `OPP=arch_rush BOT=cand55
+REF=g_iter10 N=320 tools/mirror.sh`. Acceptance takes both: gate 55's no-cost mirror and a gate-55r ACCEPT.
