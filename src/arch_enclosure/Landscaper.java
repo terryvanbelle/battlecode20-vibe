@@ -26,6 +26,9 @@ public strictfp class Landscaper extends Robot {
         if (attacker) { attack(); return; }
         if (feeder) { feed(home); return; }
         if (tile != null && !tile.equals(loc) && nav.target() == tile && nav.stalled()) { if (nBad < 8) bad[nBad++] = tile; Debug.log("@badtile " + tile); tile = null; }
+        // stage 3: a tile we stand beside but cannot climb is a cliff to us: give it up now, not after thirty stalls
+        if (tile != null && !tile.equals(loc) && Nav.cheb(loc, tile) == 1 && rc.canSenseLocation(tile) && Math.abs(rc.senseElevation(tile) - rc.senseElevation(loc)) > GameConstants.MAX_DIRT_DIFFERENCE) { if (nBad < 8) bad[nBad++] = tile; Debug.log("@cliff " + tile); tile = null; }
+        if (tile != null && !tile.equals(loc) && round % 50 == 0) Debug.log("@walk to=" + tile + " d=" + Nav.cheb(loc, tile) + " here=" + Nav.cheb(loc, home) + " myE=" + rc.senseElevation(loc) + (rc.canSenseLocation(tile) ? " tE=" + rc.senseElevation(tile) : ""));
         if (tile == null || (!tile.equals(loc) && occupiedByOther(tile))) tile = pickShell(home);
         if (tile == null) {
             // stage 2: no feeders -- a body inside waits in the yard for a drone to lift it onto the shell; one outside attacks
@@ -121,8 +124,8 @@ public strictfp class Landscaper extends Robot {
             if (r != null && r.team == us && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) continue;   // never a building of ours, never under a holder
             int cd = Nav.cheb(n, home); int e = rc.senseElevation(n);
             int s;
-            if (cd <= 1) s = e - 10000;                                  // the quarry: always first
-            else if (cd > Nav.cheb(loc, home)) s = e;                    // outside: lowest first
+            if (cd <= 1) continue;                                       // stage 3: the interior is never dug -- it must stay walkable for the builder and the yard (a quarry to -3,473 was a pit)
+            else if (cd > Nav.cheb(loc, home)) s = e;                    // outside: lowest first (under water is fine)
             else if (shell(n) && e > waterLevel(round + 200) + C.SHELL_SLACK + 3) s = 5000 - e;   // a shell tile with margin to spare, unheld
             else continue;
             if (r != null) s += 100;                                    // prefer empty tiles

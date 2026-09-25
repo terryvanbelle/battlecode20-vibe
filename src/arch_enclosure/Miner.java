@@ -49,6 +49,7 @@ public strictfp class Miner extends Robot {
         }
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
+        if (builder && builtSchool > 0) { stayInside(home()); return; }   // stage 3: the builder lives inside from the school on
         if (builder && build()) return;
         work();
     }
@@ -127,6 +128,18 @@ public strictfp class Miner extends Robot {
         return true;
     }
 
+    private MapLocation home() { return MapState.home; }
+    /** Stage 3: the builder inside the enclosure -- on a ring tile that is not the yard, building on the ring tiles beside it. */
+    private void stayInside(MapLocation home) throws GameActionException {
+        if (home == null || !rc.isReady()) return;
+        if (Nav.cheb(loc, home) != 1) {   // get in while the shell is low: the nearest free ring tile
+            MapLocation best = null; int bd = 1 << 30;
+            for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t) || (rc.canSenseLocation(t) && (rc.isLocationOccupied(t) || rc.senseFlooding(t)))) continue; int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; } }
+            if (best != null) { nav.setTarget(best); nav.step(); }
+            return;
+        }
+        if (build()) return;
+    }
     /** The enclosure: build on a free ring tile (Chebyshev 1), never the last INSIDE_MAX-th free one, from a tile beside it. */
     private boolean buildInside(RobotType want, MapLocation home) throws GameActionException {
         int buildings = 0; MapLocation site = null, school = null; int bd = 1 << 30;
