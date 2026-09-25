@@ -1999,6 +1999,21 @@ toward the map (a Chebyshev-2 tile with an on-map neighbour at 3), so a corner H
 the edge side is interior; the elevator with a waiter and no target in sight flies the four corners at Chebyshev 4
 to find one and remembers it; no helper bank in the school; four drones, not eight.
 
+**Stage 26: Prison to r3108 (from r2787), RandomSoup1 to r3134 (from r3129), Squares to r2973 (from r2901).** The
+corner shell: nine tiles at 959 (r2000) to 1,541 (r3100), the seven edge-side tiles interior at 5, and g_iter9's
+wall on Prison at 1,555 (r2500) to 1,817 (r3100) -- we are 300 behind there, down from 1,000. RandomSoup1: 33
+bodies (from 27), 76 lifts, the shell 1,131 at r2000 and 1,753 at r3100 against the wall's 2,381. **The holders
+are at capacity:** every holder digs 50 dirt a hundred rounds and deposits all of it; the inner ones 41 on their own
+tile and 9 to neighbours, the outer ones 31 inward and 19 on their own tile (r2000-2500), 11.5 dirt a round into
+the shell against the wall's 4. The shell rises 0.71 a tile a round to the wall's 0.5 late, and it is still 600
+behind, because of the first thousand rounds: g_iter9 has 24 landscapers at r300 (we have 10) and eight miners
+(we have four), and every one of its bodies works from birth; ours wait for a lift. Its wall is ~900 at r1000, ours
+300. Bodies at capacity from r1500 on both sides; the gap closes at 0.2 a round -- never.
+
+The lever is the sprint: bodies on the shell before the outer ring floods (r950 on RandomSoup1), which needs the
+wall bot's economy and a lift every 15 rounds. Stage 27: eight miners (as g_iter9; the ones born inside are
+lifted out before r500), and every drone lifts, not only the one nearest the gate.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
