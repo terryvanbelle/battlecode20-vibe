@@ -1153,6 +1153,10 @@ lower early (soup in the miners' hands: r100 42 vs 110 and 128 vs 178) and level
 Mechanism shown (fewer deposits, more mining); the mirror prices the timing. Snapshot `src/cand33`; **`gate33`**
 (mirror vs g_iter6, seeded) running.
 
+**Gate 33: 132-108 (55.0%) over 240 seeded games, SPRT inconclusive: kept provisionally** (TRAINING_ALGORITHM 4.4:
+at least 53% over at least 200; the first gate whose 240 games are all distinct). Not snapshotted or submitted;
+the next candidate stacks on it (`src/bot` = cand33).
+
 ## Iteration 32 -- miners off the circle (2026-09-24, PROMPTS 25)
 
 **Evidence.** The merged onset (786 games) puts net worth (us-them) at r150 and mines, robots, spawned at r200
