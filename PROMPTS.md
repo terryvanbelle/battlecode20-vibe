@@ -137,3 +137,7 @@ Yeah, it looks like linear fit is not so useful.  Can you recommend a more appro
 ## 30. 2026-09-25
 
 Agreed, but I'd like to keep this graph updated over time, so the extrapolation will get more and more valid.  Go ahead with your recommended approach
+
+## 31. 2026-09-25
+
+Graph is great, please update it every time you submit a new candidate
