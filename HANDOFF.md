@@ -13,9 +13,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   the workqueue, start a new idea. Otherwise, carry on as before"). Record every user prompt in PROMPTS.md (next is
   35). Push after every commit; `post-block.sh` refreshes `progress/field-score.png` after every posted block (the
   owner watches it, PROMPTS 28-31).
-- **Running on the VM now: `diagenc30`** -- the enclosure's stage-30 diagnostic, three games (RandomSoup1 A,
+- **Running on the VM now: `diagenc31`** -- the enclosure's stage-31 diagnostic, three games (RandomSoup1 A,
   Prison A, Squares B; `arch_enclosure` vs g_iter9, seed 41). Read it with `source tools/vm.sh; ensure_vm; gssh
-  "cat ~/projects/vibe/2020/gauntlet/diagenc30.log"` (ends with DIAGDONE; ~25 minutes from 17:25 UTC). Each
+  "cat ~/projects/vibe/2020/gauntlet/diagenc31.log"` (ends with DIAGDONE; ~25 minutes from 17:55 UTC). Each
   stage's command is the same shape (TRAINING_LOG "Stage 22" onward); `tools/enc-read.py` summarises a game,
   `tools/enc-acct.py <log> <side> <hqx> <hqy>` gives the holders' dirt accounting by ring distance.
 - **The enclosure program (`src/arch_enclosure`, thirty stages; DESIGN.md "The enclosure" has the state and the
@@ -31,10 +31,11 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   digging an interior quarry (an interior pit never floods), all placed before the outer ring floods (r950-1250 by
   map). Our bodies capped at 27-33 because the inner holders dug the outer ring into pits nobody could stand in.
   Stage 28 (stands by parity) regressed and was reverted; stage 29 (quarry every free interior tile) killed the
-  building sites (no center: no drones, RandomSoup1 drowned at r948); **stage 30** assigns the interior (sites beside
-  the school, the quarry = the three tiles opposite it, dug from r500) and inner holders never dig outside. Read
-  diagenc30 for: bodies by r1000 (want 35-40), the shell at r2000 (want > 1,500), the center and vaporator built,
-  lifts. Then, in order: bodies on all 24 outer tiles before the flood (lift rate, soup is no longer the limit),
+  building sites (no center: no drones, RandomSoup1 drowned at r948); stage 30 (three quarry tiles opposite the
+  school from r500, inner holders never dig outside) was worse everywhere (the shell 291 at r2000: the quarry
+  reaches five holders and takes the center's spawn tiles). **Stage 31 = stage 27's digging back** (inner holders
+  dig the outer ring, no quarry) with the scouting lap and the landed rule kept: the best known configuration;
+  its confirming diagnostic is `diagenc31` (expect RandomSoup1 ~r3140, ~31 bodies, ~1,200 at r2000). Then, in order: bodies on all 24 outer tiles before the flood (lift rate, soup is no longer the limit),
   interior feeders on free interior tiles, burying the center and vaporator after r1000 for feeder tiles. **Not a
   candidate yet**: it loses the wall race to the incumbent; a gate would refute it. The honest question for the
   next session: the enclosure needs about twice the wall's bodies per height by geometry, and the field's bots have

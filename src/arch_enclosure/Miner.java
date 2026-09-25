@@ -161,12 +161,11 @@ public strictfp class Miner extends Robot {
         for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t)) continue;
             if (rc.canSenseLocation(t)) { RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.type.isBuilding()) { if (r.type != RobotType.DESIGN_SCHOOL) buildings++; continue; } if (r != null || rc.senseFlooding(t)) continue; }
             if (school != null && isYard(t, school, home)) continue;   // the yard: the two ring tiles beside the gate stay free for its spawns (stage 24: two, not the school's four neighbours)
-            if (school != null && Nav.cheb(t, school) == 2) continue;   // stage 30: the three tiles opposite the school are the quarry, never a site
             if (want == RobotType.DESIGN_SCHOOL && school != null) return false;
             if (want == RobotType.DESIGN_SCHOOL && t.x != home.x && t.y != home.y) continue;   // stage 15: the school on a cardinal ring tile, so one gate touches both yard tiles
             if (want == RobotType.DESIGN_SCHOOL && !approachOnMap(t, home)) d0 += 10000;   // stage 24: the gate and its approach on the map (Prison's corner HQ had its gate on the edge: the elevator was trapped on it, one lift in 2,700 rounds)
             int d = loc.distanceSquaredTo(t) + d0; d0 = 0;
-            if (want == RobotType.FULFILLMENT_CENTER && school != null && Nav.cheb(t, school) != 1) d += 10000;   // stage 15: the center beside a yard tile, its drones born beside the gate (stage 30: the cardinal tile beside the school; the far side is the quarry)
+            if (want == RobotType.FULFILLMENT_CENTER && school != null && Nav.cheb(t, school) != 2) d += 10000;   // stage 15: the center two from the school, beside a yard tile: its drones are born beside the gate
             if (d < bd) { bd = d; site = t; } }
         if (site == null || (want != RobotType.DESIGN_SCHOOL && buildings >= C.INSIDE_MAX)) return false;
         if (!loc.isAdjacentTo(site) && Nav.cheb(loc, home) == 1) {   // stage 13: no site beside us -- stand on the free tile itself; its ring neighbours are then beside us (one vaporator was built, then the builder sat between it and the center for 2,000 rounds)

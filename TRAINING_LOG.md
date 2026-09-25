@@ -2051,6 +2051,19 @@ stand on. Stage 30 assigns the interior: the school on its cardinal tile, the ya
 tiles beside the school for the center and the vaporator (never dug), and the three tiles opposite the school as
 the quarry, dug from r500, when both buildings stand.
 
+**Stage 30: worse on every map.** RandomSoup1 as A: the shell 4-20 at r500 (stage 27: 79-109), 291 at r2000 (1,207),
+22 bodies, two drones, eight lifts, alive to r2828 (r3140); Prison to r2860 (r2997), Squares to r2769 (r3031). With
+the inner holders barred from the outer ring, eleven of them had nothing to dig until r500 and afterwards only the
+five beside the quarry produced (two quarry tiles at -3,061 and -476, the rest of the interior untouched); and the
+quarry's pits were the center's spawn tiles, so after r500 the center and the school shared the two yard tiles
+and the center built two drones. The quarry is closed for the third time (stages 12, 29, 30): it reaches too few
+holders and costs the interior its sites. The field's inflow must come from the outer ring's 24 holders, which
+means lifts before the flood -- and that is the sprint, not the quarry.
+
+Stage 31: stage 27's digging back (inner holders dig the outer ring, lowest first; no quarry; the center two from the
+school), keeping stage 28's scouting lap and stage 29's landed rule. The archetype rests at its best known
+configuration; the diagnostic confirms it against stage 27's r3140 / 31 bodies / 1,207 at r2000.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,
