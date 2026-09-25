@@ -1223,6 +1223,12 @@ that rose from 7 to 9 with the water, alive past r1600. The bodies work; only on
 because the HQ stops posting the site at r800 and a replacement born after that never learns it. **36d**: the
 site posted until r2000, and the diagnostics again.
 
+**36d: no change** -- Prison as B the same game to the digit (17 replacements, none a helper, 1383 vs 2190). The
+posting window was not the reason. Read again: `Robot.loop` calls `init()` before it sets `round`, so the newborn's
+scan of the last 25 blocks ran from round 1 to round 0 and read nothing; every landscaper born after the first
+posts learned the site only by the every-third-round block read, if at all (the gun perch's newborn scan had the
+same flaw). **36e**: the scan reads `rc.getRoundNum()`; diagnostics on Prison both ways, RandomSoup1, Squares.
+
 
 
 ## Iteration 35 -- sixteen helpers on the new economy (2026-09-25, not gated)
