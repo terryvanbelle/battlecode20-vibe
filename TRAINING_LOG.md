@@ -1743,6 +1743,14 @@ walked on), (3) the walkers that take no tile never log a stall, (4) the quarry 
 floor at -10 (then dig the flooded outside), the builder stays inside from the school on, the yard kept for spawns
 and lifts only, and a trace of every landscaper without a tile.
 
+**Stage 3: a loop.** With the interior never dug the holders dug the flooded outer tiles and, equalising onto "the
+lowest adjacent shell tile" -- which was the outer tile they had just dug -- put every load straight back (380 digs,
+380 deposits, 2 on themselves, per holder); the shell sat at 4-6 for a thousand rounds. The walkers circled tiles
+miners stood on (a miner did not count as an occupant), and the HQ kept spawning miners into the interior until
+three stood in it. Stage 4: equalise only onto a held shell tile at our distance or nearer; the quarry back with a
+floor at -9 (the field's depth); a holder with margin to spare raises the highest outer tile beside it toward dry
+land for a newcomer (reclaim); any robot counts as an occupant; no miner replenishment.
+
 ## Iteration 39 -- the stalled seat-seeker fills the pit (2026-09-25, on g_iter7)
 
 **Evidence:** the flood-round census (78 of 89 such losses have an unseated ring tile at r500; GSF, Hills, Spiral,

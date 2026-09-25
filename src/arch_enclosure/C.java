@@ -10,7 +10,7 @@ public final class C {
     // --- economy (Iteration 1: unmeasured starting values)
     public static final int MINERS_EARLY = 4;         // miners the HQ builds before anything else is affordable
     public static final int MINERS_MAX = 8;           // never more live miners than this (each costs a wall-ring build slot)
-    public static final int MINERS_TOTAL = 16;         // hard cap on miners ever built by the HQ
+    public static final int MINERS_TOTAL = 8;          // the enclosure: no replenishment (a miner spawned inside a closed shell mines nothing)         // hard cap on miners ever built by the HQ
     public static final int MINER_REPLENISH = 60;     // rounds between replacement miners after MINERS_MAX
     public static final int MINER_SOUP_RESERVE = 200; // after MINERS_EARLY the HQ builds a miner only above this bank
     public static final int SOUP_RETURN = 70;         // a miner heads home to deposit at this much carried soup
@@ -35,6 +35,8 @@ public final class C {
     public static final int LANDSCAPERS_MAX = 48;     // the enclosure: 16 inner shell + 24 outer + feeders
     public static final int SHELL_CLIMB = 3;          // a shell tile is takeable within this of our own elevation
     public static final int SHELL_SLACK = 2;          // equalise an adjacent shell tile only when it is this much below ours
+    public static final int QUARRY_FLOOR = -9;        // stage 4: the interior is dug down to this and no further (the field's boards read -9)
+    public static final int RECLAIM_MARGIN = 6;       // stage 4: a holder this far above its need raises the highest outer tile beside it toward dry land
     public static final int INSIDE_MAX = 4;           // buildings on the ring besides the school (the yard: the school's two ring neighbours stay free)
     public static final int GUARD_BOX = 4;            // drones patrol within this of the HQ
     public static final int ATTACKER_BANK = 200;      // Iteration 43b: was 700, 43 tried 0 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A

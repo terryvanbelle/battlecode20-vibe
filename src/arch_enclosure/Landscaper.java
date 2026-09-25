@@ -14,13 +14,13 @@ public strictfp class Landscaper extends Robot {
     private MapLocation tile;                 // our shell tile, once chosen
     private boolean feeder = false, attacker = false, waiting = false;
     private final MapLocation[] bad = new MapLocation[8]; private int nBad = 0;
-    private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, fed = 0, selfDeps = 0;
+    private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, fed = 0, selfDeps = 0, reclaimed = 0;
 
     Landscaper(RobotController rc) { super(rc); nav.stallLimit = 30; }
 
     @Override protected void turn() throws GameActionException {
         sense(); if (round % 3 == 1) readBlock(); probeEdges();
-        if (round % 100 == 0) Debug.log("@wallstat tile=" + tile + " feeder=" + feeder + " attacker=" + attacker + " digs=" + digs + " deps=" + deposits + " self=" + selfDeps + " fed=" + fed + " hqDigs=" + hqDigs);
+        if (round % 100 == 0) Debug.log("@wallstat tile=" + tile + " feeder=" + feeder + " attacker=" + attacker + " digs=" + digs + " deps=" + deposits + " self=" + selfDeps + " fed=" + fed + " hqDigs=" + hqDigs + " reclaimed=" + reclaimed);
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (attacker) { attack(); return; }
@@ -43,7 +43,7 @@ public strictfp class Landscaper extends Robot {
     private boolean occupiedByOther(MapLocation l) throws GameActionException {
         if (!rc.canSenseLocation(l)) return false;
         RobotInfo r = rc.senseRobotAtLocation(l);
-        return r != null && r.ID != id && (r.type.isBuilding() || (r.type == RobotType.LANDSCAPER && r.team == us));
+        return r != null && r.ID != id;   // stage 4: anything standing there (a miner too: walkers circled tiles miners stood on)
     }
     private boolean shell(MapLocation l) { int d = Nav.cheb(l, MapState.home); return d == 2 || d == 3; }
 
@@ -82,14 +82,20 @@ public strictfp class Landscaper extends Robot {
         if (!rc.isReady()) return;
         if (hqInfo != null && hqInfo.dirtCarrying > 0 && loc.isAdjacentTo(home) && rc.canDigDirt(loc.directionTo(home))) { rc.digDirt(loc.directionTo(home)); hqDigs++; digs++; return; }
         if (buryEnemy()) return;
-        int myE = rc.senseElevation(loc); int need = (int) waterLevel(round + 60) + 2;
+        int myE = rc.senseElevation(loc); int need = (int) waterLevel(round + 60) + 2; int myD = Nav.cheb(loc, home);
         if (rc.getDirtCarrying() > 0) {
             if (myE < need && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; selfDeps++; return; }
+            // equalise: the lowest HELD shell tile beside us, at our distance or nearer (stage 4: never an outer tile we dig from, that was a loop)
             Direction bestD = null; int be = myE - C.SHELL_SLACK;
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!shell(n) || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
-                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!shell(n) || Nav.cheb(n, home) > myD || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
+                RobotInfo r = rc.senseRobotAtLocation(n); if (r == null || r.type != RobotType.LANDSCAPER || r.team != us) continue;
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); deposits++; fed++; return; }
+            // reclaim: with margin to spare, raise the highest outer tile beside us that is not yet dry land for a newcomer
+            if (myE >= need + C.RECLAIM_MARGIN) { bestD = null; int bh = Integer.MIN_VALUE; int dry = (int) waterLevel(round + 60) + 2;
+                for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, home) != myD + 1 || Nav.cheb(n, home) > 3 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
+                    if (rc.senseRobotAtLocation(n) != null) continue; int e = rc.senseElevation(n); if (e >= dry) continue; if (e > bh) { bh = e; bestD = d; } }
+                if (bestD != null) { rc.depositDirt(bestD); deposits++; reclaimed++; return; } }
             if (rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; selfDeps++; return; }
         }
         Direction d = digSource(home);
@@ -124,7 +130,7 @@ public strictfp class Landscaper extends Robot {
             if (r != null && r.team == us && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) continue;   // never a building of ours, never under a holder
             int cd = Nav.cheb(n, home); int e = rc.senseElevation(n);
             int s;
-            if (cd <= 1) continue;                                       // stage 3: the interior is never dug -- it must stay walkable for the builder and the yard (a quarry to -3,473 was a pit)
+            if (cd <= 1) { if (e <= C.QUARRY_FLOOR) continue; s = e - 10000; }   // stage 4: the quarry, down to its floor
             else if (cd > Nav.cheb(loc, home)) s = e;                    // outside: lowest first (under water is fine)
             else if (shell(n) && e > waterLevel(round + 200) + C.SHELL_SLACK + 3) s = 5000 - e;   // a shell tile with margin to spare, unheld
             else continue;
