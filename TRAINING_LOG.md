@@ -3814,3 +3814,8 @@ builds its ordinary two vaporators again) and still no high-ground vaporator on 
 
 **Iteration 83 re-opened on the ledger's condition (the builder seeks remembered high ground):** remembered sites twice
 in eight games (DoesNotExist), none built; the terrain memory is too sparse. Closed again (ledger). `src/bot` = g_iter12.
+
+**Iteration 84 (`src/cand84` = g_iter12 with VAPORATOR_BANK 650 -> 500):** the simplest test of the economy question --
+the census found 0.1-0.4 vaporators a game at 650 (the bank rarely reaches it while the builder lives); a vaporator
+repays 500 in 250 rounds. Diagnostic first (vaporators built, the wall at r2500 against the control), then the paired
+mirror gate.
