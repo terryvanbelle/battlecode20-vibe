@@ -1,73 +1,73 @@
 # Ladder
 
-6041 scrimmages (ours only), 5517 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 65 of 65 ladder bots met.
+6089 scrimmages (ours only), 5565 distinct (a repeated pairing with the same seed replays the same game and counts once), rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); each of our builds is its own player. 65 of 65 ladder bots met.
 
 Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each):
 
 | build | rating | rank | games | record | field score |
 |---|---|---|---|---|---|
-| g_iter12 | 1820 +- 42 | 13 of 88 | 288 | 137-151 | 80.5% |
-| cand69 | 1811 +- 72 | 14 of 88 | 96 | 46-50 | 80.1% |
+| g_iter12 | 1818 +- 39 | 13 of 88 | 336 | 159-177 | 80.4% |
+| cand69 | 1813 +- 72 | 14 of 88 | 96 | 46-50 | 80.2% |
 | cand65 | 1783 +- 73 | 15 of 88 | 96 | 42-54 | 78.6% |
 | g_iter11 | 1732 +- 47 | 16 of 88 | 240 | 107-133 | 75.8% |
-| cand43b | 1726 +- 79 | 17 of 88 | 96 | 64-32 | 75.5% |
-| cand49b | 1722 +- 75 | 19 of 88 | 96 | 42-54 | 75.2% |
-| g_iter10 | 1718 +- 48 | 20 of 88 | 240 | 103-137 | 75.0% |
-| cand47d | 1709 +- 54 | 22 of 88 | 192 | 73-119 | 74.5% |
+| cand43b | 1725 +- 79 | 17 of 88 | 96 | 64-32 | 75.4% |
+| cand49b | 1723 +- 75 | 18 of 88 | 96 | 42-54 | 75.2% |
+| g_iter10 | 1719 +- 48 | 20 of 88 | 240 | 103-137 | 75.0% |
+| cand47d | 1710 +- 54 | 22 of 88 | 192 | 73-119 | 74.5% |
 | g_iter9 | 1696 +- 49 | 23 of 88 | 240 | 78-162 | 73.6% |
 | g_iter8 | 1679 +- 49 | 25 of 88 | 240 | 108-132 | 72.5% |
 | cand41b | 1676 +- 76 | 26 of 88 | 96 | 51-45 | 72.3% |
 | g_iter5 | 1669 +- 34 | 27 of 88 | 618 | 329-289 | 71.9% |
-| g_iter7 | 1668 +- 44 | 28 of 88 | 288 | 135-153 | 71.8% |
-| cand40c | 1661 +- 77 | 29 of 88 | 96 | 57-39 | 71.4% |
-| g_iter6 | 1661 +- 26 | 30 of 88 | 886 | 450-436 | 71.4% |
-| cand42c | 1659 +- 76 | 31 of 88 | 96 | 49-47 | 71.2% |
+| g_iter7 | 1668 +- 45 | 28 of 88 | 288 | 135-153 | 71.8% |
+| g_iter6 | 1661 +- 26 | 29 of 88 | 886 | 450-436 | 71.3% |
+| cand40c | 1661 +- 77 | 30 of 88 | 96 | 57-39 | 71.3% |
+| cand42c | 1658 +- 76 | 31 of 88 | 96 | 49-47 | 71.1% |
 | iter24 | 1639 +- 130 | 32 of 88 | 46 | 11-35 | 69.8% |
-| cand37 | 1633 +- 76 | 33 of 88 | 96 | 46-50 | 69.3% |
-| g_iter3 | 1632 +- 33 | 34 of 88 | 796 | 167-629 | 69.3% |
+| g_iter3 | 1633 +- 33 | 33 of 88 | 796 | 167-629 | 69.3% |
+| cand37 | 1632 +- 76 | 34 of 88 | 96 | 46-50 | 69.3% |
 | cand31 | 1621 +- 76 | 35 of 88 | 96 | 52-44 | 68.5% |
-| g_iter4 | 1611 +- 64 | 36 of 88 | 217 | 43-174 | 67.7% |
+| g_iter4 | 1612 +- 64 | 36 of 88 | 217 | 43-174 | 67.8% |
 | g_iter2 | 1555 +- 69 | 37 of 88 | 192 | 44-148 | 63.2% |
 | g_iter1 | 1541 +- 69 | 38 of 88 | 170 | 95-75 | 61.9% |
 
 | rank | player | rating | +- 95% | games | W-L |
 |---|---|---|---|---|---|
-| 1 | awesomelemonade.citricsky | 2235 | 200 | 103 | 101-2 |
+| 1 | awesomelemonade.citricsky | 2236 | 200 | 103 | 101-2 |
 | 2 | uvafan.v14_final_bot | 2226 | 200 | 98 | 96-2 |
 | 3 | AngusRitossa.newbot | 2167 | 174 | 95 | 92-3 |
-| 4 | ronniesong0809.finalbota | 2051 | 98 | 127 | 114-13 |
+| 4 | ronniesong0809.finalbota | 2050 | 98 | 127 | 114-13 |
 | 5 | battlecode20-team4.finalbota | 1989 | 65 | 238 | 207-31 |
 | 6 | StoneT2000.FinalChowBotStable | 1979 | 211 | 21 | 19-2 |
 | 7 | rzhan11.quals_bot | 1976 | 115 | 86 | 77-9 |
-| 8 | IvanGeffner.finalbota | 1962 | 88 | 119 | 102-17 |
-| 9 | winkelmantanner.tannerplayer | 1929 | 46 | 338 | 266-72 |
-| 10 | mvpatel2000.qual | 1918 | 46 | 325 | 252-73 |
-| 11 | EmaPajic.Qualifications | 1889 | 40 | 389 | 292-97 |
-| 12 | poortho.stable_seeding_bot | 1825 | 31 | 557 | 384-173 |
-| 13 | **us:g_iter12** | 1820 | 42 | 288 | 137-151 |
-| 14 | **us:cand69** | 1811 | 72 | 96 | 46-50 |
+| 8 | IvanGeffner.finalbota | 1972 | 86 | 125 | 107-18 |
+| 9 | winkelmantanner.tannerplayer | 1935 | 45 | 344 | 272-72 |
+| 10 | mvpatel2000.qual | 1919 | 45 | 331 | 256-75 |
+| 11 | EmaPajic.Qualifications | 1890 | 40 | 395 | 296-99 |
+| 12 | poortho.stable_seeding_bot | 1827 | 31 | 563 | 388-175 |
+| 13 | **us:g_iter12** | 1818 | 39 | 336 | 159-177 |
+| 14 | **us:cand69** | 1813 | 72 | 96 | 46-50 |
 | 15 | **us:cand65** | 1783 | 73 | 96 | 42-54 |
 | 16 | **us:g_iter11** | 1732 | 47 | 240 | 107-133 |
-| 17 | **us:cand43b** | 1726 | 79 | 96 | 64-32 |
-| 18 | laurenschneider.pdx_team_one | 1725 | 29 | 572 | 319-253 |
-| 19 | **us:cand49b** | 1722 | 75 | 96 | 42-54 |
-| 20 | **us:g_iter10** | 1718 | 48 | 240 | 103-137 |
-| 21 | cormackikkert.whyPermutator | 1717 | 29 | 565 | 309-256 |
-| 22 | **us:cand47d** | 1709 | 54 | 192 | 73-119 |
+| 17 | **us:cand43b** | 1725 | 79 | 96 | 64-32 |
+| 18 | **us:cand49b** | 1723 | 75 | 96 | 42-54 |
+| 19 | laurenschneider.pdx_team_one | 1722 | 29 | 578 | 319-259 |
+| 20 | **us:g_iter10** | 1719 | 48 | 240 | 103-137 |
+| 21 | cormackikkert.whyPermutator | 1717 | 29 | 571 | 311-260 |
+| 22 | **us:cand47d** | 1710 | 54 | 192 | 73-119 |
 | 23 | **us:g_iter9** | 1696 | 49 | 240 | 78-162 |
-| 24 | benzyx.seeding | 1693 | 29 | 568 | 292-276 |
+| 24 | benzyx.seeding | 1692 | 29 | 574 | 293-281 |
 | 25 | **us:g_iter8** | 1679 | 49 | 240 | 108-132 |
 | 26 | **us:cand41b** | 1676 | 76 | 96 | 51-45 |
 | 27 | **us:g_iter5** | 1669 | 34 | 618 | 329-289 |
-| 28 | **us:g_iter7** | 1668 | 44 | 288 | 135-153 |
-| 29 | **us:cand40c** | 1661 | 77 | 96 | 57-39 |
-| 30 | **us:g_iter6** | 1661 | 26 | 886 | 450-436 |
-| 31 | **us:cand42c** | 1659 | 76 | 96 | 49-47 |
+| 28 | **us:g_iter7** | 1668 | 45 | 288 | 135-153 |
+| 29 | **us:g_iter6** | 1661 | 26 | 886 | 450-436 |
+| 30 | **us:cand40c** | 1661 | 77 | 96 | 57-39 |
+| 31 | **us:cand42c** | 1658 | 76 | 96 | 49-47 |
 | 32 | **us:iter24** | 1639 | 130 | 46 | 11-35 |
-| 33 | **us:cand37** | 1633 | 76 | 96 | 46-50 |
-| 34 | **us:g_iter3** | 1632 | 33 | 796 | 167-629 |
+| 33 | **us:g_iter3** | 1633 | 33 | 796 | 167-629 |
+| 34 | **us:cand37** | 1632 | 76 | 96 | 46-50 |
 | 35 | **us:cand31** | 1621 | 76 | 96 | 52-44 |
-| 36 | **us:g_iter4** | 1611 | 64 | 217 | 43-174 |
+| 36 | **us:g_iter4** | 1612 | 64 | 217 | 43-174 |
 | 37 | **us:g_iter2** | 1555 | 69 | 192 | 44-148 |
 | 38 | **us:g_iter1** | 1541 | 69 | 170 | 95-75 |
 | 39 | wpine215.stardustv2 | 1487 | 36 | 461 | 122-339 |
