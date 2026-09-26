@@ -159,13 +159,11 @@ public abstract strictfp class Robot {
 
     /** Is stepping onto l safe for a walker: sensed, not flooded (canMove does NOT check water). */
     protected boolean safeTile(MapLocation l) throws GameActionException {
-        if (avoidRing && inWall(l)) return false;
+        if (avoidRing && onRing(l)) return false;
         return rc.canSenseLocation(l) && !rc.senseFlooding(l);
     }
     /** May this robot stand on l at all (ring rule for flyers too: a drone parked on a seat blocks it). */
-    protected boolean allowedTile(MapLocation l) { return !(avoidRing && inWall(l)); }
-    /** Iteration 77: the shell and everything inside it (miners stood on the interior tiles and kept the diggers out). */
-    protected static boolean inWall(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) <= C.RING_D && !l.equals(MapState.home); }
+    protected boolean allowedTile(MapLocation l) { return !(avoidRing && onRing(l)); }
 
     /** Will my own tile be under water within FLOOD_LOOKAHEAD rounds, given a flooded neighbour? */
     protected boolean floodDanger() throws GameActionException {
@@ -231,7 +229,7 @@ public abstract strictfp class Robot {
         return false;
     }
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
-    protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == C.RING_D; }   // Iteration 77: the shell
+    protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
      *  dirt spent on it is wasted -- a quarter of ours was, on MoreCowbell. */

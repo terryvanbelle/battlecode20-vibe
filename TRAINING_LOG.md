@@ -3431,3 +3431,15 @@ helpers, 40 landscapers in all. Driver diagnostics against g_iter12, RandomSoup1
   At r900 the shell is 76-211 on thirteen of sixteen tiles, one tile at 4 (unseated) and one at -312 (dug -- the
   rusher's attackers dig beside our HQ), the interior dug to -55..-548 as intended. Thirteen landscapers from r250 to
   r500 (the enemy 19 -> 32): the bodies, again.
+
+**Stage 2 (unseated shell tiles raised too), six maps vs g_iter12 (seed 7) with g_iter12 mirror controls:** lost on
+all six; the controls win three. The shell at r2500: 663-730 (MtDoom, Squares, TwoLakeLand); RandomSoup1 and GSF drown
+at the flood (shell min -105 and 0 at r900), Soup is lost to the rush at r160 (the control too). 14-22 landscapers at
+r500. **Stage 3 (every soup to bodies: no drones but the rush answer, no guns, one vaporator, no banks):** the same --
+21-23 landscapers at r500, 14-20 at r1000 (the outer helpers drown at the flood), the shell 664-796 at r2500.
+
+The arithmetic is stage 27's: each body puts about 0.3 dirt a round into the shell, ours and laurenschneider's alike
+(its 44 bodies raise 16 tiles about one a round; our 20 raise them a third of that). The enclosure beats the wall only
+with twice the bodies, and laurenschneider has them: 20 at r500 like us, then **44 at r1000** -- 24 more in 500 rounds,
+3,600 soup, with three miners and one vaporator. How it earns that is the question now; its r500-1000 economy is the
+next thing to read. Stage 3 rests; `src/bot` = g_iter12.
