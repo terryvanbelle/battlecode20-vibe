@@ -3163,3 +3163,9 @@ the rusher's landscapers and school; a center born before r350 buys its first th
 lifts the rusher's landscapers and drowns them). The two-gate rule for archetype-specific changes is written into
 TRAINING_ALGORITHM 4.4. `src/bot` = g_iter11. Submission blocks `sub11` (5 x 48) launched; each posts with
 `post-block.sh <run> g_iter11`.
+
+**g_iter11 on the ladder, first 96 games: 42-54, 1742 +- 75, rank 16.** poortho still wins fast: five losses at
+r130-264 in 144 games. Read (GSF as A, r130, tier-check passes): the rush center stood at r65, but the HQ had built
+seven miners by r60 and the bank sat at 89-129 -- never the 150 for a drone -- while four landscapers buried the HQ
+3 -> 37 from r80 to r120. **Iteration 59 (`src/cand59` = g_iter11 + no miner past the early four while a rush is in
+sight):** the soup goes to the drones. Gates: vs `arch_rush` and the plain mirror, as for 58.
