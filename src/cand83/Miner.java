@@ -85,15 +85,20 @@ public strictfp class Miner extends Robot {
         if (hsTarget != null && round - hsSince < 30 && rc.canSenseLocation(hsTarget) && !rc.isLocationOccupied(hsTarget)) return true;
         MapLocation prev = hsTarget;
         hsTarget = null; hsStand = null; int bd = 1 << 30;
-        for (int dx = -5; dx <= 5; dx++) for (int dy = -5; dy <= 5; dy++) {
-            MapLocation t = new MapLocation(loc.x + dx, loc.y + dy); int c = Nav.cheb(t, home);
-            if (c < 3 || c > 8 || !rc.canSenseLocation(t) || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue;
-            int e = rc.senseElevation(t); if (e < C.HIGH_VAP_ELEV) continue;
+        // diag83 (Egg): the full scan overran the bytecode limit every turn from r441 and froze the builder; now cheapest
+        // test first, the nearest ring outward, the first usable site taken, and a bytecode floor
+        search:
+        for (int rr = 1; rr <= 4; rr++) for (int dx = -rr; dx <= rr; dx++) for (int dy = -rr; dy <= rr; dy++) {
+            if (Math.max(Math.abs(dx), Math.abs(dy)) != rr) continue;
+            if (Clock.getBytecodesLeft() < 3000) break search;
+            MapLocation t = new MapLocation(loc.x + dx, loc.y + dy);
+            if (!rc.canSenseLocation(t)) continue; int e = rc.senseElevation(t); if (e < C.HIGH_VAP_ELEV) continue;
+            int c = Nav.cheb(t, home); if (c < 3 || c > 8 || rc.senseFlooding(t) || rc.isLocationOccupied(t)) continue;
             boolean bad = false; for (int k = nBadHigh; --k >= 0;) if (badHigh[k].equals(t)) { bad = true; break; } if (bad) continue;
             for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]);
                 if (!rc.canSenseLocation(n) || Nav.cheb(n, home) < 2 || rc.senseFlooding(n) || Math.abs(rc.senseElevation(n) - e) > 3) continue;
                 if (rc.isLocationOccupied(n) && !n.equals(loc)) continue;
-                int d = loc.distanceSquaredTo(n); if (d < bd) { bd = d; hsTarget = t; hsStand = n; } }
+                hsTarget = t; hsStand = n; break search; }
         }
         hsSince = round; if (hsTarget != null && !hsTarget.equals(prev)) hsPicked = round;
         return hsTarget != null;
