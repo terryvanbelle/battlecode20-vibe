@@ -3243,7 +3243,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
-| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | submitting | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
+| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
 | late drone raid (team4, EmaPajic, 35% of losses r1500-2300) | cand61 | 9-0 in 320: provisional | not submitted | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
@@ -3272,3 +3272,9 @@ row carries the build's own name -- the cand43b lesson.)
 **g_iter12 on the ladder after 96 games: 43-53, 1806 +- 73, rank 13 of 86** (g_iter11 finished at 1751 +- 47).
 **Iteration 65 (`src/cand65` = g_iter12 + the late drone raid of cand61, the provisional change stacked):** the second
 copied tactic on the new incumbent. `gate65` (paired mirror vs g_iter12) queued behind the submission.
+
+**g_iter12 submitted: 240 band games, 111-129, rating 1823 +- 46, rank 13 of 86, field score 80.2%** -- the largest
+ladder gain of the project: +79 over g_iter11 (1744 +- 47 on the refit), the first step outside the error bars since
+the ladder began. Fast games tell it: **53 wins before r1300 against g_iter11's 18** (the rush), fast losses 21 against
+23 (the defence unchanged). Fast wins by opponent: laurenschneider 15, cormackikkert 13, benzyx 9, poortho 7, EmaPajic 5, winkelmantanner 2, ronniesong0809 1, mvpatel2000 1.
+Field-score projection: 83.9% at +7 days, 86.7% at +14.

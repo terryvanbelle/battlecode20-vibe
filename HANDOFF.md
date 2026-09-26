@@ -16,7 +16,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   ring by r83; g_iter11 dead at r166 on GSF, seed 7). **Iteration 62 (`src/cand62`, `src/bot` = cand62): the school
   at once near home under a rush or from r90** -- GSF r166 -> r931. Gate 62r: 13-13, not kept.
 - **Incumbent: `src/g_iter12`** (g_iter11 + our own poortho-style rush, Iteration 63; gate 63 ACCEPT 60-34 in the
-  paired mirror). **Running: `sub12`** (5 x 48 band games, posted per block; 1806 +- 73 after 96). Queued behind it: **`gate65`** (`src/cand65` = g_iter12 + the late drone raid, `src/bot` = cand65). g_iter11: 240 games, 1751 +- 47, rank 13.
+  paired mirror). **Submitted: 240 games, 111-129, 1823 +- 46, rank 13 of 86** (+79 on g_iter11; 53 wins before r1300 vs 18). **Running: `gate65`** (`src/cand65` = g_iter12 + the late drone raid, `src/bot` = cand65). g_iter11: 240 games, 1751 +- 47, rank 13.
 - **The owner's standing loop:** a cron prompt every 30 minutes ("task check. If the VM is idle and nothing is in
   the workqueue, start a new idea. Otherwise, carry on as before"). Record every user prompt in PROMPTS.md (next is
   36). Push after every commit; `post-block.sh` refreshes `progress/field-score.png` after every posted block (the
