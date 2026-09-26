@@ -3731,3 +3731,11 @@ would hold against any number of drones (drones cannot lift drones), so presence
 Iteration 81 NOT KEPT** (ledger, scorecard). The +47 of arm 81c was the pool's (the later blocks met the stronger band
 around 1861: IvanGeffner, StoneT2000, battlecode20-team4 0-6 each). `src/bot` = g_iter12. Next: the design panel's
 plan for Iteration 82 and the spending-window census (`tools/window-census.sh` over the 240 cand81s8 replays).
+
+**The spending-window census (`census81`, `tools/window-census.sh`, 238 cand81s8 band games; our side at r300-900):**
+a miner is alive in 97% of games at r400, 90% at r500, 87% at r600, 65% at r700, 54% at r800; the school in 94% at
+r400 and 51% at r700; a live miner with 150+ banked in 76-81% at r400-600. The median bank is 214 / 241 / 278 / 298 /
+327 / 408 / 505 at r300-900 -- after the school drowns the income is about one soup a round. In the 53 raid-window
+losses a miner was alive at r600 in 40 (with 150+ in 38). **So the shield's center is buildable in most games by
+r600, but its sixteen drones (2,400 soup) are not affordable by ~r1000 in the median field game**: the limit is the
+post-flood economy, the same gap the lattice program chased (TRAINING_LOG "The economy gap, measured").
