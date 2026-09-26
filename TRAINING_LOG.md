@@ -3243,7 +3243,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
-| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
+| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school); cand66 (miner freeze) | 62r 13-13; 64 refuted at the diagnostic; 66 10-14 vs g_iter12's own rush -- none kept |
 | late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65: 1789 +- 73, raid-window losses 24% vs 21% -- null; closed | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
@@ -3307,3 +3307,8 @@ missing is not the tactic but the reason it works for them, and the bots that us
 on GSF (g_iter12's second-miner rusher: r49; the enemy's g_iter12 rusher planted at r117 in the same game). The
 school waits on the bank, and the bank's first 150 comes when the second miner's walk ends anyway; the first miner
 spent its walk waiting. Refuted at the diagnostic; `src/cand67` kept.
+
+**Gate 66 (the miner freeze, against g_iter12's own rush in the plain mirror): 10-14 in 320 pairs -- not kept.**
+The rush defence stands at three failures (62, 64, 66) against one success on its archetype (58r). **Iteration 68
+(`src/cand68` = g_iter12 with `RUSH_LANDSCAPERS` 8 -> 14):** the offence's own parameter -- the forward school stops
+at eight; on GSF seven buried g_iter11 in 215 rounds against three diggers. `gate68` (paired mirror vs g_iter12).
