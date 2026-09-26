@@ -3243,7 +3243,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
-| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 | 53-32 at 176 pairs (running) | pending | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
+| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | submitting | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
 | late drone raid (team4, EmaPajic, 35% of losses r1500-2300) | cand61 | 9-0 in 320: provisional | not submitted | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
@@ -3261,3 +3261,10 @@ gate REJECTs (a background chain posts each block).
 g_iter11 dies at r264 to cand63; cand64 dies sooner, r220, after three burying deposits on the rusher's school. The
 same failure as 53: landscapers at the enemy school are landscapers not under our HQ. Refuted at the diagnostic;
 `src/cand64` kept. What the defence has to beat: a school planted at r49 whose first attacker is out by r60.
+
+**Gate 63: ACCEPT, discordant 60-34 at 192 pairs** (concordant 50-48). **`src/g_iter12` = g_iter11 + Iteration 63**
+(our own poortho-style rush: the second miner plants a school beside the enemy HQ, its landscapers bury it; the corpus
+origin (0,0) assumed). The copied tactic is the largest paired gain of the project so far (gate 50: 32-9; gate 58r:
+28-6 against an archetype). `src/bot` = g_iter12. Submission `sub12` (5 x 48, `BOT=g_iter12`), each block posted.
+(The chain had begun a block labelled `cand63`; it was stopped at once and its partial games discarded, so the ladder
+row carries the build's own name -- the cand43b lesson.)
