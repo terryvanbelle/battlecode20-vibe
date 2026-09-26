@@ -3244,7 +3244,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
 | school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school); cand66 (miner freeze) | 62r 13-13; 64 refuted at the diagnostic; 66 10-14 vs g_iter12's own rush -- none kept |
-| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65: 1789 +- 73, raid-window losses 24% vs 21% -- null; closed | -- | -- |
+| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; **cand69 (EmaPajic's scale, read 2026-09-26): gate running** | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
 against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).
@@ -3320,7 +3320,7 @@ its landscapers are dropped beside our HQ and bury it 3 -> 39 -> dead by r1523. 
 charged with ten. **Iteration 69 (`src/cand69` = cand65 scaled: up to 70 drones from r700, charge with 20):** our late
 bank (2,000-10,000 unspent) buys it. Diagnostic on the driver, then `gate69` behind gate68.
 
-**Gate 68 (14 forward landscapers):  -- not kept.** **Diagnostic 69 (driver,
+**Gate 68 (14 forward landscapers): 0-3 discordant in 320 pairs (concordant 161-156) -- not kept.** **Diagnostic 69 (driver,
 RandomSoup1 seed 7, vs g_iter12):** 31 drones by r1000, 19 charges, **14 lifts, all drowned; the enemy's landscapers
 17 -> 4 by r1500**; we win at r3078 (g_iter12's mirror of this seed ran to r3229). The enemy's wall was already tall
 when it lost its bodies, so it stood to r3078 -- EmaPajic finishes the job by dropping its own landscapers beside the
