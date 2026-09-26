@@ -76,17 +76,35 @@ public strictfp class Miner extends Robot {
     }
 
     // ---------------------------------------------------------------- Iteration 83: vaporators on natural high ground
-    private MapLocation hsTarget, hsStand; private int hsSince = -1000, hsPicked = -1000, hsEmpty = -1000, builtHigh = 0, nBadHigh = 0;
+    private MapLocation hsTarget, hsStand; private boolean hsFromMemory = false; private int hsSince = -1000, hsPicked = -1000, hsEmpty = -1000, builtHigh = 0, nBadHigh = 0;
     private final MapLocation[] badHigh = new MapLocation[16];
     /** A sensed natural tile at HIGH_VAP_ELEV or more, dry and free, Chebyshev 3-8 from home, with a free non-ring
      *  neighbour within 3 of its height to build from (the engine refuses a build more than 3 from the builder). */
     private boolean highSite(MapLocation home) throws GameActionException {
-        if (hsTarget != null && round - hsPicked > 40) { if (nBadHigh < badHigh.length) badHigh[nBadHigh++] = hsTarget; Debug.log("@highvap timeout " + hsTarget); hsTarget = null; }   // diag83: walks to unreachable plateaus never stalled
+        if (hsTarget != null && round - hsPicked > 80) { if (nBadHigh < badHigh.length) badHigh[nBadHigh++] = hsTarget; Debug.log("@highvap timeout " + hsTarget); hsTarget = null; }   // diag83: walks to unreachable plateaus never stalled
         if (hsTarget != null && round - hsSince < 30 && rc.canSenseLocation(hsTarget) && !rc.isLocationOccupied(hsTarget)) return true;
+        if (hsTarget != null && hsFromMemory && !rc.canSenseLocation(hsTarget)) return true;   // still walking to a remembered site
         // diag83 (DoesNotExist, logged): the builder mines far from home and rescanned every turn with 500 banked --
         // 7-9k bytecodes, the turn overran before the ordinary vaporator branch. Scan only near home, and after an empty
         // scan wait 20 rounds.
-        if (hsTarget == null && (Nav.cheb(loc, home) > 6 || round - hsEmpty < 20)) return false;
+        if (hsTarget == null && round - hsEmpty < 20) return false;
+        hsFromMemory = false;
+        if (hsTarget == null && Nav.cheb(loc, home) > 6) {   // re-open (ledger): look for the high ground in the terrain memory
+            if (!MapState.originKnown() || MapState.elev == null) { hsEmpty = round; return false; }
+            int bd2 = 1 << 30;
+            for (int dx = -8; dx <= 8; dx++) for (int dy = -8; dy <= 8; dy++) {
+                if (Math.max(Math.abs(dx), Math.abs(dy)) < 3) continue;
+                if (Clock.getBytecodesLeft() < 3000) break;
+                MapLocation t = new MapLocation(home.x + dx, home.y + dy); if (!MapState.onMap(t)) continue;
+                int i = MapState.index(t); if (!MapState.known[i] || MapState.elev[i] < C.HIGH_VAP_ELEV) continue;
+                boolean bad = false; for (int k = nBadHigh; --k >= 0;) if (badHigh[k].equals(t)) { bad = true; break; } if (bad) continue;
+                for (int j = 8; --j >= 0;) { MapLocation n = t.add(DIRS[j]); if (!MapState.onMap(n) || Nav.cheb(n, home) < 2) continue;
+                    int k = MapState.index(n); if (!MapState.known[k] || Math.abs(MapState.elev[k] - MapState.elev[i]) > 3) continue;
+                    int d = t.distanceSquaredTo(home); if (d < bd2) { bd2 = d; hsTarget = t; hsStand = n; } break; }
+            }
+            if (hsTarget != null) { hsFromMemory = true; hsPicked = round; hsSince = round; Debug.log("@highvap remembered " + hsTarget + " e=" + MapState.elev[MapState.index(hsTarget)]); return true; }
+            hsEmpty = round; return false;
+        }
         MapLocation prev = hsTarget;
         hsTarget = null; hsStand = null; int bd = 1 << 30;
         // diag83 (Egg): the full scan overran the bytecode limit every turn from r441 and froze the builder; now cheapest
