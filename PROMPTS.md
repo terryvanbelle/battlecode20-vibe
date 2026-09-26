@@ -201,3 +201,7 @@ Let's eliminate the 20% rule for examining games.  It was only ever a heuristic 
 ## 46. 2026-09-26
 
 By the way, you have the wrong dates on the field-score graph.  One week is September 30, and two weeks is October 7
+
+## 47. 2026-09-26
+
+How is cand81s8 looking?
