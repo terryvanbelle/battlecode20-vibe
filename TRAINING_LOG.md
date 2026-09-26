@@ -3370,3 +3370,11 @@ on the ladder (cand65, cand69); poortho's vaporator economy copied -> REJECT 3-2
 
 Next: a **rush census** -- g_iter12 against g_iter11 on all 52 maps, both sides, seed 7 (104 games): where our rusher
 plants, when, and whether it kills; the maps where it never plants are the rush's own next iteration.
+
+**The rush census (g_iter12 vs g_iter11, 52 maps x 2 sides, seed 7):** 56 wins of 104; the rusher planted in 57 games
+(median r84), 17 of them fast wins (before r1300); **15 plants spawned no attacker at all**; 47 never planted (long
+or wet walks; `RUSH_GIVEUP` r200). Egg as B, read: planted at r72 at (9,8) beside the enemy HQ (9,6) -- and the home
+school took every 150 (eight landscapers at home by r140) while the forward school sat at soup 3-18 until it died at
+r130. **Iteration 73 (`src/cand73`):** the forward school posts `RUSH_ON` every ten rounds while it spawns; the home
+school, after its first two, yields the bank for 25 rounds after each post. Driver: **Egg as B, 7 attackers, win at
+r238** (g_iter12: 0 attackers, lost at r3153); Soup as B, 4 attackers, lost as before. `gate73` (mirror vs g_iter12).
