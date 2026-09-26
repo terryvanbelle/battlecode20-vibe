@@ -3404,3 +3404,5 @@ first could not write its results table. Freed 7.2 GB by deleting the replays an
 before g_iter11 (their tables live in progress/games.csv, their studies in gauntlet/<run>/study.tsv on the driver),
 the paired gates' kept game files, and 368 diagnostic replays. The first block's table was rebuilt from its raw lines
 (48 games); the second is being replayed (`sub12c`). The driver was at 99% too: its old blocks' replays and gate games pruned (2.6 GB; 3.0 GB free). HANDOFF's gotchas note both disks.
+
+**g_iter12 firmed: 336 band games, 159-177, 1818 +- 39, rank 13 of 88, field score 80.4%.**
