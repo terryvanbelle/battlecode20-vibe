@@ -48,7 +48,7 @@ public final class C {
     public static final boolean ASSUME_ORIGIN = true;
     // Iteration 78: ronniesong0809's lattice (read 2026-09-26, PROMPTS 45). Around the HQ, every tile with an even
     // x or an even y offset is GRID, raised with the water; the odd-odd CELLS are pits (dirt) or buildings.
-    public static final int LATTICE_R = 6;             // Chebyshev radius of the lattice
+    public static final int LATTICE_R = 4;             // Chebyshev radius of the lattice
     public static final int GRID_MIN = 5;              // the grid's floor height (stage 5: 8 -> 5 -- a grid raised past a building's tile + 3 boxes its spawns in; the school at ground stopped at eight landscapers)
     public static final int RUSH_GIVEUP = 200;         // Iteration 63: our rusher goes back to mining after this round
     public static final int RUSH_LANDSCAPERS = 8;      // Iteration 63: the forward school's landscapers

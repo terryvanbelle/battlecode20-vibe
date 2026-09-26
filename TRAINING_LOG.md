@@ -3505,3 +3505,13 @@ g_iter12, stage by stage:
 7. a school's door tiles stay within 2 of it: **44 landscapers by r1500, 10 vaporators, 17,000 soup** -- lost at r2389
    (the enemy wall outlasts a 133-tile grid; ronniesong wins before that, at r1500, with the drones this bank buys);
 8. the raid of cand69 on top (up to 150 drones, more centers when the bank passes 2,000): diagnostic next.
+
+**Stage 8 (the raid on top), six maps:** lost on all six, and three of them to the rush by r308 (the lattice had taken
+the ring's landscapers); RandomSoup1 banked 39,000 with no drone (the first center came after the vaporators, i.e.
+never); Squares built no landscaper at all. **Stage 9 (the eight ring seats first; the first center at four
+vaporators; twelve vaporators; raid drones only above 600):** the rushes survived on MtDoom and TwoLakeLand, RandomSoup1
+reaches 10 vaporators, 37 drones and 16 lifts -- and every map is still lost where the g_iter12 control wins or lasts
+longer (MtDoom r3053 / 3202, RandomSoup1 r3019 / win, TwoLakeLand r3058 / win); buildings are lost as the water comes
+(schools and centers gone by r1000-1500). **Stage 10:** Squares' lots sat on 20-99 cliffs and the builder walked for
+900 rounds without a school; a building now gets 40 rounds to find a lot, then the old placement (Squares: alive to
+r3096, 18 landscapers); `LATTICE_R` 6 -> 4 (a perimeter the landscapers can hold, lots inside it).
