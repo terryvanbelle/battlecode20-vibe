@@ -3398,3 +3398,9 @@ enclosure program closed on (stage 36: "bodies per tile, placed before the flood
 two differences we never tried together: every interior tile is quarry (our stage 29 kept building sites inside and
 lost them), and all 44 bodies are bought before r1000 with nothing kept for later. This is the next tactic to copy --
 a program, not an iteration; for the owner's morning discussion.
+
+**The VM's disk filled (2026-09-26 ~11:30):** 20 GB, 100% -- the second extra g_iter12 block could not start, and the
+first could not write its results table. Freed 7.2 GB by deleting the replays and loss files of every posted block
+before g_iter11 (their tables live in progress/games.csv, their studies in gauntlet/<run>/study.tsv on the driver),
+the paired gates' kept game files, and 368 diagnostic replays. The first block's table was rebuilt from its raw lines
+(48 games); the second is being replayed (`sub12c`). HANDOFF's gotchas note the VM disk.

@@ -53,7 +53,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   cheap lessons ported (none of them apply to the wall design directly).
 - **Open questions for the owner (unchanged):** field-only mechanisms vs rule 5 (the home guard 48b); the
   twelve-pair floor (42c 12-2 kept, 49b 9-0 out).
-- Gotchas learned this session: `MapState` statics are per robot (each robot is its own sandbox) -- cache the
+- Gotchas learned this session: **the VM's 20 GB disk fills** (scrim replays ~50 MB a block, diagnostics, gate games) -- prune old blocks' `replays/` and `losses/` once posted; `MapState` statics are per robot (each robot is its own sandbox) -- cache the
   gate per robot, never assume another robot's view; a drone cannot fly over units, so the gate needs its three
   outer neighbours free (the approach); a body that loses its tile takes the shell tile it stands on ("landed") --
   filter that; `--robot ID` in replay-dump prints events, not positions; `pgrep -f` on the VM matches the ssh
