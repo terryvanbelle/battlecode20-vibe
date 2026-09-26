@@ -9,6 +9,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Owner, PROMPTS 42: evaluate the "copy the tactic that beats us" approach as it is implemented; discuss in the
   morning.** Keep a running scorecard in TRAINING_LOG ("Copying tactics: scorecard") -- per copied tactic: the
   mirror gate, the ladder submission, and the defence's result.
+- **The laurenschneider enclosure program is under way (PROMPTS 44: go ahead without approval).** `src/cand77`
+  (`src/bot` = cand77): g_iter12 with the wall at Chebyshev 2, the HQ ring as quarry. Stage 1 survives g_iter12's
+  rush and dies at the flood (holes: one unseated shell tile, one dug by the rusher's landscapers; 13 bodies).
 - **For the morning (PROMPTS 42):** the copy-the-tactic scorecard is in TRAINING_LOG ("Copying tactics: scorecard"
   and the entries after it): rush copied -> g_iter12 +79 on the ladder; raid copied twice -> null; poortho's
   vaporator economy -> REJECT 3-20; rush defence 0 of 5; rush refinements 67/68/73/74 not kept. New read:

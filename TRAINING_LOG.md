@@ -3414,3 +3414,20 @@ owner. The rush census: of the 15 plants that spawned no attacker, 11 came after
 **Gate 75 (the rusher gives up at r120): 16-25 discordant in 320 pairs -- against; not kept.** The late plants that
 spawn nothing are outweighed by the late plants that do. **Iteration 76 (`src/cand76`: `RUSH_GIVEUP` 200 -> 350)**, the
 other direction; `gate76`.
+
+**Gate 76 (`RUSH_GIVEUP` 350): 9-13 in 320 pairs -- not kept.** 200 stays.
+
+## The laurenschneider enclosure (PROMPTS 44: "go ahead", 2026-09-26)
+
+**Iteration 77 (`src/cand77` = g_iter12 with the wall moved out; DESIGN.md "The laurenschneider enclosure"):** the ring
+is the Chebyshev-2 shell (`C.RING_D`, 16 seats); helpers post inside (Chebyshev 1: dig their own tiles, feed the shell,
+dig the HQ out) and outside (Chebyshev 3: dig beyond); no building within 2 of the HQ (`BUILD_DIST` 3); 16 seats, 24
+helpers, 40 landscapers in all. Driver diagnostics against g_iter12, RandomSoup1 seed 7:
+- first form: dead at r289 to g_iter12's rush -- no seat touches the HQ, the interior was empty, the rusher's
+  landscapers stood on our ring;
+- the first eight bodies go inside (the old ring's job): still r282 -- our own miners stood on the interior tiles
+  (they avoided only the ring, now Chebyshev 2) and the interior helpers "reseated" onto the shell;
+- miners kept out of Chebyshev <= 2, interior helpers never reseat: **the rush is survived; dead at the flood, r943**.
+  At r900 the shell is 76-211 on thirteen of sixteen tiles, one tile at 4 (unseated) and one at -312 (dug -- the
+  rusher's attackers dig beside our HQ), the interior dug to -55..-548 as intended. Thirteen landscapers from r250 to
+  r500 (the enemy 19 -> 32): the bodies, again.
