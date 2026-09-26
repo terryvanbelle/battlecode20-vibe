@@ -3243,7 +3243,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
-| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 | pending | pending | cand62 (school at once) | 62r vs arch_rush2: 13-13 in 320, not kept |
+| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 | 53-32 at 176 pairs (running) | pending | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
 | late drone raid (team4, EmaPajic, 35% of losses r1500-2300) | cand61 | 9-0 in 320: provisional | not submitted | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
@@ -3255,3 +3255,9 @@ g_iter11 loses 164 of 320 cells to `arch_rush2` either way -- the rush beats the
 corpus. With our own rusher submitted (cand63), the defence is gated against **cand63** itself (`OPP=cand63`), no
 archetype needed (the owner's point, PROMPTS 40). Overnight: gate63 (running), then cand63's submission unless the
 gate REJECTs (a background chain posts each block).
+
+**Gate 63 at 176 pairs: 53-32 discordant for our rush** -- the rush flips far more games than anything gated before.
+**Diagnostic 64 (a defence against cand63: Iteration 53's "bury their school" on g_iter11, driver, GSF seed 7):**
+g_iter11 dies at r264 to cand63; cand64 dies sooner, r220, after three burying deposits on the rusher's school. The
+same failure as 53: landscapers at the enemy school are landscapers not under our HQ. Refuted at the diagnostic;
+`src/cand64` kept. What the defence has to beat: a school planted at r49 whose first attacker is out by r60.
