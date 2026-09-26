@@ -3616,3 +3616,9 @@ ends lower on four maps (RandomSoup1 2,103 against 2,219 -- a win lost; MtDoom 1
 1,509; Squares 1,829 / 1,910 -- a tiebreak win lost) and higher on two (CentralLake 1,171 / 962; IceCream 1,622 /
 1,477): the drones, built at a 250 reserve, took the helpers' soup. **Stage 3: the center keeps 600 back** -- the
 drones are paid from the surplus the school leaves (the control idles 776-10,556 at r1000).
+
+**Stage 3 (reserve 600):** RandomSoup1 restored -- the mirror a win again (wall 2,209 against the control's 2,219), and
+against cand69 **5 lifts (control 19), 14 landscapers kept, the wall 1,970 at r2500 against the control's frozen 1,133,
+r3185 against r3046**. The other four maps unchanged from stage 2: a center born before r350 is g_iter12's rush center
+(Iteration 58) and buys three drones at cost whatever the bank -- 600 soup at r300-400, the helpers' soup. **Stage 4:
+the shield's center from r400 and with 450 in the bank.**

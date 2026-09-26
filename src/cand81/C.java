@@ -30,7 +30,9 @@ public final class C {
     // ADJACENT (r2 3) and drones cannot lift drones, so our drones on every Chebyshev-2 tile seal the ring: nothing can be lifted
     // off it or dropped onto it. The ring's landscapers dig under them (digging under a unit is allowed).
     public static final int SHIELD_FROM = 600;        // from this round every drone takes a Chebyshev-2 tile and holds it
-    public static final int SHIELD_FC_ROUND = 300;    // the first center once the school stands and this round has come
+    public static final int SHIELD_FC_ROUND = 400;    // the first center once the school stands and this round has come (stage 4: 300 -> 400 -- a center
+                                                      // born before r350 is the rush center and buys three drones at cost: 600 soup from the helpers)
+    public static final int SHIELD_FC_BANK = 450;     // ... and the bank holds this
     public static final int DRONE_RESERVE = 600;      // the center keeps this much soup back; Iteration 81 stage 3: 250 -> 600 -- the shield's drones are paid from
                                                       // the surplus the school leaves (at 250 they took the helpers' soup: the wall 100-240 lower on four maps of six)
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
