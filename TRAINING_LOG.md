@@ -3244,7 +3244,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
 | school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school); cand66 (miner freeze) | 62r 13-13; 64 refuted at the diagnostic; 66 10-14 vs g_iter12's own rush -- none kept |
-| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; **cand69 (EmaPajic's scale, read 2026-09-26): gate running** | -- | -- |
+| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; cand69 (EmaPajic's scale): gate 3-0; **arm69 running** | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
 against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).
@@ -3332,3 +3332,8 @@ raid lifts 14 (helpers first) and the four seats stay; the enemy HQ's gun thins 
 r1500, and our bank (472 at r1000) buys no more. EmaPajic can finish because it brings 136 drones and loses what the
 gun takes; the copy is capped by our economy, not by its logic. cand70 rests; gate69 decides whether the lifts alone
 are worth it.
+
+**Gate 69 (the raid at scale, mirror vs g_iter12): 3-0 discordant in 320 pairs (concordant 170-147) -- inconclusive.**
+The mirror cannot see a raid (g_iter12's own rush and wall decide those games first). As with 65, the ladder is where
+the raid window is: **`arm69`**, 96 band games as `us:cand69` (pre-registered: rating against g_iter12's 1817 +- 46 and
+the r1300-2000 loss rate against its 20.8%; arm65's was 24.0%).
