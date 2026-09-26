@@ -7,7 +7,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 
 - **Incumbent: `src/g_iter11`** (g_iter10 + the rush answer, Iterations 57-58: an early fulfillment center on the far
   side under a rush, three drones at cost that drown the rusher's landscapers; accepted 2026-09-26 by gate 58r 28-6 vs
-  `arch_rush` and gate 58 2-2 in the plain mirror). **Submitted: 240 games, 107-133, 1751 +- 47, rank 13 of 85** (best submission). Iteration 59 (no miners during a rush) gate59r 5-4, not kept. Iteration 60 (an enemy miner raises the rush alarm) refuted on the harness. **Running: Iteration 61 (`src/cand61`, `src/bot` = cand61): the late drone raid on the enemy ring -- `diag61`.**
+  `arch_rush` and gate 58 2-2 in the plain mirror). **Submitted: 240 games, 107-133, 1751 +- 47, rank 13 of 85** (best submission). Iteration 59 (no miners during a rush) gate59r 5-4, not kept. Iteration 60 (an enemy miner raises the rush alarm) refuted on the harness. **Running: Iteration 61 (`src/cand61`, `src/bot` = cand61): the late drone raid on the enemy ring -- diagnostic: 5 lifts off the enemy ring on RandomSoup1, their wall -263 at r2750. Running: `gate61`.**
   g_iter10: 240 games, 1743 +- 47, rank 17 of 84.
 - **The owner's standing loop:** a cron prompt every 30 minutes ("task check. If the VM is idle and nothing is in
   the workqueue, start a new idea. Otherwise, carry on as before"). Record every user prompt in PROMPTS.md (next is

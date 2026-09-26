@@ -3189,3 +3189,9 @@ landscapers, and our late bank sits at 2,000+ unspent. From r900 the center buil
 unchanged); from r1400 three in four drones (by id) gather five out from the enemy HQ on our side and, when ten are
 in sight, charge the ring ignoring guns, lifting the enemy's landscapers nearest its HQ and drowning them.
 Diagnostic `diag61` in the mirror (RandomSoup1, Squares, Prison) against g_iter11 controls.
+
+**Diagnostic 61.** First form: 18-23 charges a game, **no lift** -- aimed at the seats, which sit behind helpers at
+Chebyshev 2 and are out of a drone's reach. Second form (anything of theirs in reach first, then the nearest within
+r2 18 of their HQ): RandomSoup1 as A, 20 charges, 5 lifts off the ring, 8 drowned; the enemy's ring at r2750 is 2,316
+(g_iter10's mirror, same seed: 2,579) and we win 20 rounds sooner (r3209 against r3229). Prison as A: 12 charges, no
+lift, the enemy ring 1,745 at r2750. The mechanism fires; **`gate61`** (paired mirror, cand61 vs g_iter11).
