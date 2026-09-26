@@ -7,11 +7,18 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 
 - **Incumbent `src/g_iter12`** (1818 +- 39 over 336 games, rank 13 of 88, field score 80.4%). Prompts recorded
   through 46 (next is 47). Cron loop beb41aee every 30 minutes.
-- **The program: the lattice (`src/cand78`, `src/bot` = cand78; TRAINING_LOG "The lattice")**, copying ronniesong0809
-  and winkelmantanner (PROMPTS 40-41, 44). The measured reason (TRAINING_LOG "The economy gap, measured"): we mine as
-  much as they do; they turn it into 20-35 vaporators by r900-1100 and 45-65 by r1500 on raised walkways, while
-  g_iter12 holds 1,600-3,900 idle soup from r700 with no builder alive. Stage 17 (winkelmantanner's geometry: every
-  cell a pit, buildings on the full rows) is in `diag78f` (`tools/lattice-diag.sh`, six maps in parallel).
+- **Running: `arm81b`** -- 96 band games as `us:cand81` (Iteration 81, the drone shield: from r600 every drone holds a
+  Chebyshev-2 tile of our HQ, so nothing can be lifted off the ring or dropped onto it; the center from r400 with 450
+  banked, drones from a 600 bank, up to 20; the wall digs under our drones). Pre-registered in TRAINING_LOG ("Arm 81").
+  Post each block with `tools/post-block.sh <run> cand81`. Its first block (`20260926-165038`, 45-3) drew a pool centred
+  on the enclosure probe (the unrated-build fallback, now fixed in `elolib.current_build`); it stays in the fit.
+  Why the shield (TRAINING_LOG "What actually kills g_iter12 late"): ronniesong0809 lifts our ring landscapers and drops
+  its own onto the ring to bury the HQ (all five losses at r1566-1572); winkelmantanner and mvpatel2000 lift the whole
+  wall. The shield forms only where there is a surplus (mvpatel2000 games: the bank 230-630 through r1000).
+- **The lattice (`src/cand78`)**, stages 1-17, has never held more than ~6 vaporators and loses every diagnostic map to
+  g_iter12; stage 17 (winkelmantanner's geometry) was worse. Paused. The measured economy gap (TRAINING_LOG "The economy
+  gap, measured") stands: the field turns the same mined soup into 20-65 vaporators on raised walkways.
+- `src/bot` = cand78 (stage 17); set it to whatever is under test next.
 - Closed today: the laurenschneider enclosure (cand77, stages 1-7, and the archetype's ladder probe 4-44), net guns
   (cand79: drown before the raid), cand80 (vaporators in g_iter12's layout: never built -- no builder after r700).
 
