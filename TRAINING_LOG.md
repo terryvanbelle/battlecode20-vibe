@@ -3278,3 +3278,9 @@ ladder gain of the project: +79 over g_iter11 (1744 +- 47 on the refit), the fir
 the ladder began. Fast games tell it: **53 wins before r1300 against g_iter11's 18** (the rush), fast losses 21 against
 23 (the defence unchanged). Fast wins by opponent: laurenschneider 15, cormackikkert 13, benzyx 9, poortho 7, EmaPajic 5, winkelmantanner 2, ronniesong0809 1, mvpatel2000 1.
 Field-score projection: 83.9% at +7 days, 86.7% at +14.
+
+**g_iter12's 129 losses:** 21 before r1300 (poortho 11), 50 at r1300-2000 (ronniesong0809 25, EmaPajic 12,
+mvpatel2000 10), 12 at r2000-2700, 46 after r2700 (winkelmantanner 16, poortho 10, mvpatel2000 9, laurenschneider 8).
+The raid window is now the largest loss class, and its leader, ronniesong0809, is **locked** (17 wins in 154 games,
+11%; g_iter12 2 of 30): its games may not be read. The copied raid (cand65 on g_iter12) is in its gate; its defence
+has no reproducible opponent of ours yet -- cand65 itself will serve as one if it is accepted.
