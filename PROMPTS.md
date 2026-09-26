@@ -173,3 +173,7 @@ How's the ELO looking for g_iter11?
 ## 39. 2026-09-26
 
 A suggestion:  if you learned to rush first, then you could learn to defend against rushing
+
+## 40. 2026-09-26
+
+I'm glad you found my suggestion useful, but I was suggesting something more generic:  Instead of just learning how poortho rushes to build a new archetype, why not try to use poortho's rush strategy as an offensive tactic against other bots?  If you can submit a bot that rushes, then you can next work on a bot that defends against that rushing as a separate submission, without needing to use an archetype.
