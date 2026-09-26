@@ -2884,6 +2884,10 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **The vaporator bank (Iteration 84, 2026-09-27)** -- VAPORATOR_BANK 650 -> 500. Diagnostic: more vaporators on five
+  maps of ten. Gate84 2-8 discordant in 320 pairs (p = 0.11 against). Kind: not kept; with gate81 (3-9) and stage 5 of
+  Iteration 81, the third measurement that the mirror's wall race punishes any soup taken before the school drowns.
+
 - **Vaporators on natural high ground (Iteration 83, 2026-09-26/27)** -- the builder builds on a sensed natural tile of
   12+ at Chebyshev 3-8 from a 500 bank. Five diagnostic rounds on eight high maps: never fired. Four defects fixed (an
   unending walk, cooldown refusals, a bytecode-overrunning scan, a scan every turn while the builder mined far away);
@@ -3824,3 +3828,7 @@ mirror gate.
 / 3, NoU 2 / 0, MtDoom 1 / 0, Toothpaste 2,564 banked at r600 against 1,731); walls up on Egg (+247), NoU (+133),
 CentralLake (+110), Toothpaste (+65), down on DoesNotExist (-204, a win lost), level elsewhere. Fires; the single-seed
 walls are in the mirror's chaotic range. `gate84` (paired mirror vs g_iter12, 320 pairs) launched.
+
+**Gate 84: inconclusive, 2-8 discordant after 320 pairs (p = 0.11 against), concordant 163-147. Not kept** (ledger).
+Three measurements now agree (Iteration 81 stage 5, gate81, gate84): in the mirror, soup spent on anything but
+landscapers before the school drowns costs the wall race. `src/bot` = g_iter12.
