@@ -3319,3 +3319,9 @@ passes).** AMaze, g_iter12 as A, lost at r1523: EmaPajic stands 42 landscapers a
 its landscapers are dropped beside our HQ and bury it 3 -> 39 -> dead by r1523. Our raid (cand61/65) had 24 drones and
 charged with ten. **Iteration 69 (`src/cand69` = cand65 scaled: up to 70 drones from r700, charge with 20):** our late
 bank (2,000-10,000 unspent) buys it. Diagnostic on the driver, then `gate69` behind gate68.
+
+**Gate 68 (14 forward landscapers):  -- not kept.** **Diagnostic 69 (driver,
+RandomSoup1 seed 7, vs g_iter12):** 31 drones by r1000, 19 charges, **14 lifts, all drowned; the enemy's landscapers
+17 -> 4 by r1500**; we win at r3078 (g_iter12's mirror of this seed ran to r3229). The enemy's wall was already tall
+when it lost its bodies, so it stood to r3078 -- EmaPajic finishes the job by dropping its own landscapers beside the
+bare HQ; ours does not yet. `gate69` (paired mirror vs g_iter12) launched.
