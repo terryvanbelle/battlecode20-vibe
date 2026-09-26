@@ -3244,7 +3244,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
 | school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
-| late drone raid (team4, EmaPajic, 35% of losses r1500-2300) | cand61 | 9-0 in 320: provisional | not submitted | -- | -- |
+| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 (96 games) running | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
 against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).
@@ -3284,3 +3284,9 @@ mvpatel2000 10), 12 at r2000-2700, 46 after r2700 (winkelmantanner 16, poortho 1
 The raid window is now the largest loss class, and its leader, ronniesong0809, is **locked** (17 wins in 154 games,
 11%; g_iter12 2 of 30): its games may not be read. The copied raid (cand65 on g_iter12) is in its gate; its defence
 has no reproducible opponent of ours yet -- cand65 itself will serve as one if it is accepted.
+
+**Gate 65 (the raid on g_iter12): 5-0 discordant in 320 pairs (p = 0.06), concordant 170-145 -- PROVISIONAL again.**
+With gate 61 (9-0 on g_iter11) the raid has flipped 14 games and lost none across two bases, but the mirror rarely
+reaches r1400 undecided now that g_iter12 rushes. The ladder is where the raid window is (50 of g_iter12's 129
+losses), so the copied raid gets an **arm**: `arm65-a`/`-b`, 96 band games as `us:cand65` (pre-registered: rating and
+the r1300-2000 loss rate against g_iter12's 50 of 240).
