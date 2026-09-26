@@ -3534,3 +3534,8 @@ post-flood defence, like a post-flood economy, needs ground the water cannot rea
 lattice. The enclosure was only ever measured in the mirror against g_iter12's wall, never against the field, whose
 largest win class over us is the raid. **A ladder probe: 48 band games as `us:arch_enclosure`** (stage-36 reference,
 its interior holding the school, center and vaporator through the flood).
+
+**The enclosure archetype on the ladder (48-game probe): 4-44, 1406 +- 165, rank 42 of 89.** Its losses: 27% before
+r1300 (it has no rush answer and 27 bodies at best), 15% in the raid window (g_iter12: 20%), 15% at r2000-2700, 35%
+after r2700 (the wall race it loses to everyone with a wall). The interior that keeps its buildings through the flood
+does not make it a match for the field. The line is closed again, now with a ladder measurement.
