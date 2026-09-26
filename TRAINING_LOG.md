@@ -3539,3 +3539,12 @@ its interior holding the school, center and vaporator through the flood).
 r1300 (it has no rush answer and 27 bodies at best), 15% in the raid window (g_iter12: 20%), 15% at r2000-2700, 35%
 after r2700 (the wall race it loses to everyone with a wall). The interior that keeps its buildings through the flood
 does not make it a match for the field. The line is closed again, now with a ladder measurement.
+
+**winkelmantanner's late win, read (CentralLake, g_iter12 as A lost at r3050):** 24 landscapers and one vaporator at
+r500 -- like ours -- then **45 vaporators by r1000 and 72 by r1500**, 8 centers, **335 drones at r1500, 483 at r2000**;
+our landscapers 15 -> 0 between r1500 and r2000 (lifted), our wall frozen at 1,161 while its eight-tile wall reaches
+2,788; we drown at r3050. Its vaporators drown at the flood too (0 by r2000) -- after they have paid for the drones.
+The field's winning economy in one line: man the wall, then every soup into vaporators until the flood, then drones.
+**Iteration 80 (`src/cand80` = cand69's raid + that economy):** from r400 to r900 the school stops at 20 landscapers and
+the builder puts every 500 into vaporators (up to 60); from r800, up to six centers; up to 300 drones; the raid from
+r1400. Diagnostic next.
