@@ -79,14 +79,14 @@ public strictfp class Miner extends Robot {
     /** Iteration 78: build on a free cell of the lattice beside us; else walk to a grid tile beside the nearest free cell. */
     private boolean latticeBuild(RobotType want, MapLocation home) throws GameActionException {
         if (!rc.isReady()) return true;
-        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!isLot(n) || Nav.cheb(n, home) < 2 || !rc.canBuildRobot(want, d)) continue;
-            if ((want == RobotType.VAPORATOR || want == RobotType.FULFILLMENT_CENTER || (want == RobotType.DESIGN_SCHOOL && builtSchool > 0)) && rc.senseElevation(n) < gridTarget(round) + C.LOT_ABOVE - 1) continue;   // stage 11-12: on a raised pad
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!isSite(n) || !rc.canBuildRobot(want, d)) continue;
+            if ((want == RobotType.VAPORATOR || want == RobotType.FULFILLMENT_CENTER || (want == RobotType.DESIGN_SCHOOL && builtSchool > 0)) && rc.senseElevation(n) < gridTarget(round) - 1) continue;   // stage 11-12, 17: on a raised site
             rc.buildRobot(want, d); lastWant = null; Debug.log("@build t=" + want.ordinal() + " at=" + n + " cell soup=" + rc.getTeamSoup());
             if (want == RobotType.REFINERY) { builtRefinery++; refinery = n; } else if (want == RobotType.DESIGN_SCHOOL) builtSchool++; else if (want == RobotType.VAPORATOR) builtVap++; else if (want == RobotType.NET_GUN) builtNet++; else builtFC++;
             return true; }
         MapLocation best = null; int bd = 1 << 30;
         for (int dx = -C.LATTICE_R; dx <= C.LATTICE_R; dx++) for (int dy = -C.LATTICE_R; dy <= C.LATTICE_R; dy++) {
-            MapLocation c = new MapLocation(home.x + dx, home.y + dy); if (!isLot(c) || Nav.cheb(c, home) < 2 || !rc.onTheMap(c)) continue;
+            MapLocation c = new MapLocation(home.x + dx, home.y + dy); if (!isSite(c) || !rc.onTheMap(c)) continue;
             if (rc.canSenseLocation(c) && (rc.isLocationOccupied(c) || rc.senseFlooding(c))) continue;
             int d = loc.distanceSquaredTo(c); if (d < bd) { bd = d; best = c; } }
         if (best == null) return false;

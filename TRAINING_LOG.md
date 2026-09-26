@@ -3565,3 +3565,22 @@ lost (r3079), the school and center drowned (their first placements were at grou
 unpaced (stage 14) it spends every 150, so the bank never holds 500 (250-350 all game on four maps); RandomSoup1 and
 MtDoom field 46-52 landscapers and no economy at all. **Stage 16:** a hard cap -- 24 landscapers from r400 to r1100 --
 so the bank can reach a vaporator, as winkelmantanner banks 1,559 at r500 with 24.
+
+**Stage 16 (24 landscapers from r400 to r1100), six maps: all lost; vaporators 3 on CentralLake and RandomSoup1 (drowned
+by r2000 on CentralLake), none elsewhere.** The cap frees soup (837 at r500 on CentralLake) but the builder finds no pad.
+
+**The economy gap, measured (g_iter12's loss replays, `--metrics`):** we mine as much as the field's lattice bots
+(1,033 mines on NoU against winkelmantanner's 1,179; 735 against 1,048 on Climb; 634 against ronniesong's 1,066 by r1100
+on IceCream) -- the difference is where the soup goes. Theirs goes into vaporators from r200-500 (winkelmantanner NoU:
+10 at r700, 20 at r900, 35 at r1100, 65 at r1500; ronniesong NoU 13 at r500, 60 at r1500; spend 73,000-97,000 by
+r1500); ours sits idle: **g_iter12 holds 1,600-3,900 soup unspent from r700 with no miner alive** (NoU 1,898 at r900,
+Climb 3,104 at r700) -- the HQ builds a miner only while the ring has a free tile, the school stops at 24 built, and
+both drown at the flood. winkelmantanner's NoU board (r200-900): a lattice that grows from the HQ to its whole half by
+r700 -- **full walkway rows every other row (5-9 high at r900), alternate columns between them, every other tile of
+those rows a pit that floods; the vaporators stand ON the full rows**; its HQ has no closed wall at r700 (the raised
+lattice keeps it dry); 29,918 digs in the game against our 8,663.
+
+**Stage 17 (that geometry):** no lots -- every cell is a pit (twice the dirt sources); a building site is a full-row
+tile between two junctions (odd x offset, even y offset from the HQ) at Chebyshev 3 or more, so the column walkways
+never hold a building and the lattice stays connected; vaporators, centers and later schools only on sites raised to
+the grid target less one.
