@@ -3244,7 +3244,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
 | school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school); cand66 (miner freeze); cand71 (alarm center) | 62r 13-13; 64, 71 refuted at the diagnostic; 66 10-14 -- none kept |
-| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; cand69 (EmaPajic's scale): gate 3-0; **arm69 running** | -- | -- |
+| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; cand69 (EmaPajic's scale) gate 3-0, arm69 1811 +- 72 = g_iter12 -- null; closed | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
 against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).
@@ -3342,3 +3342,20 @@ the r1300-2000 loss rate against its 20.8%; arm65's was 24.0%).
 GSF as B against g_iter12's rush -- dead at r187, where g_iter12 against itself wins this seed as B (r933). The alarm
 fires at r41 and the builder spends the next rounds walking to a far stand; no center, no drone, no school in time.
 Refuted; `src/cand71` kept. The rush defence stands at 0 of 5 against a real rusher.
+
+**Arm 69 (EmaPajic's raid at scale): 96 games, 46-50, 1811 +- 72 -- level with g_iter12 (1811 +- 46 on the refit);
+raid-window losses 20 of 96 (20.8%) against g_iter12's 20.8%. Null.** The raid line is closed at both scales
+(cand65, cand69 kept). Scorecard: the copied raid does nothing on the ladder; the copied rush was +79.
+
+**poortho's late game, read (TwoForOneAndTwoForAll, g_iter12 as A lost at r3171; reviewable at 31%):** the same
+eight-tile wall as ours, but **8 vaporators by r500** (ours 0), then **30 landscapers by r1000** (ours 13), and its wall
+2,577 at r3000 to our 2,031. **Iteration 72 (`src/cand72`: VAPORATOR_BANK 650 -> 500, VAPORATORS_MAX 6 -> 8):** the
+driver game changed nothing -- the bank never reaches 500 while the school spends at 150; poortho's school must be
+holding for the vaporators. Next form: the school holds 500 after its first eight landscapers until six vaporators
+stand (before r800).
+
+**Diagnostics 72 (driver, vs g_iter12, seed 7).** With the school holding 500 after eight landscapers until six
+vaporators stand: RandomSoup1 -- 6 vaporators by r500, 8 by r750, the wall 2,334 against 2,184 at r2500, won; but
+TwoForOne -- 4 vaporators by r500, all drowned by r750 (the low ground floods there), and the hold to r800 kept the
+school at eight landscapers with 880 idle: the wall 1,168 against 1,900. Holding only to r500: TwoForOne level (1,900
+each at r2500, won on the tiebreak), RandomSoup1's gain kept. **`gate72`** (paired mirror vs g_iter12).
