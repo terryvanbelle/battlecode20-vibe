@@ -3475,3 +3475,14 @@ updated. First use: the raid-window losses to ronniesong0809 (25 of g_iter12's 5
 **Stage 7 (four miners, as laurenschneider): worse** -- MtDoom 17 landscapers at r500, 24 at r750, **13 at r1000 (23
 died)**, the shell 100 / 190 / 340 at r900 / 1500 / 2500, lost at r2828. The flood takes a third to half of the
 bodies in every form (stages 5-7): the outer helpers at Chebyshev 3 are the ones drowning, and that is next.
+
+**ronniesong0809, read (first use of PROMPTS 45; ChristmasInJuly, g_iter12 as B, lost in the raid window; the bot we
+lose to most between r1300 and r2000).** Its economy dwarfs everything we have seen: **vaporators 1 -> 8 -> 18 -> 37 ->
+41** at r200 / 600 / 900 / 1200 / 1500, 27 miners, 5 schools, 5 centers, **114 landscapers and 160 drones by r1500**
+(ours: 15 landscapers, no drones, M=0 from r900). Its base, raw elevations at r1200: a **lattice** -- every row and
+column of one parity raised to 8, the cells between them dug to -9 as dirt pits or holding its buildings. Units walk
+the raised grid, buildings sit on the cells, the pits feed the grid, and the grid is raised as the water comes: unlimited
+building room that the flood does not reach, and so vaporators by the dozen (+2 soup a round each, forever: 41 of them
+are 82 a round). The raid that beats us at r1500 is that economy's output. **This is the tactic to copy next** (PROMPTS
+40-41): the lattice and the vaporator engine it protects -- ahead of the enclosure, whose own limit is the same economy
+(stages 2-7: bodies).

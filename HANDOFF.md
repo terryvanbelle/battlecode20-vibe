@@ -13,6 +13,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   source stays unread. `tools/tier-check.sh` reports the tier and never refuses; `replay-dump.sh` no longer gates on
   it; CLAUDE.md rule 3, TRAINING_ALGORITHM 0.3, BENCHMARK.md rule 2 rewritten. The locked raiders (ronniesong0809,
   team4, winkelmantanner) can now be read.
+- **Next program: the lattice (ronniesong0809, read 2026-09-26 under PROMPTS 45).** A raised grid (one parity of rows
+  and columns at 8, raised with the water) with pits and buildings in the cells between; 41 vaporators by r1500 (82
+  soup a round), 114 landscapers and 160 drones. Our enclosure stages 2-7 all end at the same limit -- bodies, i.e. the
+  economy -- and the lattice is how the field's strongest economy survives the flood.
 - **The laurenschneider enclosure program is under way (PROMPTS 44: go ahead without approval).** `src/cand77`
   (`src/bot` = cand77): g_iter12 with the wall at Chebyshev 2, the HQ ring as quarry. Stage 1 survives g_iter12's
   rush and dies at the flood (holes: one unseated shell tile, one dug by the rusher's landscapers; 13 bodies).
