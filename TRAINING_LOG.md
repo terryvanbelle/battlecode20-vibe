@@ -2888,8 +2888,9 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
   12+ at Chebyshev 3-8 from a 500 bank. Five diagnostic rounds on eight high maps: never fired. Four defects fixed (an
   unending walk, cooldown refusals, a bytecode-overrunning scan, a scan every turn while the builder mined far away);
   after them the builder is rarely home with 500 banked, and when it is, no buildable high tile (a neighbour within 3
-  of its height) lies within its reach. Kind: does not fire. Re-open with a builder that goes looking for the high
-  ground (MapState's terrain memory) rather than scanning from where it stands. Code `src/cand83`.
+  of its height) lies within its reach. Kind: does not fire. Re-opened with the builder seeking remembered high ground
+  (MapState's terrain memory): a site remembered twice in eight games (DoesNotExist), none built -- the miners' terrain
+  sampling is too sparse to hold it. Closed; a real attempt needs a map-wide terrain survey first. Code `src/cand83`.
 
 - **The burst rush (Iteration 82, 2026-09-26; copying rzhan11)** -- the rusher waits beside the enemy HQ for a bank of
   750 (school + four landscapers), the HQ and builder hold their soup until the plant; v2 plants at once under an
@@ -3810,3 +3811,6 @@ of the builder before another diagnostic. `src/bot` = g_iter12.
 **Iteration 83, fifth round (the scan only near home, 20 rounds after an empty one):** the overruns are gone (DoesNotExist
 builds its ordinary two vaporators again) and still no high-ground vaporator on eight maps. Closed as "does not fire"
 (ledger). `src/bot` = g_iter12.
+
+**Iteration 83 re-opened on the ledger's condition (the builder seeks remembered high ground):** remembered sites twice
+in eight games (DoesNotExist), none built; the terrain memory is too sparse. Closed again (ledger). `src/bot` = g_iter12.
