@@ -3243,8 +3243,15 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
-| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 | pending | pending | cand62 (school at once) | 62r vs arch_rush2: inconclusive (12-13 at 304 pairs) |
+| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 | pending | pending | cand62 (school at once) | 62r vs arch_rush2: 13-13 in 320, not kept |
 | late drone raid (team4, EmaPajic, 35% of losses r1500-2300) | cand61 | 9-0 in 320: provisional | not submitted | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
 against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).
+
+**Gate 62r (cand62 vs `arch_rush2`, paired): 13-13 discordant in 320 pairs (concordant 130-164) -- not kept;** its
+mirror half was skipped. The school-at-once rule wins the GSF game it was built from and nothing overall.
+g_iter11 loses 164 of 320 cells to `arch_rush2` either way -- the rush beats the incumbent half the time across the
+corpus. With our own rusher submitted (cand63), the defence is gated against **cand63** itself (`OPP=cand63`), no
+archetype needed (the owner's point, PROMPTS 40). Overnight: gate63 (running), then cand63's submission unless the
+gate REJECTs (a background chain posts each block).

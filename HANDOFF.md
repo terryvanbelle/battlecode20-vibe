@@ -11,11 +11,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   mirror gate, the ladder submission, and the defence's result.
 - **Rushing ourselves (PROMPTS 40-41: use every tactic that beats us):** `src/cand63` = g_iter11 + poortho's rush
   (second miner plants a school by the enemy HQ; its landscapers bury it) + the corpus origin (0,0) assumed. Driver: GSF
-  planted r49, g_iter11 dead at r264. **`gate63`** (mirror vs g_iter11) queued behind gate 62; then a submission of its own. The defence (`cand62`) is a separate submission.
+  planted r49, g_iter11 dead at r264. **`gate63`** (mirror vs g_iter11) running; overnight chain submits cand63 (5 x 48, posted per block) unless it REJECTs. The defence is then gated against cand63 itself (`OPP=cand63`). The defence (`cand62`) is a separate submission.
 - **Learning to rush (PROMPTS 39):** `src/arch_rush2` reproduces poortho's rush (first miner plants a school on our
   ring by r83; g_iter11 dead at r166 on GSF, seed 7). **Iteration 62 (`src/cand62`, `src/bot` = cand62): the school
-  at once near home under a rush or from r90** -- GSF r166 -> r931. Queued behind gate61: `gate62r` (`OPP=arch_rush2
-  BOT=cand62 REF=g_iter11 N=320 tools/mirror.sh`) then `gate62` (mirror).
+  at once near home under a rush or from r90** -- GSF r166 -> r931. Gate 62r: 13-13, not kept.
 - **Incumbent: `src/g_iter11`** (g_iter10 + the rush answer, Iterations 57-58: an early fulfillment center on the far
   side under a rush, three drones at cost that drown the rusher's landscapers; accepted 2026-09-26 by gate 58r 28-6 vs
   `arch_rush` and gate 58 2-2 in the plain mirror). **Submitted: 240 games, 107-133, 1751 +- 47, rank 13 of 85** (best submission). Iteration 59 (no miners during a rush) gate59r 5-4, not kept. Iteration 60 (an enemy miner raises the rush alarm) refuted on the harness. **Running: Iteration 61 (`src/cand61`, `src/bot` = cand61): the late drone raid on the enemy ring -- diagnostic: 5 lifts off the enemy ring on RandomSoup1, their wall -263 at r2750. Running: `gate61`.**
