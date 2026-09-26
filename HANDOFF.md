@@ -9,6 +9,12 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Owner, PROMPTS 42: evaluate the "copy the tactic that beats us" approach as it is implemented; discuss in the
   morning.** Keep a running scorecard in TRAINING_LOG ("Copying tactics: scorecard") -- per copied tactic: the
   mirror gate, the ladder submission, and the defence's result.
+- **For the morning (PROMPTS 42):** the copy-the-tactic scorecard is in TRAINING_LOG ("Copying tactics: scorecard"
+  and the entries after it): rush copied -> g_iter12 +79 on the ladder; raid copied twice -> null; poortho's
+  vaporator economy -> REJECT 3-20; rush defence 0 of 5; rush refinements 67/68/73/74 not kept. New read:
+  **laurenschneider wins late with a working enclosure** (16-tile shell at 2,794 by r3000, the whole HQ ring dug as
+  a bottomless quarry, 44 landscapers by r1000) -- the design the enclosure program closed on, done with the two
+  pieces we never combined. Proposed next program.
 - **Rushing ourselves (PROMPTS 40-41: use every tactic that beats us):** `src/cand63` = g_iter11 + poortho's rush
   (second miner plants a school by the enemy HQ; its landscapers bury it) + the corpus origin (0,0) assumed. Driver: GSF
   planted r49, g_iter11 dead at r264. **`gate63`** (mirror vs g_iter11) running; overnight chain submits cand63 (5 x 48, posted per block) unless it REJECTs. The defence is then gated against cand63 itself (`OPP=cand63`). The defence (`cand62`) is a separate submission.

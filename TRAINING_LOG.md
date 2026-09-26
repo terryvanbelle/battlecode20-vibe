@@ -3388,3 +3388,13 @@ comes within r2 25 of the enemy HQ at all (it walks, mines nothing, and stops at
 plateau). The rushes that never plant are blocked at the approach, not at the last step; a drone carrying the rusher
 is the form that would reach them (the centre comes after the school, so not before r150 without paying for it).
 Refuted as built; `src/cand74` kept; `src/bot` = g_iter12.
+
+**laurenschneider's late win, read (MtDoom, g_iter12 as A lost at r3183; reviewable at 44%): an enclosure that works.**
+Its shell is the Chebyshev-2 ring, **2,794 at r3000 on all sixteen tiles**, against our eight-tile wall's 2,155. Its
+HQ's own ring (Chebyshev 1) is dug as the quarry: -3,131 at r1500, -7,631 at r3000 -- the interior never floods, so it
+is a pit without a bottom that feeds the shell. It stands **44 landscapers by r1000** (ours 15) and none of its
+buildings survive the flood (school and center gone by r1000, one vaporator, three net guns). So the design our
+enclosure program closed on (stage 36: "bodies per tile, placed before the flood") is what laurenschneider does, with
+two differences we never tried together: every interior tile is quarry (our stage 29 kept building sites inside and
+lost them), and all 44 bodies are bought before r1000 with nothing kept for later. This is the next tactic to copy --
+a program, not an iteration; for the owner's morning discussion.
