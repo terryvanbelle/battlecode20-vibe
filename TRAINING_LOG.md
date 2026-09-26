@@ -3486,3 +3486,22 @@ building room that the flood does not reach, and so vaporators by the dozen (+2 
 are 82 a round). The raid that beats us at r1500 is that economy's output. **This is the tactic to copy next** (PROMPTS
 40-41): the lattice and the vaporator engine it protects -- ahead of the enclosure, whose own limit is the same economy
 (stages 2-7: bodies).
+
+## The lattice (PROMPTS 40-45: copying ronniesong0809), 2026-09-26
+
+**Iteration 78 (`src/cand78` = g_iter12 + the lattice):** within Chebyshev `LATTICE_R` of the HQ, tiles with an even x
+or y offset are GRID (raised to max(`GRID_MIN`, water in 150 rounds + 3)), odd-odd CELLS are LOTS (kept 2 under the
+grid, for buildings) or PITS (dug), alternating; every home landscaper works the grid (raise the lowest grid tile or lot
+beside it, dig a pit); the builder puts every building on a lot, up to 40 vaporators. Driver, MtDoom seed 7, vs
+g_iter12, stage by stage:
+1. cells only (no lots): no vaporator ever -- a pit is 17 below the grid and a building needs its site within 3;
+2. lots and pits: dead to the rush at r279 (the lattice landscapers never dug the HQ out);
+3. everyone digs a buried HQ out: dead at r369 -- the school stuck at eight;
+4. the school paced only after sixteen: identical (the school was not pacing, it was boxed);
+5. `GRID_MIN` 8 -> 5: alive to r2355, **soup 15,500 at r2000** with 4 vaporators and eight landscapers: the income is
+   there, the spending is not;
+6. more schools when the bank piles up, `LATTICE_R` 6: 10 vaporators, 25,000 soup at r2000, still eight landscapers
+   (the school's doors had been raised past its tile + 3);
+7. a school's door tiles stay within 2 of it: **44 landscapers by r1500, 10 vaporators, 17,000 soup** -- lost at r2389
+   (the enemy wall outlasts a 133-tile grid; ronniesong wins before that, at r1500, with the drones this bank buys);
+8. the raid of cand69 on top (up to 150 drones, more centers when the bank passes 2,000): diagnostic next.
