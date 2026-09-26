@@ -30,6 +30,7 @@ public final class C {
     // ADJACENT (r2 3) and drones cannot lift drones, so our drones on every Chebyshev-2 tile seal the ring: nothing can be lifted
     // off it or dropped onto it. The ring's landscapers dig under them (digging under a unit is allowed).
     public static final int SHIELD_FROM = 600;        // from this round every drone takes a Chebyshev-2 tile and holds it
+    public static final int SHIELD_FC_ROUND = 300;    // the first center once the school stands and this round has come
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;

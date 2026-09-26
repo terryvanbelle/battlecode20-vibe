@@ -88,6 +88,7 @@ public strictfp class Miner extends Robot {
         else if (builtSchool > 0 && builtFC == 0 && rushSeen() && soup >= RobotType.FULFILLMENT_CENTER.cost) { want = RobotType.FULFILLMENT_CENTER; Debug.log("@rush center"); }
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
+        else if (builtSchool > 0 && builtFC == 0 && round >= C.SHIELD_FC_ROUND && soup >= RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 81: the shield's center on every map (it came after a vaporator, on two maps of six)
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
