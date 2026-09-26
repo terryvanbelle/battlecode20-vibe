@@ -3235,3 +3235,16 @@ attackers bury the enemy HQ from r100, and **g_iter11 dies at r264** -- our rush
 does to it. RandomSoup1: planted only at r195 (a 43-tile walk round water), no attacker born, and the game lost at
 r3211 (the control mirror is a win at r3229): the rush is worth nothing late and costs a miner. `RUSH_GIVEUP` 300 ->
 200. Gate `gate63` (paired mirror vs g_iter11) queued behind gate 62.
+
+## Copying tactics: scorecard (PROMPTS 40-42)
+
+The owner's method: whenever a tactic beats us, use it ourselves (its own submission), then build the defence (a
+separate submission). Evaluated here as it runs; to discuss with the owner.
+
+| tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
+|---|---|---|---|---|---|
+| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 | pending | pending | cand62 (school at once) | 62r vs arch_rush2: inconclusive (12-13 at 304 pairs) |
+| late drone raid (team4, EmaPajic, 35% of losses r1500-2300) | cand61 | 9-0 in 320: provisional | not submitted | -- | -- |
+
+Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
+against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).

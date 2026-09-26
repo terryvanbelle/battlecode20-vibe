@@ -6,6 +6,9 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 ## State at the 2026-09-25 evening handoff (switch back to Opus 5.5; read this block first)
 
 - **Gate 61 (the late drone raid, `src/cand61`): 9-0 in 320 pairs -- PROVISIONAL** (stack-eligible).
+- **Owner, PROMPTS 42: evaluate the "copy the tactic that beats us" approach as it is implemented; discuss in the
+  morning.** Keep a running scorecard in TRAINING_LOG ("Copying tactics: scorecard") -- per copied tactic: the
+  mirror gate, the ladder submission, and the defence's result.
 - **Rushing ourselves (PROMPTS 40-41: use every tactic that beats us):** `src/cand63` = g_iter11 + poortho's rush
   (second miner plants a school by the enemy HQ; its landscapers bury it) + the corpus origin (0,0) assumed. Driver: GSF
   planted r49, g_iter11 dead at r264. **`gate63`** (mirror vs g_iter11) queued behind gate 62; then a submission of its own. The defence (`cand62`) is a separate submission.
