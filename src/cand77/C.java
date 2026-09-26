@@ -19,11 +19,11 @@ public final class C {
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
     public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
-    public static final int VAPORATORS_MAX = 6;
+    public static final int VAPORATORS_MAX = 1;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
-    public static final int NETGUNS_MAX = 2;
+    public static final int NETGUNS_MAX = 0;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
-    public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
+    public static final int DRONES_MAX = 0;           // Iteration 2: drones fly over the flood and count at the tiebreak
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
@@ -31,16 +31,16 @@ public final class C {
     // --- wall
     public static final int WALL_LANDSCAPERS = 16;     // one per ring tile
     public static final int WALL_HELPERS = 24;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
-    public static final int HELPER_BANK = 200;        // Iteration 43b: was 300, 43 tried 0 (the HQ starved of miners); 200 leaves the HQ its MINER_SOUP_RESERVE -- the bank it guarded is never spent (12,000 unspent at r3000)
+    public static final int HELPER_BANK = 0;        // Iteration 43b: was 300, 43 tried 0 (the HQ starved of miners); 200 leaves the HQ its MINER_SOUP_RESERVE -- the bank it guarded is never spent (12,000 unspent at r3000)
     public static final int LANDSCAPERS_MAX = 40;     // the surplus attacks
-    public static final int ATTACKER_BANK = 200;      // Iteration 43b: was 700, 43 tried 0 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A
+    public static final int ATTACKER_BANK = 0;      // Iteration 43b: was 700, 43 tried 0 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;
     public static final boolean ASSUME_ORIGIN = true;
     // Iteration 77 (the laurenschneider enclosure, stage 1; DESIGN.md): the wall is the Chebyshev-2 shell (16 seats); the
     // HQ's own ring is the quarry, worked by interior helpers who dig their own tiles and feed the shell; outer helpers
     // at Chebyshev 3 dig outside; no building within 2 of the HQ.
-    public static final int RING_D = 2;
+    public static final int RING_D = 2;   // stage 3: every soup to bodies -- no drones, no guns, one vaporator, no bank (laurenschneider: 44 landscapers by r1000, 5 drones, 1 vaporator)
     public static final int RUSH_GIVEUP = 200;         // Iteration 63: our rusher goes back to mining after this round
     public static final int RUSH_LANDSCAPERS = 8;      // Iteration 63: the forward school's landscapers
     public static final int BUILD_DIST = 3;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
