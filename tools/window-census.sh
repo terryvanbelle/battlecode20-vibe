@@ -14,7 +14,7 @@ end=rows[-1][0]; out=[sys.argv[2], sys.argv[3], s, end]
 for R in (300,400,500,600,700,800,900):
     r=[x for x in rows[1:] if int(x[0])==R]
     out += [r[0][ix[s+'_'+c]] for c in ('soup','miners','landscapers','schools','centers','drones')] if r else ['']*6
-print(','.join(out))" "$b" "$res" "$s"
+print(','.join(out))" "$s" "$b" "$res"
 }
 export -f one
 echo "game,result,side,end,$(for R in 300 400 500 600 700 800 900; do printf 'soup%s,M%s,L%s,DS%s,FC%s,Dr%s,' $R $R $R $R $R $R; done | sed 's/,$//')"
