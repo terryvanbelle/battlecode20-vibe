@@ -185,3 +185,7 @@ In general, whenever the enemy uses a tactic against you, learn to use that tact
 ## 42. 2026-09-26
 
 As you implement my suggested approach, evaluate its effectiveness, and we'll discuss in the morning
+
+## 43. 2026-09-26
+
+I just got up, looks like a lot happened overnight.  Can you give me a summary?
