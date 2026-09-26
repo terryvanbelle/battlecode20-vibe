@@ -3659,3 +3659,10 @@ drowns before the bank reaches 750 (no drone). But the wall pays: 35-185 lower o
 r3153, 1,571 / 1,666). Maze built no drone at all and still ended 176 lower with two fewer landscapers: the 150 spent on
 the center before the school drowns is a landscaper the wall never gets. **Stage 6:** the school announces its last
 landscaper (`SCHOOL_DONE`, at LANDSCAPERS_MAX built); the shield's center only after that (after it the soup idles).
+
+**Stage 6, eleven maps:** no harm where there is no surplus (TwoForOneAndTwoForAll, Maze, TwoLakeLand, Squares, IceCream
+identical to the control); CentralLake better, MtDoom level; but RandomSoup1's wall 2,079 against 2,219 (the win still
+lost) and DoesNotExist's 1,739 against 1,994 (still a win). Traced (DoesNotExist, logs): the flood reaches the base at
+r690-720 and **we lose 7 landscapers there against the control's 2** -- a helper at Chebyshev 2 escapes the water by
+climbing to a dry neighbour, and the drones held those tiles. **Stage 7:** a drone takes only FLOODED Chebyshev-2 tiles
+(useless to a helper, and the ones a raider hovers on); until one is free it waits five out.

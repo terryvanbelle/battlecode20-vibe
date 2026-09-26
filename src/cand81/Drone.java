@@ -48,12 +48,12 @@ public strictfp class Drone extends Robot {
         nav.setTarget(patrol); if (!nav.step()) patrol = null;
     }
 
-    /** Iteration 81: hold a Chebyshev-2 tile of our HQ. On one: never move again; lift an enemy unit beside us and keep it
-     *  (a held unit is blocked). Otherwise fly to the nearest free one. False when there is none (the drone goes on as before). */
+    /** Iteration 81: hold a flooded Chebyshev-2 tile of our HQ. On one: never move again; lift an enemy unit beside us and keep
+     *  it (a held unit is blocked). Otherwise fly to the nearest free one, or wait five out while none is flooded and free. */
     private MapLocation slot; private boolean posted = false;
     private boolean shield() throws GameActionException {
         MapLocation h = MapState.home;
-        if (Nav.cheb(loc, h) == 2) {
+        if (Nav.cheb(loc, h) == 2 && rc.senseFlooding(loc)) {   // stage 7: flooded tiles only (a dry one is a helper's post or its climb out of the flood)
             if (!posted) { posted = true; slot = loc; Debug.log("@shield at=" + loc); }
             if (!rc.isCurrentlyHoldingUnit() && rc.isReady()) for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canBePickedUp() && rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; Debug.log("@shieldpick t=" + e.type.ordinal()); return true; } }
             return true;
@@ -62,11 +62,14 @@ public strictfp class Drone extends Robot {
         if (slot == null || (rc.canSenseLocation(slot) && rc.isLocationOccupied(slot)) || round % 10 == id % 10) {
             slot = null; int bd = 1 << 30;
             for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
-                MapLocation t = new MapLocation(h.x + dx, h.y + dy); if (!rc.onTheMap(t)) continue;
-                if (rc.canSenseLocation(t) && rc.isLocationOccupied(t)) continue;
+                MapLocation t = new MapLocation(h.x + dx, h.y + dy); if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || !rc.senseFlooding(t)) continue;
+                if (rc.isLocationOccupied(t)) continue;
                 int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; slot = t; } }
         }
-        if (slot == null) return false;
+        if (slot == null) {   // stage 7: nothing flooded and free yet -- wait five out, clear of the helpers' tiles
+            if (Nav.cheb(loc, h) != 5) { MapLocation w = new MapLocation(h.x + 5 * Integer.signum(loc.x - h.x == 0 ? 1 : loc.x - h.x), h.y + 5 * Integer.signum(loc.y - h.y)); nav.setTarget(w); nav.step(); }
+            return true;
+        }
         if (loc.isAdjacentTo(slot)) { Direction d = loc.directionTo(slot); if (rc.canMove(d)) { rc.move(d); return true; } return true; }
         nav.setTarget(slot); nav.step(); return true;
     }
