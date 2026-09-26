@@ -55,6 +55,7 @@ public strictfp class Miner extends Robot {
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (rusher && !planted && round < C.RUSH_GIVEUP) { rush(); return; }
         if (builder && build()) return;
+        if (!builder && shieldCenter()) return;
         work();
     }
 
@@ -75,6 +76,21 @@ public strictfp class Miner extends Robot {
         nav.step();
     }
 
+    /** Iteration 81 stage 5: the shield's center when the builder cannot (arm81: no center in 21 of 25 losses -- the only
+     *  builder is the HQ's first miner, and it was gone or the bank was under the bar while it lived). Any miner within 6
+     *  of home, from SHIELD_FC_FALLBACK, no center announced or in sight: build one beside us, 3 or more out, highest first. */
+    private boolean shieldCenter() throws GameActionException {
+        MapLocation h = MapState.home;
+        if (h == null || MapState.fcUp || round < C.SHIELD_FC_FALLBACK || rc.getTeamSoup() < C.SHIELD_FC_BANK || !rc.isReady() || Nav.cheb(loc, h) > 6) return false;
+        for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.FULFILLMENT_CENTER) { MapState.fcUp = true; return false; }
+        Direction bestD = null; int be = Integer.MIN_VALUE;
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (Nav.cheb(n, h) < 3 || !rc.canBuildRobot(RobotType.FULFILLMENT_CENTER, d) || rc.senseFlooding(n)) continue;
+            int e = rc.senseElevation(n); if (e > be) { be = e; bestD = d; } }
+        if (bestD == null) return false;
+        rc.buildRobot(RobotType.FULFILLMENT_CENTER, bestD); MapState.fcUp = true; Debug.log("@shieldfc at=" + loc.add(bestD) + " soup=" + rc.getTeamSoup());
+        return true;
+    }
+
     // ---------------------------------------------------------------- builder
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
@@ -88,7 +104,7 @@ public strictfp class Miner extends Robot {
         else if (builtSchool > 0 && builtFC == 0 && rushSeen() && soup >= RobotType.FULFILLMENT_CENTER.cost) { want = RobotType.FULFILLMENT_CENTER; Debug.log("@rush center"); }
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
-        else if (builtSchool > 0 && builtFC == 0 && round >= C.SHIELD_FC_ROUND && soup >= C.SHIELD_FC_BANK) want = RobotType.FULFILLMENT_CENTER;   // Iteration 81: the shield's center on every map (it came after a vaporator, on two maps of six)
+        else if (builtSchool > 0 && builtFC == 0 && !MapState.fcUp && round >= C.SHIELD_FC_ROUND && soup >= C.SHIELD_FC_BANK) want = RobotType.FULFILLMENT_CENTER;   // Iteration 81: the shield's center on every map (it came after a vaporator, on two maps of six)
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;

@@ -107,6 +107,7 @@ public abstract strictfp class Robot {
             switch (m[0]) {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
+                case Comms.FC_UP: MapState.fcUp = true; break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
                 default: break;
             }

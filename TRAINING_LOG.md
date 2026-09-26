@@ -3640,3 +3640,14 @@ history not yet updated) was stopped and discarded. **Fixed:** `elolib.current_b
 unrated build -- is now the incumbent (our latest g_iterN), not the build of our latest game. The arm is rerun as two
 blocks of 48 in the band (poortho, EmaPajic, laurenschneider, mvpatel2000, cormackikkert, winkelmantanner, benzyx,
 IvanGeffner).
+
+**Arm 81, the band block (`20260926-170357-scrim-cand81`): 22-25; cand81 1813 +- 90 on 95 games (g_iter12 1819 +- 39);
+raid-window losses 9 of 48 (18.8%; g_iter12 20.8%).** Read: **in 21 of its 25 losses cand81 had no center at all** --
+at r500 the miners were alive (5-10) with 200-350 in the bank, under stage 4's 450; the surplus came after they were
+gone (EmaPajic Climb: 6,714 idle at r1400, no center), and the only builder is the HQ's first miner (winkelmantanner
+DisproportionatelySmallGap: 2,192 banked at r500 with eight miners, no center). The arm measured g_iter12 plus a shield
+that mostly never formed; its second block was stopped and discarded. **Stage 5:** the center announces itself on the
+chain (`FC_UP`, three rounds running: a miner reads one block in three); the builder wants it from r350 with 250
+banked (born at r350 or later it is not the rush center, so no drones at cost); from r450 any miner within 6 of home
+builds it when none is announced or in sight (on a tile 3 or more out, highest first). Diagnostic: cand81 vs g_iter12
+and the g_iter12 mirror on the six lattice maps and five of the arm's loss maps.
