@@ -169,3 +169,7 @@ The loop task check is a failsafe
 ## 38. 2026-09-26
 
 How's the ELO looking for g_iter11?
+
+## 39. 2026-09-26
+
+A suggestion:  if you learned to rush first, then you could learn to defend against rushing
