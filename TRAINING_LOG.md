@@ -3739,3 +3739,25 @@ r400 and 51% at r700; a live miner with 150+ banked in 76-81% at r400-600. The m
 losses a miner was alive at r600 in 40 (with 150+ in 38). **So the shield's center is buildable in most games by
 r600, but its sixteen drones (2,400 soup) are not affordable by ~r1000 in the median field game**: the limit is the
 post-flood economy, the same gap the lattice program chased (TRAINING_LOG "The economy gap, measured").
+
+**The design panel for Iteration 82 (a background workflow: four designers -- shield presence, builder survival, other
+lift defences, best next iteration overall -- three adversarial judges, one synthesis; plan saved in the session
+scratchpad):** all four designers proposed drone-defence variants, and every judge gave each a 5-30% chance and +1 to
++10 Elo: the shield is limited by soup, not signals (the census), 10 of 11 games against the lifters were lost even
+with 6-30 of our drones home, and the finalbota bots build 2-11 net guns in every game where we field drones (team4 shot
+15 of our 20 on RandomSoup1). The synthesis itself put the best of them ("the stranded-soup shield plus the plug") at
++0-20, most likely +5, and named its own falsifier's next line: "a producer that outlives the flood, not drones".
+**The drone-defence line stays closed** (ledger).
+
+**The early losses, read (240 cand81s8 band games = g_iter12's early game):** 20 losses before r400 -- rzhan11 13, poortho
+6. Timelines of the four closest (Soup, RealArt, Toothpaste, SoupOnTheSide): **rzhan11 banks, then bursts** -- four
+miners and nothing else (450-780 soup by r80-90), then its school beside our HQ and 0 -> 6 landscapers in 20 rounds, our
+HQ buried 0 -> 47-50 in ~30. We trickle: miners to 7-8 (r50-80), a refinery, a landscaper per 150 -- and lose races we
+were in (their HQ at 47 on Soup, 39 on SoupOnTheSide, 29 on RealArt, 26 on Toothpaste when ours died).
+
+**Iteration 82 (`src/cand82` = g_iter12 + the burst rush, copying rzhan11; PROMPTS 40-41):** the rusher waits beside the
+enemy HQ until the bank holds the school and four landscapers (750; from r120, 300), plants, and announces it
+(`RUSH_PLANTED` with the round); until then (or r150) and for 20 rounds after (the school's birth cooldown), the HQ
+builds no miner past the early four and the builder builds nothing -- never under an enemy rush. The forward school
+already spends every round while 150 is banked. Diagnostic: cand82 vs g_iter12 and the g_iter12 mirror on eight
+rush-race maps and two long maps.
