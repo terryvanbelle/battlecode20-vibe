@@ -3229,3 +3229,9 @@ GSF and never on RandomSoup1 -- it probed for the map's edges for 180-500 rounds
 47 of 47 maps read from replays; the engine takes the origin from the map file (`GameMapIO`: `minCorner`), and the
 released maps all sit at the corner. cand63 assumes it (`C.ASSUME_ORIGIN`), so every robot has the symmetry
 guesses from round 1.
+
+**Diagnostic 63 (driver, seed 7, vs g_iter11):** with the origin known the rusher plants at **r49 on GSF**, seven
+attackers bury the enemy HQ from r100, and **g_iter11 dies at r264** -- our rush does to the incumbent what poortho
+does to it. RandomSoup1: planted only at r195 (a 43-tile walk round water), no attacker born, and the game lost at
+r3211 (the control mirror is a win at r3229): the rush is worth nothing late and costs a miner. `RUSH_GIVEUP` 300 ->
+200. Gate `gate63` (paired mirror vs g_iter11) queued behind gate 62.

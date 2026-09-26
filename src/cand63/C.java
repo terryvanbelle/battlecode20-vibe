@@ -37,7 +37,7 @@ public final class C {
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;
     public static final boolean ASSUME_ORIGIN = true;
-    public static final int RUSH_GIVEUP = 300;         // Iteration 63: our rusher goes back to mining after this round
+    public static final int RUSH_GIVEUP = 200;         // Iteration 63: our rusher goes back to mining after this round
     public static final int RUSH_LANDSCAPERS = 8;      // Iteration 63: the forward school's landscapers
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
     // Iteration 25: seats first. Reviewable ladder losses show 2-6 of 8 seats at r700 (median 4): a newborn's ring tile
