@@ -110,6 +110,7 @@ public strictfp class Miner extends Robot {
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
         else if (builtSchool > 0 && builtSchool < 4 && soup >= 1000 && round - lastSchoolRound > 150) { want = RobotType.DESIGN_SCHOOL; lastSchoolRound = round; }   // stage 6: another school on a fresh lot when the bank piles up (the first is boxed in by the rising grid: eight landscapers and 15,000 soup idle)
         else if (builtFC > 0 && builtFC < 4 && soup >= 2000 && round >= 600 && round - lastSchoolRound > 100) { want = RobotType.FULFILLMENT_CENTER; lastSchoolRound = round; }   // stage 8: more centers for the raid when the bank piles up
+        else if (builtVap >= 4 && builtFC == 0 && soup >= RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // stage 9: the first center once four vaporators stand (it came after the vaporators, i.e. never: RandomSoup1 banked 39,000 with no drone)
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;

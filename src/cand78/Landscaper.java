@@ -38,7 +38,10 @@ public strictfp class Landscaper extends Robot {
         if (forward) { attack(); return; }   // Iteration 63
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
-        if (!attacker) { lattice(home); return; }   // Iteration 78: every home landscaper works the lattice
+        // Iteration 78 stage 9: the eight ring seats first, as g_iter12 (the rush answer: stage 8 died to rushes at r174-308 on
+        // three maps of six); every other home landscaper works the lattice
+        if (!attacker && !helper && (seat == null || (!seat.equals(loc) && occupiedByOther(seat)))) seat = pickSeat(home);
+        if (!attacker && seat == null) { lattice(home); return; }
         if (!attacker && !helper) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);

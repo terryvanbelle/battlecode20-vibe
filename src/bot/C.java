@@ -19,7 +19,7 @@ public final class C {
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
     public static final int VAPORATOR_BANK = 500;     // a builder buys a vaporator when the bank exceeds this
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
-    public static final int VAPORATORS_MAX = 40;
+    public static final int VAPORATORS_MAX = 12;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 0;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
@@ -30,7 +30,7 @@ public final class C {
     // Iteration 61: the raid. The field wins r1500-2300 with 8-25 drones lifting wall landscapers off the ring; our late
     // bank (2,000+ soup unspent from r800 on the ladder's late games) buys the same.
     public static final int RAID_DRONES_MAX = 150;     // drones built in all, from RAID_BUILD_FROM
-    public static final int RAID_BUILD_FROM = 700;
+    public static final int RAID_BUILD_FROM = 900;
     public static final int RAID_FROM = 1400;         // the swarm gathers from this round
     public static final int RAID_MIN = 20;            // and charges with this many in sight of the rally point
     public static final int RAID_HOME_GUARD = 3;      // the first three drones never raid
