@@ -9,7 +9,7 @@ import battlecode.common.*;
  */
 public strictfp class HQ extends Robot {
     private int built = 0, lastBuild = -1000;
-    private boolean postedLoc = false, postedOrigin = false;
+    private boolean postedLoc = false, postedOrigin = false; private int rushPosts = 0;
 
     HQ(RobotController rc) { super(rc); MapState.setHome(rc.getLocation()); }
 
@@ -32,6 +32,8 @@ public strictfp class HQ extends Robot {
         if (want && built >= C.MINERS_EARLY && burstHold()) want = false;   // Iteration 82: no miner past the early four while the burst's bank fills
         if (want && tryBuild(RobotType.MINER, null)) { built++; lastBuild = round; }
 
+        // Iteration 82 v2: an enemy rush in sight -> tell the rusher (three rounds running: a miner reads one block in three)
+        if (rushSeen() && rushPosts < 3) { MapState.enemyRushSeen = true; if (post(Comms.make(Comms.RUSH_SEEN, round, us))) rushPosts++; }
         // Iteration 7: re-post every 100 rounds so robots born late (and the drones) learn home, the origin and the enemy HQ
         if ((!postedLoc || round % 100 == 50) && round >= 2) postedLoc = post(Comms.make(Comms.HQ_LOC, round, us, loc.x, loc.y));
         else if ((!postedOrigin || round % 100 == 25) && MapState.originKnown()) postedOrigin = post(Comms.make(Comms.MAP_ORIGIN, round, us, MapState.minX, MapState.minY));

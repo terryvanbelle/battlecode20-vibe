@@ -107,6 +107,7 @@ public abstract strictfp class Robot {
             switch (m[0]) {
                 case Comms.HQ_LOC: MapState.setHome(new MapLocation(m[1], m[2])); break;
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
+                case Comms.RUSH_SEEN: MapState.enemyRushSeen = true; break;
                 case Comms.RUSH_PLANTED: if (MapState.rushPlantRound < 0) MapState.rushPlantRound = m[1]; break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
                 default: break;
@@ -118,7 +119,7 @@ public abstract strictfp class Robot {
      *  rounds more (a newborn school waits 10 rounds before its first spawn; the HQ's miners and the builder's refinery would
      *  drain the bank first). Never under an enemy rush. */
     protected boolean burstHold() {
-        if (rushSeen()) return false;
+        if (rushSeen() || MapState.enemyRushSeen) return false;
         return MapState.rushPlantRound < 0 ? round < C.RUSH_HOLD_UNTIL : round < MapState.rushPlantRound + C.RUSH_BURST_SPEND;
     }
 

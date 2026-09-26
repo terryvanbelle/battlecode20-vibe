@@ -3761,3 +3761,10 @@ enemy HQ until the bank holds the school and four landscapers (750; from r120, 3
 builds no miner past the early four and the builder builds nothing -- never under an enemy rush. The forward school
 already spends every round while 150 is banked. Diagnostic: cand82 vs g_iter12 and the g_iter12 mirror on eight
 rush-race maps and two long maps.
+
+**Diagnostic 82 (cand82 vs g_iter12, the g_iter12 mirror as control, ten maps, seed 7): worse.** Wins lost on Soup (r161
+against the control's win at r164, their HQ at 43 of 50), InADitch and RandomSoup1; none gained; Toothpaste won at r168
+instead of r3040. In six of ten games our rusher never planted: the opponent (g_iter12) rushes at ~r50, which rightly
+releases the hold, the bank is spent, and it never reaches 750 (or 300 from r120). **v2:** our HQ announces an enemy rush
+(`RUSH_SEEN`, three rounds running) and the rusher then plants at 150 as g_iter12 does; bank-and-burst only while no
+enemy rush has been seen (rzhan11's school comes at ~r90, by when the bank holds 450-600).

@@ -70,7 +70,8 @@ public strictfp class Miner extends Robot {
         }
         if (MapState.enemyHQ != null && loc.distanceSquaredTo(t) <= 8) {
             int soup = rc.getTeamSoup();   // Iteration 82: wait for the burst's bank
-            boolean ready = soup >= C.RUSH_BURST_BANK || (round >= C.RUSH_BURST_LATEST && soup >= C.RUSH_BURST_MIN);
+            boolean ready = soup >= C.RUSH_BURST_BANK || (round >= C.RUSH_BURST_LATEST && soup >= C.RUSH_BURST_MIN)
+                || (MapState.enemyRushSeen && soup >= RobotType.DESIGN_SCHOOL.cost);   // v2: under an enemy rush, plant at once (diag82: banking under a rush never planted, 6 of 10)
             if (ready && tryBuild(RobotType.DESIGN_SCHOOL, t)) { planted = true; MapState.rushPlantRound = round; Debug.log("@rushplant at=" + loc + " hq=" + t + " soup=" + soup); }
             return;
         }

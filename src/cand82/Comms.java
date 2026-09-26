@@ -17,6 +17,7 @@ public final strictfp class Comms {
     public static final int MAP_ORIGIN = 4;    // payload: minX, minY
     public static final int SYMMETRY = 5;      // payload: surviving hypothesis bits
     public static final int RUSH_PLANTED = 6;  // Iteration 82: our forward school is planted (the hold on the bank ends)
+    public static final int RUSH_SEEN = 7;     // Iteration 82 v2: our HQ sees an enemy rush (the rusher plants at once, as g_iter12)
 
     static final int SALT = 0x5eed2020;
 
