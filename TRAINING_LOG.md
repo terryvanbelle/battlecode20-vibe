@@ -3152,3 +3152,6 @@ the rush center (the normal one follows the first vaporator) and buys its first 
 (control r163), FourLakeLand **r2933** (control r678), CowFarm r421 (control r949; the HQ buried to 30 by r200, before
 the center stood). **`gate58r`** (paired vs `arch_rush`), then **`gate58`** (the plain mirror, for the cost where no
 rush comes: a normal center born before r350 now also buys three cheap drones).
+
+**Gate 58r (paired vs `arch_rush`): ACCEPT, discordant 28-6.** The rush answer works against our rusher. The mirror
+gate (`gate58`, cand58 vs g_iter10 with no rusher) is running now for the cost; acceptance takes both.
