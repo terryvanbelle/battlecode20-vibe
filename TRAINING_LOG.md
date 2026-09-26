@@ -3584,3 +3584,22 @@ lattice keeps it dry); 29,918 digs in the game against our 8,663.
 tile between two junctions (odd x offset, even y offset from the HQ) at Chebyshev 3 or more, so the column walkways
 never hold a building and the lattice stays connected; vaporators, centers and later schools only on sites raised to
 the grid target less one.
+
+**Stage 17 (winkelmantanner's geometry), six maps: worse** -- no school at all on CentralLake and IceCream (8 landscapers,
+5,267 soup idle at r2000 on CentralLake), vaporators only on RandomSoup1 (4-5); all six lost. `src/bot` stays cand78.
+
+**What actually kills g_iter12 late (its 27 kept losses of block sub12, rings and pickups read; PROMPTS 45):**
+- **ronniesong0809, all five losses at r1566-1572:** its drones lift our ring landscapers and drop its own landscapers
+  onto the ring, which bury the HQ (NoU r1555: `finalbota:LANDSCAPER@(10,37)` deposits onto our HQ at (9,38); (10,37)
+  is a ring tile). Our ring stood at 490-930 in four of them; on IceCream one ring tile stayed at 2 all game (a hole).
+- **winkelmantanner NoU (r3036):** our wall LED, 1,080 to 868 at r1500; its drones lifted all 14 of our landscapers
+  between r1500 and r1750 and our wall froze at 1,079 while its own reached 2,252.
+- **mvpatel2000:** every one of our landscapers lifted by r1000 in five of six losses (55-105 pickups by r1000).
+- **poortho:** its 90-160 landscapers outbuild our wall late (2,074 against ours at r3100; no lift), or the rush.
+
+**Iteration 81 (`src/cand81` = g_iter12 + the drone shield):** a pickup or a drop needs the drone adjacent (r2 3) and
+drones cannot lift drones, so our drones on every Chebyshev-2 tile seal the ring -- nothing can be lifted off it or
+dropped onto it, and the ring's landscapers dig under them (digging under a unit is allowed, RULES). From r600 every
+drone takes the nearest free Chebyshev-2 tile and never leaves it (it lifts and keeps an enemy unit beside it); the
+center builds up to 20 drones (was 8). Diagnostic: against our raider cand69 (the harness: up to 70 drones from r1400)
+with g_iter12 as the control, six maps.
