@@ -3466,3 +3466,12 @@ The work per body is not the gap (0.42 digs a round each against laurenschneider
 ~22 with the bank empty and a third drown at the flood; laurenschneider reaches 44 by r950 and keeps them. Next:
 stage 7 strips the economy to laurenschneider's (four miners, no drones, guns, refineries beyond one, rush kept), and
 the outer helpers' flood survival is traced. `src/bot` = g_iter12.
+
+**The 20% review rule retired (PROMPTS 45, 2026-09-26).** Games against any bot may be reviewed; the bots' source stays
+unread. CLAUDE.md rule 3, TRAINING_ALGORITHM 0.3 (and its instrument table), BENCHMARK.md rule 2 and tiers, tools/README,
+`tier-check.sh` (now a reporter that always exits 0), `replay-dump.sh` (no longer gated) and the study/post-block notes
+updated. First use: the raid-window losses to ronniesong0809 (25 of g_iter12's 50) can be read.
+
+**Stage 7 (four miners, as laurenschneider): worse** -- MtDoom 17 landscapers at r500, 24 at r750, **13 at r1000 (23
+died)**, the shell 100 / 190 / 340 at r900 / 1500 / 2500, lost at r2828. The flood takes a third to half of the
+bodies in every form (stages 5-7): the outer helpers at Chebyshev 3 are the ones drowning, and that is next.

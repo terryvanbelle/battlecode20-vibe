@@ -193,3 +193,7 @@ I just got up, looks like a lot happened overnight.  Can you give me a summary?
 ## 44. 2026-09-26
 
 Go ahead and start the closed enclosure program.  In general, you don't need my approval to do anything like this, just go ahead and try it.  The worst that can happen is that it fails, right?
+
+## 45. 2026-09-26
+
+Let's eliminate the 20% rule for examining games.  It was only ever a heuristic to focus our attention on the bots that we can beat soon, but the ladder works better for that anyways.  You are hereby allowed to examine games against any bot.  Update TRAINING_ALGORITHM to reflect

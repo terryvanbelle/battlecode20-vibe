@@ -23,7 +23,7 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `replay-dump.sh replay [flags]` | replay -> text: `--every`, `--from/--to`, `--robot`, `--map/--map-at`, `--logs REGEX --logs-team A`, `--metrics`, `--bytecode`, `--navstats`, `--threat A` |
 | `bench-compile.sh` | compile every benchmark repo without displaying source; writes `manifest.tsv` |
 | `bench-select.py [--all|--table]` | name-only pick of each repo's final bot |
-| `tier-check.sh replay` | enforces the replay-access tiers of `BENCHMARK.md` (fails closed) |
+| `tier-check.sh replay` | reports a replay's opponent tier from `BENCHMARK.md` (informational since PROMPTS 45; never refuses) |
 | `vm.sh`, `vm-sync.sh`, `vm-run.sh <log> '<cmd>'`, `vm-tail.sh`, `vm-collect.sh <run>`, `vm-stop.sh` | the VM handles |
 | `unit-tests.sh` | compile and run `test/bot/*Test.java` and `tools/test_tools.py` |
 | `mapinfo/MapInfo.java` | the map corpus table `tools/mapdata.csv` |

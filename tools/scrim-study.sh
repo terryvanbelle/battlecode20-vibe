@@ -2,7 +2,7 @@
 # Mine a scrimmage block for hypotheses: the games are already paid for; this is where the next
 # candidate comes from.
 #   tools/scrim-study.sh gauntlet/<run>-scrim-bot [sample]
-# For every replay of the block (wins and losses; locked-tier opponents are skipped by the dumper):
+# For every replay of the block (wins and losses; every opponent since PROMPTS 45):
 # per-round team aggregates every 50 rounds to r1200 -> <run>/study.tsv, and the navigation
 # summary -> <run>/nav.tsv. Then tools/scrim-study.py prints medians, us against them.
 set -euo pipefail

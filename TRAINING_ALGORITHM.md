@@ -11,9 +11,10 @@ themselves retired. `RULES.md` is the game, `TRAINING_LOG.md` is the record, `ME
 
 1. No post-mortem from the current contest year is read, first- or second-hand.
 2. External bots are downloaded as opponents; their source is never read (`BENCHMARK.md`).
-3. No game against an external bot is reviewed -- replay, trace, log, board or reason -- until we
-   beat that bot at least 20% of the time. Until then only its score is visible. The tooling
-   enforces this and fails closed.
+3. Games against any external bot may be reviewed -- replay, trace, log, board or reason -- at any
+   win rate (PROMPTS 45, 2026-09-26). The old rule (none below a 20% win rate, enforced fail-closed
+   by `tools/tier-check.sh`) was a heuristic for spending attention on bots we could soon beat; the
+   ladder allocates attention better. The bots' source code stays unread (item 2).
 4. External bots are played only as **scrimmages**: random map from the released corpus, random
    side, rotating opponents drawn from the rating band around the build in play. Our own snapshots
    and archetypes may be played any way we like.
@@ -31,7 +32,7 @@ ourselves can measure that directly, so the loop keeps three instruments and nev
 |---|---|---|
 | **mirror gate**: candidate vs incumbent snapshot, random map and side, sequential test | is this one change better than what it replaces | any weakness both builds share; anything the incumbent never punishes |
 | **archetype spars**: hand-built opponents that each do one thing the field does to us | does the change survive a rush / a siege / a hunt the mirror never mounts | everything else |
-| **scrimmage ladder**: rated blocks against the external field, contest rules | are we actually stronger; what the field punishes | *why*, for bots below the 20% line |
+| **scrimmage ladder**: rated blocks against the external field, contest rules | are we actually stronger; what the field punishes (its replays show how) | anything a map or side draw hides; single games are noise |
 
 The gate decides; the ladder is the consequence, not a test. A real team cannot scrimmage
 without submitting, so every accepted build is submitted (a scrimmage block) and earns its own

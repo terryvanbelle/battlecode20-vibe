@@ -10,10 +10,10 @@ code written by other people. This is the closest available substitute for a liv
    `tools/bench-compile.sh`, which writes diagnostics to a log file and prints only counts.
    Post-mortems that some repos ship alongside their code are 2020 post-mortems and are never
    opened either.
-2. **Do not study a bot we are not close to beating.** Below a 20% win rate a bot is `locked`:
-   its games are not reviewed -- no replay, trace, log, board or per-game reason -- only the score.
-   `tools/replay-dump.sh` enforces this through `tools/tier-check.sh`, which fails closed.
-   The purpose is time allocation, not a permanent ban: a locked bot is ground not yet earned.
+2. **Games against any bot may be reviewed** (PROMPTS 45, 2026-09-26). The old rule -- no replay,
+   trace, log, board or per-game reason below a 20% win rate, the `locked` tier -- was a heuristic for
+   spending attention on bots we could soon beat; the ladder does that better. The tiers below remain
+   as labels of our win rate; `tools/tier-check.sh` reports a replay's tier and never refuses.
 3. Their stdout is silenced in every game (`bc.engine.silence-*`).
 4. They are played only as scrimmages (`tools/scrim.sh`); see `TRAINING_ALGORITHM.md` section 0.
 
@@ -30,7 +30,7 @@ maps an opponent name `<owner>.<package>` to (package, classdir, repo, commit).
 
 | tier | our win rate | access |
 |---|---|---|
-| locked | < 20% | score only |
+| locked | < 20% | replays may be reviewed (since PROMPTS 45; before, score only) |
 | target | 20-50% | replays may be reviewed; the primary loss source |
 | peer | 50-90% | regression check |
 | solved | > 90% twice | stays rated; far below us, so the band pool rarely draws it |

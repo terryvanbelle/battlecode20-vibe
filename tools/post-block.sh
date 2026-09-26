@@ -2,8 +2,8 @@
 # Everything that follows a scrimmage block, in order, in one command (TRAINING_ALGORITHM.md 4.5):
 #   tools/post-block.sh <run-id-on-the-VM> <build-label>
 # 1 fetch the run; 2 record it into progress/games.csv; 3 refit the ladder ratings (ELO.md, elo.png);
-# 4 re-tier the roster in BENCHMARK.md; 5 study the block (study.tsv, nav.tsv; locked opponents
-# skipped); 6 correlation and onset tables and chart (progress/ONSET.md, onset-ladder.png), and the onset table over
+# 4 re-tier the roster in BENCHMARK.md; 5 study the block (study.tsv, nav.tsv; every opponent
+# since PROMPTS 45); 6 correlation and onset tables and chart (progress/ONSET.md, onset-ladder.png), and the onset table over
 # every block of the build (progress/ONSET-merged.md).
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

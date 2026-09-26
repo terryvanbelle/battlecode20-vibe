@@ -7,8 +7,9 @@ before running anything, and `HANDOFF.md` for the state of the loop.
    (2 vCPU, 2 GB) hosts this session and may play one small diagnostic game at a time.
 2. **Push after every commit**; **record every user prompt verbatim in `PROMPTS.md`**
    (`## <n>. <date>` then the text).
-3. **External bots are never read** (`BENCHMARK.md` rule 1) and **their games are never
-   reviewed below a 20% win rate** (rule 2; `tools/tier-check.sh` fails closed).
+3. **External bots' source is never read** (`BENCHMARK.md` rule 1). **Their games may be reviewed
+   at any win rate** (PROMPTS 45, 2026-09-26: the 20% rule is retired; `tools/tier-check.sh` only
+   reports the tier now).
 4. **External bots are played only as scrimmages** (`tools/scrim.sh`: random map, random side,
    rotating opponents drawn from the rating band around us -- the graded pool approved 2026-09-24,
    PROMPTS 8-9; `POOLMODE=above` is the old just-above-us pool -- seeded from never-played bots

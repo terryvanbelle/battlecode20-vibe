@@ -46,8 +46,8 @@ public strictfp class Miner extends Robot {
         for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.REFINERY && (refinery == null || loc.distanceSquaredTo(friends[i].location) < loc.distanceSquaredTo(refinery))) refinery = friends[i].location;
         if (refineryBadUntil > 0 && round >= refineryBadUntil) { refineryBadUntil = 0; }
         avoidRing = refinery != null && refineryBadUntil == 0;   // Iteration 29: with no refinery (the school came first under a rush) the HQ is the only drop-off, ring or not; Iteration 34: likewise while the refinery is unreachable
-        if (avoidRing && onRing(loc) && rc.isReady()) {
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!onRing(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
+        if (avoidRing && inWall(loc) && rc.isReady()) {
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!inWall(loc.add(d)) && !loc.add(d).equals(MapState.home) && tryMove(d)) { Debug.log("@offring"); return; } }
             // boxed in (a corner seat on the map edge has only ring tiles and the HQ as neighbours): slide along the ring
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) && rc.canMove(d) && rc.canSenseLocation(n) && !rc.senseFlooding(n)) { rc.move(d); loc = rc.getLocation(); Debug.log("@offring slide"); return; } }
         }
@@ -89,7 +89,7 @@ public strictfp class Miner extends Robot {
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
         else if (builtSchool > 0 && builtVap < C.VAPORATORS_MAX && soup >= C.VAPORATOR_BANK) want = RobotType.VAPORATOR;
-        else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
+        else if (C.DRONES_MAX > 0 && builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
         if (want == RobotType.FULFILLMENT_CENTER && rushSeen()) return rushBuild(want, home);   // Iteration 57: the rush center where the rusher is not (Iteration 54's never found a site)

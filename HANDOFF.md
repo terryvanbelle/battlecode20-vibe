@@ -9,6 +9,10 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Owner, PROMPTS 42: evaluate the "copy the tactic that beats us" approach as it is implemented; discuss in the
   morning.** Keep a running scorecard in TRAINING_LOG ("Copying tactics: scorecard") -- per copied tactic: the
   mirror gate, the ladder submission, and the defence's result.
+- **The 20% review rule is retired (PROMPTS 45, 2026-09-26):** games against any bot may be reviewed; the bots'
+  source stays unread. `tools/tier-check.sh` reports the tier and never refuses; `replay-dump.sh` no longer gates on
+  it; CLAUDE.md rule 3, TRAINING_ALGORITHM 0.3, BENCHMARK.md rule 2 rewritten. The locked raiders (ronniesong0809,
+  team4, winkelmantanner) can now be read.
 - **The laurenschneider enclosure program is under way (PROMPTS 44: go ahead without approval).** `src/cand77`
   (`src/bot` = cand77): g_iter12 with the wall at Chebyshev 2, the HQ ring as quarry. Stage 1 survives g_iter12's
   rush and dies at the flood (holes: one unseated shell tile, one dug by the rusher's landscapers; 13 bodies).
