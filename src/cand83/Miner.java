@@ -76,13 +76,17 @@ public strictfp class Miner extends Robot {
     }
 
     // ---------------------------------------------------------------- Iteration 83: vaporators on natural high ground
-    private MapLocation hsTarget, hsStand; private int hsSince = -1000, hsPicked = -1000, builtHigh = 0, nBadHigh = 0;
+    private MapLocation hsTarget, hsStand; private int hsSince = -1000, hsPicked = -1000, hsEmpty = -1000, builtHigh = 0, nBadHigh = 0;
     private final MapLocation[] badHigh = new MapLocation[16];
     /** A sensed natural tile at HIGH_VAP_ELEV or more, dry and free, Chebyshev 3-8 from home, with a free non-ring
      *  neighbour within 3 of its height to build from (the engine refuses a build more than 3 from the builder). */
     private boolean highSite(MapLocation home) throws GameActionException {
         if (hsTarget != null && round - hsPicked > 40) { if (nBadHigh < badHigh.length) badHigh[nBadHigh++] = hsTarget; Debug.log("@highvap timeout " + hsTarget); hsTarget = null; }   // diag83: walks to unreachable plateaus never stalled
         if (hsTarget != null && round - hsSince < 30 && rc.canSenseLocation(hsTarget) && !rc.isLocationOccupied(hsTarget)) return true;
+        // diag83 (DoesNotExist, logged): the builder mines far from home and rescanned every turn with 500 banked --
+        // 7-9k bytecodes, the turn overran before the ordinary vaporator branch. Scan only near home, and after an empty
+        // scan wait 20 rounds.
+        if (hsTarget == null && (Nav.cheb(loc, home) > 6 || round - hsEmpty < 20)) return false;
         MapLocation prev = hsTarget;
         hsTarget = null; hsStand = null; int bd = 1 << 30;
         // diag83 (Egg): the full scan overran the bytecode limit every turn from r441 and froze the builder; now cheapest
@@ -100,7 +104,7 @@ public strictfp class Miner extends Robot {
                 if (rc.isLocationOccupied(n) && !n.equals(loc)) continue;
                 hsTarget = t; hsStand = n; break search; }
         }
-        hsSince = round; if (hsTarget != null && !hsTarget.equals(prev)) hsPicked = round;
+        hsSince = round; if (hsTarget != null && !hsTarget.equals(prev)) hsPicked = round; if (hsTarget == null) hsEmpty = round;
         return hsTarget != null;
     }
     private boolean highBuild() throws GameActionException {
