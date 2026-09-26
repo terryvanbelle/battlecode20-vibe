@@ -3172,3 +3172,10 @@ sight):** the soup goes to the drones. Gates: vs `arch_rush` and the plain mirro
 
 **g_iter11 submitted: 240 band games, 107-133, rating 1751 +- 47, rank 13 of 85** -- the best submission yet (g_iter10
 1738 +- 47, g_iter9 1714 +- 49 on the refit), field score 76.3%. Projection: 82.5% at +7 days, 85.1% at +14.
+
+**Gate 59r: 5-4 discordant in 320 pairs vs `arch_rush` -- inconclusive, not kept.** The miner freeze fires only once
+the rusher's school or landscapers are in the HQ's sight, and by then the bank is spent (poortho's school stands at
+r60). The mirror gate for 59 was stopped: superseded. **Iteration 60 (`src/cand60` = cand59 + suspicion):** an enemy
+miner within 6 of our HQ before r150 -- the rusher's builder walking in -- freezes miners past the early four for
+100 rounds. Diagnostic on the harness seeds, then `gate60r` and `gate60` (the mirror measures the false alarms:
+enemy miners mining near our base).
