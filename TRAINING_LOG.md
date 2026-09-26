@@ -3705,3 +3705,9 @@ run while another was live left that run without `tools/` for a moment -- launch
 about ten cells of gate81's batch 2 (`tools/lib.sh: No such file or directory`; those cells read as concordant losses,
 so the discordant count the gate judges by is short, not biased). The sync now unpacks into `.sync.new` and swaps each
 tree in by rename.
+
+**Gate 81 (plain paired mirror, cand81s8 vs g_iter12): inconclusive -- 3-9 discordant after 320 pairs** (sign test p =
+0.15; concordant 159-149; the change fired in 310 cells). Not a REJECT: the mirror sees a small, non-significant cost,
+as it must for a defence against raids the mirror never makes. cand81s8 stays eligible; its ladder run is extended to
+240 band games (`sub81`, three more blocks) to tighten the field estimate (1861 +- 72 on 96), and the next design is
+how to make the shield form in the field games where it was absent (block 1: the center in 9 of 24 losses).
