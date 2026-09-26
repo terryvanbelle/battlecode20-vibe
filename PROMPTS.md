@@ -165,3 +165,7 @@ Please don't wait until the next task check to start new work if you already kno
 ## 37. 2026-09-25
 
 The loop task check is a failsafe
+
+## 38. 2026-09-26
+
+How's the ELO looking for g_iter11?
