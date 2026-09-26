@@ -111,6 +111,20 @@ r300, we 12), interior feeders on the free interior tiles digging an interior qu
 floods), burying the center and the vaporator after r1000 for two more feeder tiles, and only then whether the
 enclosure can beat the wall at all -- its edge is production through the flood, and that needs stands.
 
+## The laurenschneider enclosure (proposed 2026-09-26, for the owner's morning discussion)
+
+Read from a reviewable loss (MtDoom, laurenschneider 44% against us): a 16-tile shell at Chebyshev 2, 2,794 at r3000
+(our eight-tile wall: 2,155); the HQ's own ring dug as a bottomless quarry (-7,631 at r3000; the closed interior never
+floods); 44 landscapers by r1000 and no building surviving the flood. Against our closed enclosure program (stages
+1-36) the differences are: (1) **no building inside** -- school, center and vaporators stand outside and are allowed to
+drown; every interior tile is quarry; (2) **every body before r1000**, walking in while the shell is still low, so
+no elevator is needed; (3) roles by distance: holders on the 16 shell tiles keep their own tile above the water, the
+interior bodies dig their own tiles and feed the shell tile beside them, outer holders dig Chebyshev 4. The inflow
+arithmetic of stage 27 (holders adjacent to the structure digging an external tile, times half) is met by the
+interior bodies, whose own tiles are external to the shell. Built as a change to g_iter12 (the ring moves from
+Chebyshev 1 to 2; the seats' logic becomes the shell's; the helpers' posts move inside and out), keeping the rush.
+Gate: the paired mirror against g_iter12; the ladder decides.
+
 ## The plateau (planned, 2026-09-24; superseded above)
 
 The next structural candidate; see TRAINING_LOG.md "What the field does that we do not" and
