@@ -123,7 +123,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
   Gate 49b 9-0 discordant in 640 pairs -- under the twelve-pair floor, **not kept** (`src/cand49b`); one wall race
   in seventy is not what the late losses are lost by. `src/bot` = g_iter9. **VM idle.**
 - **`progress/field-score.png`** (PROMPTS 28-30): every build's field score over time, the submissions' ratings
-  fitted with R0 + a ln(1 + t/1d) and projected 7 and 14 days out with a 95% band, mapped to field scores through
+  fitted with R0 + a ln(1 + t/1d) and projected to Sep 30 and Oct 7 (the ends of weeks 1 and 2, PROMPTS 46) with a 95% band, mapped to field scores through
   the ladder fit; `post-block.sh` refreshes it after every block. The owner watches it.
 - **THE FINDING OF THE SESSION (TRAINING_LOG "The enclosure", DESIGN.md "The enclosure"):** the field's top bots
   do not raise the HQ's ring; they hold a shell at Chebyshev 2-3 and keep the interior at ground level, where the

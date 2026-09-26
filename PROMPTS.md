@@ -197,3 +197,7 @@ Go ahead and start the closed enclosure program.  In general, you don't need my 
 ## 45. 2026-09-26
 
 Let's eliminate the 20% rule for examining games.  It was only ever a heuristic to focus our attention on the bots that we can beat soon, but the ladder works better for that anyways.  You are hereby allowed to examine games against any bot.  Update TRAINING_ALGORITHM to reflect
+
+## 46. 2026-09-26
+
+By the way, you have the wrong dates on the field-score graph.  One week is September 30, and two weeks is October 7

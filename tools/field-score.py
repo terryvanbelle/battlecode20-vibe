@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # run with tools/.venv/bin/python3 on the driver (numpy, matplotlib live in the venv); post-block.sh does
-"""Field score over time, projected one and two weeks out (PROMPTS 28-30).
+"""Field score over time, projected to the end of the project's first and second weeks (PROMPTS 28-30, 46).
    tools/field-score.py [--plot progress/field-score.png] [--tau 1.0]
 
 The field score (a build's expected score against every ladder bot, one game each) is a bounded percentage that
@@ -34,13 +34,17 @@ xs = np.array([np.log1p(days(d) / o.tau) for d, _ in subs]); ys = np.array([R[p]
 def proj(t):
     x = np.log1p(t / o.tau); r = r0 + aa * x; s = np.sqrt(cov[0, 0] * x * x + 2 * cov[0, 1] * x + cov[1, 1]); return r, 1.96 * s
 now = dt.datetime.utcnow(); tn = days(now)
+# The projection horizons are the ends of the project's first and second weeks (PROMPTS 46: the project began
+# 2026-09-23, so one week is September 30 and two weeks October 7), not "now + 7 / 14 days".
+START = dt.datetime(2026, 9, 23); HORIZONS = [('week 1', START + dt.timedelta(days=7)), ('week 2', START + dt.timedelta(days=14))]
 print('submissions:', ', '.join(f'{p[3:]} {R[p]:.0f}+-{1.96 * SE[p]:.0f} ({d:%m-%d %H:%M}) {score(R[p]):.1f}%' for d, p in subs))
 print(f'rating fit R = {r0:.0f} + {aa:.0f} ln(1 + t/{o.tau:g} d) (t in days from {t0:%Y-%m-%d %H:%M} UTC)')
-for k in (0, 7, 14):
-    r, e = proj(tn + k); print(f'  +{k:2d}d: rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%]')
+r, e = proj(tn); print(f'  now ({now:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%]')
+for name, when in HORIZONS:
+    r, e = proj(days(when)); print(f'  {name} ({when:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%]')
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(9.5, 8), sharex=True)
-tt = np.linspace(0, tn + 14, 200); dates = [t0 + dt.timedelta(days=t) for t in tt]
+tt = np.linspace(0, max(tn, days(HORIZONS[-1][1])) + 0.5, 200); dates = [t0 + dt.timedelta(days=t) for t in tt]
 rr = np.array([proj(t)[0] for t in tt]); ee = np.array([proj(t)[1] for t in tt])
 cand = [(d, p) for d, p in pts if (d, p) not in subs]
 # rating panel
@@ -58,9 +62,9 @@ ax2.plot([d for d, _ in subs], [score(R[p]) for _, p in subs], 'o', color='tab:b
 if cand: ax2.plot([d for d, _ in cand], [score(R[p]) for _, p in cand], 'o', mfc='white', mec='tab:gray', ms=4, label='candidate')
 ax2.plot(np.array(dates)[past], ss[past], '-', color='tab:blue', lw=1.2); ax2.plot(np.array(dates)[~past], ss[~past], '--', color='tab:blue', lw=1.2, label='projection (mapped rating)')
 ax2.fill_between(dates, lo, hi, color='tab:blue', alpha=.12, label='95% band')
-for k in (7, 14):
-    r, e = proj(tn + k); d = now + dt.timedelta(days=k); ax2.plot([d], [score(r)], 's', color='tab:red', ms=6)
-    ax2.annotate(f'+{k}d: {score(r):.1f}% [{score(r - e):.0f}-{score(r + e):.0f}]', (d, score(r)), textcoords='offset points', xytext=(-8, 8), fontsize=8, ha='right', color='tab:red')
+for name, d in HORIZONS:
+    r, e = proj(days(d)); ax2.plot([d], [score(r)], 's', color='tab:red', ms=6)
+    ax2.annotate(f'{name} ({d:%b %d}): {score(r):.1f}% [{score(r - e):.0f}-{score(r + e):.0f}]', (d, score(r)), textcoords='offset points', xytext=(-8, 8), fontsize=8, ha='right', color='tab:red')
 ax2.axvline(now, color='0.6', lw=0.8, ls=':'); ax2.annotate('now', (now, ax2.get_ylim()[0]), textcoords='offset points', xytext=(3, 3), fontsize=7, color='0.4')
 ax2.set_ylabel('field score (%): expected score vs every ladder bot'); ax2.set_xlabel('first scrimmage block (UTC)'); ax2.grid(alpha=.3); ax2.legend(fontsize=8, loc='lower right')
 fig.autofmt_xdate(); fig.tight_layout(); fig.savefig(o.plot, dpi=120); print('wrote', o.plot)

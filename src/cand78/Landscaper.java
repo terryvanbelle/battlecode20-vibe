@@ -83,7 +83,9 @@ public strictfp class Landscaper extends Robot {
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!(isGrid(n) || isLot(n)) || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
                 if (isGrid(n) && schoolDoor(n)) continue;   // stage 7: a school's doors stay within 3 of it (the first school was boxed in at eight landscapers)
-                int e = rc.senseElevation(n) + (isLot(n) ? 2 : 0); if (e < be) { be = e; bestD = d; } }   // stage 2: lots too, kept 2 under the grid
+                int e = rc.senseElevation(n) - (isLot(n) ? C.LOT_ABOVE : 0);
+                if (isLot(n) && e < target) { for (int k = nFriend; --k >= 0;) if (friends[k].type == RobotType.MINER && friends[k].location.isAdjacentTo(n)) { e -= 1000; break; } }   // stage 13: the pad our builder waits beside first
+                if (e < be) { be = e; bestD = d; } }   // stage 11: lots raised to the grid + LOT_ABOVE (pads)
             if (bestD != null && rc.canDepositDirt(bestD)) { rc.depositDirt(bestD); deposits++; return; }
         }
         if (rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) {
@@ -99,6 +101,9 @@ public strictfp class Landscaper extends Robot {
             if (bestD != null) { rc.digDirt(bestD); digs++; return; }
         }
         // nothing to do here: walk the grid toward its lowest tile in sight (re-chosen every 20 rounds)
+        for (int k = nFriend; --k >= 0;) { RobotInfo f = friends[k]; if (f.type != RobotType.MINER || Nav.cheb(f.location, home) > C.LATTICE_R + 1) continue;   // stage 13: go to the builder's pad
+            for (int i = 8; --i >= 0;) { MapLocation lot = f.location.add(DIRS[i]); if (!isLot(lot) || !rc.canSenseLocation(lot) || rc.isLocationOccupied(lot) || rc.senseElevation(lot) >= target + C.LOT_ABOVE) continue;
+                for (int j = 8; --j >= 0;) { MapLocation g = lot.add(DIRS[j]); if (isGrid(g) && !g.equals(f.location) && rc.canSenseLocation(g) && !rc.isLocationOccupied(g)) { latSpot = g; break; } } } }
         if (latSpot == null || loc.equals(latSpot) || round % 20 == id % 20) {
             MapLocation best = null; int be = Integer.MAX_VALUE;
             for (int dx = -C.LATTICE_R; dx <= C.LATTICE_R; dx++) for (int dy = -C.LATTICE_R; dy <= C.LATTICE_R; dy++) {

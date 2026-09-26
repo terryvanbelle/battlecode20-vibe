@@ -80,6 +80,7 @@ public strictfp class Miner extends Robot {
     private boolean latticeBuild(RobotType want, MapLocation home) throws GameActionException {
         if (!rc.isReady()) return true;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!isLot(n) || Nav.cheb(n, home) < 2 || !rc.canBuildRobot(want, d)) continue;
+            if ((want == RobotType.VAPORATOR || want == RobotType.FULFILLMENT_CENTER || (want == RobotType.DESIGN_SCHOOL && builtSchool > 0)) && rc.senseElevation(n) < gridTarget(round) + C.LOT_ABOVE - 1) continue;   // stage 11-12: on a raised pad
             rc.buildRobot(want, d); lastWant = null; Debug.log("@build t=" + want.ordinal() + " at=" + n + " cell soup=" + rc.getTeamSoup());
             if (want == RobotType.REFINERY) { builtRefinery++; refinery = n; } else if (want == RobotType.DESIGN_SCHOOL) builtSchool++; else if (want == RobotType.VAPORATOR) builtVap++; else if (want == RobotType.NET_GUN) builtNet++; else builtFC++;
             return true; }
@@ -118,7 +119,8 @@ public strictfp class Miner extends Robot {
         // stage 10: on a lot, but for no more than 40 rounds per building (Squares: the lots sat on 20-99 cliffs, the builder
         // walked for 900 rounds after its refinery and no school was ever built); then the old placement
         if (want != lastWant) { lastWant = want; wantSince = round; }
-        if ((want != RobotType.FULFILLMENT_CENTER || !rushSeen()) && round - wantSince < 40) return latticeBuild(want, home);   // Iteration 78: every building on a cell
+        boolean mayFallBack = want == RobotType.REFINERY || (want == RobotType.DESIGN_SCHOOL && builtSchool == 0);   // stage 12: only the refinery and the first school leave the lattice (a vaporator, school or center at ground drowns at the flood)
+        if ((want != RobotType.FULFILLMENT_CENTER || !rushSeen()) && (round - wantSince < 40 || !mayFallBack)) return latticeBuild(want, home);   // Iteration 78: every building on a cell
         if (want == RobotType.FULFILLMENT_CENTER && rushSeen()) return rushBuild(want, home);   // Iteration 57: the rush center where the rusher is not (Iteration 54's never found a site)
         // site: a tile at Chebyshev BUILD_DIST from home, or further out for later buildings
         int dist = want == RobotType.REFINERY || want == RobotType.DESIGN_SCHOOL ? C.BUILD_DIST : C.BUILD_DIST + 1 + (builtVap + builtNet + builtFC) / 4;

@@ -15,7 +15,9 @@ public strictfp class DesignSchool extends Robot {
             if (built < C.RUSH_LANDSCAPERS && soup >= RobotType.LANDSCAPER.cost && tryBuild(RobotType.LANDSCAPER, eh)) built++;
             return;
         }
-        if (built >= 20 && rc.getRoundNum() >= 400 && rc.getRoundNum() < 900) return;   // Iteration 80: the vaporators' window
+        // Iteration 78: after eight, two landscapers per vaporator standing (ronniesong grows both together)
+        int vaps = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.VAPORATOR) vaps++;
+        // stage 14: no pacing (it deadlocked: no vaporator without pads, no pad without lattice workers, no worker without vaporators)
         boolean want = built < C.WALL_LANDSCAPERS ? soup >= RobotType.LANDSCAPER.cost
                      : built < C.WALL_LANDSCAPERS + C.WALL_HELPERS ? soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost
                      : built < C.LANDSCAPERS_MAX && soup >= C.ATTACKER_BANK + RobotType.LANDSCAPER.cost;

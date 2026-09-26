@@ -19,7 +19,7 @@ public final class C {
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
     public static final int VAPORATOR_BANK = 500;     // a builder buys a vaporator when the bank exceeds this
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
-    public static final int VAPORATORS_MAX = 12;
+    public static final int VAPORATORS_MAX = 40;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 0;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
@@ -49,7 +49,8 @@ public final class C {
     // Iteration 78: ronniesong0809's lattice (read 2026-09-26, PROMPTS 45). Around the HQ, every tile with an even
     // x or an even y offset is GRID, raised with the water; the odd-odd CELLS are pits (dirt) or buildings.
     public static final int LATTICE_R = 4;             // Chebyshev radius of the lattice
-    public static final int GRID_MIN = 5;              // the grid's floor height (stage 5: 8 -> 5 -- a grid raised past a building's tile + 3 boxes its spawns in; the school at ground stopped at eight landscapers)
+    public static final int LOT_ABOVE = 3;             // stage 11 (winkelmantanner's lattice, read 2026-09-26): lots stand ABOVE the grid -- walkways at 7, vaporator pads at 9-10, pits left to flood; its vaporators lived to r1700-1800 on a map that floods at r677
+    public static final int GRID_MIN = 7;              // the grid's floor height (stage 5: 8 -> 5 -- a grid raised past a building's tile + 3 boxes its spawns in; the school at ground stopped at eight landscapers)
     public static final int RUSH_GIVEUP = 200;         // Iteration 63: our rusher goes back to mining after this round
     public static final int RUSH_LANDSCAPERS = 8;      // Iteration 63: the forward school's landscapers
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)

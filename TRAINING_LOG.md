@@ -3548,3 +3548,15 @@ The field's winning economy in one line: man the wall, then every soup into vapo
 **Iteration 80 (`src/cand80` = cand69's raid + that economy):** from r400 to r900 the school stops at 20 landscapers and
 the builder puts every 500 into vaporators (up to 60); from r800, up to six centers; up to 300 drones; the raid from
 r1400. Diagnostic next.
+
+**The field-score chart's horizons fixed (PROMPTS 46):** they were "now + 7 / 14 days"; they are the ends of the project's
+first and second weeks, **Sep 30 and Oct 7** (the project began 2026-09-23). Regenerated: now 77.9% (1771 +- 24 on the
+submissions' fit), Sep 30 82.2% [80.2, 84.0], Oct 7 86.3% [83.6, 88.6].
+
+**Lattice stages 11-14 (driver, CentralLake seed 7, vs g_iter12; winkelmantanner's lattice read: walkways at 7, vaporator
+pads at 9-10 above them, pits left to flood -- its vaporators lived to r1700-1800 on a map that floods at r677):** pads
+raised to the grid + 3 and vaporators only on pads (stage 11: V 3 then 0, the fallback built them at ground); only the
+refinery and first school may leave the lattice (12: V 0, soup 5,600 idle); the lattice workers raise the pad the
+builder waits beside (13: V 0 -- one lattice worker in all: the school's vaporator pacing had deadlocked with the pads);
+no pacing (14): 39 landscapers at r500, **6 vaporators standing at r1250-1500 on pads**, soup 8,900 at r2000 -- still
+lost (r3079), the school and center drowned (their first placements were at ground).
