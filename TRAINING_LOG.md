@@ -3290,3 +3290,9 @@ With gate 61 (9-0 on g_iter11) the raid has flipped 14 games and lost none acros
 reaches r1400 undecided now that g_iter12 rushes. The ladder is where the raid window is (50 of g_iter12's 129
 losses), so the copied raid gets an **arm**: `arm65-a`/`-b`, 96 band games as `us:cand65` (pre-registered: rating and
 the r1300-2000 loss rate against g_iter12's 50 of 240).
+
+**The rush defence, now gated against the rush itself (PROMPTS 40):** g_iter12 rushes, so the plain paired mirror
+against g_iter12 is a rush harness with no archetype. **Iteration 66 (`src/cand66` = g_iter12 + Iterations 59-60's
+HQ: no miner past the early four while a rush is in sight or an enemy miner came within 6 before r150)** -- refuted
+against `arch_rush`, but poortho-style rushers are what it was for, and g_iter12 is one. `gate66` queued behind the
+raid arm.
