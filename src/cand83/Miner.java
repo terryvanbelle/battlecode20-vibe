@@ -99,6 +99,7 @@ public strictfp class Miner extends Robot {
         return hsTarget != null;
     }
     private boolean highBuild() throws GameActionException {
+        if (!rc.isReady()) return true;   // diag83b: a site refused on cooldown was struck off, every one of them
         if (loc.equals(hsStand) || loc.isAdjacentTo(hsTarget) && Math.abs(rc.senseElevation(loc) - rc.senseElevation(hsTarget)) <= 3) {
             Direction d = loc.directionTo(hsTarget);
             if (rc.canBuildRobot(RobotType.VAPORATOR, d)) { rc.buildRobot(RobotType.VAPORATOR, d); builtHigh++; builtVap++; Debug.log("@highvap at=" + hsTarget + " e=" + rc.senseElevation(hsTarget) + " soup=" + rc.getTeamSoup()); hsTarget = null; return true; }
