@@ -3214,3 +3214,18 @@ Harness: `OPP=arch_rush2` gates.
 builder was out); with the builder walking home first, the school stands at r99 at (19,12), a landscaper digs the
 HQ out from r120, and **the HQ lives to r931** (g_iter11: r166). Gates queued behind gate61: `gate62r`
 (`OPP=arch_rush2`) and `gate62` (mirror).
+
+**Gate 61 (the raid, paired mirror vs g_iter11): 9-0 discordant in 320 pairs (p = 0.004), concordant 163-148 --
+under the twelve-pair floor, in the candidate's favour: PROVISIONAL** (TRAINING_ALGORITHM 4.4: no snapshot, no
+submission; later candidates may stack on it). `src/cand61` kept.
+
+## Rushing ourselves (PROMPTS 40-41, 2026-09-26)
+
+The owner: whenever an opponent's tactic beats us, learn to use it against other bots, submit it as its own build,
+then build the defence as a separate submission. **Iteration 63 (`src/cand63` = g_iter11 + poortho's rush):** the HQ's
+second miner walks to the enemy HQ, plants a design school within r2 8 of it, and that school's landscapers (born
+with the enemy HQ in sight and ours far) attack it at once. First test (driver): the rusher planted only at r256 on
+GSF and never on RandomSoup1 -- it probed for the map's edges for 180-500 rounds. **The corpus origin is (0,0):**
+47 of 47 maps read from replays; the engine takes the origin from the map file (`GameMapIO`: `minCorner`), and the
+released maps all sit at the corner. cand63 assumes it (`C.ASSUME_ORIGIN`), so every robot has the symmetry
+guesses from round 1.
