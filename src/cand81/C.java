@@ -34,6 +34,8 @@ public final class C {
                                                       // born before r350 is the rush center and buys three drones at cost: 600 soup from the helpers; stage 5: 350)
     public static final int SHIELD_FC_BANK = 250;     // ... and the bank holds this (stage 5: 450 -> 250 -- arm81: the bank was 200-350 while miners lived)
     public static final int SHIELD_FC_FALLBACK = 450; // stage 5: from this round any miner near home builds it when no center is announced or in sight
+    // stage 6: and only once the school has announced its last landscaper (stage 5's center before that cost the wall 35-185 on
+    // seven maps of eleven and two wins: each 150 spent before the school drowns is a landscaper the wall never gets)
     public static final int DRONE_RESERVE = 600;      // the center keeps this much soup back; Iteration 81 stage 3: 250 -> 600 -- the shield's drones are paid from
                                                       // the surplus the school leaves (at 250 they took the helpers' soup: the wall 100-240 lower on four maps of six)
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)

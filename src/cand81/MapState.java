@@ -17,6 +17,7 @@ public final strictfp class MapState {
     public static MapLocation home;                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
     public static boolean fcUp = false;              // Iteration 81 stage 5: a center of ours has been announced
+    public static boolean schoolDone = false;        // Iteration 81 stage 6: the home school has built all its landscapers
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
 
     // remembered terrain, indexed by (x - minX) + (y - minY) * width once the origin is known

@@ -4,7 +4,7 @@ import battlecode.common.*;
 
 /** Design school: builds landscapers up to the wall count, then a surplus of attackers while rich. */
 public strictfp class DesignSchool extends Robot {
-    private int built = 0;
+    private int built = 0, announced = 0;
     DesignSchool(RobotController rc) { super(rc); }
     @Override protected void turn() throws GameActionException {
         sense();
@@ -19,5 +19,6 @@ public strictfp class DesignSchool extends Robot {
                      : built < C.WALL_LANDSCAPERS + C.WALL_HELPERS ? soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost
                      : built < C.LANDSCAPERS_MAX && soup >= C.ATTACKER_BANK + RobotType.LANDSCAPER.cost;
         if (want && tryBuild(RobotType.LANDSCAPER, MapState.home)) built++;
+        if (built >= C.LANDSCAPERS_MAX && announced < 3 && post(Comms.make(Comms.SCHOOL_DONE, rc.getRoundNum(), us))) announced++;   // Iteration 81 stage 6: three rounds running
     }
 }

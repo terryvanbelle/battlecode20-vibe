@@ -17,6 +17,7 @@ public final strictfp class Comms {
     public static final int MAP_ORIGIN = 4;    // payload: minX, minY
     public static final int SYMMETRY = 5;      // payload: surviving hypothesis bits
     public static final int FC_UP = 6;         // Iteration 81 stage 5: a fulfillment center stands (payload: x, y)
+    public static final int SCHOOL_DONE = 7;   // Iteration 81 stage 6: the home school has built all its landscapers
 
     static final int SALT = 0x5eed2020;
 

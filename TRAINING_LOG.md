@@ -3651,3 +3651,11 @@ chain (`FC_UP`, three rounds running: a miner reads one block in three); the bui
 banked (born at r350 or later it is not the rush center, so no drones at cost); from r450 any miner within 6 of home
 builds it when none is announced or in sight (on a tile 3 or more out, highest first). Diagnostic: cand81 vs g_iter12
 and the g_iter12 mirror on the six lattice maps and five of the arm's loss maps.
+
+**Stage 5, eleven maps (cand81 vs g_iter12; the g_iter12 mirror as control):** the center now stands on ten maps, the
+shield forms on five (RandomSoup1 16 tiles, CentralLake 16, DoesNotExist 16, Climb 13, MtDoom 8); elsewhere the center
+drowns before the bank reaches 750 (no drone). But the wall pays: 35-185 lower on seven maps, and two mirror wins lost
+(RandomSoup1 r3188 against the control's win at r3202, wall 2,038 / 2,219; TwoForOneAndTwoForAll r3145 against a win at
+r3153, 1,571 / 1,666). Maze built no drone at all and still ended 176 lower with two fewer landscapers: the 150 spent on
+the center before the school drowns is a landscaper the wall never gets. **Stage 6:** the school announces its last
+landscaper (`SCHOOL_DONE`, at LANDSCAPERS_MAX built); the shield's center only after that (after it the soup idles).
