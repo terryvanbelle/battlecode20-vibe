@@ -3779,3 +3779,14 @@ enemy rush has been seen (rzhan11's school comes at ~r90, by when the bank holds
 **v2, same ten maps:** SoupOnTheSide, RealArt, WateredDown lost as the control lost; Toothpaste, CentralSoup, GSF won as
 the control won; CentralLake lost as the control; **Soup, InADitch, RandomSoup1 lost where the control won** -- the same
 three as v1. Iteration 82 refuted at the diagnostic (ledger). `src/bot` = g_iter12.
+
+**Natural high ground (`tools/mapinfo`, new columns in `tools/mapdata.csv`):** on 27 of 52 maps the fourth-highest dry
+tile within Chebyshev 3-6 of the HQ floods before r1300 (no natural perch); on ~19 there are four or more tiles at 12+
+standing until r1930-3019 (DoesNotExist, SoupOnTheSide, Squares, RealArt, TwoLakeLand, Climb, AMaze, Egg, ...; some
+counts are cliffs a builder cannot use). **The vaporator census (`census81v`, 238 cand81s8 games): g_iter12's economy
+builds 0.1-0.4 vaporators a game** (2-16 of ~100 games have one) while the bank idles -- on the high maps median 485 at
+r900, 776 at r1200, 1,553 at r2000, miners alive in 67 of 74 games at r600 -- and we win 30% on the high maps against
+39% on the low. **Iteration 83 (`src/cand83` = g_iter12 + vaporators on natural high ground, a quick probe):** from
+r200, after the school, with 500 banked, the builder puts a vaporator on a sensed natural tile of 12+ at Chebyshev 3-8
+standing on a free neighbour within 3 of its height (up to 20); no change where no such tile exists. Diagnostic: ten
+high maps vs g_iter12, the mirror as control.
