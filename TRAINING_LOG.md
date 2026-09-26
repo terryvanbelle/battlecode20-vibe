@@ -3675,3 +3675,13 @@ center stood at Chebyshev 3 on the highest tile, which is where a helper at Cheb
 **Stage 8:** the shield's center 5 or more out, built by any miner 4-6 from home (the builder too) once the school is
 done; the builder's own later center is skipped when one is announced. (`src/cand81x`, `src/cand81y`: the isolation
 variants, deleted after this entry.)
+
+**Stage 8 (the center 5 or more out), twelve maps against the g_iter12 mirror:** better on NoU (wall 2,413 against
+2,166) and CentralLake; identical on Squares, IceCream, Maze, TwoForOneAndTwoForAll; wins kept on Climb and
+DoesNotExist; walls lower on MtDoom (-112), TwoLakeLand (-77), DoesNotExist (-186); wins lost on RandomSoup1 and Egg
+(both won at stage 7 or 3 in some form). The same seeds move +-100-250 in wall height from stage to stage in both
+directions: past this point the mirror's wall race is too chaotic for single-seed diagnostics to separate a cost from
+noise. The mechanism stands (6-16 tiles held wherever a surplus exists; against cand69, the wall keeps rising through
+the raid). **Arm 81c: 96 band games as `us:cand81` at stage 8** (the pool fixed), pre-registered as arm 81 was (rating
+against g_iter12's 1819 +- 39; raid-window losses against 20.8%; in the losses, the shield's presence); then the paired
+mirror gate for the cost.
