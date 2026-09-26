@@ -2884,6 +2884,13 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **The burst rush (Iteration 82, 2026-09-26; copying rzhan11)** -- the rusher waits beside the enemy HQ for a bank of
+  750 (school + four landscapers), the HQ and builder hold their soup until the plant; v2 plants at once under an
+  announced enemy rush. Refuted at the diagnostic twice: against the g_iter12 mirror, three wins lost (Soup, InADitch,
+  RandomSoup1), none gained, in both versions. The burst loses races to a trickle whose home landscapers dig their HQ
+  out (Soup: their HQ at 29 when ours reached 50), and the held economy leaves our home undefended when the trickle
+  arrives (RandomSoup1). rzhan11's 13 early wins of 240 stay unanswered. Code `src/cand82`.
+
 - **The drone shield (Iteration 81, 2026-09-26)** -- drones hold the flooded Chebyshev-2 tiles so nothing can be
   lifted off the ring or dropped onto it; the center after the school's last landscaper, 5+ out, drones from a 600
   bank. Gate81 3-9 in 320 pairs (inconclusive); ladder `cand81s8` 1783 +- 48 on 240 band games (g_iter12 1814 +- 39).
@@ -3768,3 +3775,7 @@ instead of r3040. In six of ten games our rusher never planted: the opponent (g_
 releases the hold, the bank is spent, and it never reaches 750 (or 300 from r120). **v2:** our HQ announces an enemy rush
 (`RUSH_SEEN`, three rounds running) and the rusher then plants at 150 as g_iter12 does; bank-and-burst only while no
 enemy rush has been seen (rzhan11's school comes at ~r90, by when the bank holds 450-600).
+
+**v2, same ten maps:** SoupOnTheSide, RealArt, WateredDown lost as the control lost; Toothpaste, CentralSoup, GSF won as
+the control won; CentralLake lost as the control; **Soup, InADitch, RandomSoup1 lost where the control won** -- the same
+three as v1. Iteration 82 refuted at the diagnostic (ledger). `src/bot` = g_iter12.
