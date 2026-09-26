@@ -17,9 +17,9 @@ public final class C {
     public static final int SOUP_MEMORY = 12;         // remembered soup tiles per miner
     public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
-    public static final int VAPORATOR_BANK = 500;     // a builder buys a vaporator when the bank exceeds this (Iteration 72: 650 -> 500, poortho's economy: 8 vaporators by r500, 30 landscapers by r1000, its wall 2,577 to our 2,031 at r3000 on TwoForOne)
+    public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
-    public static final int VAPORATORS_MAX = 8;       // Iteration 72: 6 -> 8
+    public static final int VAPORATORS_MAX = 6;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started

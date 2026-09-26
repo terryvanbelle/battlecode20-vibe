@@ -3359,3 +3359,14 @@ vaporators stand: RandomSoup1 -- 6 vaporators by r500, 8 by r750, the wall 2,334
 TwoForOne -- 4 vaporators by r500, all drowned by r750 (the low ground floods there), and the hold to r800 kept the
 school at eight landscapers with 880 idle: the wall 1,168 against 1,900. Holding only to r500: TwoForOne level (1,900
 each at r2500, won on the tiebreak), RandomSoup1's gain kept. **`gate72`** (paired mirror vs g_iter12).
+
+**Gate 72 (poortho's economy on g_iter12): REJECT, discordant 3-20 at 176 pairs.** Holding 500 for vaporators after
+the eighth landscaper costs far more than the vaporators return in the mirror -- the hold starves the helpers (and
+the forward school, which draws on the same bank) in the rounds that decide the wall race. poortho's economy is not
+separable from the rest of poortho. `src/cand72` kept; `src/bot` = g_iter12.
+
+Scorecard to this point (PROMPTS 40-42): rush copied -> **+79 on the ladder (g_iter12)**; raid copied twice -> null
+on the ladder (cand65, cand69); poortho's vaporator economy copied -> REJECT 3-20; rush defence 0 of 5.
+
+Next: a **rush census** -- g_iter12 against g_iter11 on all 52 maps, both sides, seed 7 (104 games): where our rusher
+plants, when, and whether it kills; the maps where it never plants are the rush's own next iteration.
