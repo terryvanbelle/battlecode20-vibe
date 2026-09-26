@@ -3268,3 +3268,7 @@ origin (0,0) assumed). The copied tactic is the largest paired gain of the proje
 28-6 against an archetype). `src/bot` = g_iter12. Submission `sub12` (5 x 48, `BOT=g_iter12`), each block posted.
 (The chain had begun a block labelled `cand63`; it was stopped at once and its partial games discarded, so the ladder
 row carries the build's own name -- the cand43b lesson.)
+
+**g_iter12 on the ladder after 96 games: 43-53, 1806 +- 73, rank 13 of 86** (g_iter11 finished at 1751 +- 47).
+**Iteration 65 (`src/cand65` = g_iter12 + the late drone raid of cand61, the provisional change stacked):** the second
+copied tactic on the new incumbent. `gate65` (paired mirror vs g_iter12) queued behind the submission.
