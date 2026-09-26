@@ -38,10 +38,6 @@ public strictfp class Landscaper extends Robot {
         if (forward) { attack(); return; }   // Iteration 63
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
-        // Iteration 78 stage 9: the eight ring seats first, as g_iter12 (the rush answer: stage 8 died to rushes at r174-308 on
-        // three maps of six); every other home landscaper works the lattice
-        if (!attacker && !helper && (seat == null || (!seat.equals(loc) && occupiedByOther(seat)))) seat = pickSeat(home);
-        if (!attacker && seat == null) { lattice(home); return; }
         if (!attacker && !helper) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
@@ -51,62 +47,6 @@ public strictfp class Landscaper extends Robot {
         if (helper) { help(home); return; }
         if (!loc.equals(seat)) { if (floodDanger() && climb()) return; nav.setTarget(seat); nav.step(); if (loc.equals(seat)) Debug.log("@seated at=" + seat); return; }
         wall(home);
-    }
-
-    private MapLocation latSpot;
-    private boolean schoolDoor(MapLocation n) throws GameActionException {
-        for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type != RobotType.DESIGN_SCHOOL || !f.location.isAdjacentTo(n)) continue;
-            if (rc.canSenseLocation(f.location) && rc.canSenseLocation(n) && rc.senseElevation(n) >= rc.senseElevation(f.location) + 2) return true; }
-        return false;
-    }
-    /** Iteration 78: work the lattice. Dig the HQ out; with dirt, raise the lowest grid tile beside us that is below the
-     *  target (our own tile included); without, dig a free cell beside us (a pit), else a grid tile far above the
-     *  target, else walk to the lowest grid tile in sight. */
-    private void lattice(MapLocation home) throws GameActionException {
-        if (!rc.isReady()) return;
-        if (hqInfo != null && hqInfo.dirtCarrying > 0 && loc.isAdjacentTo(home) && rc.canDigDirt(loc.directionTo(home)) && rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) { rc.digDirt(loc.directionTo(home)); hqDigs++; digs++; return; }
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.isBuilding() && loc.isAdjacentTo(e.location) && rc.getDirtCarrying() > 0 && rc.canDepositDirt(loc.directionTo(e.location))) { rc.depositDirt(loc.directionTo(e.location)); buryDeposits++; return; } }
-        // stage 3: the HQ being buried is everyone's job -- a free tile beside it, now (stage 2 died to the rush at r279, no dig)
-        if (hqInfo != null && hqInfo.dirtCarrying > 0 && !loc.isAdjacentTo(home)) { if (rc.getDirtCarrying() > 0) { for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; if (!loc.add(d).equals(home) && !isGrid(loc.add(d)) && !isLot(loc.add(d)) && rc.canDepositDirt(d)) { rc.depositDirt(d); return; } } } nav.setTarget(home); nav.step(); return; }
-        int target = gridTarget(round);
-        if (!isGrid(loc) || Nav.cheb(loc, home) > C.LATTICE_R) {   // get onto the lattice
-            MapLocation best = null; int bd = 1 << 30;
-            for (int dx = -C.LATTICE_R; dx <= C.LATTICE_R; dx++) for (int dy = -C.LATTICE_R; dy <= C.LATTICE_R; dy++) {
-                MapLocation t = new MapLocation(home.x + dx, home.y + dy); if (!isGrid(t) || !rc.onTheMap(t)) continue;
-                if (rc.canSenseLocation(t) && (rc.senseFlooding(t) || rc.isLocationOccupied(t))) continue;
-                int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; } }
-            if (best != null) { nav.setTarget(best); nav.step(); } return;
-        }
-        if (rc.getDirtCarrying() > 0) {
-            Direction bestD = null; int be = target;
-            if (rc.senseElevation(loc) < be && !schoolDoor(loc)) { be = rc.senseElevation(loc); bestD = Direction.CENTER; }
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!(isGrid(n) || isLot(n)) || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
-                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
-                if (isGrid(n) && schoolDoor(n)) continue;   // stage 7: a school's doors stay within 3 of it (the first school was boxed in at eight landscapers)
-                int e = rc.senseElevation(n) + (isLot(n) ? 2 : 0); if (e < be) { be = e; bestD = d; } }   // stage 2: lots too, kept 2 under the grid
-            if (bestD != null && rc.canDepositDirt(bestD)) { rc.depositDirt(bestD); deposits++; return; }
-        }
-        if (rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) {
-            Direction bestD = null; int bs = Integer.MAX_VALUE;
-            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!rc.onTheMap(n) || n.equals(home) || !rc.canDigDirt(d)) continue;
-                RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
-                int e = rc.senseElevation(n), s;
-                if (isPit(n)) s = -e;                                      // a pit: the highest first (stage 2: pits only, never a lot)
-                else if (isGrid(n) && e > target + 20) s = 100000 - e;     // a grid tile far above the target
-                else if (Nav.cheb(n, home) > C.LATTICE_R) s = 200000 - e;  // outside the lattice
-                else continue;
-                if (s < bs) { bs = s; bestD = d; } }
-            if (bestD != null) { rc.digDirt(bestD); digs++; return; }
-        }
-        // nothing to do here: walk the grid toward its lowest tile in sight (re-chosen every 20 rounds)
-        if (latSpot == null || loc.equals(latSpot) || round % 20 == id % 20) {
-            MapLocation best = null; int be = Integer.MAX_VALUE;
-            for (int dx = -C.LATTICE_R; dx <= C.LATTICE_R; dx++) for (int dy = -C.LATTICE_R; dy <= C.LATTICE_R; dy++) {
-                MapLocation t = new MapLocation(home.x + dx, home.y + dy); if (!isGrid(t) || !rc.canSenseLocation(t) || rc.isLocationOccupied(t)) continue;
-                int e = rc.senseElevation(t) * 4 + loc.distanceSquaredTo(t); if (e < be) { be = e; best = t; } }
-            latSpot = best;
-        }
-        if (latSpot != null) { nav.setTarget(latSpot); nav.step(); }
     }
 
     private boolean occupiedByOther(MapLocation l) throws GameActionException {

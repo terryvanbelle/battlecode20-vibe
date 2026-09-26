@@ -3515,3 +3515,13 @@ longer (MtDoom r3053 / 3202, RandomSoup1 r3019 / win, TwoLakeLand r3058 / win); 
 (schools and centers gone by r1000-1500). **Stage 10:** Squares' lots sat on 20-99 cliffs and the builder walked for
 900 rounds without a school; a building now gets 40 rounds to find a lot, then the old placement (Squares: alive to
 r3096, 18 landscapers); `LATTICE_R` 6 -> 4 (a perimeter the landscapers can hold, lots inside it).
+
+**Stage 10 (lots given 40 rounds, radius 4), six maps vs g_iter12:** every map now lives past r3000 except Soup (the
+rush, r689; the control dies to it too, r164) -- and every one is lost, where the g_iter12 control wins three and lasts
+as long in the rest. The pattern in all six: the buildings do not survive. Vaporators 3 -> 0, 6 -> 0; schools and
+centers gone by r1000-2000; RandomSoup1 holds 9,633 soup at r2000 with no center left to spend it. The lattice's lots are
+sealed only while their eight grid neighbours stay above the water, and ~10 lattice workers (the other 8 hold the ring)
+cannot keep ~60 grid tiles there; ronniesong has 114 bodies for it. **Checkpoint:** the copy is the right shape and the
+wrong size -- the economy that would pay for the bodies is the thing the bodies protect. `src/bot` = g_iter12. What
+might break the circle: vaporators where the water cannot reach them without a lattice -- inside our own ring (the
+enclosure's interior) or on the map's high ground -- so the first income is safe while the lattice grows.

@@ -229,14 +229,6 @@ public abstract strictfp class Robot {
         return false;
     }
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
-    /** Iteration 78: the lattice. */
-    protected static boolean isCell(MapLocation t) { MapLocation h = MapState.home; if (h == null) return false; int dx = t.x - h.x, dy = t.y - h.y; return (dx & 1) != 0 && (dy & 1) != 0 && Nav.cheb(t, h) <= C.LATTICE_R; }
-    /** Iteration 78 stage 2: half the cells are LOTS (kept near the grid's height, for buildings: a build needs the site within
-     *  3 of the builder, and a pit is 17 below), the other half PITS (dug for dirt). */
-    protected static boolean isLot(MapLocation t) { if (!isCell(t)) return false; MapLocation h = MapState.home; return (((t.x - h.x + t.y - h.y) / 2) & 1) == 0; }
-    protected static boolean isPit(MapLocation t) { return isCell(t) && !isLot(t); }
-    protected static boolean isGrid(MapLocation t) { MapLocation h = MapState.home; if (h == null || t.equals(h)) return false; int dx = t.x - h.x, dy = t.y - h.y; return ((dx & 1) == 0 || (dy & 1) == 0) && Nav.cheb(t, h) <= C.LATTICE_R; }
-    protected static int gridTarget(int round) { return Math.max(C.GRID_MIN, (int) waterLevel(round + 150) + 3); }
     protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
