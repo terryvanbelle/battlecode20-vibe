@@ -3443,3 +3443,11 @@ The arithmetic is stage 27's: each body puts about 0.3 dirt a round into the she
 with twice the bodies, and laurenschneider has them: 20 at r500 like us, then **44 at r1000** -- 24 more in 500 rounds,
 3,600 soup, with three miners and one vaporator. How it earns that is the question now; its r500-1000 economy is the
 next thing to read. Stage 3 rests; `src/bot` = g_iter12.
+
+**laurenschneider's economy, read (MtDoom, r0-1000):** 4 miners (3 from r350), one vaporator, one refinery, 3 net guns,
+5-6 drones, and every other soup into landscapers -- 20 at r500, 44 by r950, 65 units spawned in all; its mining is
+no larger than ours (1,113 mine actions by r1000). And its bodies work: **22 digs a round from 44 landscapers, 0.5
+each -- the maximum** -- from r1000 to r2500, where ours managed 0.27. Two gaps, then: bodies (we buy drones, guns,
+refineries and eight miners; it buys landscapers) and work per body (our seats had nothing to dig: every neighbour
+was an interior or outer helper, and seats never dig under our own units). **Stage 4:** a seat may dig an interior
+tile under our interior helper (the helper digs itself down anyway).

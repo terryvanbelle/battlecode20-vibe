@@ -187,7 +187,7 @@ public strictfp class Landscaper extends Robot {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d) || doorstep(n)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
-            if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
+            if (r != null && r.team == us && !(r.type == RobotType.LANDSCAPER && Nav.cheb(n, home) < C.RING_D)) continue;   // never under our own units (a helper re-raises itself) -- Iteration 77 stage 4: except inside, where the helpers dig themselves down anyway (laurenschneider's bodies dig 0.5 a round each; ours 0.27, the seats idle with every neighbour occupied)
             int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles
             if (e < be) { be = e; bestD = d; }
         }
