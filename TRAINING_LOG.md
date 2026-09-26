@@ -3179,3 +3179,13 @@ r60). The mirror gate for 59 was stopped: superseded. **Iteration 60 (`src/cand6
 miner within 6 of our HQ before r150 -- the rusher's builder walking in -- freezes miners past the early four for
 100 rounds. Diagnostic on the harness seeds, then `gate60r` and `gate60` (the mirror measures the false alarms:
 enemy miners mining near our base).
+
+**Diagnostic 60: refuted on the harness.** The alarm fires early (r34-113, an enemy miner near our HQ) and changes
+nothing against `arch_rush` except MtDoom, where it costs (r957 against g_iter11's r2934). The rush line rests at
+g_iter11; poortho's faster rush is not reproduced by our archetype, and without a harness it cannot be tested.
+
+**Iteration 61 (`src/cand61` = g_iter11 + the raid):** the field wins r1500-2300 with 8-25 drones lifting wall
+landscapers, and our late bank sits at 2,000+ unspent. From r900 the center builds up to 24 drones (the reserve
+unchanged); from r1400 three in four drones (by id) gather five out from the enemy HQ on our side and, when ten are
+in sight, charge the ring ignoring guns, lifting the enemy's landscapers nearest its HQ and drowning them.
+Diagnostic `diag61` in the mirror (RandomSoup1, Squares, Prison) against g_iter11 controls.
