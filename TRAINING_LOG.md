@@ -3378,3 +3378,13 @@ school took every 150 (eight landscapers at home by r140) while the forward scho
 r130. **Iteration 73 (`src/cand73`):** the forward school posts `RUSH_ON` every ten rounds while it spawns; the home
 school, after its first two, yields the bank for 25 rounds after each post. Driver: **Egg as B, 7 attackers, win at
 r238** (g_iter12: 0 attackers, lost at r3153); Soup as B, 4 attackers, lost as before. `gate73` (mirror vs g_iter12).
+
+**Gate 73 (the home school yields to the forward school): 23-17 discordant in 320 pairs (p = 0.43) -- not kept.**
+Egg's win is real and rare; in the mirror the yield costs as many home games as it wins forward ones. `src/cand73`
+kept; `src/bot` = g_iter12.
+
+**Diagnostic 74 (plant from r2 25 after 15 blocked rounds):** Squares and Volcano as A -- no plant; the rusher never
+comes within r2 25 of the enemy HQ at all (it walks, mines nothing, and stops at the terrain: Squares' 99-high
+plateau). The rushes that never plant are blocked at the approach, not at the last step; a drone carrying the rusher
+is the form that would reach them (the centre comes after the school, so not before r150 without paying for it).
+Refuted as built; `src/cand74` kept; `src/bot` = g_iter12.
