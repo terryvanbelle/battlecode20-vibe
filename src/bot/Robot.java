@@ -229,19 +229,6 @@ public abstract strictfp class Robot {
         return false;
     }
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
-    /** Iteration 78: the lattice. */
-    protected static boolean isCell(MapLocation t) { MapLocation h = MapState.home; if (h == null) return false; int dx = t.x - h.x, dy = t.y - h.y; return (dx & 1) != 0 && (dy & 1) != 0 && Nav.cheb(t, h) <= C.LATTICE_R; }
-    /** Iteration 78 stage 2: half the cells are LOTS (kept near the grid's height, for buildings: a build needs the site within
-     *  3 of the builder, and a pit is 17 below), the other half PITS (dug for dirt). */
-    /** Stage 17 (winkelmantanner's geometry, NoU r200-900: full walkway rows, every cell between them a pit, the buildings
-     *  ON the rows): no lots -- every cell is a pit, and a building SITE is a row tile between two junctions (odd x
-     *  offset, even y offset) three or more out, so the column walkways (even x) never hold a building and the lattice
-     *  stays connected however many sites are built on. */
-    protected static boolean isLot(MapLocation t) { return false; }
-    protected static boolean isPit(MapLocation t) { return isCell(t); }
-    protected static boolean isSite(MapLocation t) { MapLocation h = MapState.home; if (h == null) return false; int dx = t.x - h.x, dy = t.y - h.y; int c = Nav.cheb(t, h); return (dx & 1) != 0 && (dy & 1) == 0 && c >= 3 && c <= C.LATTICE_R; }
-    protected static boolean isGrid(MapLocation t) { MapLocation h = MapState.home; if (h == null || t.equals(h)) return false; int dx = t.x - h.x, dy = t.y - h.y; return ((dx & 1) == 0 || (dy & 1) == 0) && Nav.cheb(t, h) <= C.LATTICE_R; }
-    protected static int gridTarget(int round) { return Math.max(C.GRID_MIN, (int) waterLevel(round + 150) + 3); }
     protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so

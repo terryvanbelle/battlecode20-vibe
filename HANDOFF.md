@@ -7,20 +7,19 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 
 - **Incumbent `src/g_iter12`** (1818 +- 39 over 336 games, rank 13 of 88, field score 80.4%). Prompts recorded
   through 46 (next is 47). Cron loop beb41aee every 30 minutes.
-- **Iteration 81, the drone shield (`src/cand81` = `src/cand81s8`, stage 8; TRAINING_LOG "Iteration 81" onward):** from
-  r600 drones hold the flooded Chebyshev-2 tiles of our HQ, so nothing can be lifted off the ring or dropped onto it; the
-  center is built only after the school announces its last landscaper (`SCHOOL_DONE`), by any miner 4-6 out, 5+ out
-  (`FC_UP` announced); drones from a 600 bank; the wall digs under our drones. **Arm 81c: 1861 +- 72 on 96 band games
-  (`us:cand81s8`), g_iter12 1814 +- 39** -- +47, not significant; the shield formed in few field games. **Running:
-  `gate81`** (plain paired mirror vs g_iter12, must not REJECT) and `raider81` (does `arch_raider` -- the g_iter3-era
-  raid-and-ferry archetype -- raid g_iter12? if so it is the harness for the archetype gate, `OPP=arch_raider`, must
-  ACCEPT). The stage-4 arm (`us:cand81`, 95 games) is a different build; ignore it.
-- Why the shield (TRAINING_LOG "What actually kills g_iter12 late"): ronniesong0809 / IvanGeffner lift our ring
-  landscapers and drop their own onto the ring to bury the HQ; winkelmantanner and mvpatel2000 lift the whole wall.
+- **Iteration 81 (the drone shield, `src/cand81s8`) is CLOSED, not kept:** gate81 3-9 in 320 pairs (inconclusive);
+  ladder 1783 +- 48 on 240 band games against g_iter12's 1814 +- 39; the shield was absent in 14 of 15 raid-window
+  losses (no center or drone: the surplus arrives after the miners are gone). Ledger entry has the re-open condition.
+- **Next:** the Iteration 82 design panel (a background workflow: four angles -- shield presence, builder survival,
+  other lift defences, best next iteration overall -- judged adversarially against RULES.md and the log) and the
+  spending-window census (`tools/window-census.sh`, run `census81`, over the 240 cand81s8 replays).
+- Why lifts matter (TRAINING_LOG "What actually kills g_iter12 late"): the `finalbota` bots (ronniesong0809,
+  IvanGeffner, battlecode20-team4) lift our ring landscapers and drop their own onto the ring to bury the HQ at
+  r1562-1575; winkelmantanner and mvpatel2000 lift the whole wall.
 - **The lattice (`src/cand78`)**, stages 1-17, has never held more than ~6 vaporators and loses every diagnostic map to
   g_iter12; stage 17 (winkelmantanner's geometry) was worse. Paused. The measured economy gap (TRAINING_LOG "The economy
   gap, measured") stands: the field turns the same mined soup into 20-65 vaporators on raised walkways.
-- `src/bot` = cand78 (stage 17); set it to whatever is under test next.
+- `src/bot` = g_iter12.
 - Closed today: the laurenschneider enclosure (cand77, stages 1-7, and the archetype's ladder probe 4-44), net guns
   (cand79: drown before the raid), cand80 (vaporators in g_iter12's layout: never built -- no builder after r700).
 

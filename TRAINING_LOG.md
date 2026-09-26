@@ -2884,6 +2884,13 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **The drone shield (Iteration 81, 2026-09-26)** -- drones hold the flooded Chebyshev-2 tiles so nothing can be
+  lifted off the ring or dropped onto it; the center after the school's last landscaper, 5+ out, drones from a 600
+  bank. Gate81 3-9 in 320 pairs (inconclusive); ladder `cand81s8` 1783 +- 48 on 240 band games (g_iter12 1814 +- 39).
+  Kind: absent where needed -- in 14 of 15 raid-window losses no center or drone existed (the surplus comes after the
+  miners are gone). A complete shield holds against any number of drones; re-open only with a way to have it in
+  place by ~r1000 in most field games without costing the wall (the eight stages' pitfalls are in TRAINING_LOG).
+
 - **Miners first (Iteration 26, 2026-09-24)** -- g_iter5 with MINERS_EARLY 8. Gate 50-62 vs g_iter5.
   Kind: refuted. The closed ring stops miner spawns, but building the miners first costs more wall
   than they earn; the HQ's replenishment through open seats was cheap because it was late.
@@ -3244,7 +3251,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
 | school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school); cand66 (miner freeze); cand71 (alarm center) | 62r 13-13; 64, 71 refuted at the diagnostic; 66 10-14 -- none kept |
-| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; cand69 (EmaPajic's scale) gate 3-0, arm69 1811 +- 72 = g_iter12 -- null; closed | -- | -- |
+| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; cand69 (EmaPajic's scale) gate 3-0, arm69 1811 +- 72 = g_iter12 -- null; closed | cand81s8 (the drone shield on the flooded Chebyshev-2 tiles, Iteration 81) | gate81 3-9 (inconclusive); ladder 1783 +- 48 on 240 = g_iter12 -- not kept (absent in 14 of 15 raid-window losses) |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
 against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).
@@ -3719,3 +3726,8 @@ IvanGeffner 0-6, StoneT2000 0-6, battlecode20-team4 0-6, mvpatel2000 0-6, winkel
 fielded 69-423 drones. Three `finalbota` packages (IvanGeffner, battlecode20-team4, and ronniesong0809 before) all
 finish us at r1562-1575 -- the same lift-and-bury. The shield as built is absent where it is needed; a complete one
 would hold against any number of drones (drones cannot lift drones), so presence is the problem to solve.
+
+**sub81 blocks 2-3: 10-38 and 13-35. cand81s8 closes at 1783 +- 48 on 240 band games (85-155), g_iter12 1814 +- 39 --
+Iteration 81 NOT KEPT** (ledger, scorecard). The +47 of arm 81c was the pool's (the later blocks met the stronger band
+around 1861: IvanGeffner, StoneT2000, battlecode20-team4 0-6 each). `src/bot` = g_iter12. Next: the design panel's
+plan for Iteration 82 and the spending-window census (`tools/window-census.sh` over the 240 cand81s8 replays).

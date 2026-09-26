@@ -12,7 +12,6 @@ public strictfp class Drone extends Robot {
     private MapLocation water;                 // nearest flooded tile seen
     private MapLocation patrol;
     private int pickups = 0, drops = 0;
-    private boolean charging = false;
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
 
@@ -24,9 +23,7 @@ public strictfp class Drone extends Robot {
         // danger: an enemy gun in sight
         MapLocation gun = null; int gd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canShoot()) { int d = loc.distanceSquaredTo(e.location); if (d < gd) { gd = d; gun = e.location; } } }
-        boolean raider = round >= C.RAID_FROM && rc.getID() % 8 >= 2 && MapState.home != null;   // Iteration 61: about three in four drones raid; the rest stay home
-        if (raider && !rc.isCurrentlyHoldingUnit() && raid()) return;
-        if (gun != null && gd <= 24 && !charging && fleeFrom(gun)) return;
+        if (gun != null && gd <= 24 && fleeFrom(gun)) return;
         if (rc.isCurrentlyHoldingUnit()) {
             // drop into adjacent water, else fly toward water (or drop anywhere after a long carry)
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (rc.canDropUnit(d) && rc.senseFlooding(n)) { rc.dropUnit(d); drops++; Debug.log("@drown at=" + n); return; } }
@@ -48,30 +45,6 @@ public strictfp class Drone extends Robot {
             else patrol = new MapLocation(loc.x + nextInt(21) - 10, loc.y + nextInt(21) - 10);
         }
         nav.setTarget(patrol); if (!nav.step()) patrol = null;
-    }
-
-    /** Iteration 61: gather beside the enemy HQ out of its gun's reach; when RAID_MIN of ours are in sight, charge the ring
-     *  and lift a landscaper off it (the carry then drowns it, as any carry does). */
-    private boolean raid() throws GameActionException {
-        MapLocation eh = MapState.enemyHQ != null ? MapState.enemyHQ : MapState.enemyHQGuess(); if (eh == null) return false;
-        int friendsNear = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE) friendsNear++;
-        if (!charging && friendsNear + 1 >= C.RAID_MIN && loc.distanceSquaredTo(eh) <= 64) { charging = true; Debug.log("@charge with=" + (friendsNear + 1)); }
-        if (charging && friendsNear + 1 < 4) charging = false;   // the swarm is gone: regroup
-        if (charging) {
-            // anything of theirs in reach first (the ring's seats are shielded by helpers at Chebyshev 2: lift those, then
-            // the seats; the first form aimed at the seats and lifted nothing in 18 charges)
-            for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if ((e.type == RobotType.LANDSCAPER || e.type == RobotType.MINER) && rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; Debug.log("@raidpick id=" + e.ID + " dHQ=" + e.location.distanceSquaredTo(eh)); return true; } }
-            RobotInfo tgt = null; int bd = 1 << 30;
-            for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type != RobotType.LANDSCAPER && e.type != RobotType.MINER) continue; if (e.location.distanceSquaredTo(eh) > 18) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
-            if (tgt != null) { if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@raidpick id=" + tgt.ID + " dHQ=" + tgt.location.distanceSquaredTo(eh)); return true; }
-                nav.setTarget(tgt.location); nav.step(); return true; }
-            nav.setTarget(eh); nav.step(); return true;
-        }
-        // rally: 7-8 out from the enemy HQ on our side, outside its gun
-        MapLocation h = MapState.home; int dx = Integer.signum(h.x - eh.x), dy = Integer.signum(h.y - eh.y);
-        MapLocation rally = new MapLocation(eh.x + 5 * dx, eh.y + 5 * dy);
-        if (loc.distanceSquaredTo(rally) > 8) { nav.setTarget(rally); nav.step(); }
-        return true;
     }
 
     /** The nearest flooded tile in sight, or null. */

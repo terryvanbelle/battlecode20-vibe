@@ -17,23 +17,14 @@ public final class C {
     public static final int SOUP_MEMORY = 12;         // remembered soup tiles per miner
     public static final int SOUP_SCAN = 12;           // visible soup tiles sampled per scan (bytecode)
     public static final int SOUP_BAD = 8;             // unreachable soup regions a miner remembers
-    public static final int VAPORATOR_BANK = 500;     // a builder buys a vaporator when the bank exceeds this
+    public static final int VAPORATOR_BANK = 650;     // a builder buys a vaporator when the bank exceeds this
     public static final int FC_EARLY_BANK = 350;      // Iteration 2: the fulfillment center comes right after the school, at this bank
-    public static final int VAPORATORS_MAX = 40;
+    public static final int VAPORATORS_MAX = 6;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
-    public static final int NETGUNS_MAX = 0;
+    public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
     public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
     public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
-    // Iteration 69 (EmaPajic's raid, read 2026-09-26 -- reviewable at 23%): 136 drones by r1500 lift our ten wall
-    // landscapers in twenty rounds and drop theirs by our HQ; scale 24 -> 70 drones from r700, charge with 20.
-    // Iteration 61: the raid. The field wins r1500-2300 with 8-25 drones lifting wall landscapers off the ring; our late
-    // bank (2,000+ soup unspent from r800 on the ladder's late games) buys the same.
-    public static final int RAID_DRONES_MAX = 150;     // drones built in all, from RAID_BUILD_FROM
-    public static final int RAID_BUILD_FROM = 900;
-    public static final int RAID_FROM = 1400;         // the swarm gathers from this round
-    public static final int RAID_MIN = 20;            // and charges with this many in sight of the rally point
-    public static final int RAID_HOME_GUARD = 3;      // the first three drones never raid
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
 
@@ -41,16 +32,11 @@ public final class C {
     public static final int WALL_LANDSCAPERS = 8;     // one per ring tile
     public static final int WALL_HELPERS = 8;         // Iteration 3: a second ring at distance 2 feeding dirt onto the seats
     public static final int HELPER_BANK = 200;        // Iteration 43b: was 300, 43 tried 0 (the HQ starved of miners); 200 leaves the HQ its MINER_SOUP_RESERVE -- the bank it guarded is never spent (12,000 unspent at r3000)
-    public static final int LANDSCAPERS_MAX = 40;     // the surplus attacks
+    public static final int LANDSCAPERS_MAX = 24;     // the surplus attacks
     public static final int ATTACKER_BANK = 200;      // Iteration 43b: was 700, 43 tried 0 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;
     public static final boolean ASSUME_ORIGIN = true;
-    // Iteration 78: ronniesong0809's lattice (read 2026-09-26, PROMPTS 45). Around the HQ, every tile with an even
-    // x or an even y offset is GRID, raised with the water; the odd-odd CELLS are pits (dirt) or buildings.
-    public static final int LATTICE_R = 4;             // Chebyshev radius of the lattice
-    public static final int LOT_ABOVE = 3;             // stage 11 (winkelmantanner's lattice, read 2026-09-26): lots stand ABOVE the grid -- walkways at 7, vaporator pads at 9-10, pits left to flood; its vaporators lived to r1700-1800 on a map that floods at r677
-    public static final int GRID_MIN = 7;              // the grid's floor height (stage 5: 8 -> 5 -- a grid raised past a building's tile + 3 boxes its spawns in; the school at ground stopped at eight landscapers)
     public static final int RUSH_GIVEUP = 200;         // Iteration 63: our rusher goes back to mining after this round
     public static final int RUSH_LANDSCAPERS = 8;      // Iteration 63: the forward school's landscapers
     public static final int BUILD_DIST = 2;           // Chebyshev distance from the HQ at which buildings go (ring is 1)
