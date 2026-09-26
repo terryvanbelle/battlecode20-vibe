@@ -3325,3 +3325,10 @@ RandomSoup1 seed 7, vs g_iter12):** 31 drones by r1000, 19 charges, **14 lifts, 
 17 -> 4 by r1500**; we win at r3078 (g_iter12's mirror of this seed ran to r3229). The enemy's wall was already tall
 when it lost its bodies, so it stood to r3078 -- EmaPajic finishes the job by dropping its own landscapers beside the
 bare HQ; ours does not yet. `gate69` (paired mirror vs g_iter12) launched.
+
+**Iteration 70 (`src/cand70` = cand69 + EmaPajic's finish: once the enemy ring is bare, drones fetch our landscapers
+and set them down beside the enemy HQ).** Driver, RandomSoup1: no fetch ever fires -- the ring is never bare. The
+raid lifts 14 (helpers first) and the four seats stay; the enemy HQ's gun thins our swarm from 31 drones to 12 by
+r1500, and our bank (472 at r1000) buys no more. EmaPajic can finish because it brings 136 drones and loses what the
+gun takes; the copy is capped by our economy, not by its logic. cand70 rests; gate69 decides whether the lifts alone
+are worth it.
