@@ -3694,3 +3694,14 @@ winkelmantanner 2-10 / 14-28, EmaPajic 4-8 / 21-21 (raid-window losses 42% / 40%
 losses the center stood in 9 and a full shield in 1: the mechanism rarely forms in the field, so the +47 is not yet
 the shield's. Next, as TRAINING_ALGORITHM 4.4 asks of a field-only change: the plain paired mirror gate (`gate81`,
 must not REJECT), and a raid archetype that raids on every map for the paired archetype gate (must ACCEPT).
+
+**`arch_raider` is no harness for the shield:** g_iter12 and cand81s8 both beat it on RandomSoup1, CentralLake, NoU
+and DoesNotExist (seed 7); it fields at most 11 drones and lifts 0-20. The field raids with 100-400 drones, and no
+archetype of ours reproduces that (it needs the economy we lack), so the shield is judged by the ladder, with the plain
+paired mirror (`gate81`) for its cost.
+
+**Tool fault found and fixed:** `tools/vm-sync.sh` did `rm -rf src tools test progress && tar -x`, so launching any VM
+run while another was live left that run without `tools/` for a moment -- launching `raider81` during `gate81` cost
+about ten cells of gate81's batch 2 (`tools/lib.sh: No such file or directory`; those cells read as concordant losses,
+so the discordant count the gate judges by is short, not biased). The sync now unpacks into `.sync.new` and swaps each
+tree in by rename.
