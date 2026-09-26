@@ -62,7 +62,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `EmaPajic.Mark3` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `EmaPajic.Mark4` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `EmaPajic.Mark5` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
-| `EmaPajic.Qualifications` | EmaPajic_Battlecode-2020 (c060a22) | 50 | 42 | peer | 20 0 21 0 50 0 17 38 8 25 10 17 20 33 33 30 20 50 42 33 33 40 33 |
+| `EmaPajic.Qualifications` | EmaPajic_Battlecode-2020 (c060a22) | 50 | 42 | peer | 20 0 21 0 50 0 17 38 8 25 10 17 20 33 33 30 20 50 42 33 33 40 39 |
 | `EmaPajic.SeedingBot` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `GabrielDWu.basicbot` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
 | `GabrielDWu.blezerbot` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
@@ -80,7 +80,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `IvanGeffner.dronecrunchplus` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
 | `IvanGeffner.ecoplayer` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
 | `IvanGeffner.ecoplus` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
-| `IvanGeffner.finalbota` | IvanGeffner_battlecode2020 (bc7dbca) | 17 | 12 | locked | 0 8 12 18 0 0 17 42 0 0 |
+| `IvanGeffner.finalbota` | IvanGeffner_battlecode2020 (bc7dbca) | 17 | 12 | locked | 0 8 12 18 0 0 17 42 0 0 0 |
 | `IvanGeffner.finalbotb` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
 | `IvanGeffner.finalbotc` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
 | `IvanGeffner.landscaperop` | IvanGeffner_battlecode2020 (bc7dbca) | - | - | untested |  |
@@ -120,7 +120,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `StoneT2000.Chow7` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.Chow8` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.Chow9` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
-| `StoneT2000.FinalChowBotStable` | StoneT2000_Battlecode2020 (4d6003c) | 8 | 12 | locked | 100 0 8 |
+| `StoneT2000.FinalChowBotStable` | StoneT2000_Battlecode2020 (4d6003c) | 8 | 12 | locked | 100 0 8 0 |
 | `StoneT2000.attackbot` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.farmbot1` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
 | `StoneT2000.jan9` | StoneT2000_Battlecode2020 (4d6003c) | - | - | untested |  |
@@ -160,7 +160,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `arya-k.donothing` | arya-k_bc20 (1b969b3) | - | - | untested |  |
 | `atliSig.buttletplayer` | atliSig_battlecode20-scaffold (b64b063) | 100 | 2 | peer(>90 once) | 100 100 |
 | `awesomelemonade.citricsky` | awesomelemonade_Battlecode2020 (7a50e66) | 0 | 11 | locked | 0 0 3 0 0 0 |
-| `battlecode20-team4.finalbota` | battlecode20-team4_battlecode20-scaffold (1cee065) | 10 | 30 | locked | 0 8 23 24 25 18 14 7 10 8 0 |
+| `battlecode20-team4.finalbota` | battlecode20-team4_battlecode20-scaffold (1cee065) | 10 | 30 | locked | 0 8 23 24 25 18 14 7 10 8 0 0 |
 | `battlecode20-team4.team4enemy` | battlecode20-team4_battlecode20-scaffold (1cee065) | - | - | untested |  |
 | `battlecode20-team4.team4player` | battlecode20-team4_battlecode20-scaffold (1cee065) | - | - | untested |  |
 | `battlecode.lectureplayer` | battlecode_lectureplayer (2836576) | - | - | untested |  |
@@ -246,7 +246,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `mvpatel2000.oldhades` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.poseidon` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.quail` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
-| `mvpatel2000.qual` | mvpatel2000_Battlecode2020 (554943e) | 26 | 42 | target | 0 8 24 13 67 12 0 12 20 46 8 23 30 26 42 33 0 17 50 |
+| `mvpatel2000.qual` | mvpatel2000_Battlecode2020 (554943e) | 26 | 42 | target | 0 8 24 13 67 12 0 12 20 46 8 23 30 26 42 33 0 17 33 |
 | `mvpatel2000.qualAttacc` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.qualNoAtacc` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.seeding` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
@@ -280,7 +280,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `poortho.rush` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
 | `poortho.rush_bot` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
 | `poortho.stable_miner1` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
-| `poortho.stable_seeding_bot` | poortho_battlecode-2020 (ebbd61e) | 31 | 42 | target | 0 17 27 31 0 30 31 50 39 33 25 33 33 17 42 37 33 17 27 30 31 58 25 0 33 42 |
+| `poortho.stable_seeding_bot` | poortho_battlecode-2020 (ebbd61e) | 31 | 42 | target | 0 17 27 31 0 30 31 50 39 33 25 33 33 17 42 37 33 17 27 30 31 58 25 0 33 39 |
 | `ps789.dennisTestPlayer` | ps789_AZBattlecode (f1d54ab) | - | - | untested |  |
 | `ps789.phillipTestPlayer` | ps789_AZBattlecode (f1d54ab) | - | - | untested |  |
 | `ronniesong0809.finalbota` | ronniesong0809_battlecode20-RADS (1cee065) | 7 | 30 | locked | 0 18 15 7 0 0 7 |

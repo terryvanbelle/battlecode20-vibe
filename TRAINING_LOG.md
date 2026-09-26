@@ -3711,3 +3711,11 @@ tree in by rename.
 as it must for a defence against raids the mirror never makes. cand81s8 stays eligible; its ladder run is extended to
 240 band games (`sub81`, three more blocks) to tighten the field estimate (1861 +- 72 on 96), and the next design is
 how to make the shield form in the field games where it was absent (block 1: the center in 9 of 24 losses).
+
+**sub81 block 1 (`20260926-194153-scrim-cand81s8`): 9-39 against a stronger band** (centred on cand81s8's 1861:
+IvanGeffner 0-6, StoneT2000 0-6, battlecode20-team4 0-6, mvpatel2000 0-6, winkelmantanner 1-5, poortho 2-4, EmaPajic
+3-3, rzhan11 3-3). **cand81s8 now 1808 +- 60 on 144 games (g_iter12 1814 +- 39): the arm's +47 was noise.** 15 of the
+39 losses in the raid window, and **in 14 of those 15 the shield never existed** (no center, no drone) while the enemy
+fielded 69-423 drones. Three `finalbota` packages (IvanGeffner, battlecode20-team4, and ronniesong0809 before) all
+finish us at r1562-1575 -- the same lift-and-bury. The shield as built is absent where it is needed; a complete one
+would hold against any number of drones (drones cannot lift drones), so presence is the problem to solve.
