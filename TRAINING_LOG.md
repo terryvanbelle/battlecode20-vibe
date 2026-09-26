@@ -3410,3 +3410,7 @@ the paired gates' kept game files, and 368 diagnostic replays. The first block's
 **Iteration 75 (`src/cand75` = g_iter12 with `RUSH_GIVEUP` 200 -> 120):** a small one while the enclosure waits for the
 owner. The rush census: of the 15 plants that spawned no attacker, 11 came after r120; a late plant costs the school's
 150 and a miner's 80 rounds for nothing. `gate75` (paired mirror vs g_iter12).
+
+**Gate 75 (the rusher gives up at r120): 16-25 discordant in 320 pairs -- against; not kept.** The late plants that
+spawn nothing are outweighed by the late plants that do. **Iteration 76 (`src/cand76`: `RUSH_GIVEUP` 200 -> 350)**, the
+other direction; `gate76`.
