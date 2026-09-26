@@ -3403,4 +3403,4 @@ a program, not an iteration; for the owner's morning discussion.
 first could not write its results table. Freed 7.2 GB by deleting the replays and loss files of every posted block
 before g_iter11 (their tables live in progress/games.csv, their studies in gauntlet/<run>/study.tsv on the driver),
 the paired gates' kept game files, and 368 diagnostic replays. The first block's table was rebuilt from its raw lines
-(48 games); the second is being replayed (`sub12c`). HANDOFF's gotchas note the VM disk.
+(48 games); the second is being replayed (`sub12c`). The driver was at 99% too: its old blocks' replays and gate games pruned (2.6 GB; 3.0 GB free). HANDOFF's gotchas note both disks.
