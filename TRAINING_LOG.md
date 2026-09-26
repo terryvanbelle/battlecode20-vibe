@@ -3631,3 +3631,12 @@ raids it answers are the field's, not the mirror's. **Arm 81 (`arm81`): 96 band 
 its rating against g_iter12's 1818 +- 39; its losses between r1300 and r2000 against g_iter12's 50 of 240 (20.8%); and in
 its losses, how many had the ring's landscapers lifted (g_iter12's kept block: 15 of 27). The paired mirror gate follows
 if the arm is not below g_iter12.
+
+**Arm 81, block 1 (`20260926-165038-scrim-cand81`): 45-3 -- against the wrong pool.** An unrated candidate's pool was
+centred on the build of our latest game, which was the enclosure archetype's probe (1406): eight bottom-of-field bots
+(ARognes, TeamSerpentine, VinayaBhat, WilliamYue37, cs454-w20-team3, eggag32, jenlz, mhahn2003). The fit places cand81
+at 1820 +- 178 from it (g_iter12 1817 +- 39) -- it stays in the ladder but is not the arm. Block 2 (same pool, the VM's
+history not yet updated) was stopped and discarded. **Fixed:** `elolib.current_build` -- the fallback centre for an
+unrated build -- is now the incumbent (our latest g_iterN), not the build of our latest game. The arm is rerun as two
+blocks of 48 in the band (poortho, EmaPajic, laurenschneider, mvpatel2000, cormackikkert, winkelmantanner, benzyx,
+IvanGeffner).

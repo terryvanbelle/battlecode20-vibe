@@ -12,7 +12,7 @@ set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BOT="${BOT:-bot}"; N="${N:-24}"; MAXJOBS="${MAXJOBS:-6}"
 # The pool (2026-09-24, PROMPTS 8-17): ratings are the batch Bradley-Terry fit of tools/elolib.py, and the
-# pool is centred on BOT's own rating (a candidate with no games yet uses the build of our latest game).
+# pool is centred on BOT's own rating (a candidate with no games yet uses the incumbent, our latest g_iterN).
 # tools/roster.txt is used until 40 games exist.
 # Refuse rather than fall back silently. The roster fallback is only legitimate before the ladder has
 # 40 games; a MISSING games.csv means the history did not reach this machine, and quietly substituting a

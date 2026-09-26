@@ -48,7 +48,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `9mAhmad.MahinBot` | 9mAhmad_MahinBot (d453c11) | 100 | 2 | peer(>90 once) | 100 100 |
 | `9mAhmad.lostincoordinates` | 9mAhmad_lostincoordinates (1696925) | 100 | 2 | peer(>90 once) | 100 100 |
 | `A9ine.potato` | A9ine_Battlecode-Hashbrowns (759bee2) | 100 | 2 | peer(>90 once) | 100 100 |
-| `ARognes.FinalSubmission` | ARognes_Battlecode (2ebba1e) | 92 | 12 | peer(>90 once) | 60 79 92 |
+| `ARognes.FinalSubmission` | ARognes_Battlecode (2ebba1e) | 92 | 12 | peer(>90 once) | 60 79 92 100 |
 | `ARognes.MinerPathfinding` | ARognes_Battlecode (2ebba1e) | - | - | untested |  |
 | `ARognes.TurtleBot` | ARognes_Battlecode (2ebba1e) | - | - | untested |  |
 | `ARognes.communication` | ARognes_Battlecode (2ebba1e) | - | - | untested |  |
@@ -138,7 +138,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `Strequals.rw_jammer` | Strequals_Battlecode2020 (228cc25) | - | - | untested |  |
 | `Sukanya-Kothapally.team4player` | Sukanya-Kothapally_MIT-Battlecode20-RADS (c18961f) | 100 | 2 | peer(>90 once) | 100 100 |
 | `TeamSerpentine.lectureplayer` | TeamSerpentine_battlecode-2020-noodles (816ad6f) | - | - | untested |  |
-| `TeamSerpentine.noodleBot` | TeamSerpentine_battlecode-2020-noodles (816ad6f) | 92 | 12 | peer(>90 once) | 50 67 86 92 |
+| `TeamSerpentine.noodleBot` | TeamSerpentine_battlecode-2020-noodles (816ad6f) | 92 | 12 | peer(>90 once) | 50 67 86 92 100 |
 | `TeamSerpentine.eendagsvliegjes` | TeamSerpentine_battlecode-2020-snakeeyes (9b812b2) | 100 | 2 | peer(>90 once) | 100 100 |
 | `TeamSerpentine.serpentineSnakeEyes` | TeamSerpentine_battlecode-2020-snakeeyes (9b812b2) | - | - | untested |  |
 | `Tim-gubski.AngryWaffleMaker` | Tim-gubski_BattleCode-2020 (c252b31) | 83 | 12 | peer | 50 100 50 83 100 |
@@ -153,8 +153,8 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `Tim-gubski.Waffler` | Tim-gubski_BattleCode-2020 (c252b31) | - | - | untested |  |
 | `Tim-gubski.Yoinker` | Tim-gubski_BattleCode-2020 (c252b31) | - | - | untested |  |
 | `Tolsi.mybot` | Tolsi_my-battlecode2020-player (32cc500) | 100 | 2 | peer(>90 once) | 100 100 |
-| `VinayaBhat.team10pdx` | VinayaBhat_BattleCode2020 (b8a7b19) | 100 | 2 | solved | 50 100 100 |
-| `WilliamYue37.Player1` | WilliamYue37_Battlecode (63a973c) | 92 | 12 | peer(>90 once) | 100 78 92 |
+| `VinayaBhat.team10pdx` | VinayaBhat_BattleCode2020 (b8a7b19) | 100 | 2 | solved | 50 100 100 100 |
+| `WilliamYue37.Player1` | WilliamYue37_Battlecode (63a973c) | 92 | 12 | peer(>90 once) | 100 78 92 100 |
 | `anthonybench.FunkBot` | anthonybench_MITBattleCode-2020 (38fbb99) | 100 | 2 | peer(>90 once) | 100 100 |
 | `anthonybench.redemptionplayer` | anthonybench_MITBattleCode-2020 (38fbb99) | - | - | untested |  |
 | `arya-k.donothing` | arya-k_bc20 (1b969b3) | - | - | untested |  |
@@ -179,7 +179,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `cormackikkert.whyPermutatorOld` | cormackikkert_battlecode2020 (4d230c4) | - | - | untested |  |
 | `cosimogonnelli.Team3player` | cosimogonnelli_CS454-554-SE (d7dc657) | 100 | 2 | peer(>90 once) | 80 100 |
 | `cs454-w20-team3.oldbot` | cs454-w20-team3_team3-bot (502c334) | - | - | untested |  |
-| `cs454-w20-team3.playbot` | cs454-w20-team3_team3-bot (502c334) | 92 | 12 | peer(>90 once) | 25 83 78 92 92 |
+| `cs454-w20-team3.playbot` | cs454-w20-team3_team3-bot (502c334) | 92 | 12 | peer(>90 once) | 25 83 78 92 92 83 |
 | `cs454-w20-team3.team3player` | cs454-w20-team3_team3-bot (502c334) | - | - | untested |  |
 | `denver-blake.sprint` | denver-blake_Battlecode2020 (1b4a631) | 100 | 2 | peer(>90 once) | 100 100 |
 | `djkeyes.addingComm` | djkeyes_battlecode20-scaffold (189c057) | 100 | 2 | peer(>90 once) | 100 100 |
@@ -188,9 +188,9 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `djkeyes.noop` | djkeyes_battlecode20-scaffold (189c057) | - | - | untested |  |
 | `djkeyes.noopemptystubsplayer` | djkeyes_battlecode20-scaffold (189c057) | - | - | untested |  |
 | `djkeyes.pathfinding` | djkeyes_battlecode20-scaffold (189c057) | - | - | untested |  |
-| `eggag32.BrutalPigeonBot` | eggag32_Battlecode-2020 (32f905f) | 79 | 24 | peer | 100 75 78 75 79 83 75 83 75 75 |
+| `eggag32.BrutalPigeonBot` | eggag32_Battlecode-2020 (32f905f) | 79 | 24 | peer | 100 75 78 75 79 83 75 83 75 75 83 |
 | `fewella.FirstPlayer` | fewella_Battlecode2020-DOGGO (a6cd49a) | 100 | 2 | peer(>90 once) | 100 100 |
-| `jenlz.bustedJulianbot` | jenlz_battlecode-exploding-gradients (88ba625) | 88 | 8 | peer | 100 88 |
+| `jenlz.bustedJulianbot` | jenlz_battlecode-exploding-gradients (88ba625) | 88 | 8 | peer | 100 88 100 |
 | `jenlz.clonebot` | jenlz_battlecode-exploding-gradients (88ba625) | - | - | untested |  |
 | `jenlz.insecureplayer` | jenlz_battlecode-exploding-gradients (88ba625) | - | - | untested |  |
 | `jenlz.julianbot` | jenlz_battlecode-exploding-gradients (88ba625) | - | - | untested |  |
@@ -223,7 +223,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `max-titov.turtlebot` | max-titov_2020.battlecode-KFA (496103d) | - | - | untested |  |
 | `mhahn2003.bot01` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
 | `mhahn2003.lectureplayer` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
-| `mhahn2003.nonrush` | mhahn2003_bc20 (7475d5e) | 80 | 30 | peer | 25 58 80 92 77 100 75 67 83 75 80 75 83 |
+| `mhahn2003.nonrush` | mhahn2003_bc20 (7475d5e) | 80 | 30 | peer | 25 58 80 92 77 100 75 67 83 75 80 75 83 83 |
 | `mhahn2003.pure_teraform` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
 | `mhahn2003.rngform` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |
 | `mhahn2003.rush` | mhahn2003_bc20 (7475d5e) | - | - | untested |  |

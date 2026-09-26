@@ -7,7 +7,7 @@ each other: user rule, PROMPTS 27). A bot we have never met is unrated.
    tools/elo.py --pool 6 --explore 2   # old pool: the 6 rated bots just above us + 2 bots with the fewest games
    tools/elo.py --build g_iter4        # one build: record (Wilson 95%), rating, expected score vs the field
 --as names the build whose rating centres the pool; unset, or a build with no games yet (a candidate,
-'bot'), it is the build of our most recent game."""
+'bot'), it is the incumbent: our most recent submitted build (g_iterN)."""
 import argparse, math, os, sys, collections
 # the chart needs matplotlib, which lives in tools/.venv: re-exec there when it exists
 _venv = os.path.join(os.path.dirname(os.path.abspath(__file__)), '.venv', 'bin', 'python')

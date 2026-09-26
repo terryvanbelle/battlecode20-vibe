@@ -54,11 +54,17 @@ def field_score(R, player, field):
     """Expected score of `player` against every bot of `field`, one game each."""
     return sum(expected(R[player], R[b]) for b in field) / len(field) if field else 0.0
 def current_build(rows):
-    """The build of our most recent game (the incumbent in play)."""
+    """The incumbent: the build of our most recent game among the submitted line (g_iterN), else of our most recent game.
+    (2026-09-26: an unrated candidate's first block was centred on the build of our latest game -- the enclosure
+    archetype's 48-game probe at 1406 -- and drew a pool 400 points weak: arm81's first block went 45-3.)"""
+    last = None
     for r in reversed(rows):
         for t in (r['teamA'], r['teamB']):
-            if is_ours(t): return build_of(t)
-    return None
+            if not is_ours(t): continue
+            b = build_of(t)
+            if b.startswith('g_iter'): return b
+            last = last or b
+    return last
 def ladder_bots():
     p = os.path.join(REPO, 'tools', 'ladder-bots.txt')
     return [l.strip() for l in open(p) if l.strip() and not l.startswith('#')]
