@@ -3243,7 +3243,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
-| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school); cand66 (miner freeze) | 62r 13-13; 64 refuted at the diagnostic; 66 10-14 vs g_iter12's own rush -- none kept |
+| school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school); cand66 (miner freeze); cand71 (alarm center) | 62r 13-13; 64, 71 refuted at the diagnostic; 66 10-14 -- none kept |
 | late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 null; cand69 (EmaPajic's scale): gate 3-0; **arm69 running** | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
@@ -3337,3 +3337,8 @@ are worth it.
 The mirror cannot see a raid (g_iter12's own rush and wall decide those games first). As with 65, the ladder is where
 the raid window is: **`arm69`**, 96 band games as `us:cand69` (pre-registered: rating against g_iter12's 1817 +- 46 and
 the r1300-2000 loss rate against its 20.8%; arm65's was 24.0%).
+
+**Diagnostic 71 (driver; an enemy miner within 6 of our HQ before r120 sends the builder to buy the rush center):**
+GSF as B against g_iter12's rush -- dead at r187, where g_iter12 against itself wins this seed as B (r933). The alarm
+fires at r41 and the builder spends the next rounds walking to a far stand; no center, no drone, no school in time.
+Refuted; `src/cand71` kept. The rush defence stands at 0 of 5 against a real rusher.
