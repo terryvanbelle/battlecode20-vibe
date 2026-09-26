@@ -3603,3 +3603,16 @@ dropped onto it, and the ring's landscapers dig under them (digging under a unit
 drone takes the nearest free Chebyshev-2 tile and never leaves it (it lifts and keeps an enemy unit beside it); the
 center builds up to 20 drones (was 8). Diagnostic: against our raider cand69 (the harness: up to 70 drones from r1400)
 with g_iter12 as the control, six maps.
+
+**Diagnostic 81 against cand69 (six maps, the control g_iter12 vs cand69):** four maps have no center on either side (no
+drones, identical games); RandomSoup1: the shield took only 4 tiles and the raider still lifted 12 (control 19);
+CentralLake lost at **r2607 against the control's r3058 with no raid at all** -- the wall's outside dig skipped every tile
+under one of our own units, so the drones on Chebyshev 2 starved it. Fixed (the wall digs under our drones). Rerun:
+**RandomSoup1 16 tiles held, the wall keeps rising through the raid (1,477-1,726 at r2500 against the control frozen at
+1,133), r3125 against r3046**; CentralLake 16 tiles, wall 1,176 against 966, r3092 against r3058. **Stage 2: the
+shield's center on every map** (school up, r300; it came only after a vaporator). Diagnostic, cand81 against cand69 and
+against g_iter12, the g_iter12 mirror as control: the shield forms (16/16/3/9/2/3 tiles), but in the mirror the wall
+ends lower on four maps (RandomSoup1 2,103 against 2,219 -- a win lost; MtDoom 1,920 / 2,156; TwoLakeLand 1,398 /
+1,509; Squares 1,829 / 1,910 -- a tiebreak win lost) and higher on two (CentralLake 1,171 / 962; IceCream 1,622 /
+1,477): the drones, built at a 250 reserve, took the helpers' soup. **Stage 3: the center keeps 600 back** -- the
+drones are paid from the surplus the school leaves (the control idles 776-10,556 at r1000).
