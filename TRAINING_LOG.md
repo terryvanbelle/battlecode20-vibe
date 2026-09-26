@@ -3666,3 +3666,12 @@ lost) and DoesNotExist's 1,739 against 1,994 (still a win). Traced (DoesNotExist
 r690-720 and **we lose 7 landscapers there against the control's 2** -- a helper at Chebyshev 2 escapes the water by
 climbing to a dry neighbour, and the drones held those tiles. **Stage 7:** a drone takes only FLOODED Chebyshev-2 tiles
 (useless to a helper, and the ones a raider hovers on); until one is free it waits five out.
+
+**Stage 7 (flooded tiles only), twelve maps:** RandomSoup1's win restored (wall 2,203 against 2,219, 16 tiles held);
+CentralLake better; no change where there is no surplus; but Egg lost a mirror win (wall 1,477 against 1,720) and
+DoesNotExist's wall stays 255 lower, both with 6-9 more landscapers drowned at the flood (r680-700). **Isolated:** the
+same deaths with the shield off (SHIELD_FROM never) and with the center alone (no drone built at all) -- the shield's
+center stood at Chebyshev 3 on the highest tile, which is where a helper at Chebyshev 2 climbs when its post floods.
+**Stage 8:** the shield's center 5 or more out, built by any miner 4-6 from home (the builder too) once the school is
+done; the builder's own later center is skipped when one is announced. (`src/cand81x`, `src/cand81y`: the isolation
+variants, deleted after this entry.)
