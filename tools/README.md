@@ -16,7 +16,7 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `field-score.py [--plot --tau]` | `progress/field-score.png`: every build's field score over time; the submissions' ratings fitted with a diminishing-returns curve (R0 + a ln(1 + t/tau)) and projected to the ends of the project's first and second weeks (Sep 30, Oct 7) with a 95% band, mapped to field scores through the current ladder fit; run by `post-block.sh` after every block (PROMPTS 28-30, 46) |
 | `paired.sh cells.txt` (BOT, REF, MAXJOBS, LOGTAG) | paired replay of a gate's cells (map, side, seed): the candidate game and the incumbent against itself on the same seed; fixed seeds make the engine deterministic, so a pair is concordant (identical to the round) wherever the change did not fire, and only the discordant pairs judge it (sign test); `tags` counts `LOGTAG` lines the candidate printed |
 | `lattice-diag.sh BOT TAG` (REF) | the six-map lattice diagnostic on the VM: BOT vs REF (g_iter12) on CentralLake, RandomSoup1, MtDoom, Squares, TwoLakeLand, IceCream at seed 7, in parallel; each result and BOT's economy at r500-2000 |
-| `window-census.sh gauntlet/<run> ...` | the spending-window census: for every replay of the runs, our soup, miners, landscapers, schools, centers and drones at r300-900 with the end round and result (CSV) |
+| `window-census.sh gauntlet/<run> ...` | the spending-window census: for every replay of the runs, our soup, miners, landscapers, schools, centers, drones and vaporators at r300-2000 with the end round and result (CSV) |
 | `sprt.py <wins> <losses>` | sequential probability ratio test, H0 p=0.50 vs H1 p=0.58: ACCEPT / REJECT / CONTINUE |
 | `scrim.sh` (BOT, N, POOL, SEED) | the only way to play an external bot: random map and side, rotating opponents from the rating band around `BOT` (default); `POOLSIZE=0 EXPLORE=n` is a calibration block of never-played bots; `CHALLENGE=1`, `POOLMODE=above`/`established` select the old pools |
 | `scrim-record.py <run> --label <build>` | appends a block to `progress/games.csv` (with each game's seed) |
@@ -28,7 +28,7 @@ Everything runs with bare `java` (JDK 8 at `~/jdk/jdk8u504-b01`, exported by `to
 | `tier-check.sh replay` | reports a replay's opponent tier from `BENCHMARK.md` (informational since PROMPTS 45; never refuses) |
 | `vm.sh`, `vm-sync.sh`, `vm-run.sh <log> '<cmd>'`, `vm-tail.sh`, `vm-collect.sh <run>`, `vm-stop.sh` | the VM handles |
 | `unit-tests.sh` | compile and run `test/bot/*Test.java` and `tools/test_tools.py` |
-| `mapinfo/MapInfo.java` | the map corpus table `tools/mapdata.csv` |
+| `mapinfo/MapInfo.java` | the map corpus table `tools/mapdata.csv` (with the natural high ground around HQ A: tiles at 8+/12+/20+ at Chebyshev 3-6, the highest, and when the 4th-highest floods) |
 | `post-block.sh <run> <label>` | after a scrimmage block: collect, record, ratings, roster, study, correlate, onset (one command) |
 | `scrim-study.sh <run>` | the block study: `--metrics` and `--navstats` for every replay -> `study.tsv`, `nav.tsv`; `scrim-study.py` prints medians |
 | `correlate.py <run> [--round N]` | raw and within-opponent correlation of each metric with the result |
