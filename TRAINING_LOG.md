@@ -3169,3 +3169,6 @@ r130-264 in 144 games. Read (GSF as A, r130, tier-check passes): the rush center
 seven miners by r60 and the bank sat at 89-129 -- never the 150 for a drone -- while four landscapers buried the HQ
 3 -> 37 from r80 to r120. **Iteration 59 (`src/cand59` = g_iter11 + no miner past the early four while a rush is in
 sight):** the soup goes to the drones. Gates: vs `arch_rush` and the plain mirror, as for 58.
+
+**g_iter11 submitted: 240 band games, 107-133, rating 1751 +- 47, rank 13 of 85** -- the best submission yet (g_iter10
+1738 +- 47, g_iter9 1714 +- 49 on the refit), field score 76.3%. Projection: 82.5% at +7 days, 85.1% at +14.
