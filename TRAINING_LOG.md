@@ -3244,7 +3244,7 @@ separate submission). Evaluated here as it runs; to discuss with the owner.
 | tactic (who beats us with it) | offence | offence gate | offence ladder | defence | defence gate |
 |---|---|---|---|---|---|
 | school rush (poortho, 9 of 240 g_iter10 losses by r276) | cand63 -> **g_iter12** | **ACCEPT 60-34** | **1823 +- 46, +79 on g_iter11; 53 fast wins vs 18** | cand62 (school at once); cand64 (bury their school) | 62r 13-13, not kept; 64 refuted at the diagnostic (r264 -> r220) |
-| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65 (96 games) running | -- | -- |
+| late drone raid (team4, EmaPajic, ronniesong0809: r1300-2000) | cand61 / cand65 | 9-0 and 5-0: provisional twice | arm65: 1789 +- 73, raid-window losses 24% vs 21% -- null; closed | -- | -- |
 
 Side effect so far: copying the rush produced `arch_rush2`, the first archetype that reproduces a field bot's win
 against us (g_iter11 dead at r166 on GSF, poortho r130), and the corpus-origin finding (assume (0,0): 47 of 47 maps).
@@ -3296,3 +3296,9 @@ against g_iter12 is a rush harness with no archetype. **Iteration 66 (`src/cand6
 HQ: no miner past the early four while a rush is in sight or an enemy miner came within 6 before r150)** -- refuted
 against `arch_rush`, but poortho-style rushers are what it was for, and g_iter12 is one. `gate66` queued behind the
 raid arm.
+
+**Arm 65 (the raid on g_iter12): 96 games, 42-54, 1789 +- 73 (g_iter12 1817 +- 46); raid-window losses 23 of 96
+(24.0%) against g_iter12's 50 of 240 (20.8%). Null.** The raid neither wins more nor loses less in the window where
+the field's raids beat us. The raid line closes as built (`src/cand61`, `src/cand65` kept): our drones lift what the
+enemy leaves in reach and the field's walls are shielded; the field's raids work on our wall, not theirs. What is
+missing is not the tactic but the reason it works for them, and the bots that use it on us are locked.
