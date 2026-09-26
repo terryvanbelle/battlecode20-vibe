@@ -3155,3 +3155,11 @@ rush comes: a normal center born before r350 now also buys three cheap drones).
 
 **Gate 58r (paired vs `arch_rush`): ACCEPT, discordant 28-6.** The rush answer works against our rusher. The mirror
 gate (`gate58`, cand58 vs g_iter10 with no rusher) is running now for the cost; acceptance takes both.
+
+**Gate 58 (the plain mirror, cand58 vs g_iter10): 2-2 discordant in 320 pairs (concordant 168-148) -- no cost.**
+With gate 58r's ACCEPT (28-6 vs `arch_rush`), **`src/g_iter11` = g_iter10 + Iterations 57-58** (under a rush in sight,
+the builder buys the fulfillment center right after the school, placed three out on the side of the HQ farthest from
+the rusher's landscapers and school; a center born before r350 buys its first three drones at cost; the drones' guard
+lifts the rusher's landscapers and drowns them). The two-gate rule for archetype-specific changes is written into
+TRAINING_ALGORITHM 4.4. `src/bot` = g_iter11. Submission blocks `sub11` (5 x 48) launched; each posts with
+`post-block.sh <run> g_iter11`.

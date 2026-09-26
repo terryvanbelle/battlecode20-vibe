@@ -137,6 +137,11 @@ Every candidate passes through these in order, and most die early. That is the d
    16 pairs, cap 320 pairs. Unpaired, a gate scores the draw: gate 40c read 34-46 (REJECT) when 74 of its 80 pairs
    were concordant and the rest 4-2 for the candidate (2026-09-25). Without a fresh seed per game the same map
    and side replays the same game, and 240 draws hold at most 104 distinct games (2026-09-24).
+   **Against an archetype** (2026-09-26, Iteration 58): a change whose claim is about one kind of opponent that
+   one of our own archetypes reproduces (the rush: `arch_rush`) is gated twice -- paired against that archetype
+   (`OPP=arch_rush tools/mirror.sh`: the candidate and the incumbent each play the archetype on the same map, side
+   and seed), which must ACCEPT, and the plain paired mirror, which must not REJECT (the cost where the opponent is
+   absent). Our archetypes are unrestricted (CLAUDE.md rule 4); benchmark bots never serve.
    ACCEPT snapshots; REJECT reverts. At the cap the discordant pairs are read by the sign test, in either
    direction: p < 0.01 with at least 12 discordant pairs is an ACCEPT when they favour the candidate and a REJECT
    when they go against it (the SPRT's `p1 = 0.58` bound was set for the unpaired mirror and needs 20-0 on
