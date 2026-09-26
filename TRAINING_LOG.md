@@ -3302,3 +3302,8 @@ raid arm.
 the field's raids beat us. The raid line closes as built (`src/cand61`, `src/cand65` kept): our drones lift what the
 enemy leaves in reach and the field's walls are shielded; the field's raids work on our wall, not theirs. What is
 missing is not the tactic but the reason it works for them, and the bots that use it on us are locked.
+
+**Diagnostic 67 (driver; the first miner rushes, the second builds):** the rusher plants **later**, not sooner -- r174
+on GSF (g_iter12's second-miner rusher: r49; the enemy's g_iter12 rusher planted at r117 in the same game). The
+school waits on the bank, and the bank's first 150 comes when the second miner's walk ends anyway; the first miner
+spent its walk waiting. Refuted at the diagnostic; `src/cand67` kept.
