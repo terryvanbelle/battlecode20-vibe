@@ -3406,3 +3406,7 @@ the paired gates' kept game files, and 368 diagnostic replays. The first block's
 (48 games); the second is being replayed (`sub12c`). The driver was at 99% too: its old blocks' replays and gate games pruned (2.6 GB; 3.0 GB free). HANDOFF's gotchas note both disks.
 
 **g_iter12 firmed: 336 band games, 159-177, 1818 +- 39, rank 13 of 88, field score 80.4%.**
+
+**Iteration 75 (`src/cand75` = g_iter12 with `RUSH_GIVEUP` 200 -> 120):** a small one while the enclosure waits for the
+owner. The rush census: of the 15 plants that spawned no attacker, 11 came after r120; a late plant costs the school's
+150 and a miner's 80 rounds for nothing. `gate75` (paired mirror vs g_iter12).
