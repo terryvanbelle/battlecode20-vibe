@@ -3622,3 +3622,12 @@ against cand69 **5 lifts (control 19), 14 landscapers kept, the wall 1,970 at r2
 r3185 against r3046**. The other four maps unchanged from stage 2: a center born before r350 is g_iter12's rush center
 (Iteration 58) and buys three drones at cost whatever the bank -- 600 soup at r300-400, the helpers' soup. **Stage 4:
 the shield's center from r400 and with 450 in the bank.**
+
+**Stage 4 (the center from r400 with 450 banked), six maps:** no center where there is no surplus (Squares, TwoLakeLand,
+IceCream now identical to the control); MtDoom 8 tiles, wall 2,134 against 2,156, r3200 against r3202; CentralLake
+r3092 against r3058; RandomSoup1's mirror wall 2,064 against the control's 2,219 (a win lost), against cand69 10 lifts,
+the wall 1,411 against the frozen 1,133, r3117 against r3046. The mechanism fires wherever a surplus pays for it; the
+raids it answers are the field's, not the mirror's. **Arm 81 (`arm81`): 96 band games as `us:cand81`**, pre-registered:
+its rating against g_iter12's 1818 +- 39; its losses between r1300 and r2000 against g_iter12's 50 of 240 (20.8%); and in
+its losses, how many had the ring's landscapers lifted (g_iter12's kept block: 15 of 27). The paired mirror gate follows
+if the arm is not below g_iter12.
