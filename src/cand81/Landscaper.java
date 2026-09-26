@@ -172,8 +172,9 @@ public strictfp class Landscaper extends Robot {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d) || doorstep(n)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
-            if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
-            int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles
+            boolean drone = r != null && r.type == RobotType.DELIVERY_DRONE;   // Iteration 81: the shield's drones hover on these tiles and never re-raise them
+            if (r != null && r.team == us && !drone) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
+            int e = rc.senseElevation(n) + (r != null && !drone ? 1000 : 0);   // prefer empty tiles
             if (e < be) { be = e; bestD = d; }
         }
         // 5. a corner seat on the map edge has no outside tile: borrow from the tallest adjacent ring tile

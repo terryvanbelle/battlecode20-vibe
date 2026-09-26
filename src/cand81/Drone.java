@@ -50,11 +50,11 @@ public strictfp class Drone extends Robot {
 
     /** Iteration 81: hold a Chebyshev-2 tile of our HQ. On one: never move again; lift an enemy unit beside us and keep it
      *  (a held unit is blocked). Otherwise fly to the nearest free one. False when there is none (the drone goes on as before). */
-    private MapLocation slot;
+    private MapLocation slot; private boolean posted = false;
     private boolean shield() throws GameActionException {
         MapLocation h = MapState.home;
         if (Nav.cheb(loc, h) == 2) {
-            if (slot == null || !slot.equals(loc)) { slot = loc; Debug.log("@shield at=" + loc); }
+            if (!posted) { posted = true; slot = loc; Debug.log("@shield at=" + loc); }
             if (!rc.isCurrentlyHoldingUnit() && rc.isReady()) for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canBePickedUp() && rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; Debug.log("@shieldpick t=" + e.type.ordinal()); return true; } }
             return true;
         }
