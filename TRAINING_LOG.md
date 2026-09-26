@@ -3790,3 +3790,12 @@ r900, 776 at r1200, 1,553 at r2000, miners alive in 67 of 74 games at r600 -- an
 r200, after the school, with 500 banked, the builder puts a vaporator on a sensed natural tile of 12+ at Chebyshev 3-8
 standing on a free neighbour within 3 of its height (up to 20); no change where no such tile exists. Diagnostic: ten
 high maps vs g_iter12, the mirror as control.
+
+**Iteration 83 diagnostics (four rounds, high maps vs g_iter12): no high-ground vaporator was ever built.** Found and
+fixed on the way: the walk to an unreachable plateau never stalled (a 40-round limit per site); a site refused on the
+builder's cooldown was struck off (wait when not ready); the full site scan overran the bytecode limit every turn from
+r441 on Egg and froze the builder (nearest-first, first usable, a bytecode floor). Still zero builds, bytecode overruns
+remain on some maps, and where the control builds its ordinary 2-3 vaporators (DoesNotExist) the candidate builds none --
+the high branch still pre-empts the ordinary one. **Parked, not refuted:** the premise (natural 12+ ground outlives the
+flood on ~19 maps; g_iter12 idles 500-800 soup there by r900-1200) stands; the probe needs a logged single-game debug
+of the builder before another diagnostic. `src/bot` = g_iter12.

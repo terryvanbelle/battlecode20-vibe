@@ -10,9 +10,13 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 - **Iteration 81 (the drone shield, `src/cand81s8`) is CLOSED, not kept:** gate81 3-9 in 320 pairs (inconclusive);
   ladder 1783 +- 48 on 240 band games against g_iter12's 1814 +- 39; the shield was absent in 14 of 15 raid-window
   losses (no center or drone: the surplus arrives after the miners are gone). Ledger entry has the re-open condition.
-- **Next:** the Iteration 82 design panel (a background workflow: four angles -- shield presence, builder survival,
-  other lift defences, best next iteration overall -- judged adversarially against RULES.md and the log) and the
-  spending-window census (`tools/window-census.sh`, run `census81`, over the 240 cand81s8 replays).
+- **Iteration 82 (the burst rush, copying rzhan11, `src/cand82`): refuted at the diagnostic** (ledger). **Iteration 83
+  (vaporators on natural high ground, `src/cand83`): parked** -- four diagnostic rounds built none; the premise stands
+  (TRAINING_LOG "Natural high ground"; `tools/mapdata.csv` hi* columns; the vaporator census). Next step there: one
+  logged game (Egg or DoesNotExist, driver or VM) tracing the builder's want/highSite/highBuild turn by turn.
+- **Measured today, for the owner:** the three loss classes over 240 band games -- 20 before r400 (rzhan11 13: bank then
+  burst), 53 in the raid window (lifts; the shield cannot be afforded: median bank 505 at r900), 57 after r2700 (wall
+  races, winkelmantanner 21, mvpatel2000 15). The binding constraint behind two of the three is the post-flood economy.
 - Why lifts matter (TRAINING_LOG "What actually kills g_iter12 late"): the `finalbota` bots (ronniesong0809,
   IvanGeffner, battlecode20-team4) lift our ring landscapers and drop their own onto the ring to bury the HQ at
   r1562-1575; winkelmantanner and mvpatel2000 lift the whole wall.
