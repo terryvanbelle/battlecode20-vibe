@@ -3525,3 +3525,12 @@ cannot keep ~60 grid tiles there; ronniesong has 114 bodies for it. **Checkpoint
 wrong size -- the economy that would pay for the bodies is the thing the bodies protect. `src/bot` = g_iter12. What
 might break the circle: vaporators where the water cannot reach them without a lattice -- inside our own ring (the
 enclosure's interior) or on the map's high ground -- so the first income is safe while the lattice grows.
+
+**Iteration 79 (four net guns from r700) against our raider cand69, driver, RandomSoup1: identical to the control**
+(A wins at r3078 both; raider lifts 14 both). The guns are built (four by r800) -- and drown with every other building
+at the flood (r950: vaporators, school, center, guns all gone by r1000), before the raid starts at r1400. g_iter12's base
+outside the ring does not survive the flood at all; only the HQ (which already shoots) is left to answer a raid. So a
+post-flood defence, like a post-flood economy, needs ground the water cannot reach: the enclosure's interior or the
+lattice. The enclosure was only ever measured in the mirror against g_iter12's wall, never against the field, whose
+largest win class over us is the raid. **A ladder probe: 48 band games as `us:arch_enclosure`** (stage-36 reference,
+its interior holding the school, center and vaporator through the flood).
