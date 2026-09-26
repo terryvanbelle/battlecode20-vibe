@@ -3819,3 +3819,8 @@ in eight games (DoesNotExist), none built; the terrain memory is too sparse. Clo
 the census found 0.1-0.4 vaporators a game at 650 (the bank rarely reaches it while the builder lives); a vaporator
 repays 500 in 250 rounds. Diagnostic first (vaporators built, the wall at r2500 against the control), then the paired
 mirror gate.
+
+**Diagnostic 84 (ten maps, the g_iter12 mirror as control):** more vaporators on five (CentralLake 6 / 4 at r400, Egg 4
+/ 3, NoU 2 / 0, MtDoom 1 / 0, Toothpaste 2,564 banked at r600 against 1,731); walls up on Egg (+247), NoU (+133),
+CentralLake (+110), Toothpaste (+65), down on DoesNotExist (-204, a win lost), level elsewhere. Fires; the single-seed
+walls are in the mirror's chaotic range. `gate84` (paired mirror vs g_iter12, 320 pairs) launched.
