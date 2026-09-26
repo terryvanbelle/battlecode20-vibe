@@ -3312,3 +3312,10 @@ spent its walk waiting. Refuted at the diagnostic; `src/cand67` kept.
 The rush defence stands at three failures (62, 64, 66) against one success on its archetype (58r). **Iteration 68
 (`src/cand68` = g_iter12 with `RUSH_LANDSCAPERS` 8 -> 14):** the offence's own parameter -- the forward school stops
 at eight; on GSF seven buried g_iter11 in 215 rounds against three diggers. `gate68` (paired mirror vs g_iter12).
+
+**EmaPajic's raid, read (2026-09-26: EmaPajic is reviewable now, 92 wins in 394 over all builds, 23%; `tier-check`
+passes).** AMaze, g_iter12 as A, lost at r1523: EmaPajic stands 42 landscapers and **136 drones** by r1500 (4 schools,
+2 centers); at r1500 our wall holds ten landscapers, at r1510 three, at r1520 none -- lifted in twenty rounds -- and
+its landscapers are dropped beside our HQ and bury it 3 -> 39 -> dead by r1523. Our raid (cand61/65) had 24 drones and
+charged with ten. **Iteration 69 (`src/cand69` = cand65 scaled: up to 70 drones from r700, charge with 20):** our late
+bank (2,000-10,000 unspent) buys it. Diagnostic on the driver, then `gate69` behind gate68.
