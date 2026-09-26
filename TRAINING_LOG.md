@@ -3451,3 +3451,18 @@ each -- the maximum** -- from r1000 to r2500, where ours managed 0.27. Two gaps,
 refineries and eight miners; it buys landscapers) and work per body (our seats had nothing to dig: every neighbour
 was an interior or outer helper, and seats never dig under our own units). **Stage 4:** a seat may dig an interior
 tile under our interior helper (the helper digs itself down anyway).
+
+**Stages 4-6 (driver, MtDoom seed 7, vs g_iter12):**
+- stage 4 (seats dig the interior under our helpers): no change to the digit -- the path was never taken, because
+  there were **no seats**: the "first eight inside" rule counts only the interior bodies a newborn can see, so 35 of
+  them claimed interior posts, found them taken, and became outer helpers;
+- stage 5 (a taken interior post sends the body to a seat): 32 landscapers at r900 -- and 8 at r1000: the seats could
+  not climb onto shell tiles their neighbours had already raised, stood at ground beside them, and drowned at the flood
+  (r931 here), 24 of 32;
+- stage 6 (no seats at all: 8 inside, the rest at Chebyshev 3 keeping their own tiles above the water and feeding the
+  shell): 22 at r500, 15 at r1000, the shell 157 / 313 / 575 at r900 / 1500 / 2500 -- lost at r2946 (g_iter12's
+  mirror of this seed: r3202).
+The work per body is not the gap (0.42 digs a round each against laurenschneider's 0.5); the bodies are: ours stop at
+~22 with the bank empty and a third drown at the flood; laurenschneider reaches 44 by r950 and keeps them. Next:
+stage 7 strips the economy to laurenschneider's (four miners, no drones, guns, refineries beyond one, rush kept), and
+the outer helpers' flood survival is traced. `src/bot` = g_iter12.

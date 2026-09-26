@@ -15,7 +15,7 @@ public strictfp class Landscaper extends Robot {
     private MapLocation seat;                 // our ring tile, once chosen
     private boolean attacker = false, helper = false;
     private MapLocation post;                 // helper station at distance 2
-    private final MapLocation[] badSeat = new MapLocation[16]; private int nBad = 0;
+    private final MapLocation[] badSeat = new MapLocation[8]; private int nBad = 0;
     private int helperDeps = 0;
     private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0;
 
@@ -39,13 +39,9 @@ public strictfp class Landscaper extends Robot {
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
         if (!attacker && !helper) {
-            if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 16) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
-            // Iteration 77: the first eight bodies go inside (the old ring: they hold its tiles against a rusher's attackers) -- they dig the HQ out under a rush (the seats no longer touch it:
-            // stage 1 died to g_iter12's rush at r289) and start the quarry
-            if (seat == null) { int inside = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && Nav.cheb(friends[i].location, home) == 1) inside++;
-                if (inside < 8) { MapLocation p = pickInner(home); if (p != null) { post = p; helper = true; Debug.log("@helper inner post=" + post); } } }
-            if (!helper && (seat == null || !seat.equals(loc) && occupiedByOther(seat))) seat = pickSeat(home);
-            if (!helper && seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
+            if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
+            if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
+            if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
         }
         if (attacker) { attack(); return; }
         if (helper) { help(home); return; }
@@ -65,9 +61,8 @@ public strictfp class Landscaper extends Robot {
     private MapLocation pickSeat(MapLocation home) throws GameActionException {
         MapLocation best = null; int bd = 1 << 30;
         int hqElev = rc.canSenseLocation(home) ? rc.senseElevation(home) : rc.senseElevation(loc);
-        for (int dx = -C.RING_D; dx <= C.RING_D; dx++) for (int dy = -C.RING_D; dy <= C.RING_D; dy++) {
-            if (Math.max(Math.abs(dx), Math.abs(dy)) != C.RING_D) continue;
-            MapLocation t = new MapLocation(home.x + dx, home.y + dy);
+        for (int i = 8; --i >= 0;) {
+            MapLocation t = home.add(DIRS[i]);
             if (!rc.onTheMap(t)) continue;
             boolean bad = false; for (int k = nBad; --k >= 0;) if (badSeat[k].equals(t)) { bad = true; break; }
             if (bad || !exposed(t)) continue;
@@ -87,19 +82,12 @@ public strictfp class Landscaper extends Robot {
         return best;
     }
 
-    private MapLocation pickInner(MapLocation home) throws GameActionException {
-        MapLocation best = null; int bd = 1 << 30;
-        for (int i = 8; --i >= 0;) { MapLocation t = home.add(DIRS[i]); if (!rc.onTheMap(t)) continue;
-            if (rc.canSenseLocation(t)) { if (rc.senseFlooding(t)) continue; RobotInfo r = rc.senseRobotAtLocation(t); if (r != null && r.ID != id && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) continue; }
-            int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; best = t; } }
-        return best;
-    }
     /** A free tile at Chebyshev 2 from the HQ, next to the LOWEST ring tile it can feed (then nearest). */
     private final MapLocation[] badPost = new MapLocation[8]; private int nBadPost = 0;
     private MapLocation pickPost(MapLocation home) throws GameActionException {
         MapLocation best = null; long bs = Long.MAX_VALUE; int myE = rc.senseElevation(loc);
-        for (int dx = -3; dx <= 3; dx++) for (int dy = -3; dy <= 3; dy++) {
-            int cd = Math.max(Math.abs(dx), Math.abs(dy)); if (cd != 1 && cd != 3) continue;   // Iteration 77: the interior (quarry) and the outer ring
+        for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
+            if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
             MapLocation t = new MapLocation(home.x + dx, home.y + dy);
             if (!rc.onTheMap(t)) continue;
             boolean bad = false; for (int k = nBadPost; --k >= 0;) if (badPost[k].equals(t)) { bad = true; break; }
@@ -113,7 +101,7 @@ public strictfp class Landscaper extends Robot {
                 for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (onRing(n) && exposed(n) && rc.canSenseLocation(n)) lowest = Math.min(lowest, rc.senseElevation(n)); }
                 if (lowest == Integer.MAX_VALUE) continue;   // a post that touches no exposed ring tile feeds nothing
             }
-            long s = (long) (lowest == Integer.MAX_VALUE ? 0 : lowest) * 10000 + loc.distanceSquaredTo(t) + nextInt(2) - (Nav.cheb(t, home) == 1 ? 5000000L : 0);   // Iteration 77: the interior first
+            long s = (long) (lowest == Integer.MAX_VALUE ? 0 : lowest) * 10000 + loc.distanceSquaredTo(t) + nextInt(2);
             if (s < bs) { bs = s; best = t; }
         }
         return best;
@@ -132,33 +120,30 @@ public strictfp class Landscaper extends Robot {
         }
         if (!rc.isReady()) return;
         // Iteration 25: a free ring tile next door that we can climb is a seat going spare -- take it
-        if (round % 3 == id % 3 && Nav.cheb(loc, home) > 1) {   // Iteration 77: interior helpers never reseat onto the shell
+        if (round % 3 == id % 3) {
             int myE = rc.senseElevation(loc);
             for (int i = 8; --i >= 0;) { MapLocation n = loc.add(DIRS[i]); if (!onRing(n) || !exposed(n) || !rc.canSenseLocation(n) || rc.senseFlooding(n) || rc.senseRobotAtLocation(n) != null) continue;
                 if (Math.abs(rc.senseElevation(n) - myE) > GameConstants.MAX_DIRT_DIFFERENCE) continue;
                 seat = n; helper = false; post = null; Debug.log("@reseat at=" + n); return; }
         }
-        boolean inner = Nav.cheb(loc, home) < C.RING_D;   // Iteration 77: an interior helper -- the quarry
-        if (inner && hqInfo != null && hqInfo.dirtCarrying > 0 && loc.isAdjacentTo(home) && rc.canDigDirt(loc.directionTo(home)) && rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) { rc.digDirt(loc.directionTo(home)); hqDigs++; digs++; return; }
-        // 1. keep our own tile above the water that is coming (not inside: the interior never floods once the shell stands)
-        boolean lowSelf = !inner && rc.senseElevation(loc) < waterLevel(round + 60) + 2;
+        // 1. keep our own tile above the water that is coming
+        boolean lowSelf = rc.senseElevation(loc) < waterLevel(round + 60) + 2;
         if (rc.getDirtCarrying() > 0 && lowSelf && rc.canDepositDirt(Direction.CENTER)) { rc.depositDirt(Direction.CENTER); deposits++; return; }
         // 2. feed the lowest adjacent ring tile (never a building)
         if (rc.getDirtCarrying() > 0) {
             Direction bestD = null; int be = Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !exposed(n) || !rc.canDepositDirt(d)) continue;
                 RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && r.type.isBuilding()) continue;
-                // Iteration 77 stage 2: an unseated shell tile is raised like any other (a raised tile is wall, held or not)
+                if (round < C.SEATS_BY && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: never raise an unseated tile early
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); helperDeps++; return; }
         }
         // 3. dig from a tile outside both rings (lowest first), never under a building or the HQ
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
-            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= C.RING_D + 1 || !rc.canDigDirt(d) || doorstep(n)) continue;
+            if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d) || doorstep(n)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
             int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
-        if (inner && rc.canDigDirt(Direction.CENTER)) bestD = Direction.CENTER;   // Iteration 77: the interior digs itself (the quarry)
         if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;   // nothing outside: eat our own margin
         if (bestD != null) { rc.digDirt(bestD); digs++; }
     }
@@ -166,7 +151,7 @@ public strictfp class Landscaper extends Robot {
     private void wall(MapLocation home) throws GameActionException {
         if (!rc.isReady()) return;
         Direction toHQ = loc.directionTo(home);
-        // Iteration 77: seatWalk off (written for the Chebyshev-1 ring)   // Iteration 41: an open ring tile with no seat beside it gets one
+        if (round >= C.SEATS_BY && seatWalk(home)) return;   // Iteration 41: an open ring tile with no seat beside it gets one
         // 1. the HQ is being buried: dig it out
         if (hqInfo != null && hqInfo.dirtCarrying > 0 && rc.canDigDirt(toHQ)) { rc.digDirt(toHQ); hqDigs++; digs++; Debug.log("@hqdig buried=" + hqInfo.dirtCarrying); return; }
         // 2. an enemy building or unit adjacent: bury it (deposit) if we carry, it is cheap denial
@@ -177,7 +162,7 @@ public strictfp class Landscaper extends Robot {
             int myE = rc.senseElevation(loc); Direction bestD = Direction.CENTER; int be = exposed(loc) ? myE : Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!onRing(n) || !rc.canSenseLocation(n) || !exposed(n)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
-                // Iteration 77 stage 2: unseated shell tiles raised too
+                if (round < C.SEATS_BY && (r == null || r.type != RobotType.LANDSCAPER || r.team != us)) continue;   // Iteration 25: an unseated tile stays climbable
                 int e = rc.senseElevation(n); if (e < be - C.WALL_LEVEL_SLACK) { be = e; bestD = d; } }
             if (be != Integer.MAX_VALUE && rc.canDepositDirt(bestD)) { rc.depositDirt(bestD); deposits++; if (bestD != Direction.CENTER) equalised++; return; }
         }
@@ -187,7 +172,7 @@ public strictfp class Landscaper extends Robot {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d) || doorstep(n)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
-            if (r != null && r.team == us && !(r.type == RobotType.LANDSCAPER && Nav.cheb(n, home) < C.RING_D)) continue;   // never under our own units (a helper re-raises itself) -- Iteration 77 stage 4: except inside, where the helpers dig themselves down anyway (laurenschneider's bodies dig 0.5 a round each; ours 0.27, the seats idle with every neighbour occupied)
+            if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
             int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles
             if (e < be) { be = e; bestD = d; }
         }

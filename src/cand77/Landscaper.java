@@ -44,7 +44,7 @@ public strictfp class Landscaper extends Robot {
             // stage 1 died to g_iter12's rush at r289) and start the quarry
             if (seat == null) { int inside = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.LANDSCAPER && Nav.cheb(friends[i].location, home) == 1) inside++;
                 if (inside < 8) { MapLocation p = pickInner(home); if (p != null) { post = p; helper = true; Debug.log("@helper inner post=" + post); } } }
-            if (!helper && (seat == null || !seat.equals(loc) && occupiedByOther(seat))) seat = pickSeat(home);
+            if (!helper && (seat == null || !seat.equals(loc) && occupiedByOther(seat))) seat = null;   // Iteration 77 stage 6: no seats -- the shell is raised by the bodies beside it (inside and at Chebyshev 3); a body sent to a seat on a tile its neighbours had raised could not climb it and drowned at the flood (24 of 32 on MtDoom, r920-1000)
             if (!helper && seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
         }
         if (attacker) { attack(); return; }
@@ -121,7 +121,8 @@ public strictfp class Landscaper extends Robot {
 
     private void help(MapLocation home) throws GameActionException {
         if (!loc.equals(post)) {
-            if (occupiedByOther(post)) { RobotInfo r = rc.canSenseLocation(post) ? rc.senseRobotAtLocation(post) : null; if (r != null && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) { post = pickPost(home); if (post == null) { helper = false; attacker = true; return; } } }
+            if (occupiedByOther(post)) { RobotInfo r = rc.canSenseLocation(post) ? rc.senseRobotAtLocation(post) : null; if (r != null && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) {   // Iteration 77 stage 5: an interior post taken -> a seat next, not an outer post (stage 4 had 35 interior claims and no seat at all)
+                post = pickPost(home); if (post == null) { helper = false; attacker = true; return; } } }
             if (floodDanger() && climb()) return;
             if (nav.target() == post && nav.stalled()) {   // Iteration 8: a post never reached is struck off and another picked; the attack only when none is left (Iteration 7 sent every stalled helper to attack: gate 21-43)
                 if (nBadPost < 8) badPost[nBadPost++] = post; Debug.log("@badpost " + post);
