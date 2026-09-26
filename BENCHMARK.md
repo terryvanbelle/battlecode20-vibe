@@ -62,7 +62,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `EmaPajic.Mark3` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `EmaPajic.Mark4` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `EmaPajic.Mark5` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
-| `EmaPajic.Qualifications` | EmaPajic_Battlecode-2020 (c060a22) | 50 | 42 | peer | 20 0 21 0 50 0 17 38 8 25 10 17 20 33 33 30 20 50 42 33 33 40 |
+| `EmaPajic.Qualifications` | EmaPajic_Battlecode-2020 (c060a22) | 50 | 42 | peer | 20 0 21 0 50 0 17 38 8 25 10 17 20 33 33 30 20 50 42 33 33 40 33 |
 | `EmaPajic.SeedingBot` | EmaPajic_Battlecode-2020 (c060a22) | - | - | untested |  |
 | `GabrielDWu.basicbot` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
 | `GabrielDWu.blezerbot` | GabrielDWu_blezers-battlecode2020 (c0283f8) | - | - | untested |  |
@@ -171,11 +171,11 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `benzyx.espada` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
 | `benzyx.firstplayer` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
 | `benzyx.kurobot` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
-| `benzyx.seeding` | benzyx_bc20-waterloo (05df2e7) | 79 | 42 | peer | 25 17 50 40 25 45 41 33 36 33 33 58 50 25 58 53 50 50 63 63 79 83 58 0 100 |
+| `benzyx.seeding` | benzyx_bc20-waterloo (05df2e7) | 79 | 42 | peer | 25 17 50 40 25 45 41 33 36 33 33 58 50 25 58 53 50 50 63 63 79 83 58 0 100 83 |
 | `benzyx.tortuga` | benzyx_bc20-waterloo (05df2e7) | - | - | untested |  |
 | `charboltron.master_player` | charboltron_pdx_battlecode_2020_team_11 (f78f1e3) | - | - | untested |  |
 | `charboltron.team11newbot` | charboltron_pdx_battlecode_2020_team_11 (f78f1e3) | 100 | 2 | peer(>90 once) | 100 100 |
-| `cormackikkert.whyPermutator` | cormackikkert_battlecode2020 (4d230c4) | 71 | 42 | peer | 25 17 38 40 25 42 45 25 28 25 42 33 47 58 42 50 38 75 60 50 71 67 75 17 83 |
+| `cormackikkert.whyPermutator` | cormackikkert_battlecode2020 (4d230c4) | 71 | 42 | peer | 25 17 38 40 25 42 45 25 28 25 42 33 47 58 42 50 38 75 60 50 71 67 75 17 83 75 |
 | `cormackikkert.whyPermutatorOld` | cormackikkert_battlecode2020 (4d230c4) | - | - | untested |  |
 | `cosimogonnelli.Team3player` | cosimogonnelli_CS454-554-SE (d7dc657) | 100 | 2 | peer(>90 once) | 80 100 |
 | `cs454-w20-team3.oldbot` | cs454-w20-team3_team3-bot (502c334) | - | - | untested |  |
@@ -203,7 +203,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `kylittle.deliriumv1` | kylittle_DeliriumBattlecode (17a94dd) | - | - | untested |  |
 | `kylittle.qualsbot` | kylittle_DeliriumBattlecode (17a94dd) | - | - | untested |  |
 | `kylittle.qualsbot2` | kylittle_DeliriumBattlecode (17a94dd) | 100 | 2 | peer(>90 once) | 100 100 |
-| `laurenschneider.pdx_team_one` | laurenschneider_battlecode20-PDXTeamOne (2965376) | 79 | 42 | peer | 0 50 39 14 0 47 38 0 50 50 50 42 47 42 50 47 50 42 50 47 79 50 67 17 83 |
+| `laurenschneider.pdx_team_one` | laurenschneider_battlecode20-PDXTeamOne (2965376) | 79 | 42 | peer | 0 50 39 14 0 47 38 0 50 50 50 42 47 42 50 47 50 42 50 47 79 50 67 17 83 92 |
 | `lfchain.bigBudsBot` | lfchain_Battlecode2020 (b026153) | 100 | 2 | peer(>90 once) | 100 100 |
 | `lfchain.fBot` | lfchain_Battlecode2020 (b026153) | - | - | untested |  |
 | `lfchain.jBot` | lfchain_Battlecode2020 (b026153) | - | - | untested |  |
@@ -246,7 +246,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `mvpatel2000.oldhades` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.poseidon` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.quail` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
-| `mvpatel2000.qual` | mvpatel2000_Battlecode2020 (554943e) | 26 | 42 | target | 0 8 24 13 67 12 0 12 20 46 8 23 30 26 42 33 0 17 |
+| `mvpatel2000.qual` | mvpatel2000_Battlecode2020 (554943e) | 26 | 42 | target | 0 8 24 13 67 12 0 12 20 46 8 23 30 26 42 33 0 17 50 |
 | `mvpatel2000.qualAttacc` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.qualNoAtacc` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
 | `mvpatel2000.seeding` | mvpatel2000_Battlecode2020 (554943e) | - | - | untested |  |
@@ -280,7 +280,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `poortho.rush` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
 | `poortho.rush_bot` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
 | `poortho.stable_miner1` | poortho_battlecode-2020 (ebbd61e) | - | - | untested |  |
-| `poortho.stable_seeding_bot` | poortho_battlecode-2020 (ebbd61e) | 31 | 42 | target | 0 17 27 31 0 30 31 50 39 33 25 33 33 17 42 37 33 17 27 30 31 58 25 0 33 |
+| `poortho.stable_seeding_bot` | poortho_battlecode-2020 (ebbd61e) | 31 | 42 | target | 0 17 27 31 0 30 31 50 39 33 25 33 33 17 42 37 33 17 27 30 31 58 25 0 33 42 |
 | `ps789.dennisTestPlayer` | ps789_AZBattlecode (f1d54ab) | - | - | untested |  |
 | `ps789.phillipTestPlayer` | ps789_AZBattlecode (f1d54ab) | - | - | untested |  |
 | `ronniesong0809.finalbota` | ronniesong0809_battlecode20-RADS (1cee065) | 7 | 30 | locked | 0 18 15 7 0 0 7 |
@@ -293,7 +293,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `rzhan11.kryptonite` | rzhan11_Battlecode2020 (3cc4b50) | - | - | untested |  |
 | `rzhan11.landscaper_rush_bot` | rzhan11_Battlecode2020 (3cc4b50) | - | - | untested |  |
 | `rzhan11.orig_rush_bot` | rzhan11_Battlecode2020 (3cc4b50) | - | - | untested |  |
-| `rzhan11.quals_bot` | rzhan11_Battlecode2020 (3cc4b50) | 11 | 9 | locked | 0 17 6 12 0 11 |
+| `rzhan11.quals_bot` | rzhan11_Battlecode2020 (3cc4b50) | 11 | 9 | locked | 0 17 6 12 0 11 50 |
 | `rzhan11.rush_bot` | rzhan11_Battlecode2020 (3cc4b50) | - | - | untested |  |
 | `rzhan11.seeding` | rzhan11_Battlecode2020 (3cc4b50) | - | - | untested |  |
 | `rzhan11.sprint` | rzhan11_Battlecode2020 (3cc4b50) | - | - | untested |  |
@@ -326,7 +326,7 @@ build with at least 200 recorded games: a candidate's short ladder arm never re-
 | `willBoyd8.droideka` | willBoyd8_BattleDroid (4b1d4ad) | - | - | untested |  |
 | `willBoyd8.empire` | willBoyd8_BattleDroid (4b1d4ad) | - | - | untested |  |
 | `willBoyd8.mouse` | willBoyd8_BattleDroid (4b1d4ad) | - | - | untested |  |
-| `winkelmantanner.tannerplayer` | winkelmantanner_battlecode2020_the-levee-builders (7f49f11) | 33 | 42 | target | 0 25 15 23 0 36 12 8 23 17 25 17 27 33 8 50 0 17 |
+| `winkelmantanner.tannerplayer` | winkelmantanner_battlecode2020_the-levee-builders (7f49f11) | 33 | 42 | target | 0 25 15 23 0 36 12 8 23 17 25 17 27 33 8 50 0 17 17 |
 | `wpine215.stardustv1` | wpine215_battlecode (d570d57) | - | - | untested |  |
 | `wpine215.stardustv2` | wpine215_battlecode (d570d57) | 90 | 30 | peer | 0 30 50 65 100 70 77 58 78 83 67 75 87 100 83 67 100 73 90 |
 | `yaonam.Robot_1` | yaonam_battlecode2020 (bb363f5) | 83 | 12 | peer | 62 100 83 100 |

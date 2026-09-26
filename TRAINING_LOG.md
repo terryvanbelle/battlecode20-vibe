@@ -3685,3 +3685,12 @@ noise. The mechanism stands (6-16 tiles held wherever a surplus exists; against 
 the raid). **Arm 81c: 96 band games as `us:cand81` at stage 8** (the pool fixed), pre-registered as arm 81 was (rating
 against g_iter12's 1819 +- 39; raid-window losses against 20.8%; in the losses, the shield's presence); then the paired
 mirror gate for the cost.
+
+**Arm 81c (stage 8, posted as `us:cand81s8`; frozen as `src/cand81s8`): 96 band games, 53-43, 1861 +- 72** (g_iter12
+1814 +- 39) -- +47, inside both intervals. Raid-window losses 6 of 96 (6%) against g_iter12's 50 of 240 (21%) -- but
+confounded by the pool (ronniesong0809 gave g_iter12 25 of its 50 and is not in this band); against the same eight bots
+g_iter12 has 155-139 with 32 raid-window losses (11%). By opponent (cand81s8 / g_iter12): mvpatel2000 6-6 / 11-31,
+winkelmantanner 2-10 / 14-28, EmaPajic 4-8 / 21-21 (raid-window losses 42% / 40%), the rest alike. In block 1's 24
+losses the center stood in 9 and a full shield in 1: the mechanism rarely forms in the field, so the +47 is not yet
+the shield's. Next, as TRAINING_ALGORITHM 4.4 asks of a field-only change: the plain paired mirror gate (`gate81`,
+must not REJECT), and a raid archetype that raids on every map for the paired archetype gate (must ACCEPT).
