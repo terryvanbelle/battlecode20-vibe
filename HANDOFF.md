@@ -3,6 +3,18 @@
 Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the tail of
 `TRAINING_LOG.md`.
 
+## State at 2026-09-26 afternoon (Opus 5.5; read this block first)
+
+- **Incumbent `src/g_iter12`** (1818 +- 39 over 336 games, rank 13 of 88, field score 80.4%). Prompts recorded
+  through 46 (next is 47). Cron loop beb41aee every 30 minutes.
+- **The program: the lattice (`src/cand78`, `src/bot` = cand78; TRAINING_LOG "The lattice")**, copying ronniesong0809
+  and winkelmantanner (PROMPTS 40-41, 44). The measured reason (TRAINING_LOG "The economy gap, measured"): we mine as
+  much as they do; they turn it into 20-35 vaporators by r900-1100 and 45-65 by r1500 on raised walkways, while
+  g_iter12 holds 1,600-3,900 idle soup from r700 with no builder alive. Stage 17 (winkelmantanner's geometry: every
+  cell a pit, buildings on the full rows) is in `diag78f` (`tools/lattice-diag.sh`, six maps in parallel).
+- Closed today: the laurenschneider enclosure (cand77, stages 1-7, and the archetype's ladder probe 4-44), net guns
+  (cand79: drown before the raid), cand80 (vaporators in g_iter12's layout: never built -- no builder after r700).
+
 ## State at the 2026-09-25 evening handoff (switch back to Opus 5.5; read this block first)
 
 - **Gate 61 (the late drone raid, `src/cand61`): 9-0 in 320 pairs -- PROVISIONAL** (stack-eligible).
