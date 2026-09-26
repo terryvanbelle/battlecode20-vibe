@@ -3195,3 +3195,22 @@ Chebyshev 2 and are out of a drone's reach. Second form (anything of theirs in r
 r2 18 of their HQ): RandomSoup1 as A, 20 charges, 5 lifts off the ring, 8 drowned; the enemy's ring at r2750 is 2,316
 (g_iter10's mirror, same seed: 2,579) and we win 20 rounds sooner (r3209 against r3229). Prison as A: 12 charges, no
 lift, the enemy ring 1,745 at r2750. The mechanism fires; **`gate61`** (paired mirror, cand61 vs g_iter11).
+
+## Learning to rush (PROMPTS 39, 2026-09-26)
+
+The owner's suggestion: learn to rush first, then defend. poortho's rush, read from a reviewable replay (GSF, g_iter11
+as A, dead at r130): its **first** miner walks straight to our HQ (at (22,9) by r45), plants a school **on our ring**
+((22,11), beside the HQ) by r60, and its landscapers stand on the ring and bury the HQ from r80. `arch_rush` planted
+at Chebyshev 3 with its third miner (r~90) and did not reproduce it. **`src/arch_rush2`** = arch_rush with the first
+miner as the rusher and the school planted from within r2 8 of our HQ (on the ring). **g_iter11 vs arch_rush2, GSF,
+seed 7: dead at r166** -- the rush reproduced (poortho: r130).
+
+What it shows about g_iter11: the builder's walk to its school stand stalled at r75, and Iteration 34's stall pause
+held all building for 50 rounds; the school came at r162 with 580 soup banked. **Iteration 62 (`src/cand62`):** the
+school goes where the builder stands, at once, under a rush in sight or from r90 with 150 soup (never on the ring).
+Harness: `OPP=arch_rush2` gates.
+
+**Diagnostic 62 (driver, GSF seed 7 vs arch_rush2):** first form built the school at r90 ten tiles from home (the
+builder was out); with the builder walking home first, the school stands at r99 at (19,12), a landscaper digs the
+HQ out from r120, and **the HQ lives to r931** (g_iter11: r166). Gates queued behind gate61: `gate62r`
+(`OPP=arch_rush2`) and `gate62` (mirror).
