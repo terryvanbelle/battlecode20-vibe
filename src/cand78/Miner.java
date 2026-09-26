@@ -109,6 +109,7 @@ public strictfp class Miner extends Robot {
         else if (builtSchool > 0 && builtFC == 0 && rushSeen() && soup >= RobotType.FULFILLMENT_CENTER.cost) { want = RobotType.FULFILLMENT_CENTER; Debug.log("@rush center"); }
         else if (builtRefinery == 0 && soup >= RobotType.REFINERY.cost) want = RobotType.REFINERY;
         else if (builtRefinery > 0 && builtSchool == 0 && soup >= RobotType.DESIGN_SCHOOL.cost) want = RobotType.DESIGN_SCHOOL;
+        else if (builtSchool == 1 && round >= 400 && soup >= RobotType.DESIGN_SCHOOL.cost + 50) { want = RobotType.DESIGN_SCHOOL; }   // stage 15: a second school on a pad before the flood takes the first (it stood at ground: CentralLake floods at r677)
         else if (builtSchool > 0 && builtSchool < 4 && soup >= 1000 && round - lastSchoolRound > 150) { want = RobotType.DESIGN_SCHOOL; lastSchoolRound = round; }   // stage 6: another school on a fresh lot when the bank piles up (the first is boxed in by the rising grid: eight landscapers and 15,000 soup idle)
         else if (builtFC > 0 && builtFC < 4 && soup >= 2000 && round >= 600 && round - lastSchoolRound > 100) { want = RobotType.FULFILLMENT_CENTER; lastSchoolRound = round; }   // stage 8: more centers for the raid when the bank piles up
         else if (builtVap >= 4 && builtFC == 0 && soup >= RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // stage 9: the first center once four vaporators stand (it came after the vaporators, i.e. never: RandomSoup1 banked 39,000 with no drone)

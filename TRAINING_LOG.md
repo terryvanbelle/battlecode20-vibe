@@ -3560,3 +3560,8 @@ refinery and first school may leave the lattice (12: V 0, soup 5,600 idle); the 
 builder waits beside (13: V 0 -- one lattice worker in all: the school's vaporator pacing had deadlocked with the pads);
 no pacing (14): 39 landscapers at r500, **6 vaporators standing at r1250-1500 on pads**, soup 8,900 at r2000 -- still
 lost (r3079), the school and center drowned (their first placements were at ground).
+
+**Stage 15 (a second school on a pad from r400), six maps: no vaporator on any map, all lost.** With the school
+unpaced (stage 14) it spends every 150, so the bank never holds 500 (250-350 all game on four maps); RandomSoup1 and
+MtDoom field 46-52 landscapers and no economy at all. **Stage 16:** a hard cap -- 24 landscapers from r400 to r1100 --
+so the bank can reach a vaporator, as winkelmantanner banks 1,559 at r500 with 24.
