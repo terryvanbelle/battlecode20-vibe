@@ -58,8 +58,11 @@ public strictfp class Drone extends Robot {
         if (!charging && friendsNear + 1 >= C.RAID_MIN && loc.distanceSquaredTo(eh) <= 64) { charging = true; Debug.log("@charge with=" + (friendsNear + 1)); }
         if (charging && friendsNear + 1 < 4) charging = false;   // the swarm is gone: regroup
         if (charging) {
+            // anything of theirs in reach first (the ring's seats are shielded by helpers at Chebyshev 2: lift those, then
+            // the seats; the first form aimed at the seats and lifted nothing in 18 charges)
+            for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if ((e.type == RobotType.LANDSCAPER || e.type == RobotType.MINER) && rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; Debug.log("@raidpick id=" + e.ID + " dHQ=" + e.location.distanceSquaredTo(eh)); return true; } }
             RobotInfo tgt = null; int bd = 1 << 30;
-            for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type != RobotType.LANDSCAPER && e.type != RobotType.MINER) continue; int d = e.location.distanceSquaredTo(eh) * 4 + loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
+            for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type != RobotType.LANDSCAPER && e.type != RobotType.MINER) continue; if (e.location.distanceSquaredTo(eh) > 18) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
             if (tgt != null) { if (rc.canPickUpUnit(tgt.ID)) { rc.pickUpUnit(tgt.ID); pickups++; Debug.log("@raidpick id=" + tgt.ID + " dHQ=" + tgt.location.distanceSquaredTo(eh)); return true; }
                 nav.setTarget(tgt.location); nav.step(); return true; }
             nav.setTarget(eh); nav.step(); return true;
