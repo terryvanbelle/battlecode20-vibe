@@ -76,12 +76,14 @@ public strictfp class Miner extends Robot {
     }
 
     // ---------------------------------------------------------------- Iteration 83: vaporators on natural high ground
-    private MapLocation hsTarget, hsStand; private int hsSince = -1000, builtHigh = 0, nBadHigh = 0;
+    private MapLocation hsTarget, hsStand; private int hsSince = -1000, hsPicked = -1000, builtHigh = 0, nBadHigh = 0;
     private final MapLocation[] badHigh = new MapLocation[16];
     /** A sensed natural tile at HIGH_VAP_ELEV or more, dry and free, Chebyshev 3-8 from home, with a free non-ring
      *  neighbour within 3 of its height to build from (the engine refuses a build more than 3 from the builder). */
     private boolean highSite(MapLocation home) throws GameActionException {
+        if (hsTarget != null && round - hsPicked > 40) { if (nBadHigh < badHigh.length) badHigh[nBadHigh++] = hsTarget; Debug.log("@highvap timeout " + hsTarget); hsTarget = null; }   // diag83: walks to unreachable plateaus never stalled
         if (hsTarget != null && round - hsSince < 30 && rc.canSenseLocation(hsTarget) && !rc.isLocationOccupied(hsTarget)) return true;
+        MapLocation prev = hsTarget;
         hsTarget = null; hsStand = null; int bd = 1 << 30;
         for (int dx = -5; dx <= 5; dx++) for (int dy = -5; dy <= 5; dy++) {
             MapLocation t = new MapLocation(loc.x + dx, loc.y + dy); int c = Nav.cheb(t, home);
@@ -93,7 +95,7 @@ public strictfp class Miner extends Robot {
                 if (rc.isLocationOccupied(n) && !n.equals(loc)) continue;
                 int d = loc.distanceSquaredTo(n); if (d < bd) { bd = d; hsTarget = t; hsStand = n; } }
         }
-        hsSince = round;
+        hsSince = round; if (hsTarget != null && !hsTarget.equals(prev)) hsPicked = round;
         return hsTarget != null;
     }
     private boolean highBuild() throws GameActionException {
