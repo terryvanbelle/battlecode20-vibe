@@ -7,14 +7,16 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 
 - **Incumbent `src/g_iter12`** (1818 +- 39 over 336 games, rank 13 of 88, field score 80.4%). Prompts recorded
   through 46 (next is 47). Cron loop beb41aee every 30 minutes.
-- **Running: `arm81b`** -- 96 band games as `us:cand81` (Iteration 81, the drone shield: from r600 every drone holds a
-  Chebyshev-2 tile of our HQ, so nothing can be lifted off the ring or dropped onto it; the center from r400 with 450
-  banked, drones from a 600 bank, up to 20; the wall digs under our drones). Pre-registered in TRAINING_LOG ("Arm 81").
-  Post each block with `tools/post-block.sh <run> cand81`. Its first block (`20260926-165038`, 45-3) drew a pool centred
-  on the enclosure probe (the unrated-build fallback, now fixed in `elolib.current_build`); it stays in the fit.
-  Why the shield (TRAINING_LOG "What actually kills g_iter12 late"): ronniesong0809 lifts our ring landscapers and drops
-  its own onto the ring to bury the HQ (all five losses at r1566-1572); winkelmantanner and mvpatel2000 lift the whole
-  wall. The shield forms only where there is a surplus (mvpatel2000 games: the bank 230-630 through r1000).
+- **Iteration 81, the drone shield (`src/cand81` = `src/cand81s8`, stage 8; TRAINING_LOG "Iteration 81" onward):** from
+  r600 drones hold the flooded Chebyshev-2 tiles of our HQ, so nothing can be lifted off the ring or dropped onto it; the
+  center is built only after the school announces its last landscaper (`SCHOOL_DONE`), by any miner 4-6 out, 5+ out
+  (`FC_UP` announced); drones from a 600 bank; the wall digs under our drones. **Arm 81c: 1861 +- 72 on 96 band games
+  (`us:cand81s8`), g_iter12 1814 +- 39** -- +47, not significant; the shield formed in few field games. **Running:
+  `gate81`** (plain paired mirror vs g_iter12, must not REJECT) and `raider81` (does `arch_raider` -- the g_iter3-era
+  raid-and-ferry archetype -- raid g_iter12? if so it is the harness for the archetype gate, `OPP=arch_raider`, must
+  ACCEPT). The stage-4 arm (`us:cand81`, 95 games) is a different build; ignore it.
+- Why the shield (TRAINING_LOG "What actually kills g_iter12 late"): ronniesong0809 / IvanGeffner lift our ring
+  landscapers and drop their own onto the ring to bury the HQ; winkelmantanner and mvpatel2000 lift the whole wall.
 - **The lattice (`src/cand78`)**, stages 1-17, has never held more than ~6 vaporators and loses every diagnostic map to
   g_iter12; stage 17 (winkelmantanner's geometry) was worse. Paused. The measured economy gap (TRAINING_LOG "The economy
   gap, measured") stands: the field turns the same mined soup into 20-65 vaporators on raised walkways.
