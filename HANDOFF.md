@@ -14,6 +14,10 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
 - **Iteration 81 (the drone shield, `src/cand81s8`) is CLOSED, not kept:** gate81 3-9 in 320 pairs (inconclusive);
   ladder 1783 +- 48 on 240 band games against g_iter12's 1814 +- 39; the shield was absent in 14 of 15 raid-window
   losses (no center or drone: the surplus arrives after the miners are gone). Ledger entry has the re-open condition.
+- **INCUMBENT: `src/g_iter13` = R1 stage 15 (r1s15), 1829 +- 46 on 240 band games, rank 12 of 100 (g_iter12 1780 +- 40).**
+  Accepted on the ladder (the §8b registration, PROMPTS 48-49); the mirror, where it wins 8 of 20 against g_iter12, is not
+  its judge. `src/bot` = g_iter13. R1 stages and method: TRAINING_LOG from "R1 stage 1"; judge R1 stages at 240 band games
+  (96-game arms read +20 and fell back three times). Next for R1: mvpatel2000 (33%) and rzhan11 (47%), the late race.
 - **The rewrite R1 (`src/r1`, DESIGN.md "R1"; TRAINING_LOG from "R1 stage 1")** is the program since 2026-09-26 evening
   (PROMPTS 48-49): lattice-first, stages 1-10. Arms: r1s3 1626 +- 80, r1s8 1642 +- 78 (96 games each; g_iter12 ~1800).
   In the mirror R1 wins 5 of 20 random maps against g_iter12's 12; the losses are late wall races ~50-100 rounds short,
@@ -32,7 +36,6 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
 - **The lattice (`src/cand78`)**, stages 1-17, has never held more than ~6 vaporators and loses every diagnostic map to
   g_iter12; stage 17 (winkelmantanner's geometry) was worse. Paused. The measured economy gap (TRAINING_LOG "The economy
   gap, measured") stands: the field turns the same mined soup into 20-65 vaporators on raised walkways.
-- `src/bot` = g_iter12.
 - Closed today: the laurenschneider enclosure (cand77, stages 1-7, and the archetype's ladder probe 4-44), net guns
   (cand79: drown before the raid), cand80 (vaporators in g_iter12's layout: never built -- no builder after r700).
 

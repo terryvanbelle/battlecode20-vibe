@@ -4102,3 +4102,13 @@ launch).
 **R1 stage 15, the 20 random maps: the ground center fires on 4 maps, shield posts on 6 (up to 7 tiles); 8 won** (as
 stage 14). **Arm R1f: 240 band games as `us:r1s15`** (frozen; judged at 240 per the method note), registered: rating
 against r1s13 (1782 +- 46) and g_iter12 (1786 +- 40); its record against EmaPajic against r1s14's 9-21.
+
+**Arm R1f: r1s15 at 240 band games: 134-106, 1829 +- 46, rank 12 of 100 -- 49 above g_iter12 (1780 +- 40)** (about 1.6
+standard errors, p ~ 0.11). By opponent (r1s15 / g_iter12): EmaPajic 50% / 50% (r1s13 20%), winkelmantanner 47% / 33%,
+mvpatel2000 33% / 26%, cormackikkert 70% / 71%, laurenschneider 70% / 78%, benzyx 80% / 78%, poortho 50% / 30%, rzhan11
+47%. **Decision (PROMPTS 48; the §8b registration: the ladder is this design's judge, the mirror -- where R1 wins 8 of 20
+against g_iter12 -- is not): r1s15 is the new incumbent, `src/g_iter13`** (identical code; its 240 games relabelled
+`us:g_iter13` in progress/games.csv, the cand43b lesson; `src/bot` = g_iter13). The rewrite R1, from lattice-first to
+g_iter12's wall with a lattice beyond sixteen landscapers, any-miner vaporators on raised sites from r600, a missing
+center built by any miner (at 500 from r800, on any dry tile), the shield and the late raid. Field score now 79.9%;
+projected 83.4% by Sep 30, 87.7% by Oct 7.
