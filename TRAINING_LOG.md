@@ -4320,3 +4320,12 @@ g_iter13 cleanly (own cargo dropped on dry tiles first); g_iter13 then won the g
 Two adversarial reviews found seven defects (message-model restart, send-before-build, flood/burial death attribution,
 own-cargo handover, per-message bytecode cost 270, build give-up at the 20-round find window, fixture uploads); all
 fixed and the proof re-run. Puppet games are internal: never the ladder, never a grade.
+
+**Stage 17 against the real wave (replay puppet, pair mode; PROMPTS 66-67).** Both sides replayed exactly to r2090
+(positions, acts, soup, spawns, deaths identical to the recording); our side then handed to the candidate, and
+cormackikkert's side kept scripted to r2250 (PCUT), then g_iter13. Control g_iter13: 6 dropped script acts (the wave
+reproduces almost exactly), 0 rescue shots, landscapers 8 at r2100 -> 1 at r2150 -> 0 at r2200; lost r3006. r1 (stage
+17a+b): **14 `@shoot kind=1` rescues**, landscapers 8 -> 4 through the wave (4,275 dropped script acts: the rescues
+change the board), then lost the 4 at r2300-2400 after the handover (drones 20 -> 11); lost r3014. The rescue fires
+and halves the wave's take, but here it does not change the result. Rule 5 is met for stage 17a; its ladder test is
+next after r2s4.
