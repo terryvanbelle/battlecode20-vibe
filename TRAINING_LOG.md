@@ -4240,3 +4240,11 @@ the replay puppet of a real wave is the harness.
 - Conclusion for PROMPTS 58: a league of our current archetypes cannot replace the ladder; its opponents are too weak or
   too alike. The candidates for a league that can are the replay puppets of the field's own games (PROMPTS 59), with
   the candidate in our seat.
+
+**rushvs13 (paired, 48 random cells; arch_rush vs g_iter5, each against g_iter13):** concordant 5 rusher wins and 24
+losses; discordant 17 cells the rush won where g_iter5 lost, 2 the reverse (sign test p < 0.01). g_iter13 beats g_iter5
+in 41 of 48 and arch_rush in only 26: the rush alone costs g_iter13 15 net cells. The 17 flips: 6 early kills (r132-222:
+CowFarm, InADitch, CosmicBackgroundRadiation, RealArt, RandomSoup2, Soup), 5 mid (r641-943: Prison, IsThisProcedural,
+RandomSoup1 x2, Squares), 6 late wall races (r2950-3196: Constriction, IceCream, ChristmasInJuly, RandomSoup1,
+OmgThisIsProcedural, TwoForOneAndTwoForAll). A design workflow reads them (early/mid/late investigators, two designers,
+a judge). `rush2vs13` measures arch_rush2 (first-miner rusher, school on our ring) the same way.
