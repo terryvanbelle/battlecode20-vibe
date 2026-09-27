@@ -4329,3 +4329,9 @@ reproduces almost exactly), 0 rescue shots, landscapers 8 at r2100 -> 1 at r2150
 change the board), then lost the 4 at r2300-2400 after the handover (drones 20 -> 11); lost r3014. The rescue fires
 and halves the wave's take, but here it does not change the result. Rule 5 is met for stage 17a; its ladder test is
 next after r2s4.
+
+**r2s4 on the ladder (240 band games; gate2s4r ACCEPT 15-3, gate2s4 plain mirror did not reject): 1741 +- 46, 111-129,
+rank 20 of 104, against g_iter13's 1798 +- 39.** Registered bars: early losses to rzhan11 + poortho 10 of 60 (16.7%)
+against g_iter13's 20 of 84 (23.8%) -- met; rating above g_iter13 -- NOT met, and the upper end of its interval (1787)
+is below 1798: WITHDRAWN. The soup-free rush defence does what the harness said against the rushers but costs
+elsewhere on the ladder (to be read); not kept. `src/bot` returns to g_iter13 after r1s17's run.
