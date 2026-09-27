@@ -7,16 +7,17 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in the logs, PROMPTS, ledger and the chart
 (`tools/field-score.py` converts) are PDT. Entries before 2026-09-26 17:00 PDT were dated by the UTC clock.
 
-## State at 2026-09-26 afternoon (Opus 5.5; read this block first)
+## State at 2026-09-27 (Opus 5.5; read this block first)
 
-- **Incumbent `src/g_iter12`** (1818 +- 39 over 336 games, rank 13 of 88, field score 80.4%). Prompts recorded
-  through 46 (next is 47). Cron loop beb41aee every 30 minutes.
+- Prompts recorded through 57 (next is 58). `progress/ELO.md` now has, per build, the field score against only the
+  bots rated above it, and per bot our win rate in the latest build's run with 30+ games against it (PROMPTS 53-56).
 - **Iteration 81 (the drone shield, `src/cand81s8`) is CLOSED, not kept:** gate81 3-9 in 320 pairs (inconclusive);
   ladder 1783 +- 48 on 240 band games against g_iter12's 1814 +- 39; the shield was absent in 14 of 15 raid-window
   losses (no center or drone: the surplus arrives after the miners are gone). Ledger entry has the re-open condition.
 - **INCUMBENT: `src/g_iter13` = R1 stage 15 (r1s15), 1807 +- 39 on 336 band games, rank 12 of 101 (g_iter12 1777 +- 40).**
-  Accepted on the ladder (the §8b registration, PROMPTS 48-49); the mirror, where it wins 8 of 20 against g_iter12, is not
-  its judge. `src/bot` = g_iter13. R1 stages and method: TRAINING_LOG from "R1 stage 1"; judge R1 stages at 240 band games
+  Accepted on the ladder (the §8b registration, PROMPTS 48-49). **Gate g13 (the paired mirror against g_iter12): SPRT
+  REJECT 24-39 at 208 pairs** -- the mirror and the ladder disagree in sign, so the ladder (240 band games) judges
+  field-facing changes; the mirror is a regression screen only. `src/bot` = g_iter13. R1 stages and method: TRAINING_LOG from "R1 stage 1"; judge R1 stages at 240 band games
   (96-game arms read +20 and fell back three times). Next for R1: mvpatel2000 (33%) and rzhan11 (47%), the late race.
 - **The rewrite R1 (`src/r1`, DESIGN.md "R1"; TRAINING_LOG from "R1 stage 1")** is the program since 2026-09-26 evening
   (PROMPTS 48-49): lattice-first, stages 1-10. Arms: r1s3 1626 +- 80, r1s8 1642 +- 78 (96 games each; g_iter12 ~1800).

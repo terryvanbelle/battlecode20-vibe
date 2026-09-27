@@ -4155,3 +4155,8 @@ our HQ against our 0-9. The next target after the late race (19 losses against i
 **Gate g13 (a measurement of the method, not an acceptance):** the plain paired mirror, g_iter13 against g_iter12, 320
 pairs. The ladder accepted g_iter13 (+30 at +-39); if the mirror REJECTs it, §8b is confirmed here and gating for
 field-facing changes rests on the ladder.
+**Gate g13: SPRT REJECT at 208 pairs, 24-39 on the discordant pairs (38.1%), LLR -3.24.** The mirror prefers g_iter12
+at the gate's confidence while the ladder has g_iter13 +30 on 336 games each (and +49 on its first 240). §8b holds here:
+the two measures disagree in sign, so the mirror cannot judge a field-facing change. From here the ladder (240 band
+games, the incumbent's own blocks as control) is the judge; the mirror stays a crash and regression screen (a build
+that loses the mirror 10-50 is broken, not better).
