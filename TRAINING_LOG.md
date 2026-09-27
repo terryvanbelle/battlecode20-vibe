@@ -4087,3 +4087,9 @@ against EmaPajic against r1s13's 6-24.
 
 **Arm R1e: r1s14 50-46, 1801 +- 72 on 96 band games** (g_iter12 1784 +- 40, r1s13 1782 +- 46). **The targeted fix
 worked: EmaPajic 6-6 (r1s13: 6-24)**; mvpatel2000 1-11 (r1s13 36%) the new weak point. Extended to 240 (`subr1e`).
+
+**r1s14 at 240 band games: 105-135, 1742 +- 46 -- below r1s13 (1782) and g_iter12 (1786). Not kept.** EmaPajic 9-21
+(30%): the 6-6 at 96 games was noise. Method note: three times now (cand87, r1s13, r1s14) a 96-game arm read +18 to +26
+and fell back at 240 -- at +-72 the 96-game arm cannot see the effects R1's stages make. From here R1 stages are judged
+at 240 band games, or by a paired gate against r1s13 where the mirror can see the change. Best R1: r1s13 (level with
+g_iter12).
