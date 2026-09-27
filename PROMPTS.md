@@ -257,3 +257,7 @@ I have an idea for improving our self play.  What if you created an archetype va
 ## 60. 2026-09-27
 
 Use it if it's useful, otherwise carry on as before
+
+## 61. 2026-09-27
+
+Is arch_rush or arch_rush2 better than g_iter13 or g_iter12?  If so, then maybe we should submit to the ladder, or at least incorporate its ideas into one of the candidates
