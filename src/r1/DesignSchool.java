@@ -20,6 +20,9 @@ public strictfp class DesignSchool extends Robot {
         // stage 14: no pacing (it deadlocked); stage 16: a hard cap instead -- winkelmantanner stops at ~24 landscapers from r500
         // and banks for vaporators (1,559 soup at r500); with no cap the school spent every 150 and no 500 ever stood (stage 15: V 0 on six maps)
         if (built >= 24 && rc.getRoundNum() >= 400 && rc.getRoundNum() < 1100) return;
+        // R1 stage 3 (CentralLake traced: 37 landscapers by r500 from two schools, the bank never at 500, no vaporator tried):
+        // past sixteen, a landscaper only with a vaporator's 500 banked on top of its own 150 -- the vaporators come first
+        if (built >= C.WALL_LANDSCAPERS + C.WALL_HELPERS && soup < C.VAPORATOR_BANK + RobotType.LANDSCAPER.cost) return;
         boolean want = built < C.WALL_LANDSCAPERS ? soup >= RobotType.LANDSCAPER.cost
                      : built < C.WALL_LANDSCAPERS + C.WALL_HELPERS ? soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost
                      : built < C.LANDSCAPERS_MAX && soup >= C.ATTACKER_BANK + RobotType.LANDSCAPER.cost;

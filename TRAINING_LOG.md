@@ -3963,3 +3963,8 @@ economy running in our code for the first time; the other five lost early (r1775
 with no seats the ring was open and enemy landscapers buried the HQ (MtDoom 25 at r1000). **Stage 2:** the seats guard
 from the start but hold the ring at the lattice's height + 4 until r1400 (spare dirt onto the lowest lattice tile beside
 them); from r1400 they race as g_iter12's do.
+
+**R1 stage 2 (seats guard, capped until r1400): games last to ~r2900 (stage 1: r1775-2510); RandomSoup1 won again (r1489,
+39 drones); but no vaporator on the other five.** CentralLake traced: 37 landscapers by r500 from two schools, the bank
+never at 500, the builder never wanted a vaporator. **Stage 3:** past sixteen, the school builds only with 650 banked
+(a vaporator's 500 on top of its own 150); the second school only after four vaporators.
