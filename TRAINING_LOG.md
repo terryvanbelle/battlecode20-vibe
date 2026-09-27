@@ -4058,3 +4058,9 @@ stand -- the lattice at scale -- which the school's surplus landscapers are too 
 
 **r1s11 at 240 band games: 108-132, 1760 +- 46 -- below g_iter12 (1793 +- 40) by 33, the intervals overlapping.** The
 rewrite is back to the incumbent's level, not past it.
+
+By opponent (r1s11 / g_iter12): poortho 43% / 30% (early losses 9 of 17 / 17 of 29 -- the rush answer is better),
+winkelmantanner 16% / 33%, cormackikkert 56% / 71%, laurenschneider 70% / 78%, EmaPajic 40% / 50% -- worse where the
+late wall race decides. The any-miner vaporators, centers and schools start at r300, while the school still buys
+landscapers: the pre-flood soup that three measurements priced against the wall. **Stage 13:** any-miner building from
+r600.

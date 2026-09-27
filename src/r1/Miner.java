@@ -101,7 +101,7 @@ public strictfp class Miner extends Robot {
      *  the whole economy hung on one miner): any miner within 6 of home, from r300 with 500 banked, builds a vaporator on a
      *  raised lattice site beside it (no walk). */
     private boolean anyVaporator() throws GameActionException {
-        MapLocation h = MapState.home; if (h == null || round < 300 || !rc.isReady() || rc.getTeamSoup() < C.VAPORATOR_BANK || Nav.cheb(loc, h) > 6) return false;
+        MapLocation h = MapState.home; if (h == null || round < C.ANY_BUILD_FROM || !rc.isReady() || rc.getTeamSoup() < C.VAPORATOR_BANK || Nav.cheb(loc, h) > 6) return false;
         // stage 8 (stage 7: 12,000-20,000 soup banked by r1000-1500 with no school or center left): with 1,000 banked, a missing
         // school or center first, on the same raised sites
         RobotType want = RobotType.VAPORATOR;
