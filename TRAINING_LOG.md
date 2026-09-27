@@ -4055,3 +4055,6 @@ vaporator may stand on any tile 3+ out at the lattice's target height, raised or
 with 1,956 banked despite 55 natural tiles of 12+: a build needs the builder within 3 of the site, and miners work the
 low ground (Iteration 83's wall). Kept (harmless). R1's economy in the field needs raised ground near where miners
 stand -- the lattice at scale -- which the school's surplus landscapers are too few to build on most maps.
+
+**r1s11 at 240 band games: 108-132, 1760 +- 46 -- below g_iter12 (1793 +- 40) by 33, the intervals overlapping.** The
+rewrite is back to the incumbent's level, not past it.
