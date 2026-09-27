@@ -205,3 +205,7 @@ By the way, you have the wrong dates on the field-score graph.  One week is Sept
 ## 47. 2026-09-26
 
 How is cand81s8 looking?
+
+## 48. 2026-09-27
+
+No, you will make a decision without my input and you will keep trying.
