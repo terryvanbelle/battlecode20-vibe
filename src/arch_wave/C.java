@@ -1,4 +1,4 @@
-package r1;
+package arch_wave;
 
 /** Tunable constants, one place. Each one names the measurement that set it, once there is one. */
 public final class C {
@@ -31,12 +31,10 @@ public final class C {
     // bank (2,000+ soup unspent from r800 on the ladder's late games) buys the same.
     public static final int RAID_DRONES_MAX = 150;     // drones built in all, from RAID_BUILD_FROM
     public static final int RAID_BUILD_FROM = 900;
-    public static final int RAID_FROM = 1400;         // the swarm gathers from this round
+    public static final int RAID_FROM = 1500;         // arch_wave: every drone raids from this round
     public static final int ANY_BUILD_FROM = 600;     // R1 stage 13: any-miner building from r600, not r300 (r1s11 at 240: worse where the late wall race decides; soup before the school drowns costs the wall)
     public static final int SHIELD_FROM = 600;        // R1 stage 8 (cand87's drone): drones hold the flooded Chebyshev-2 tiles; the rest raid
-    public static final int RAID_MIN = 20;            // and charges with this many in sight of the rally point
-    public static final int RAID_WAIT = 150, RAID_REST = 300;   // R1 stage 17b: a rally that never charges comes home, and rests
-    public static final int SHIELD_OCC_MEMORY = 60;   // R1 stage 17b: a C2 tile seen occupied is not a slot for this long unless seen free
+    public static final int RAID_MIN = 6;             // arch_wave: and charges with six in sight of the rally point
     public static final int RAID_HOME_GUARD = 3;      // the first three drones never raid
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;

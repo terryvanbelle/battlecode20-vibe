@@ -1,4 +1,4 @@
-package r1;
+package arch_wave;
 
 import battlecode.common.*;
 
@@ -93,7 +93,7 @@ public strictfp class Landscaper extends Robot {
         if (rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) {
             Direction bestD = null; int bs = Integer.MAX_VALUE;
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!rc.onTheMap(n) || n.equals(home) || !rc.canDigDirt(d)) continue;
-                RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || (r.team == us && r.type != RobotType.DELIVERY_DRONE))) continue;   // stage 17b: dig under our drones
+                RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
                 int e = rc.senseElevation(n), s;
                 if (isPit(n)) s = -e;                                      // a pit: the highest first (stage 2: pits only, never a lot)
                 else if (isGrid(n) && e > target + 20) s = 100000 - e;     // a grid tile far above the target
@@ -209,7 +209,7 @@ public strictfp class Landscaper extends Robot {
         Direction bestD = null; int be = Integer.MAX_VALUE;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d) || doorstep(n)) continue;
-            RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || (r.team == us && r.type != RobotType.DELIVERY_DRONE))) continue;   // stage 17b: dig under our drones
+            RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
             int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
         if (bestD == null && rc.canDigDirt(Direction.CENTER) && rc.senseElevation(loc) > waterLevel(round + 200) + 3) bestD = Direction.CENTER;   // nothing outside: eat our own margin
         if (bestD != null) { rc.digDirt(bestD); digs++; }

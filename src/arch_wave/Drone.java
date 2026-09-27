@@ -1,4 +1,4 @@
-package r1;
+package arch_wave;
 
 import battlecode.common.*;
 
@@ -50,40 +50,27 @@ public strictfp class Drone extends Robot {
     }
 
     /** Iteration 81: hold a flooded Chebyshev-2 tile of our HQ. On one: never move again; lift an enemy unit beside us and keep
-     *  it (a held unit is blocked). Otherwise fly to the nearest free one, or circle five out while none is flooded and free.
-     *  R1 stage 17b: the flooded C2 tiles are remembered by coordinates (the flood never recedes) and a tile seen occupied is
-     *  skipped for SHIELD_OCC_MEMORY rounds, so a drone away from home still knows its slots; the wait circles the base
-     *  (g_iter13 waited on one side and saw only the near half of C2). */
+     *  it (a held unit is blocked). Otherwise fly to the nearest free one, or wait five out while none is flooded and free. */
     private MapLocation slot; private boolean posted = false;
-    private int c2Flooded = 0; private final int[] c2Occ = new int[25];   // bit / index (dx+2)*5+(dy+2)
     private boolean shield() throws GameActionException {
         MapLocation h = MapState.home;
+        if (round >= C.RAID_FROM && !rc.isCurrentlyHoldingUnit()) return raid();   // arch_wave: the whole drone force raids (cormackikkert's r2103 wave, as seen in its games)
         if (Nav.cheb(loc, h) == 2 && rc.senseFlooding(loc)) {   // stage 7: flooded tiles only (a dry one is a helper's post or its climb out of the flood)
             if (!posted) { posted = true; slot = loc; Debug.log("@shield at=" + loc); }
             if (!rc.isCurrentlyHoldingUnit() && rc.isReady()) for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canBePickedUp() && rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; Debug.log("@shieldpick t=" + e.type.ordinal()); return true; } }
             return true;
         }
         if (rc.isCurrentlyHoldingUnit()) return false;   // drown the cargo first
-        if (charging && raid()) return true;               // a charge in progress is finished first
-        if (Nav.cheb(loc, h) <= 7) for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) {
-            if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
-            MapLocation t = new MapLocation(h.x + dx, h.y + dy); if (!rc.canSenseLocation(t)) continue;
-            int b = (dx + 2) * 5 + (dy + 2);
-            if (rc.senseFlooding(t)) c2Flooded |= 1 << b;
-            if (rc.isLocationOccupied(t)) c2Occ[b] = round;
-        }
         if (slot == null || (rc.canSenseLocation(slot) && rc.isLocationOccupied(slot)) || round % 10 == id % 10) {
             slot = null; int bd = 1 << 30;
             for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
-                int b = (dx + 2) * 5 + (dy + 2); if ((c2Flooded & (1 << b)) == 0) continue;
-                MapLocation t = new MapLocation(h.x + dx, h.y + dy);
-                if (rc.canSenseLocation(t) ? rc.isLocationOccupied(t) : round - c2Occ[b] < C.SHIELD_OCC_MEMORY) continue;
+                MapLocation t = new MapLocation(h.x + dx, h.y + dy); if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || !rc.senseFlooding(t)) continue;
+                if (rc.isLocationOccupied(t)) continue;
                 int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; slot = t; } }
         }
-        if (slot == null && round >= C.RAID_FROM && round - raidRest > C.RAID_REST && raid()) return true;   // Iteration 87: no free slot -- raid the enemy wall (winkelmantanner's tactic)
-        if (slot == null) {   // stage 7: nothing flooded and free yet -- circle five out, clear of the helpers' tiles
-            Direction b = DIRS[(id + round / 6) % 8]; MapLocation w = new MapLocation(h.x + 5 * b.dx, h.y + 5 * b.dy);
-            if (loc.distanceSquaredTo(w) > 2) { nav.setTarget(w); nav.step(); }
+        if (slot == null && round >= C.RAID_FROM && raid()) return true;   // Iteration 87: no free slot -- raid the enemy wall (winkelmantanner's tactic)
+        if (slot == null) {   // stage 7: nothing flooded and free yet -- wait five out, clear of the helpers' tiles
+            if (Nav.cheb(loc, h) != 5) { MapLocation w = new MapLocation(h.x + 5 * Integer.signum(loc.x - h.x == 0 ? 1 : loc.x - h.x), h.y + 5 * Integer.signum(loc.y - h.y)); nav.setTarget(w); nav.step(); }
             return true;
         }
         if (loc.isAdjacentTo(slot)) { Direction d = loc.directionTo(slot); if (rc.canMove(d)) { rc.move(d); return true; } return true; }
@@ -92,16 +79,11 @@ public strictfp class Drone extends Robot {
 
     /** Iteration 61: gather beside the enemy HQ out of its gun's reach; when RAID_MIN of ours are in sight, charge the ring
      *  and lift a landscaper off it (the carry then drowns it, as any carry does). */
-    private int raidStart = -1, raidRest = -1000;
     private boolean raid() throws GameActionException {
         MapLocation eh = MapState.enemyHQ != null ? MapState.enemyHQ : MapState.enemyHQGuess(); if (eh == null) return false;
-        // R1 stage 17b: a rally that never charges comes home after RAID_WAIT rounds (11 of 17 drones idled at the rally
-        // through cormackikkert's r2103 wave) and rests RAID_REST rounds at the shield
-        if (raidStart < 0) raidStart = round;
-        if (!charging && round - raidStart > C.RAID_WAIT) { raidStart = -1; raidRest = round; Debug.log("@raidhome"); return false; }
         int friendsNear = 0; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.DELIVERY_DRONE) friendsNear++;
         if (!charging && friendsNear + 1 >= C.RAID_MIN && loc.distanceSquaredTo(eh) <= 64) { charging = true; Debug.log("@charge with=" + (friendsNear + 1)); }
-        if (charging && friendsNear + 1 < 4) { charging = false; raidStart = round; }   // the swarm is gone: regroup
+        if (charging && friendsNear + 1 < 4) charging = false;   // the swarm is gone: regroup
         if (charging) {
             // anything of theirs in reach first (the ring's seats are shielded by helpers at Chebyshev 2: lift those, then
             // the seats; the first form aimed at the seats and lifted nothing in 18 charges)
