@@ -245,3 +245,7 @@ Looks great, except that I'd like win rate expressed in terms of our wins, not t
 ## 57. 2026-09-27
 
 No, this all looks good now
+
+## 58. 2026-09-27
+
+This is an interesting finding.  Do you have any ideas for how to improve self-play so that its results more closely match those of the ladder's?
