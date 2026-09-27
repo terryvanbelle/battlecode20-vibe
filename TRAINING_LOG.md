@@ -4064,3 +4064,6 @@ winkelmantanner 16% / 33%, cormackikkert 56% / 71%, laurenschneider 70% / 78%, E
 late wall race decides. The any-miner vaporators, centers and schools start at r300, while the school still buys
 landscapers: the pre-flood soup that three measurements priced against the wall. **Stage 13:** any-miner building from
 r600.
+
+**R1 stage 13 (any-miner building from r600), the 20 random maps: 10 won** (stage 11: 9; g_iter12: 12) -- NoU gained.
+**Arm R1d: 96 band games as `us:r1s13`** (frozen), registered: rating against g_iter12 and r1s11 (1760 +- 46).
