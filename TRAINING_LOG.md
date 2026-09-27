@@ -3839,3 +3839,12 @@ then the paired gate.
 
 **Diagnostic 85: identical to the control on all ten maps** -- the forward school never reaches eight landscapers before
 the race is decided; the cap does not bind. Does not fire; no gate (rule 5). Closed. `src/bot` = g_iter12.
+
+**PROMPTS 48 (2026-09-27): decide without the owner and keep trying.** Decision, from the measurements: the next line is
+a structure paid for with nothing the wall race needs (three measurements say any pre-flood soup diversion costs the
+mirror). **Iteration 86, the keep (`src/cand86` = g_iter12 + the keep, stage 1):** the school's eight attackers (labour
+the wall never uses) become masons that raise a 5x5 platform six out from home (away from the map centre) ahead of the
+water (max(10, water(r+300)+4)); the builder parks on its inner tile nearest home from r300 (after the refinery and
+school) and, from r600, builds three vaporators and then a center on the raised inner tiles -- a producer that outlives
+the flood. Stage 1 checks the structure: the platform's height, the builder alive after r1000, buildings on the keep,
+the wall against the control.
