@@ -43,17 +43,17 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | g_iter1 | 1503 +- 69 | 50 of 101 | 170 | 95-75 | 61.5% | 11.7% (vs 15) |
 | arch_enclosure | 1362 +- 165 | 54 of 101 | 48 | 4-44 | 47.1% | 12.1% (vs 18) |
 
-Last 200+ run = the bot's win rate (its W-L) against the most recent of our builds that played 200+ scrimmages and met it.
+Last run = the bot's win rate (its W-L) against the most recent of our builds that played it 30+ times (+- 18 points at 95% for 30 games, +- 15 for 42; blank if no build has).
 
-| rank | player | rating | +- 95% | games | W-L | last 200+ run |
+| rank | player | rating | +- 95% | games | W-L | last run |
 |---|---|---|---|---|---|---|
-| 1 | awesomelemonade.citricsky | 2191 | 200 | 103 | 101-2 | 100% (11-0 vs g_iter5) |
-| 2 | uvafan.v14_final_bot | 2182 | 200 | 98 | 96-2 | 100% (11-0 vs g_iter5) |
-| 3 | AngusRitossa.newbot | 2122 | 174 | 95 | 92-3 | 100% (9-0 vs g_iter5) |
-| 4 | StoneT2000.FinalChowBotStable | 2066 | 181 | 39 | 36-3 | 94% (17-1 vs cand81s8) |
+| 1 | awesomelemonade.citricsky | 2191 | 200 | 103 | 101-2 | 97% (58-2 vs g_iter3) |
+| 2 | uvafan.v14_final_bot | 2182 | 200 | 98 | 96-2 | 98% (53-1 vs g_iter3) |
+| 3 | AngusRitossa.newbot | 2122 | 174 | 95 | 92-3 | 98% (53-1 vs g_iter3) |
+| 4 | StoneT2000.FinalChowBotStable | 2066 | 181 | 39 | 36-3 |  |
 | 5 | ronniesong0809.finalbota | 2007 | 98 | 127 | 114-13 | 93% (28-2 vs g_iter12) |
 | 6 | battlecode20-team4.finalbota | 1999 | 63 | 286 | 254-32 | 97% (29-1 vs r1s16) |
-| 7 | IvanGeffner.finalbota | 1997 | 72 | 197 | 171-26 | 75% (9-3 vs g_iter13) |
+| 7 | IvanGeffner.finalbota | 1997 | 72 | 197 | 171-26 | 90% (27-3 vs r1s16) |
 | 8 | mvpatel2000.qual | 1910 | 32 | 631 | 483-148 | 71% (30-12 vs g_iter13) |
 | 9 | winkelmantanner.tannerplayer | 1910 | 32 | 644 | 494-150 | 64% (27-15 vs g_iter13) |
 | 10 | rzhan11.quals_bot | 1851 | 39 | 374 | 257-117 | 55% (23-19 vs g_iter13) |
@@ -99,52 +99,52 @@ Last 200+ run = the bot's win rate (its W-L) against the most recent of our buil
 | 50 | **us:g_iter1** | 1503 | 69 | 170 | 95-75 |  |
 | 51 | wpine215.stardustv2 | 1439 | 36 | 461 | 122-339 | 10% (3-27 vs g_iter11) |
 | 52 | mhahn2003.nonrush | 1393 | 51 | 256 | 57-199 | 20% (6-24 vs g_iter8) |
-| 53 | eggag32.BrutalPigeonBot | 1392 | 58 | 200 | 43-157 | 21% (5-19 vs g_iter7) |
+| 53 | eggag32.BrutalPigeonBot | 1392 | 58 | 200 | 43-157 | 19% (13-54 vs g_iter6) |
 | 54 | **us:arch_enclosure** | 1362 | 165 | 48 | 4-44 |  |
-| 55 | cs454-w20-team3.playbot | 1359 | 112 | 56 | 11-45 | 9% (1-10 vs g_iter6) |
-| 56 | ARognes.FinalSubmission | 1346 | 144 | 37 | 6-31 | 8% (1-11 vs g_iter6) |
-| 57 | TeamSerpentine.noodleBot | 1336 | 144 | 38 | 6-32 | 8% (1-11 vs g_iter7) |
-| 58 | yaonam.Robot_1 | 1323 | 154 | 33 | 5-28 | 17% (2-10 vs g_iter6) |
-| 59 | opheez.landscapers | 1323 | 268 | 9 | 1-8 | 12% (1-7 vs g_iter5) |
-| 60 | ovimura.welovesoup | 1323 | 268 | 9 | 1-8 | 12% (1-7 vs g_iter5) |
-| 61 | rsandzimier.SandSibs_seeding | 1323 | 268 | 9 | 1-8 | 12% (1-7 vs g_iter5) |
-| 62 | thissop.alpha | 1323 | 268 | 9 | 1-8 | 12% (1-7 vs g_iter5) |
-| 63 | VinayaBhat.team10pdx | 1318 | 223 | 15 | 2-13 | 0% (0-2 vs g_iter5) |
-| 64 | WilliamYue37.Player1 | 1317 | 140 | 46 | 6-40 | 9% (1-10 vs g_iter6) |
-| 65 | Tim-gubski.AngryWaffleMaker | 1311 | 154 | 32 | 5-27 | 18% (2-9 vs g_iter6) |
-| 66 | cosimogonnelli.Team3player | 1307 | 275 | 7 | 1-6 | 0% (0-2 vs g_iter5) |
-| 67 | LucianCov.ourRobot | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 68 | MrHoseongLee.Neptune_v3 | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 69 | Phrancium.Frankplayer1 | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 70 | Pleket.Bot | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 71 | Strequals.rw8 | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 72 | Sukanya-Kothapally.team4player | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 73 | TeamSerpentine.eendagsvliegjes | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 74 | Tolsi.mybot | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 75 | anthonybench.FunkBot | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 76 | atliSig.buttletplayer | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 77 | charboltron.team11newbot | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 78 | djkeyes.addingComm | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 79 | fewella.FirstPlayer | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 80 | jmerle.camel_case_sprint | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 81 | kylittle.qualsbot2 | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 82 | lfchain.bigBudsBot | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 83 | luisgonzalex.CodeMonkeys | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 84 | mama4294.maloneplayer | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 85 | max-titov.seeding | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 86 | michaeltliu.beginnerplayer | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 87 | monmouth-college-cs.MyFirstPlayer | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 88 | ngkuru.qualifyingtournament | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 89 | orionquick.aldebaranplayer | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 90 | snpushpi.whatamidoing | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 91 | stevetimberman.playerbbbbb | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 92 | willBoyd8.bb8 | 1303 | 384 | 3 | 0-3 | 0% (0-2 vs g_iter5) |
-| 93 | jenlz.bustedJulianbot | 1297 | 262 | 14 | 1-13 | 14% (1-6 vs g_iter5) |
-| 94 | A9ine.potato | 1188 | 365 | 6 | 0-6 | 0% (0-2 vs g_iter5) |
-| 95 | 9mAhmad.MahinBot | 1162 | 362 | 7 | 0-7 | 0% (0-2 vs g_iter5) |
-| 96 | 9mAhmad.lostincoordinates | 1162 | 362 | 7 | 0-7 | 0% (0-2 vs g_iter5) |
-| 97 | AllenWang314.bot1 | 1162 | 362 | 7 | 0-7 | 0% (0-2 vs g_iter5) |
-| 98 | GabrielDWu.buildawall2 | 1162 | 362 | 7 | 0-7 | 0% (0-2 vs g_iter5) |
-| 99 | J-J-Chen.player | 1162 | 362 | 7 | 0-7 | 0% (0-2 vs g_iter5) |
-| 100 | KyleHassold.sprintbot | 1162 | 362 | 7 | 0-7 | 0% (0-2 vs g_iter5) |
-| 101 | denver-blake.sprint | 1162 | 362 | 7 | 0-7 | 0% (0-2 vs g_iter5) |
+| 55 | cs454-w20-team3.playbot | 1359 | 112 | 56 | 11-45 |  |
+| 56 | ARognes.FinalSubmission | 1346 | 144 | 37 | 6-31 |  |
+| 57 | TeamSerpentine.noodleBot | 1336 | 144 | 38 | 6-32 |  |
+| 58 | yaonam.Robot_1 | 1323 | 154 | 33 | 5-28 |  |
+| 59 | opheez.landscapers | 1323 | 268 | 9 | 1-8 |  |
+| 60 | ovimura.welovesoup | 1323 | 268 | 9 | 1-8 |  |
+| 61 | rsandzimier.SandSibs_seeding | 1323 | 268 | 9 | 1-8 |  |
+| 62 | thissop.alpha | 1323 | 268 | 9 | 1-8 |  |
+| 63 | VinayaBhat.team10pdx | 1318 | 223 | 15 | 2-13 |  |
+| 64 | WilliamYue37.Player1 | 1317 | 140 | 46 | 6-40 |  |
+| 65 | Tim-gubski.AngryWaffleMaker | 1311 | 154 | 32 | 5-27 |  |
+| 66 | cosimogonnelli.Team3player | 1307 | 275 | 7 | 1-6 |  |
+| 67 | LucianCov.ourRobot | 1303 | 384 | 3 | 0-3 |  |
+| 68 | MrHoseongLee.Neptune_v3 | 1303 | 384 | 3 | 0-3 |  |
+| 69 | Phrancium.Frankplayer1 | 1303 | 384 | 3 | 0-3 |  |
+| 70 | Pleket.Bot | 1303 | 384 | 3 | 0-3 |  |
+| 71 | Strequals.rw8 | 1303 | 384 | 3 | 0-3 |  |
+| 72 | Sukanya-Kothapally.team4player | 1303 | 384 | 3 | 0-3 |  |
+| 73 | TeamSerpentine.eendagsvliegjes | 1303 | 384 | 3 | 0-3 |  |
+| 74 | Tolsi.mybot | 1303 | 384 | 3 | 0-3 |  |
+| 75 | anthonybench.FunkBot | 1303 | 384 | 3 | 0-3 |  |
+| 76 | atliSig.buttletplayer | 1303 | 384 | 3 | 0-3 |  |
+| 77 | charboltron.team11newbot | 1303 | 384 | 3 | 0-3 |  |
+| 78 | djkeyes.addingComm | 1303 | 384 | 3 | 0-3 |  |
+| 79 | fewella.FirstPlayer | 1303 | 384 | 3 | 0-3 |  |
+| 80 | jmerle.camel_case_sprint | 1303 | 384 | 3 | 0-3 |  |
+| 81 | kylittle.qualsbot2 | 1303 | 384 | 3 | 0-3 |  |
+| 82 | lfchain.bigBudsBot | 1303 | 384 | 3 | 0-3 |  |
+| 83 | luisgonzalex.CodeMonkeys | 1303 | 384 | 3 | 0-3 |  |
+| 84 | mama4294.maloneplayer | 1303 | 384 | 3 | 0-3 |  |
+| 85 | max-titov.seeding | 1303 | 384 | 3 | 0-3 |  |
+| 86 | michaeltliu.beginnerplayer | 1303 | 384 | 3 | 0-3 |  |
+| 87 | monmouth-college-cs.MyFirstPlayer | 1303 | 384 | 3 | 0-3 |  |
+| 88 | ngkuru.qualifyingtournament | 1303 | 384 | 3 | 0-3 |  |
+| 89 | orionquick.aldebaranplayer | 1303 | 384 | 3 | 0-3 |  |
+| 90 | snpushpi.whatamidoing | 1303 | 384 | 3 | 0-3 |  |
+| 91 | stevetimberman.playerbbbbb | 1303 | 384 | 3 | 0-3 |  |
+| 92 | willBoyd8.bb8 | 1303 | 384 | 3 | 0-3 |  |
+| 93 | jenlz.bustedJulianbot | 1297 | 262 | 14 | 1-13 |  |
+| 94 | A9ine.potato | 1188 | 365 | 6 | 0-6 |  |
+| 95 | 9mAhmad.MahinBot | 1162 | 362 | 7 | 0-7 |  |
+| 96 | 9mAhmad.lostincoordinates | 1162 | 362 | 7 | 0-7 |  |
+| 97 | AllenWang314.bot1 | 1162 | 362 | 7 | 0-7 |  |
+| 98 | GabrielDWu.buildawall2 | 1162 | 362 | 7 | 0-7 |  |
+| 99 | J-J-Chen.player | 1162 | 362 | 7 | 0-7 |  |
+| 100 | KyleHassold.sprintbot | 1162 | 362 | 7 | 0-7 |  |
+| 101 | denver-blake.sprint | 1162 | 362 | 7 | 0-7 |  |

@@ -233,3 +233,7 @@ In ELO.md I'd like to see for each opponent its most recent 200+ game win rate. 
 ## 54. 2026-09-27
 
 Instead of computing over the most recent 200 games against us, I'd like to see the win rate for the most recent run that had at least 200 games in it, if that's doable
+
+## 55. 2026-09-27
+
+Oh, that's right.  What's a good lower bound for game count that gives us reasonable results with my interpretation?
