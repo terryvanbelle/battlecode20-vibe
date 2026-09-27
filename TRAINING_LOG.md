@@ -4301,3 +4301,6 @@ The regressions of stages 1-3 (BeachFrontProperty, Egg, ClearlyTwelveHorsesInASa
 these by spending the first 150 after the plant on its own counter-rush; any rule that spends it on defence first
 loses the race. Against this archetype the soup-free defence keeps every win. Chain `chain2s4`: the OPP=arch_rush gate
 (must ACCEPT), the plain paired mirror (must not REJECT), then 240 band games as us:r2s4; ladder bars as registered.
+**The rushers on the ladder (PROMPTS 61; 96 band games each):** arch_rush 1699 +- 74 (39-57), arch_rush2 1674 +- 75
+(36-60); g_iter13 1801 +- 39, g_iter5 (their base) 1616 +- 34. The rush adds ~60-80 to g_iter5, but neither rusher is
+near g_iter13: beating our builds head to head (22-26 of 48) is not strength against the field (§8b again).
