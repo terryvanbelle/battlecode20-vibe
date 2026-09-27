@@ -24,7 +24,6 @@ public strictfp class DesignSchool extends Robot {
         // R1 stage 3 (CentralLake traced: 37 landscapers by r500 from two schools, the bank never at 500, no vaporator tried):
         // past sixteen, a landscaper only with a vaporator's 500 banked on top of its own 150 -- the vaporators come first
         if (built >= 24 && soup < C.VAPORATOR_BANK + RobotType.LANDSCAPER.cost) return;   // stage 9: from 24, not 16 (broadr1: poor maps starved the wall -- 4-8 landscapers on GSF, Egg, Islands2)
-        reserveExempt = built < C.RUSH_HOME_EXEMPT;   // r2 stage 2
         boolean want = built < C.WALL_LANDSCAPERS ? soup >= RobotType.LANDSCAPER.cost
                      : built < C.WALL_LANDSCAPERS + C.WALL_HELPERS ? soup >= C.HELPER_BANK + RobotType.LANDSCAPER.cost
                      : built < C.LANDSCAPERS_MAX && soup >= C.ATTACKER_BANK + RobotType.LANDSCAPER.cost;

@@ -53,7 +53,9 @@ public final class C {
     // RUSH_DRONES_FIRST drones (the forward school and our unplanted rusher only until the first). g_iter13 built 0 drones in
     // 14 of the 15 rush flips; Iteration 58's funded center was 28-6 against arch_rush on g_iter10.
     public static final int RUSH_HOME_UNTIL = 250;
-    public static final int RUSH_HOME_EXEMPT = 2;      // r2 stage 2: the home school's first two landscapers ignore the reserve
+    // r2 stage 3: the reserve never holds our own rusher or forward school (r2rush-rest31: g_iter13 won BeachFrontProperty,
+    // ClearlyTwelveHorsesInASalad and Egg by its counter-rush; held for the first drone, r2 lost all three races)
+    public static final boolean RESERVE_OFFENCE = false;
     public static final int RUSH_HOME_DS = 4;
     public static final int RUSH_HOME_LS = 2;
     public static final int RUSH_DRONES_FIRST = 2;

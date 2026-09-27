@@ -1,4 +1,4 @@
-package r2;
+package r2s2;
 
 import battlecode.common.*;
 
@@ -131,7 +131,12 @@ public strictfp class Miner extends Robot {
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         // r2: a rush at home (seen, or announced by the HQ's reserve) and no center yet: the center first, beside us, now
-        if (builtFC == 0 && round < C.RUSH_HOME_UNTIL && (rushHome() || round < MapState.reserveUntil)) return rushCenterNow(home);
+        // r2 stage 2: the home school first, then the center, both at once beside us (r2rush-rest31: the center first cost 5 of
+        // g_iter13's 26 wins -- BeachFrontProperty, ClearlyTwelveHorsesInASalad: its home school, at once, dug the HQ out)
+        if (round < C.RUSH_HOME_UNTIL && (rushHome() || round < MapState.reserveUntil)) {
+            if (builtSchool == 0) return rushNow(RobotType.DESIGN_SCHOOL, home);
+            if (builtFC == 0) return rushNow(RobotType.FULFILLMENT_CENTER, home);
+        }
         if (round < buildPause) return false;   // Iteration 34: a walk that stalled (the builder boxed in) pauses building
         int soup = rc.getTeamSoup();
         RobotType want = null;
@@ -220,20 +225,21 @@ public strictfp class Miner extends Robot {
      *  site; g_iter13's builder walked up to 40 rounds to a far stand and passed each 150 to a later spender -- 12 same-round
      *  thefts in the six early flips). Walk home first if away; hold near home for the bank; a tile 3+ out and far from the
      *  rusher first; Iteration 57's walk only when nothing beside us is legal. */
-    private boolean rushCenterNow(MapLocation home) throws GameActionException {
+    private boolean rushNow(RobotType bt, MapLocation home) throws GameActionException {
         if (Nav.cheb(loc, home) > 4) { nav.setTarget(home); nav.step(); return true; }
-        if (!rc.isReady() || rc.getTeamSoup() < RobotType.FULFILLMENT_CENTER.cost) return true;   // hold here for the bank
+        if (!rc.isReady() || rc.getTeamSoup() < bt.cost) return true;   // hold here for the bank
         int sx = 0, sy = 0, n = 0;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type == RobotType.LANDSCAPER || e.type == RobotType.DESIGN_SCHOOL) { sx += e.location.x; sy += e.location.y; n++; } }
         MapLocation c = n > 0 ? new MapLocation(sx / n, sy / n) : MapState.rushSchool != null ? MapState.rushSchool : home;
         Direction best = null; int bs = Integer.MIN_VALUE;
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation t = loc.add(d);
-            if (Nav.cheb(t, home) < 2 || !rc.canBuildRobot(RobotType.FULFILLMENT_CENTER, d) || rc.senseFlooding(t)) continue;
+            if (Nav.cheb(t, home) < 2 || !rc.canBuildRobot(bt, d) || rc.senseFlooding(t)) continue;
             int s = (Nav.cheb(t, home) >= 3 ? 1000 : 0) + t.distanceSquaredTo(c);
             if (s > bs) { bs = s; best = d; } }
-        if (best == null) return rushBuild(RobotType.FULFILLMENT_CENTER, home);
-        rc.buildRobot(RobotType.FULFILLMENT_CENTER, best); builtFC++; lastWant = null;
-        postReserve(true);
+        if (best == null) return rushBuild(bt, home);
+        rc.buildRobot(bt, best); lastWant = null;
+        if (bt == RobotType.DESIGN_SCHOOL) { builtSchool++; Debug.log("@rushds at=" + loc.add(best) + " soup=" + rc.getTeamSoup()); return true; }
+        builtFC++; postReserve(true);
         Debug.log("@rushfc at=" + loc.add(best) + " soup=" + rc.getTeamSoup() + " school=" + MapState.rushSchool);
         return true;
     }
