@@ -3859,3 +3859,17 @@ eight posted helpers); wins held or gained elsewhere (TwoLakeLand a win against 
 1,680 against 1,071) but Egg lost its win with the builder parked on an unmanned keep. **Stage 1c:** a seatless
 landscaper that sees 14+ of ours within Chebyshev 2 of home is a mason; the first mason on the keep announces it
 (`KEEP_UP`); the builder parks only after that.
+
+**PROMPTS 49 (keep trying; review what worked in other years).** Read `../2025/METHODS.md` (our own cross-lineage
+methods; 2020 post-mortems stay unread). Two entries fit this loop exactly:
+- **§8b: a dose ladder run in self-play finds a mirror optimum** -- it overstates mechanisms that exploit our own
+  architecture's failings and understates those that matter only against a dissimilar opponent. Our paired gate is
+  g_iter12 against itself; g_iter12 barely raids and builds no economy, so the shield (81) and the vaporator changes
+  (83-84) were judged by the one opponent that cannot reward them. The remedy is a cross-architecture instrument: the
+  ladder arm is primary for field-only changes; the mirror gate only guards against a REJECT.
+- **§84: when every single change fails, look for a JOINTLY NECESSARY PAIR.** The shield failed alone for want of
+  post-flood soup and a center that outlives the flood (the census); the keep supplies both and alone has nothing
+  worth spending on. Each half refuted alone, the pair untested.
+**Decision (registered before its results): Iteration 86 = the keep + the shield**, graded by a ladder arm (rating
+against g_iter12's 1814 +- 39; raid-window losses against the same opponents), with the plain paired mirror required
+only not to REJECT.
