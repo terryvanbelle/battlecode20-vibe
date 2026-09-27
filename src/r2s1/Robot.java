@@ -1,4 +1,4 @@
-package bot;
+package r2s1;
 
 import battlecode.common.*;
 
@@ -147,7 +147,6 @@ public abstract strictfp class Robot {
             if (m != null && m.length == 7 && m[0] == Comms.RESERVE && Comms.ours(m, round - 1, us)) absorbReserve(m); }
     }
     /** r2: hold the bank for the rush center's drones for RESERVE_TTL rounds (all: the forward school and the rusher too). */
-    protected boolean reserveExempt = false;   // r2 stage 2: the home school's first RUSH_HOME_EXEMPT landscapers dig the HQ out, not wait
     protected void postReserve(boolean all) throws GameActionException {
         int until = round + C.RESERVE_TTL;
         int[] m = Comms.make(Comms.RESERVE, round, us, until, all ? 1 : 0);
@@ -235,7 +234,7 @@ public abstract strictfp class Robot {
     /** Build type in the free direction nearest `toward` (relative tie-break; random when null). */
     protected boolean tryBuild(RobotType t, MapLocation toward) throws GameActionException {
         if (!rc.isReady() || rc.getTeamSoup() < t.cost) return false;
-        if (t != RobotType.DELIVERY_DRONE && !reserveExempt && reserved(round, fwdSpender ? MapState.reserveAllUntil : MapState.reserveUntil, rc.getTeamSoup(), t.cost)) return false;   // r2
+        if (t != RobotType.DELIVERY_DRONE && reserved(round, fwdSpender ? MapState.reserveAllUntil : MapState.reserveUntil, rc.getTeamSoup(), t.cost)) return false;   // r2
         Direction best = null; int bd = 1 << 30;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i];
