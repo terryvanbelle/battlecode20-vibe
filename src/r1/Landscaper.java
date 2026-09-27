@@ -40,11 +40,10 @@ public strictfp class Landscaper extends Robot {
         if (home == null) { nav.setTarget(null); return; }
         // Iteration 78 stage 9: the eight ring seats first, as g_iter12 (the rush answer: stage 8 died to rushes at r174-308 on
         // three maps of six); every other home landscaper works the lattice
-        if (!attacker && !helper && (seat == null || (!seat.equals(loc) && occupiedByOther(seat)))) seat = pickSeat(home);
-        // R1 stage 10 (broadr1b: 5 wins of 20 against g_iter12's 12, the losses late wall races ~100 rounds short): from WALL_FROM a
-        // lattice landscaper takes a free helper post and feeds the wall, as g_iter12's helpers do all game
-        if (!attacker && seat == null && !helper && round >= C.WALL_FROM) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper late post=" + post); } }
-        if (!attacker && seat == null && !helper) { lattice(home); return; }
+        // R1 stage 11 (stage 10: the wall race still 50-100 rounds behind g_iter12's, whose eight helpers feed the wall all game):
+        // g_iter12's roles by default (seat, then helper post); only the landscapers the school names (past sixteen) work the lattice
+        if (!attacker && !helper && seat == null && round - birth < 8) { readBlock(); return; }   // read the school's orders first
+        if (MapState.latOrdered(id)) { lattice(home); return; }
         if (!attacker && !helper) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);

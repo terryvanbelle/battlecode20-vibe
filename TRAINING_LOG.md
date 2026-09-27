@@ -4035,3 +4035,7 @@ NoU 3139 / 3094, TwoLakeLand 3082 / 3051, Showerhead 3077 / 3056) -- still short
 same maps). R1 state at the end of 2026-09-26 (PDT): the vaporator engine runs where a lattice forms (14-15 vaporators on
 CentralLake and MtDoom), the rush answer restored, the wall race still ~50-100 rounds behind the incumbent in the
 mirror, and the field's economy averaging 1-2 vaporators. `src/bot` = g_iter12 remains the submission.
+
+**R1 stage 11:** g_iter12's roles by default (seat, then helper post, from the start); the school names each landscaper
+past sixteen a lattice worker (`LATTICE_ORDER` by id; newborns read eight rounds first); the any-miner vaporators on
+raised lattice sites stay. The 20 random maps again.
