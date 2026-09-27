@@ -117,6 +117,12 @@ public strictfp class Miner extends Robot {
             if ((!isSite(n) && (isGrid(n) || Nav.cheb(n, h) < 3)) || !rc.canBuildRobot(want, d)) continue;
             if (rc.senseElevation(n) < gridTarget(round) - 1) continue;
             rc.buildRobot(want, d); Debug.log("@anyvap t=" + want.ordinal() + " at=" + n + " e=" + rc.senseElevation(n)); return true; }
+        // stage 15 (censusr1e: in 20 raid-window losses to EmaPajic a center stood at r1200 in 3, though a miner lived at r900 in
+        // 11 with ~500 banked -- no raised site beside it): a missing center on any dry tile 3+ out; drones fly, it need only
+        // outlive their launch
+        if (want == RobotType.FULFILLMENT_CENTER) for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
+            if (Nav.cheb(n, h) < 3 || rc.senseFlooding(n) || !rc.canBuildRobot(want, d)) continue;
+            rc.buildRobot(want, d); Debug.log("@anyfc ground at=" + n + " e=" + rc.senseElevation(n)); return true; }
         return false;
     }
 

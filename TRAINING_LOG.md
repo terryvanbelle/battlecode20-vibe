@@ -4093,3 +4093,8 @@ worked: EmaPajic 6-6 (r1s13: 6-24)**; mvpatel2000 1-11 (r1s13 36%) the new weak 
 and fell back at 240 -- at +-72 the 96-game arm cannot see the effects R1's stages make. From here R1 stages are judged
 at 240 band games, or by a paired gate against r1s13 where the mirror can see the change. Best R1: r1s13 (level with
 g_iter12).
+
+**Census of r1s14 (`censusr1e`): in its 20 raid-window losses to EmaPajic a center stood at r1200 in 3** -- a miner was
+alive at r900 in 11 with ~500 banked, but the any-miner rule needs a raised lattice site beside it, and near miners
+there rarely is one. **Stage 15:** a missing center may go on any dry tile 3+ out (drones fly; it need only outlive their
+launch).
