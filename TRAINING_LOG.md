@@ -2884,6 +2884,11 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **Drones on empty ring tiles (R1 stage 16, 2026-09-27)** -- the shield takes an empty ring tile before a flooded
+  Chebyshev-2 tile, against mvpatel2000's drop onto a lifted ring. r1s16 at 240 band games: 79-161, 1734 +- 49 against
+  g_iter13's 1823 +- 46 -- worse against nearly every opponent (mvpatel2000 20% / 33%, winkelmantanner 33% / 47%). Likely
+  cause: seats move between ring tiles (the seat walk) and a drone takes the momentarily empty one. Kind: refuted.
+
 - **The keep, the shield and the late raid (Iterations 86-87, 2026-09-26)** -- masons named by the school raise a 3x3
   platform with a door; any miner keeps it; its center feeds the flooded-tile shield (the jointly necessary pair, §84)
   and, from r1400, a raid on the enemy wall with the idle soup. Mechanisms all fire (keepers on 7 of 10 maps; shields in
@@ -4123,3 +4128,11 @@ freed tiles), g_iter13 as control.
 (its raid did not fire, 0 lifts) the rule fired on RandomSoup1 -- drones on ring tiles (18,7) and (17,7) beside the HQ
 at r693-701, where g_iter13's posted further out at r946 -- with the outcomes unchanged. **Arm R1g: 240 band games as
 `us:r1s16`**, registered: rating against g_iter13 (1829 +- 46); its record against mvpatel2000 against g_iter13's 10-20.
+
+**Arm R1g: r1s16 at 240 band games: 79-161, 1734 +- 49 -- 89 below g_iter13 (1823 +- 46). Not kept** (ledger). Its pool
+ran stronger (it started at the incumbent's rating: IvanGeffner 3-27, battlecode20-team4 1-29), but the fit corrects for
+that and it is worse against nearly every shared opponent. `src/r1` reverted to g_iter13.
+
+**rzhan11 (PROMPTS 52):** its rating fell from ~2035 (86 games, 2026-09-25) to 1851 +- 39 (362 games) as our builds'
+record against it rose from 5-16% (g_iter3-g_iter5) to 40-46% (cand81s8 onward; g_iter13 14-16, with 8 losses before
+r400 against the early R1 stages' 13-14). What remains against it is the bank-then-burst rush.
