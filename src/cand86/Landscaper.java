@@ -41,7 +41,10 @@ public strictfp class Landscaper extends Robot {
         if (!attacker && !helper) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
-            if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
+            // Iteration 86: helpers past WALL_HELPERS add nothing to the wall (Iteration 35: the intake ceiling) -- they are the keep's masons
+            int posted = 0; for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) == 2) posted++; }
+            if (seat == null && posted >= C.WALL_HELPERS && keepCenter() != null) { attacker = true; Debug.log("@mason posted=" + posted); }
+            else if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
         }
         if (attacker) { if (!keep(home)) attack(); return; }   // Iteration 86: the attackers are the keep's masons
         if (helper) { help(home); return; }
