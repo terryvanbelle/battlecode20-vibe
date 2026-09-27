@@ -4252,3 +4252,5 @@ a judge). `rush2vs13` measures arch_rush2 (first-miner rusher, school on our rin
 0.01); g_iter13 beats arch_rush2 in 22 of 48. Eleven of the 21 are early kills (r131-263), five mid (r400-943), seven
 late (r2925-3151). `rushold` next: g_iter13 against g_iter12, each facing both rushers on the same cells -- did the
 R1 rewrite lose part of the rush defence?
+**rushold (g_iter13 against g_iter12, each facing the rusher, same 48 cells):** vs arch_rush 5-2 discordant (p 0.45),
+vs arch_rush2 6-6. The R1 rewrite did not lose the rush defence; the weakness is at least as old as g_iter12.
