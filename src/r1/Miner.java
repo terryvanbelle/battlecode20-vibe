@@ -56,7 +56,6 @@ public strictfp class Miner extends Robot {
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (rusher && !planted && round < C.RUSH_GIVEUP) { rush(); return; }
         if (builder && build()) return;
-        if (builder && builtSchool > 0 && stayOnLattice()) return;   // R1 stage 6
         work();
     }
 
@@ -95,23 +94,6 @@ public strictfp class Miner extends Robot {
         MapLocation stand = null; int sd = 1 << 30; for (int i = 8; --i >= 0;) { MapLocation g = best.add(DIRS[i]); if (!isGrid(g) || !rc.onTheMap(g)) continue; if (rc.canSenseLocation(g) && rc.isLocationOccupied(g) && !g.equals(loc)) continue; int d = loc.distanceSquaredTo(g); if (d < sd) { sd = d; stand = g; } }
         if (stand != null) best = stand;
         nav.setTarget(best); if (nav.stalled()) { buildPause = round + 30; return false; } nav.step(); return true;
-    }
-
-    /** R1 stage 6 (stage 5: the builder dead by r1000 on five maps of six, 2,000-6,000 soup idle): once the school stands the
-     *  builder stops mining and holds the highest walkway tile 3-5 out; the lattice carries it above the water. */
-    private MapLocation perch;
-    private boolean stayOnLattice() throws GameActionException {
-        MapLocation h = MapState.home; if (h == null) return false;
-        if (perch == null || round % 30 == id % 30 || (rc.canSenseLocation(perch) && rc.isLocationOccupied(perch) && !perch.equals(loc))) {
-            perch = null; int be = Integer.MIN_VALUE;
-            for (int dx = -5; dx <= 5; dx++) for (int dy = -5; dy <= 5; dy++) { MapLocation t = new MapLocation(h.x + dx, h.y + dy); int c = Nav.cheb(t, h);
-                if (c < 3 || c > 5 || !isGrid(t) || !rc.canSenseLocation(t) || rc.senseFlooding(t)) continue;
-                if (rc.isLocationOccupied(t) && !t.equals(loc)) continue;
-                int e = rc.senseElevation(t) * 10 - loc.distanceSquaredTo(t); if (e > be) { be = e; perch = t; } }
-        }
-        if (perch == null) return false;
-        if (!loc.equals(perch)) { nav.setTarget(perch); nav.step(); }
-        return true;
     }
 
     // ---------------------------------------------------------------- builder
