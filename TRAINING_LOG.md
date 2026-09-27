@@ -3980,3 +3980,12 @@ every non-rush map lost at r2930-2975 as before. In the mirror the late wall rac
 from the start, R1 caps its ring until r1400. The mirror cannot judge an economy design (§8b). **Arm R1: 96 band games as
 `us:r1s3`** (stage 3, the most vaporators; frozen from its commit as `src/r1s3`), registered: rating against g_iter12's
 1801 +- 39; the census of vaporators standing in its games (g_iter12: 0.1-0.4 a game).
+
+**Arm R1 (r1s3, stage 3): 27-69, 1626 +- 80 on 96 band games -- far below g_iter12 (1799 +- 39).** Census (`censusr1`,
+92 replays): vaporators average 0.6 / 0.9 / 1.1 / 0.6 at r600 / 900 / 1200 / 1500, three or more in 7-11 of ~60 games
+(the diagnostic's 9 on CentralLake does not carry to the field; winkelmantanner has 35 at r1100); losses 20 before r1300
+(rzhan11 0-12, poortho 2-10 -- the capped ring loses the rush races g_iter12 wins), 11 in the raid window, 38 after r2000.
+R1 is an early-stage rewrite and below the incumbent on every axis. `src/bot` = g_iter12 stays the submission. **R1
+continues as a program** (not a candidate): (a) the rush answer first -- the seats race from the start as g_iter12's,
+the lattice outside them; (b) then the vaporator engine in the field (why one vaporator, not nine: builder survival,
+sites, the bank).
