@@ -61,10 +61,11 @@ public strictfp class Landscaper extends Robot {
         if (joinPosts < 3 && post(Comms.make(Comms.MASON_JOIN, round, us, id))) joinPosts++;   // stage 1d
         if (floodDanger() && climb()) return true;
         if (Nav.cheb(loc, k) != 1) {
-            if (masonTile == null || round % 25 == id % 25 || (rc.canSenseLocation(masonTile) && occupiedByOther(masonTile))) {
+            if (masonTile == null || round % 25 == id % 25 || (rc.canSenseLocation(masonTile) && occupiedByOther(masonTile)) || masonTile.equals(k.add(k.directionTo(home)))) {
                 masonTile = null; int bd = 1 << 30;
+                MapLocation door0 = k.add(k.directionTo(home));
                 for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) { if (dx == 0 && dy == 0) continue;
-                    MapLocation t = new MapLocation(k.x + dx, k.y + dy); if (!rc.onTheMap(t)) continue;
+                    MapLocation t = new MapLocation(k.x + dx, k.y + dy); if (!rc.onTheMap(t) || t.equals(door0)) continue;   // stage 3: never stand in the door
                     if (rc.canSenseLocation(t) && (rc.senseFlooding(t) || occupiedByOther(t))) continue;
                     int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; masonTile = t; } }
             }
@@ -74,10 +75,15 @@ public strictfp class Landscaper extends Robot {
         if (keepPosts < 3 && post(Comms.make(Comms.KEEP_UP, round, us))) keepPosts++;   // stage 1c: the builder parks only on a manned keep
         if (!rc.isReady()) return true;
         int target = keepTarget(round);
+        // stage 3 (arm86 census: a miner alive at r800 in 49 of 67 games, a center in 9 -- the keep rose before any keeper came,
+        // and a miner climbs at most 3): the centre and the door (the edge facing home) stay at ground until a miner holds the centre
+        boolean keeperIn = false; if (rc.canSenseLocation(k)) { RobotInfo kr = rc.senseRobotAtLocation(k); keeperIn = kr != null && kr.team == us && kr.type == RobotType.MINER; }
+        MapLocation door = k.add(k.directionTo(home));
         if (rc.getDirtCarrying() > 0) {
             Direction bestD = null; int be = target;
             for (int i = 9; --i >= 0;) { Direction d = i == 8 ? Direction.CENTER : DIRS[i]; MapLocation n = loc.add(d);
                 if (Nav.cheb(n, k) > 1 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
+                if (!keeperIn && (n.equals(k) || n.equals(door))) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); deposits++; return true; }

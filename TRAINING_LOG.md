@@ -3901,3 +3901,10 @@ REJECT).
 
 **Arm 86 block 1 (`20260927-005715-scrim-cand86s2`): 22-26, 1777 +- 102** (g_iter12 1809 +- 39); losses 8 before r1300,
 2 in the raid window, 16 after r2000; cormackikkert 2-4 and rzhan11 1-5 below g_iter12's record there. Block 2 running.
+
+**Arm 86 block 2: 22-26; cand86s2 closes at 1782 +- 72 on 96 games (g_iter12 1809 +- 39) -- null.** Census of its 93
+replays (`census86`): a center standing at r1200 in 9 of 59 games, 12+ drones in 4, and in 37 losses past r1300 the
+drones were there once -- the pair was absent where it mattered. But a miner was alive at r800 in 49 of 67 games: the
+keep rose (masons raise it from their arrival) before any keeper came, and a miner climbs at most 3. **Stage 3:** the
+centre and the door (the edge facing home) stay at ground until a miner holds the centre; masons never stand in the
+door.
