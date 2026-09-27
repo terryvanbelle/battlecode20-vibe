@@ -4248,3 +4248,7 @@ CowFarm, InADitch, CosmicBackgroundRadiation, RealArt, RandomSoup2, Soup), 5 mid
 RandomSoup1 x2, Squares), 6 late wall races (r2950-3196: Constriction, IceCream, ChristmasInJuly, RandomSoup1,
 OmgThisIsProcedural, TwoForOneAndTwoForAll). A design workflow reads them (early/mid/late investigators, two designers,
 a judge). `rush2vs13` measures arch_rush2 (first-miner rusher, school on our ring) the same way.
+**rush2vs13 (arch_rush2 vs g_iter5, each against g_iter13, same 48 cells): 21 flips to the rusher, 2 reverse** (p <
+0.01); g_iter13 beats arch_rush2 in 22 of 48. Eleven of the 21 are early kills (r131-263), five mid (r400-943), seven
+late (r2925-3151). `rushold` next: g_iter13 against g_iter12, each facing both rushers on the same cells -- did the
+R1 rewrite lose part of the rush defence?
