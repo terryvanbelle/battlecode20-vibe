@@ -2884,6 +2884,13 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
+- **The keep, the shield and the late raid (Iterations 86-87, 2026-09-27)** -- masons named by the school raise a 3x3
+  platform with a door; any miner keeps it; its center feeds the flooded-tile shield (the jointly necessary pair, §84)
+  and, from r1400, a raid on the enemy wall with the idle soup. Mechanisms all fire (keepers on 7 of 10 maps; shields in
+  18 of 68 field games at r1200; 3-15 enemy wall landscapers lifted). Ladder: cand86s3 1805 +- 46 on 240 (= g_iter12),
+  cand87 1780 +- 46 on 240 (below). Kind: level. With 81-85 it closes the incremental line on g_iter12's architecture
+  (wall first, economy dying at the flood); the next line is a rewrite (R1).
+
 - **The vaporator bank (Iteration 84, 2026-09-27)** -- VAPORATOR_BANK 650 -> 500. Diagnostic: more vaporators on five
   maps of ten. Gate84 2-8 discordant in 320 pairs (p = 0.11 against). Kind: not kept; with gate81 (3-9) and stage 5 of
   Iteration 81, the third measurement that the mirror's wall race punishes any soup taken before the school drowns.
@@ -3936,3 +3943,12 @@ losses, the rest unchanged. **Arm 87: 96 band games as `us:cand87`**, registered
 **Arm 87: cand87 1826 +- 72 on 96 band games (51-45); g_iter12 and cand86s3 1800** -- +26, inside the intervals; losses
 after r2000 26 of 96 (27%) against cand86s3's 81 of 240 (34%); still 3-9 against winkelmantanner and mvpatel2000.
 Extended to 240 (`sub87`).
+
+**sub87: cand87 closes at 1780 +- 46 on 240 band games (112-128) -- below g_iter12 (1801 +- 39).** The +26 at 96 was noise;
+losses after r2000 back to 81 of 240. Not kept (ledger).
+
+**Decision (PROMPTS 48-49: decide, keep trying; a complete rewrite if it will help): the rewrite R1.** Seven iterations on
+g_iter12's architecture (81-87) ended level or below; every top bot we lose to (winkelmantanner, ronniesong0809,
+IvanGeffner, battlecode20-team4, mvpatel2000) runs the design we lack -- a raised lattice carrying 20-65 vaporators and
+hundreds of drones -- and our wall-first design plateaus at ~1800. R1 is built lattice-first (not grafted onto the wall,
+as cand78 was), keeping our proven rush module; design in DESIGN.md "R1".
