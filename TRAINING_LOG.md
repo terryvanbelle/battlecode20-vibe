@@ -4144,3 +4144,7 @@ r1500-2500); in 25 of the 65 our ring still led at r2000. The late race is bodie
 around the wall. In our 64 late wins the opponent fields 9-12. A design workflow (three replay investigators, three
 designers, two adversarial judges) is tracing where ours die and how theirs stand. Meanwhile `subg13`: two more blocks
 as g_iter13 (PROMPTS 26: a submission plays to ~+-40).
+
+**subg13 (two more blocks as g_iter13): 40-56; g_iter13 now 1807 +- 39 on 336 band games (174-162), rank 12 of 101;
+g_iter12 1777 +- 40.** The lead is +30 at the submission standard (+-40). Field score 79.9% now; 83.2% projected for
+Sep 30, 87.5% for Oct 7.
