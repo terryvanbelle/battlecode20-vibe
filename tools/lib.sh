@@ -22,8 +22,13 @@ team_url () {
 }
 
 # run_game <teamA> <teamB> <map> <replay> [extra -D flags]  -> engine stdout
+#   GAME_CONFIG=file: the engine's -c properties file (a puppet fixture, PROMPTS 59-60); GAME_OPTS: more -D flags
 run_game () {
   local TA="$1" TB="$2" MAP="$3" REPLAY="$4"; shift 4
+  # a puppet without its fixture resigns at once; refuse before java (the engine only prints a stack trace for a missing -c file)
+  case "$TA $TB" in pup_*|*" pup_"*)
+    [ -n "${GAME_CONFIG:-}" ] && [ -f "$GAME_CONFIG" ] || { echo "!! $TA vs $TB: a puppet needs GAME_CONFIG=<fixture> (got '${GAME_CONFIG:-}')" >&2; return 1; };;
+  esac
   local UA UB; UA="$(team_url "$TA")" || return 1; UB="$(team_url "$TB")" || return 1
   # A wall-clock cap, because a hung game is otherwise invisible: a diagnostic ran 83 minutes with no
   # replay and no log on 2026-09-21 while a task check reported it "still running" six times.
@@ -35,8 +40,13 @@ run_game () {
     -Dbc.server.robot-player-replay-file-per-team-limit-bytes=${LOG_LIMIT:-4000000} \
     -Dbc.game.team-a="$TA" -Dbc.game.team-b="$TB" \
     -Dbc.game.team-a.url="$UA" -Dbc.game.team-b.url="$UB" \
-    -Dbc.game.maps="$MAP" -Dbc.server.save-file="$REPLAY" ${GAME_SEED:+-Dbc.game.seed=$GAME_SEED} "$@" \
-    -cp "$(engine_cp)" battlecode.server.Main -c=-
+    -Dbc.game.maps="$MAP" -Dbc.server.save-file="$REPLAY" ${GAME_SEED:+-Dbc.game.seed=$GAME_SEED} "$@" ${GAME_OPTS:-} \
+    -cp "$(engine_cp)" battlecode.server.Main -c="${GAME_CONFIG:--}"
+}
+
+# engine_busy: true while a battlecode engine runs on this machine (pgrep -f would match its own shell)
+engine_busy () {
+  ps -eo pid,args | awk '$2 ~ /(^|\/)java$/ && /battlecode\.server\.Main/' | grep -q .
 }
 
 # parse_result <engine stdout> -> "RESULT <A|B|?> <round|?> <reason>"

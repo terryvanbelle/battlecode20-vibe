@@ -4307,3 +4307,16 @@ near g_iter13: beating our builds head to head (22-26 of 48) is not strength aga
 **gate2s4r (r2s4 against g_iter13, each facing arch_rush, paired, 320 pairs):** 15-3 discordant at the cap (SPRT
 inconclusive, LLR +1.70); sign test p = 0.008 with 18 discordant pairs -> ACCEPT by the cap rule (TRAINING_ALGORITHM
 4.4). The plain paired mirror (`gate2s4`) is running; then the ladder.
+
+**The replay puppet is built (PROMPTS 59-60, 64; `tools/puppet.sh extract|play|check|diff|cells`, `src/puppet`,
+`src/pup_g_iter13`; DESIGN.md "Replay puppet").** The fixture is a properties file passed to the engine with `-c`
+(no generated code); robots identify their recorded selves by (type, first-turn round, tile), every target is a tile,
+dig/deposit/mine tiles come from the dirt and soup change vectors walked in action order, and the blockchain's
+equal-fee message order is modelled (the engine draws message ids from a stream reset at every spawn). Proof: the
+Constriction loss to cormackikkert (seed 318083382) replayed with g_iter13 on side B is IDENTICAL to the recording
+through r2427 in every category -- positions, acts, soup, spawns, deaths, robot ids, block order -- with no `@pup`
+lines; TheHighGround and WateredDown fixtures place every message exactly. Handover at r1500: 137 robots hand over to
+g_iter13 cleanly (own cargo dropped on dry tiles first); g_iter13 then won the game it lost in the recording (r3054).
+Two adversarial reviews found seven defects (message-model restart, send-before-build, flood/burial death attribution,
+own-cargo handover, per-message bytecode cost 270, build give-up at the 20-round find window, fixture uploads); all
+fixed and the proof re-run. Puppet games are internal: never the ladder, never a grade.

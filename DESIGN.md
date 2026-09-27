@@ -217,3 +217,61 @@ Every robot prints `@bc t=<type> used= max= near= over=` every 100 turns and on 
 - `Debug.log("@tag k=v ...")` at the decision point, once per decision, so a mechanism's firing
   is a `grep` count. Tags in use are listed at the top of `Debug.java`.
 - The gauntlet silences the opponent's stdout, so our lines are the only logs in a replay.
+
+## Puppet (`src/puppet`, PROMPTS 59-60)
+
+A `pup_<base>` team replays one side (P) of a recorded game until a cutoff round, then plays `<base>`
+(`src/pup_<base>/RobotPlayer.java` is a 10-line shim: `puppet.Puppet.play(rc)`, then `<base>.RobotPlayer.run(rc)`).
+The script is data, not code: `tools/puppet.sh extract` writes a `.properties` fixture that the engine loads as its
+`-c` file; every robot reads `bc.testing.pup.idx` and `bc.testing.pup.dat` through `System.getProperty`. The cutoff
+is `-Dbc.testing.pup.cutoff=N` and never in the fixture (a `-c` file overrides `-D` for the same key).
+
+- **Identity.** A robot's script is found by its key (type, first-turn round, first-turn tile): the HQ is
+  (HQ, 1, tile); a robot built in r is (type, r+1, tile); a newborn held by a drone at its first turn (picked in
+  its spawn round, or at spawn+1 by an older drone) is keyed by its first release alive. `Script.find` takes the
+  exact tile with the largest key round within 20 rounds before the first turn, else the nearest tile within
+  d2 8; no match prints `@pup miss` and idles until the cutoff. Every target is a tile, never an id.
+- **Steps.** One act per turn when ready and due (recorded round <= now), from the recorded tile: MOVE, MINE,
+  DIG, DEPOSIT, DEP_SOUP (all it carries), BUILD, PICK_OWN / PICK_OTHER (the unit of that type at the tile, else
+  the nearest match), DROP, SHOOT (the drone at the tile, else the nearest enemy drone), DIE (a death nothing in
+  the record explains: `move()` into water kills before the move is recorded, so the recorded robot walked into
+  water or disintegrated). The explanations are narrow: shot; dropped onto a flooded tile; a building buried, with
+  its dirt spill `(-1, DEPOSIT_DIRT, -1)` just before the deposit on it; drowned by the end-of-round flood, only in
+  the suffix of `diedIDs` (floodfill runs after every turn) on a tile the flood covered that round. PLACE (a drop by
+  any drone) only moves the recorded position. Out of reach, a unit steps toward the recorded position. An act is
+  dropped after 3 failed ready turns (MOVE 8), with `@pup drop`; a BUILD also when it is more than 20 rounds late
+  (waiting for soup), so that every robot the puppet builds finds its own record.
+- **Messages.** The replay does not say which robot submitted a message. P's messages of a round (those our auth
+  does not claim for O, signed in r or r-1) are given to free P robots (alive through the round, never held in it)
+  chosen so the minted blocks come out as recorded, order included (`getBlock` shows O the order). The order is
+  decided by the transaction ids: a static `Random(seed)` in RobotControllerImpl, re-created at every robot
+  construction (every spawn) and drawn once per submission, compared in a `PriorityQueue` by (fee desc,
+  `other.id - this.id` as an int, text). `puppet.py`'s ChainModel replays that queue; for each round it keeps the
+  placements of the submissions among the round's spawns that reproduce the recorded block, and message i with c
+  spawns before it goes to the latest free P robot acting in [builder of spawn c-1, builder of spawn c), filled
+  by bytecode capacity (O's messages in the same interval must come first: O's submitter, usually its HQ, acts
+  early); when those fall short, the builder of spawn c itself carries the rest before its act (a builder, usually
+  the HQ, that submitted, then built: its TX records carry the PRE flag, 0x8000 on the round char, and go at the
+  start of its turn; its capacity is shared with its messages after the act). Fees are then paid between the same
+  spawns as in the recording, so every build sees the recorded soup. A round the model cannot place falls back to
+  the tail carriers (at or after the round's last P builder: every build sees at least the recorded soup, P's soup
+  at the end of the round is the recording's, the block order is approximate), counted by `extract`; the model
+  restarts after the next round that leaves the queue empty (cumulative submissions minus minted is 0), one beam
+  state per possible count of id draws since the last spawn.
+- **Handover.** At the first turn at or after the cutoff; a drone holding a unit with a DROP ahead in its script
+  (after moves only) finishes the ferry first (at most 50 rounds); then a drone still holding a unit of its own
+  team drops it on an adjacent dry tile (retried each turn, stepping toward the HQ; `@pup hocargo` if it still
+  holds it 100 rounds after the cutoff), because the base's drone drowns whatever it holds. The base starts from
+  its constructor with `MapState.home` primed from the fixture. It inherits the base's mid-game distortions (no
+  builder miner, a fresh miner burst from the HQ, build counters at zero); prints `@pup ho <maxLag> <dropped>`.
+- **Misconfiguration resigns.** No fixture (`@pup nofixture`) or another game's fixture (side, map size or HQ
+  tile, `@pup wrongfixture`) resigns the team at once: a misconfigured puppet must not look like a game.
+- **Every P robot that takes a turn is keyed**, events or not: an unkeyed vaporator fell back on a neighbour's
+  record within d2 8 and 20 rounds and re-submitted its messages (2026-09-27, Constriction r1432). A robot also
+  skips TX records older than its first turn.
+- **Budget** (measured, Constriction r1-2427): 600-1100 bytecodes on the first turn, a mean of 30-160 per turn by
+  type, about 270 per message carried (262-298 on turns carrying 10 or more) with 600 kept in reserve after the act
+  and 1300 before it (the rest go next turn, `@pup txlate`); a robot carries at most
+  floor((bytecode limit - 600 - ~700) / 270) messages a round: HQ 69, miner, landscaper and drone 32, net gun 21,
+  the other buildings 13. The worst turn was a drone carrying 33 messages (before the cap), 9288 of 10000. `tools/puppet.sh check` replays the recorded game and diffs it
+  round by round against the recording (O-side bytecodes per robot are the most sensitive detector).

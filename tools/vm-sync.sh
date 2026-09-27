@@ -23,5 +23,13 @@ echo "pushing repo tree ..."
 # Unpack into a staging directory and swap each tree in with a rename: the old `rm -rf src tools ... && tar -x` left a
 # window with no tools/ at all, and a gate running beside the sync lost ten cells of a batch to it (gate81, 2026-09-26:
 # "tools/lib.sh: No such file or directory"). A running script keeps its old inode; a rename has no missing window.
-tar -C "$REPO" --exclude='tools/.venv' --exclude='__pycache__' -czf - src tools test progress BENCHMARK.md | gssh "cd ~/$REMOTE_REPO && rm -rf .sync.new .sync.old && mkdir -p .sync.new .sync.old && tar -C .sync.new -xzf - && for d in src tools test progress; do [ -e \$d ] && mv \$d .sync.old/\$d; mv .sync.new/\$d \$d; done && mv .sync.new/BENCHMARK.md BENCHMARK.md && rm -rf .sync.new .sync.old && mkdir -p gauntlet matches build"
+# Puppet fixtures (build/puppets/*.properties, PROMPTS 59-60) travel too: they are derived from replays the VM prunes.
+# Only the new or changed ones (by sha1; 1-2 MB each), so a sync that changes no fixture costs one sha1sum on the VM.
+REMOTE_PUPS="$(gssh "cd ~/$REMOTE_REPO 2>/dev/null && sha1sum build/puppets/*.properties 2>/dev/null" || true)"
+PUPS=""
+for F in $(cd "$REPO" && ls build/puppets/*.properties 2>/dev/null || true); do
+  printf '%s\n' "$REMOTE_PUPS" | grep -qxF "$(cd "$REPO" && sha1sum "$F")" || PUPS="$PUPS $F"
+done
+[ -z "$PUPS" ] || echo "pushing puppet fixtures:$PUPS"
+tar -C "$REPO" --exclude='tools/.venv' --exclude='__pycache__' -czf - src tools test progress BENCHMARK.md $PUPS | gssh "cd ~/$REMOTE_REPO && rm -rf .sync.new .sync.old && mkdir -p .sync.new .sync.old && tar -C .sync.new -xzf - && for d in src tools test progress; do [ -e \$d ] && mv \$d .sync.old/\$d; mv .sync.new/\$d \$d; done && mv .sync.new/BENCHMARK.md BENCHMARK.md && mkdir -p build/puppets && if [ -d .sync.new/build/puppets ]; then cp -f .sync.new/build/puppets/*.properties build/puppets/; fi && rm -rf .sync.new .sync.old && mkdir -p gauntlet matches build"
 echo "synced to $USER_NAME@$IP:~/$REMOTE_REPO"

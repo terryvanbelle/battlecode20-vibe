@@ -38,7 +38,13 @@ the jsi snapshot, a missing subproject), builds with JDK 8 and Gradle 5.6.2 (alr
 - `tools/gauntlet.sh`, `tools/mirror.sh`, `tools/scrim.sh` -- volume runners, meant for the VM
   through `tools/vm-run.sh <log> '<cmd>'`; follow with `tools/vm-tail.sh`, fetch with
   `tools/vm-collect.sh <run-id>`, stop the idle VM with `tools/vm-stop.sh`.
-- `tools/unit-tests.sh` -- bot tests (`test/bot/*Test.java`) and tool tests (`tools/test_tools.py`).
+- `tools/unit-tests.sh` -- bot tests (`test/bot/*Test.java`), the puppet's fixture contract
+  (`test/puppet/PuppetTest.java`) and tool tests (`tools/test_tools.py`).
+- `tools/puppet.sh extract | play | check | diff | cells` -- the replay puppet (PROMPTS 59-60, DESIGN.md
+  "Puppet"): a fixture in `build/puppets/` (derived from a replay, regenerable, shipped to the VM by
+  `vm-sync.sh` when new or changed) handed to the engine as its `-c` file. `run_game` takes `GAME_CONFIG=<file>` (the `-c` file)
+  and `GAME_OPTS` (more `-D` flags, e.g. `-Dbc.testing.pup.cutoff=N`) and refuses a `pup_` team without
+  `GAME_CONFIG`. `play` and `check` run one game here and wait (at most 20 minutes) for another engine.
 
 `tools/vm-sync.sh` replaces the VM's `src tools test progress` with the driver's on every
 `vm-run.sh`; anything a run writes into those directories on the VM is lost at the next launch.

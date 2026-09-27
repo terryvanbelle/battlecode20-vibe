@@ -111,7 +111,7 @@ public class ReplayDump {
             switch (ew.eType()) {
                 case Event.GameHeader: onGameHeader((GameHeader) ew.e(new GameHeader())); break;
                 case Event.MatchHeader: onMatchHeader((MatchHeader) ew.e(new MatchHeader())); break;
-                case Event.Round: onRound((Round) ew.e(new Round())); break;
+                case Event.Round: onRound((Round) ew.e(new Round()), (RawRound) ew.e(new RawRound())); break;
                 case Event.MatchFooter: onMatchFooter((MatchFooter) ew.e(new MatchFooter())); break;
                 default: break;
             }
@@ -175,7 +175,18 @@ public class ReplayDump {
 
     static int idx(int x, int y) { int px = x - minX, py = y - minY; return (px < 0 || py < 0 || px >= width || py >= height) ? -1 : px + py * width; }
 
-    static void onRound(Round rd) {
+    /** Raw access to a Round's message vectors: the engine writes an int vector of char codes (messages joined by ' ',
+     *  words by '_') where the schema declares [string], so the generated accessor returns garbage (tools/puppet/RawEvents). */
+    static final class RawRound extends com.google.flatbuffers.Table {
+        String chars(int vt) {
+            int o = __offset(vt); if (o == 0) return "";
+            int v = __vector(o), n = __vector_len(o); StringBuilder s = new StringBuilder(n);
+            for (int j = 0; j < n; j++) s.append((char) bb.getInt(v + 4 * j));
+            return s.toString();
+        }
+    }
+
+    static void onRound(Round rd, RawRound raw) {
         int round = rd.roundID(); lastRound = round;
         for (int i = 0; i < rd.teamIDsLength(); i++) { int t = rd.teamIDs(i); if (t >= 1 && t <= 2) teamSoup[t] = rd.teamSoups(i); }
         globalPollution = rd.globalPollution();
@@ -228,9 +239,13 @@ public class ReplayDump {
         VecTable sl = rd.soupChangedLocs();
         for (int i = 0; i < rd.soupChangesLength(); i++) { int k = idx(sl.xs(i), sl.ys(i)); if (k >= 0) soup[k] += rd.soupChanges(i); }
         // blockchain
-        msgsSubmitted += rd.newMessagesLength(); for (int i = 0; i < rd.newMessagesCostsLength(); i++) feesPaid += rd.newMessagesCosts(i);
-        msgsMinted += rd.broadcastedMessagesLength();
-        if (inWindow(round)) for (int i = 0; i < rd.broadcastedMessagesLength(); i++) { String msg; try { msg = rd.broadcastedMessages(i); } catch (RuntimeException e) { msg = "?"; } System.out.printf("  r%d BLOCK cost=%d %s%n", round, i < rd.broadcastedMessagesCostsLength() ? rd.broadcastedMessagesCosts(i) : -1, msg); }
+        // one cost per message (the message vectors hold characters, not messages)
+        msgsSubmitted += rd.newMessagesCostsLength(); for (int i = 0; i < rd.newMessagesCostsLength(); i++) feesPaid += rd.newMessagesCosts(i);
+        msgsMinted += rd.broadcastedMessagesCostsLength();
+        if (inWindow(round)) {
+            String blk = raw.chars(42).trim(); String[] msgs = blk.isEmpty() ? new String[0] : blk.split(" ");
+            for (int i = 0; i < msgs.length; i++) System.out.printf("  r%d BLOCK cost=%d %s%n", round, i < rd.broadcastedMessagesCostsLength() ? rd.broadcastedMessagesCosts(i) : -1, msgs[i].replace('_', ' '));
+        }
         // bytecodes
         for (int i = 0; i < rd.bytecodeIDsLength(); i++) {
             Robot r = bots.get(rd.bytecodeIDs(i)); if (r == null) continue;
