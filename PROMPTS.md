@@ -273,3 +273,7 @@ Not a problem, glad it worked!
 ## 64. 2026-09-27
 
 Re: Rule 4:  I agree that replaying a recorded game is the same as reviewing it.  The mental model to apply is as follows:  Our scrimmage games are an approximation to the actual contest, where scrimmage games are picked and executed by the Battlecode system, not by us.  So it's OK for us to "download" a scrimmage game, and examine it, and we can use it to play our own internal bots against each other, but in an actual contest there would be no mechanism to play a benchmark opponent using the puppet-replay.
+
+## 65. 2026-09-27
+
+What is the bot that's playing against r1 in these puppet runs?
