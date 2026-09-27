@@ -4136,3 +4136,11 @@ that and it is worse against nearly every shared opponent. `src/r1` reverted to 
 **rzhan11 (PROMPTS 52):** its rating fell from ~2035 (86 games, 2026-09-25) to 1851 +- 39 (362 games) as our builds'
 record against it rose from 5-16% (g_iter3-g_iter5) to 40-46% (cand81s8 onward; g_iter13 14-16, with 8 losses before
 r400 against the early R1 stages' 13-14). What remains against it is the bank-then-burst rush.
+
+**The late wall race, measured (`tools/late-race.sh`, `late13`, g_iter13's 129 games ending r2000+; medians over the 65
+late losses):** our ring 713 / 992 / 1,083 at r1500 / 2000 / 2500 against theirs 625 / 1,011 / 1,450; our landscapers 11 /
+9 / 5.5 against theirs 30 / 30 / 21. Our wall leads at r1500 and is overtaken by r2000-2500 (+370 against +825 over
+r1500-2500); in 25 of the 65 our ring still led at r2000. The late race is bodies: they keep ~3x our landscapers alive
+around the wall. In our 64 late wins the opponent fields 9-12. A design workflow (three replay investigators, three
+designers, two adversarial judges) is tracing where ours die and how theirs stand. Meanwhile `subg13`: two more blocks
+as g_iter13 (PROMPTS 26: a submission plays to ~+-40).
