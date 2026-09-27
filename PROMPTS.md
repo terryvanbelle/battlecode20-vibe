@@ -241,3 +241,7 @@ Oh, that's right.  What's a good lower bound for game count that gives us reason
 ## 56. 2026-09-27
 
 Looks great, except that I'd like win rate expressed in terms of our wins, not theirs
+
+## 57. 2026-09-27
+
+No, this all looks good now
