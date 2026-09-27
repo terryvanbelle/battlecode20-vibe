@@ -4079,3 +4079,8 @@ of our landscapers beside the HQ vanish at ~r1510, six of theirs take the ring a
 wall stands at 873. Census (`censusr1d`): in its 18 raid-window losses to EmaPajic a center stood at r1200 in 2, the bank
 at a median 806. **Stage 14:** from r800 a miner near home builds a missing center with 500 banked (was 1,000), so the
 shield's drones stand before the raid.
+
+**R1 stage 14 (a missing center at 500 from r800), the 20 random maps: 8 won** (stage 13: 10; NoU and IsThisProcedural
+lost) -- the earlier center costs the mirror's wall a little, as priced; its target (EmaPajic's raid) is only in the
+field. **Arm R1e: 96 band games as `us:r1s14`**, registered: rating against r1s13 (1788 +- 46) and g_iter12; its record
+against EmaPajic against r1s13's 6-24.
