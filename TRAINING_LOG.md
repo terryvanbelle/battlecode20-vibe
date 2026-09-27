@@ -4118,3 +4118,8 @@ projected 83.4% by Sep 30, 87.7% by Oct 7.
 at r1900. **R1 stage 16:** the shield's drones take an empty ring tile first (a drone on it blocks the drop), then the
 flooded Chebyshev-2 tiles. Diagnostic against `arch_raider` (it lifts ring landscapers and ferries its own onto the
 freed tiles), g_iter13 as control.
+
+**Stage 16 diagnostics:** against `arch_raider` identical to g_iter13 (it never empties our ring); against cand69
+(its raid did not fire, 0 lifts) the rule fired on RandomSoup1 -- drones on ring tiles (18,7) and (17,7) beside the HQ
+at r693-701, where g_iter13's posted further out at r946 -- with the outcomes unchanged. **Arm R1g: 240 band games as
+`us:r1s16`**, registered: rating against g_iter13 (1829 +- 46); its record against mvpatel2000 against g_iter13's 10-20.
