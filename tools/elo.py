@@ -79,7 +79,7 @@ for r in elolib.dedupe(rows):
 def recent_run(bot):
     for p in recent:
         w, n = vs[p, bot]
-        if n >= RUN_MIN: return f"{w / n:.0%} ({w}-{n - w} vs {elolib.build_of(p)})"
+        if n >= RUN_MIN: return f"{(n - w) / n:.0%} ({elolib.build_of(p)} {n - w}-{w})"   # our wins
     return ''
 def higher_field(p):   # expected score against only the ladder bots rated above p
     up = [b for b in rated if R[b] > R[p]]
@@ -94,9 +94,9 @@ lines = ["# Ladder", "",
 for p in ours:
     lines.append(f"| {elolib.build_of(p)} | {R[p]:.0f} +- {1.96 * SE[p]:.0f} | {rank[p]} of {len(table)} | {games[p]} | "
                  f"{wins[p]}-{games[p] - wins[p]} | {elolib.field_score(R, p, bots):.1%} | {higher_field(p)} |")
-lines += ["", f"Last run = the bot's win rate (its W-L) against the most recent of our builds that played it {RUN_MIN}+ "
+lines += ["", f"Our last run = OUR win rate (our W-L) against the bot, by the most recent of our builds that played it {RUN_MIN}+ "
           f"times (+- 18 points at 95% for 30 games, +- 15 for 42; blank if no build has).", "",
-          "| rank | player | rating | +- 95% | games | W-L | last run |", "|---|---|---|---|---|---|---|"]
+          "| rank | player | rating | +- 95% | games | W-L | our last run |", "|---|---|---|---|---|---|---|"]
 for i, (r, p) in enumerate(table):
     name = f"**{p}**" if elolib.is_ours(p) else p
     lines.append(f"| {i + 1} | {name} | {r:.0f} | {1.96 * SE[p]:.0f} | {games[p]} | {wins[p]}-{games[p] - wins[p]} | "

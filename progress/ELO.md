@@ -43,23 +43,23 @@ Our builds (rating +- 95%; field score = expected score against every ladder bot
 | g_iter1 | 1503 +- 69 | 50 of 101 | 170 | 95-75 | 61.5% | 11.7% (vs 15) |
 | arch_enclosure | 1362 +- 165 | 54 of 101 | 48 | 4-44 | 47.1% | 12.1% (vs 18) |
 
-Last run = the bot's win rate (its W-L) against the most recent of our builds that played it 30+ times (+- 18 points at 95% for 30 games, +- 15 for 42; blank if no build has).
+Our last run = OUR win rate (our W-L) against the bot, by the most recent of our builds that played it 30+ times (+- 18 points at 95% for 30 games, +- 15 for 42; blank if no build has).
 
-| rank | player | rating | +- 95% | games | W-L | last run |
+| rank | player | rating | +- 95% | games | W-L | our last run |
 |---|---|---|---|---|---|---|
-| 1 | awesomelemonade.citricsky | 2191 | 200 | 103 | 101-2 | 97% (58-2 vs g_iter3) |
-| 2 | uvafan.v14_final_bot | 2182 | 200 | 98 | 96-2 | 98% (53-1 vs g_iter3) |
-| 3 | AngusRitossa.newbot | 2122 | 174 | 95 | 92-3 | 98% (53-1 vs g_iter3) |
+| 1 | awesomelemonade.citricsky | 2191 | 200 | 103 | 101-2 | 3% (g_iter3 2-58) |
+| 2 | uvafan.v14_final_bot | 2182 | 200 | 98 | 96-2 | 2% (g_iter3 1-53) |
+| 3 | AngusRitossa.newbot | 2122 | 174 | 95 | 92-3 | 2% (g_iter3 1-53) |
 | 4 | StoneT2000.FinalChowBotStable | 2066 | 181 | 39 | 36-3 |  |
-| 5 | ronniesong0809.finalbota | 2007 | 98 | 127 | 114-13 | 93% (28-2 vs g_iter12) |
-| 6 | battlecode20-team4.finalbota | 1999 | 63 | 286 | 254-32 | 97% (29-1 vs r1s16) |
-| 7 | IvanGeffner.finalbota | 1997 | 72 | 197 | 171-26 | 90% (27-3 vs r1s16) |
-| 8 | mvpatel2000.qual | 1910 | 32 | 631 | 483-148 | 71% (30-12 vs g_iter13) |
-| 9 | winkelmantanner.tannerplayer | 1910 | 32 | 644 | 494-150 | 64% (27-15 vs g_iter13) |
-| 10 | rzhan11.quals_bot | 1851 | 39 | 374 | 257-117 | 55% (23-19 vs g_iter13) |
-| 11 | EmaPajic.Qualifications | 1844 | 29 | 694 | 487-207 | 50% (21-21 vs g_iter13) |
+| 5 | ronniesong0809.finalbota | 2007 | 98 | 127 | 114-13 | 7% (g_iter12 2-28) |
+| 6 | battlecode20-team4.finalbota | 1999 | 63 | 286 | 254-32 | 3% (r1s16 1-29) |
+| 7 | IvanGeffner.finalbota | 1997 | 72 | 197 | 171-26 | 10% (r1s16 3-27) |
+| 8 | mvpatel2000.qual | 1910 | 32 | 631 | 483-148 | 29% (g_iter13 12-30) |
+| 9 | winkelmantanner.tannerplayer | 1910 | 32 | 644 | 494-150 | 36% (g_iter13 15-27) |
+| 10 | rzhan11.quals_bot | 1851 | 39 | 374 | 257-117 | 45% (g_iter13 19-23) |
+| 11 | EmaPajic.Qualifications | 1844 | 29 | 694 | 487-207 | 50% (g_iter13 21-21) |
 | 12 | **us:g_iter13** | 1807 | 39 | 336 | 174-162 |  |
-| 13 | poortho.stable_seeding_bot | 1784 | 25 | 863 | 558-305 | 52% (22-20 vs g_iter13) |
+| 13 | poortho.stable_seeding_bot | 1784 | 25 | 863 | 558-305 | 48% (g_iter13 20-22) |
 | 14 | **us:cand69** | 1777 | 74 | 96 | 46-50 |  |
 | 15 | **us:g_iter12** | 1777 | 40 | 336 | 159-177 |  |
 | 16 | **us:cand81** | 1775 | 91 | 95 | 67-28 |  |
@@ -77,11 +77,11 @@ Last run = the bot's win rate (its W-L) against the most recent of our builds th
 | 28 | **us:cand43b** | 1673 | 79 | 96 | 64-32 |  |
 | 29 | **us:g_iter10** | 1673 | 48 | 240 | 103-137 |  |
 | 30 | **us:cand47d** | 1666 | 54 | 192 | 73-119 |  |
-| 31 | cormackikkert.whyPermutator | 1664 | 24 | 853 | 417-436 | 26% (11-31 vs g_iter13) |
-| 32 | laurenschneider.pdx_team_one | 1658 | 24 | 830 | 402-428 | 31% (13-29 vs g_iter13) |
+| 31 | cormackikkert.whyPermutator | 1664 | 24 | 853 | 417-436 | 74% (g_iter13 31-11) |
+| 32 | laurenschneider.pdx_team_one | 1658 | 24 | 830 | 402-428 | 69% (g_iter13 29-13) |
 | 33 | **us:g_iter9** | 1654 | 50 | 240 | 78-162 |  |
 | 34 | **us:g_iter8** | 1630 | 49 | 240 | 108-132 |  |
-| 35 | benzyx.seeding | 1625 | 25 | 814 | 360-454 | 20% (6-24 vs g_iter13) |
+| 35 | benzyx.seeding | 1625 | 25 | 814 | 360-454 | 80% (g_iter13 24-6) |
 | 36 | **us:cand41b** | 1624 | 76 | 96 | 51-45 |  |
 | 37 | **us:g_iter5** | 1622 | 34 | 618 | 329-289 |  |
 | 38 | **us:r1s8** | 1619 | 78 | 96 | 29-67 |  |
@@ -97,9 +97,9 @@ Last run = the bot's win rate (its W-L) against the most recent of our builds th
 | 48 | **us:g_iter4** | 1567 | 65 | 217 | 43-174 |  |
 | 49 | **us:g_iter2** | 1509 | 70 | 192 | 44-148 |  |
 | 50 | **us:g_iter1** | 1503 | 69 | 170 | 95-75 |  |
-| 51 | wpine215.stardustv2 | 1439 | 36 | 461 | 122-339 | 10% (3-27 vs g_iter11) |
-| 52 | mhahn2003.nonrush | 1393 | 51 | 256 | 57-199 | 20% (6-24 vs g_iter8) |
-| 53 | eggag32.BrutalPigeonBot | 1392 | 58 | 200 | 43-157 | 19% (13-54 vs g_iter6) |
+| 51 | wpine215.stardustv2 | 1439 | 36 | 461 | 122-339 | 90% (g_iter11 27-3) |
+| 52 | mhahn2003.nonrush | 1393 | 51 | 256 | 57-199 | 80% (g_iter8 24-6) |
+| 53 | eggag32.BrutalPigeonBot | 1392 | 58 | 200 | 43-157 | 81% (g_iter6 54-13) |
 | 54 | **us:arch_enclosure** | 1362 | 165 | 48 | 4-44 |  |
 | 55 | cs454-w20-team3.playbot | 1359 | 112 | 56 | 11-45 |  |
 | 56 | ARognes.FinalSubmission | 1346 | 144 | 37 | 6-31 |  |
