@@ -4050,3 +4050,8 @@ Census (`censusr1c`): vaporators 0.5-0.9 on average at r600-1200, five or more i
 g_iter12's wall with few extras (lattice workers, the landscapers past sixteen, are rare there). **Stage 12:** any miner's
 vaporator may stand on any tile 3+ out at the lattice's target height, raised or natural, not only on lattice sites (on
 ~19 maps natural ground of 12+ stands until r1800+).
+
+**R1 stage 12 (vaporators on any tile at the target height): no change** -- 9 of 20 as stage 11; Egg still no vaporator
+with 1,956 banked despite 55 natural tiles of 12+: a build needs the builder within 3 of the site, and miners work the
+low ground (Iteration 83's wall). Kept (harmless). R1's economy in the field needs raised ground near where miners
+stand -- the lattice at scale -- which the school's surplus landscapers are too few to build on most maps.
