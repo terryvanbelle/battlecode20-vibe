@@ -4084,3 +4084,6 @@ shield's drones stand before the raid.
 lost) -- the earlier center costs the mirror's wall a little, as priced; its target (EmaPajic's raid) is only in the
 field. **Arm R1e: 96 band games as `us:r1s14`**, registered: rating against r1s13 (1788 +- 46) and g_iter12; its record
 against EmaPajic against r1s13's 6-24.
+
+**Arm R1e: r1s14 50-46, 1801 +- 72 on 96 band games** (g_iter12 1784 +- 40, r1s13 1782 +- 46). **The targeted fix
+worked: EmaPajic 6-6 (r1s13: 6-24)**; mvpatel2000 1-11 (r1s13 36%) the new weak point. Extended to 240 (`subr1e`).
