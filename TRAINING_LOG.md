@@ -2884,18 +2884,18 @@ tightening toward the bots that beat us most; single blocks swing from 4 to 14 o
 
 ## Ledger (closed directions)
 
-- **The keep, the shield and the late raid (Iterations 86-87, 2026-09-27)** -- masons named by the school raise a 3x3
+- **The keep, the shield and the late raid (Iterations 86-87, 2026-09-26)** -- masons named by the school raise a 3x3
   platform with a door; any miner keeps it; its center feeds the flooded-tile shield (the jointly necessary pair, §84)
   and, from r1400, a raid on the enemy wall with the idle soup. Mechanisms all fire (keepers on 7 of 10 maps; shields in
   18 of 68 field games at r1200; 3-15 enemy wall landscapers lifted). Ladder: cand86s3 1805 +- 46 on 240 (= g_iter12),
   cand87 1780 +- 46 on 240 (below). Kind: level. With 81-85 it closes the incremental line on g_iter12's architecture
   (wall first, economy dying at the flood); the next line is a rewrite (R1).
 
-- **The vaporator bank (Iteration 84, 2026-09-27)** -- VAPORATOR_BANK 650 -> 500. Diagnostic: more vaporators on five
+- **The vaporator bank (Iteration 84, 2026-09-26)** -- VAPORATOR_BANK 650 -> 500. Diagnostic: more vaporators on five
   maps of ten. Gate84 2-8 discordant in 320 pairs (p = 0.11 against). Kind: not kept; with gate81 (3-9) and stage 5 of
   Iteration 81, the third measurement that the mirror's wall race punishes any soup taken before the school drowns.
 
-- **Vaporators on natural high ground (Iteration 83, 2026-09-26/27)** -- the builder builds on a sensed natural tile of
+- **Vaporators on natural high ground (Iteration 83, 2026-09-26)** -- the builder builds on a sensed natural tile of
   12+ at Chebyshev 3-8 from a 500 bank. Five diagnostic rounds on eight high maps: never fired. Four defects fixed (an
   unending walk, cooldown refusals, a bytecode-overrunning scan, a scan every turn while the builder mined far away);
   after them the builder is rarely home with 500 banked, and when it is, no buildable high tile (a neighbour within 3
@@ -3847,7 +3847,7 @@ then the paired gate.
 **Diagnostic 85: identical to the control on all ten maps** -- the forward school never reaches eight landscapers before
 the race is decided; the cap does not bind. Does not fire; no gate (rule 5). Closed. `src/bot` = g_iter12.
 
-**PROMPTS 48 (2026-09-27): decide without the owner and keep trying.** Decision, from the measurements: the next line is
+**PROMPTS 48 (2026-09-26): decide without the owner and keep trying.** Decision, from the measurements: the next line is
 a structure paid for with nothing the wall race needs (three measurements say any pre-flood soup diversion costs the
 mirror). **Iteration 86, the keep (`src/cand86` = g_iter12 + the keep, stage 1):** the school's eight attackers (labour
 the wall never uses) become masons that raise a 5x5 platform six out from home (away from the map centre) ahead of the

@@ -3,6 +3,10 @@
 Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the tail of
 `TRAINING_LOG.md`.
 
+**Timezone (PROMPTS 50): every time consideration is in the owner's timezone, PDT (America/Los_Angeles).** Both machines
+run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in the logs, PROMPTS, ledger and the chart
+(`tools/field-score.py` converts) are PDT. Entries before 2026-09-26 17:00 PDT were dated by the UTC clock.
+
 ## State at 2026-09-26 afternoon (Opus 5.5; read this block first)
 
 - **Incumbent `src/g_iter12`** (1818 +- 39 over 336 games, rank 13 of 88, field score 80.4%). Prompts recorded

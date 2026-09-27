@@ -61,7 +61,7 @@ the gate itself is the last target (a 16th seat), which also tells the school to
 `C.RAID_ROUND` the center builds drones without cap; they gather at `C.RAID_RALLY` from the enemy
 HQ guess and charge when `C.RAID_SIZE` are together, lifting enemy seats into the water.
 
-## R1 -- the rewrite: lattice first (decided 2026-09-27, PROMPTS 48-49)
+## R1 -- the rewrite: lattice first (decided 2026-09-26, PROMPTS 48-49)
 
 **Why.** Seven iterations on g_iter12's architecture (81-87, TRAINING_LOG) ended level or below; g_iter12's wall-first
 design plateaus at ~1800 because its economy dies at the flood (0.1-0.4 vaporators a game; 500-10,000 soup idle from

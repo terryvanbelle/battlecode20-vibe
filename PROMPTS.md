@@ -206,10 +206,14 @@ By the way, you have the wrong dates on the field-score graph.  One week is Sept
 
 How is cand81s8 looking?
 
-## 48. 2026-09-27
+## 48. 2026-09-26
 
 No, you will make a decision without my input and you will keep trying.
 
-## 49. 2026-09-27
+## 49. 2026-09-26
 
 Repeating a portion from the initial prompt: "If you get stuck for ideas, review principles that have worked in other years.  There will be times when no attempts are successful for a long period.  At those times, it’s important to keep trying new things, and to not give up.  If you believe that a complete rewrite will help, then you should do so."
+
+## 50. 2026-09-26
+
+BTW I'm in the PDT timezone.  Can you make sure that all time considerations are based on that timezone?
