@@ -61,6 +61,41 @@ the gate itself is the last target (a 16th seat), which also tells the school to
 `C.RAID_ROUND` the center builds drones without cap; they gather at `C.RAID_RALLY` from the enemy
 HQ guess and charge when `C.RAID_SIZE` are together, lifting enemy seats into the water.
 
+## R1 -- the rewrite: lattice first (decided 2026-09-27, PROMPTS 48-49)
+
+**Why.** Seven iterations on g_iter12's architecture (81-87, TRAINING_LOG) ended level or below; g_iter12's wall-first
+design plateaus at ~1800 because its economy dies at the flood (0.1-0.4 vaporators a game; 500-10,000 soup idle from
+r700; no builder alive). Every top bot we lose to runs the other design. Measured in their games (TRAINING_LOG "The
+economy gap, measured", winkelmantanner NoU r200-900): a lattice grown from the HQ -- full walkway rows every other row,
+alternate columns between them, the rest pits that flood -- raised with the water (5-9 at r900); vaporators ON the rows
+(1 at r500, 10 at r700, 20 at r900, 45 at r1500); centers and hundreds of drones from that income; the HQ's own wall comes
+late, out of the lattice; they mine no more than we do.
+
+**What R1 keeps from us:** Nav, MapState, Comms/Robot plumbing, the HQ (shooting, miner spawning), our poortho-style rush
+(the largest gain of the project), the keep's lessons (a miner can climb 3 at most: leave a door; roles named by the one
+robot that knows the count; announce on the chain three rounds running because readers see one block in three), the
+shield (drones on flooded tiles next to what they protect).
+
+**Structure (stage by stage, each shown firing before the next):**
+1. **The grid.** Offsets from the HQ: rows with even dy are full walkways; on odd-dy rows the even-dx tiles are
+   walkway and the odd-dx tiles are pits. Sites for buildings are full-row tiles with odd dx (columns stay open, the
+   lattice stays connected). Target height max(5, water(r + 300) + 3). The HQ's eight neighbours are walkway tiles like
+   any other.
+2. **Lattice landscapers.** Every home landscaper works the lattice from the HQ outward: dig a pit beside it, deposit on
+   the lowest walkway tile in reach below target (sites first when a builder waits beside one); the working radius grows
+   with the number of landscapers (about one ring of the grid per four bodies). The HQ being buried is everyone's job.
+3. **Builder(s).** Refinery and school at once (as now); then vaporators on raised sites whenever 500 is banked, a
+   second school after four vaporators, a center after eight; builders stand on walkway tiles, so they ride the water
+   level up with the lattice (no keeper needed).
+4. **The wall comes late.** From ~r1400 (or when the water is within 20 rounds of the ring), eight landscapers take the
+   HQ's ring and race; the lattice keeps them fed from Chebyshev 2.
+5. **Drones.** Centers on the lattice spend the vaporator income: the shield on flooded tiles next to the ring, the raid
+   on the enemy wall from r1400.
+
+**Measures (each stage against g_iter12 on the six lattice maps, then the ladder -- §8b: the mirror is not its judge):**
+vaporators standing at r700 / r1000 / r1500 (winkelmantanner: 10 / 35 / 65), the lattice's dry area, landscapers alive,
+the result. Package `src/r1`.
+
 ## The enclosure (2026-09-25; CLOSED after 36 stages -- see the last paragraph of the state)
 
 What the field's top bots build (TRAINING_LOG "The enclosure": 56 late losses, both boards read): a **shell** of
