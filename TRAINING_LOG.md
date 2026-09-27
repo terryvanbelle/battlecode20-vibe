@@ -4067,3 +4067,6 @@ r600.
 
 **R1 stage 13 (any-miner building from r600), the 20 random maps: 10 won** (stage 11: 9; g_iter12: 12) -- NoU gained.
 **Arm R1d: 96 band games as `us:r1s13`** (frozen), registered: rating against g_iter12 and r1s11 (1760 +- 46).
+
+**Arm R1d: r1s13 50-46, 1807 +- 72 on 96 band games** (g_iter12 1789 +- 40; r1s11 1756 +- 46) -- the first R1 above the
+incumbent (+18, inside the intervals). Extended to 240 (`subr1d`).
