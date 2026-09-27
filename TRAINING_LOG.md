@@ -3919,3 +3919,11 @@ replays): a center at r1200 in 22 of 68 games (arm 86: 9 of 59), 12+ drones in 1
 42; losses 4 before r1300, 8 in the raid window, 35 after r2000; of the 43 losses past r1300, 9 had the shield's drones.
 The first build of the day level with the incumbent, with the mechanism present in a quarter of the games. Extended to
 240 band games (`sub86`, three more blocks) to tighten it; the late wall race (35 of 49 losses) is the next target.
+
+**sub86: cand86s3 closes at 1805 +- 46 on 240 band games (118-122), g_iter12 1805 +- 39 -- level.** The pair neither
+helps nor hurts on the ladder. Its losses: 19 before r1300, 22 in the raid window, **81 after r2000 (66%)** -- the late
+wall race, worst against winkelmantanner (8-22), mvpatel2000 (10-20), rzhan11 (12-18).
+**Iteration 87 (`src/cand87` = cand86s3 + a late raid):** the keep's assets late in the game are a surviving center, idle
+soup in the thousands and drones; the wall race is lost when their wall outgrows ours, and winkelmantanner won it against
+us by lifting our wall's landscapers. DRONES_MAX 20 -> 60; a drone with no free shield slot, from r1400, runs Iteration
+61's raid (ported from cand69: gather near the enemy HQ, charge with 12, lift the ring's landscapers into the water).
