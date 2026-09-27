@@ -38,11 +38,12 @@ public strictfp class Landscaper extends Robot {
         if (forward) { attack(); return; }   // Iteration 63
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
+        if (!attacker && !helper && round - birth < 8) { readBlock(); return; }   // stage 1e: read the school's orders before taking a role
         if (!attacker && !helper) {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
             // Iteration 86: helpers past WALL_HELPERS add nothing to the wall (Iteration 35: the intake ceiling) -- they are the keep's masons
-            if (seat == null && MapState.nMasons < C.KEEP_MASONS && keepCenter() != null) { attacker = true; MapState.addMason(id); Debug.log("@mason posted=" + MapState.nMasons); }   // stage 1d: the first seatless landscapers, counted on the chain
+            if (MapState.ordered(id) && keepCenter() != null) { attacker = true; seat = null; Debug.log("@mason posted=ordered"); }   // stage 1e: named by the school
             else if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
         }
         if (attacker) { if (!keep(home)) attack(); return; }   // Iteration 86: the attackers are the keep's masons

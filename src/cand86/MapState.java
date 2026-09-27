@@ -18,6 +18,8 @@ public final strictfp class MapState {
     public static MapLocation enemyHQ;               // confirmed by sight
     public static boolean keepUp = false;            // Iteration 86: a mason has announced the keep
     public static int[] masonIds = new int[8]; public static int nMasons = 0;   // stage 1d: distinct masons announced
+    public static int[] orderIds = new int[8]; public static int nOrders = 0;   // stage 1e: ids the school named masons
+    public static boolean ordered(int id) { for (int i = nOrders; --i >= 0;) if (orderIds[i] == id) return true; return false; }
     public static void addMason(int id) { for (int i = nMasons; --i >= 0;) if (masonIds[i] == id) return; if (nMasons < masonIds.length) masonIds[nMasons++] = id; }
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
 

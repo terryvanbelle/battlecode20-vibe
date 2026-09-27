@@ -3877,3 +3877,8 @@ only not to REJECT.
 **Stage 1c (a mason when 14+ of ours are in sight within Chebyshev 2): worse** -- masons on 2 maps of 8, none on
 RandomSoup1. **Stage 1d:** the first three seatless landscapers are masons, counted on the chain (`MASON_JOIN` with the
 id); helpers after them (13+ remain; eight feed the wall).
+
+**Stage 1d: 16-18 masons a game** (a newborn decides on its first turn, before it has read any `MASON_JOIN`) -- the
+helpers starved, walls halved, every map lost. **Stage 1e:** the school, the one robot that knows the count, names the
+masons: after the eight seats its next three newborns (sensed by id beside it) get a `MASON_ORDER`; a newborn reads the
+chain every turn for its first eight rounds before it takes any role.
