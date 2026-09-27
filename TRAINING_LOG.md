@@ -3908,3 +3908,8 @@ drones were there once -- the pair was absent where it mattered. But a miner was
 keep rose (masons raise it from their arrival) before any keeper came, and a miner climbs at most 3. **Stage 3:** the
 centre and the door (the edge facing home) stay at ground until a miner holds the centre; masons never stand in the
 door.
+
+**Stage 3 (the door), ten maps: a keeper parks on 7 of 10** (from 3 of 8), full shields (15-16 posts) on 6. Against the
+g_iter12 controls: four wins lost (RandomSoup1, DoesNotExist, Egg, Squares), one gained (TwoLakeLand) -- the mirror is not
+this pair's judge (§8b, registered). **Arm 86b: 96 band games as `us:cand86s3`** (frozen), registered as arm 86 was, plus
+the census of presence over its replays.
