@@ -3927,3 +3927,8 @@ wall race, worst against winkelmantanner (8-22), mvpatel2000 (10-20), rzhan11 (1
 soup in the thousands and drones; the wall race is lost when their wall outgrows ours, and winkelmantanner won it against
 us by lifting our wall's landscapers. DRONES_MAX 20 -> 60; a drone with no free shield slot, from r1400, runs Iteration
 61's raid (ported from cand69: gather near the enemy HQ, charge with 12, lift the ring's landscapers into the water).
+
+**Diagnostic 87 (ten maps vs g_iter12): the raid fires** -- 12-73 charges and 3-15 lifts where it runs (DoesNotExist: the
+enemy's ring 974 against ours 1,780 at r2500); against the controls MtDoom and TwoLakeLand became wins, Squares and Egg
+losses, the rest unchanged. **Arm 87: 96 band games as `us:cand87`**, registered: its rating against g_iter12's 1805 +-
+39 and cand86s3's 1805 +- 46; its losses after r2000 against cand86s3's 81 of 240.
