@@ -4011,3 +4011,9 @@ drones and 34 landscapers at r1000; g_iter12's control loses it), TwoLakeLand wo
 won), RandomSoup1 lost at r2891 (control won; the income went to schools and landscapers rather than the early raid),
 MtDoom and IceCream lost as the control: net +1 over g_iter12 on six maps. **Arm R1b: 96 band games as `us:r1s8`**
 (frozen), registered: rating against g_iter12's 1799 +- 39 and r1s3's 1626; the census of vaporators and drones.
+
+**Arm R1b: r1s8 29-67, 1642 +- 78 on 96 band games -- still far below g_iter12 (1796 +- 39).** Census (`censusr1b`, 95
+replays): vaporators 1.0 / 1.6 / 2.0 / 1.2 on average at r600-1500, five or more in 4-10 of ~70 games, 12+ drones in 8-9;
+losses 12 before r1300, 10 in the raid window, 45 after r2000. The six lattice maps flatter R1 (they are where a lattice
+forms); the field's maps mostly do not. Next: a broad diagnostic -- R1 vs g_iter12 on 20 random corpus maps -- to find
+where it collapses.
