@@ -4208,3 +4208,8 @@ candidate's differences change it. The use today: cormackikkert's r2103 lift wav
 reproduces ("the harness never fired"), becomes a fixture for the rescue and shield. It is our own code replaying a
 recorded game (rule 3 allows reviewing their games); it is classed as an archetype, not a scrimmage opponent. Being
 built by a workflow (understand, design, build with a fidelity proof on the Constriction loss, two adversarial reviews).
+**Stage 17 diagnostics so far (driver, seed 7, RandomSoup1):** r1 vs `arch_drone`: our HQ never shot (no enemy drone came
+within r2 15; arch_drone never reaches our ring, as in spar1); r1 won r3068. r1 vs `arch_wave` (g_iter13 whose whole
+drone force raids from r1500, charging with 6): arch_wave never charged and r1 won at r1940 (our own raid charged 14
+times; 60 `@raidhome` -- the give-up fires). Neither harness produces a lift near our HQ, so the rescue is untested;
+the replay puppet of a real wave is the harness.
