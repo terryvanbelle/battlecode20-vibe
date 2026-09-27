@@ -3974,3 +3974,9 @@ at r1500, 8,672 at r2000, no center: the builder dead before the fourth vaporato
 Squares 2; RandomSoup1 won again (r1609). The late wall race still lost everywhere else. **Stage 4:** the center after two
 vaporators (was four); cand87's drones (the flooded-tile shield, the raid for drones without a slot) with the wall
 digging under them.
+
+**R1 stage 4 (center after two vaporators, the shield and raid): not better** -- CentralLake 4 vaporators (stage 3: 9),
+every non-rush map lost at r2930-2975 as before. In the mirror the late wall race is structural: g_iter12's seats race
+from the start, R1 caps its ring until r1400. The mirror cannot judge an economy design (§8b). **Arm R1: 96 band games as
+`us:r1s3`** (stage 3, the most vaporators; frozen from its commit as `src/r1s3`), registered: rating against g_iter12's
+1801 +- 39; the census of vaporators standing in its games (g_iter12: 0.1-0.4 a game).
