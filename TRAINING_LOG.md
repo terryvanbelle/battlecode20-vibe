@@ -4282,3 +4282,9 @@ vs arch_rush2 6-6. The R1 rewrite did not lose the rush defence; the weakness is
   end round as g_iter13). Registered paired run and ladder bars in the judge's plan (flip cells: 4 or fewer recovered
   of 15 with a plant = refuted; losing 3+ of the 26 = reject; ladder: rzhan11+poortho early-loss rate below 23.8%,
   rating above g_iter13).
+**R2 diagnostic (VM, the rushvs13 cells, r2 in g_iter13's seat against arch_rush):** InADitch: `@rushhome` r48, center
+r73, 9 `@rushpick`, **r2 WINS r276** (g_iter13 died r147). CosmicBackgroundRadiation: center r58-60, first pickup r79
+(first enemy dirt r82), 7 pickups, **r2 WINS r147** (g_iter13 died r132). Squares: `@squatskip` 6, center r98-100, 2
+pickups; lost r2949 (g_iter13 r932). Constriction (no rush): no r2 tag fires, same end round 3145 as g_iter13, the same
+bytecode overrun counts as g_iter13's own game (pre-existing, not r2's). The mechanism fires; the paired run on the 17
+flips and the 31 other cells (`r2rush`) is next, bars as registered.
