@@ -16,7 +16,11 @@ before running anything, and `HANDOFF.md` for the state of the loop.
    with `EXPLORE=n`; the field is calibrated by playing never-played bots two games each -- all 65
    are placed, PROMPTS 9-10). Builds are graded by the batch Bradley-Terry rating of `tools/elo.py
    --build`, never by raw win rate across pools (PROMPTS 15-17). Never choose a map or a side
-   against a benchmark bot. Our own snapshots and archetypes are unrestricted.
+   against a benchmark bot. Our own snapshots and archetypes are unrestricted. The mental model
+   (PROMPTS 64): scrimmages stand in for the contest, where the Battlecode system picks and plays
+   them. A downloaded scrimmage may be examined and replayed between our own bots (the puppet,
+   `tools/puppet.sh`), but nothing may stand in for playing a benchmark opponent in a way the
+   contest would not allow.
 5. **No test before a diagnostic game shows the mechanism firing** (`TRAINING_ALGORITHM.md` 4.3).
 6. **`tools/unit-tests.sh` after every change** to the bot or to any tool.
 7. Bot changes need no approval; design decisions are the loop's to make.

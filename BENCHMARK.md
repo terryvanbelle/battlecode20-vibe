@@ -18,9 +18,11 @@ code written by other people. This is the closest available substitute for a liv
 4. They are played only as scrimmages (`tools/scrim.sh`); see `TRAINING_ALGORITHM.md` section 0.
    A puppet is one of our archetypes, built on the owner's proposal (PROMPTS 59-60: "use it if it's
    useful"). It replays a recorded scrimmage from the replay alone, on that game's own map, side and
-   seed, which the scrimmage drew at random; no benchmark code runs. The loop's reading (CLAUDE.md is
-   unchanged) is that replaying a recorded game is reviewing it (rule 3), not choosing a map or side
-   against a benchmark bot. Puppet games never enter the ladder and never grade a build.
+   seed, which the scrimmage drew at random; no benchmark code runs. The owner confirmed (PROMPTS 64):
+   replaying a recorded game is reviewing it. Scrimmages approximate the contest, whose games the
+   Battlecode system picks and plays; a team may download a scrimmage, examine it and replay it
+   between its own bots, but no contest mechanism plays a benchmark opponent through a replay. Puppet
+   games are internal: they never enter the ladder and never grade a build.
 
 ## Where they live
 
