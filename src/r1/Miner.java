@@ -108,7 +108,10 @@ public strictfp class Miner extends Robot {
         if (rc.getTeamSoup() >= 1000) { boolean ds = false, fc = false;
             for (int i = nFriend; --i >= 0;) { if (friends[i].type == RobotType.DESIGN_SCHOOL) ds = true; else if (friends[i].type == RobotType.FULFILLMENT_CENTER) fc = true; }
             if (!fc) want = RobotType.FULFILLMENT_CENTER; else if (!ds) want = RobotType.DESIGN_SCHOOL; }
-        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!isSite(n) || !rc.canBuildRobot(want, d)) continue;
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
+            // stage 12 (arm R1c: 0.5-0.9 vaporators a game in the field -- lattice workers are rare there): any tile 3+ out that stands
+            // at the lattice's target, raised or natural (on ~19 maps natural ground of 12+ stands until r1800+), not only lattice sites
+            if ((!isSite(n) && (isGrid(n) || Nav.cheb(n, h) < 3)) || !rc.canBuildRobot(want, d)) continue;
             if (rc.senseElevation(n) < gridTarget(round) - 1) continue;
             rc.buildRobot(want, d); Debug.log("@anyvap t=" + want.ordinal() + " at=" + n + " e=" + rc.senseElevation(n)); return true; }
         return false;

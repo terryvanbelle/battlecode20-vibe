@@ -4044,3 +4044,9 @@ raised lattice sites stay. The 20 random maps again.
 (the control loses them), lost BeachFrontProperty (the control's rush wins at r136, R1's does not), Egg, Maze,
 TwoLakeLand, ClearlyTwelveHorses. **Arm R1c: 96 band games as `us:r1s11`** (frozen), registered as before (rating against
 g_iter12; the census of vaporators).
+
+**Arm R1c: r1s11 42-54, 1746 +- 73 on 96 band games** (r1s8: 1642; g_iter12 1793 +- 39) -- the best R1, still below.
+Census (`censusr1c`): vaporators 0.5-0.9 on average at r600-1200, five or more in 1-5 of ~60 games -- in the field R1 is
+g_iter12's wall with few extras (lattice workers, the landscapers past sixteen, are rare there). **Stage 12:** any miner's
+vaporator may stand on any tile 3+ out at the lattice's target height, raised or natural, not only on lattice sites (on
+~19 maps natural ground of 12+ stands until r1800+).
