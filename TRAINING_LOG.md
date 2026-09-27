@@ -3836,3 +3836,6 @@ landscapers before the school drowns costs the wall race. `src/bot` = g_iter12.
 **Iteration 85 (`src/cand85` = g_iter12 with RUSH_LANDSCAPERS 8 -> 12):** the early-loss read showed burial races go to
 the side with more buriers (rzhan11's 6 against our 3); our forward school stops at 8. Diagnostic on the rush-race maps,
 then the paired gate.
+
+**Diagnostic 85: identical to the control on all ten maps** -- the forward school never reaches eight landscapers before
+the race is decided; the cap does not bind. Does not fire; no gate (rule 5). Closed. `src/bot` = g_iter12.
