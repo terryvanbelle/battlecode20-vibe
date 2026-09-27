@@ -253,3 +253,7 @@ This is an interesting finding.  Do you have any ideas for how to improve self-p
 ## 59. 2026-09-27
 
 I have an idea for improving our self play.  What if you created an archetype variant that takes a game replay and reproduces the opponents moves exactly up to a given point, and then plays like a normal archetype.  You could use it to arbitrarily replay a portion of a game on a specific map, which might help you design strategies to counter it
+
+## 60. 2026-09-27
+
+Use it if it's useful, otherwise carry on as before

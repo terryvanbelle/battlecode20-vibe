@@ -4198,3 +4198,13 @@ drone lift-and-bury, the 30-landscaper late wall) become new archetypes built fr
 ours over dry ground (the cargo lands alive), 2 an empty drone beside our landscaper or miner, 3 a carrier of theirs
 over water, never their carrier over dry ground, 4 the rest; nearest within a rank; logs `@shoot kind=`. Diagnostic
 first (rule 5): does kind=1 fire, and is the rescued unit alive the next round?
+
+**The replay puppet (PROMPTS 59-60, the owner's idea): an archetype that reproduces one side of a recorded game exactly up
+to a cutoff round, then plays as a normal archetype.** Feasible from the replay alone: the engine records every action
+in order (spawns with type and tile, moves, pickups/drops/shots with target ids, digs/deposits and mining with their
+dirt/soup changes appended in the same order, so the tiles are recoverable), and messages with their costs. With the
+recorded seed and our old build on the other side the game should replay identically; with a candidate there, only the
+candidate's differences change it. The use today: cormackikkert's r2103 lift wave, which none of our archetypes
+reproduces ("the harness never fired"), becomes a fixture for the rescue and shield. It is our own code replaying a
+recorded game (rule 3 allows reviewing their games); it is classed as an archetype, not a scrimmage opponent. Being
+built by a workflow (understand, design, build with a fidelity proof on the Constriction loss, two adversarial reviews).
