@@ -42,8 +42,8 @@ public strictfp class Landscaper extends Robot {
             if (seat != null && !seat.equals(loc) && nav.target() == seat && nav.stalled()) { if (nBad < 8) badSeat[nBad++] = seat; Debug.log("@badseat " + seat); seat = null; }
             if (seat == null || !seat.equals(loc) && occupiedByOther(seat)) seat = pickSeat(home);
             // Iteration 86: helpers past WALL_HELPERS add nothing to the wall (Iteration 35: the intake ceiling) -- they are the keep's masons
-            int posted = 0; for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) == 2) posted++; }
-            if (seat == null && posted >= C.WALL_HELPERS && keepCenter() != null) { attacker = true; Debug.log("@mason posted=" + posted); }
+            int posted = 0; for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.LANDSCAPER && Nav.cheb(f.location, home) <= 2) posted++; }
+            if (seat == null && posted >= C.KEEP_MASON_AFTER && keepCenter() != null) { attacker = true; Debug.log("@mason posted=" + posted); }   // stage 1c: seats + helpers in sight (a spawn near the school sees most of Chebyshev 2)
             else if (seat == null) { post = pickPost(home); if (post != null) { helper = true; Debug.log("@helper post=" + post); } else { attacker = true; Debug.log("@attacker ring full"); } }
         }
         if (attacker) { if (!keep(home)) attack(); return; }   // Iteration 86: the attackers are the keep's masons
@@ -54,7 +54,7 @@ public strictfp class Landscaper extends Robot {
 
     /** Iteration 86: a mason. Stand on an edge tile of the 3x3 keep (stage 1b); raise the lowest keep tile in reach (never a building) to the
      *  target; dig from outside the keep (never the wall's ground, Chebyshev 2 of home, or under our own units). */
-    private MapLocation masonTile;
+    private MapLocation masonTile; private int keepPosts = 0;
     private boolean keep(MapLocation home) throws GameActionException {
         MapLocation k = keepCenter(); if (k == null) return false;
         if (floodDanger() && climb()) return true;
@@ -69,6 +69,7 @@ public strictfp class Landscaper extends Robot {
             if (masonTile == null) return false;
             nav.setTarget(masonTile); nav.step(); return true;
         }
+        if (keepPosts < 3 && post(Comms.make(Comms.KEEP_UP, round, us))) keepPosts++;   // stage 1c: the builder parks only on a manned keep
         if (!rc.isReady()) return true;
         int target = keepTarget(round);
         if (rc.getDirtCarrying() > 0) {

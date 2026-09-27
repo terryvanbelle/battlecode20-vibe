@@ -100,7 +100,7 @@ public strictfp class Miner extends Robot {
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         if (round < buildPause) return false;   // Iteration 34: a walk that stalled (the builder boxed in) pauses building
-        if (builtSchool > 0 && builtRefinery > 0 && round >= C.KEEP_PARK && !rushSeen() && keepBuild()) return true;   // Iteration 86
+        if (builtSchool > 0 && builtRefinery > 0 && round >= C.KEEP_PARK && MapState.keepUp && !rushSeen() && keepBuild()) return true;   // Iteration 86 (stage 1c: only once a mason stands on the keep)
         int soup = rc.getTeamSoup();
         RobotType want = null;
         boolean rush = builtSchool == 0 && rushSeen();

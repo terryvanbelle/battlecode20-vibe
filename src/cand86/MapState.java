@@ -16,6 +16,7 @@ public final strictfp class MapState {
     public static int minX = -1, minY = -1;          // origin; -1 unknown (the map corner is random)
     public static MapLocation home;                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
+    public static boolean keepUp = false;            // Iteration 86: a mason has announced the keep
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y
 
     // remembered terrain, indexed by (x - minX) + (y - minY) * width once the origin is known

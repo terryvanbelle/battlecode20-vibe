@@ -3848,3 +3848,14 @@ water (max(10, water(r+300)+4)); the builder parks on its inner tile nearest hom
 school) and, from r600, builds three vaporators and then a center on the raised inner tiles -- a producer that outlives
 the flood. Stage 1 checks the structure: the platform's height, the builder alive after r1000, buildings on the keep,
 the wall against the control.
+
+**Iteration 86 stage 1 diagnostics:** (a) no attacker ever existed -- every seatless landscaper finds one of the 16
+helper posts; helpers past eight became masons (Iteration 35: they add nothing to the wall). (b) With two masons on
+RandomSoup1 the 5x5's inner tiles were out of their reach and the builder's tile flooded; **stage 1b: a 3x3 keep, the
+builder at the centre** (every edge touches it) -- RandomSoup1 traced: parked r392, two vaporators and a center on the
+keep at r689-753 (e=10), 16 drones by r1200, a vaporator rebuilt at e=21 at r1788, **the builder alive at r2597 on a
+tile at 142**, a tiebreak win (control: win). (c) Eight maps: masons formed only on RandomSoup1 (a spawn rarely sees
+eight posted helpers); wins held or gained elsewhere (TwoLakeLand a win against the control's loss, Toothpaste's wall
+1,680 against 1,071) but Egg lost its win with the builder parked on an unmanned keep. **Stage 1c:** a seatless
+landscaper that sees 14+ of ours within Chebyshev 2 of home is a mason; the first mason on the keep announces it
+(`KEEP_UP`); the builder parks only after that.

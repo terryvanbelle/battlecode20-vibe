@@ -31,6 +31,7 @@ public final class C {
     public static final int KEEP_AHEAD = 300;          // ... raised to the water of this many rounds ahead, plus KEEP_MARGIN
     public static final int KEEP_MARGIN = 4;
     public static final int KEEP_VAPS = 3;
+    public static final int KEEP_MASON_AFTER = 14;     // stage 1c: a seatless landscaper that sees this many of ours within Chebyshev 2 of home is a mason
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
