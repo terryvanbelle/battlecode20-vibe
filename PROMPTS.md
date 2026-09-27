@@ -209,3 +209,7 @@ How is cand81s8 looking?
 ## 48. 2026-09-27
 
 No, you will make a decision without my input and you will keep trying.
+
+## 49. 2026-09-27
+
+Repeating a portion from the initial prompt: "If you get stuck for ideas, review principles that have worked in other years.  There will be times when no attempts are successful for a long period.  At those times, it’s important to keep trying new things, and to not give up.  If you believe that a complete rewrite will help, then you should do so."
