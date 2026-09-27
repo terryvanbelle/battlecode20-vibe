@@ -3913,3 +3913,9 @@ door.
 g_iter12 controls: four wins lost (RandomSoup1, DoesNotExist, Egg, Squares), one gained (TwoLakeLand) -- the mirror is not
 this pair's judge (§8b, registered). **Arm 86b: 96 band games as `us:cand86s3`** (frozen), registered as arm 86 was, plus
 the census of presence over its replays.
+
+**Arm 86b: cand86s3 1814 +- 72 on 96 band games (49-47), g_iter12 1804 +- 39 -- level, +10.** Census (`census86b`, 94
+replays): a center at r1200 in 22 of 68 games (arm 86: 9 of 59), 12+ drones in 18 (arm 86: 4), a miner alive at r1200 in
+42; losses 4 before r1300, 8 in the raid window, 35 after r2000; of the 43 losses past r1300, 9 had the shield's drones.
+The first build of the day level with the incumbent, with the mechanism present in a quarter of the games. Extended to
+240 band games (`sub86`, three more blocks) to tighten it; the late wall race (35 of 49 losses) is the next target.
