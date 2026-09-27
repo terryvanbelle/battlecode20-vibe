@@ -3957,3 +3957,9 @@ as cand78 was), keeping our proven rush module; design in DESIGN.md "R1".
 rows, every cell a pit, buildings on the rows): no seats before r1400 -- the HQ's ring is lattice like any other tile; the
 lattice radius grows as 3 + round/150 up to 8; the grid kept above the water of r+300 (floor 5). Diagnostic: the six
 lattice maps vs g_iter12 (`tools/lattice-diag.sh`).
+
+**R1 stage 1, six maps vs g_iter12: RandomSoup1 WON at r1472 -- 10 vaporators and 27 drones by r1000**, the field's
+economy running in our code for the first time; the other five lost early (r1775-2510; the control lasts past r3000):
+with no seats the ring was open and enemy landscapers buried the HQ (MtDoom 25 at r1000). **Stage 2:** the seats guard
+from the start but hold the ring at the lattice's height + 4 until r1400 (spare dirt onto the lowest lattice tile beside
+them); from r1400 they race as g_iter12's do.

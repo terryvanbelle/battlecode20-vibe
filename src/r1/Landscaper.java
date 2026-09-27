@@ -40,7 +40,6 @@ public strictfp class Landscaper extends Robot {
         if (home == null) { nav.setTarget(null); return; }
         // Iteration 78 stage 9: the eight ring seats first, as g_iter12 (the rush answer: stage 8 died to rushes at r174-308 on
         // three maps of six); every other home landscaper works the lattice
-        if (round < C.WALL_FROM && !attacker && !helper && seat == null) { lattice(home); return; }   // R1: the lattice first; the wall comes late
         if (!attacker && !helper && (seat == null || (!seat.equals(loc) && occupiedByOther(seat)))) seat = pickSeat(home);
         if (!attacker && seat == null) { lattice(home); return; }
         if (!attacker && !helper) {
@@ -222,6 +221,16 @@ public strictfp class Landscaper extends Robot {
         if (hqInfo != null && hqInfo.dirtCarrying > 0 && rc.canDigDirt(toHQ)) { rc.digDirt(toHQ); hqDigs++; digs++; Debug.log("@hqdig buried=" + hqInfo.dirtCarrying); return; }
         // 2. an enemy building or unit adjacent: bury it (deposit) if we carry, it is cheap denial
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.isBuilding() && loc.isAdjacentTo(e.location) && rc.getDirtCarrying() > 0 && rc.canDepositDirt(loc.directionTo(e.location))) { rc.depositDirt(loc.directionTo(e.location)); buryDeposits++; return; } }
+        // R1 stage 2 (stage 1: an unseated ring let enemy landscapers bury the HQ, MtDoom 25 at r1000): the seats guard from the
+        // start but hold the ring at the lattice's height + 4 until WALL_FROM; spare dirt goes to the lowest lattice tile beside
+        if (round < C.WALL_FROM && rc.getDirtCarrying() > 0 && rc.senseElevation(loc) >= gridTarget(round) + 4) {
+            Direction bd = null; int be = gridTarget(round);
+            for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) || n.equals(home) || !isGrid(n) || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
+                RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
+                int e = rc.senseElevation(n); if (e < be) { be = e; bd = d; } }
+            if (bd != null) { rc.depositDirt(bd); deposits++; }
+            return;
+        }
         // 3. raise the LOWEST of {our tile, adjacent ring tiles}: the flood gets in through the lowest ring
         //    tile, so a wall is worth its minimum (Iteration 3; seats sat at 415 beside 163 before this)
         if (rc.getDirtCarrying() > 0) {
