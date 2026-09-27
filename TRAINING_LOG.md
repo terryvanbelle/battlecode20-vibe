@@ -4288,3 +4288,16 @@ r73, 9 `@rushpick`, **r2 WINS r276** (g_iter13 died r147). CosmicBackgroundRadia
 pickups; lost r2949 (g_iter13 r932). Constriction (no rush): no r2 tag fires, same end round 3145 as g_iter13, the same
 bytecode overrun counts as g_iter13's own game (pre-existing, not r2's). The mechanism fires; the paired run on the 17
 flips and the 31 other cells (`r2rush`) is next, bars as registered.
+**R2 paired runs against arch_rush (flips17 = the 17 cells the rush flipped; rest31 = the other 31; r2 against g_iter13):**
+
+| stage | change | flips17 recovered | rest31 lost / gained | verdict (registered) |
+|---|---|---|---|---|
+| r2s1 | rush center at once + reserve (offence held for the first drone) + soup-free parts | 9 | 5 / 1 | reject (cost 3+) |
+| r2s2 | home school first, then the center; the school's first two landscapers ignore the reserve | diag: lost InADitch, all 5 regressions | -- | worse, not run |
+| r2s3 | r2s1 with the reserve never holding the offence | 8 | 6 / 1 | reject |
+| **r2s4** | **only the soup-free parts: seats skip squatters, HQ dig first at 10+, seat walk never through an enemy tile, home from the chain, the early drone guard** | **5** | **0 / 1** | **to the gates, then the ladder** |
+
+The regressions of stages 1-3 (BeachFrontProperty, Egg, ClearlyTwelveHorsesInASalad, Hourglass x2): g_iter13 wins
+these by spending the first 150 after the plant on its own counter-rush; any rule that spends it on defence first
+loses the race. Against this archetype the soup-free defence keeps every win. Chain `chain2s4`: the OPP=arch_rush gate
+(must ACCEPT), the plain paired mirror (must not REJECT), then 240 band games as us:r2s4; ladder bars as registered.
