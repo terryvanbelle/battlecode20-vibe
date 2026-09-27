@@ -3832,3 +3832,7 @@ walls are in the mirror's chaotic range. `gate84` (paired mirror vs g_iter12, 32
 **Gate 84: inconclusive, 2-8 discordant after 320 pairs (p = 0.11 against), concordant 163-147. Not kept** (ledger).
 Three measurements now agree (Iteration 81 stage 5, gate81, gate84): in the mirror, soup spent on anything but
 landscapers before the school drowns costs the wall race. `src/bot` = g_iter12.
+
+**Iteration 85 (`src/cand85` = g_iter12 with RUSH_LANDSCAPERS 8 -> 12):** the early-loss read showed burial races go to
+the side with more buriers (rzhan11's 6 against our 3); our forward school stops at 8. Diagnostic on the rush-race maps,
+then the paired gate.
