@@ -4005,3 +4005,9 @@ banked, builds a vaporator on a raised lattice site beside it (no walk).
 (r1473). The income is not spent (no school or center standing by r1000-1500) and the vaporators drown by r1500-2000;
 the other maps still lose the late race. **Stage 8:** with 1,000 banked, a miner builds a missing center, then a missing
 school, on the same raised sites; cand87's drones (the shield, the raid) spend the rest.
+
+**R1 stage 8 (a missing center/school with 1,000 banked; cand87's drones): the best R1** -- CentralLake WON at r3073 (49
+drones and 34 landscapers at r1000; g_iter12's control loses it), TwoLakeLand won (control lost), Squares won (control
+won), RandomSoup1 lost at r2891 (control won; the income went to schools and landscapers rather than the early raid),
+MtDoom and IceCream lost as the control: net +1 over g_iter12 on six maps. **Arm R1b: 96 band games as `us:r1s8`**
+(frozen), registered: rating against g_iter12's 1799 +- 39 and r1s3's 1626; the census of vaporators and drones.
