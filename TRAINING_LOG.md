@@ -4254,3 +4254,31 @@ late (r2925-3151). `rushold` next: g_iter13 against g_iter12, each facing both r
 R1 rewrite lose part of the rush defence?
 **rushold (g_iter13 against g_iter12, each facing the rusher, same 48 cells):** vs arch_rush 5-2 discordant (p 0.45),
 vs arch_rush2 6-6. The R1 rewrite did not lose the rush defence; the weakness is at least as old as g_iter12.
+
+**The rush, traced (design workflow on rushvs13's 17 flips; early/mid/late investigators, two designers, a judge).**
+- Early kills (6): arch_rush plants at r46-78 on the tile Chebyshev 3 straight along an axis from our HQ (it reads our
+  HQ from our r2 post -- a sparring shortcut). We SEE it in time (the builder's rush school within a round in 4 of 6;
+  the HQ stops miners) but the response starves: every spender uses the same 150 threshold, and 12 times the builder
+  walked (to a lattice site or the far-side center stand) while our own rusher or forward school took that round's 150.
+  After the plant g_iter13 bought 14 forward landscapers and 5 forward schools (~2,850 soup) against 10 home
+  landscapers. Centers 1 of 6, drones 0 of 6 -- Iteration 58's drone defence (gate58r 28-6 against this archetype)
+  never fired. No refinery in 5 of 6 (the rush branch's else-if order never reaches it); miners then cannot reach the
+  enemy-held HQ ring. One home landscaper was homeless (a cow's pollution cut the school's sensor; home null).
+- Mid (5): the rusher's landscapers take the ring seats on their side and hold them all game; nothing of ours ever
+  touches the rush school (0 dirt on 5 schools). pickSeat treats an enemy-held seat as free: 18 of our landscapers sat
+  450-800 rounds with 0 digs waiting for one. seatWalk runs before the HQ dig (Prison: 73 feeds, 0 HQ digs, burial
+  5 -> 41). The HQ drowns when water passes an enemy-held seat's natural height (r719-943).
+- Late (6, four with a rush): our school and refinery buried at r162-255, mining stops ~r200, the HQ sealed; g13 frozen
+  at 6-9 landscapers against 16-35 in the controls; ring +0.27-0.31 a round against 0.76-1.08. Two flips had no rush at
+  all (arch_rush's own opening: a banked builder).
+- **R2 (`src/r2`, `src/bot` = r2 during the iteration):** (1) a rush at home (an enemy school within Chebyshev 4 or a
+  landscaper within 2, before r250) builds the rush center AT ONCE beside the builder, and a RESERVE message holds every
+  other spender's 150 (the forward school's too, for the first drone) until two drones are bought; drones born before
+  r350 guard: lift enemy landscapers within Chebyshev 3 of home and miners on the ring; (2) pickSeat/pickPost skip
+  either team's landscaper (`@squatskip`); (3) dig the HQ before the seat walk at 10+ dirt; seatWalk never feeds or
+  steps through an enemy-held between tile; (4) a school/landscaper born before r250 without home reads our HQ_LOC
+  from the chain. Diagnostic (rule 5): InADitch and Cosmic (center within 15 of the plant, a drone by +30, a pickup
+  within 10 of the first dirt), Squares (`@squatskip`, no idle seat-waiter at r300), Constriction (no tag fires, same
+  end round as g_iter13). Registered paired run and ladder bars in the judge's plan (flip cells: 4 or fewer recovered
+  of 15 with a plant = refuted; losing 3+ of the 26 = reject; ladder: rzhan11+poortho early-loss rate below 23.8%,
+  rating above g_iter13).
