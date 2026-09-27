@@ -261,3 +261,11 @@ Use it if it's useful, otherwise carry on as before
 ## 61. 2026-09-27
 
 Is arch_rush or arch_rush2 better than g_iter13 or g_iter12?  If so, then maybe we should submit to the ladder, or at least incorporate its ideas into one of the candidates
+
+## 62. 2026-09-27
+
+It seems like the replay-puppet workflow has been going on for a while.  Is it blocked/starved, or is it doing a lot more than I think it's doing?
+
+## 63. 2026-09-27
+
+Not a problem, glad it worked!
