@@ -109,6 +109,7 @@ public abstract strictfp class Robot {
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.KEEP_UP: MapState.keepUp = true; break;
                 case Comms.MASON_JOIN: MapState.addMason(m[1]); break;
+                case Comms.KEEPER_CLAIM: if (MapState.keeperId < 0) MapState.keeperId = m[1]; break;
                 case Comms.MASON_ORDER: if (!MapState.ordered(m[1]) && MapState.nOrders < MapState.orderIds.length) MapState.orderIds[MapState.nOrders++] = m[1]; break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
                 default: break;

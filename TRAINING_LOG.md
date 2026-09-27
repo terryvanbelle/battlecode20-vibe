@@ -3882,3 +3882,9 @@ id); helpers after them (13+ remain; eight feed the wall).
 helpers starved, walls halved, every map lost. **Stage 1e:** the school, the one robot that knows the count, names the
 masons: after the eight seats its next three newborns (sensed by id beside it) get a `MASON_ORDER`; a newborn reads the
 chain every turn for its first eight rounds before it takes any role.
+
+**Stage 1e: masons 1-3 on all eight maps**; walls held or rose against the controls (NoU 2,515 / 2,166; TwoLakeLand a
+win against a loss; RandomSoup1, DoesNotExist, Toothpaste wins as the control; Egg lost its win). But the builder parked
+only on MtDoom: it is dead by r800 on most maps (M=0), before the masons announce the keep. **Stage 1f: the keeper is
+any miner** -- after `KEEP_UP` the first miner within 10 of home walks to the keep's centre and claims it
+(`KEEPER_CLAIM`); the others stay away.

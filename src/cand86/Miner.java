@@ -54,6 +54,8 @@ public strictfp class Miner extends Robot {
         if (floodDanger() && climb()) return;
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (rusher && !planted && round < C.RUSH_GIVEUP) { rush(); return; }
+        // Iteration 86 stage 1f: the keeper is any miner -- the builder is dead by r800 on most maps, before the keep is manned
+        if (round >= C.KEEP_PARK && MapState.keepUp && !rushSeen() && (MapState.keeperId == id || (MapState.keeperId < 0 && MapState.home != null && Nav.cheb(loc, MapState.home) <= 10)) && keepBuild()) return;
         if (builder && build()) return;
         work();
     }
@@ -76,13 +78,14 @@ public strictfp class Miner extends Robot {
     }
 
     // ---------------------------------------------------------------- Iteration 86: the builder keeps the keep
-    private int keepVaps = 0, keepFC = 0;
+    private int keepVaps = 0, keepFC = 0, claimPosts = 0;
     private boolean keepBuild() throws GameActionException {
         MapLocation s = keepStand(), k = keepCenter(); if (s == null) return false;
         if (!loc.equals(s)) {
-            if (rc.canSenseLocation(s) && rc.isLocationOccupied(s)) { RobotInfo r = rc.senseRobotAtLocation(s); if (r != null && r.type.isBuilding()) return false; }
-            nav.setTarget(s); nav.step(); if (loc.equals(s)) Debug.log("@keep parked at=" + s + " e=" + rc.senseElevation(s)); return true;
+            if (rc.canSenseLocation(s) && rc.isLocationOccupied(s)) { RobotInfo r = rc.senseRobotAtLocation(s); if (r != null && (r.type.isBuilding() || r.type == RobotType.MINER)) return false; }   // taken
+            nav.setTarget(s); nav.step(); if (loc.equals(s)) { MapState.keeperId = id; Debug.log("@keep parked at=" + s + " e=" + rc.senseElevation(s)); } return true;
         }
+        if (claimPosts < 3 && post(Comms.make(Comms.KEEPER_CLAIM, round, us, id))) claimPosts++;
         if (!rc.isReady() || round < C.KEEP_BUILD) return true;
         RobotType want = null; int soup = rc.getTeamSoup();
         if (keepVaps < C.KEEP_VAPS && soup >= RobotType.VAPORATOR.cost) want = RobotType.VAPORATOR;
@@ -100,7 +103,6 @@ public strictfp class Miner extends Robot {
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         if (round < buildPause) return false;   // Iteration 34: a walk that stalled (the builder boxed in) pauses building
-        if (builtSchool > 0 && builtRefinery > 0 && round >= C.KEEP_PARK && MapState.keepUp && !rushSeen() && keepBuild()) return true;   // Iteration 86 (stage 1c: only once a mason stands on the keep)
         int soup = rc.getTeamSoup();
         RobotType want = null;
         boolean rush = builtSchool == 0 && rushSeen();
