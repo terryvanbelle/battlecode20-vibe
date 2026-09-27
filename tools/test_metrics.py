@@ -86,8 +86,13 @@ for sp in glob.glob(os.path.join(REPO, 'gauntlet', '*', 'study.tsv'))[:3]:
     check(f"{os.path.basename(os.path.dirname(sp))}: won is 0/1", set(r['won'] for r in rows) <= {'0','1'})
     check("every us_ column has a th_ twin", all('th_'+k[3:] in rows[0] for k in rows[0] if k.startswith('us_')))
     check("coverage is per mille in [0,1000]", all(0 <= float(r['us_cov']) <= 1000 for r in rows if r['us_cov']))
+    # a block can draw the same opponent, map and side twice; the two games then share one study key and their rows
+    # interleave (2026-09-26: EmaPajic__FourLakeLand__botB in a r1s11 block, 24 duplicated rounds) -- such a key is a
+    # collision, not a decrease, and is skipped
+    groups = [[r for r in rows if r['game'] == gm] for gm in {r['game'] for r in rows}]
+    groups = [g for g in groups if len({r['round'] for r in g}) == len(g)]
     check("cumulative mines never decrease within a game", all(all(float(g[i]['us_mines']) >= float(g[i-1]['us_mines']) for i in range(1, len(g)))
-          for g in [[r for r in rows if r['game'] == gm] for gm in {r['game'] for r in rows}]))
+          for g in groups))
     check("rounds are the 50-step grid", set(int(r['round']) for r in rows) <= set(range(50, 1250, 50)))
 
 print(("test_metrics: FAILED " + ", ".join(fails)) if fails else "test_metrics: OK")
