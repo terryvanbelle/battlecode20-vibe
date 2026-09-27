@@ -4098,3 +4098,7 @@ g_iter12).
 alive at r900 in 11 with ~500 banked, but the any-miner rule needs a raised lattice site beside it, and near miners
 there rarely is one. **Stage 15:** a missing center may go on any dry tile 3+ out (drones fly; it need only outlive their
 launch).
+
+**R1 stage 15, the 20 random maps: the ground center fires on 4 maps, shield posts on 6 (up to 7 tiles); 8 won** (as
+stage 14). **Arm R1f: 240 band games as `us:r1s15`** (frozen; judged at 240 per the method note), registered: rating
+against r1s13 (1782 +- 46) and g_iter12 (1786 +- 40); its record against EmaPajic against r1s14's 9-21.
