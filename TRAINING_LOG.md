@@ -4213,3 +4213,30 @@ within r2 15; arch_drone never reaches our ring, as in spar1); r1 won r3068. r1 
 drone force raids from r1500, charging with 6): arch_wave never charged and r1 won at r1940 (our own raid charged 14
 times; 60 `@raidhome` -- the give-up fires). Neither harness produces a lift near our HQ, so the rescue is untested;
 the replay puppet of a real wave is the harness.
+
+**league1 read (9 builds x 11 opponents x 8 cells, 792 games, same cells for every build):**
+
+| build | ladder | league | arch_rush | arch_rush2 | arch_swarm | g_iter5 | the other seven |
+|---|---|---|---|---|---|---|---|
+| g_iter13 | 1807 | 85.2% | 25% | 50% | 88% | 75% | 100% |
+| g_iter12 | 1777 | 86.4% | 25% | 62% | 100% | 75% | 98% |
+| cand87 | 1754 | 86.4% | 25% | 62% | 100% | 75% | 98% |
+| cand81s8 | 1748 | 85.2% | 25% | 62% | 100% | 62% | 98% |
+| r1s16 | 1735 | 85.2% | 25% | 50% | 88% | 75% | 100% |
+| g_iter11 | 1686 | 85.2% | 25% | 50% | 100% | 100% | 95% |
+| g_iter10 | 1673 | 84.1% | 25% | 38% | 100% | 100% | 95% |
+| g_iter9 | 1654 | 81.8% | 12% | 25% | 100% | 62% | 100% |
+| g_iter7 | 1618 | 78.4% | 12% | 25% | 88% | 75% | 95% |
+
+- The league score orders the builds as the ladder does (Spearman 0.85; 21 of the 23 pairs the ladder separates) --
+  but only across the big gaps (g_iter7/9 against the rest). The five builds at 1735-1807 read 85.2-86.4%: it does not
+  put g_iter13 above g_iter12 either. It cannot judge the changes the loop is making now.
+- Six of eleven opponents are saturated (every build 88-100%): arch_citadel, arch_drone, arch_enclosure, arch_perch,
+  arch_raider, g_iter3. Only the rushers carry signal (arch_rush2 Spearman 0.81 with the ladder; arch_rush 0.72).
+- **Every build from g_iter10 up loses 6 of 8 to `arch_rush` (g_iter5 + a rush), four of them LATE** (Constriction
+  r3120, Islands r3149 and r3123, MtDoom r2971) plus Prison r638 and WaterBot r931. g_iter5 itself takes 2 of 8. Test
+  `rushvs13` (paired, 48 cells): arch_rush against g_iter5, each playing g_iter13 on the same cells -- what does the
+  rush alone do to g_iter13?
+- Conclusion for PROMPTS 58: a league of our current archetypes cannot replace the ladder; its opponents are too weak or
+  too alike. The candidates for a league that can are the replay puppets of the field's own games (PROMPTS 59), with
+  the candidate in our seat.
