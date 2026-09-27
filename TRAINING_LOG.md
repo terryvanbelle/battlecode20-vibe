@@ -4160,3 +4160,15 @@ at the gate's confidence while the ladder has g_iter13 +30 on 336 games each (an
 the two measures disagree in sign, so the mirror cannot judge a field-facing change. From here the ladder (240 band
 games, the incumbent's own blocks as control) is the judge; the mirror stays a crash and regression screen (a build
 that loses the mirror 10-50 is broken, not better).
+
+**The league backtest (`league1`, PROMPTS 58: make self-play agree with the ladder).** Why the mirror disagrees: it is
+one opponent, and it tests only what that opponent presses. g_iter12 never lifts and buries, so g_iter13's largest
+ladder gain (EmaPajic's lift-and-bury, 20% -> 50%) is invisible to it, while the one thing g_iter12 does press -- the
+late wall race, with 11 landscapers where the field brings 30 -- is where g_iter13 falls 50-100 rounds short. The
+proposal: gate on a LEAGUE, a fixed population of our own builds and archetypes played on the same cells (map, side,
+seed) by candidate and incumbent. Backtest first (`tools/league.sh`, `tools/league.py`): nine builds whose ladder
+ratings are known (g_iter13 1807 down to g_iter7 1618) each play the same 88 cells against eleven opponents (nine
+archetypes, g_iter3, g_iter5; 8 cells each). Read: each opponent's Spearman correlation with the ladder, and its share
+of correctly ordered pairs over the pairs the ladder separates by more than their combined standard error. Opponents
+that order the builds as the ladder does are kept; saturated ones are dropped; the field's missing attack modes (the
+drone lift-and-bury, the 30-landscaper late wall) become new archetypes built from watching their games.
