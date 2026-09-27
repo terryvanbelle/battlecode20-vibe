@@ -3898,3 +3898,6 @@ the shield affordable for the first time. **Arm 86 (`arm86`): 96 band games as `
 `src/cand86s2`), registered: its rating against g_iter12's 1814 +- 39 (the primary, §8b); raid-window losses against
 g_iter12's against the same opponents; in its losses, whether a keeper parked. Then the plain paired mirror (must not
 REJECT).
+
+**Arm 86 block 1 (`20260927-005715-scrim-cand86s2`): 22-26, 1777 +- 102** (g_iter12 1809 +- 39); losses 8 before r1300,
+2 in the raid window, 16 after r2000; cormackikkert 2-4 and rzhan11 1-5 below g_iter12's record there. Block 2 running.
