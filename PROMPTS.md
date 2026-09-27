@@ -229,3 +229,7 @@ You must be improving vs. rzhan11 as well, given how much it's dropping in the l
 ## 53. 2026-09-27
 
 In ELO.md I'd like to see for each opponent its most recent 200+ game win rate.  Also add for each submission a column for its field-score across only opponents that rank higher than it
+
+## 54. 2026-09-27
+
+Instead of computing over the most recent 200 games against us, I'd like to see the win rate for the most recent run that had at least 200 games in it, if that's doable

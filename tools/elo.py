@@ -62,19 +62,43 @@ if a.build:
           f"rank {rank.get(p_, '-')} of {len(table)}; expected score vs the {len(bots)}-bot field {elolib.field_score(R, p_, bots):.1%}")
     raise SystemExit
 ndist = len(elolib.dedupe(rows))
+# Each opponent's record against the most recent of our builds that played 200+ games and met it (PROMPTS 53-54).
+last_seen = {}
+for i, r in enumerate(rows):
+    for t in (r['teamA'], r['teamB']):
+        if elolib.is_ours(t): last_seen[t] = i
+big = sorted((p for p in ours if games[p] >= 200), key=lambda p: -last_seen[p])
+vs = collections.defaultdict(lambda: [0, 0])   # (build, bot) -> [bot wins, games], distinct games only
+for r in elolib.dedupe(rows):
+    ta, tb = r['teamA'], r['teamB']
+    if elolib.is_ours(ta) == elolib.is_ours(tb): continue
+    us_, opp = (ta, tb) if elolib.is_ours(ta) else (tb, ta)
+    vs[us_, opp][1] += 1; vs[us_, opp][0] += (r['winner'] == 'A') == (opp == ta)
+def recent_run(bot):
+    for p in big:
+        w, n = vs[p, bot]
+        if n: return f"{w / n:.0%} ({w}-{n - w} vs {elolib.build_of(p)})"
+    return ''
+def higher_field(p):   # expected score against only the ladder bots rated above p
+    up = [b for b in rated if R[b] > R[p]]
+    return f"{elolib.field_score(R, p, up):.1%} (vs {len(up)})" if up else '-'
 lines = ["# Ladder", "",
          f"{len(rows)} scrimmages (ours only), {ndist} distinct (a repeated pairing with the same seed replays the same game and counts once), "
          f"rated by a batch Bradley-Terry fit on the Elo scale (`tools/elolib.py`); "
          f"each of our builds is its own player. {len(rated)} of {len(bots)} ladder bots met.", "",
-         "Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each):", "",
-         "| build | rating | rank | games | record | field score |", "|---|---|---|---|---|---|"]
+         "Our builds (rating +- 95%; field score = expected score against every ladder bot, one game each; "
+         "vs higher = the same against only the ladder bots rated above the build, with their count):", "",
+         "| build | rating | rank | games | record | field score | vs higher |", "|---|---|---|---|---|---|---|"]
 for p in ours:
     lines.append(f"| {elolib.build_of(p)} | {R[p]:.0f} +- {1.96 * SE[p]:.0f} | {rank[p]} of {len(table)} | {games[p]} | "
-                 f"{wins[p]}-{games[p] - wins[p]} | {elolib.field_score(R, p, bots):.1%} |")
-lines += ["", "| rank | player | rating | +- 95% | games | W-L |", "|---|---|---|---|---|---|"]
+                 f"{wins[p]}-{games[p] - wins[p]} | {elolib.field_score(R, p, bots):.1%} | {higher_field(p)} |")
+lines += ["", "Last 200+ run = the bot's win rate (its W-L) against the most recent of our builds that played 200+ "
+          "scrimmages and met it.", "",
+          "| rank | player | rating | +- 95% | games | W-L | last 200+ run |", "|---|---|---|---|---|---|---|"]
 for i, (r, p) in enumerate(table):
     name = f"**{p}**" if elolib.is_ours(p) else p
-    lines.append(f"| {i + 1} | {name} | {r:.0f} | {1.96 * SE[p]:.0f} | {games[p]} | {wins[p]}-{games[p] - wins[p]} |")
+    lines.append(f"| {i + 1} | {name} | {r:.0f} | {1.96 * SE[p]:.0f} | {games[p]} | {wins[p]}-{games[p] - wins[p]} | "
+                 f"{'' if elolib.is_ours(p) else recent_run(p)} |")
 if unrated: lines += ["", "Not yet met: " + ", ".join(unrated)]
 open(os.path.join(elolib.REPO, 'progress', 'ELO.md'), 'w').write('\n'.join(lines) + '\n')
 if not a.quiet: print('\n'.join(lines[2:3] + lines[6:6 + len(ours) + 2]))
