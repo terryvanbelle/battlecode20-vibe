@@ -3968,3 +3968,9 @@ them); from r1400 they race as g_iter12's do.
 39 drones); but no vaporator on the other five.** CentralLake traced: 37 landscapers by r500 from two schools, the bank
 never at 500, the builder never wanted a vaporator. **Stage 3:** past sixteen, the school builds only with 650 banked
 (a vaporator's 500 on top of its own 150); the second school only after four vaporators.
+
+**R1 stage 3 (vaporators before extra landscapers): the vaporators appear** -- CentralLake 9 at r1000-1500 (soup 6,326
+at r1500, 8,672 at r2000, no center: the builder dead before the fourth vaporator), MtDoom 9 at r1500 with 22 drones,
+Squares 2; RandomSoup1 won again (r1609). The late wall race still lost everywhere else. **Stage 4:** the center after two
+vaporators (was four); cand87's drones (the flooded-tile shield, the raid for drones without a slot) with the wall
+digging under them.
