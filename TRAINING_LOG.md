@@ -3994,3 +3994,8 @@ sites, the bank).
 vaporators still few** -- CentralLake 2 with 6,380 soup idle at r1000 and no miner alive; the builder is dead by r1000 on
 five maps of six (it mines far from home). **Stage 6:** once the school stands the builder stops mining and holds the
 highest walkway tile 3-5 out, riding the lattice above the water; it builds from there when the bank allows.
+
+**R1 stage 6 (the builder holds the lattice): worse** -- no vaporators, fewer landscapers, RandomSoup1 lost at r349;
+reverted. Traced stage 5 on CentralLake: the builder's last act is a vaporator at r388 and it is dead by ~r500 (enemy
+drones hunt miners) -- the whole economy hung on one miner. **Stage 7:** any miner within 6 of home, from r300 with 500
+banked, builds a vaporator on a raised lattice site beside it (no walk).

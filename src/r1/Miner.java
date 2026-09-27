@@ -56,6 +56,7 @@ public strictfp class Miner extends Robot {
         if (nearestEnemy != null && nearestEnemy.type == RobotType.DELIVERY_DRONE && nearestEnemyD2 <= 8 && fleeFrom(nearestEnemy.location)) return;
         if (rusher && !planted && round < C.RUSH_GIVEUP) { rush(); return; }
         if (builder && build()) return;
+        if (!builder && anyVaporator()) return;   // R1 stage 7
         work();
     }
 
@@ -94,6 +95,17 @@ public strictfp class Miner extends Robot {
         MapLocation stand = null; int sd = 1 << 30; for (int i = 8; --i >= 0;) { MapLocation g = best.add(DIRS[i]); if (!isGrid(g) || !rc.onTheMap(g)) continue; if (rc.canSenseLocation(g) && rc.isLocationOccupied(g) && !g.equals(loc)) continue; int d = loc.distanceSquaredTo(g); if (d < sd) { sd = d; stand = g; } }
         if (stand != null) best = stand;
         nav.setTarget(best); if (nav.stalled()) { buildPause = round + 30; return false; } nav.step(); return true;
+    }
+
+    /** R1 stage 7 (CentralLake traced: the builder's last act a vaporator at r388, dead by r500 -- enemy drones hunt miners;
+     *  the whole economy hung on one miner): any miner within 6 of home, from r300 with 500 banked, builds a vaporator on a
+     *  raised lattice site beside it (no walk). */
+    private boolean anyVaporator() throws GameActionException {
+        MapLocation h = MapState.home; if (h == null || round < 300 || !rc.isReady() || rc.getTeamSoup() < C.VAPORATOR_BANK || Nav.cheb(loc, h) > 6) return false;
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!isSite(n) || !rc.canBuildRobot(RobotType.VAPORATOR, d)) continue;
+            if (rc.senseElevation(n) < gridTarget(round) - 1) continue;
+            rc.buildRobot(RobotType.VAPORATOR, d); Debug.log("@anyvap at=" + n + " e=" + rc.senseElevation(n)); return true; }
+        return false;
     }
 
     // ---------------------------------------------------------------- builder
