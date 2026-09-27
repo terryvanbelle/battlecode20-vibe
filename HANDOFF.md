@@ -14,6 +14,11 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
 - **Iteration 81 (the drone shield, `src/cand81s8`) is CLOSED, not kept:** gate81 3-9 in 320 pairs (inconclusive);
   ladder 1783 +- 48 on 240 band games against g_iter12's 1814 +- 39; the shield was absent in 14 of 15 raid-window
   losses (no center or drone: the surplus arrives after the miners are gone). Ledger entry has the re-open condition.
+- **The rewrite R1 (`src/r1`, DESIGN.md "R1"; TRAINING_LOG from "R1 stage 1")** is the program since 2026-09-26 evening
+  (PROMPTS 48-49): lattice-first, stages 1-10. Arms: r1s3 1626 +- 80, r1s8 1642 +- 78 (96 games each; g_iter12 ~1800).
+  In the mirror R1 wins 5 of 20 random maps against g_iter12's 12; the losses are late wall races ~50-100 rounds short,
+  and in the field the economy averages 1-2 vaporators (it runs only where a lattice forms). Next: the wall race (more
+  bodies on the ring late), then the field economy. The keep line (86-87) and Iterations 81-85 are closed (ledger).
 - **Iteration 82 (the burst rush, copying rzhan11, `src/cand82`): refuted at the diagnostic** (ledger). **Iteration 83
   (vaporators on natural high ground, `src/cand83`): closed, does not fire** (ledger has the re-open condition: a
   builder that seeks the high ground via MapState's terrain memory). The premise (TRAINING_LOG "Natural high ground")

@@ -4028,3 +4028,10 @@ maps the vaporator-first school starved the wall. **Stage 9:** the school goes v
 losses are late wall races at r3031-3096 where g_iter12's wall holds to r3104-3228 (ClearlyTwelveHorses, DoesNotExist,
 Egg, Maze, Showerhead, TwoLakeLand, DisproportionatelySmallGap); R1 gained CentralLake. **Stage 10:** from r1400 a lattice
 landscaper takes a free helper post (Chebyshev 2) and feeds the wall, as g_iter12's helpers do all game.
+
+**R1 stage 10 (lattice landscapers become helpers from r1400), the 14 long-game maps: 3 won as before (CentralLake,
+Climb, IsThisProcedural); losses 25-75 rounds later** (DisproportionatelySmallGap r3148 / 3073, DoesNotExist 3102 / 3052,
+NoU 3139 / 3094, TwoLakeLand 3082 / 3051, Showerhead 3077 / 3056) -- still short of g_iter12's wall (r3104-3228 on the
+same maps). R1 state at the end of 2026-09-26 (PDT): the vaporator engine runs where a lattice forms (14-15 vaporators on
+CentralLake and MtDoom), the rush answer restored, the wall race still ~50-100 rounds behind the incumbent in the
+mirror, and the field's economy averaging 1-2 vaporators. `src/bot` = g_iter12 remains the submission.
