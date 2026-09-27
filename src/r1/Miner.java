@@ -105,9 +105,12 @@ public strictfp class Miner extends Robot {
         // stage 8 (stage 7: 12,000-20,000 soup banked by r1000-1500 with no school or center left): with 1,000 banked, a missing
         // school or center first, on the same raised sites
         RobotType want = RobotType.VAPORATOR;
-        if (rc.getTeamSoup() >= 1000) { boolean ds = false, fc = false;
+        { boolean ds = false, fc = false; int soup = rc.getTeamSoup();
             for (int i = nFriend; --i >= 0;) { if (friends[i].type == RobotType.DESIGN_SCHOOL) ds = true; else if (friends[i].type == RobotType.FULFILLMENT_CENTER) fc = true; }
-            if (!fc) want = RobotType.FULFILLMENT_CENTER; else if (!ds) want = RobotType.DESIGN_SCHOOL; }
+            // stage 14 (r1s13: 18 raid-window losses to EmaPajic -- the ring's landscapers lifted at ~r1510 -- with a center at
+            // r1200 in 2 and 806 soup idle): from r800 a missing center with 500 banked, so the shield stands before the raid
+            if (!fc && (soup >= 1000 || (round >= 800 && soup >= 500))) want = RobotType.FULFILLMENT_CENTER;
+            else if (soup >= 1000 && !ds) want = RobotType.DESIGN_SCHOOL; }
         for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
             // stage 12 (arm R1c: 0.5-0.9 vaporators a game in the field -- lattice workers are rare there): any tile 3+ out that stands
             // at the lattice's target, raised or natural (on ~19 maps natural ground of 12+ stands until r1800+), not only lattice sites

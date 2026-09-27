@@ -4073,3 +4073,9 @@ incumbent (+18, inside the intervals). Extended to 240 (`subr1d`).
 
 **r1s13 at 240 band games: 118-122, 1788 +- 46 -- level with g_iter12 (1789 +- 40).** The rewrite has reached the
 incumbent, not passed it; not submitted. By opponent (r1s13 / g_iter12): EmaPajic 20% / 50%; benzyx 63% / 78%; cormackikkert 80% / 71%; laurenschneider 73% / 78%; mvpatel2000 36% / 26%; poortho 46% / 30%; rzhan11 36% / -%; winkelmantanner 36% / 33%.
+
+**r1s13 against EmaPajic: 6-24 (g_iter12 21-21), 17 of the losses at r1524-1666** -- the lift-and-bury: on Squares all 11
+of our landscapers beside the HQ vanish at ~r1510, six of theirs take the ring and bury the HQ (36 by r1525) while our
+wall stands at 873. Census (`censusr1d`): in its 18 raid-window losses to EmaPajic a center stood at r1200 in 2, the bank
+at a median 806. **Stage 14:** from r800 a miner near home builds a missing center with 500 banked (was 1,000), so the
+shield's drones stand before the raid.
