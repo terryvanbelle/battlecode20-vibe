@@ -3999,3 +3999,9 @@ highest walkway tile 3-5 out, riding the lattice above the water; it builds from
 reverted. Traced stage 5 on CentralLake: the builder's last act is a vaporator at r388 and it is dead by ~r500 (enemy
 drones hunt miners) -- the whole economy hung on one miner. **Stage 7:** any miner within 6 of home, from r300 with 500
 banked, builds a vaporator on a raised lattice site beside it (no walk).
+
+**R1 stage 7 (any miner builds vaporators beside it): the vaporator engine runs** -- CentralLake 6 at r500 and 14 at r1000
+(soup 11,974 at r1000, 19,753 at r1500), MtDoom 6 at r1000 and 15 at r1500 (13,072 banked at r2000); RandomSoup1 won
+(r1473). The income is not spent (no school or center standing by r1000-1500) and the vaporators drown by r1500-2000;
+the other maps still lose the late race. **Stage 8:** with 1,000 banked, a miner builds a missing center, then a missing
+school, on the same raised sites; cand87's drones (the shield, the raid) spend the rest.

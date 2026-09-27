@@ -32,6 +32,7 @@ public final class C {
     public static final int RAID_DRONES_MAX = 150;     // drones built in all, from RAID_BUILD_FROM
     public static final int RAID_BUILD_FROM = 900;
     public static final int RAID_FROM = 1400;         // the swarm gathers from this round
+    public static final int SHIELD_FROM = 600;        // R1 stage 8 (cand87's drone): drones hold the flooded Chebyshev-2 tiles; the rest raid
     public static final int RAID_MIN = 20;            // and charges with this many in sight of the rally point
     public static final int RAID_HOME_GUARD = 3;      // the first three drones never raid
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)

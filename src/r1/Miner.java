@@ -102,9 +102,15 @@ public strictfp class Miner extends Robot {
      *  raised lattice site beside it (no walk). */
     private boolean anyVaporator() throws GameActionException {
         MapLocation h = MapState.home; if (h == null || round < 300 || !rc.isReady() || rc.getTeamSoup() < C.VAPORATOR_BANK || Nav.cheb(loc, h) > 6) return false;
-        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!isSite(n) || !rc.canBuildRobot(RobotType.VAPORATOR, d)) continue;
+        // stage 8 (stage 7: 12,000-20,000 soup banked by r1000-1500 with no school or center left): with 1,000 banked, a missing
+        // school or center first, on the same raised sites
+        RobotType want = RobotType.VAPORATOR;
+        if (rc.getTeamSoup() >= 1000) { boolean ds = false, fc = false;
+            for (int i = nFriend; --i >= 0;) { if (friends[i].type == RobotType.DESIGN_SCHOOL) ds = true; else if (friends[i].type == RobotType.FULFILLMENT_CENTER) fc = true; }
+            if (!fc) want = RobotType.FULFILLMENT_CENTER; else if (!ds) want = RobotType.DESIGN_SCHOOL; }
+        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (!isSite(n) || !rc.canBuildRobot(want, d)) continue;
             if (rc.senseElevation(n) < gridTarget(round) - 1) continue;
-            rc.buildRobot(RobotType.VAPORATOR, d); Debug.log("@anyvap at=" + n + " e=" + rc.senseElevation(n)); return true; }
+            rc.buildRobot(want, d); Debug.log("@anyvap t=" + want.ordinal() + " at=" + n + " e=" + rc.senseElevation(n)); return true; }
         return false;
     }
 
