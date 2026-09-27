@@ -225,3 +225,7 @@ Good work overnight.  It sounds like the rewrite did the trick to get you unstuc
 ## 52. 2026-09-27
 
 You must be improving vs. rzhan11 as well, given how much it's dropping in the ladder
+
+## 53. 2026-09-27
+
+In ELO.md I'd like to see for each opponent its most recent 200+ game win rate.  Also add for each submission a column for its field-score across only opponents that rank higher than it
