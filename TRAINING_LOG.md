@@ -4172,3 +4172,29 @@ archetypes, g_iter3, g_iter5; 8 cells each). Read: each opponent's Spearman corr
 of correctly ordered pairs over the pairs the ladder separates by more than their combined standard error. Opponents
 that order the builds as the ladder does are kept; saturated ones are dropped; the field's missing attack modes (the
 drone lift-and-bury, the 30-landscaper late wall) become new archetypes built from watching their games.
+
+**The late race, traced (design workflow: three replay investigators, three designers, two judges; read-only).**
+- Against the lifters (36 of the 65 late losses: winkelmantanner 16, mvpatel2000 11, cormackikkert 9) nearly every
+  late death is a lift and a drop into water: 69 of 79 deaths in three cormackikkert/mvpatel2000 games; 31 lifts in
+  three winkelmantanner games (16 off C2 posts at 9-22, 15 off ring seats). After r1500 the lifts come as one wave a
+  game (cormackikkert r2103 in all four of its traced games, mvpatel2000 r1877) and take 50-100% of our landscapers.
+  The enemy never digs our ring: lifting is its only attack on the wall. The finish is burial on the emptied ring or
+  a frozen ring that floods. cormackikkert was out-fed 1.3-1.9x and led at r2000 in all four traced games.
+- **Our HQ shot 489 times in five traced losses and hit a drone carrying one of ours 0 times.** 31 of 76 wave lifts
+  were made from a dry tile within the HQ's r2 15; the carrier cannot move in the round after a pickup (cooldown 1.5)
+  and the HQ acts first, and a shot-down carrier drops its cargo alive on a dry tile (GameWorld.destroyRobot). The HQ
+  shot the nearest drone instead.
+- Where we owned drones the shield had holes: 6 on C2 and 11 idle at the enemy rally (the raid needs 20 to charge and
+  never comes home); drones only on flooded C2 tiles; slots searched only from the Chebyshev-5 wait. We had 0 drones at
+  the wave in 7 of 9 traced lifter losses.
+- Against laurenschneider and rzhan11 (no lifts) the shortfall is bodies never built after r500-750, with 735-2,346
+  soup idle at r2000. winkelmantanner's layout: 8 seats + 12 self-raised C2 posts 5-19 above the water, fed from four
+  pinwheel pits (-4,000 to -5,900) under a drone each: 20 feeders at ~10 a round against our 11-16 at 5-7.
+- The judges scored all three designs low (drone shield repair p 0.18-0.2, +4; the apron p 0.15-0.22, +3-5; the wall
+  keep p 0.07, -4 to +1). The synthesis: the HQ rescue plus the shield repairs, zero soup, +10-25 expected -- below the
+  ladder's +-39, so the registered counts judge.
+
+**R1 stage 17a, the rescue (`src/r1`):** `Robot.shootDrone()` for the HQ and net guns ranks targets: 1 a carrier of
+ours over dry ground (the cargo lands alive), 2 an empty drone beside our landscaper or miner, 3 a carrier of theirs
+over water, never their carrier over dry ground, 4 the rest; nearest within a rank; logs `@shoot kind=`. Diagnostic
+first (rule 5): does kind=1 fire, and is the rescued unit alive the next round?

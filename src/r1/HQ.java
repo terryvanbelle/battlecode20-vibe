@@ -4,7 +4,7 @@ import battlecode.common.*;
 
 /**
  * The HQ. Builds MINERS_EARLY miners at once, then more while the bank allows and the ring is
- * still open; shoots the nearest enemy drone; posts its location in round 2 (so late-born units
+ * still open; shoots enemy drones (carriers of ours first, Robot.shootDrone); posts its location in round 2 (so late-born units
  * that never see it can find home) and the map origin once a unit has found it.
  */
 public strictfp class HQ extends Robot {
@@ -15,10 +15,7 @@ public strictfp class HQ extends Robot {
 
     @Override protected void turn() throws GameActionException {
         sense(); readBlock(); probeEdges();
-        // shoot the nearest enemy drone in range
-        RobotInfo target = null; int bd = 1 << 30;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type != RobotType.DELIVERY_DRONE) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd && rc.canShootUnit(e.ID)) { bd = d; target = e; } }
-        if (target != null) { rc.shootUnit(target.ID); Debug.log("@shoot id=" + target.ID + " d2=" + bd); }
+        shootDrone();   // R1 stage 17: carriers of ours over dry ground first (Robot.shootDrone)
 
         int miners = 0, landscapersAdj = 0;
         for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER) miners++; else if (f.type == RobotType.LANDSCAPER && onRing(f.location)) landscapersAdj++; }

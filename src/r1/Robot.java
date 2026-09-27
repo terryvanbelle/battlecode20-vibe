@@ -246,6 +246,33 @@ public abstract strictfp class Robot {
     protected static boolean isSite(MapLocation t) { MapLocation h = MapState.home; if (h == null) return false; int dx = t.x - h.x, dy = t.y - h.y; int c = Nav.cheb(t, h); return (dx & 1) != 0 && (dy & 1) == 0 && c >= 3 && c <= latR; }
     protected static boolean isGrid(MapLocation t) { MapLocation h = MapState.home; if (h == null || t.equals(h)) return false; int dx = t.x - h.x, dy = t.y - h.y; return ((dx & 1) == 0 || (dy & 1) == 0) && Nav.cheb(t, h) <= latR; }
     protected static int gridTarget(int round) { return Math.max(C.GRID_MIN, (int) waterLevel(round + C.GRID_AHEAD) + 3); }   // R1: winkelmantanner's walkways stood at 5-9 by r900
+    /** R1 stage 17 (the rescue): shoot the enemy drone that matters most, nearest within a rank. 1: a carrier of ours over
+     *  dry ground -- killed, it drops the cargo alive on its own tile (GameWorld.destroyRobot); g_iter13's HQ shot 489
+     *  times in five traced lifter losses and never hit one. 2: an empty drone beside our landscaper or miner (the next
+     *  lift). 3: a carrier of theirs over water (the payload drowns). Their carrier over dry ground is never shot (its
+     *  payload would land beside our ring); every other drone ranks 4. Returns the rank shot, 0 if none. */
+    protected int shootDrone() throws GameActionException {
+        RobotInfo target = null; int best = 1 << 30, rank = 0;
+        MapLocation[] near = new MapLocation[16]; int nNear = 0;   // our landscapers and miners a shootable drone could reach
+        for (int j = nFriend; --j >= 0 && nNear < 16;) { RobotInfo f = friends[j];
+            if ((f.type == RobotType.LANDSCAPER || f.type == RobotType.MINER) && loc.distanceSquaredTo(f.location) <= 32) near[nNear++] = f.location; }
+        for (int i = nEnemy; --i >= 0;) {
+            RobotInfo e = enemies[i]; if (e.type != RobotType.DELIVERY_DRONE || !rc.canShootUnit(e.ID)) continue;
+            int d = loc.distanceSquaredTo(e.location), k = 4;
+            if (e.currentlyHoldingUnit) {
+                RobotInfo c = rc.canSenseRobot(e.heldUnitID) ? rc.senseRobot(e.heldUnitID) : null;
+                boolean wet = rc.senseFlooding(e.location);
+                if (c != null && c.team == us) k = wet ? 4 : 1;
+                else if (c != null && c.team != us && c.type != RobotType.COW) { if (!wet) continue; k = 3; }
+            } else if (best >= 2000) {
+                for (int j = nNear; --j >= 0;) if (near[j].isAdjacentTo(e.location)) { k = 2; break; }
+            }
+            int s = k * 1000 + d; if (s < best) { best = s; target = e; rank = k; }
+        }
+        if (target == null) return 0;
+        rc.shootUnit(target.ID); Debug.log("@shoot kind=" + rank + " d2=" + (best % 1000));
+        return rank;
+    }
     protected static boolean onRing(MapLocation l) { return MapState.home != null && Nav.cheb(l, MapState.home) == 1; }
     /** Can the flood reach ring tile l at all: does it touch any on-map tile outside the ring? A tile enclosed by the
      *  other ring tiles, the HQ and the map edge never floods (the flood spreads only from a flooded neighbour), so
