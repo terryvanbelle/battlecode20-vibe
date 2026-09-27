@@ -131,7 +131,7 @@ public strictfp class Miner extends Robot {
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
         // r2: a rush at home (seen, or announced by the HQ's reserve) and no center yet: the center first, beside us, now
-        if (builtFC == 0 && round < C.RUSH_HOME_UNTIL && (rushHome() || round < MapState.reserveUntil)) return rushCenterNow(home);
+        if (C.RUSH_CENTER_NOW && builtFC == 0 && round < C.RUSH_HOME_UNTIL && (rushHome() || round < MapState.reserveUntil)) return rushCenterNow(home);
         if (round < buildPause) return false;   // Iteration 34: a walk that stalled (the builder boxed in) pauses building
         int soup = rc.getTeamSoup();
         RobotType want = null;

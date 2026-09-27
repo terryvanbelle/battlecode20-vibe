@@ -1,4 +1,4 @@
-package r2;
+package r2s3;
 
 import battlecode.common.*;
 
@@ -148,7 +148,6 @@ public abstract strictfp class Robot {
     }
     /** r2: hold the bank for the rush center's drones for RESERVE_TTL rounds (all: the forward school and the rusher too). */
     protected void postReserve(boolean all) throws GameActionException {
-        if (!C.RESERVE_ON) return;   // r2 stage 4
         int until = round + C.RESERVE_TTL;
         int[] m = Comms.make(Comms.RESERVE, round, us, until, all && C.RESERVE_OFFENCE ? 1 : 0);   // r2 stage 3: never the offence
         absorbReserve(m); post(m);

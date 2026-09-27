@@ -56,6 +56,10 @@ public final class C {
     // r2 stage 3: the reserve never holds our own rusher or forward school (r2rush-rest31: g_iter13 won BeachFrontProperty,
     // ClearlyTwelveHorsesInASalad and Egg by its counter-rush; held for the first drone, r2 lost all three races)
     public static final boolean RESERVE_OFFENCE = false;
+    // r2 stage 4: no rush center at once and no reserve at all -- g_iter13's spending order is kept exactly (stages 1-3 lost
+    // 5-6 of g_iter13's 26 wins against arch_rush: the first 150 after the plant went to the center, not the counter-rush
+    // that won BeachFrontProperty, Egg, ClearlyTwelveHorsesInASalad, Hourglass). Only the parts that cost no soup remain.
+    public static final boolean RUSH_CENTER_NOW = false, RESERVE_ON = false;
     public static final int RUSH_HOME_DS = 4;
     public static final int RUSH_HOME_LS = 2;
     public static final int RUSH_DRONES_FIRST = 2;
