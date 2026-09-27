@@ -52,16 +52,16 @@ public strictfp class Landscaper extends Robot {
         wall(home);
     }
 
-    /** Iteration 86: a mason. Stand on the keep's outer ring; raise the lowest keep tile in reach (never a building) to the
+    /** Iteration 86: a mason. Stand on an edge tile of the 3x3 keep (stage 1b); raise the lowest keep tile in reach (never a building) to the
      *  target; dig from outside the keep (never the wall's ground, Chebyshev 2 of home, or under our own units). */
     private MapLocation masonTile;
     private boolean keep(MapLocation home) throws GameActionException {
         MapLocation k = keepCenter(); if (k == null) return false;
         if (floodDanger() && climb()) return true;
-        if (Nav.cheb(loc, k) != 2) {
+        if (Nav.cheb(loc, k) != 1) {
             if (masonTile == null || round % 25 == id % 25 || (rc.canSenseLocation(masonTile) && occupiedByOther(masonTile))) {
                 masonTile = null; int bd = 1 << 30;
-                for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
+                for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) { if (dx == 0 && dy == 0) continue;
                     MapLocation t = new MapLocation(k.x + dx, k.y + dy); if (!rc.onTheMap(t)) continue;
                     if (rc.canSenseLocation(t) && (rc.senseFlooding(t) || occupiedByOther(t))) continue;
                     int d = loc.distanceSquaredTo(t); if (d < bd) { bd = d; masonTile = t; } }
@@ -74,14 +74,14 @@ public strictfp class Landscaper extends Robot {
         if (rc.getDirtCarrying() > 0) {
             Direction bestD = null; int be = target;
             for (int i = 9; --i >= 0;) { Direction d = i == 8 ? Direction.CENTER : DIRS[i]; MapLocation n = loc.add(d);
-                if (Nav.cheb(n, k) > 2 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
+                if (Nav.cheb(n, k) > 1 || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
                 int e = rc.senseElevation(n); if (e < be) { be = e; bestD = d; } }
             if (bestD != null) { rc.depositDirt(bestD); deposits++; return true; }
         }
         if (rc.getDirtCarrying() < RobotType.LANDSCAPER.dirtLimit) {
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d);
-                if (Nav.cheb(n, k) <= 2 || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d)) continue;
+                if (Nav.cheb(n, k) <= 1 || Nav.cheb(n, home) <= 2 || !rc.canDigDirt(d)) continue;
                 RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null; if (r != null && (r.type.isBuilding() || r.team == us)) continue;
                 rc.digDirt(d); digs++; return true; }
         }

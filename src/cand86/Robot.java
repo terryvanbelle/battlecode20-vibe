@@ -127,8 +127,8 @@ public abstract strictfp class Robot {
         return null;
     }
     protected static int keepTarget(int round) { return Math.max(C.KEEP_MIN, (int) waterLevel(round + C.KEEP_AHEAD) + C.KEEP_MARGIN); }
-    /** The builder's tile: the inner tile of the keep nearest home. */
-    protected MapLocation keepStand() { MapLocation k = keepCenter(), h = MapState.home; if (k == null || h == null) return null; return k.add(k.directionTo(h)); }
+    /** The builder's tile: the keep's centre (stage 1b: a 3x3 keep -- every edge tile touches the centre, so any mason raises it). */
+    protected MapLocation keepStand() { return keepCenter(); }
 
     /** Post a message for 1 soup if we can. */
     protected boolean post(int[] m) throws GameActionException {
