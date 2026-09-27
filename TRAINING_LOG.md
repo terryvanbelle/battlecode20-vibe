@@ -4148,3 +4148,10 @@ as g_iter13 (PROMPTS 26: a submission plays to ~+-40).
 **subg13 (two more blocks as g_iter13): 40-56; g_iter13 now 1807 +- 39 on 336 band games (174-162), rank 12 of 101;
 g_iter12 1777 +- 40.** The lead is +30 at the submission standard (+-40). Field score 79.9% now; 83.2% projected for
 Sep 30, 87.5% for Oct 7.
+
+**g_iter13's early losses (both runs, 19): rushes at r112-282** (rzhan11 9, poortho 10); several close races -- their HQ at
+22-45 dirt when ours fell (Europe 45, CosmicBackgroundRadiation 24, Infinity 23, GSF 22); their landscapers 4-14 beside
+our HQ against our 0-9. The next target after the late race (19 losses against its 66).
+**Gate g13 (a measurement of the method, not an acceptance):** the plain paired mirror, g_iter13 against g_iter12, 320
+pairs. The ladder accepted g_iter13 (+30 at +-39); if the mirror REJECTs it, §8b is confirmed here and gating for
+field-facing changes rests on the ladder.
