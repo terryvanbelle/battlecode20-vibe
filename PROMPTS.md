@@ -277,3 +277,7 @@ Re: Rule 4:  I agree that replaying a recorded game is the same as reviewing it.
 ## 65. 2026-09-27
 
 What is the bot that's playing against r1 in these puppet runs?
+
+## 66. 2026-09-27
+
+Yeah, once you hit the cutoff, you have to hand off both sides simultaneously
