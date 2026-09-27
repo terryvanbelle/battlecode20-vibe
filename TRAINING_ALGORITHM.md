@@ -17,7 +17,10 @@ themselves retired. `RULES.md` is the game, `TRAINING_LOG.md` is the record, `ME
    ladder allocates attention better. The bots' source code stays unread (item 2).
 4. External bots are played only as **scrimmages**: random map from the released corpus, random
    side, rotating opponents drawn from the rating band around the build in play. Our own snapshots
-   and archetypes may be played any way we like.
+   and archetypes may be played any way we like. A **puppet** (`pup_<base>`, PROMPTS 59-60) replays
+   one side of a recorded game from its replay up to a cutoff round, then plays `<base>`. It is our
+   own package: no external code runs, and it plays only the recorded map, side and seed. Its games
+   never enter `games.csv` or the ladder.
 5. The ladder is built from our games only; external bots never play each other. Ratings are a
    batch Bradley-Terry fit on the Elo scale with each of our builds rated separately (`tools/elolib.py`).
 6. Every user prompt is recorded verbatim in `PROMPTS.md`; every commit is pushed.
@@ -31,7 +34,7 @@ ourselves can measure that directly, so the loop keeps three instruments and nev
 | instrument | answers | cannot see |
 |---|---|---|
 | **mirror gate**: candidate vs incumbent snapshot, random map and side, sequential test | is this one change better than what it replaces | any weakness both builds share; anything the incumbent never punishes |
-| **archetype spars**: hand-built opponents that each do one thing the field does to us | does the change survive a rush / a siege / a hunt the mirror never mounts | everything else |
+| **archetype spars**: hand-built opponents that each do one thing the field does to us; a puppet is the field itself, exactly, until its cutoff | does the change survive a rush / a siege / a hunt the mirror never mounts | everything else |
 | **scrimmage ladder**: rated blocks against the external field, contest rules | are we actually stronger; what the field punishes (its replays show how) | anything a map or side draw hides; single games are noise |
 
 The gate decides; the ladder is the consequence, not a test. A real team cannot scrimmage
@@ -119,6 +122,7 @@ Every candidate passes through these in order, and most die early. That is the d
 1. **Read.** Trace the motivating replay with the reader before forming a hypothesis. Enumerate
    the mechanisms that could produce the symptom ("chooses badly" and "never sees it" leave the
    same trace) and find which the data supports. Check the same symptom in a second game.
+   `tools/puppet.sh play` re-runs a recorded loss from any round with our candidate on our side.
 2. **Pre-register** in the log before touching code: the mechanism; the **decision-point
    counter** that proves it fired (count the choice, not its downstream effect); reachability
    (the branch is taken at observed values, the choice set has more than one member, the property
@@ -143,6 +147,12 @@ Every candidate passes through these in order, and most die early. That is the d
    (`OPP=arch_rush tools/mirror.sh`: the candidate and the incumbent each play the archetype on the same map, side
    and seed), which must ACCEPT, and the plain paired mirror, which must not REJECT (the cost where the opponent is
    absent). Our archetypes are unrestricted (CLAUDE.md rule 4); benchmark bots never serve.
+   Or against a **puppet** of the games that motivated the change (PROMPTS 59-60): cells from
+   `tools/puppet.sh cells` (fixture x cutoff), `OPP=pup_<base> tools/paired.sh`. Each cell is deterministic,
+   so the discordant cells are the evidence (sign test). Before a fixture serves, `tools/puppet.sh check` must
+   exit 0 or 1 with no divergence before the cutoff other than `block`. The plain paired mirror must not REJECT.
+   A puppet or archetype gate is a screen for the mechanism; a field-facing change is still judged on the
+   ladder (§8b; gate g13 and the rushers' ladder ratings, 2026-09-27).
    ACCEPT snapshots; REJECT reverts. At the cap the discordant pairs are read by the sign test, in either
    direction: p < 0.01 with at least 12 discordant pairs is an ACCEPT when they favour the candidate and a REJECT
    when they go against it (the SPRT's `p1 = 0.58` bound was set for the unpaired mirror and needs 20-0 on

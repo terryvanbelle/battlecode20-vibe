@@ -4304,3 +4304,6 @@ loses the race. Against this archetype the soup-free defence keeps every win. Ch
 **The rushers on the ladder (PROMPTS 61; 96 band games each):** arch_rush 1699 +- 74 (39-57), arch_rush2 1674 +- 75
 (36-60); g_iter13 1801 +- 39, g_iter5 (their base) 1616 +- 34. The rush adds ~60-80 to g_iter5, but neither rusher is
 near g_iter13: beating our builds head to head (22-26 of 48) is not strength against the field (§8b again).
+**gate2s4r (r2s4 against g_iter13, each facing arch_rush, paired, 320 pairs):** 15-3 discordant at the cap (SPRT
+inconclusive, LLR +1.70); sign test p = 0.008 with 18 discordant pairs -> ACCEPT by the cap rule (TRAINING_ALGORITHM
+4.4). The plain paired mirror (`gate2s4`) is running; then the ladder.
