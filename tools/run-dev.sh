@@ -6,7 +6,10 @@
 set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$REPO/tools/lib.sh"
-OUT="${DEV_OUT:-$REPO/build/dev-classes}"   # DEV_OUT: a private dir, to run two dev games at once
+# 2026-09-26: a private tree per process by default (parallel diagnostics shared build/dev-classes and collided:
+# "no compiled classes", "rm: cannot remove" -- six games of twenty lost in broadr1); DEV_OUT still names one explicitly
+OUT="${DEV_OUT:-$REPO/build/dev-classes-$$}"
+[ -z "${DEV_OUT:-}" ] && trap 'rm -rf "$OUT"' EXIT
 rm -rf "$OUT"; compile_src "$REPO/src" "$OUT" >&2
 MANIFEST="${MANIFEST:-$HOME/projects/vibe/bc20-benchmarks/manifest.tsv}"
 # names resolve as in gauntlet.sh: our packages under build/dev-classes, else manifest "name -> package url"
