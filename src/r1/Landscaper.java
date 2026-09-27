@@ -223,7 +223,7 @@ public strictfp class Landscaper extends Robot {
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.isBuilding() && loc.isAdjacentTo(e.location) && rc.getDirtCarrying() > 0 && rc.canDepositDirt(loc.directionTo(e.location))) { rc.depositDirt(loc.directionTo(e.location)); buryDeposits++; return; } }
         // R1 stage 2 (stage 1: an unseated ring let enemy landscapers bury the HQ, MtDoom 25 at r1000): the seats guard from the
         // start but hold the ring at the lattice's height + 4 until WALL_FROM; spare dirt goes to the lowest lattice tile beside
-        if (round < C.WALL_FROM && rc.getDirtCarrying() > 0 && rc.senseElevation(loc) >= gridTarget(round) + 4) {
+        if (false && round < C.WALL_FROM && rc.getDirtCarrying() > 0 && rc.senseElevation(loc) >= gridTarget(round) + 4) {   // R1 stage 5: the seats race from the start (arm R1: the capped ring lost the rush races, 20 losses before r1300)
             Direction bd = null; int be = gridTarget(round);
             for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation n = loc.add(d); if (onRing(n) || n.equals(home) || !isGrid(n) || !rc.canSenseLocation(n) || !rc.canDepositDirt(d)) continue;
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
@@ -247,9 +247,8 @@ public strictfp class Landscaper extends Robot {
             Direction d = DIRS[i]; MapLocation n = loc.add(d);
             if (!rc.onTheMap(n) || onRing(n) || n.equals(home) || !rc.canDigDirt(d) || doorstep(n)) continue;
             RobotInfo r = rc.canSenseLocation(n) ? rc.senseRobotAtLocation(n) : null;
-            boolean drone = r != null && r.type == RobotType.DELIVERY_DRONE;   // the shield's drones never re-raise a tile
-            if (r != null && r.team == us && !drone) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
-            int e = rc.senseElevation(n) + (r != null && !drone ? 1000 : 0);   // prefer empty tiles
+            if (r != null && r.team == us) continue;   // never under our own units: digging a helper's tile makes it re-raise itself, a zero-sum loop
+            int e = rc.senseElevation(n) + (r != null ? 1000 : 0);   // prefer empty tiles
             if (e < be) { be = e; bestD = d; }
         }
         // 5. a corner seat on the map edge has no outside tile: borrow from the tallest adjacent ring tile
