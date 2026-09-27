@@ -4023,3 +4023,8 @@ private tree per process):** won 3 (CentralLake, Climb, IsThisProcedural), lost 
 Prison r1238, Soup to a rush r309; on many maps vaporators 0-2 and landscapers 4-8 (GSF, Egg, Islands2, Prison): on poor
 maps the vaporator-first school starved the wall. **Stage 9:** the school goes vaporator-first only from 24 landscapers
 (was 16). Rerun on the same 20 maps with the g_iter12 mirror as control.
+
+**broadr1b (R1 stage 9 vs g_iter12 on 20 random maps, the g_iter12 mirror as control): R1 won 5, the control 12.** R1's
+losses are late wall races at r3031-3096 where g_iter12's wall holds to r3104-3228 (ClearlyTwelveHorses, DoesNotExist,
+Egg, Maze, Showerhead, TwoLakeLand, DisproportionatelySmallGap); R1 gained CentralLake. **Stage 10:** from r1400 a lattice
+landscaper takes a free helper post (Chebyshev 2) and feeds the wall, as g_iter12's helpers do all game.
