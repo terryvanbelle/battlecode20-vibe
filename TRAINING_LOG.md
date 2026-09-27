@@ -3932,3 +3932,7 @@ us by lifting our wall's landscapers. DRONES_MAX 20 -> 60; a drone with no free 
 enemy's ring 974 against ours 1,780 at r2500); against the controls MtDoom and TwoLakeLand became wins, Squares and Egg
 losses, the rest unchanged. **Arm 87: 96 band games as `us:cand87`**, registered: its rating against g_iter12's 1805 +-
 39 and cand86s3's 1805 +- 46; its losses after r2000 against cand86s3's 81 of 240.
+
+**Arm 87: cand87 1826 +- 72 on 96 band games (51-45); g_iter12 and cand86s3 1800** -- +26, inside the intervals; losses
+after r2000 26 of 96 (27%) against cand86s3's 81 of 240 (34%); still 3-9 against winkelmantanner and mvpatel2000.
+Extended to 240 (`sub87`).
