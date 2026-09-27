@@ -4017,3 +4017,9 @@ replays): vaporators 1.0 / 1.6 / 2.0 / 1.2 on average at r600-1500, five or more
 losses 12 before r1300, 10 in the raid window, 45 after r2000. The six lattice maps flatter R1 (they are where a lattice
 forms); the field's maps mostly do not. Next: a broad diagnostic -- R1 vs g_iter12 on 20 random corpus maps -- to find
 where it collapses.
+
+**broadr1 (r1s8 vs g_iter12, 20 random maps; 14 completed -- six lost to a run-dev.sh class-tree collision, fixed: a
+private tree per process):** won 3 (CentralLake, Climb, IsThisProcedural), lost 9 of 11 late wall races (r2772-3096),
+Prison r1238, Soup to a rush r309; on many maps vaporators 0-2 and landscapers 4-8 (GSF, Egg, Islands2, Prison): on poor
+maps the vaporator-first school starved the wall. **Stage 9:** the school goes vaporator-first only from 24 landscapers
+(was 16). Rerun on the same 20 maps with the g_iter12 mirror as control.
