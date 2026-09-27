@@ -3888,3 +3888,13 @@ win against a loss; RandomSoup1, DoesNotExist, Toothpaste wins as the control; E
 only on MtDoom: it is dead by r800 on most maps (M=0), before the masons announce the keep. **Stage 1f: the keeper is
 any miner** -- after `KEEP_UP` the first miner within 10 of home walks to the keep's centre and claims it
 (`KEEPER_CLAIM`); the others stay away.
+
+**Stage 1f (any miner is the keeper): the keeper parks on 3 maps of 8** (DoesNotExist, Toothpaste, MtDoom; on the other
+five every miner is dead by r800); against the controls NoU and TwoLakeLand became wins, RandomSoup1, DoesNotExist, Egg
+losses -- the mirror's chaos (§8b: not the judge for this). **Stage 2, the pair (the keep + the shield of Iteration 81,
+ported: drones on flooded Chebyshev-2 tiles, 20 of them from a 600 bank, the wall digs under them):** wherever a keeper
+parks, the keep's center fields 20 drones and **a full shield (15-16 posts) by r1200-1600**, the bank still rising --
+the shield affordable for the first time. **Arm 86 (`arm86`): 96 band games as `us:cand86s2`** (frozen as
+`src/cand86s2`), registered: its rating against g_iter12's 1814 +- 39 (the primary, §8b); raid-window losses against
+g_iter12's against the same opponents; in its losses, whether a keeper parked. Then the plain paired mirror (must not
+REJECT).
