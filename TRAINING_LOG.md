@@ -3952,3 +3952,8 @@ g_iter12's architecture (81-87) ended level or below; every top bot we lose to (
 IvanGeffner, battlecode20-team4, mvpatel2000) runs the design we lack -- a raised lattice carrying 20-65 vaporators and
 hundreds of drones -- and our wall-first design plateaus at ~1800. R1 is built lattice-first (not grafted onto the wall,
 as cand78 was), keeping our proven rush module; design in DESIGN.md "R1".
+
+**R1 stage 1 (`src/r1`, DESIGN.md "R1"):** from cand78 (g_iter12's plumbing and rush, stage 17's geometry: full walkway
+rows, every cell a pit, buildings on the rows): no seats before r1400 -- the HQ's ring is lattice like any other tile; the
+lattice radius grows as 3 + round/150 up to 8; the grid kept above the water of r+300 (floor 5). Diagnostic: the six
+lattice maps vs g_iter12 (`tools/lattice-diag.sh`).
