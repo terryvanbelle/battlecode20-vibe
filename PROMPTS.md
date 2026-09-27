@@ -281,3 +281,7 @@ What is the bot that's playing against r1 in these puppet runs?
 ## 66. 2026-09-27
 
 Yeah, once you hit the cutoff, you have to hand off both sides simultaneously
+
+## 67. 2026-09-27
+
+Do as you see fit there

@@ -13,3 +13,7 @@ engine/
 # benchmark bots live outside the repo (see BENCHMARK.md)
 .bc20-search.txt
 diag/
+
+# generated puppet shims (tools/puppet.sh pair); src/pup_g_iter13 is the tracked template
+src/pup_*/
+!src/pup_g_iter13/

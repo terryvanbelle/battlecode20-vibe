@@ -10,6 +10,11 @@
 #                                                                           but for its package name) against the puppet, then diff
 #   tools/puppet.sh diff <recorded.bc20> <new.bc20> --side P [--log game.log] [--cutoff c] [--rounds]
 #   tools/puppet.sh cells <fixture> <cutoff>...                             lines for OPP=pup_<base> tools/paired.sh
+#   tools/puppet.sh pair <replay.bc20> <cutoff> <candidate> [base=g_iter13] [out.bc20]
+#                                                                           BOTH sides replayed to the cutoff, then both hand
+#                                                                           over at once: O's side to the candidate, P's to
+#                                                                           the base (PROMPTS 66); PCUT=<round> keeps P's side
+#                                                                           scripted (open-loop) to that later round (PROMPTS 67)
 #   tools/puppet.sh raw <replay.bc20>                                       the raw event lines
 #
 # play/check run ONE game on this machine through run-dev.sh; they wait (at most 20 minutes) while another engine runs.
@@ -51,7 +56,7 @@ play_game () {   # play_game <fixture> <puppet team> <other team> <cutoff> <out.
   if [ "$SIDE" = A ]; then A="$PUP"; B="$OTHER"; else A="$OTHER"; B="$PUP"; fi
   wait_engine
   echo "game: $A (A) vs $B (B) on $MAP seed $SEED, cutoff $CUT -> $OUTR" >&2
-  GAME_TIMEOUT="${GAME_TIMEOUT:-5400}" GAME_CONFIG="$(realpath "$FIX")" GAME_SEED="$SEED" LOG_OUT="$LOG" GAME_OPTS="-Dbc.testing.pup.cutoff=$CUT" \
+  GAME_TIMEOUT="${GAME_TIMEOUT:-5400}" GAME_CONFIG="$(realpath "$FIX")" GAME_SEED="$SEED" LOG_OUT="$LOG" GAME_OPTS="-Dbc.testing.pup.cutoff=$CUT ${PCUT:+-Dbc.testing.pup.$SIDE.cutoff=$PCUT}" \
     "$REPO/tools/run-dev.sh" "$A" "$B" "$MAP" "$OUTR" -Dbc.server.robot-player-to-system-out=true
 }
 
@@ -78,6 +83,27 @@ case "$CMD" in
     python3 "$PY" diff --rec "$T1" --new "$T2" "$@" ;;
   cells)
     python3 "$PY" cells "$@" ;;
+  pair)   # PROMPTS 66: both sides replayed to the cutoff, then both hand over at once -- O's side to the candidate, P's to the base
+    REP="$1" CUT="$2" CAND="$3" BASE="${4:-g_iter13}"; refuse_replay "$REP"
+    [ -d "$REPO/src/$CAND" ] && [ -d "$REPO/src/$BASE" ] || { echo "!! need src/$CAND and src/$BASE" >&2; exit 3; }
+    N="$(basename "$REP" .bc20 | tr -c 'A-Za-z0-9_.\n-' _)"; FIXD="$REPO/build/puppets"; mkdir -p "$FIXD"
+    "$0" extract "$REP" --name "pairP-$N" >/dev/null
+    PS="$(meta "$FIXD/pairP-$N.properties" side)"; OS=$([ "$PS" = A ] && echo B || echo A)
+    "$0" extract "$REP" --side "$OS" --name "pairO-$N" >/dev/null
+    FIX="$FIXD/pair-$N.properties"
+    { grep '^#' "$FIXD/pairP-$N.properties"
+      grep -v '^#' "$FIXD/pairP-$N.properties" | sed "s/^bc\.testing\.pup\./bc.testing.pup.$PS./"
+      grep -v '^#' "$FIXD/pairO-$N.properties" | sed "s/^bc\.testing\.pup\./bc.testing.pup.$OS./"; } > "$FIX"
+    rm -f "$FIXD/pairP-$N.properties" "$FIXD/pairO-$N.properties"
+    for PK in "$CAND" "$BASE"; do   # the shim, made on demand (gitignored; src/pup_g_iter13 is the template)
+      [ -d "$REPO/src/pup_$PK" ] && continue; mkdir -p "$REPO/src/pup_$PK"
+      sed "s/\bpup_g_iter13\b/pup_$PK/g; s/\bg_iter13\b/$PK/g" "$REPO/src/pup_g_iter13/RobotPlayer.java" > "$REPO/src/pup_$PK/RobotPlayer.java"
+    done
+    OUTR="${5:-$REPO/matches/pair-$CAND-vs-$BASE-$N-c$CUT.bc20}"; LOG="${OUTR%.bc20}.log"; mkdir -p "$(dirname "$OUTR")"
+    play_game "$FIX" "pup_$BASE" "pup_$CAND" "$CUT" "$OUTR" "$LOG"
+    pup_counts A "$LOG"; pup_counts B "$LOG"
+    grep -a "wins (round" "$LOG" || true
+    echo "fixture $FIX  replay $OUTR  log $LOG" ;;
   play)
     FIX="$1" BASE="$2" CUT="$3" OPPN="$4"; OUTR="${5:-$REPO/matches/pup_$BASE-$(basename "$FIX" .properties)-c$CUT.bc20}"
     [ -f "$FIX" ] && [ -d "$REPO/src/pup_$BASE" ] || { echo "!! need a fixture and src/pup_$BASE" >&2; exit 3; }

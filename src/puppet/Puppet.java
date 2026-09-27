@@ -39,9 +39,13 @@ public final strictfp class Puppet {
      */
     public static boolean play(RobotController rc) throws GameActionException {
         Puppet.rc = rc;
-        String idx = System.getProperty("bc.testing.pup.idx"), dat = System.getProperty("bc.testing.pup.dat");
-        if (idx == null || dat == null) { System.out.println("@pup nofixture"); resign(); }
         type = rc.getType(); us = rc.getTeam(); them = us.opponent();
+        // PROMPTS 66: a two-sided fixture scripts both teams to the cutoff (keys bc.testing.pup.A.* / .B.*), and both hand
+        // over there at once -- ours to the candidate, theirs to the base; a one-sided fixture uses the plain keys
+        String t = us == Team.A ? "A" : "B";
+        String idx = System.getProperty("bc.testing.pup." + t + ".idx"), dat = System.getProperty("bc.testing.pup." + t + ".dat");
+        if (idx == null) { idx = System.getProperty("bc.testing.pup.idx"); dat = System.getProperty("bc.testing.pup.dat"); }
+        if (idx == null || dat == null) { System.out.println("@pup nofixture"); resign(); }
         MapLocation loc = rc.getLocation();
         if (idx.length() < 8 || Script.version(idx) != Script.VERSION || Script.side(idx) != us.ordinal()
                 || Script.width(idx) != rc.getMapWidth() || Script.height(idx) != rc.getMapHeight()
@@ -49,7 +53,7 @@ public final strictfp class Puppet {
             System.out.println("@pup wrongfixture"); resign();
         }
         home = new MapLocation(Script.hqX(idx), Script.hqY(idx));
-        cutoff = Integer.parseInt(System.getProperty("bc.testing.pup.cutoff", "99999"));
+        cutoff = Integer.parseInt(System.getProperty("bc.testing.pup." + t + ".cutoff", System.getProperty("bc.testing.pup.cutoff", "99999")));   // PROMPTS 67: a per-team cutoff
         int r0 = rc.getRoundNum();
         if (r0 >= cutoff) return false;
         int rec = Script.find(idx, type.ordinal(), r0, loc.x, loc.y);
