@@ -4039,3 +4039,8 @@ mirror, and the field's economy averaging 1-2 vaporators. `src/bot` = g_iter12 r
 **R1 stage 11:** g_iter12's roles by default (seat, then helper post, from the start); the school names each landscaper
 past sixteen a lattice worker (`LATTICE_ORDER` by id; newborns read eight rounds first); the any-miner vaporators on
 raised lattice sites stay. The 20 random maps again.
+
+**R1 stage 11, the 20 random maps: 9 won (stage 9: 5; the g_iter12 control: 12)** -- gained CentralLake and Islands2
+(the control loses them), lost BeachFrontProperty (the control's rush wins at r136, R1's does not), Egg, Maze,
+TwoLakeLand, ClearlyTwelveHorses. **Arm R1c: 96 band games as `us:r1s11`** (frozen), registered as before (rating against
+g_iter12; the census of vaporators).
