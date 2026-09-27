@@ -35,8 +35,9 @@ public final class C {
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 2;
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
-    public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
-    public static final int DRONE_RESERVE = 250;      // the center keeps this much soup back
+    public static final int DRONES_MAX = 20;          // Iteration 2: drones fly over the flood and count at the tiebreak; Iteration 86 stage 2: 20 (the shield's 16 and spares)
+    public static final int SHIELD_FROM = 600;        // Iteration 81 (ported): from this round every drone holds a flooded Chebyshev-2 tile of our HQ
+    public static final int DRONE_RESERVE = 600;      // the center keeps this much soup back; Iteration 81/86: drones from the surplus
     public static final int DRONE_ROUND = 400;        // Iteration 3: before this round drones need a bank of DRONE_EARLY_BANK (helpers first)
     public static final int DRONE_EARLY_BANK = 800;
 
