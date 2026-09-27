@@ -4112,3 +4112,9 @@ against g_iter12 -- is not): r1s15 is the new incumbent, `src/g_iter13`** (ident
 g_iter12's wall with a lattice beyond sixteen landscapers, any-miner vaporators on raised sites from r600, a missing
 center built by any miner (at 500 from r800, on any dry tile), the shield and the late raid. Field score now 79.9%;
 projected 83.4% by Sep 30, 87.7% by Oct 7.
+
+**g_iter13's losses to mvpatel2000 (10-20): 9 at r1893-1983, 11 late.** Showerhead traced: our ring empty from ~r1750
+(seats lifted), the wall frozen at 457 (theirs 986), then four of its landscapers dropped onto the empty ring bury the HQ
+at r1900. **R1 stage 16:** the shield's drones take an empty ring tile first (a drone on it blocks the drop), then the
+flooded Chebyshev-2 tiles. Diagnostic against `arch_raider` (it lifts ring landscapers and ferries its own onto the
+freed tiles), g_iter13 as control.

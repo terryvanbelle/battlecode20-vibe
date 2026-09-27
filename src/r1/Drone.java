@@ -54,7 +54,7 @@ public strictfp class Drone extends Robot {
     private MapLocation slot; private boolean posted = false;
     private boolean shield() throws GameActionException {
         MapLocation h = MapState.home;
-        if (Nav.cheb(loc, h) == 2 && rc.senseFlooding(loc)) {   // stage 7: flooded tiles only (a dry one is a helper's post or its climb out of the flood)
+        if ((Nav.cheb(loc, h) == 2 && rc.senseFlooding(loc)) || Nav.cheb(loc, h) == 1) {   // stage 7: flooded tiles only; R1 stage 16: or an empty ring tile (nothing can be dropped onto it)
             if (!posted) { posted = true; slot = loc; Debug.log("@shield at=" + loc); }
             if (!rc.isCurrentlyHoldingUnit() && rc.isReady()) for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type.canBePickedUp() && rc.canPickUpUnit(e.ID)) { rc.pickUpUnit(e.ID); pickups++; Debug.log("@shieldpick t=" + e.type.ordinal()); return true; } }
             return true;
@@ -62,6 +62,11 @@ public strictfp class Drone extends Robot {
         if (rc.isCurrentlyHoldingUnit()) return false;   // drown the cargo first
         if (slot == null || (rc.canSenseLocation(slot) && rc.isLocationOccupied(slot)) || round % 10 == id % 10) {
             slot = null; int bd = 1 << 30;
+            // R1 stage 16 (g_iter13 vs mvpatel2000: 9 losses at r1893-1983 -- the ring's seats lifted by ~r1750, then four of its
+            // landscapers dropped onto the empty ring bury the HQ): an empty ring tile first -- a drone on it blocks the drop
+            for (int i = 8; --i >= 0;) { MapLocation t = h.add(DIRS[i]); if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || rc.isLocationOccupied(t)) continue;
+                int d = loc.distanceSquaredTo(t) - 1000; if (d < bd) { bd = d; slot = t; } }
+            if (slot == null)
             for (int dx = -2; dx <= 2; dx++) for (int dy = -2; dy <= 2; dy++) { if (Math.max(Math.abs(dx), Math.abs(dy)) != 2) continue;
                 MapLocation t = new MapLocation(h.x + dx, h.y + dy); if (!rc.onTheMap(t) || !rc.canSenseLocation(t) || !rc.senseFlooding(t)) continue;
                 if (rc.isLocationOccupied(t)) continue;
