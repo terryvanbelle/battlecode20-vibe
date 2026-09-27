@@ -3873,3 +3873,7 @@ methods; 2020 post-mortems stay unread). Two entries fit this loop exactly:
 **Decision (registered before its results): Iteration 86 = the keep + the shield**, graded by a ladder arm (rating
 against g_iter12's 1814 +- 39; raid-window losses against the same opponents), with the plain paired mirror required
 only not to REJECT.
+
+**Stage 1c (a mason when 14+ of ours are in sight within Chebyshev 2): worse** -- masons on 2 maps of 8, none on
+RandomSoup1. **Stage 1d:** the first three seatless landscapers are masons, counted on the chain (`MASON_JOIN` with the
+id); helpers after them (13+ remain; eight feed the wall).

@@ -17,6 +17,7 @@ public final strictfp class Comms {
     public static final int MAP_ORIGIN = 4;    // payload: minX, minY
     public static final int SYMMETRY = 5;      // payload: surviving hypothesis bits
     public static final int KEEP_UP = 6;       // Iteration 86: a mason stands on the keep (the builder may park)
+    public static final int MASON_JOIN = 7;    // Iteration 86 stage 1d: payload: the new mason's id
 
     static final int SALT = 0x5eed2020;
 
