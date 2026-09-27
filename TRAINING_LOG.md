@@ -3989,3 +3989,8 @@ R1 is an early-stage rewrite and below the incumbent on every axis. `src/bot` = 
 continues as a program** (not a candidate): (a) the rush answer first -- the seats race from the start as g_iter12's,
 the lattice outside them; (b) then the vaporator engine in the field (why one vaporator, not nine: builder survival,
 sites, the bank).
+
+**R1 stage 5 (the seats race from the start): games last to r3036-3087 (near g_iter12's), RandomSoup1 won (r1514); but
+vaporators still few** -- CentralLake 2 with 6,380 soup idle at r1000 and no miner alive; the builder is dead by r1000 on
+five maps of six (it mines far from home). **Stage 6:** once the school stands the builder stops mining and holds the
+highest walkway tile 3-5 out, riding the lattice above the water; it builds from there when the bank allows.
