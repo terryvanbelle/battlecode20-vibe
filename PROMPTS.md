@@ -285,3 +285,7 @@ Yeah, once you hit the cutoff, you have to hand off both sides simultaneously
 ## 67. 2026-09-27
 
 Do as you see fit there
+
+## 68. 2026-09-28
+
+You can kill the 2021 project's files
