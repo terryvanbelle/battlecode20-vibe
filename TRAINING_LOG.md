@@ -4372,3 +4372,6 @@ rule.
 The squatter rule carried r2s4's rush recoveries and (by the EmaPajic record) its ladder cost: it helps against a
 rusher's squatters and hurts against lift-and-bury. A rule that tells the two apart (a squatter that arrived on foot
 before r400 vs one dropped by a drone) is the only way forward on this line; parked.
+**r2s6 (r2s4 keeping only the seat skip): flips17 4 recovered, rest31 1 lost / 1 gained -- refuted by the registered
+bar (4 or fewer), no ladder.** The rush-defence line (r2s1-s6) is parked: the soup-free parts recover 4-5 of 17 against
+arch_rush, and the one version that reached the ladder (r2s4) lost 57 to the lift-and-bury cost.
