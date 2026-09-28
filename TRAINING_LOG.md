@@ -4368,3 +4368,7 @@ landscapers onto our ring (lift-and-bury); r2s4's seat rule (an enemy-held tile 
 feeds through one) likely abandons exactly the tiles that race needs -- the squatter rule is the suspect, not the HQ
 dig or the guard. If the rush defence is revisited: the HQ dig-first and the early drone guard without the squatter
 rule.
+**r2s5 (r2s4 without the squatter seat rule): flips17 1 recovered (r2s4: 5) -- refuted at the harness, chain stopped.**
+The squatter rule carried r2s4's rush recoveries and (by the EmaPajic record) its ladder cost: it helps against a
+rusher's squatters and hurts against lift-and-bury. A rule that tells the two apart (a squatter that arrived on foot
+before r400 vs one dropped by a drone) is the only way forward on this line; parked.
