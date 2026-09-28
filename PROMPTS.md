@@ -305,3 +305,7 @@ I noticed you started employing an agent here.  What's the advantage of that ove
 ## 72. 2026-09-28
 
 Builds taking hours seems like quite a drawback, and it's not necessary for you to be highly responsive, since this is a long process and my role is mostly advisory.  I'm not sure I see the advantage
+
+## 73. 2026-09-28
+
+Could you report back ladder results as the blocks come in?
