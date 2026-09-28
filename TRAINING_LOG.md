@@ -4465,3 +4465,10 @@ defence added to it trades one opponent for another, and none clears g_iter13 on
 **r4s5 (r4s4 with at most 8 drones on the C3 shell; the rest free to raid):** diagnostic batch (VM): EmaPajic
 ALandDivided pair 15 landscapers kept through r1750 (won r2976), cormackikkert MtDoom pair (scripted to r2250) won
 r2978, WaterBot won (8 charges), CentralLake won r3177, RandomSoup1 lost (as every build). To the ladder.
+
+**r4s5 on the ladder (239): 1739 +- 46 (115-124), against g_iter13 1776 +- 35. Not kept.** By opponent: cormackikkert
+21-9, benzyx 23-7, laurenschneider 22-8 (the capped shell restores these), but EmaPajic 11-18, winkelmantanner 7-23
+and mvpatel2000 4-26 (13%; g_iter13 26%). The quarry family: r4s1 1741, r4s3 1760, r4s4 1739, r4s5 1739 against
+g_iter13 1776-1789 -- each variant moves wins between opponents and none reaches the incumbent; mvpatel2000 (which lifts
+everything by ~r1000) is below g_iter13 in every one. The quarry line is closed; reopen only with a reason the
+mvpatel2000 games go worse under the pinwheel.
