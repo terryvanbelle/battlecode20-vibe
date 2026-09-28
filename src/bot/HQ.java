@@ -10,7 +10,6 @@ import battlecode.common.*;
 public strictfp class HQ extends Robot {
     private int built = 0, lastBuild = -1000;
     private boolean postedLoc = false, postedOrigin = false;
-    private int firstRush = -1;   // r2: the round a rush at home was first seen
 
     HQ(RobotController rc) { super(rc); MapState.setHome(rc.getLocation()); }
 
@@ -21,13 +20,6 @@ public strictfp class HQ extends Robot {
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type != RobotType.DELIVERY_DRONE) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd && rc.canShootUnit(e.ID)) { bd = d; target = e; } }
         if (target != null) { rc.shootUnit(target.ID); Debug.log("@shoot id=" + target.ID + " d2=" + bd); }
 
-        // r2: the alarm -- a rush at home and no center of ours in sight yet: every spender keeps a drone's 150, and the post
-        // summons the builder home to build the center (miners read the chain on rounds = 0 mod 3, i.e. the = 2 blocks)
-        if (firstRush < 0 && rushHome()) { firstRush = round; Debug.log("@rushhome school=" + MapState.rushSchool); }
-        if (firstRush >= 0 && round - firstRush < C.HQ_ALARM_MAX && round % 3 == 2) {
-            boolean fc = false; for (int i = nFriend; --i >= 0;) if (friends[i].type == RobotType.FULFILLMENT_CENTER) { fc = true; break; }
-            if (!fc) postReserve(true);
-        }
         int miners = 0, landscapersAdj = 0;
         for (int i = nFriend; --i >= 0;) { RobotInfo f = friends[i]; if (f.type == RobotType.MINER) miners++; else if (f.type == RobotType.LANDSCAPER && onRing(f.location)) landscapersAdj++; }
         // early burst by count built (miners roam out of sight, so the sensed count cannot cap anything);

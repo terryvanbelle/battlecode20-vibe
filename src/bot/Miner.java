@@ -32,7 +32,6 @@ public strictfp class Miner extends Robot {
         // the enemy HQ (the symmetry guesses, pruned on sight), plants a design school beside its ring, and the school's
         // landscapers bury the HQ. poortho does it to us in 9 of 240 ladder games.
         rusher = birth == 3 && MapState.home != null;
-        fwdSpender = rusher;   // r2: offence holds only for the rush center's first drone
         Debug.log("@miner builder=" + builder);
     }
 
@@ -130,8 +129,6 @@ public strictfp class Miner extends Robot {
     // ---------------------------------------------------------------- builder
     private boolean build() throws GameActionException {
         MapLocation home = MapState.home; if (home == null) return false;
-        // r2: a rush at home (seen, or announced by the HQ's reserve) and no center yet: the center first, beside us, now
-        if (C.RUSH_CENTER_NOW && builtFC == 0 && round < C.RUSH_HOME_UNTIL && (rushHome() || round < MapState.reserveUntil)) return rushCenterNow(home);
         if (round < buildPause) return false;   // Iteration 34: a walk that stalled (the builder boxed in) pauses building
         int soup = rc.getTeamSoup();
         RobotType want = null;
@@ -150,7 +147,6 @@ public strictfp class Miner extends Robot {
         else if (builtVap > 0 && builtFC == 0 && soup >= C.FC_BANK + RobotType.FULFILLMENT_CENTER.cost) want = RobotType.FULFILLMENT_CENTER;   // Iteration 2's early center gated at 52%: back to after the first vaporator
         else if (builtVap > 0 && builtNet < C.NETGUNS_MAX && soup >= C.NETGUN_BANK + RobotType.NET_GUN.cost) want = RobotType.NET_GUN;
         if (want == null) return false;
-        if (reserved(round, MapState.reserveUntil, soup, want.cost)) return false;   // r2: the rush center's drones first
         // stage 10: on a lot, but for no more than 40 rounds per building (Squares: the lots sat on 20-99 cliffs, the builder
         // walked for 900 rounds after its refinery and no school was ever built); then the old placement
         if (want != lastWant) { lastWant = want; wantSince = round; }
@@ -213,28 +209,6 @@ public strictfp class Miner extends Robot {
         else if (want == RobotType.VAPORATOR) builtVap++;
         else if (want == RobotType.NET_GUN) builtNet++;
         else builtFC++;
-        return true;
-    }
-
-    /** r2: under a rush at home the rush center goes up at once beside the builder (Iterations 54 and 71 died on the walk to a
-     *  site; g_iter13's builder walked up to 40 rounds to a far stand and passed each 150 to a later spender -- 12 same-round
-     *  thefts in the six early flips). Walk home first if away; hold near home for the bank; a tile 3+ out and far from the
-     *  rusher first; Iteration 57's walk only when nothing beside us is legal. */
-    private boolean rushCenterNow(MapLocation home) throws GameActionException {
-        if (Nav.cheb(loc, home) > 4) { nav.setTarget(home); nav.step(); return true; }
-        if (!rc.isReady() || rc.getTeamSoup() < RobotType.FULFILLMENT_CENTER.cost) return true;   // hold here for the bank
-        int sx = 0, sy = 0, n = 0;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (e.type == RobotType.LANDSCAPER || e.type == RobotType.DESIGN_SCHOOL) { sx += e.location.x; sy += e.location.y; n++; } }
-        MapLocation c = n > 0 ? new MapLocation(sx / n, sy / n) : MapState.rushSchool != null ? MapState.rushSchool : home;
-        Direction best = null; int bs = Integer.MIN_VALUE;
-        for (int i = 8; --i >= 0;) { Direction d = DIRS[i]; MapLocation t = loc.add(d);
-            if (Nav.cheb(t, home) < 2 || !rc.canBuildRobot(RobotType.FULFILLMENT_CENTER, d) || rc.senseFlooding(t)) continue;
-            int s = (Nav.cheb(t, home) >= 3 ? 1000 : 0) + t.distanceSquaredTo(c);
-            if (s > bs) { bs = s; best = d; } }
-        if (best == null) return rushBuild(RobotType.FULFILLMENT_CENTER, home);
-        rc.buildRobot(RobotType.FULFILLMENT_CENTER, best); builtFC++; lastWant = null;
-        postReserve(true);
-        Debug.log("@rushfc at=" + loc.add(best) + " soup=" + rc.getTeamSoup() + " school=" + MapState.rushSchool);
         return true;
     }
 

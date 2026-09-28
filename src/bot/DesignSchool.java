@@ -7,12 +7,11 @@ public strictfp class DesignSchool extends Robot {
     private int built = 0, pendingId = -1, pendingPosts = 0;
     DesignSchool(RobotController rc) { super(rc); }
     @Override protected void turn() throws GameActionException {
-        sense(); readReserve();   // r2
+        sense();
         int soup = rc.getTeamSoup();
         // Iteration 63: the forward school (the enemy HQ in sight and ours not) spawns attackers beside the enemy HQ
         MapLocation eh = null; for (int i = nEnemy; --i >= 0;) if (enemies[i].type == RobotType.HQ) eh = enemies[i].location;
         if (eh != null && (MapState.home == null || Nav.cheb(loc, MapState.home) > 6)) {
-            fwdSpender = true;   // r2: the forward school holds only for the rush center's first drone
             if (built < C.RUSH_LANDSCAPERS && soup >= RobotType.LANDSCAPER.cost && tryBuild(RobotType.LANDSCAPER, eh)) built++;
             return;
         }

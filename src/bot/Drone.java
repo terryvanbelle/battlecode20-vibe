@@ -13,7 +13,6 @@ public strictfp class Drone extends Robot {
     private MapLocation patrol;
     private int pickups = 0, drops = 0;
     private boolean charging = false;
-    private MapLocation guardAt;   // r2: the rush school (or the last enemy landscaper) near home this rush drone waits beside
 
     Drone(RobotController rc) { super(rc); avoidRing = true; }
 
@@ -34,10 +33,6 @@ public strictfp class Drone extends Robot {
             MapLocation[] near = nearWater(); if (near != null) { water = near[0]; nav.setTarget(water); nav.step(); return; }
             nav.setTarget(MapState.center()); nav.step(); return;
         }
-        // r2: the rush guard (before the shield): an enemy landscaper within RUSH_GUARD of our HQ first, nearest the HQ first (the
-        // one burying it), then an enemy miner on the ring; a drone born before r350 then waits beside the rush school, whose
-        // newborns cannot act for ten rounds
-        if (MapState.home != null && round < C.SHIELD_FROM && guard()) return;
         // pick up
         RobotInfo tgt = null; int bd = 1 << 30;
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; if (!e.type.canBePickedUp()) continue; int d = loc.distanceSquaredTo(e.location); if (d < bd) { bd = d; tgt = e; } }
@@ -52,23 +47,6 @@ public strictfp class Drone extends Robot {
             else patrol = new MapLocation(loc.x + nextInt(21) - 10, loc.y + nextInt(21) - 10);
         }
         nav.setTarget(patrol); if (!nav.step()) patrol = null;
-    }
-
-    private boolean guard() throws GameActionException {
-        MapLocation h = MapState.home; RobotInfo g = null; int gs = 1 << 30;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i]; int c = Nav.cheb(e.location, h);
-            if (e.type == RobotType.DESIGN_SCHOOL && c <= C.RUSH_HOME_DS && birth < 350) guardAt = e.location;
-            if (!(e.type == RobotType.LANDSCAPER && c <= C.RUSH_GUARD) && !(e.type == RobotType.MINER && c == 1)) continue;
-            int s = c * 1000 + loc.distanceSquaredTo(e.location); if (s < gs) { gs = s; g = e; } }
-        if (g != null) {
-            if (birth < 350 && g.type == RobotType.LANDSCAPER && guardAt == null) guardAt = g.location;
-            if (rc.canPickUpUnit(g.ID)) { rc.pickUpUnit(g.ID); pickups++; Debug.log("@rushpick id=" + g.ID + " t=" + g.type.ordinal() + " dHQ=" + Nav.cheb(g.location, h)); return true; }
-            nav.setTarget(g.location); nav.step(); return true;
-        }
-        if (guardAt == null) return false;
-        if (rc.canSenseLocation(guardAt)) { RobotInfo s = rc.senseRobotAtLocation(guardAt); if ((s == null || s.team != them || s.type != RobotType.DESIGN_SCHOOL) && loc.distanceSquaredTo(guardAt) <= 2) guardAt = null; }
-        if (guardAt != null && loc.distanceSquaredTo(guardAt) > 2) { nav.setTarget(guardAt); nav.step(); }
-        return guardAt != null;
     }
 
     /** Iteration 81: hold a flooded Chebyshev-2 tile of our HQ. On one: never move again; lift an enemy unit beside us and keep

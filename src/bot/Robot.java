@@ -70,24 +70,7 @@ public abstract strictfp class Robot {
     protected void init() throws GameActionException {
         RobotInfo[] adj = rc.senseNearbyRobots(-1, us);
         for (int i = adj.length; --i >= 0;) if (adj[i].type == RobotType.HQ) { MapState.setHome(adj[i].location); break; }
-        // r2 (CowFarm vs arch_rush: a cow's pollution cut the school's sensor to r2 ~11 against the HQ at 13; its only landscaper
-        // spawned on a random side, never learned home -- the HQ re-posts at r%100==50 and landscapers read every third block --
-        // and made 0 digs while the HQ was buried): born out of the HQ's sight, read its round-2 post, else its last re-post.
-        // Not beside an enemy HQ: the forward school's and its landscapers' test is "no home known" (Spiral: HQs 6 apart).
-        if (MapState.home == null && type != RobotType.HQ && rc.getRoundNum() < C.RUSH_HOME_UNTIL) {   // the rush window only: late schools on far lattice sites have the same bug (a separate candidate)
-            boolean ehq = false; RobotInfo[] en = rc.senseNearbyRobots(-1, them);
-            for (int i = en.length; --i >= 0;) if (en[i].type == RobotType.HQ) { ehq = true; break; }
-            if (!ehq) homeFromChain();
-        }
         probeEdges();
-    }
-    private void homeFromChain() throws GameActionException {
-        int r = rc.getRoundNum();
-        int[] tries = {2, r - 1 - (((r - 1 - 50) % 100) + 100) % 100};
-        for (int k = 0; k < 2 && MapState.home == null; k++) { int b = tries[k]; if (b < 1 || b >= r) continue;
-            Transaction[] block = rc.getBlock(b);
-            for (int i = block.length; --i >= 0;) { int[] m = block[i].getMessage();
-                if (Comms.ours(m, b, us) && m[0] == Comms.HQ_LOC) { MapState.setHome(new MapLocation(m[1], m[2])); Debug.log("@homechain b=" + b + " home=" + MapState.home); break; } } }
     }
 
     /** One turn of this robot's logic. */
@@ -127,35 +110,10 @@ public abstract strictfp class Robot {
                 case Comms.ENEMY_HQ: MapState.sightEnemyHQ(new MapLocation(m[1], m[2])); break;
                 case Comms.LATTICE_ORDER: if (!MapState.latOrdered(m[1]) && MapState.nLat < MapState.latIds.length) MapState.latIds[MapState.nLat++] = m[1]; break;
                 case Comms.MAP_ORIGIN: if (!MapState.originKnown()) { MapState.minX = m[1]; MapState.minY = m[2]; } break;
-                case Comms.RESERVE: absorbReserve(m); break;
                 default: break;
             }
         }
     }
-
-    /** r2: a RESERVE post raises this robot's reserve rounds. */
-    protected static void absorbReserve(int[] m) {
-        if (m[1] > MapState.reserveUntil) MapState.reserveUntil = m[1];
-        if (m[2] == 1 && m[1] > MapState.reserveAllUntil) MapState.reserveAllUntil = m[1];
-    }
-    /** r2: schools and centers read only the RESERVE posts of last round, and only while one can come (the rest of the chain
-     *  would change them: a forward school that learns home from a re-post turns into a home school on Spiral). */
-    protected void readReserve() throws GameActionException {
-        if (round < 2 || round > C.RUSH_HOME_UNTIL + C.RESERVE_MAX + C.RESERVE_TTL) return;
-        Transaction[] block = rc.getBlock(round - 1);
-        for (int i = block.length; --i >= 0;) { int[] m = block[i].getMessage();
-            if (m != null && m.length == 7 && m[0] == Comms.RESERVE && Comms.ours(m, round - 1, us)) absorbReserve(m); }
-    }
-    /** r2: hold the bank for the rush center's drones for RESERVE_TTL rounds (all: the forward school and the rusher too). */
-    protected void postReserve(boolean all) throws GameActionException {
-        if (!C.RESERVE_ON) return;   // r2 stage 4
-        int until = round + C.RESERVE_TTL;
-        int[] m = Comms.make(Comms.RESERVE, round, us, until, all && C.RESERVE_OFFENCE ? 1 : 0);   // r2 stage 3: never the offence
-        absorbReserve(m); post(m);
-    }
-    /** r2: a spender of `cost` waits while a reserve holds and the bank would fall below a drone's 150. */
-    public static boolean reserved(int round, int until, int soup, int cost) { return round < until && soup < cost + RobotType.DELIVERY_DRONE.cost; }
-    protected boolean fwdSpender = false;   // r2: the forward school and our rusher honour only the all-spenders reserve
 
     /** Post a message for 1 soup if we can. */
     protected boolean post(int[] m) throws GameActionException {
@@ -235,7 +193,6 @@ public abstract strictfp class Robot {
     /** Build type in the free direction nearest `toward` (relative tie-break; random when null). */
     protected boolean tryBuild(RobotType t, MapLocation toward) throws GameActionException {
         if (!rc.isReady() || rc.getTeamSoup() < t.cost) return false;
-        if (t != RobotType.DELIVERY_DRONE && reserved(round, fwdSpender ? MapState.reserveAllUntil : MapState.reserveUntil, rc.getTeamSoup(), t.cost)) return false;   // r2
         Direction best = null; int bd = 1 << 30;
         for (int i = 8; --i >= 0;) {
             Direction d = DIRS[i];
@@ -272,18 +229,6 @@ public abstract strictfp class Robot {
         for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i];
             if ((e.type == RobotType.DESIGN_SCHOOL || e.type == RobotType.LANDSCAPER) && e.location.distanceSquaredTo(MapState.home) <= C.RUSH_D2) return true; }
         return false;
-    }
-    /** r2: a rush AT HOME in the sensing cache (and remember the rusher's school). */
-    protected boolean rushHome() {
-        if (round >= C.RUSH_HOME_UNTIL || MapState.home == null) return false;
-        boolean hit = false;
-        for (int i = nEnemy; --i >= 0;) { RobotInfo e = enemies[i];
-            if (rushHomeHit(e.type, e.location, MapState.home)) { hit = true; if (e.type == RobotType.DESIGN_SCHOOL) MapState.rushSchool = e.location; } }
-        return hit;
-    }
-    public static boolean rushHomeHit(RobotType t, MapLocation e, MapLocation home) {
-        int c = Nav.cheb(e, home);
-        return t == RobotType.DESIGN_SCHOOL ? c <= C.RUSH_HOME_DS : t == RobotType.LANDSCAPER && c <= C.RUSH_HOME_LS;
     }
     /** Is l one of the 8 tiles around our HQ (the wall ring)? */
     /** R1: the lattice's radius grows with the game (3 + round/150, up to LATTICE_RMAX), set at every turn's start. */

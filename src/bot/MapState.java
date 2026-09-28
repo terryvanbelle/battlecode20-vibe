@@ -16,8 +16,6 @@ public final strictfp class MapState {
     public static int minX = -1, minY = -1;          // origin; -1 unknown (the map corner is random)
     public static MapLocation home;                  // our HQ
     public static MapLocation enemyHQ;               // confirmed by sight
-    public static int reserveUntil = 0, reserveAllUntil = 0;   // r2: spenders keep a drone's 150 before these rounds (all: offence too)
-    public static MapLocation rushSchool;                      // r2: the last enemy school seen within RUSH_HOME_DS of home
     public static int[] latIds = new int[64]; public static int nLat = 0;   // R1 stage 11: ids the school named lattice workers
     public static boolean latOrdered(int id) { for (int i = nLat; --i >= 0;) if (latIds[i] == id) return true; return false; }
     public static int sym = 7;                       // surviving hypotheses: bit0 rotation, bit1 mirror-x, bit2 mirror-y

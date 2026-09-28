@@ -4341,3 +4341,7 @@ elsewhere on the ladder (to be read); not kept. `src/bot` returns to g_iter13 af
 mvpatel2000, cormackikkert): 34 of 72 games (47%) against g_iter13's 65 of 126 (52%). Level within the noise; two more
 blocks (`sub17b`, to 336 games, the submission standard) decide. One block had to be re-fetched: the driver's disk
 filled (the 2021 project's 8.3 GB removed with the owner's leave, PROMPTS 68) and a truncated results.csv recorded 0.
+**r1s17 at the submission standard (332 band games): 1788 +- 39 against g_iter13's 1789 +- 34 (432). LEVEL, not
+kept** (the registered rule keeps it only at or above g_iter13). The rescue fires (14 in the wave fixture) and late
+lift losses fell 52% -> 47%, but the ladder does not see it. `src/bot` = g_iter13 again (r2's RushTest retired with
+it). The incumbent is g_iter13.

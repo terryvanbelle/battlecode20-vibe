@@ -47,27 +47,6 @@ public final class C {
     public static final int ATTACKER_BANK = 200;      // Iteration 43b: was 700, 43 tried 0 -- landscapers 17-24 came 200 rounds late on RandomSoup1 and never on Toothpaste as A
     public static final int RUSH_UNTIL = 400;          // Iteration 29: an enemy school or landscaper this close to our HQ before this round is a rush
     public static final int RUSH_D2 = 64;
-    // r2 (rushvs13, 2026-09-27): a rush AT HOME -- an enemy school within Chebyshev RUSH_HOME_DS of our HQ or an enemy landscaper
-    // within RUSH_HOME_LS, before RUSH_HOME_UNTIL (arch_rush plants at 3, poortho and rzhan11 at 1). The builder buys the rush
-    // center at once beside itself, and every other spender keeps a drone's 150 in the bank until the center has
-    // RUSH_DRONES_FIRST drones (the forward school and our unplanted rusher only until the first). g_iter13 built 0 drones in
-    // 14 of the 15 rush flips; Iteration 58's funded center was 28-6 against arch_rush on g_iter10.
-    public static final int RUSH_HOME_UNTIL = 250;
-    // r2 stage 3: the reserve never holds our own rusher or forward school (r2rush-rest31: g_iter13 won BeachFrontProperty,
-    // ClearlyTwelveHorsesInASalad and Egg by its counter-rush; held for the first drone, r2 lost all three races)
-    public static final boolean RESERVE_OFFENCE = false;
-    // r2 stage 4: no rush center at once and no reserve at all -- g_iter13's spending order is kept exactly (stages 1-3 lost
-    // 5-6 of g_iter13's 26 wins against arch_rush: the first 150 after the plant went to the center, not the counter-rush
-    // that won BeachFrontProperty, Egg, ClearlyTwelveHorsesInASalad, Hourglass). Only the parts that cost no soup remain.
-    public static final boolean RUSH_CENTER_NOW = false, RESERVE_ON = false;
-    public static final int RUSH_HOME_DS = 4;
-    public static final int RUSH_HOME_LS = 2;
-    public static final int RUSH_DRONES_FIRST = 2;
-    public static final int RESERVE_TTL = 8;          // a RESERVE post holds the bank this many rounds (posts come every 3)
-    public static final int RESERVE_MAX = 40;         // the rush center posts for at most this many rounds after its birth
-    public static final int HQ_ALARM_MAX = 20;        // the HQ posts for at most this many rounds before a center is in its sight
-    public static final int RUSH_GUARD = 3;           // rush drones lift enemy landscapers within this Chebyshev distance of our HQ
-    public static final int HQDIG_FIRST = 10;         // r2: at this much dirt on the HQ a seat digs before the seat walk (Prison: 5 -> 41 in r400-427)
     public static final boolean ASSUME_ORIGIN = true;
     // Iteration 78: ronniesong0809's lattice (read 2026-09-26, PROMPTS 45). Around the HQ, every tile with an even
     // x or an even y offset is GRID, raised with the water; the odd-odd CELLS are pits (dirt) or buildings.

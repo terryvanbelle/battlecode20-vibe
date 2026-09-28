@@ -18,7 +18,6 @@ public strictfp class Landscaper extends Robot {
     private final MapLocation[] badSeat = new MapLocation[8]; private int nBad = 0;
     private int helperDeps = 0;
     private int digs = 0, deposits = 0, hqDigs = 0, buryDeposits = 0, equalised = 0, borrowed = 0;
-    private int squatSkips = 0;   // r2: ring tiles passed over because an enemy landscaper stands on them
 
     Landscaper(RobotController rc) { super(rc); nav.stallLimit = 30; }
     private boolean forward = false;   // Iteration 63: born at our forward school beside the enemy HQ
@@ -35,7 +34,7 @@ public strictfp class Landscaper extends Robot {
     }
     private void turn2() throws GameActionException {
         sense(); if (round % 3 == 1) readBlock(); probeEdges();
-        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " squat=" + squatSkips + " elev=" + rc.senseElevation(loc));
+        if (round % 100 == 0) Debug.log("@wallstat seat=" + seat + " attacker=" + attacker + " helper=" + helper + " helperDeps=" + helperDeps + " eq=" + equalised + " borrow=" + borrowed + " digs=" + digs + " deps=" + deposits + " hqDigs=" + hqDigs + " bury=" + buryDeposits + " elev=" + rc.senseElevation(loc));
         if (forward) { attack(); return; }   // Iteration 63
         MapLocation home = MapState.home;
         if (home == null) { nav.setTarget(null); return; }
@@ -142,9 +141,7 @@ public strictfp class Landscaper extends Robot {
                     if (r0 == null || r0.type != RobotType.LANDSCAPER || r0.team != us) continue;   // a raised seat with our landscaper on it is taken; an empty cliff is unreachable
                 }
                 RobotInfo r = rc.senseRobotAtLocation(t);
-                // r2: an enemy landscaper's tile is not a seat either -- the rusher's never leave (28 of ours waited on one for 200-800
-                // rounds at 0 digs in 11 of the 15 rush flips; the give-up at :48 compares by reference and never fires)
-                if (r != null && r.ID != id && (r.type == RobotType.LANDSCAPER || r.type.isBuilding())) { if (r.team == them && r.type == RobotType.LANDSCAPER && squatSkips++ == 0) Debug.log("@squatskip t=" + t); continue; }
+                if (r != null && r.ID != id && (r.type == RobotType.LANDSCAPER && r.team == us || r.type.isBuilding())) continue;
             }
             int d = loc.distanceSquaredTo(t) + nextInt(2);
             if (d < bd) { bd = d; best = t; }
@@ -167,7 +164,7 @@ public strictfp class Landscaper extends Robot {
                 if (rc.senseFlooding(t)) continue;
                 int e = rc.senseElevation(t); if (Math.abs(e - myE) > 6) continue;
                 RobotInfo r = rc.senseRobotAtLocation(t);
-                if (r != null && r.ID != id && (r.type.isBuilding() || r.type == RobotType.LANDSCAPER)) continue;   // r2: either team's
+                if (r != null && r.ID != id && (r.type.isBuilding() || (r.type == RobotType.LANDSCAPER && r.team == us))) continue;
                 for (int i = 8; --i >= 0;) { MapLocation n = t.add(DIRS[i]); if (onRing(n) && exposed(n) && rc.canSenseLocation(n)) lowest = Math.min(lowest, rc.senseElevation(n)); }
                 if (lowest == Integer.MAX_VALUE) continue;   // a post that touches no exposed ring tile feeds nothing
             }
@@ -221,8 +218,6 @@ public strictfp class Landscaper extends Robot {
     private void wall(MapLocation home) throws GameActionException {
         if (!rc.isReady()) return;
         Direction toHQ = loc.directionTo(home);
-        // r2 (Prison vs arch_rush: 73 seat-walk feeds and 0 HQ digs in r400-427, the HQ 5 -> 41): a buried HQ before the seat walk
-        if (hqInfo != null && hqInfo.dirtCarrying >= C.HQDIG_FIRST && rc.canDigDirt(toHQ)) { rc.digDirt(toHQ); hqDigs++; digs++; Debug.log("@hqdig first buried=" + hqInfo.dirtCarrying); return; }
         if (round >= C.SEATS_BY && seatWalk(home)) return;   // Iteration 41: an open ring tile with no seat beside it gets one
         // 1. the HQ is being buried: dig it out
         if (hqInfo != null && hqInfo.dirtCarrying > 0 && rc.canDigDirt(toHQ)) { rc.digDirt(toHQ); hqDigs++; digs++; Debug.log("@hqdig buried=" + hqInfo.dirtCarrying); return; }
@@ -285,7 +280,6 @@ public strictfp class Landscaper extends Robot {
             Direction feed = null; int fe = Integer.MAX_VALUE;
             for (int k = 8; --k >= 0;) { Direction d = DIRS[k]; MapLocation n = loc.add(d);
                 if (!onRing(n) || Nav.cheb(n, t) != 1 || !rc.canSenseLocation(n) || rc.senseFlooding(n)) continue;
-                { RobotInfo o = rc.senseRobotAtLocation(n); if (o != null && o.team == them) continue; }   // r2: never through a tile the rusher holds (step 3 feeds it; IsThisProcedural: 148 feeds onto (6,8) while (5,8) beside the seat stayed at 3)
                 int e = rc.senseElevation(n);
                 if (Math.abs(e - myE) <= GameConstants.MAX_DIRT_DIFFERENCE) { if (rc.canMove(d)) { rc.move(d); seat = n; loc = rc.getLocation(); Debug.log("@seatwalk to=" + n + " for=" + t); return true; } continue; }
                 RobotInfo r = rc.senseRobotAtLocation(n); if (r != null && r.type.isBuilding()) continue;
