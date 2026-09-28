@@ -4352,3 +4352,11 @@ held by a drone is off the map grid, so the flood cannot kill it (GameWorld.setF
 So a drone lifts our last miner before its ground floods, carries it, and later drops it on a dry tile by raised
 ground near home to build a school with the idle soup; its landscapers join the wall. `src/r3` (from g_iter13);
 diagnostics on the driver with our own builds and the puppet pair mode on g_iter13's late losses.
+
+**The puppet league (open-loop puppets of 44 of g_iter13's recorded losses, 5 per opponent; each build paired with
+g_iter13 on the same cells): INVALID as a strength measure, stopped after two builds.** g_iter12 vs g_iter13 36-1
+discordant, r1s17 7-0 -- g_iter13 replays its own losses exactly, and any build that plays differently knocks the
+open-loop script off its recording, so the puppet weakens with the build's divergence: it rewards difference, not
+strength. The puppet's valid uses stay the diagnostic ones: the exact replay of a recorded situation (pair mode to a
+cutoff) to watch a mechanism fire, and the control-vs-candidate comparison over a short open-loop window (stage 17's
+wave). A self-play proxy for the ladder is still open (PROMPTS 58).
