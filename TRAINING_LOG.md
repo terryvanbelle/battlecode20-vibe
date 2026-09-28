@@ -4420,3 +4420,12 @@ pinwheel leaves every seat beside an open, flooded pit, and a drone over a flood
 winkelmantanner keeps a drone over each of its own pits, and we rarely own drones (0 in 7 of 9 traced lifter losses).
 The faster ring (1.24 vs 0.99 in the NoU pair) is real but the geometry opens the wall to lifts. Reopen only with the
 quarry tiles covered (our drones on them, the shield's first slots) or pits that are not adjacent to seats.
+
+**R4 stage 3 (`src/r4s3`): the quarry covered by four drones.** One center (from r400 at a 500 bank, or the rush
+center), four drones at 350 that hold the four quarry tiles for good (`@qdrone`); seats dig the quarry under them
+(stage 17b's dig-under-drones ported); a drone lifts our own unit walled in on a quarry tile; the school holds back the
+quarry's unpaid cost past 20 landscapers from r400 (at most 300 rounds). Diagnostics: CentralLake seed 7 won r3178,
+ring rate 1.17 (r4s1 1.06-1.16, g_iter13 0.73-0.89), drones on the four tiles r308-402. Lift test (MtDoom pair,
+cormackikkert scripted to r2250, our side live from r1): r4s1 control lost 13 landscapers in r2050-2250 incl. seats and
+posts (15 -> 3), r4s3 lost 5, all three out, NO seat or post (16 -> 11). The hold-back is a pre-flood cost; the ladder
+judges. 240 band games as us:r4s3.
