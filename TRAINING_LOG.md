@@ -4455,3 +4455,10 @@ as the control. EmaPajic ALandDivided (the control replays the recording exactly
 at r1500 -> 0 at r1550, buried, lost r1709; r4s4 15 at r1500 and still 15 at r1750, won r2977 (identical to the control
 through r1350; the script drifts from ~r1000). `@shell` fired 47-96 times in the three pairs. WaterBot: both won;
 RandomSoup1: both lost; CentralLake: both won (r3178 / r3182). To the ladder as us:r4s4.
+
+**r4s4 on the ladder (239 band games): 1739 +- 46 (114-125), rank 21 of 108, against g_iter13 1779 +- 35 and r4s3
+1760. Not kept; the two extra blocks were stopped.** By opponent (r4s4 / g_iter13): EmaPajic 14-15 (48%) / 46%,
+winkelmantanner 9-21 (30%) / 33% -- the shell brings the wave bots back to g_iter13's level -- but cormackikkert 17-13
+(57%) / 76% (r4s3 97%), benzyx 17-13 (57%) / 79%, mvpatel2000 5-25 (17%) / 26%. The shell's drones (and no raid while
+a slot is free) cost elsewhere. The quarry line (r4s1-s4) reads: the geometry raises the ring (1.24 vs 0.99), every
+defence added to it trades one opponent for another, and none clears g_iter13 on the ladder. Parked.
