@@ -4345,3 +4345,10 @@ filled (the 2021 project's 8.3 GB removed with the owner's leave, PROMPTS 68) an
 kept** (the registered rule keeps it only at or above g_iter13). The rescue fires (14 in the wave fixture) and late
 lift losses fell 52% -> 47%, but the ladder does not see it. `src/bot` = g_iter13 again (r2's RushTest retired with
 it). The incumbent is g_iter13.
+
+**Iteration R3, the ark (idea, being built).** Late losses sit on 1,500-3,300 idle soup with no builder alive (miners
+drowned by ~r1000, the HQ sealed by its seats, the school flooded or buried; nothing built after ~r700). Engine: a unit
+held by a drone is off the map grid, so the flood cannot kill it (GameWorld.setFloodStatus, pickUpUnit removes it).
+So a drone lifts our last miner before its ground floods, carries it, and later drops it on a dry tile by raised
+ground near home to build a school with the idle soup; its landscapers join the wall. `src/r3` (from g_iter13);
+diagnostics on the driver with our own builds and the puppet pair mode on g_iter13's late losses.
