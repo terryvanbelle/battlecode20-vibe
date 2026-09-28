@@ -14,7 +14,8 @@
 #                                                                           BOTH sides replayed to the cutoff, then both hand
 #                                                                           over at once: O's side to the candidate, P's to
 #                                                                           the base (PROMPTS 66); PCUT=<round> keeps P's side
-#                                                                           scripted (open-loop) to that later round (PROMPTS 67)
+#                                                                           scripted (open-loop) to that later round (PROMPTS 67);
+#                                                                           FIXTURE_ONLY=1 builds fixture and shims and plays nothing
 #   tools/puppet.sh raw <replay.bc20>                                       the raw event lines
 #
 # play/check run ONE game on this machine through run-dev.sh; they wait (at most 20 minutes) while another engine runs.
@@ -99,6 +100,7 @@ case "$CMD" in
       [ -d "$REPO/src/pup_$PK" ] && continue; mkdir -p "$REPO/src/pup_$PK"
       sed "s/\bpup_g_iter13\b/pup_$PK/g; s/\bg_iter13\b/$PK/g" "$REPO/src/pup_g_iter13/RobotPlayer.java" > "$REPO/src/pup_$PK/RobotPlayer.java"
     done
+    if [ -n "${FIXTURE_ONLY:-}" ]; then echo "$FIX $(meta "$FIX" side) $(meta "$FIX" map) $(meta "$FIX" seed)"; exit 0; fi   # fixture and shims only: a batch plays them on the VM
     OUTR="${5:-$REPO/matches/pair-$CAND-vs-$BASE-$N-c$CUT.bc20}"; LOG="${OUTR%.bc20}.log"; mkdir -p "$(dirname "$OUTR")"
     play_game "$FIX" "pup_$BASE" "pup_$CAND" "$CUT" "$OUTR" "$LOG"
     pup_counts A "$LOG"; pup_counts B "$LOG"

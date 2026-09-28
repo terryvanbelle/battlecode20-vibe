@@ -4447,3 +4447,11 @@ the only flooded C2 tiles are the four quarry pits, so the shield has no slots; 
 the r1400 raid ~100 rounds before the wave. Next, r4s4: shield slots on the C3 tiles touching a held post, no raid
 while one is free. Method note: unpaired 30-game records against one bot measure the map draw and the opponent's
 economy more than the build.
+
+**R4 stage 4 (`src/r4s4`, the C3 drone shell): spare drones hold the Chebyshev-3 tiles touching a held post (and empty
+posts), no raid while a shell slot is free.** Diagnostic batch on the VM (8 games in parallel, PROMPTS 71-72): three
+r4s3 wave losses as pairs (our side live from r1, the opponent scripted to r1700) plus CentralLake seed 7 direct, r4s3
+as the control. EmaPajic ALandDivided (the control replays the recording exactly: 0 dropped acts): r4s3 15 landscapers
+at r1500 -> 0 at r1550, buried, lost r1709; r4s4 15 at r1500 and still 15 at r1750, won r2977 (identical to the control
+through r1350; the script drifts from ~r1000). `@shell` fired 47-96 times in the three pairs. WaterBot: both won;
+RandomSoup1: both lost; CentralLake: both won (r3178 / r3182). To the ladder as us:r4s4.
