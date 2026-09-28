@@ -4434,3 +4434,16 @@ judges. 240 band games as us:r4s3.
 cormackikkert 29-1 (97%; r4s1 73%, g_iter13 76%) -- the quarry drones end the lift wave; but winkelmantanner 3-27
 (r4s1 4-26, g_iter13 18-36) and EmaPajic 8-22 (7-23, 25-29) are unchanged from r4s1. So the pinwheel's collapse
 against those two is NOT the seat lift; being read in their r4s1/r4s3 loss replays against g_iter13's.
+
+**Why the quarry builds "collapse" against winkelmantanner and EmaPajic (129 loss + 35 win replays read):** they do not,
+map for map. Every build loses essentially every game in which the opponent's r1450-1550 drone WAVE comes (peak 80+
+drones for W, 40+ for E): g_iter13 0 of 15 (W) and 0 of 25 (E) such games, r4s1 0/21 and 1/22, r4s3 0/13 and 2/21.
+The wave lifts the helpers off the C2 posts from the C3 ring, then the seats from the emptied posts; E then drops its
+own landscapers onto the emptied ring (76 of 101 drops in r4s3) and buries the HQ. The pits are a minor route (14% of
+seat lifts in r4s3). Map-matched, r4s3's expected wins from g_iter13's per-map rates: W 2.0 (won 2), E 5.9 (won 5).
+The r4 builds drew the wave more often (W 50-75% of games vs 34%; E 72-81% vs 53%: the opponent's own economy survives
+its r677 flood or not -- nothing we do) and drew fewer maps where our early rush wins (2-3 vs 15). Pinwheel-specific:
+the only flooded C2 tiles are the four quarry pits, so the shield has no slots; spare drones wait five out and leave on
+the r1400 raid ~100 rounds before the wave. Next, r4s4: shield slots on the C3 tiles touching a held post, no raid
+while one is free. Method note: unpaired 30-game records against one bot measure the map draw and the opponent's
+economy more than the build.
