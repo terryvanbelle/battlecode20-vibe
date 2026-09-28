@@ -4360,3 +4360,11 @@ open-loop script off its recording, so the puppet weakens with the build's diver
 strength. The puppet's valid uses stay the diagnostic ones: the exact replay of a recorded situation (pair mode to a
 cutoff) to watch a mechanism fire, and the control-vs-candidate comparison over a short open-loop window (stage 17's
 wave). A self-play proxy for the ladder is still open (PROMPTS 58).
+
+**Where r2s4 lost its rating (ladder records, r2s4 240 vs g_iter13 432):** late losses 46% of games against 41%;
+early losses 4.6% against 5.6% (the rush defence works). By opponent: EmaPajic 8-22 (27%) against 25-29 (46%),
+cormackikkert 17-13 (57%) against 41-13 (76%), laurenschneider 17-13 against 39-15 (72%). EmaPajic lifts its own
+landscapers onto our ring (lift-and-bury); r2s4's seat rule (an enemy-held tile is never a seat, and the seat walk never
+feeds through one) likely abandons exactly the tiles that race needs -- the squatter rule is the suspect, not the HQ
+dig or the guard. If the rush defence is revisited: the HQ dig-first and the early drone guard without the squatter
+rule.
