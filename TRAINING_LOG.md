@@ -4429,3 +4429,8 @@ ring rate 1.17 (r4s1 1.06-1.16, g_iter13 0.73-0.89), drones on the four tiles r3
 cormackikkert scripted to r2250, our side live from r1): r4s1 control lost 13 landscapers in r2050-2250 incl. seats and
 posts (15 -> 3), r4s3 lost 5, all three out, NO seat or post (16 -> 11). The hold-back is a pre-flood cost; the ladder
 judges. 240 band games as us:r4s3.
+
+**r4s3 on the ladder (240): 1764 +- 46 (121-119), against g_iter13 1783 +- 35 and r4s1 1741. Not kept.** By opponent:
+cormackikkert 29-1 (97%; r4s1 73%, g_iter13 76%) -- the quarry drones end the lift wave; but winkelmantanner 3-27
+(r4s1 4-26, g_iter13 18-36) and EmaPajic 8-22 (7-23, 25-29) are unchanged from r4s1. So the pinwheel's collapse
+against those two is NOT the seat lift; being read in their r4s1/r4s3 loss replays against g_iter13's.
