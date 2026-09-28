@@ -4412,3 +4412,11 @@ opening must hand our side over at r1. Next: 240 band games as us:r4s1.
 scripted to r700, then g_iter13):** landscapers at r300/500/700/1000/1500: r4s2 11/13/14/16/11, r4s1 control
 11/12/13/15/14; r4s2 lost r3052, r4s1 won r3100. +1 body by r700 where the proposal expected 3+; parked behind r4s1's
 ladder result.
+
+**r4s1 on the ladder (240 band games): 1744 +- 46 (114-126), rank 20 of 106, against g_iter13's 1786 +- 35. Not kept.**
+Loss classes as g_iter13's (early 6%, mid 17% vs 15%, late 30% vs 28%), but by opponent: winkelmantanner 4-26 (13%)
+against 18-36 (33%), EmaPajic 7-23 (23%) against 25-29 (46%); poortho up (60% vs 44%). Both collapses are lifters. The
+pinwheel leaves every seat beside an open, flooded pit, and a drone over a flooded pit lifts the seat beside it;
+winkelmantanner keeps a drone over each of its own pits, and we rarely own drones (0 in 7 of 9 traced lifter losses).
+The faster ring (1.24 vs 0.99 in the NoU pair) is real but the geometry opens the wall to lifts. Reopen only with the
+quarry tiles covered (our drones on them, the shield's first slots) or pits that are not adjacent to seats.
