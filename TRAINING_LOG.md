@@ -4472,3 +4472,11 @@ and mvpatel2000 4-26 (13%; g_iter13 26%). The quarry family: r4s1 1741, r4s3 176
 g_iter13 1776-1789 -- each variant moves wins between opponents and none reaches the incumbent; mvpatel2000 (which lifts
 everything by ~r1000) is below g_iter13 in every one. The quarry line is closed; reopen only with a reason the
 mvpatel2000 games go worse under the pinwheel.
+
+**R5, the early guns (`src/r5`): the HQ announces enemy drones near home before r800 (`@dronealert`), the builder puts up
+to two net guns on lattice sites near home (`@alertgun`).** mvpatel2000 is our worst band opponent (g_iter13 26%); its
+lifts come before the flood, from outside the HQ gun, where ground guns still stand (Iteration 79's guns drowned
+before the r1400 raids they were built for). Diagnostic (`tools/pair-batch.sh`, new: puppet pairs for several builds in
+parallel on the VM): six of g_iter13's mvpatel2000 losses, our side live from r1, mvpatel2000 scripted to r1000.
+Landscapers at r1000, g_iter13 -> r5: BeachFrontProperty 7 -> 10, Infinity 10 -> 13, SoupOnTheSide 0 -> 6, WaterBot 22 ->
+33, DoesNotExist 0 -> 17, Constriction 12 -> 8; the alert fired in all six, guns stood in five. To the ladder.
