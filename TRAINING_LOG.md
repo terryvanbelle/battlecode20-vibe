@@ -4408,3 +4408,7 @@ estimate was 1.24). Swirl (3 of 4 quarry tiles off the map): the edge fallback w
 post-filling part (@post2) never fired (the posts stayed full) -- inert, not tested. Puppet caveat found: a pair
 handover after r2 rebuilds our robots mid-life and loses birth-order roles (the builder miner), so a pair that needs our
 opening must hand our side over at r1. Next: 240 band games as us:r4s1.
+**r4s2 (r4 + the C2 corner posts last) diagnostic, mvpatel2000 Squares pair (our side live from r1, mvpatel2000
+scripted to r700, then g_iter13):** landscapers at r300/500/700/1000/1500: r4s2 11/13/14/16/11, r4s1 control
+11/12/13/15/14; r4s2 lost r3052, r4s1 won r3100. +1 body by r700 where the proposal expected 3+; parked behind r4s1's
+ladder result.
