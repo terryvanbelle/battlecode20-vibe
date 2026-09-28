@@ -4399,3 +4399,12 @@ handling) nor 35 (16 helpers holding all 16 C2 tiles leave seats nothing to dig)
 Stacked: the school's 24-cap over r400-1100 goes (12 of 84 long losses idled 800+ soup at r500 with the school
 standing), and a lattice worker takes a free post. Diagnostic: the pit census at r1000 and the ring rate on
 CentralLake, and the puppet pair of the NoU loss (control must reproduce 2383 vs 2413 at r3000).
+**R4 diagnostic (`src/r4`, frozen `r4s1`):** the quarry holds -- 4 pinwheel pits, 11-12 posts held at r1000 and r1500.
+CentralLake seed 7 (r4 A vs g_iter13): ring rate r1000-2000 1.06 (first build 1.16) against 0.73-0.86 in the g_iter13
+mirror; nothing regresses before r400 (r300-500 ring above the mirror's). Puppet pair NoU vs rzhan11 (our side live
+from r1, rzhan11 scripted to r3300): control g_iter13 reproduces the recording (2370 vs 2383 at r3000), r4 1448 / 2062
+/ 2555 / 2805 at r1500-3000 against the control's 1229 / 1717 / 2120 / 2370, rate 1.24 vs 0.99 (the idea's 20-feeder
+estimate was 1.24). Swirl (3 of 4 quarry tiles off the map): the edge fallback works, ring 1807 vs 1051 at r3000. The
+post-filling part (@post2) never fired (the posts stayed full) -- inert, not tested. Puppet caveat found: a pair
+handover after r2 rebuilds our robots mid-life and loses birth-order roles (the builder miner), so a pair that needs our
+opening must hand our side over at r1. Next: 240 band games as us:r4s1.
