@@ -289,3 +289,7 @@ Do as you see fit there
 ## 68. 2026-09-28
 
 You can kill the 2021 project's files
+
+## 69. 2026-09-28
+
+what is the progress on the ark?
