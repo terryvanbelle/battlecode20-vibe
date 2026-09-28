@@ -4335,3 +4335,9 @@ rank 20 of 104, against g_iter13's 1798 +- 39.** Registered bars: early losses t
 against g_iter13's 20 of 84 (23.8%) -- met; rating above g_iter13 -- NOT met, and the upper end of its interval (1787)
 is below 1798: WITHDRAWN. The soup-free rush defence does what the harness said against the rushers but costs
 elsewhere on the ladder (to be read); not kept. `src/bot` returns to g_iter13 after r1s17's run.
+
+**r1s17 on the ladder (stage 17: the HQ/net-gun rescue targeting + the drone repairs; 237 band games): 1802 +- 47,
+130-107, rank 12 of 105, against g_iter13's 1794 +- 39.** Late losses (r1500+) to the lifters (winkelmantanner,
+mvpatel2000, cormackikkert): 34 of 72 games (47%) against g_iter13's 65 of 126 (52%). Level within the noise; two more
+blocks (`sub17b`, to 336 games, the submission standard) decide. One block had to be re-fetched: the driver's disk
+filled (the 2021 project's 8.3 GB removed with the owner's leave, PROMPTS 68) and a truncated results.csv recorded 0.
