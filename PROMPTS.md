@@ -301,3 +301,7 @@ How did things go last night?
 ## 71. 2026-09-28
 
 I noticed you started employing an agent here.  What's the advantage of that over doing it yourself?
+
+## 72. 2026-09-28
+
+Builds taking hours seems like quite a drawback, and it's not necessary for you to be highly responsive, since this is a long process and my role is mostly advisory.  I'm not sure I see the advantage
