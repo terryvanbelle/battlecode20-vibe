@@ -297,3 +297,7 @@ what is the progress on the ark?
 ## 70. 2026-09-28
 
 How did things go last night?
+
+## 71. 2026-09-28
+
+I noticed you started employing an agent here.  What's the advantage of that over doing it yourself?
