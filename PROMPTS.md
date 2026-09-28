@@ -309,3 +309,7 @@ Builds taking hours seems like quite a drawback, and it's not necessary for you 
 ## 73. 2026-09-28
 
 Could you report back ladder results as the blocks come in?
+
+## 74. 2026-09-28
+
+Super fantastic, thanks
