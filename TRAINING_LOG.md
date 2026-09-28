@@ -4387,3 +4387,15 @@ r1500; pads outrun by the water after ~r2200; (2) each ark school yields ~1 land
 round late); (3) the pads, doors and the ark's spending from r600 take work and soup from the ring; (4) in all 20 late
 losses read we had no center and no drone at all, so the ark must first build one. Lifters strip the wall at the end in
 both arms. Kept as a record; reopen only with ground that stays dry late (the lattice raised as a base).
+
+**Next: R4, the pinwheel quarry + fill the posts (idea review over 101 g_iter13 loss replays).** A landscaper moves
+0.5 dirt a round; seats dig only from Chebyshev-2 tiles and wall() step 4 digs the lowest EMPTY C2 tile, so every C2
+tile no helper holds becomes a pit and pickPost() rejects it -- we end with 7-8 pits and 8-9 posts (CentralLake,
+DoesNotExist, NoU at r1000-1500), a ceiling of ~16 feeders (ring +0.93-1.0 per tile per round). The field reserves
+exactly FOUR C2 pits -- winkelmantanner the pinwheel (2,1),(-1,2),(-2,-1),(1,-2), rzhan11 the plus -- so every seat
+touches one pit and 12 posts stand: 20 feeders (+1.24 and +1.13). NoU vs rzhan11: we had 52 landscapers at r1500
+(25+ spares drowning) and lost the race by 30 dirt at r3000. Not Iteration 12 (seats dug under helpers: double
+handling) nor 35 (16 helpers holding all 16 C2 tiles leave seats nothing to dig): neither fixed WHICH tiles are pits.
+Stacked: the school's 24-cap over r400-1100 goes (12 of 84 long losses idled 800+ soup at r500 with the school
+standing), and a lattice worker takes a free post. Diagnostic: the pit census at r1000 and the ring rate on
+CentralLake, and the puppet pair of the NoU loss (control must reproduce 2383 vs 2413 at r3000).
