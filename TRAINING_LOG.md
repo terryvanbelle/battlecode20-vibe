@@ -4462,3 +4462,6 @@ winkelmantanner 9-21 (30%) / 33% -- the shell brings the wave bots back to g_ite
 (57%) / 76% (r4s3 97%), benzyx 17-13 (57%) / 79%, mvpatel2000 5-25 (17%) / 26%. The shell's drones (and no raid while
 a slot is free) cost elsewhere. The quarry line (r4s1-s4) reads: the geometry raises the ring (1.24 vs 0.99), every
 defence added to it trades one opponent for another, and none clears g_iter13 on the ladder. Parked.
+**r4s5 (r4s4 with at most 8 drones on the C3 shell; the rest free to raid):** diagnostic batch (VM): EmaPajic
+ALandDivided pair 15 landscapers kept through r1750 (won r2976), cormackikkert MtDoom pair (scripted to r2250) won
+r2978, WaterBot won (8 charges), CentralLake won r3177, RandomSoup1 lost (as every build). To the ladder.
