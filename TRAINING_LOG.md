@@ -4375,3 +4375,15 @@ before r400 vs one dropped by a drone) is the only way forward on this line; par
 **r2s6 (r2s4 keeping only the seat skip): flips17 4 recovered, rest31 1 lost / 1 gained -- refuted by the registered
 bar (4 or fewer), no ladder.** The rush-defence line (r2s1-s6) is parked: the soup-free parts recover 4-5 of 17 against
 arch_rush, and the one version that reached the ladder (r2s4) lost 57 to the lift-and-bury cost.
+
+**R3, the ark: built and shown firing, refuted at the diagnostic (not laddered).** `src/r3` (+313 lines): from r600 a
+miner facing the flood builds a center, its drone lifts it (a held unit is off the grid), hovers, and sets it down to
+build a school on a dry site (`@ark*`); helpers raise landing pads and doors. The chain works end to end (Eagles and
+Soup pair runs, cutoffs 700/900; a direct Constriction game): 5 lifts, 2-4 drops, 2-3 ark schools, 3-18 landscapers
+built after r1000. But in every comparison the ring was LOWER than g_iter13's in the same setup (Eagles 2036 vs 2068
+at the end, Soup 2121 vs 2185, Constriction 1670 vs 1783 -- a win turned to a loss) and the HQ fell 3-12 rounds
+sooner. Why: (1) island homes -- 13 of 20 late g_iter13 losses read had no dry pair of tiles off the ring near home at
+r1500; pads outrun by the water after ~r2200; (2) each ark school yields ~1 landscaper (one door, income 1 soup a
+round late); (3) the pads, doors and the ark's spending from r600 take work and soup from the ring; (4) in all 20 late
+losses read we had no center and no drone at all, so the ark must first build one. Lifters strip the wall at the end in
+both arms. Kept as a record; reopen only with ground that stays dry late (the lattice raised as a base).
