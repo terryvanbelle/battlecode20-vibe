@@ -4555,3 +4555,9 @@ starved economy (their drones take our miners early), not a late targeting fix.
 diagnostic.** Twelve pairs (six mvpatel2000, six battlecode20-team4, scripted to r1000, g_iter15 the control): a few
 more miners alive at r500 in some, but soup mined by r1000 lower in 9 of 12 (WaterBot 553 vs 1,096, CentralLake 415
 vs 861, ALandDivided 479 vs 795) -- the sheltered miners idle; hiding costs more than the lifts. Not laddered.
+
+**R10, the levee (helpers dig empty C2 pits first; a C3 tile only while it stands LEVEE_MARGIN above the water 300
+rounds ahead, highest first -- g_iter15's helpers dug the LOWEST C3 tile).** Diagnostic on the six team4 pairs
+(g_iter15 already survives all six since R7): identical in four; in two it fired and helped -- CentralLake landscapers
+at r1600 12 vs 7 (ring min 844 vs 809 at r1500), ALandDivided 13 vs 5 (ring 1015 vs 916). Head-to-head against
+g_iter15 next.
