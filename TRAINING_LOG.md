@@ -4545,3 +4545,9 @@ exact rzhan11 early losses of g_iter15, rzhan11 scripted to r400; the control re
 r8a 2, r8b 3, and r8b survived the rush phase in 4 more (lost r443-696). The fastest kills (r112-185: WateredDown x2,
 GSF, Infinity, ClearlyTwelveHorses) are unchanged. r8b to the head-to-head against g_iter15. (Also: the VM disk filled
 with 129 per-game class trees from pair-batch; now deleted per game.)
+**r8b head-to-head against g_iter15 (three alternating blocks each): 65 of 144 against 67; fit 1750 +- 60 against 1761
++- 60, -11 +- 85. Not kept.** Early losses 10 each; against the target rzhan11 r8b went 3-15, g_iter15 10-8 in the same
+period. The exact-replay gain (3 wins and 4 longer survivals of 14) did not carry to the field's varied rushes.
+mvpatel2000's r1892-1898 losses read (BeachFrontProperty): our ring 246 against their 1,208 at r1850, 26 units built
+all game, every unit dead by r1892 and the HQ gone with no dirt on it (flooded through the ring) -- the root is the
+starved economy (their drones take our miners early), not a late targeting fix.
