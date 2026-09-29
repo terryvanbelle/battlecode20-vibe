@@ -4502,3 +4502,7 @@ as their own players: r1s17 1820 +- 61, g_iter13 1758 +- 60, +62 +- 85 (z 1.43).
 14 rescues in cormackikkert's wave fixture), drones remember the flooded C2 tiles, circle the base, come home from a
 rally that never charges, and landscapers dig under our drones. r1s17's 475 games relabelled `us:g_iter14`;
 `src/bot` = g_iter14.
+
+**r6 = g_iter14 + R5's early guns.** Diagnostic (the six mvpatel2000 pairs, g_iter14 as control): landscapers at r1000
+8->10, 10->13, 5->6, 24->33, 12->8, 5->17; r6 won 4 of 6 (g_iter14 1). Head-to-head against g_iter14, three
+alternating blocks each, running (the control-block rule).
