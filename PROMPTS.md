@@ -329,3 +329,7 @@ Can you give me a summary of the past 10 hours?
 ## 78. 2026-09-29
 
 Please add a graph of the bot's rank to field-score.png
+
+## 79. 2026-09-29
+
+Please rework field-score.png into two png graphs, one which extends to 1 week only, and another that extends the prediction to 4 weeks
