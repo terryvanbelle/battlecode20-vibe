@@ -4529,3 +4529,10 @@ base floods (r1643-1649)** -- CentralLake, CosmicBackgroundRadiation, Hourglass,
 Constriction. `@shoot kind=0` 20-52 times a game; our HQ 0 buried at r1575 and r1625 in all six (g_iter14: 25 and 14
 buried where it lived to r1575). The flood that ends these games is the engine's, not the script's. Head-to-head against
 g_iter14 running.
+
+**r7 ACCEPTED as `src/g_iter15` (head-to-head against g_iter14, three alternating blocks each): 68 of 144 against 64;
+fit 1766 +- 60 against 1745 +- 60, +22 +- 85.** battlecode20-team4 5-13 against 2-16 (the target), laurenschneider
+15-3 against 9-9. g_iter15 = g_iter14 + the carrier rank: a drone carrying their landscaper near home is shot first when
+the cargo would drown or be stranded below the ring. The diagnostic had it surviving team4's r1551 assault in 6 of 6
+recorded losses. Pooled so far 1770 +- 60 (144) beside g_iter14's 1774 +- 26 (763, which still holds r1s17's acceptance
+games); two submission blocks next. r7's games relabelled `us:g_iter15`; `src/bot` = g_iter15.

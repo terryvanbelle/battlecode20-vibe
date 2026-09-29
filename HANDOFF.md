@@ -9,8 +9,10 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
 
 ## State at 2026-09-29 (Opus 5.5; read this block first)
 
-- **INCUMBENT: `src/g_iter14` = r1s17 (g_iter13 + R1 stage 17: rescue shots, drone shield repairs), 1789 +- 33 over 475
-  band games; accepted on the head-to-head (75/144 vs 86/143, +62 +- 85) and the pooled ladder. `src/bot` = g_iter14.**
+- **INCUMBENT: `src/g_iter15` = r7 (g_iter14 + shoot their landscaper carriers first: survives the finalbota r1551
+  assault), accepted on the head-to-head 68/144 vs 64/144 (+22 +- 85). `src/bot` = g_iter15.**
+- Previous incumbent: `src/g_iter14` = r1s17 (g_iter13 + R1 stage 17: rescue shots, drone shield repairs), 1789 +- 33 over 475
+  band games; accepted on the head-to-head (75/144 vs 86/143, +62 +- 85) and the pooled ladder.
 - **Judging rule (2026-09-29):** a candidate is compared with CONTROL blocks of the incumbent played in the same period
   (alternating blocks), never with the incumbent's pooled history -- g_iter13's acceptance games rate 1791, its later
   games 1738 (the winner's curse). Candidates since g_iter13 (TRAINING_LOG: r2s1-s6, r1s17, R3 ark, R4 quarry r4s1-s5,
