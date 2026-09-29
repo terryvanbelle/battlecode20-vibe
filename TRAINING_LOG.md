@@ -4551,3 +4551,7 @@ period. The exact-replay gain (3 wins and 4 longer survivals of 14) did not carr
 mvpatel2000's r1892-1898 losses read (BeachFrontProperty): our ring 246 against their 1,208 at r1850, 26 units built
 all game, every unit dead by r1892 and the HQ gone with no dirt on it (flooded through the ring) -- the root is the
 starved economy (their drones take our miners early), not a late targeting fix.
+**R9, the miners' shelter (walk under the HQ gun while 2+ enemy drones are in sight before r1000): refuted at the
+diagnostic.** Twelve pairs (six mvpatel2000, six battlecode20-team4, scripted to r1000, g_iter15 the control): a few
+more miners alive at r500 in some, but soup mined by r1000 lower in 9 of 12 (WaterBot 553 vs 1,096, CentralLake 415
+vs 861, ALandDivided 479 vs 795) -- the sheltered miners idle; hiding costs more than the lifts. Not laddered.
