@@ -4573,3 +4573,6 @@ refinery on every map costs more in normal games than the 6-of-14 rush saves. **
 school beside the builder, no walk to a lattice cell): 2 of 14 rush replays won -- the school's timing before the
 refinery is what saves them; any later loses most of it. The rush line is parked again: the fast rzhan11 kills need a
 school by ~r50, which costs the economy everywhere.
+**R12 (the home school first only when an enemy miner walks within r2 64 of home before r120):** rush replays: 4 of 14
+won (CowFarm, GSF, Infinity, maptestsmall; r11 6, r11b 2, g_iter15 0); it fired in the games with an early scout (8 of
+19 cells). Its cost is confined to games with an early enemy miner near home; head-to-head against g_iter15.
