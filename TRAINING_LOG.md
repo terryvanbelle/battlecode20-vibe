@@ -4561,3 +4561,10 @@ rounds ahead, highest first -- g_iter15's helpers dug the LOWEST C3 tile).** Dia
 (g_iter15 already survives all six since R7): identical in four; in two it fired and helped -- CentralLake landscapers
 at r1600 12 vs 7 (ring min 844 vs 809 at r1500), ALandDivided 13 vs 5 (ring 1015 vs 916). Head-to-head against
 g_iter15 next.
+
+**R10 head-to-head against g_iter15: 64 of 144 against 68 (20/23/21 vs 24/24/20). Not kept.**
+**R11, the school first (the home school before the refinery on every map).** Rush pairs (the 14 exact rzhan11 early
+losses of g_iter15, scripted to r400): **r11 wins 6 (CowFarm, GSF, Infinity, ProceduralConfirmed, TwoLakeLand,
+maptestsmall) where g_iter15 wins 0** (r8b won 3), and survives the rush phase in 4 more (lost r449-2988); WateredDown
+x2, SoupOnTheSide, ClearlyTwelveHorses still fall at r114-157. The cost is the later refinery on every map; the
+head-to-head against g_iter15 judges it.
