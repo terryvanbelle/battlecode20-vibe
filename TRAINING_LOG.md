@@ -4581,3 +4581,10 @@ won (CowFarm, GSF, Infinity, maptestsmall; r11 6, r11b 2, g_iter15 0); it fired 
 (19/32/29 vs 26/22/27); fit 1769 +- 60 against 1742 +- 60, +27 +- 85.** Early losses 10 against 14; rzhan11 7-11
 against 4-14. g_iter16 = g_iter15 + the home school before the refinery when an enemy miner walks within r2 64 of home
 before r120 (rzhan11's rusher). r12's games relabelled `us:g_iter16`; `src/bot` = g_iter16.
+
+**g_iter16 submission (192): 19/28/21/22; 1768 +- 43 over 288 while the fourth posts.**
+**R13 = g_iter16 + R4 stage 3's drone supply without the quarry (one center from r400, four drones at 350, the
+school's hold-back); the drones take the existing shield slots (the flooded C2 pits).** Diagnostic (nine wave pairs,
+g_iter16 the control): the center and drones fire where g_iter16 had none (CentralLake 7 drones, ALandDivided 4, all
+on the shield); one flip -- WaterBot (winkelmantanner) lost by g_iter16, won by r13; the rest unchanged (g_iter16 already
+survives the team4 pairs since R7 and already had 22-45 drones in the W/E pairs). Head-to-head against g_iter16.
