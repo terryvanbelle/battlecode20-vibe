@@ -4509,3 +4509,17 @@ alternating blocks each, running (the control-block rule).
 **r6 head-to-head against g_iter14 (three alternating blocks each): 67 of 144 both (g_iter14 19/25/23, r6 22/25/20);
 fit r6 1766 +- 60, g_iter14 1764 +- 60, +2 +- 85. Level: not kept.** The early guns add nothing on top of g_iter14's
 rescue. g_iter14 is now 1786 +- 29 over 619 games; battlecode20-team4 (1999) has entered its band.
+
+**How the finalbota family beats us (103 losses to battlecode20-team4 / IvanGeffner, 17 wins; read by an analysis
+agent).** One timed assault at r1551 (water reaches 7) in 92 of 95 assaulted losses: ~50-70 enemy drones lift a
+median 6 seats in 10 rounds and drop 88% of them into our own flooded C2 dig pits (2 rounds lift-to-drop), then drop
+~1.1 of their landscapers a round onto the emptied ring; the HQ is buried a median 18 rounds later (losses r1562-1635).
+Their own lattice floods at r1640 and their HQ drowns r1643-1651: every assaulted game we held that long we won (5/5).
+Before it: their drones take our miners from ~r330 (0 miners at r1000 in 85 of 94), so we never build a center (0
+drones, 0 guns); they reach ~50 vaporators and ~200 drones. With no flooded C2 pit, 2 seats are lifted instead of 6 and
+27% drown instead of 88% (4 of 9 such games won, 1 of 90 with flooded pits). **The HQ fired 2,340 shots in the assaults
+and none at a loaded carrier:** shootDrone ranks an empty drone beside our unit (k=2) above their carrier (k=3), and
+there always is one; every one of the 613 drops onto our ring came from C1-2, inside the HQ's reach.
+**R7 (`src/r7` = g_iter14 + one rank):** a carrier of THEIR landscaper at C2+ is shot first (k=0) when its cargo would
+drown (over water) or be stranded below the ring (no ring tile within the climb limit). Diagnostic: six g_iter14
+losses to team4 as pairs (our side live from r1, team4 scripted to r1700), then the head-to-head.
