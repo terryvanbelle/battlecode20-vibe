@@ -4491,3 +4491,5 @@ its acceptance sample is biased up, and every candidate since (r2s4, r1s17, r4s1
 r4s4 1728 -- level or ahead, none clearly. No candidate is re-judged after the fact. From here a candidate is judged
 against CONTROL blocks of the incumbent played in the same period (alternating blocks, same pool), never against the
 incumbent's pooled history. First: g_iter13 against r1s17, three blocks each, alternating.
+**r5 at 336: 1739 +- 39 (163-173).** mvpatel2000 14-28 (33%), EmaPajic 11-31 (26%), winkelmantanner 10-32 (24%). Below
+g_iter13's pooled 1773 and level with its post-acceptance 1738; not a candidate for the head-to-head, not kept.
