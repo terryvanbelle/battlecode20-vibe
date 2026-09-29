@@ -4588,3 +4588,9 @@ school's hold-back); the drones take the existing shield slots (the flooded C2 p
 g_iter16 the control): the center and drones fire where g_iter16 had none (CentralLake 7 drones, ALandDivided 4, all
 on the shield); one flip -- WaterBot (winkelmantanner) lost by g_iter16, won by r13; the rest unchanged (g_iter16 already
 survives the team4 pairs since R7 and already had 22-45 drones in the W/E pairs). Head-to-head against g_iter16.
+
+**r13 ACCEPTED as `src/g_iter17` (head-to-head against g_iter16, three alternating blocks each): 87 of 144 against 73
+(25/29/33 vs 23/25/25); fit 1804 +- 61 against 1731 +- 60, +74 +- 86 -- the largest head-to-head margin so far.**
+mvpatel2000 7-11 vs 4-14, rzhan11 12-6 vs 6-12, laurenschneider 13-5 vs 10-8. g_iter17 = g_iter16 + one fulfillment
+center from r400 (or when the seats are manned), four drones at a 350 bank, and the school's bounded hold-back for them;
+the drones take the existing shield slots. r13's games relabelled `us:g_iter17`; `src/bot` = g_iter17.
