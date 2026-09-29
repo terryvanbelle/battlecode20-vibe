@@ -4493,3 +4493,12 @@ against CONTROL blocks of the incumbent played in the same period (alternating b
 incumbent's pooled history. First: g_iter13 against r1s17, three blocks each, alternating.
 **r5 at 336: 1739 +- 39 (163-173).** mvpatel2000 14-28 (33%), EmaPajic 11-31 (26%), winkelmantanner 10-32 (24%). Below
 g_iter13's pooled 1773 and level with its post-acceptance 1738; not a candidate for the head-to-head, not kept.
+
+**r1s17 ACCEPTED as `src/g_iter14` (the first head-to-head judgement).** Six alternating blocks in the same period
+against the same band pool: g_iter13 28/23/24 = 75 of 144, r1s17 26/32/28 = 86 of 143. Fit with the head-to-head games
+as their own players: r1s17 1820 +- 61, g_iter13 1758 +- 60, +62 +- 85 (z 1.43). Over all ladder games: g_iter14 1789
++- 33 (475) against g_iter13 1772 +- 30 (576). The registered bar (at or above the incumbent) holds both ways. g_iter14
+= g_iter13 + R1 stage 17: the HQ and net guns shoot carriers of ours over dry ground first (the cargo lands alive;
+14 rescues in cormackikkert's wave fixture), drones remember the flooded C2 tiles, circle the base, come home from a
+rally that never charges, and landscapers dig under our drones. r1s17's 475 games relabelled `us:g_iter14`;
+`src/bot` = g_iter14.

@@ -9,6 +9,8 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
 
 ## State at 2026-09-29 (Opus 5.5; read this block first)
 
+- **INCUMBENT: `src/g_iter14` = r1s17 (g_iter13 + R1 stage 17: rescue shots, drone shield repairs), 1789 +- 33 over 475
+  band games; accepted on the head-to-head (75/144 vs 86/143, +62 +- 85) and the pooled ladder. `src/bot` = g_iter14.**
 - **Judging rule (2026-09-29):** a candidate is compared with CONTROL blocks of the incumbent played in the same period
   (alternating blocks), never with the incumbent's pooled history -- g_iter13's acceptance games rate 1791, its later
   games 1738 (the winner's curse). Candidates since g_iter13 (TRAINING_LOG: r2s1-s6, r1s17, R3 ark, R4 quarry r4s1-s5,
@@ -20,7 +22,7 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
 - **Iteration 81 (the drone shield, `src/cand81s8`) is CLOSED, not kept:** gate81 3-9 in 320 pairs (inconclusive);
   ladder 1783 +- 48 on 240 band games against g_iter12's 1814 +- 39; the shield was absent in 14 of 15 raid-window
   losses (no center or drone: the surplus arrives after the miners are gone). Ledger entry has the re-open condition.
-- **INCUMBENT: `src/g_iter13` = R1 stage 15 (r1s15), 1807 +- 39 on 336 band games, rank 12 of 101 (g_iter12 1777 +- 40).**
+- **Previous incumbent: `src/g_iter13` = R1 stage 15 (r1s15), 1807 +- 39 on 336 band games, rank 12 of 101 (g_iter12 1777 +- 40).**
   Accepted on the ladder (the §8b registration, PROMPTS 48-49). **Gate g13 (the paired mirror against g_iter12): SPRT
   REJECT 24-39 at 208 pairs** -- the mirror and the ladder disagree in sign, so the ladder (240 band games) judges
   field-facing changes; the mirror is a regression screen only. `src/bot` = g_iter13. R1 stages and method: TRAINING_LOG from "R1 stage 1"; judge R1 stages at 240 band games
