@@ -317,3 +317,7 @@ Super fantastic, thanks
 ## 75. 2026-09-29
 
 Can you add field score vs. higher opponents to the field-score graphs?
+
+## 76. 2026-09-29
+
+Not seeing it in github, have you pushed it?
