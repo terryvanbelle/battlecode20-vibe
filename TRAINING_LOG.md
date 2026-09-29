@@ -4536,3 +4536,12 @@ fit 1766 +- 60 against 1745 +- 60, +22 +- 85.** battlecode20-team4 5-13 against 
 the cargo would drown or be stranded below the ring. The diagnostic had it surviving team4's r1551 assault in 6 of 6
 recorded losses. Pooled so far 1770 +- 60 (144) beside g_iter14's 1774 +- 26 (763, which still holds r1s17's acceptance
 games); two submission blocks next. r7's games relabelled `us:g_iter15`; `src/bot` = g_iter15.
+
+**R8, the home alarm (rzhan11's rush: 20 of 42 g_iter15 games lost before r210).** CowFarm traced: rzhan11's school at
+r60, dirt on our HQ from r90, dead r143, 0 landscapers built -- our counter-rush school took every 150 and put no dirt
+on their HQ. r8a/r8b = g_iter15 + while the HQ's alarm is fresh (r8a: our HQ carries dirt; r8b: the HQ sees an enemy
+school or landscaper within RUSH_D2) our rusher does not plant and our forward school does not spend. Rush pairs (14
+exact rzhan11 early losses of g_iter15, rzhan11 scripted to r400; the control reproduces all 14): wins g_iter15 0,
+r8a 2, r8b 3, and r8b survived the rush phase in 4 more (lost r443-696). The fastest kills (r112-185: WateredDown x2,
+GSF, Infinity, ClearlyTwelveHorses) are unchanged. r8b to the head-to-head against g_iter15. (Also: the VM disk filled
+with 129 per-game class trees from pair-batch; now deleted per game.)
