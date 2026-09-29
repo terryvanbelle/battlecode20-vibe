@@ -4506,3 +4506,6 @@ rally that never charges, and landscapers dig under our drones. r1s17's 475 game
 **r6 = g_iter14 + R5's early guns.** Diagnostic (the six mvpatel2000 pairs, g_iter14 as control): landscapers at r1000
 8->10, 10->13, 5->6, 24->33, 12->8, 5->17; r6 won 4 of 6 (g_iter14 1). Head-to-head against g_iter14, three
 alternating blocks each, running (the control-block rule).
+**r6 head-to-head against g_iter14 (three alternating blocks each): 67 of 144 both (g_iter14 19/25/23, r6 22/25/20);
+fit r6 1766 +- 60, g_iter14 1764 +- 60, +2 +- 85. Level: not kept.** The early guns add nothing on top of g_iter14's
+rescue. g_iter14 is now 1786 +- 29 over 619 games; battlecode20-team4 (1999) has entered its band.
