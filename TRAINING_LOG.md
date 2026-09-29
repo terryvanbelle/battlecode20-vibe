@@ -4480,3 +4480,6 @@ before the r1400 raids they were built for). Diagnostic (`tools/pair-batch.sh`, 
 parallel on the VM): six of g_iter13's mvpatel2000 losses, our side live from r1, mvpatel2000 scripted to r1000.
 Landscapers at r1000, g_iter13 -> r5: BeachFrontProperty 7 -> 10, Infinity 10 -> 13, SoupOnTheSide 0 -> 6, WaterBot 22 ->
 33, DoesNotExist 0 -> 17, Constriction 12 -> 8; the alert fired in all six, guns stood in five. To the ladder.
+**r5 on the ladder (240): 1750 +- 46 (120-120), against g_iter13 1772 +- 35.** mvpatel2000 11-19 (37%; g_iter13 26%)
+and poortho 18-12 (60%; 44%) up, EmaPajic 8-22 (27%; 46%) and winkelmantanner 8-22 (27%; 33%) down. Two more blocks
+(`sub5b`) to 336 before the verdict.
