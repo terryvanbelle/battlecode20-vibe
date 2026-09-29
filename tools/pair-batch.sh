@@ -19,6 +19,7 @@ while read -r FX PS MAP SEED; do
     ( GAME_CONFIG="$FX" GAME_OPTS="-Dbc.testing.pup.cutoff=1 -Dbc.testing.pup.$PS.cutoff=$PCUT" GAME_SEED="$SEED" \
         LOG_OUT="$OUT/$MAP-$SEED-$B.log" DEV_OUT="build/pb-$TAG-$MAP-$SEED-$B" timeout 3000 \
         tools/run-dev.sh "$A" "$BB" "$MAP" "$OUT/$MAP-$SEED-$B.bc20" -Dbc.server.robot-player-to-system-out=true >/dev/null 2>&1
+      rm -rf "build/pb-$TAG-$MAP-$SEED-$B"   # each game's own class tree (129 of them filled the VM's 20 GB, 2026-09-29)
       echo "$MAP $SEED $B $(grep -a 'wins (round' "$OUT/$MAP-$SEED-$B.log" | sed 's/.*\] *//')" ) &
   done
 done < "$CELLS"
