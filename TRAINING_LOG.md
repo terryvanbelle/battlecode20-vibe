@@ -4568,3 +4568,8 @@ losses of g_iter15, scripted to r400): **r11 wins 6 (CowFarm, GSF, Infinity, Pro
 maptestsmall) where g_iter15 wins 0** (r8b won 3), and survives the rush phase in 4 more (lost r449-2988); WateredDown
 x2, SoupOnTheSide, ClearlyTwelveHorses still fall at r114-157. The cost is the later refinery on every map; the
 head-to-head against g_iter15 judges it.
+**r11 head-to-head against g_iter15: 61 of 144 against 75 (17/24/20 vs 26/23/26). Not kept** -- the school before the
+refinery on every map costs more in normal games than the 6-of-14 rush saves. **r11b** (refinery first, then the first
+school beside the builder, no walk to a lattice cell): 2 of 14 rush replays won -- the school's timing before the
+refinery is what saves them; any later loses most of it. The rush line is parked again: the fast rzhan11 kills need a
+school by ~r50, which costs the economy everywhere.
