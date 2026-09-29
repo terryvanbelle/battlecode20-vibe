@@ -313,3 +313,7 @@ Could you report back ladder results as the blocks come in?
 ## 74. 2026-09-28
 
 Super fantastic, thanks
+
+## 75. 2026-09-29
+
+Can you add field score vs. higher opponents to the field-score graphs?
