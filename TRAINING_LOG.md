@@ -4523,3 +4523,9 @@ there always is one; every one of the 613 drops onto our ring came from C1-2, in
 **R7 (`src/r7` = g_iter14 + one rank):** a carrier of THEIR landscaper at C2+ is shot first (k=0) when its cargo would
 drown (over water) or be stranded below the ring (no ring tile within the climb limit). Diagnostic: six g_iter14
 losses to team4 as pairs (our side live from r1, team4 scripted to r1700), then the head-to-head.
+**R7 diagnostic (six g_iter14 losses to battlecode20-team4 as pairs; team4 scripted to r1700, g_iter14 the control):**
+the control reproduces every recorded loss (r1566-1588); **r7 survives the assault in all six and wins when team4's own
+base floods (r1643-1649)** -- CentralLake, CosmicBackgroundRadiation, Hourglass, ALandDivided, FourLakeLand,
+Constriction. `@shoot kind=0` 20-52 times a game; our HQ 0 buried at r1575 and r1625 in all six (g_iter14: 25 and 14
+buried where it lived to r1575). The flood that ends these games is the engine's, not the script's. Head-to-head against
+g_iter14 running.
