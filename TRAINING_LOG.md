@@ -4483,3 +4483,11 @@ Landscapers at r1000, g_iter13 -> r5: BeachFrontProperty 7 -> 10, Infinity 10 ->
 **r5 on the ladder (240): 1750 +- 46 (120-120), against g_iter13 1772 +- 35.** mvpatel2000 11-19 (37%; g_iter13 26%)
 and poortho 18-12 (60%; 44%) up, EmaPajic 8-22 (27%; 46%) and winkelmantanner 8-22 (27%; 33%) down. Two more blocks
 (`sub5b`) to 336 before the verdict.
+
+**Method finding: the incumbent's rating carries the winner's curse.** Fitting g_iter13's games in two players: the 240
+that accepted it (r1s15's five blocks) 1791 +- 47, its 192 games since 1738 +- 52. It was chosen for scoring high, so
+its acceptance sample is biased up, and every candidate since (r2s4, r1s17, r4s1-s5, r5) was compared with the pooled
+1772-1789 that still carries that luck. Against the post-acceptance 1738: r1s17 1767 +- 39 (332), r4s3 1749, r5 1746,
+r4s4 1728 -- level or ahead, none clearly. No candidate is re-judged after the fact. From here a candidate is judged
+against CONTROL blocks of the incumbent played in the same period (alternating blocks, same pool), never against the
+incumbent's pooled history. First: g_iter13 against r1s17, three blocks each, alternating.
