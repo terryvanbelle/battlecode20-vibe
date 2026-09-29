@@ -34,6 +34,10 @@ t0 = subs[0][0]
 def days(d): return (d - t0).total_seconds() / 86400
 def score(r):
     R2 = dict(R); R2['proj'] = r; return 100 * elolib.field_score(R2, 'proj', bots)
+rated = [b for b in bots if games.get(b, 0) > 0]
+def score_hi(r):   # PROMPTS 75: expected score against only the ladder bots rated above r (as ELO.md's "vs higher")
+    up = [b for b in rated if R[b] > r]; R2 = dict(R); R2['proj'] = r
+    return 100 * elolib.field_score(R2, 'proj', up) if up else float('nan')
 xs = np.array([np.log1p(days(d) / o.tau) for d, _ in subs]); ys = np.array([R[p] for _, p in subs]); w = np.array([1 / SE[p] for _, p in subs])
 (aa, r0), cov = np.polyfit(xs, ys, 1, w=w, cov='unscaled')
 def proj(t):
@@ -44,11 +48,11 @@ now = dt.datetime.now(PDT).replace(tzinfo=None); tn = days(now)
 START = dt.datetime(2026, 9, 23); HORIZONS = [('week 1', START + dt.timedelta(days=7)), ('week 2', START + dt.timedelta(days=14))]   # PDT
 print('submissions:', ', '.join(f'{p[3:]} {R[p]:.0f}+-{1.96 * SE[p]:.0f} ({d:%m-%d %H:%M}) {score(R[p]):.1f}%' for d, p in subs))
 print(f'rating fit R = {r0:.0f} + {aa:.0f} ln(1 + t/{o.tau:g} d) (t in days from {t0:%Y-%m-%d %H:%M} PDT)')
-r, e = proj(tn); print(f'  now ({now:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%]')
+r, e = proj(tn); print(f'  now ({now:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%], vs higher {score_hi(r):.1f}%')
 for name, when in HORIZONS:
-    r, e = proj(days(when)); print(f'  {name} ({when:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%]')
+    r, e = proj(days(when)); print(f'  {name} ({when:%b %d}): rating {r:.0f} +- {e:.0f}  ->  field score {score(r):.1f}% [{score(r - e):.1f}%, {score(r + e):.1f}%], vs higher {score_hi(r):.1f}%')
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(9.5, 8), sharex=True)
+fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(9.5, 11.5), sharex=True)
 tt = np.linspace(0, max(tn, days(HORIZONS[-1][1])) + 0.5, 200); dates = [t0 + dt.timedelta(days=t) for t in tt]
 rr = np.array([proj(t)[0] for t in tt]); ee = np.array([proj(t)[1] for t in tt])
 cand = [(d, p) for d, p in pts if (d, p) not in subs]
@@ -71,5 +75,17 @@ for name, d in HORIZONS:
     r, e = proj(days(d)); ax2.plot([d], [score(r)], 's', color='tab:red', ms=6)
     ax2.annotate(f'{name} ({d:%b %d}): {score(r):.1f}% [{score(r - e):.0f}-{score(r + e):.0f}]', (d, score(r)), textcoords='offset points', xytext=(-8, 8), fontsize=8, ha='right', color='tab:red')
 ax2.axvline(now, color='0.6', lw=0.8, ls=':'); ax2.annotate('now', (now, ax2.get_ylim()[0]), textcoords='offset points', xytext=(3, 3), fontsize=7, color='0.4')
-ax2.set_ylabel('field score (%): expected score vs every ladder bot'); ax2.set_xlabel('first scrimmage block (PDT)'); ax2.grid(alpha=.3); ax2.legend(fontsize=8, loc='lower right')
+ax2.set_ylabel('field score (%): expected score vs every ladder bot'); ax2.grid(alpha=.3); ax2.legend(fontsize=8, loc='lower right')
+# PROMPTS 75: the same, against only the ladder bots rated above the build (the set shrinks as the rating rises, so the
+# curve steps where a bot is passed)
+sh = np.array([score_hi(r) for r in rr])
+ax3.plot([d for d, _ in subs], [score_hi(R[p]) for _, p in subs], 'o', color='tab:purple', ms=5, zorder=3, label='submission')
+if cand: ax3.plot([d for d, _ in cand], [score_hi(R[p]) for _, p in cand], 'o', mfc='white', mec='tab:gray', ms=4, label='candidate')
+for d, p in subs: ax3.annotate(f"{p[3:]} ({sum(1 for b in rated if R[b] > R[p])})", (d, score_hi(R[p])), textcoords='offset points', xytext=(4, 5), fontsize=7)
+ax3.plot(np.array(dates)[past], sh[past], '-', color='tab:purple', lw=1.2); ax3.plot(np.array(dates)[~past], sh[~past], '--', color='tab:purple', lw=1.2, label='projection (mapped rating)')
+for name, d in HORIZONS:
+    r, e = proj(days(d)); ax3.plot([d], [score_hi(r)], 's', color='tab:red', ms=6)
+    ax3.annotate(f'{name}: {score_hi(r):.1f}% vs the {sum(1 for b in rated if R[b] > r)} above', (d, score_hi(r)), textcoords='offset points', xytext=(-8, 8), fontsize=8, ha='right', color='tab:red')
+ax3.axvline(now, color='0.6', lw=0.8, ls=':')
+ax3.set_ylabel('field score vs higher (%): only bots rated above'); ax3.set_xlabel('first scrimmage block (PDT); (n) = bots above'); ax3.grid(alpha=.3); ax3.legend(fontsize=8, loc='lower right')
 fig.autofmt_xdate(); fig.tight_layout(); fig.savefig(o.plot, dpi=120); print('wrote', o.plot)
