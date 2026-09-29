@@ -4576,3 +4576,8 @@ school by ~r50, which costs the economy everywhere.
 **R12 (the home school first only when an enemy miner walks within r2 64 of home before r120):** rush replays: 4 of 14
 won (CowFarm, GSF, Infinity, maptestsmall; r11 6, r11b 2, g_iter15 0); it fired in the games with an early scout (8 of
 19 cells). Its cost is confined to games with an early enemy miner near home; head-to-head against g_iter15.
+
+**r12 ACCEPTED as `src/g_iter16` (head-to-head against g_iter15, three alternating blocks each): 80 of 144 against 75
+(19/32/29 vs 26/22/27); fit 1769 +- 60 against 1742 +- 60, +27 +- 85.** Early losses 10 against 14; rzhan11 7-11
+against 4-14. g_iter16 = g_iter15 + the home school before the refinery when an enemy miner walks within r2 64 of home
+before r120 (rzhan11's rusher). r12's games relabelled `us:g_iter16`; `src/bot` = g_iter16.
