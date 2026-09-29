@@ -7,7 +7,13 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in the logs, PROMPTS, ledger and the chart
 (`tools/field-score.py` converts) are PDT. Entries before 2026-09-26 17:00 PDT were dated by the UTC clock.
 
-## State at 2026-09-27 (Opus 5.5; read this block first)
+## State at 2026-09-29 (Opus 5.5; read this block first)
+
+- **Judging rule (2026-09-29):** a candidate is compared with CONTROL blocks of the incumbent played in the same period
+  (alternating blocks), never with the incumbent's pooled history -- g_iter13's acceptance games rate 1791, its later
+  games 1738 (the winner's curse). Candidates since g_iter13 (TRAINING_LOG: r2s1-s6, r1s17, R3 ark, R4 quarry r4s1-s5,
+  R5 early guns) were all level or below against the pooled number; r1s17 (1767 over 332) is first to be re-tested
+  head to head. Build candidates inline and run diagnostics in parallel on the VM (`tools/pair-batch.sh`), PROMPTS 71-72.
 
 - Prompts recorded through 57 (next is 58). `progress/ELO.md` now has, per build, the field score against only the
   bots rated above it, and per bot our win rate in the latest build's run with 30+ games against it (PROMPTS 53-56).
