@@ -333,3 +333,7 @@ Please add a graph of the bot's rank to field-score.png
 ## 79. 2026-09-29
 
 Please rework field-score.png into two png graphs, one which extends to 1 week only, and another that extends the prediction to 4 weeks
+
+## 80. 2026-09-29
+
+/schedule at 5am PDT I'd like you to run a series of games against all benchmark bots higher on the ladder than us and two below us to get the error bars down and give us a better sense for our true position on the ladder
