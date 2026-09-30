@@ -22,6 +22,7 @@ public final class C {
     public static final int VAPORATORS_MAX = 40;
     public static final int NETGUN_BANK = 400;        // ... a net gun (after the first vaporator) above this
     public static final int NETGUNS_MAX = 0;
+    public static final int LEVEE_MARGIN = 2;   // R10: helpers dig a C3 tile only while it stands this far above the water 300 rounds ahead
     public static final int SCOUT_UNTIL = 120, SCOUT_D2 = 64, SCOUT_HOLD = 60;   // R12
     public static final int FC_BANK = 500;            // ... a fulfillment center above this, once the wall has started
     public static final int DRONES_MAX = 8;           // Iteration 2: drones fly over the flood and count at the tiebreak
