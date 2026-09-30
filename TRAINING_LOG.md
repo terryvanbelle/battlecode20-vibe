@@ -4609,3 +4609,9 @@ spend the bank. A counter must keep one builder alive, or build the center befor
 **R16 (g_iter17 with the center from r250, not r400):** the 14 exact finalbota assault losses: r16 wins 4 (both
 ALandDivided losses flip, plus the two g_iter17 already won); the center fired in 4 of 14 (`@qfc`) and helped where it
 did; in the other 10 no builder lived to r250 either. Head-to-head against g_iter17.
+
+**r16 head-to-head against g_iter17: 48 of 144 against 55 (14/14/20 vs 22/15/18). Not kept** -- the earlier center
+costs more than the 2 assault replays it turned. (Both builds scored low: the finalbota bots now fill the band.)
+**R17 = g_iter17 + R10's levee** (helpers dig empty C2 pits first, shave C3 only above the water): on g_iter15 it fired
+in 2 of 6 team4 pairs and kept 12 vs 7 and 13 vs 5 landscapers there (head-to-head -19 +- 85 then); g_iter17 now has
+drones for the shield too. Assault-replay check, then the head-to-head.
