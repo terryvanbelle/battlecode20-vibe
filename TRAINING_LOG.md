@@ -4618,3 +4618,9 @@ drones for the shield too. Assault-replay check, then the head-to-head.
 **R17 assault check (the 14 exact g_iter17 finalbota losses): r17 wins 7** (ALandDivided x2, CosmicBackgroundRadiation,
 DoesNotExist, GSF flip, plus the two g_iter17 won) -- g_iter17 2, r16 4. The levee keeps the C2 pits dry, and the
 drones hold what floods. Head-to-head against g_iter17.
+
+**r17 ACCEPTED as `src/g_iter18` (head-to-head against g_iter17, three alternating blocks each): 69 of 144 against 61
+(22/28/19 vs 21/19/21); fit 1752 +- 60 against 1709 +- 61, +44 +- 85.** EmaPajic 13-5 vs 10-8, cormackikkert 17-1 vs
+15-3, laurenschneider 14-4 vs 12-6; IvanGeffner 4-14 both (the 7-of-14 assault replays did not carry to the field against
+Ivan). g_iter18 = g_iter17 + the levee (helpers dig empty C2 pits first; C3 only above the water). r17's games relabelled
+`us:g_iter18`; `src/bot` = g_iter18.

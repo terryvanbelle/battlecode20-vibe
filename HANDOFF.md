@@ -9,8 +9,10 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
 
 ## State at 2026-09-29 (Opus 5.5; read this block first)
 
-- **INCUMBENT: `src/g_iter17` = r13 (g_iter16 + the drone supply: one center from r400, four drones at 350, the school's
-  hold-back; the drones fill the shield), accepted on the head-to-head 87/144 vs 73/144 (+74 +- 86). `src/bot` = g_iter17.**
+- **INCUMBENT: `src/g_iter18` = r17 (g_iter17 + the levee), accepted on the head-to-head 69/144 vs 61/144 (+44 +- 85).
+  `src/bot` = g_iter18.**
+- Previous incumbent: `src/g_iter17` = r13 (g_iter16 + the drone supply: one center from r400, four drones at 350, the school's
+  hold-back; the drones fill the shield), accepted on the head-to-head 87/144 vs 73/144 (+74 +- 86).
 - Previous incumbent: `src/g_iter16` = r12 (g_iter15 + the home school first when an enemy miner scouts home before r120),
   accepted on the head-to-head 80/144 vs 75/144 (+27 +- 85).
 - Previous incumbent: `src/g_iter15` = r7 (g_iter14 + shoot their landscaper carriers first: survives the finalbota r1551
