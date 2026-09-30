@@ -4615,3 +4615,6 @@ costs more than the 2 assault replays it turned. (Both builds scored low: the fi
 **R17 = g_iter17 + R10's levee** (helpers dig empty C2 pits first, shave C3 only above the water): on g_iter15 it fired
 in 2 of 6 team4 pairs and kept 12 vs 7 and 13 vs 5 landscapers there (head-to-head -19 +- 85 then); g_iter17 now has
 drones for the shield too. Assault-replay check, then the head-to-head.
+**R17 assault check (the 14 exact g_iter17 finalbota losses): r17 wins 7** (ALandDivided x2, CosmicBackgroundRadiation,
+DoesNotExist, GSF flip, plus the two g_iter17 won) -- g_iter17 2, r16 4. The levee keeps the C2 pits dry, and the
+drones hold what floods. Head-to-head against g_iter17.
