@@ -4606,3 +4606,6 @@ a free ring tile; it builds a center on the ring beside it; the center's drones 
 it (the same seal that ends miner production); 14 of 14 assault replays identical to g_iter17. Closed. The finalbota
 assault's root is upstream: their drones take our miners from ~r190-330, so no builder lives to build the center or
 spend the bank. A counter must keep one builder alive, or build the center before the miners fall.
+**R16 (g_iter17 with the center from r250, not r400):** the 14 exact finalbota assault losses: r16 wins 4 (both
+ALandDivided losses flip, plus the two g_iter17 already won); the center fired in 4 of 14 (`@qfc`) and helped where it
+did; in the other 10 no builder lived to r250 either. Head-to-head against g_iter17.
