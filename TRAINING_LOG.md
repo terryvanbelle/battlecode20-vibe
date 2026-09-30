@@ -4679,3 +4679,21 @@ accepts noise about half the time (the winner's curse again, one level up). **Ju
 decision):** a candidate's first head-to-head must reach +43 (one standard error) to go on; it is then confirmed by a
 second head-to-head (three more alternating blocks each), and it is accepted only if the pooled 288-a-side fit keeps the
 lower one-SE bound above zero. The incumbent stays g_iter19 (level with g_iter17/g_iter14, and the most recent code).
+
+**The post-flood economy, measured on g_iter19 (`tools/window-census.sh`-style counts from the replays of its 344
+games ending r1400+, the calibration and its band blocks):** median at r500 6 miners, 13 landscapers, 1 school; at r1000
+**0 miners, 0 schools, 0 centers**, 552 soup; at r1500 the same with 900-1,100 soup unspent (miners 0 in 138 of 214 late
+losses at r1500, no school in 196). Wins look the same, so this is the build, not the opponent -- the freeze DESIGN.md's R1 set out to fix in g_iter12 is
+still there in g_iter19. Traced (winkelmantanner,
+DoesNotExist, g_iter19 as A): 24 landscapers, 9 miners, school, refinery and center standing at r680; the school,
+refinery, 8 miners and 9 lattice landscapers die at r680-710 as elevation 3 floods (r677); nothing is built after (the
+HQ cannot spawn onto its raised ring). From r1250 our 12 landscapers raise the ring ~5.3 dirt a round (0.46 each, the
+cap is 0.5) against their 14's ~6.6; ring 1633 vs 1873 at r3000, lost r3126 with 2,167 soup idle. The late race (`late19`,
+214 late losses): our landscapers 9 / 6 / 5 at r1500 / 2000 / 2500 against 30 / 30 / 20, ring 669 / 863 / 903 against 721
+/ 1,200 / 1,679. The Miner's "second school on a raised pad" rule waits for four vaporators and never fires. **Next
+candidate (HANDOFF):** a school and a center on raised ground before the flood so landscapers can be replaced after r700.
+Against uvafan (0-16) the traced game is the same freeze: 0 miners and 3,630 soup idle at r1000 while it grows to 43
+vaporators and 216 drones, and lifts the ring at r1515.
+
+**Housekeeping at shutdown (PROMPTS 81):** two finished r4s4 blocks of 2026-09-28 (20260928-204139, -205222) had never
+been posted; posted now: r4s4 1690 +- 40 over 335 (was 1739 +- 46 over 239) -- the C3-shell-with-raid arm stays closed.

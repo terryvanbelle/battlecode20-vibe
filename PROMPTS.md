@@ -337,3 +337,7 @@ Please rework field-score.png into two png graphs, one which extends to 1 week o
 ## 80. 2026-09-29
 
 /schedule at 5am PDT I'd like you to run a series of games against all benchmark bots higher on the ladder than us and two below us to get the error bars down and give us a better sense for our true position on the ladder
+
+## 81. 2026-09-30
+
+OK, time to shut down.  Please audit for inconsistencies in the documents and code, shut down VM work, clear out VM resources, and push everything

@@ -36,6 +36,26 @@ standing description of how the code is organised and why; findings go to `TRAIN
 | `Debug.java` | `@tag k=v` log lines for the replay dumper |
 | `C.java` | tunable constants, one place, each with the measurement that set it |
 
+## The incumbent, g_iter19 (2026-09-30)
+
+`src/bot` = `src/g_iter19`: g_iter13 (R1 stage 15, below: the lattice-first rewrite, which kept g_iter12's ring of eight
+seats and eight Chebyshev-2 helpers) plus six head-to-head acceptances, each a layer (TRAINING_LOG has the traces):
+
+- g_iter14 -- `Robot.shootDrone()`: the HQ and net guns shoot, in order, a carrier of ours over dry ground (the cargo lands
+  alive), an empty drone beside our landscaper or miner, their carrier over water; drones repair shield slots.
+- g_iter15 -- their landscaper carriers first (the finalbota r1551 assault drops landscapers onto the ring).
+- g_iter16 -- the home school first when an enemy miner comes within r2 64 of home before r120 (the rzhan11 rush).
+- g_iter17 -- the drone supply: one center from r400 with 500 banked, four drones at 350, the school holding back;
+  `Comms.CENTER_UP` (id 7) tells the builders a center stands.
+- g_iter18 -- the levee: helpers dig the empty Chebyshev-2 pits first and a Chebyshev-3 tile only while it stands
+  `C.LEVEE_MARGIN` above the water.
+- g_iter19 -- the capped C3 shell: from `C.SHELL_FROM` (r1000) up to `C.SHELL_DRONES` (8) drones hold the Chebyshev-3
+  tiles touching held posts (the post table covers all 16 Chebyshev-2 tiles); the quarry is disabled.
+
+The 2026-09-30 calibration puts g_iter13 through g_iter19 all at 1740-1752 on the ladder: the layers are individually
+small. The binding weakness is unchanged since g_iter12: the base's ground floods at r256-1210 and takes the school,
+refinery and miners with it, and nothing is built after (HANDOFF "Next lead").
+
 ## The citadel (Iteration 6)
 
 The wall is the ring at Chebyshev `C.RING` (2) around the HQ. The eight tiles inside are the

@@ -168,6 +168,14 @@ Every candidate passes through these in order, and most die early. That is the d
    A diagnostic's intermediate (ring height, mining actions, bodies) is read against the **incumbent playing
    itself on the same map and side** (a control run), never against the other side of the same game: the side
    effect on one map is 7-18% of the ring (2026-09-25, `ctrl7`), larger than most candidates' effects.
+   **The judge since 2026-09-29: the ladder head-to-head.** A field-facing candidate plays three 48-game band blocks
+   (`tools/scrim.sh`) alternating with three CONTROL blocks of the incumbent in the same period; both are fitted with
+   the batch ladder, their games relabelled `us:<build>_h2h`. Never judge against the incumbent's pooled history (its
+   acceptance games carry the winner's curse: g_iter13 1791 at acceptance, 1738 later). **Tightened 2026-09-30** (the
+   PROMPTS 80 calibration: six acceptances g_iter14-g_iter19 summed +311 on their head-to-heads and +12 on the ladder):
+   the first head-to-head must reach +43 (one standard error at 144 a side) to go on; a second head-to-head (three more
+   alternating blocks each) confirms it; the candidate is accepted only if the pooled 288-a-side fit's lower one-SE
+   bound is above zero.
 5. **Submit.** Snapshot `src/g_iterN`; regression against the archetypes; a 48-game scrimmage
    block under contest rules; record it, rebuild the ladder and the roster tiers, and refresh
    `progress/field-score-1w.png` and `-4w.png` (PROMPTS 79) (`post-block.sh` does all three after every block, candidate arms

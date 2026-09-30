@@ -7,7 +7,7 @@ Read `CLAUDE.md`, then `TRAINING_ALGORITHM.md`, `RULES.md`, this file, then the 
 run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in the logs, PROMPTS, ledger and the chart
 (`tools/field-score.py` converts) are PDT. Entries before 2026-09-26 17:00 PDT were dated by the UTC clock.
 
-## State at 2026-09-29 (Opus 5.5; read this block first)
+## State at 2026-09-30 (Opus 5.5; read this block first)
 
 - **INCUMBENT: `src/g_iter19` = r18 (g_iter18 + the capped C3 drone shell), accepted on the head-to-head 73/144 vs
   58/144 (+82 +- 86). `src/bot` = g_iter19.**
@@ -24,13 +24,22 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
   1740-1752 on the refit -- the six head-to-head acceptances (+311 summed) moved the ladder +12. Judging rule tightened:
   first head-to-head >= +43 (one SE), then a confirming second head-to-head; accept only if the pooled 288-a-side fit's
   lower one-SE bound is above zero (TRAINING_LOG 2026-09-30).**
+- **Next lead (2026-09-30, measured on g_iter19's 344 games ending r1400+):** the economy freezes at the first flood of
+  the base's ground. Median at r1000: 0 miners, 0 schools, 0 centers, while the bank piles up unspent (550 at r1000, 900-1,100
+  at r1500); landscapers then fall 10 -> 6 -> 5 (r1500-2500) against the field's 30 -> 30 -> 20 and are never replaced.
+  Traced (winkelmantanner, DoesNotExist): the school, refinery, 8 miners and 9 lattice landscapers die at r680-710 as
+  elevation 3 floods (r677); the HQ cannot spawn onto its raised ring. The late wall race is then bodies x 0.5 dirt/round
+  (12 vs 14 there, ring 1633 vs 1873 at r3000). The Miner's 'second school on a raised pad' rule waits for 4 vaporators
+  and never fires. Candidate: a school (and center) on raised ground before the flood -- e.g. a drone drops a miner on a
+  raised post and it builds beside it -- so landscapers can be replaced after r700. Tools: `tools/window-census.sh`,
+  `tools/late-race.sh`.
 - **Judging rule (2026-09-29):** a candidate is compared with CONTROL blocks of the incumbent played in the same period
   (alternating blocks), never with the incumbent's pooled history -- g_iter13's acceptance games rate 1791, its later
   games 1738 (the winner's curse). Candidates since g_iter13 (TRAINING_LOG: r2s1-s6, r1s17, R3 ark, R4 quarry r4s1-s5,
   R5 early guns) were all level or below against the pooled number; r1s17 (1767 over 332) is first to be re-tested
   head to head. Build candidates inline and run diagnostics in parallel on the VM (`tools/pair-batch.sh`), PROMPTS 71-72.
 
-- Prompts recorded through 57 (next is 58). `progress/ELO.md` now has, per build, the field score against only the
+- Prompts recorded through 81 (next is 82). `progress/ELO.md` now has, per build, the field score against only the
   bots rated above it, and per bot our win rate in the latest build's run with 30+ games against it (PROMPTS 53-56).
 - **Iteration 81 (the drone shield, `src/cand81s8`) is CLOSED, not kept:** gate81 3-9 in 320 pairs (inconclusive);
   ladder 1783 +- 48 on 240 band games against g_iter12's 1814 +- 39; the shield was absent in 14 of 15 raid-window
