@@ -4642,3 +4642,5 @@ r18's games relabelled `us:g_iter19`; `src/bot` = g_iter19. The 5am calibration 
 **R19 = g_iter19 + R5's early guns** (the alert message moved to id 9: 7 is CENTER_UP since R13). mvpatel2000 pairs
 (scripted to r1000): the guns stand in 5 of 6; r19 wins 5 of 6 against g_iter19's 4 (SoupOnTheSide flips); landscaper
 counts at r1000 mixed. Head-to-head against g_iter19, to finish before the 5am calibration.
+**r19 head-to-head against g_iter19: 68 of 144 against 69 (25/21/22 vs 24/22/23). Level: not kept** -- the early guns add
+nothing on top of g_iter19 (as on g_iter14).
