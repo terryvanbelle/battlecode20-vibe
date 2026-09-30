@@ -4594,3 +4594,11 @@ survives the team4 pairs since R7 and already had 22-45 drones in the W/E pairs)
 mvpatel2000 7-11 vs 4-14, rzhan11 12-6 vs 6-12, laurenschneider 13-5 vs 10-8. g_iter17 = g_iter16 + one fulfillment
 center from r400 (or when the seats are manned), four drones at a 350 bank, and the school's bounded hold-back for them;
 the drones take the existing shield slots. r13's games relabelled `us:g_iter17`; `src/bot` = g_iter17.
+
+**g_iter17 submission: 17/14/16/20 -- 1784 +- 40 over 333, rank 11.** Its pool now holds the finalbota bots (team4
+2-16, ronniesong 4-14, IvanGeffner 5-13), which win their r1551 assault in nearly every loss (r1563-1609).
+**R14 (8 / 12 shield drones): never fires** -- 14 exact g_iter17 finalbota losses (our side live from r1, scripted to
+r1700) replay identically for g_iter17, r14a, r14b (2 won each). One read (GSF): at r1500 g_iter17 has 5 landscapers,
+0 drones, 0 centers and 617 soup idle (their drones took every miner) against 86 drones and 58 landscapers.
+**R15, the late builder:** from r1000, with no miner and no center in sight and 500 banked, the HQ spawns a miner onto
+a free ring tile; it builds a center on the ring beside it; the center's drones take the shield slots.
