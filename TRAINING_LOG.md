@@ -4624,3 +4624,10 @@ drones hold what floods. Head-to-head against g_iter17.
 15-3, laurenschneider 14-4 vs 12-6; IvanGeffner 4-14 both (the 7-of-14 assault replays did not carry to the field against
 Ivan). g_iter18 = g_iter17 + the levee (helpers dig empty C2 pits first; C3 only above the water). r17's games relabelled
 `us:g_iter18`; `src/bot` = g_iter18.
+
+**g_iter18 submission: 21/24/26 + the fourth; 1763 +- 43 over 288.**
+**R18 = g_iter18 + r4s5's capped C3 shell (8 drones on the C3 tiles touching held posts, from r1000) and its drone
+buying, on the standard wall (no quarry; the post table recomputed for all 16 C2 tiles).** Diagnostic (the 14 exact
+finalbota losses + three W/E wave pairs, g_iter18 the control): the shell fires in 7 games; both winkelmantanner wave
+losses flip (RandomSoup1 3176 -> won 2939, WaterBot 3171 -> won 3060); the finalbota results unchanged. r18 10 of 17,
+g_iter18 8. Head-to-head against g_iter18.
