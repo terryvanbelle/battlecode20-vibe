@@ -4602,3 +4602,7 @@ r1700) replay identically for g_iter17, r14a, r14b (2 won each). One read (GSF):
 0 drones, 0 centers and 617 soup idle (their drones took every miner) against 86 drones and 58 landscapers.
 **R15, the late builder:** from r1000, with no miner and no center in sight and 500 banked, the HQ spawns a miner onto
 a free ring tile; it builds a center on the ring beside it; the center's drones take the shield slots.
+**R15: never fires, and cannot** -- the HQ spawns only within the 3-elevation limit, and the ring stands hundreds above
+it (the same seal that ends miner production); 14 of 14 assault replays identical to g_iter17. Closed. The finalbota
+assault's root is upstream: their drones take our miners from ~r190-330, so no builder lives to build the center or
+spend the bank. A counter must keep one builder alive, or build the center before the miners fall.
