@@ -4637,3 +4637,8 @@ g_iter18 8. Head-to-head against g_iter18.
 cormackikkert 17-1 vs 14-4; winkelmantanner 3-15 vs 6-12 (the shell's target did not move in the field). g_iter19 =
 g_iter18 + r4s5's capped C3 shell (8 drones on the C3 tiles touching held posts from r1000) and its drone buying.
 r18's games relabelled `us:g_iter19`; `src/bot` = g_iter19. The 5am calibration (PROMPTS 80) runs on g_iter19.
+
+**g_iter19 submission: 21/21/17/20 -- 1763 +- 39 over 336, rank 11.**
+**R19 = g_iter19 + R5's early guns** (the alert message moved to id 9: 7 is CENTER_UP since R13). mvpatel2000 pairs
+(scripted to r1000): the guns stand in 5 of 6; r19 wins 5 of 6 against g_iter19's 4 (SoupOnTheSide flips); landscaper
+counts at r1000 mixed. Head-to-head against g_iter19, to finish before the 5am calibration.
