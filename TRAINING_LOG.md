@@ -4631,3 +4631,9 @@ buying, on the standard wall (no quarry; the post table recomputed for all 16 C2
 finalbota losses + three W/E wave pairs, g_iter18 the control): the shell fires in 7 games; both winkelmantanner wave
 losses flip (RandomSoup1 3176 -> won 2939, WaterBot 3171 -> won 3060); the finalbota results unchanged. r18 10 of 17,
 g_iter18 8. Head-to-head against g_iter18.
+
+**r18 ACCEPTED as `src/g_iter19` (head-to-head against g_iter18, three alternating blocks each): 73 of 144 against 58
+(25/24/24 vs 19/21/18); +82 +- 86.** poortho 13-5 vs 5-13, mvpatel2000 6-12 vs 3-15, IvanGeffner 5-13 vs 3-15,
+cormackikkert 17-1 vs 14-4; winkelmantanner 3-15 vs 6-12 (the shell's target did not move in the field). g_iter19 =
+g_iter18 + r4s5's capped C3 shell (8 drones on the C3 tiles touching held posts from r1000) and its drone buying.
+r18's games relabelled `us:g_iter19`; `src/bot` = g_iter19. The 5am calibration (PROMPTS 80) runs on g_iter19.
