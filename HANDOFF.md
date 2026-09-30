@@ -20,6 +20,10 @@ run on UTC; run ids (`YYYYmmdd-HHMMSS`) are UTC machine stamps; dates written in
   assault), accepted on the head-to-head 68/144 vs 64/144 (+22 +- 85).
 - Previous incumbent: `src/g_iter14` = r1s17 (g_iter13 + R1 stage 17: rescue shots, drone shield repairs), 1789 +- 33 over 475
   band games; accepted on the head-to-head (75/144 vs 86/143, +62 +- 85) and the pooled ladder.
+- **Calibration (2026-09-30, PROMPTS 80): g_iter19 1752 +- 29 over 672, 11th of the 65 bots; g_iter13-g_iter19 all rate
+  1740-1752 on the refit -- the six head-to-head acceptances (+311 summed) moved the ladder +12. Judging rule tightened:
+  first head-to-head >= +43 (one SE), then a confirming second head-to-head; accept only if the pooled 288-a-side fit's
+  lower one-SE bound is above zero (TRAINING_LOG 2026-09-30).**
 - **Judging rule (2026-09-29):** a candidate is compared with CONTROL blocks of the incumbent played in the same period
   (alternating blocks), never with the incumbent's pooled history -- g_iter13's acceptance games rate 1791, its later
   games 1738 (the winner's curse). Candidates since g_iter13 (TRAINING_LOG: r2s1-s6, r1s17, R3 ark, R4 quarry r4s1-s5,

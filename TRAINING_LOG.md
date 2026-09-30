@@ -4644,3 +4644,38 @@ r18's games relabelled `us:g_iter19`; `src/bot` = g_iter19. The 5am calibration 
 counts at r1000 mixed. Head-to-head against g_iter19, to finish before the 5am calibration.
 **r19 head-to-head against g_iter19: 68 of 144 against 69 (25/21/22 vs 24/22/23). Level: not kept** -- the early guns add
 nothing on top of g_iter19 (as on g_iter14).
+
+## 2026-09-30 05:00 PDT -- ladder-position calibration of g_iter19 (PROMPTS 80)
+
+Pool (tools/elolib.py at the start): the 10 bots rated above g_iter19 plus the two just below --
+awesomelemonade, uvafan, AngusRitossa, StoneT2000, ronniesong0809, IvanGeffner, battlecode20-team4, winkelmantanner,
+mvpatel2000, rzhan11; EmaPajic, poortho. Four blocks of 48 scrimmages (`POOL=... BOT=g_iter19 N=48 tools/scrim.sh`,
+random maps and sides), 16 games per bot. **Blocks: 14-34, 10-38, 14-34, 12-36 (50 of 192).**
+
+| bot | before | after | calibration record (ours) |
+|---|---|---|---|
+| awesomelemonade.citricsky | 2129 +- 200 (103 g) | 2051 +- 134 (119) | 4-12 |
+| uvafan.v14_final_bot | 2119 +- 200 (98) | 2201 +- 200 (114) | 0-16 |
+| AngusRitossa.newbot | 2060 +- 174 (95) | 1951 +- 110 (111) | 7-9 |
+| StoneT2000.FinalChowBotStable | 2007 +- 181 (39) | 1979 +- 132 (55) | 4-12 |
+| ronniesong0809.finalbota | 1970 +- 66 (223) | 1993 +- 66 (239) | 0-16 |
+| IvanGeffner.finalbota | 1962 +- 43 (449) | 1958 +- 41 (465) | 5-11 |
+| battlecode20-team4.finalbota | 1958 +- 47 (442) | 1964 +- 46 (458) | 2-14 |
+| winkelmantanner.tannerplayer | 1889 +- 21 (1466) | 1890 +- 21 (1482) | 4-12 |
+| mvpatel2000.qual | 1876 +- 21 (1453) | 1878 +- 21 (1469) | 3-13 |
+| rzhan11.quals_bot | 1806 +- 21 (1196) | 1806 +- 21 (1212) | 7-9 |
+| EmaPajic.Qualifications | 1733 +- 18 (1499) | 1734 +- 18 (1515) | 9-7 |
+| poortho.stable_seeding_bot | 1732 +- 17 (1685) | 1734 +- 17 (1701) | 5-11 |
+
+**g_iter19: 1759 +- 33 (480 g) -> 1752 +- 29 (672 g); 11th of the 65 bots (10 above it); field score 81.6% -> 81.4%;
+vs the 10 higher 23.6% -> 23.9%.** The order above us is unchanged (winkelmantanner 1890 is still 138 up; the top four
+tightened by 40-70 on the error bars, uvafan's does not move while we score 0 against it).
+
+**The finding the calibration exposes: the head-to-head acceptances since g_iter13 do not show on the ladder.** With
+g_iter19's games in, the refit puts g_iter13 1740 +- 30, g_iter14 1750, g_iter15 1746, g_iter16 1745, g_iter17 1752,
+g_iter18 1741, g_iter19 1752 -- six acceptances summing to +311 on their head-to-heads (+62 +22 +27 +74 +44 +82), +12 on
+the ladder, all inside one error bar. Each head-to-head carried +-85; accepting any positive point estimate at that width
+accepts noise about half the time (the winner's curse again, one level up). **Judging rule tightened (the loop's
+decision):** a candidate's first head-to-head must reach +43 (one standard error) to go on; it is then confirmed by a
+second head-to-head (three more alternating blocks each), and it is accepted only if the pooled 288-a-side fit keeps the
+lower one-SE bound above zero. The incumbent stays g_iter19 (level with g_iter17/g_iter14, and the most recent code).
